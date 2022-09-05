@@ -1,0 +1,95 @@
+Rose
+~~~
+
+Language grammar in rose.sablecc
+Sable.cc generates the parser and AST code.
+translate.cpp loads the Rose program then
+    - Check there is at least one proc
+    - Get the form
+    - Traverse the AST with a stats pass
+    - Interpret the AST to derive plots per frame
+    - Traverse the AST to get the colour script
+    - Call code generator to parse the AST to generate byte code and list of constants
+
+constants.bin - just an array of 32-bit constants, sorted by value.
+colorscript.bin - not looked at yet but looks like a sequence of frame delta values and RGB+index values (all 16-bit shorts)
+    Top bit of 16-bit short is set if value is a delta for number of frames (or 0x8000 for end)
+    Otherwise shorts are iiiiRRRRGGGGBBBB, where iiii is Tint [0-15]  
+bytecodes.bin - see bytecode.h for details
+
+Byte codes are JIT'd in Engine.S to 68000 instructions.
+Everything is stack based.
+Most instructions just push value onto the stack or pop them off.
+Each turtle state contains its own stack
+See RoseSpace.S for state layout:
+    - Proc address
+    - X
+    - Y
+    - Size
+    - Tint (colour index)
+    - Rand seed
+    - Dir (brad)
+    - Time
+
+List of free turtle states held in a linked list under r_FreeState
+with the first word of each pointing to next free state.
+
+r_StateLists holds a linked list of active turtles for frame N.
+When a turtle does a wait command it:
+    - Adds wait value to its current time
+    - Gets address of local "continue" label
+    - Stores "continue" as proc address
+    - Push state base ptr onto state stack
+    - Calculates the address of r_StateLists[state.time]
+    - Pushes current value of r_StateLists[state.time] onto state stack.
+    - Stores state stack ptr in r_StateLists[state.time]
+
+RunFrame called once per frame:
+    - Calculate address of r_StateLists[frame_no]
+    - If r_StateLists[frame_no] == 0 then done
+    - Copy r_StateLists[frame_no] to state stack ptr
+    - Pop stack to r_StateLists[frame_no]
+    - Pop stack to state base ptr
+    - Load state.proc address
+    - Jump to proc address
+
+InitStates:
+    - Calculate base address of r_StateSpace into state ptr
+    - Loop for MAX_TURTLES-1
+        - Calculate end of state block = state ptr + STATE_SIZE
+        - Store state ptr at end of state block
+        - State ptr = end ptr
+    - Creates a linked list with first word of each state block pointing to the start of the previous one
+
+InitMainTurtle:
+    - Store contents of state ptr in r_FreeState (ptr to next free state)
+    - Store r_Instructions (proc 0) at state_ptr (state.proc_address)
+    - Set random seed
+    - Use state ptr as state stack ptr
+    - Push value of state ptr onto state stack
+    - Push contents of r_StateLists[0] onto state stack
+    - Store state stack ptr at r_StateLists[0]
+
+So state stack grows downwards beneath state block.
+This is why r_StateSpace has MAX_TURTLES+1 allocated.
+Although that doesn't necessarily help and could corrupt array before?
+Never uses state 0. (Probably never get to MAX_TURTLES)
+
+r_State
+{
+    void *st_proc               ; 4
+    int st_x                    ; 8
+    int st_y                    ; 12    
+    int st_size                 ; 16
+    int st_tint                 ; 20
+    int st_rand                 ; 24
+    int st_dir                  ; 28
+    int st_time                 ; 32
+    int wires[WIRE_CAPACITY]    ; 64
+    int stack[MAX_STACK+2]      ; 152   ; +2 because always need to push two pointers for statelist management.
+}
+
+rState r_StateSpace[MAX_TURTLES+1]
+
+InitStates:
+r_stateSpace[n+1] = &r_StateSpace[n]    ; linked list.
