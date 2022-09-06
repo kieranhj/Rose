@@ -1,5 +1,5 @@
 ; rose2arc.py
-; input = bytecodes.bin
+; input = circle.bin
 
 .equ ST_PROC, 0
 .equ ST_X, 1
@@ -11,11 +11,13 @@
 .equ ST_TIME, 7
 .equ ST_WIRE0, 8
 .equ ST_WIRE1, 9
+
 ; R3 = State Stack Ptr.
 ; R4 = r_Constants.
 ; R5 = State Ptr.
 ; R6 = r_StateSpace.
-.proc_0_start
+
+proc_0_start:
 ; BC_CONST [87]
 ldr r0, [r4, #7*4]   ; r0=rConstants[7]
 ; BC_MOVE [0e]
@@ -57,9 +59,10 @@ ldr r0, [r3], #4     ; pop R0
 ; BC_END [02]
 ; TODO: Add state ptr to r_FreeState list.
 mov pc, lr
-.proc_1_start
+proc_1_start:
 ; BC_DRAW [04]
-; TODO: Call r_PutCircle with st_x, st_y, st_size, st_tint
+ldmia r5, {r8-r11}  ; R8=st_x, R9=st_y, R10=st_size, R11=st_tint
+bl PutCircle
 ; BC_CONST [83]
 ldr r0, [r4, #3*4]   ; r0=rConstants[3]
 ; BC_MOVE [0e]
@@ -108,7 +111,12 @@ str r0, [r5, #ST_PROC*4]   ; State[ST_PROC]=R0
 ldr r1, [r5]         ; jump to State[st_proc]
 mov pc, r1
 ; BC_DONE [00]
-.proc_1_target_0
+proc_1_target_0:
 ; BC_END [02]
 ; TODO: Add state ptr to r_FreeState list.
 mov pc, lr
+
+; Procedures.
+r_Procedures:
+	.long proc_0_start
+	.long proc_1_start

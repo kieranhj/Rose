@@ -93,3 +93,34 @@ rState r_StateSpace[MAX_TURTLES+1]
 
 InitStates:
 r_stateSpace[n+1] = &r_StateSpace[n]    ; linked list.
+
+TODO:
+- Revisit all bytecode commands now that Engine.S has been annotated.
+    - Const - DONE APART FROM USEBIGCONSTANT
+    - Done - DONE
+    - Else - DONE
+    - End - ADD STATE TO FREESTATE LIST
+    - Rand - ASSUME USERANDOM=0 FOR NOW
+    - Draw - DONE APART FROM ACTUAL PLOT FN!
+    - Tail - DONE
+    - Plot - DONE APART FROM ACTUAL PLOT FN!
+    - Proc
+    - Pop
+    - Div
+    - Wait
+    - Sine
+    - Seed
+    - Neg
+    - Move
+    - Mul
+    - When
+    - Fork
+    - Op
+    - WLocal
+    - WState
+    - RLocal
+    - RState
+- Create initial ARM implementation of Frame and State handling from Engine.S
+- Add support functions incuding Sinus.S and Circles.S
+    - Use RiscOS circle drawing with VDU commands as placeholder!
+- Win. :)

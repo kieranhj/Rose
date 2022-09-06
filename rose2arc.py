@@ -117,7 +117,7 @@ class RoseParser:
 
     def write_done(self, c):
         self._asm_file.write(f'; BC_DONE [{c:02x}]\n')
-        self._asm_file.write(f'.proc_{self._proc_no}_target_{self._label_stack.pop()}\n')
+        self._asm_file.write(f'proc_{self._proc_no}_target_{self._label_stack.pop()}:\n')
 
     def write_else(self, c):
         self._asm_file.write(f'; BC_ELSE [{c:02x}]\n')
@@ -125,7 +125,7 @@ class RoseParser:
         self._asm_file.write(f'b proc_{self._proc_no}_target_{self._label_no}\n')
         self._label_stack.append(self._label_no)
         self._label_no += 1
-        self._asm_file.write(f'.proc_{self._proc_no}_target_{target}\n')
+        self._asm_file.write(f'proc_{self._proc_no}_target_{target}:\n')
 
     def write_end(self, c):
         self._asm_file.write(f'; BC_END [{c:02x}]\n')
@@ -141,7 +141,8 @@ class RoseParser:
 
     def write_draw(self, c):
         self._asm_file.write(f'; BC_DRAW [{c:02x}]\n')
-        self._asm_file.write(f'; TODO: Call r_PutCircle with st_x, st_y, st_size, st_tint\n')
+        self._asm_file.write(f'ldmia r5, {{r8-r11}}  ; R8=st_x, R9=st_y, R10=st_size, R11=st_tint\n')
+        self._asm_file.write(f'bl PutCircle\n')
 
     def write_tail(self, c):
         self._asm_file.write(f'; BC_TAIL [{c:02x}]\n')
@@ -150,7 +151,8 @@ class RoseParser:
 
     def write_plot(self, c):
         self._asm_file.write(f'; BC_PLOT [{c:02x}]\n')
-        self._asm_file.write(f'; TODO: Call r_PutSquare with st_x, st_y, st_size, st_tint\n')
+        self._asm_file.write(f'ldmia r5, {{r8-r11}}  ; R8=st_x, R9=st_y, R10=st_size, R11=st_tint\n')
+        self._asm_file.write(f'bl PutSquare\n')
 
     def write_proc(self, c):
         self._asm_file.write(f'; BC_PROC [{c:02x}]\n')
@@ -322,6 +324,7 @@ class RoseParser:
         self._asm_file = asm_file
         c = int.from_bytes(self._byte_file.read(1), "big")
         current_proc = -1
+        num_procs = 0
 
         while c != END_OF_SCRIPT:
 
@@ -329,10 +332,11 @@ class RoseParser:
 
             # Write proc address.
             if current_proc != self._proc_no:
-                self._asm_file.write(f'.proc_{self._proc_no}_start\n')
+                self._asm_file.write(f'proc_{self._proc_no}_start:\n')
                 current_proc = self._proc_no
                 self._branch_target = 0
                 self._branch_call = 0
+                num_procs += 1
 
             # Inst loop.
             if c >= BC_CONST:
@@ -386,6 +390,11 @@ class RoseParser:
 
             c = int.from_bytes(self._byte_file.read(1), "big")
 
+        # Write procedure table.
+        self._asm_file.write(f'\n; Procedures.\nr_Procedures:\n')
+        for x in range(num_procs):
+            self._asm_file.write(f'\t.long proc_{x}_start\n')
+
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -415,10 +424,10 @@ if __name__ == '__main__':
     asm_file.write(f'; input = {src}\n\n')
     for s in STATE_NAMES:
         asm_file.write(f'.equ {s}, {STATE_NAMES.index(s)}\n')
-    asm_file.write('; R3 = State Stack Ptr.\n')
+    asm_file.write('\n; R3 = State Stack Ptr.\n')
     asm_file.write('; R4 = r_Constants.\n')
     asm_file.write('; R5 = State Ptr.\n')
-    asm_file.write('; R6 = r_StateSpace.\n')
+    asm_file.write('; R6 = r_StateSpace.\n\n')
 
     # Output Archie ARM asm.
     parser = RoseParser(byte_file)
