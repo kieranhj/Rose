@@ -101,26 +101,36 @@ TODO:
     - Else - DONE
     - End - ADD STATE TO FREESTATE LIST
     - Rand - ASSUME USERANDOM=0 FOR NOW
-    - Draw - DONE APART FROM ACTUAL PLOT FN!
+    - Draw - NEED PutCircle FN!
     - Tail - DONE
-    - Plot - DONE APART FROM ACTUAL PLOT FN!
-    - Proc
-    - Pop
-    - Div
-    - Wait
-    - Sine
-    - Seed
-    - Neg
-    - Move
-    - Mul
-    - When
-    - Fork
-    - Op
-    - WLocal
-    - WState
-    - RLocal
-    - RState
+    - Plot - NEED PutSquare FN!
+    - Proc - DONE
+    - Pop - DONE?
+    - Div - NEED DIV FN.
+    - Wait - NEED WaitState FN.
+    - Sine - NEED MakeSinus FN.
+    - Seed - TODO
+    - Neg - DONE
+    - Move - NEED DoMove FN.
+    - Mul - DONE
+    - When - DONE?
+    - Fork - Need StateFork FN.
+    - Op - NOT SURE!
+    - WLocal - DONE
+    - WState - DONE
+    - RLocal - DONE
+    - RState - DONE
+
+TODO: Check link register for all fns with branches!
+TODO: Add constants.bin to converter.
+TODO: Check unreachable code after fork?
+
 - Create initial ARM implementation of Frame and State handling from Engine.S
+    - <list of fns from Engine.S>
+    -
+    -
+
 - Add support functions incuding Sinus.S and Circles.S
     - Use RiscOS circle drawing with VDU commands as placeholder!
+
 - Win. :)

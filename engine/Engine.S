@@ -159,8 +159,8 @@ TranslateBytecode:
 	subq.b	#2,d0						; d0 -= 2
 	blo.b	.fork_or_op					; if d0 < 0 goto fork_or_op (i.e. bytecode < BC_WLOCAL)
 	lsr.b	#1,d0						; d0 = d0 >> 1
-	bcs.b	.longword					; if carry == 1 goto longword
-	not.w	d1							; d1 = ~d1
+	bcs.b	.longword					; if carry == 1 goto longword (i.e. bytecode == BC_WSTATE || bytecode == BC_RSTATE)
+	not.w	d1							; d1 = ~d1 (negate var when bytecode == BC_WLOCAL || bytecode == BC_RLOCAL)
 	bra.b	.longword					; goto longword
 .const:
 	moveq.l	#127,d1						; d1 = 127
@@ -336,7 +336,7 @@ Snip_wait:
 .continue:
 Snip_sine:
 	;move.l	(a3)+,d0
-	lsr.w	#2,d0						; d0 /= d0		; [0.16] => [0.14]
+	lsr.w	#2,d0						; d0 /= 4		; [0.16] => [0.14]
 	add.w	d0,d0						; d0 += d0		; [0.15] (bottom bit 0)
 	move.w	(a0,d0.w),d0				; d0 = sine[d0 & 0xffff] (16384 x 16-bit values see Sinus.S)
 	ext.l	d0							; sign extend d0!

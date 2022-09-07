@@ -12,109 +12,116 @@
 .equ ST_WIRE0, 8
 .equ ST_WIRE1, 9
 
-; R3 = State Stack Ptr.
-; R4 = r_Constants.
-; R5 = State Ptr.
-; R6 = r_StateSpace.
+; r3 = State Stack Ptr.
+; r4 = r_Constants.
+; r5 = State Ptr.
+; r6 = r_StateSpace.
+; r7 = r_Sinus.
 
 proc_0_start:
-; BC_CONST [87]
-ldr r0, [r4, #7*4]   ; r0=rConstants[7]
-; BC_MOVE [0e]
-; TODO: Implement BC_MOVE by R0 units.
-; BC_CONST [85]
-ldr r0, [r4, #5*4]   ; r0=rConstants[5]
-; BC_RSTATE [76]
-str r0, [r3, #-4]!   ; push R0
-ldr r0, [r5, #ST_DIR*4]   ; R0=State[ST_DIR]
-; BC_OP [3d]
-ldr r1, [r3], #4     ; pop R1
-add r0, r0, r1       ; R0=R0 add R1
-; BC_WSTATE [56]
-str r0, [r5, #ST_DIR*4]   ; State[ST_DIR]=R0
-; BC_CONST [86]
-ldr r0, [r4, #6*4]   ; r0=rConstants[6]
-; BC_MOVE [0e]
-; TODO: Implement BC_MOVE by R0 units.
-; BC_CONST [82]
-ldr r0, [r4, #2*4]   ; r0=rConstants[2]
-; BC_WSTATE [54]
-str r0, [r5, #ST_TINT*4]   ; State[ST_TINT]=R0
-; BC_CONST [84]
-ldr r0, [r4, #4*4]   ; r0=rConstants[4]
-; BC_WSTATE [53]
-str r0, [r5, #ST_SIZE*4]   ; State[ST_SIZE]=R0
-; BC_CONST [82]
-ldr r0, [r4, #2*4]   ; r0=rConstants[2]
-; BC_CONST [88]
-str r0, [r3, #-4]!   ; push R0
-ldr r0, [r4, #8*4]   ; r0=rConstants[8]
-; BC_PROC [07]
-str r0, [r3, #-4]!   ; push R0
-ldr r0, [r6, #1*4]   ; R0=r_Procedures[1]
-; BC_FORK [22]
-; TODO: Implement BC_FORK to proc R0 with 2 arguments.
-ldr r0, [r3], #4     ; pop R0
-ldr r0, [r3], #4     ; pop R0
-; BC_END [02]
-; TODO: Add state ptr to r_FreeState list.
-mov pc, lr
+	; BC_CONST [87]
+	ldr r0, [r4, #7*4]			; r0=rConstants[7]
+	; BC_MOVE [0e]
+	bl DoMove
+	; BC_CONST [85]
+	ldr r0, [r4, #5*4]			; r0=rConstants[5]
+	; BC_RSTATE [76]
+	str r0, [r3, #-4]!			; push r0
+	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	; BC_OP [3d]
+	ldr r1, [r3], #4			; pop r1
+	add r0, r0, r1				; r0=r0 add r1
+	; BC_WSTATE [56]
+	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=R0
+	; BC_CONST [86]
+	ldr r0, [r4, #6*4]			; r0=rConstants[6]
+	; BC_MOVE [0e]
+	bl DoMove
+	; BC_CONST [82]
+	ldr r0, [r4, #2*4]			; r0=rConstants[2]
+	; BC_WSTATE [54]
+	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=R0
+	; BC_CONST [84]
+	ldr r0, [r4, #4*4]			; r0=rConstants[4]
+	; BC_WSTATE [53]
+	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=R0
+	; BC_CONST [82]
+	ldr r0, [r4, #2*4]			; r0=rConstants[2]
+	; BC_CONST [88]
+	str r0, [r3, #-4]!			; push r0
+	ldr r0, [r4, #8*4]			; r0=rConstants[8]
+	; BC_PROC [07]
+	str r0, [r3, #-4]!			; push r0
+	ldr r0, [r6, #1*4]			; r0=r_Procedures[1]
+	; BC_FORK [22]
+	mov r1, #2
+	bl ForkState				; r0=proc address, r1=num_args
+	; TODO: Pop 2 vars from stack?
+	; BC_END [02]
+	b FreeState					; Add r5 to r_FreeState list and return.
+proc_0_end:
+
 proc_1_start:
-; BC_DRAW [04]
-ldmia r5, {r8-r11}  ; R8=st_x, R9=st_y, R10=st_size, R11=st_tint
-bl PutCircle
-; BC_CONST [83]
-ldr r0, [r4, #3*4]   ; r0=rConstants[3]
-; BC_MOVE [0e]
-; TODO: Implement BC_MOVE by R0 units.
-; BC_RLOCAL [60]
-ldr r0, [r5, #0*4]   ; R0=State[0]
-; BC_RSTATE [76]
-str r0, [r3, #-4]!   ; push R0
-ldr r0, [r5, #ST_DIR*4]   ; R0=State[ST_DIR]
-; BC_OP [3d]
-ldr r1, [r3], #4     ; pop R1
-add r0, r0, r1       ; R0=R0 add R1
-; BC_WSTATE [56]
-str r0, [r5, #ST_DIR*4]   ; State[ST_DIR]=R0
-; BC_CONST [81]
-ldr r0, [r4, #1*4]   ; r0=rConstants[1]
-; BC_WAIT [0a]
-; TODO: Implement BC_WAIT for time R0.
-; BC_CONST [80]
-ldr r0, [r4, #0*4]   ; r0=rConstants[0]
-; BC_RLOCAL [61]
-str r0, [r3, #-4]!   ; push R0
-ldr r0, [r5, #1*4]   ; R0=State[1]
-; BC_OP [3b]
-ldr r1, [r3], #4     ; pop R1
-cmp r0, r1           ; R0=R0 cmp R1
-; BC_WHEN [1f]
-bgt proc_1_target_0
-; BC_PROC [07]
-ldr r0, [r6, #1*4]   ; R0=r_Procedures[1]
-; BC_CONST [82]
-str r0, [r3, #-4]!   ; push R0
-ldr r0, [r4, #2*4]   ; r0=rConstants[2]
-; BC_RLOCAL [61]
-str r0, [r3, #-4]!   ; push R0
-ldr r0, [r5, #1*4]   ; R0=State[1]
-; BC_OP [39]
-ldr r1, [r3], #4     ; pop R1
-sub r0, r0, r1       ; R0=R0 sub R1
-; BC_WLOCAL [41]
-str r0, [r5, #1*4]   ; State[1]=R0
-; BC_WSTATE [50]
-ldr r0, [r3], #4     ; pop R0
-str r0, [r5, #ST_PROC*4]   ; State[ST_PROC]=R0
-; BC_TAIL [05]
-ldr r1, [r5]         ; jump to State[st_proc]
-mov pc, r1
-; BC_DONE [00]
-proc_1_target_0:
-; BC_END [02]
-; TODO: Add state ptr to r_FreeState list.
-mov pc, lr
+	; BC_DRAW [04]
+	ldmia r5, {r8-r11}			; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	bl PutCircle
+	; BC_CONST [83]
+	ldr r0, [r4, #3*4]			; r0=rConstants[3]
+	; BC_MOVE [0e]
+	bl DoMove
+	; BC_RLOCAL [60]
+	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	; BC_RSTATE [76]
+	str r0, [r3, #-4]!			; push r0
+	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	; BC_OP [3d]
+	ldr r1, [r3], #4			; pop r1
+	add r0, r0, r1				; r0=r0 add r1
+	; BC_WSTATE [56]
+	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=R0
+	; BC_CONST [81]
+	ldr r0, [r4, #1*4]			; r0=rConstants[1]
+	; BC_WAIT [0a]
+	adr r1, proc_1_continue_0
+	; r0=wait_frames, r1=&continue
+	b WaitState					; Add r5 to StateList and return
+
+proc_1_continue_0:
+	; BC_CONST [80]
+	ldr r0, [r4, #0*4]			; r0=rConstants[0]
+	; BC_RLOCAL [61]
+	str r0, [r3, #-4]!			; push r0
+	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	; BC_OP [3b]
+	ldr r1, [r3], #4			; pop r1
+	cmp r0, r1					; r0 cmp r1
+	; BC_WHEN [1f]
+	ble proc_1_target_1
+	; BC_PROC [07]
+	ldr r0, [r6, #1*4]			; r0=r_Procedures[1]
+	; BC_CONST [82]
+	str r0, [r3, #-4]!			; push r0
+	ldr r0, [r4, #2*4]			; r0=rConstants[2]
+	; BC_RLOCAL [61]
+	str r0, [r3, #-4]!			; push r0
+	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	; BC_OP [39]
+	ldr r1, [r3], #4			; pop r1
+	sub r0, r0, r1				; r0=r0 sub r1
+	; BC_WLOCAL [41]
+	str r0, [r5, #-2*4]			; StateStack[-2]=r0
+	; BC_WSTATE [50]
+	ldr r0, [r3], #4			; pop r0
+	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=R0
+	; BC_TAIL [05]
+	ldr r1, [r5]				; jump to State[st_proc]
+	mov pc, r1
+	; BC_DONE [00]
+proc_1_target_1:
+	; BC_END [02]
+	b FreeState					; Add r5 to r_FreeState list and return.
+proc_1_end:
+
 
 ; Procedures.
 r_Procedures:

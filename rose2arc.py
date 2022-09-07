@@ -94,158 +94,169 @@ class RoseParser:
 
     def load_var(self, reg):
         if self._push_pending:
-            self._asm_file.write(f'str r{reg}, [r3, #-4]!   ; push R{reg}\n')
+            self._asm_file.write(f'\tstr r{reg}, [r3, #-4]!\t\t\t; push r{reg}\n')
             self._push_pending = False
 
     def pop_var(self, reg):
         if self._push_pending:
             self._push_pending = False
         else:
-            self._asm_file.write(f'ldr r{reg}, [r3], #4     ; pop R{reg}\n')
+            self._asm_file.write(f'\tldr r{reg}, [r3], #4\t\t\t; pop r{reg}\n')
         self._num_vars -= 1
 
     def write_const(self, c):
-        self._asm_file.write(f'; BC_CONST [{c:02x}]\n')
+        self._asm_file.write(f'\t; BC_CONST [{c:02x}]\n')
         index = c & 127
         self.load_var(0)
         if index == BIG_CONSTANT_BASE:
-            self._asm_file.write(f'; TODO: Load BIG_CONSTANT\n')
+            self._asm_file.write(f'\t; TODO: Load BIG_CONSTANT\n')
         else:
             # Write constant load.
-            self._asm_file.write(f'ldr r0, [r4, #{index}*4]   ; r0=rConstants[{index}]\n')
+            self._asm_file.write(f'\tldr r0, [r4, #{index}*4]\t\t\t; r0=rConstants[{index}]\n')
         self.push_var(0)
 
     def write_done(self, c):
-        self._asm_file.write(f'; BC_DONE [{c:02x}]\n')
+        self._asm_file.write(f'\t; BC_DONE [{c:02x}]\n')
         self._asm_file.write(f'proc_{self._proc_no}_target_{self._label_stack.pop()}:\n')
 
     def write_else(self, c):
-        self._asm_file.write(f'; BC_ELSE [{c:02x}]\n')
+        self._asm_file.write(f'\t; BC_ELSE [{c:02x}]\n')
         target = self._label_stack.pop()
-        self._asm_file.write(f'b proc_{self._proc_no}_target_{self._label_no}\n')
+        self._asm_file.write(f'\tb proc_{self._proc_no}_target_{self._label_no}\n')
         self._label_stack.append(self._label_no)
         self._label_no += 1
         self._asm_file.write(f'proc_{self._proc_no}_target_{target}:\n')
 
     def write_end(self, c):
-        self._asm_file.write(f'; BC_END [{c:02x}]\n')
-        self._asm_file.write(f'; TODO: Add state ptr to r_FreeState list.\n')
-        self._asm_file.write(f'mov pc, lr\n')
+        self._asm_file.write(f'\t; BC_END [{c:02x}]\n')
+        self._asm_file.write(f'\tb FreeState\t\t\t\t\t; Add r5 to r_FreeState list and return.\n')
+        self._asm_file.write(f'proc_{self._proc_no}_end:\n\n')
         self._proc_no += 1
 
     def write_rand(self, c):
-        self._asm_file.write(f'; BC_RAND [{c:02x}]\n')
+        self._asm_file.write(f'\t; BC_RAND [{c:02x}]\n')
         self.load_var(0)
-        self._asm_file.write(f'; TODO: Set R0 from RNG using State[st_rand].\n')
+        self._asm_file.write(f'\t; TODO: Set R0 from RNG using State[st_rand].\n')
         self.push_var(0)
 
     def write_draw(self, c):
-        self._asm_file.write(f'; BC_DRAW [{c:02x}]\n')
-        self._asm_file.write(f'ldmia r5, {{r8-r11}}  ; R8=st_x, R9=st_y, R10=st_size, R11=st_tint\n')
-        self._asm_file.write(f'bl PutCircle\n')
+        self._asm_file.write(f'\t; BC_DRAW [{c:02x}]\n')
+        self._asm_file.write(f'\tldmia r5, {{r8-r11}}\t\t\t; r8=st_x, r9=st_y, r10=st_size, r11=st_tint\n')
+        self._asm_file.write(f'\tbl PutCircle\n')
 
     def write_tail(self, c):
-        self._asm_file.write(f'; BC_TAIL [{c:02x}]\n')
-        self._asm_file.write(f'ldr r1, [r5]         ; jump to State[st_proc]\n')
-        self._asm_file.write(f'mov pc, r1\n')
+        self._asm_file.write(f'\t; BC_TAIL [{c:02x}]\n')
+        self._asm_file.write(f'\tldr r1, [r5]\t\t\t\t; jump to State[st_proc]\n')
+        self._asm_file.write(f'\tmov pc, r1\n')
 
     def write_plot(self, c):
-        self._asm_file.write(f'; BC_PLOT [{c:02x}]\n')
-        self._asm_file.write(f'ldmia r5, {{r8-r11}}  ; R8=st_x, R9=st_y, R10=st_size, R11=st_tint\n')
-        self._asm_file.write(f'bl PutSquare\n')
+        self._asm_file.write(f'\t; BC_PLOT [{c:02x}]\n')
+        self._asm_file.write(f'\tldmia r5, {{r8-r11}}\t\t; r8=st_x, r9=st_y, r10=st_size, r11=st_tint\n')
+        self._asm_file.write(f'\tbl PutSquare\n')
 
     def write_proc(self, c):
-        self._asm_file.write(f'; BC_PROC [{c:02x}]\n')
+        self._asm_file.write(f'\t; BC_PROC [{c:02x}]\n')
         self.load_var(0)
         index = int.from_bytes(self._byte_file.read(1), "big")
-        self._asm_file.write(f'ldr r0, [r6, #{index}*4]   ; R0=r_Procedures[{index}]\n')
+        self._asm_file.write(f'\tldr r0, [r6, #{index}*4]\t\t\t; r0=r_Procedures[{index}]\n')
         self.push_var(0)
 
     def write_pop_snip(self, c):
-        self._asm_file.write(f'; BC_POP [{c:02x}]\n')
+        self._asm_file.write(f'\t; BC_POP [{c:02x}]\n')
         self._pop_var(0)
 
     def write_div(self, c):
-        self._asm_file.write(f'; BC_DIV [{c:02x}]\n')
+        self._asm_file.write(f'\t; BC_DIV [{c:02x}]\n')
         self.pop_var(0)
         self.pop_var(1)
-        self._asm_file.write(f'; TODO: Implement BC_DIV as R0=R1/R0.\n')
+        self._asm_file.write(f'\tmov r1, r1, asr #8\n')
+        self._asm_file.write(f'\tbl div\t\t\t; R0=R0/R1')
+        self._asm_file.write(f'\t; TODO: Sign extend R0?\n')
+        self._asm_file.write(f'\tmov r0, r0, asl #8\n')
         self.push_var(0)
 
     def write_wait(self, c):
-        self._asm_file.write(f'; BC_WAIT [{c:02x}]\n')
+        self._asm_file.write(f'\t; BC_WAIT [{c:02x}]\n')
         self.pop_var(0)
-        self._asm_file.write(f'; TODO: Implement BC_WAIT for time R0.\n')
+        self._asm_file.write(f'\tadr r1, proc_{self._proc_no}_continue_{self._label_no}\n')
+        self._asm_file.write(f'\t; r0=wait_frames, r1=&continue\n')
+        self._asm_file.write(f'\tb WaitState\t\t\t\t\t; Add r5 to StateList and return\n\n')
+        self._asm_file.write(f'proc_{self._proc_no}_continue_{self._label_no}:\n')
+        self._label_no += 1
 
     def write_sine(self, c):
-        self._asm_file.write(f'; BC_SINE [{c:02x}]\n')
+        self._asm_file.write(f'\t; BC_SINE [{c:02x}]\n')
         self.pop_var(0)
-        self._asm_file.write(f'; TODO: Implement BC_SINE as R0=r_Sine[R0].\n')
+        self._asm_file.write(f'\tmov r1, #0xfffc\n')
+        self._asm_file.write(f'\tand r0, r0, r1\n')
+        self._asm_file.write(f'\tldr r0, [r7, r0]\t\t; r7=r_Sinus\n')
+        self._asm_file.write(f'\t; TODO: Sign extend R0?\n')
+        self._asm_file.write(f'\tmov r0, r0, asl #2\n')
         self.push_var(0)
 
     def write_seed(self, c):
-        self._asm_file.write(f'; BC_SEED [{c:02x}]\n')
+        self._asm_file.write(f'\t; BC_SEED [{c:02x}]\n')
         self.pop_var(0)
-        self._asm_file.write(f'; TODO: Implement BC_SEED as State[st_rand]=R0*0x9d3d+R0 etc.\n')
-        self._asm_file.write(f'str r0, [r5, #st_rand*4] ; State[st_rand]=R0\n')
+        self._asm_file.write(f'\t; TODO: Implement BC_SEED as State[ST_RAND]=r0*0x9d3d+r0 etc.\n')
+        self._asm_file.write(f'\tstr r0, [r5, #ST_RAND*4]\t\t; State[ST_RAND]=r0\n')
 
     def write_neg(self, c):
-        self._asm_file.write(f'; BC_NEG [{c:02x}]\n')
+        self._asm_file.write(f'\t; BC_NEG [{c:02x}]\n')
         self.pop_var(0)
-        self._asm_file.write(f'mvn r0, r0   ; R0=-R0\n')
+        self._asm_file.write(f'\trsb r0, r0, #0\t\t; r0=0-r0\n')
         self.push_var(0)
 
     def write_move(self, c):
-        self._asm_file.write(f'; BC_MOVE [{c:02x}]\n')
+        self._asm_file.write(f'\t; BC_MOVE [{c:02x}]\n')
         self.pop_var(0)
-        self._asm_file.write(f'; TODO: Implement BC_MOVE by R0 units.\n')
+        self._asm_file.write(f'\tbl DoMove\n')
     
     def write_mul(self, c):
-        self._asm_file.write(f'; BC_MUL [{c:02x}]\n')
+        self._asm_file.write(f'\t; BC_MUL [{c:02x}]\n')
         self.pop_var(0)
         self.pop_var(1)
-        self._asm_file.write(f'mov r0, r0, lsr #8\n')
-        self._asm_file.write(f'mul r0, r0, r1, lsr #8   ; R0=R0*R1\n')
+        self._asm_file.write(f'\tmov r0, r0, lsr #8\n')
+        self._asm_file.write(f'\tmul r0, r0, r1, lsr #8\t; r0=r0*r1\n')
         self.push_var(0)
 
     def write_when(self, c):
-        self._asm_file.write(f'; BC_WHEN [{c:02x}]\n')
+        self._asm_file.write(f'\t; BC_WHEN [{c:02x}]\n')
         cond = c & 0xf
-        # TODO: Use negated condition for WHEN.
+        # NOTE: Uses negated condition for WHEN!
         if cond == CMP_EQ:
-            suffix = 'eq'
-        elif cond == CMP_NE:
             suffix = 'ne'
+        elif cond == CMP_NE:
+            suffix = 'eq'
         elif cond == CMP_LT:
-            suffix = 'lt'
-        elif cond == CMP_GE:
             suffix = 'ge'
+        elif cond == CMP_GE:
+            suffix = 'lt'
         elif cond == CMP_LE:
-            suffix = 'le'
-        elif cond == CMP_GT:
             suffix = 'gt'
+        elif cond == CMP_GT:
+            suffix = 'le'
         else:
             suffix = 'xx'
 
-        self._asm_file.write(f'b{suffix} proc_{self._proc_no}_target_{self._label_no}\n')
+        self._asm_file.write(f'\tb{suffix} proc_{self._proc_no}_target_{self._label_no}\n')
         self._label_stack.append(self._label_no)    # Push label.
         self._label_no += 1
 
     def write_fork(self, c):
-        self._asm_file.write(f'; BC_FORK [{c:02x}]\n')
+        self._asm_file.write(f'\t; BC_FORK [{c:02x}]\n')
         self.pop_var(0) # Proc.
         num_args = c & 0xf
-        self._asm_file.write(f'; TODO: Implement BC_FORK to proc R0 with {num_args} arguments.\n')
-        for i in range(num_args):
-            self.pop_var(0)
+        self._asm_file.write(f'\tmov r1, #{num_args}\n')
+        self._asm_file.write(f'\tbl ForkState\t\t\t\t; r0=proc address, r1=num_args\n')
+        self._asm_file.write(f'\t; TODO: Pop {num_args} vars from stack?\n')
 
     def write_op(self, c):
-        self._asm_file.write(f'; BC_OP [{c:02x}]\n')
+        self._asm_file.write(f'\t; BC_OP [{c:02x}]\n')
         shift = None
         op = c & 0xf
         self.pop_var(0)
         self.pop_var(1)
-        # TODO: Switch on op.
+
         if op == OP_ASR:
             opcode = 'movs'
             shift = 'asr'
@@ -284,39 +295,39 @@ class RoseParser:
             opcode = 'unknown'
 
         if opcode == 'cmp':
-            self._asm_file.write(f'{opcode} r0, r1           ; R0=R0 {opcode} R1\n')
+            self._asm_file.write(f'\t{opcode} r0, r1\t\t\t\t\t; r0 {opcode} r1\n')
         else:
             if shift == None:
-                self._asm_file.write(f'{opcode} r0, r0, r1       ; R0=R0 {opcode} R1\n')
+                self._asm_file.write(f'\t{opcode} r0, r0, r1\t\t\t\t; r0=r0 {opcode} r1\n')
             else:
-                self._asm_file.write(f'{opcode} r0, r0, {shift}, r1 ; R0=R0 {shift} R1\n')
+                self._asm_file.write(f'\t{opcode} r0, r0, {shift}, r1\t\t\t; r0=r0 {shift} r1\n')
             self.push_var(0)
 
     def write_wlocal(self, c):
-        self._asm_file.write(f'; BC_WLOCAL [{c:02x}]\n')
+        self._asm_file.write(f'\t; BC_WLOCAL [{c:02x}]\n')
         x = c & 0xf
         self.pop_var(0)
-        self._asm_file.write(f'str r0, [r5, #{x}*4]   ; State[{x}]=R0\n')
+        self._asm_file.write(f'\tstr r0, [r5, #{~x}*4]\t\t\t; StateStack[{~x}]=r0\n')
 
     def write_wstate(self, c):
-        self._asm_file.write(f'; BC_WSTATE [{c:02x}]\n')
+        self._asm_file.write(f'\t; BC_WSTATE [{c:02x}]\n')
         x = c & 0xf
         self.pop_var(0)
-        self._asm_file.write(f'str r0, [r5, #{STATE_NAMES[x]}*4]   ; State[{STATE_NAMES[x]}]=R0\n')
+        self._asm_file.write(f'\tstr r0, [r5, #{STATE_NAMES[x]}*4]\t\t; State[{STATE_NAMES[x]}]=R0\n')
 
     def write_rlocal(self, c):
-        self._asm_file.write(f'; BC_RLOCAL [{c:02x}]\n')
+        self._asm_file.write(f'\t; BC_RLOCAL [{c:02x}]\n')
         self.load_var(0)
         x = c & 0xf
-        self._asm_file.write(f'ldr r0, [r5, #{x}*4]   ; R0=State[{x}]\n')
+        self._asm_file.write(f'\tldr r0, [r5, #{~x}*4]\t\t\t; r0=StateStack[{~x}]\n')
         self.push_var(0)
 
     def write_rstate(self, c):
-        self._asm_file.write(f'; BC_RSTATE [{c:02x}]\n')
+        self._asm_file.write(f'\t; BC_RSTATE [{c:02x}]\n')
         self.load_var(0)
         x = c & 0xf
         print(f'{x}')
-        self._asm_file.write(f'ldr r0, [r5, #{STATE_NAMES[x]}*4]   ; R0=State[{STATE_NAMES[x]}]\n')
+        self._asm_file.write(f'\tldr r0, [r5, #{STATE_NAMES[x]}*4]\t\t; r0=State[{STATE_NAMES[x]}]\n')
         self.push_var(0)
 
 
@@ -424,10 +435,11 @@ if __name__ == '__main__':
     asm_file.write(f'; input = {src}\n\n')
     for s in STATE_NAMES:
         asm_file.write(f'.equ {s}, {STATE_NAMES.index(s)}\n')
-    asm_file.write('\n; R3 = State Stack Ptr.\n')
-    asm_file.write('; R4 = r_Constants.\n')
-    asm_file.write('; R5 = State Ptr.\n')
-    asm_file.write('; R6 = r_StateSpace.\n\n')
+    asm_file.write('\n; r3 = State Stack Ptr.\n')
+    asm_file.write('; r4 = r_Constants.\n')
+    asm_file.write('; r5 = State Ptr.\n')
+    asm_file.write('; r6 = r_StateSpace.\n')
+    asm_file.write('; r7 = r_Sinus.\n\n')
 
     # Output Archie ARM asm.
     parser = RoseParser(byte_file)
