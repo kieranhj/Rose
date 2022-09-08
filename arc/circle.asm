@@ -56,7 +56,7 @@ proc_0_start:
 	ldr r0, [r4, #8*4]			; r0=rConstants[8]
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; push r0
-	ldr r0, [r6, #1*4]			; r0=r_Procedures[1]
+	adr r0, proc_1_start		; r0=r_Procedures[1]
 	; BC_FORK [22]
 	mov r1, #2
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -111,7 +111,7 @@ proc_1_continue_0:
 	; BC_WHEN [1f]
 	ble proc_1_target_1
 	; BC_PROC [07]
-	ldr r0, [r6, #1*4]			; r0=r_Procedures[1]
+	adr r0, proc_1_start		; r0=r_Procedures[1]
 	; BC_CONST [82]
 	str r0, [r3, #-4]!			; push r0
 	ldr r0, [r4, #2*4]			; r0=rConstants[2]
@@ -137,8 +137,3 @@ proc_1_target_1:
 	ldr pc, [sp], #4			; Return.
 proc_1_end:
 
-
-; Procedures.
-r_Procedures:
-	.long proc_0_start
-	.long proc_1_start

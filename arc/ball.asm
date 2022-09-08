@@ -48,7 +48,7 @@ proc_0_start:
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=R0
 	; BC_PROC [07]
-	ldr r0, [r6, #1*4]			; r0=r_Procedures[1]
+	adr r0, proc_1_start		; r0=r_Procedures[1]
 	; BC_WSTATE [50]
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=R0
 	; BC_TAIL [05]
@@ -103,7 +103,7 @@ proc_1_start:
 	ldr pc, [sp], #4				; Return
 proc_1_continue_0:
 	; BC_PROC [07]
-	ldr r0, [r6, #1*4]			; r0=r_Procedures[1]
+	adr r0, proc_1_start		; r0=r_Procedures[1]
 	; BC_WSTATE [50]
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=R0
 	; BC_TAIL [05]
@@ -115,8 +115,3 @@ proc_1_continue_0:
 	ldr pc, [sp], #4			; Return.
 proc_1_end:
 
-
-; Procedures.
-r_Procedures:
-	.long proc_0_start
-	.long proc_1_start

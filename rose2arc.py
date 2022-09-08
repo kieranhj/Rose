@@ -164,7 +164,8 @@ class RoseParser:
         self._asm_file.write(f'\t; BC_PROC [{c:02x}]\n')
         self.load_var(0)
         index = int.from_bytes(self._byte_file.read(1), "big")
-        self._asm_file.write(f'\tldr r0, [r6, #{index}*4]\t\t\t; r0=r_Procedures[{index}]\n')
+        # self._asm_file.write(f'\tldr r0, [r6, #{index}*4]\t\t\t; r0=r_Procedures[{index}]\n')
+        self._asm_file.write(f'\tadr r0, proc_{index}_start\t\t; r0=r_Procedures[{index}]\n')
         self.push_var(0)
 
     def write_pop_snip(self, c):
@@ -416,9 +417,9 @@ class RoseParser:
             c = int.from_bytes(self._byte_file.read(1), "big")
 
         # Write procedure table.
-        self._asm_file.write(f'\n; Procedures.\nr_Procedures:\n')
-        for x in range(num_procs):
-            self._asm_file.write(f'\t.long proc_{x}_start\n')
+        # self._asm_file.write(f'\n; Procedures.\nr_Procedures:\n')
+        # for x in range(num_procs):
+        #    self._asm_file.write(f'\t.long proc_{x}_start\n')
 
 
 if __name__ == '__main__':
