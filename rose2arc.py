@@ -170,7 +170,7 @@ class RoseParser:
 
     def write_pop_snip(self, c):
         self._asm_file.write(f'\t; BC_POP [{c:02x}]\n')
-        self._pop_var(0)
+        self.pop_var(0)
 
     def write_div(self, c):
         self._asm_file.write(f'\t; BC_DIV [{c:02x}]\n')
@@ -178,9 +178,9 @@ class RoseParser:
         self.pop_var(1)
         self._asm_file.write(f'\tmov r1, r1, asr #8\n')
         self._asm_file.write(f'\tstr lr, [sp, #-4]!\t\t\t; Push lr on program stack.\n')
-        self._asm_file.write(f'\tbl div\t\t\t; R0=R0/R1')
+        self._asm_file.write(f'\tbl div\t\t\t; r0=r0/r1\n')
         self._asm_file.write(f'\tldr lr, [sp], #4\t\t\t; Pop lr from program stack.\n')
-        self._asm_file.write(f'\t; TODO: Sign extend R0?\n')
+        self._asm_file.write(f'\t; TODO: Sign extend r0?\n')
         self._asm_file.write(f'\tmov r0, r0, asl #8\n')
         self.push_var(0)
 
@@ -189,7 +189,7 @@ class RoseParser:
         self.pop_var(0)
         self._asm_file.write(f'\tadr r1, proc_{self._proc_no}_continue_{self._label_no}\n')
         self._asm_file.write(f'\tstr lr, [sp, #-4]!\t\t\t; Push lr on program stack.\n')
-        self._asm_file.write(f'\t; r0=wait_frames, r1=&continue\n')
+        # self._asm_file.write(f'\t; r0=wait_frames, r1=&continue\n')
         self._asm_file.write(f'\tbl WaitState\t\t\t\t\t; Add r5 to StateList\n')
         self._asm_file.write(f'\tldr pc, [sp], #4\t\t\t\t; Return\n')
         self._asm_file.write(f'proc_{self._proc_no}_continue_{self._label_no}:\n')
@@ -201,7 +201,7 @@ class RoseParser:
         self._asm_file.write(f'\tmov r1, #0xfffc\n')
         self._asm_file.write(f'\tand r0, r0, r1\n')
         self._asm_file.write(f'\tldr r0, [r7, r0]\t\t; r7=r_Sinus\n')
-        self._asm_file.write(f'\t; TODO: Sign extend R0?\n')
+        self._asm_file.write(f'\t; TODO: Sign extend r0?\n')
         self._asm_file.write(f'\tmov r0, r0, asl #2\n')
         self.push_var(0)
 
@@ -328,7 +328,7 @@ class RoseParser:
         self._asm_file.write(f'\t; BC_WSTATE [{c:02x}]\n')
         x = c & 0xf
         self.pop_var(0)
-        self._asm_file.write(f'\tstr r0, [r5, #{STATE_NAMES[x]}*4]\t\t; State[{STATE_NAMES[x]}]=R0\n')
+        self._asm_file.write(f'\tstr r0, [r5, #{STATE_NAMES[x]}*4]\t\t; State[{STATE_NAMES[x]}]=r0\n')
 
     def write_rlocal(self, c):
         self._asm_file.write(f'\t; BC_RLOCAL [{c:02x}]\n')
@@ -341,7 +341,6 @@ class RoseParser:
         self._asm_file.write(f'\t; BC_RSTATE [{c:02x}]\n')
         self.load_var(0)
         x = c & 0xf
-        print(f'{x}')
         self._asm_file.write(f'\tldr r0, [r5, #{STATE_NAMES[x]}*4]\t\t; r0=State[{STATE_NAMES[x]}]\n')
         self.push_var(0)
 
@@ -417,6 +416,7 @@ class RoseParser:
             c = int.from_bytes(self._byte_file.read(1), "big")
 
         # Write procedure table.
+        print(f'Wrote {num_procs} procedures.\n')
         # self._asm_file.write(f'\n; Procedures.\nr_Procedures:\n')
         # for x in range(num_procs):
         #    self._asm_file.write(f'\t.long proc_{x}_start\n')
@@ -459,6 +459,8 @@ if __name__ == '__main__':
     # Output Archie ARM asm.
     parser = RoseParser(byte_file)
     parser.TranslateByteCode(asm_file)
+
+    print(f'Wrote {asm_file.tell()} bytes.\n')
 
     asm_file.close()
     byte_file.close()

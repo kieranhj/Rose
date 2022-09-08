@@ -99,7 +99,7 @@ TODO:
     - Const - DONE APART FROM USEBIGCONSTANT
     - Done - DONE
     - Else - DONE
-    - End - ADD STATE TO FREESTATE LIST
+    - End - NEED FreeState FN.
     - Rand - ASSUME USERANDOM=0 FOR NOW
     - Draw - NEED PutCircle FN!
     - Tail - DONE
@@ -114,7 +114,7 @@ TODO:
     - Move - NEED DoMove FN.
     - Mul - DONE
     - When - DONE?
-    - Fork - Need StateFork FN.
+    - Fork - Need ForkState FN.
     - Op - NOT SURE!
     - WLocal - DONE
     - WState - DONE
@@ -122,15 +122,32 @@ TODO:
     - RState - DONE
 
 TODO: Check link register for all fns with branches! - DONE
-TODO: Add constants.bin to converter.
 TODO: Check unreachable code after fork? - DONE
 
-- Create initial ARM implementation of Frame and State handling from Engine.S
-    - <list of fns from Engine.S>
-    -
-    -
+- Add constants.bin to converter:
+    - Swap endian.
+    - Load from tabe.
+    - Use immediate loads where possible?
 
-- Add support functions incuding Sinus.S and Circles.S
-    - Use RiscOS circle drawing with VDU commands as placeholder!
+- Create initial ARM implementation of Frame and State handling from Engine.S:
+    - RunFrame
+    - InitStates
+    - InitMainTurtle
+    - FreeState
+    - PutCircle
+    - PutSquare
+        - Use RiscOS circle drawing with VDU commands as placeholder!
+    - WaitState
+    - MakeSinus
+    - DoMove
+    - ForkState
+
+- Test!
+
+- Write more optimal Circle & Square plotting fn.
+    - Ask Sarah for her routines from Horizon?
+    - Might need raster span sort routine to remove flicker?
+
+- Add QTM Player for MOD.
 
 - Win. :)

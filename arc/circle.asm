@@ -34,7 +34,7 @@ proc_0_start:
 	ldr r1, [r3], #4			; pop r1
 	add r0, r0, r1				; r0=r0 add r1
 	; BC_WSTATE [56]
-	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=R0
+	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
 	; BC_CONST [86]
 	ldr r0, [r4, #6*4]			; r0=rConstants[6]
 	; BC_MOVE [0e]
@@ -44,11 +44,11 @@ proc_0_start:
 	; BC_CONST [82]
 	ldr r0, [r4, #2*4]			; r0=rConstants[2]
 	; BC_WSTATE [54]
-	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=R0
+	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_CONST [84]
 	ldr r0, [r4, #4*4]			; r0=rConstants[4]
 	; BC_WSTATE [53]
-	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=R0
+	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_CONST [82]
 	ldr r0, [r4, #2*4]			; r0=rConstants[2]
 	; BC_CONST [88]
@@ -90,13 +90,12 @@ proc_1_start:
 	ldr r1, [r3], #4			; pop r1
 	add r0, r0, r1				; r0=r0 add r1
 	; BC_WSTATE [56]
-	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=R0
+	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
 	; BC_CONST [81]
 	ldr r0, [r4, #1*4]			; r0=rConstants[1]
 	; BC_WAIT [0a]
 	adr r1, proc_1_continue_0
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	; r0=wait_frames, r1=&continue
 	bl WaitState					; Add r5 to StateList
 	ldr pc, [sp], #4				; Return
 proc_1_continue_0:
@@ -125,7 +124,7 @@ proc_1_continue_0:
 	str r0, [r5, #-2*4]			; StateStack[-2]=r0
 	; BC_WSTATE [50]
 	ldr r0, [r3], #4			; pop r0
-	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=R0
+	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
 	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
 	mov pc, r1
