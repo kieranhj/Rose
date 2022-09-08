@@ -121,9 +121,9 @@ TODO:
     - RLocal - DONE
     - RState - DONE
 
-TODO: Check link register for all fns with branches!
+TODO: Check link register for all fns with branches! - DONE
 TODO: Add constants.bin to converter.
-TODO: Check unreachable code after fork?
+TODO: Check unreachable code after fork? - DONE
 
 - Create initial ARM implementation of Frame and State handling from Engine.S
     - <list of fns from Engine.S>

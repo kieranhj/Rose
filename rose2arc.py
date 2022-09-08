@@ -129,7 +129,9 @@ class RoseParser:
 
     def write_end(self, c):
         self._asm_file.write(f'\t; BC_END [{c:02x}]\n')
-        self._asm_file.write(f'\tb FreeState\t\t\t\t\t; Add r5 to r_FreeState list and return.\n')
+        self._asm_file.write(f'\tstr lr, [sp, #-4]!\t\t\t; Push lr on program stack.\n')
+        self._asm_file.write(f'\tbl FreeState\t\t\t\t; Add r5 to r_FreeState list.\n')
+        self._asm_file.write(f'\tldr pc, [sp], #4\t\t\t; Return.\n')
         self._asm_file.write(f'proc_{self._proc_no}_end:\n\n')
         self._proc_no += 1
 
@@ -142,17 +144,21 @@ class RoseParser:
     def write_draw(self, c):
         self._asm_file.write(f'\t; BC_DRAW [{c:02x}]\n')
         self._asm_file.write(f'\tldmia r5, {{r8-r11}}\t\t\t; r8=st_x, r9=st_y, r10=st_size, r11=st_tint\n')
+        self._asm_file.write(f'\tstr lr, [sp, #-4]!\t\t\t; Push lr on program stack.\n')
         self._asm_file.write(f'\tbl PutCircle\n')
+        self._asm_file.write(f'\tldr lr, [sp], #4\t\t\t; Pop lr from program stack.\n')
 
     def write_tail(self, c):
         self._asm_file.write(f'\t; BC_TAIL [{c:02x}]\n')
-        self._asm_file.write(f'\tldr r1, [r5]\t\t\t\t; jump to State[st_proc]\n')
+        self._asm_file.write(f'\tldr r1, [r5, #ST_PROC*4]\t; Jump to State.st_proc\n')
         self._asm_file.write(f'\tmov pc, r1\n')
 
     def write_plot(self, c):
         self._asm_file.write(f'\t; BC_PLOT [{c:02x}]\n')
         self._asm_file.write(f'\tldmia r5, {{r8-r11}}\t\t; r8=st_x, r9=st_y, r10=st_size, r11=st_tint\n')
+        self._asm_file.write(f'\tstr lr, [sp, #-4]!\t\t\t; Push lr on program stack.\n')
         self._asm_file.write(f'\tbl PutSquare\n')
+        self._asm_file.write(f'\tldr lr, [sp], #4\t\t\t; Pop lr from program stack.\n')
 
     def write_proc(self, c):
         self._asm_file.write(f'\t; BC_PROC [{c:02x}]\n')
@@ -170,7 +176,9 @@ class RoseParser:
         self.pop_var(0)
         self.pop_var(1)
         self._asm_file.write(f'\tmov r1, r1, asr #8\n')
+        self._asm_file.write(f'\tstr lr, [sp, #-4]!\t\t\t; Push lr on program stack.\n')
         self._asm_file.write(f'\tbl div\t\t\t; R0=R0/R1')
+        self._asm_file.write(f'\tldr lr, [sp], #4\t\t\t; Pop lr from program stack.\n')
         self._asm_file.write(f'\t; TODO: Sign extend R0?\n')
         self._asm_file.write(f'\tmov r0, r0, asl #8\n')
         self.push_var(0)
@@ -179,8 +187,10 @@ class RoseParser:
         self._asm_file.write(f'\t; BC_WAIT [{c:02x}]\n')
         self.pop_var(0)
         self._asm_file.write(f'\tadr r1, proc_{self._proc_no}_continue_{self._label_no}\n')
+        self._asm_file.write(f'\tstr lr, [sp, #-4]!\t\t\t; Push lr on program stack.\n')
         self._asm_file.write(f'\t; r0=wait_frames, r1=&continue\n')
-        self._asm_file.write(f'\tb WaitState\t\t\t\t\t; Add r5 to StateList and return\n\n')
+        self._asm_file.write(f'\tbl WaitState\t\t\t\t\t; Add r5 to StateList\n')
+        self._asm_file.write(f'\tldr pc, [sp], #4\t\t\t\t; Return\n')
         self._asm_file.write(f'proc_{self._proc_no}_continue_{self._label_no}:\n')
         self._label_no += 1
 
@@ -209,7 +219,9 @@ class RoseParser:
     def write_move(self, c):
         self._asm_file.write(f'\t; BC_MOVE [{c:02x}]\n')
         self.pop_var(0)
+        self._asm_file.write(f'\tstr lr, [sp, #-4]!\t\t\t; Push lr on program stack.\n')
         self._asm_file.write(f'\tbl DoMove\n')
+        self._asm_file.write(f'\tldr lr, [sp], #4\t\t\t; Pop lr from program stack.\n')
     
     def write_mul(self, c):
         self._asm_file.write(f'\t; BC_MUL [{c:02x}]\n')
@@ -247,7 +259,9 @@ class RoseParser:
         self.pop_var(0) # Proc.
         num_args = c & 0xf
         self._asm_file.write(f'\tmov r1, #{num_args}\n')
+        self._asm_file.write(f'\tstr lr, [sp, #-4]!\t\t\t; Push lr on program stack.\n')
         self._asm_file.write(f'\tbl ForkState\t\t\t\t; r0=proc address, r1=num_args\n')
+        self._asm_file.write(f'\tldr lr, [sp], #4\t\t\t; Pop lr from program stack.\n')
         self._asm_file.write(f'\t; TODO: Pop {num_args} vars from stack?\n')
 
     def write_op(self, c):

@@ -22,7 +22,9 @@ proc_0_start:
 	; BC_CONST [87]
 	ldr r0, [r4, #7*4]			; r0=rConstants[7]
 	; BC_MOVE [0e]
+	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
+	ldr lr, [sp], #4			; Pop lr from program stack.
 	; BC_CONST [85]
 	ldr r0, [r4, #5*4]			; r0=rConstants[5]
 	; BC_RSTATE [76]
@@ -36,7 +38,9 @@ proc_0_start:
 	; BC_CONST [86]
 	ldr r0, [r4, #6*4]			; r0=rConstants[6]
 	; BC_MOVE [0e]
+	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
+	ldr lr, [sp], #4			; Pop lr from program stack.
 	; BC_CONST [82]
 	ldr r0, [r4, #2*4]			; r0=rConstants[2]
 	; BC_WSTATE [54]
@@ -55,20 +59,28 @@ proc_0_start:
 	ldr r0, [r6, #1*4]			; r0=r_Procedures[1]
 	; BC_FORK [22]
 	mov r1, #2
+	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
+	ldr lr, [sp], #4			; Pop lr from program stack.
 	; TODO: Pop 2 vars from stack?
 	; BC_END [02]
-	b FreeState					; Add r5 to r_FreeState list and return.
+	str lr, [sp, #-4]!			; Push lr on program stack.
+	bl FreeState				; Add r5 to r_FreeState list.
+	ldr pc, [sp], #4			; Return.
 proc_0_end:
 
 proc_1_start:
 	; BC_DRAW [04]
 	ldmia r5, {r8-r11}			; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutCircle
+	ldr lr, [sp], #4			; Pop lr from program stack.
 	; BC_CONST [83]
 	ldr r0, [r4, #3*4]			; r0=rConstants[3]
 	; BC_MOVE [0e]
+	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
+	ldr lr, [sp], #4			; Pop lr from program stack.
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
 	; BC_RSTATE [76]
@@ -83,9 +95,10 @@ proc_1_start:
 	ldr r0, [r4, #1*4]			; r0=rConstants[1]
 	; BC_WAIT [0a]
 	adr r1, proc_1_continue_0
+	str lr, [sp, #-4]!			; Push lr on program stack.
 	; r0=wait_frames, r1=&continue
-	b WaitState					; Add r5 to StateList and return
-
+	bl WaitState					; Add r5 to StateList
+	ldr pc, [sp], #4				; Return
 proc_1_continue_0:
 	; BC_CONST [80]
 	ldr r0, [r4, #0*4]			; r0=rConstants[0]
@@ -114,12 +127,14 @@ proc_1_continue_0:
 	ldr r0, [r3], #4			; pop r0
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=R0
 	; BC_TAIL [05]
-	ldr r1, [r5]				; jump to State[st_proc]
+	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
 	mov pc, r1
 	; BC_DONE [00]
 proc_1_target_1:
 	; BC_END [02]
-	b FreeState					; Add r5 to r_FreeState list and return.
+	str lr, [sp, #-4]!			; Push lr on program stack.
+	bl FreeState				; Add r5 to r_FreeState list.
+	ldr pc, [sp], #4			; Return.
 proc_1_end:
 
 
