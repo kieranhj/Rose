@@ -35,14 +35,14 @@
 ; r7 = r_Sinus.
 ; ============================================================================
 
-; r2 = Frame
 RunFame:
     adr r7, r_Sinus
     adr r4, r_Constants
 .1:
     adr r6, r_StateLists
+    ldr r2, r_FrameCounter
     ldr r3, [r6, r2, lsl #2]    ; p_StateStack
-    cmp #0
+    cmp r3, #0
     beq .2
     ldr r1, [r3], #4            ; pop ptr to next state stack
     str r1, [r6, r2, lsl #2]    ; store this in state list
@@ -104,7 +104,8 @@ WaitState:
     ldr r2, [r5, #ST_TIME*4]
     add r2, r2, r0
     str r2, [r5, #ST_TIME*4]    ; *pState.st_time += wait_frames
-    bic r2, r2, #0xffff         ; remove time fractional part.
+    bic r2, r2, #0xff00         ; remove time fractional part.
+    bic r2, r2, #0x00ff         ; remove time fractional part.
     adr r6, r_StateLists
     ldr r1, [r6, r2, lsr #14]   ; time >> 16 << 2
     str r1, [r3, #-4]!          ; push previous entry from StateList at that frame.
@@ -150,7 +151,8 @@ ForkState:
     str r2, [r8, #-4]!          ; push p_NewState onto NewStateStack.
 
     ldr r0, [r5, #ST_TIME*4]    ; *p_CurrentState.st_time
-    bic r0, r0, #0xffff         ; remove time fractional part.
+    bic r0, r0, #0xff00         ; remove time fractional part.
+    bic r0, r0, #0x00ff         ; remove time fractional part.
     adr r6, r_StateLists
     ldr r9, [r6, r0, lsr #14]   ; r_StateLists[current_time]
     str r9, [r8, #-4]!          ; push existing StateStackPtr onto NewStateStack.
@@ -181,20 +183,20 @@ DoMove:
 
 .1:                             ; big move
     mov r0, r0, asr #14         ; keep only 2 bits of fractional part [14.2]
-    mul r8, r8, r0              ; r8 = units * sine(dir) [14.2] * [1.16] = [14.18]
-    mul r9, r9, r0              ; r9 = units * cosine(dir) [14.2] * [1.16] = [14.18]
+    mul r8, r0, r8              ; r8 = units * sine(dir) [14.2] * [1.16] = [14.18]
+    mul r9, r0, r9              ; r9 = units * cosine(dir) [14.2] * [1.16] = [14.18]
     ; TODO: Check fp position here!
-    mov r8, r8, #asr 2          ; [14.16]
-    mov r9, r9, #asr 2          ; [14.16]
+    mov r8, r8, asr #2          ; [14.16]
+    mov r9, r9, asr #2          ; [14.16]
     b .3
 
 .2:                             ; small move
     mov r0, r0, asr #6          ; keep 10 bits of fractional part [6.10]
-    mul r8, r8, r0              ; r8 = units * sine(dir) [6.10] * [1.16] = [6.26]
-    mul r9, r9, r0              ; r9 = units * cosine(dir) [6.10] * [1.16] = [6.26]
+    mul r8, r0, r8              ; r8 = units * sine(dir) [6.10] * [1.16] = [6.26]
+    mul r9, r0, r9              ; r9 = units * cosine(dir) [6.10] * [1.16] = [6.26]
     ; TODO: Check fp position here!
-    mov r8, r8, #asr 10         ; [6.16]
-    mov r9, r9, #asr 10         ; [6.16]
+    mov r8, r8, asr #10         ; [6.16]
+    mov r9, r9, asr #10         ; [6.16]
 
 .3:
     ldr r1, [r5, #ST_X * 4]
@@ -216,12 +218,12 @@ PutCircle:
     mov r0, #4                  ; MOVE
     mov r1, r8, lsl #2          ; X
     mov r2, r9, lsl #2          ; Y
-    swi 0x45
+    swi OS_Plot
     mov r0, #157                ; CIRCLE FILL
     mov r1, r8, lsl #2          ; X
     sub r9, r9, r10             ; Y -= size
     mov r2, r9, lsl #2          ; Y
-    swi 0x45
+    swi OS_Plot
     mov pc, lr
 
 ; r8=st_x, r9=st_y, r10=st_size, r11=st_tint.
@@ -236,38 +238,38 @@ PutSquare:
     mov r2, r9, lsl #2          ; Y
     sub r1, r1, r10, lsl #1     ; X -= st_size
     sub r2, r2, r10, lsl #1     ; Y -= st_size
-    swi 0x45
+    swi OS_Plot
     mov r0, #101                ; RECTANGLE FILL
     mov r1, r8, lsl #2          ; X
     mov r2, r9, lsl #2          ; Y
     add r1, r1, r10, lsl #1     ; X += st_size
     add r2, r2, r10, lsl #1     ; Y += st_size
-    swi 0x45
+    swi OS_Plot
     mov pc, lr
 
 MakeSinus:
     adr r8, r_Sinus
     mov r0, #0
     str r0, [r8], #4
-    add r9, r8, DEGREES/2*4-4
+    add r9, r8, #DEGREES/2*4-4
     str r0, [r9]
 
     mov r7, #1
 .1:
     mov r1, r7
-    mul r1, r1, r7          ; r7 ^2
+    mul r1, r7, r1          ; r7 ^2
     mov r1, r1, lsr #8
 
     mov r0, #2373
-    mul r0, r0, r1
+    mul r0, r1, r0
     mov r0, r0, lsr #16
     rsb r0, r0, #0
     add r0, r0, #21073
-    mul r0, r0, r1
+    mul r0, r1, r0
     mov r0, r0, lsr #16
     rsb r0, r0, #0
     add r0, r0, #51469
-    mul r0, r0, r7
+    mul r0, r7, r0
     mov r0, r0, lsr #13
 
     str r0, [r8], #4
