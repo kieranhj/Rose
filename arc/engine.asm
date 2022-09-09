@@ -9,6 +9,7 @@
 .equ MAX_WAIT, 1000             ; Max wait beyond end of program
 .equ WIRE_CAPACITY, 8           ; Number of wire slots <== IF THIS CHANGES CHECK StateFork!!
 .equ MAXRADIUS, 70              ;
+.equ DEGREES, 16384
 
 ; ============================================================================
 .equ ST_PROC, 0
@@ -205,16 +206,84 @@ DoMove:
     str r1, [r5, #ST_Y * 4]     ; st_y += units * sine(st_dir)
     mov pc, lr
 
+; r8=st_x, r9=st_y, r10=st_size, r11=st_tint.
 PutCircle:
-    ; TODO: VDUs for circle!
+    swi OS_WriteI + 18          ; GCOL
+    swi OS_WriteI + 0           ; 0
+    mov r0, r11                 ; tint
+    swi OS_WriteC
+
+    mov r0, #4                  ; MOVE
+    mov r1, r8, lsl #2          ; X
+    mov r2, r9, lsl #2          ; Y
+    swi 0x45
+    mov r0, #157                ; CIRCLE FILL
+    mov r1, r8, lsl #2          ; X
+    sub r9, r9, r10             ; Y -= size
+    mov r2, r9, lsl #2          ; Y
+    swi 0x45
     mov pc, lr
 
+; r8=st_x, r9=st_y, r10=st_size, r11=st_tint.
 PutSquare:
-    ; TODO: VDUs for square!
+    swi OS_WriteI + 18          ; GCOL
+    swi OS_WriteI + 0           ; 0
+    mov r0, r11                 ; tint
+    swi OS_WriteC
+
+    mov r0, #4                  ; MOVE
+    mov r1, r8, lsl #2          ; X
+    mov r2, r9, lsl #2          ; Y
+    sub r1, r1, r10, lsl #1     ; X -= st_size
+    sub r2, r2, r10, lsl #1     ; Y -= st_size
+    swi 0x45
+    mov r0, #101                ; RECTANGLE FILL
+    mov r1, r8, lsl #2          ; X
+    mov r2, r9, lsl #2          ; Y
+    add r1, r1, r10, lsl #1     ; X += st_size
+    add r2, r2, r10, lsl #1     ; Y += st_size
+    swi 0x45
     mov pc, lr
 
 MakeSinus:
-    ; TODO: Copy from Sinus.S.
+    adr r8, r_Sinus
+    mov r0, #0
+    str r0, [r8], #4
+    add r9, r8, DEGREES/2*4-4
+    str r0, [r9]
+
+    mov r7, #1
+.1:
+    mov r1, r7
+    mul r1, r1, r7          ; r7 ^2
+    mov r1, r1, lsr #8
+
+    mov r0, #2373
+    mul r0, r0, r1
+    mov r0, r0, lsr #16
+    rsb r0, r0, #0
+    add r0, r0, #21073
+    mul r0, r0, r1
+    mov r0, r0, lsr #16
+    rsb r0, r0, #0
+    add r0, r0, #51469
+    mul r0, r0, r7
+    mov r0, r0, lsr #13
+
+    str r0, [r8], #4
+    str r0, [r9, #-4]!
+    rsb r0, r0, #0
+    str r0, [r9, #DEGREES/2*4]
+    str r0, [r8, #DEGREES/2*4-4]
+
+    add r7, r7, #1
+    cmp r7, #DEGREES/4
+    blt .1
+
+    rsb r0, r0, #0
+    str r0, [r9, #-4]!
+    rsb r0, r0, #0
+    str r0, [r9, #DEGREES/2*4]
     mov pc, lr
 
 ; ============================================================================
@@ -226,5 +295,8 @@ r_StateLists:
 
 r_StateSpace:
     .byte   (MAX_TURTLES+1)*STATE_SIZE
+
+r_Sinus:
+    .long   DEGREES
 
 ; ============================================================================

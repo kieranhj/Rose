@@ -130,17 +130,17 @@ TODO: Check unreachable code after fork? - DONE
     - Use immediate loads where possible?
 
 - Create initial ARM implementation of Frame and State handling from Engine.S:
-    - RunFrame
-    - InitStates
-    - InitMainTurtle
-    - FreeState
-    - PutCircle
-    - PutSquare
+    - RunFrame - DONE
+    - InitStates - DONE
+    - InitMainTurtle - DONE
+    - FreeState - DONE
+    - PutCircle - DONE?
+    - PutSquare - DONE?
         - Use RiscOS circle drawing with VDU commands as placeholder!
-    - WaitState
-    - MakeSinus
-    - DoMove
-    - ForkState
+    - WaitState - DONE
+    - MakeSinus - DONE?
+    - DoMove - DONE
+    - ForkState - DONE
 
 - Test!
 
@@ -151,3 +151,5 @@ TODO: Check unreachable code after fork? - DONE
 - Add QTM Player for MOD.
 
 - Win. :)
+
+OS_Plot: SWI &45, plot, x, y
