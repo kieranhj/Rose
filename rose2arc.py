@@ -189,7 +189,7 @@ class RoseParser:
         self.pop_var(0)
         self._asm_file.write(f'\tadr r1, proc_{self._proc_no}_continue_{self._label_no}\n')
         self._asm_file.write(f'\tstr lr, [sp, #-4]!\t\t\t; Push lr on program stack.\n')
-        self._asm_file.write(f'\tbl WaitState\t\t\t\t; Add r5 to StateList, r0=frames, r1=&continue.\n')
+        self._asm_file.write(f'\tbl WaitState\t\t\t\t; Add r5 to StateList, r0=wait_frames, r1=&continue.\n')
         self._asm_file.write(f'\tldr pc, [sp], #4\t\t\t; Return\n')
         self._asm_file.write(f'proc_{self._proc_no}_continue_{self._label_no}:\n')
         self._label_no += 1
