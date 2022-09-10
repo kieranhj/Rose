@@ -125,9 +125,9 @@ TODO: Check link register for all fns with branches! - DONE
 TODO: Check unreachable code after fork? - DONE
 
 - Add constants.bin to converter:
-    - Swap endian.
-    - Load from tabe.
-    - Use immediate loads where possible?
+    - Swap endian. - DONE
+    - Load from table. - DONE
+    - Use immediate loads where possible? - TODO!
 
 - Create initial ARM implementation of Frame and State handling from Engine.S:
     - RunFrame - DONE
@@ -144,6 +144,8 @@ TODO: Check unreachable code after fork? - DONE
 
 - Test!
 
+- Implement colorscript.bin, LOOK, PLAN etc.
+
 - Write more optimal Circle & Square plotting fn.
     - Ask Sarah for her routines from Horizon?
     - Might need raster span sort routine to remove flicker?
@@ -151,5 +153,3 @@ TODO: Check unreachable code after fork? - DONE
 - Add QTM Player for MOD.
 
 - Win. :)
-
-OS_Plot: SWI &45, plot, x, y

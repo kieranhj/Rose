@@ -1,6 +1,6 @@
 ; ============================================================================
 ; rose2arc.py
-; input = bytecodes.bin.
+; input = arc/everyway/bytecodes.bin.
 ; ============================================================================
 
 .equ ST_PROC, 0
@@ -52,7 +52,7 @@ proc_0_start:
 	; BC_WAIT [0a]
 	adr r1, proc_0_continue_0
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_0_continue_0:
 	; BC_PROC [07]
@@ -74,7 +74,7 @@ proc_0_continue_0:
 	; BC_WAIT [0a]
 	adr r1, proc_0_continue_1
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_0_continue_1:
 	; BC_PROC [07]
@@ -96,7 +96,7 @@ proc_0_continue_1:
 	; BC_WAIT [0a]
 	adr r1, proc_0_continue_2
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_0_continue_2:
 	; BC_PROC [07]
@@ -118,7 +118,7 @@ proc_0_continue_2:
 	; BC_WAIT [0a]
 	adr r1, proc_0_continue_3
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_0_continue_3:
 	; BC_PROC [07]
@@ -140,7 +140,7 @@ proc_0_continue_3:
 	; BC_WAIT [0a]
 	adr r1, proc_0_continue_4
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_0_continue_4:
 	; BC_PROC [07]
@@ -162,7 +162,7 @@ proc_0_continue_4:
 	; BC_WAIT [0a]
 	adr r1, proc_0_continue_5
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_0_continue_5:
 	; BC_PROC [07]
@@ -184,7 +184,7 @@ proc_0_continue_5:
 	; BC_WAIT [0a]
 	adr r1, proc_0_continue_6
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_0_continue_6:
 	; BC_PROC [07]
@@ -206,7 +206,7 @@ proc_0_continue_6:
 	; BC_WAIT [0a]
 	adr r1, proc_0_continue_7
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_0_continue_7:
 	; BC_PROC [07]
@@ -234,7 +234,7 @@ proc_0_continue_7:
 	; BC_WAIT [0a]
 	adr r1, proc_0_continue_8
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_0_continue_8:
 	; BC_PROC [07]
@@ -249,7 +249,7 @@ proc_0_continue_8:
 	; BC_WAIT [0a]
 	adr r1, proc_0_continue_9
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_0_continue_9:
 	; BC_PROC [07]
@@ -322,7 +322,7 @@ proc_1_start:
 	; BC_WAIT [0a]
 	adr r1, proc_1_continue_10
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_1_continue_10:
 	; BC_CONST [95]
@@ -365,7 +365,7 @@ proc_1_continue_10:
 	; BC_WAIT [0a]
 	adr r1, proc_1_continue_11
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_1_continue_11:
 	; BC_CONST [95]
@@ -408,7 +408,7 @@ proc_1_continue_11:
 	; BC_WAIT [0a]
 	adr r1, proc_1_continue_12
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_1_continue_12:
 	; BC_CONST [95]
@@ -466,7 +466,7 @@ proc_2_start:
 	; BC_WAIT [0a]
 	adr r1, proc_2_continue_13
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_2_continue_13:
 	; BC_CONST [80]
@@ -529,7 +529,7 @@ proc_3_start:
 	; BC_WAIT [0a]
 	adr r1, proc_3_continue_15
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_3_continue_15:
 	; BC_PROC [07]
@@ -615,7 +615,7 @@ proc_4_start:
 	; BC_WAIT [0a]
 	adr r1, proc_4_continue_17
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_4_continue_17:
 	; BC_CONST [95]
@@ -630,7 +630,7 @@ proc_4_continue_17:
 	; BC_WAIT [0a]
 	adr r1, proc_4_continue_18
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_4_continue_18:
 	; BC_CONST [cd]
@@ -687,7 +687,7 @@ proc_4_continue_18:
 	; BC_WAIT [0a]
 	adr r1, proc_4_continue_19
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_4_continue_19:
 	; BC_CONST [e0]
@@ -721,7 +721,7 @@ proc_4_continue_19:
 	; BC_WAIT [0a]
 	adr r1, proc_4_continue_20
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_4_continue_20:
 	; BC_CONST [d6]
@@ -759,7 +759,7 @@ proc_4_continue_20:
 	; BC_WAIT [0a]
 	adr r1, proc_4_continue_21
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_4_continue_21:
 	; BC_CONST [cd]
@@ -814,7 +814,7 @@ proc_4_continue_21:
 	; BC_WAIT [0a]
 	adr r1, proc_4_continue_22
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_4_continue_22:
 	; BC_CONST [e0]
@@ -896,7 +896,7 @@ proc_5_start:
 	; BC_WAIT [0a]
 	adr r1, proc_5_continue_23
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_5_continue_23:
 	; BC_CONST [80]
@@ -970,7 +970,7 @@ proc_6_start:
 	; BC_WAIT [0a]
 	adr r1, proc_6_continue_25
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_6_continue_25:
 	; BC_RLOCAL [66]
@@ -1203,7 +1203,7 @@ proc_8_start:
 	; BC_WAIT [0a]
 	adr r1, proc_8_continue_27
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_8_continue_27:
 	; BC_RLOCAL [62]
@@ -1278,7 +1278,7 @@ proc_9_start:
 	; BC_WAIT [0a]
 	adr r1, proc_9_continue_28
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_9_continue_28:
 	; BC_CONST [e3]
@@ -1306,7 +1306,7 @@ proc_9_continue_28:
 	; BC_WAIT [0a]
 	adr r1, proc_9_continue_29
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_9_continue_29:
 	; BC_CONST [c6]
@@ -1402,7 +1402,7 @@ proc_10_start:
 	; BC_WAIT [0a]
 	adr r1, proc_10_continue_31
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_10_continue_31:
 	; BC_CONST [80]
@@ -1419,7 +1419,7 @@ proc_10_continue_31:
 	; BC_WAIT [0a]
 	adr r1, proc_10_continue_32
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_10_continue_32:
 	; BC_CONST [b9]
@@ -1483,7 +1483,7 @@ proc_11_start:
 	; BC_WAIT [0a]
 	adr r1, proc_11_continue_34
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_11_continue_34:
 	; BC_PROC [07]
@@ -1539,7 +1539,7 @@ proc_12_start:
 	; BC_WAIT [0a]
 	adr r1, proc_12_continue_35
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_12_continue_35:
 	; BC_RLOCAL [60]
@@ -1577,7 +1577,7 @@ proc_12_continue_35:
 	; BC_WAIT [0a]
 	adr r1, proc_12_continue_36
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_12_continue_36:
 	; BC_RLOCAL [60]
@@ -1611,7 +1611,7 @@ proc_12_continue_36:
 	; BC_WAIT [0a]
 	adr r1, proc_12_continue_37
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_12_continue_37:
 	; BC_RLOCAL [60]
@@ -1649,7 +1649,7 @@ proc_12_continue_37:
 	; BC_WAIT [0a]
 	adr r1, proc_12_continue_38
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_12_continue_38:
 	; BC_RLOCAL [60]
@@ -1687,7 +1687,7 @@ proc_12_continue_38:
 	; BC_WAIT [0a]
 	adr r1, proc_12_continue_39
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_12_continue_39:
 	; BC_RLOCAL [60]
@@ -1721,7 +1721,7 @@ proc_12_continue_39:
 	; BC_WAIT [0a]
 	adr r1, proc_12_continue_40
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_12_continue_40:
 	; BC_RLOCAL [60]
@@ -1759,7 +1759,7 @@ proc_12_continue_40:
 	; BC_WAIT [0a]
 	adr r1, proc_12_continue_41
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_12_continue_41:
 	; BC_RLOCAL [60]
@@ -1913,7 +1913,7 @@ proc_13_start:
 	; BC_WAIT [0a]
 	adr r1, proc_13_continue_43
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_13_continue_43:
 	; BC_RLOCAL [62]
@@ -2068,7 +2068,7 @@ proc_15_start:
 	; BC_WAIT [0a]
 	adr r1, proc_15_continue_45
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_15_continue_45:
 	; BC_CONST [ae]
@@ -2096,7 +2096,7 @@ proc_15_continue_45:
 	; BC_WAIT [0a]
 	adr r1, proc_15_continue_46
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_15_continue_46:
 	; BC_CONST [ae]
@@ -2124,7 +2124,7 @@ proc_15_continue_46:
 	; BC_WAIT [0a]
 	adr r1, proc_15_continue_47
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_15_continue_47:
 	; BC_CONST [ae]
@@ -2145,7 +2145,7 @@ proc_15_continue_47:
 	; BC_WAIT [0a]
 	adr r1, proc_15_continue_48
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_15_continue_48:
 	; BC_END [02]
@@ -2180,7 +2180,7 @@ proc_16_start:
 	; BC_WAIT [0a]
 	adr r1, proc_16_continue_49
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_16_continue_49:
 	; BC_RLOCAL [61]
@@ -2201,7 +2201,7 @@ proc_16_continue_49:
 	; BC_WAIT [0a]
 	adr r1, proc_16_continue_50
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_16_continue_50:
 	; BC_CONST [9c]
@@ -2226,7 +2226,7 @@ proc_16_continue_50:
 	; BC_WAIT [0a]
 	adr r1, proc_16_continue_51
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_16_continue_51:
 	; BC_CONST [a5]
@@ -2261,7 +2261,7 @@ proc_16_continue_51:
 	; BC_WAIT [0a]
 	adr r1, proc_16_continue_52
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_16_continue_52:
 	; BC_CONST [a7]
@@ -2296,7 +2296,7 @@ proc_16_continue_52:
 	; BC_WAIT [0a]
 	adr r1, proc_16_continue_53
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_16_continue_53:
 	; BC_CONST [95]
@@ -2314,7 +2314,7 @@ proc_16_continue_53:
 	; BC_WAIT [0a]
 	adr r1, proc_16_continue_54
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_16_continue_54:
 	; BC_CONST [a5]
@@ -2349,7 +2349,7 @@ proc_16_continue_54:
 	; BC_WAIT [0a]
 	adr r1, proc_16_continue_55
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_16_continue_55:
 	; BC_CONST [a7]
@@ -2384,7 +2384,7 @@ proc_16_continue_55:
 	; BC_WAIT [0a]
 	adr r1, proc_16_continue_56
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_16_continue_56:
 	; BC_RLOCAL [61]
@@ -2405,7 +2405,7 @@ proc_16_continue_56:
 	; BC_WAIT [0a]
 	adr r1, proc_16_continue_57
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_16_continue_57:
 	; BC_CONST [9c]
@@ -2430,7 +2430,7 @@ proc_16_continue_57:
 	; BC_WAIT [0a]
 	adr r1, proc_16_continue_58
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_16_continue_58:
 	; BC_CONST [a7]
@@ -2465,7 +2465,7 @@ proc_16_continue_58:
 	; BC_WAIT [0a]
 	adr r1, proc_16_continue_59
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_16_continue_59:
 	; BC_CONST [8f]
@@ -2483,7 +2483,7 @@ proc_16_continue_59:
 	; BC_WAIT [0a]
 	adr r1, proc_16_continue_60
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_16_continue_60:
 	; BC_CONST [a5]
@@ -2518,7 +2518,7 @@ proc_16_continue_60:
 	; BC_WAIT [0a]
 	adr r1, proc_16_continue_61
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_16_continue_61:
 	; BC_CONST [95]
@@ -2536,7 +2536,7 @@ proc_16_continue_61:
 	; BC_WAIT [0a]
 	adr r1, proc_16_continue_62
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_16_continue_62:
 	; BC_CONST [a7]
@@ -2583,7 +2583,7 @@ proc_17_start:
 	; BC_WAIT [0a]
 	adr r1, proc_17_continue_63
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_17_continue_63:
 	; BC_CONST [a7]
@@ -2604,7 +2604,7 @@ proc_17_continue_63:
 	; BC_WAIT [0a]
 	adr r1, proc_17_continue_64
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_17_continue_64:
 	; BC_RLOCAL [61]
@@ -2625,7 +2625,7 @@ proc_17_continue_64:
 	; BC_WAIT [0a]
 	adr r1, proc_17_continue_65
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_17_continue_65:
 	; BC_CONST [9c]
@@ -2650,7 +2650,7 @@ proc_17_continue_65:
 	; BC_WAIT [0a]
 	adr r1, proc_17_continue_66
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_17_continue_66:
 	; BC_CONST [a5]
@@ -2685,7 +2685,7 @@ proc_17_continue_66:
 	; BC_WAIT [0a]
 	adr r1, proc_17_continue_67
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_17_continue_67:
 	; BC_CONST [9c]
@@ -2710,7 +2710,7 @@ proc_17_continue_67:
 	; BC_WAIT [0a]
 	adr r1, proc_17_continue_68
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_17_continue_68:
 	; BC_CONST [a7]
@@ -2745,7 +2745,7 @@ proc_17_continue_68:
 	; BC_WAIT [0a]
 	adr r1, proc_17_continue_69
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_17_continue_69:
 	; BC_CONST [8f]
@@ -2763,7 +2763,7 @@ proc_17_continue_69:
 	; BC_WAIT [0a]
 	adr r1, proc_17_continue_70
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_17_continue_70:
 	; BC_CONST [a7]
@@ -2798,7 +2798,7 @@ proc_17_continue_70:
 	; BC_WAIT [0a]
 	adr r1, proc_17_continue_71
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_17_continue_71:
 	; BC_CONST [8f]
@@ -2816,7 +2816,7 @@ proc_17_continue_71:
 	; BC_WAIT [0a]
 	adr r1, proc_17_continue_72
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_17_continue_72:
 	; BC_CONST [a7]
@@ -2851,7 +2851,7 @@ proc_17_continue_72:
 	; BC_WAIT [0a]
 	adr r1, proc_17_continue_73
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_17_continue_73:
 	; BC_CONST [9c]
@@ -2876,7 +2876,7 @@ proc_17_continue_73:
 	; BC_WAIT [0a]
 	adr r1, proc_17_continue_74
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_17_continue_74:
 	; BC_CONST [a7]
@@ -2911,7 +2911,7 @@ proc_17_continue_74:
 	; BC_WAIT [0a]
 	adr r1, proc_17_continue_75
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_17_continue_75:
 	; BC_CONST [8f]
@@ -2929,7 +2929,7 @@ proc_17_continue_75:
 	; BC_WAIT [0a]
 	adr r1, proc_17_continue_76
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_17_continue_76:
 	; BC_CONST [a5]
@@ -2978,7 +2978,7 @@ proc_17_continue_76:
 	; BC_WAIT [0a]
 	adr r1, proc_17_continue_77
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_17_continue_77:
 	; BC_PROC [07]
@@ -3100,7 +3100,7 @@ proc_18_start:
 	; BC_WAIT [0a]
 	adr r1, proc_18_continue_80
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_18_continue_80:
 	; BC_CONST [80]
@@ -3251,7 +3251,7 @@ proc_19_start:
 	; BC_WAIT [0a]
 	adr r1, proc_19_continue_83
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_19_continue_83:
 	; BC_CONST [80]
@@ -3402,7 +3402,7 @@ proc_20_start:
 	; BC_WAIT [0a]
 	adr r1, proc_20_continue_86
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_20_continue_86:
 	; BC_PROC [07]
@@ -3550,7 +3550,7 @@ proc_21_start:
 	; BC_WAIT [0a]
 	adr r1, proc_21_continue_87
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_21_continue_87:
 	; BC_END [02]
@@ -3659,7 +3659,7 @@ proc_22_start:
 	; BC_WAIT [0a]
 	adr r1, proc_22_continue_88
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_22_continue_88:
 	; BC_END [02]
@@ -3689,7 +3689,7 @@ proc_23_start:
 	; BC_WAIT [0a]
 	adr r1, proc_23_continue_90
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_23_continue_90:
 	; BC_CONST [bf]
@@ -3720,7 +3720,7 @@ proc_23_target_89:
 	; BC_WAIT [0a]
 	adr r1, proc_23_continue_92
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_23_continue_92:
 	; BC_CONST [bf]
@@ -3751,7 +3751,7 @@ proc_23_target_91:
 	; BC_WAIT [0a]
 	adr r1, proc_23_continue_94
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_23_continue_94:
 	; BC_CONST [bf]
@@ -3830,7 +3830,7 @@ proc_25_start:
 	; BC_WAIT [0a]
 	adr r1, proc_25_continue_96
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_25_continue_96:
 	; BC_CONST [95]
@@ -3856,7 +3856,7 @@ proc_25_continue_96:
 	; BC_WAIT [0a]
 	adr r1, proc_25_continue_97
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_25_continue_97:
 	; BC_CONST [99]
@@ -3882,7 +3882,7 @@ proc_25_continue_97:
 	; BC_WAIT [0a]
 	adr r1, proc_25_continue_98
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_25_continue_98:
 	; BC_CONST [8f]
@@ -3908,7 +3908,7 @@ proc_25_continue_98:
 	; BC_WAIT [0a]
 	adr r1, proc_25_continue_99
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_25_continue_99:
 	; BC_CONST [95]
@@ -3934,7 +3934,7 @@ proc_25_continue_99:
 	; BC_WAIT [0a]
 	adr r1, proc_25_continue_100
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_25_continue_100:
 	; BC_CONST [8f]
@@ -3960,7 +3960,7 @@ proc_25_continue_100:
 	; BC_WAIT [0a]
 	adr r1, proc_25_continue_101
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_25_continue_101:
 	; BC_CONST [99]
@@ -3986,7 +3986,7 @@ proc_25_continue_101:
 	; BC_WAIT [0a]
 	adr r1, proc_25_continue_102
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_25_continue_102:
 	; BC_CONST [8f]
@@ -4012,7 +4012,7 @@ proc_25_continue_102:
 	; BC_WAIT [0a]
 	adr r1, proc_25_continue_103
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_25_continue_103:
 	; BC_END [02]
@@ -4034,7 +4034,7 @@ proc_26_start:
 	; BC_WAIT [0a]
 	adr r1, proc_26_continue_104
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_26_continue_104:
 	; BC_CONST [99]
@@ -4130,7 +4130,7 @@ proc_27_start:
 	; BC_WAIT [0a]
 	adr r1, proc_27_continue_105
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_27_continue_105:
 	; BC_CONST [cb]
@@ -4155,7 +4155,7 @@ proc_27_continue_105:
 	; BC_WAIT [0a]
 	adr r1, proc_27_continue_106
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_27_continue_106:
 	; BC_CONST [cb]
@@ -4180,7 +4180,7 @@ proc_27_continue_106:
 	; BC_WAIT [0a]
 	adr r1, proc_27_continue_107
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_27_continue_107:
 	; BC_CONST [cb]
@@ -4205,7 +4205,7 @@ proc_27_continue_107:
 	; BC_WAIT [0a]
 	adr r1, proc_27_continue_108
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_27_continue_108:
 	; BC_CONST [c9]
@@ -4242,7 +4242,7 @@ proc_27_continue_108:
 	; BC_WAIT [0a]
 	adr r1, proc_27_continue_109
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_27_continue_109:
 	; BC_CONST [cb]
@@ -4267,7 +4267,7 @@ proc_27_continue_109:
 	; BC_WAIT [0a]
 	adr r1, proc_27_continue_110
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_27_continue_110:
 	; BC_CONST [cb]
@@ -4321,7 +4321,7 @@ proc_28_start:
 	; BC_WAIT [0a]
 	adr r1, proc_28_continue_112
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_28_continue_112:
 	; BC_PROC [07]
@@ -4376,7 +4376,7 @@ proc_29_start:
 	; BC_WAIT [0a]
 	adr r1, proc_29_continue_113
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_29_continue_113:
 	; BC_CONST [ac]
@@ -4528,7 +4528,7 @@ proc_30_start:
 	; BC_WAIT [0a]
 	adr r1, proc_30_continue_114
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_30_continue_114:
 	; BC_CONST [be]
@@ -4620,7 +4620,7 @@ proc_31_start:
 	; BC_WAIT [0a]
 	adr r1, proc_31_continue_115
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_31_continue_115:
 	; BC_CONST [cb]
@@ -4641,7 +4641,7 @@ proc_31_continue_115:
 	; BC_WAIT [0a]
 	adr r1, proc_31_continue_116
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_31_continue_116:
 	; BC_CONST [cb]
@@ -4662,7 +4662,7 @@ proc_31_continue_116:
 	; BC_WAIT [0a]
 	adr r1, proc_31_continue_117
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_31_continue_117:
 	; BC_CONST [cb]
@@ -4683,7 +4683,7 @@ proc_31_continue_117:
 	; BC_WAIT [0a]
 	adr r1, proc_31_continue_118
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_31_continue_118:
 	; BC_CONST [c9]
@@ -4716,7 +4716,7 @@ proc_31_continue_118:
 	; BC_WAIT [0a]
 	adr r1, proc_31_continue_119
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_31_continue_119:
 	; BC_CONST [cb]
@@ -4737,7 +4737,7 @@ proc_31_continue_119:
 	; BC_WAIT [0a]
 	adr r1, proc_31_continue_120
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_31_continue_120:
 	; BC_CONST [cb]
@@ -4774,7 +4774,7 @@ proc_31_continue_120:
 	; BC_WAIT [0a]
 	adr r1, proc_31_continue_121
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_31_continue_121:
 	; BC_CONST [c9]
@@ -4807,7 +4807,7 @@ proc_31_continue_121:
 	; BC_WAIT [0a]
 	adr r1, proc_31_continue_122
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_31_continue_122:
 	; BC_CONST [cb]
@@ -4842,7 +4842,7 @@ proc_32_start:
 	; BC_WAIT [0a]
 	adr r1, proc_32_continue_123
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_32_continue_123:
 	; BC_CONST [ac]
@@ -4948,7 +4948,7 @@ proc_33_start:
 	; BC_WAIT [0a]
 	adr r1, proc_33_continue_124
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_33_continue_124:
 	; BC_CONST [cb]
@@ -4969,7 +4969,7 @@ proc_33_continue_124:
 	; BC_WAIT [0a]
 	adr r1, proc_33_continue_125
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_33_continue_125:
 	; BC_CONST [cb]
@@ -5030,7 +5030,7 @@ proc_33_continue_125:
 	; BC_WAIT [0a]
 	adr r1, proc_33_continue_126
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_33_continue_126:
 	; BC_CONST [cb]
@@ -5061,7 +5061,7 @@ proc_33_continue_126:
 	; BC_WAIT [0a]
 	adr r1, proc_33_continue_127
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_33_continue_127:
 	; BC_PROC [07]
@@ -5094,7 +5094,7 @@ proc_34_start:
 	; BC_WAIT [0a]
 	adr r1, proc_34_continue_128
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_34_continue_128:
 	; BC_CONST [cb]
@@ -5187,7 +5187,7 @@ proc_35_start:
 	; BC_WAIT [0a]
 	adr r1, proc_35_continue_129
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_35_continue_129:
 	; BC_CONST [ac]
@@ -5355,7 +5355,7 @@ proc_37_start:
 	; BC_WAIT [0a]
 	adr r1, proc_37_continue_130
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_37_continue_130:
 	; BC_CONST [cb]
@@ -5376,7 +5376,7 @@ proc_37_continue_130:
 	; BC_WAIT [0a]
 	adr r1, proc_37_continue_131
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_37_continue_131:
 	; BC_CONST [cb]
@@ -5409,7 +5409,7 @@ proc_37_continue_131:
 	; BC_WAIT [0a]
 	adr r1, proc_37_continue_132
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_37_continue_132:
 	; BC_CONST [cb]
@@ -5440,7 +5440,7 @@ proc_37_continue_132:
 	; BC_WAIT [0a]
 	adr r1, proc_37_continue_133
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_37_continue_133:
 	; BC_PROC [07]
@@ -5469,7 +5469,7 @@ proc_38_start:
 	; BC_WAIT [0a]
 	adr r1, proc_38_continue_134
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_38_continue_134:
 	; BC_CONST [ac]
@@ -5622,7 +5622,7 @@ proc_39_start:
 	; BC_WAIT [0a]
 	adr r1, proc_39_continue_135
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_39_continue_135:
 	; BC_CONST [be]
@@ -5702,7 +5702,7 @@ proc_40_start:
 	; BC_WAIT [0a]
 	adr r1, proc_40_continue_136
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_40_continue_136:
 	; BC_CONST [cb]
@@ -5733,7 +5733,7 @@ proc_40_continue_136:
 	; BC_WAIT [0a]
 	adr r1, proc_40_continue_137
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_40_continue_137:
 	; BC_CONST [cb]
@@ -5754,7 +5754,7 @@ proc_40_continue_137:
 	; BC_WAIT [0a]
 	adr r1, proc_40_continue_138
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_40_continue_138:
 	; BC_CONST [cb]
@@ -5775,7 +5775,7 @@ proc_40_continue_138:
 	; BC_WAIT [0a]
 	adr r1, proc_40_continue_139
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_40_continue_139:
 	; BC_CONST [cb]
@@ -5796,7 +5796,7 @@ proc_40_continue_139:
 	; BC_WAIT [0a]
 	adr r1, proc_40_continue_140
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_40_continue_140:
 	; BC_RLOCAL [60]
@@ -5827,7 +5827,7 @@ proc_40_continue_140:
 	; BC_WAIT [0a]
 	adr r1, proc_40_continue_141
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_40_continue_141:
 	; BC_RLOCAL [60]
@@ -5880,7 +5880,7 @@ proc_40_continue_141:
 	; BC_WAIT [0a]
 	adr r1, proc_40_continue_142
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_40_continue_142:
 	; BC_PROC [07]
@@ -5895,7 +5895,7 @@ proc_40_continue_142:
 	; BC_WAIT [0a]
 	adr r1, proc_40_continue_143
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_40_continue_143:
 	; BC_CONST [cb]
@@ -5932,7 +5932,7 @@ proc_41_start:
 	; BC_WAIT [0a]
 	adr r1, proc_41_continue_144
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_41_continue_144:
 	; BC_CONST [cb]
@@ -5953,7 +5953,7 @@ proc_41_continue_144:
 	; BC_WAIT [0a]
 	adr r1, proc_41_continue_145
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_41_continue_145:
 	; BC_CONST [c9]
@@ -5998,7 +5998,7 @@ proc_41_continue_145:
 	; BC_WAIT [0a]
 	adr r1, proc_41_continue_146
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_41_continue_146:
 	; BC_CONST [cb]
@@ -6029,7 +6029,7 @@ proc_41_continue_146:
 	; BC_WAIT [0a]
 	adr r1, proc_41_continue_147
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_41_continue_147:
 	; BC_CONST [c9]
@@ -6066,7 +6066,7 @@ proc_42_start:
 	; BC_WAIT [0a]
 	adr r1, proc_42_continue_148
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_42_continue_148:
 	; BC_CONST [80]
@@ -6104,7 +6104,7 @@ proc_43_start:
 	; BC_WAIT [0a]
 	adr r1, proc_43_continue_150
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_43_continue_150:
 	; BC_PROC [07]
@@ -6205,7 +6205,7 @@ proc_45_start:
 	; BC_WAIT [0a]
 	adr r1, proc_45_continue_153
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_45_continue_153:
 	; BC_PROC [07]
@@ -6279,7 +6279,7 @@ proc_46_start:
 	; BC_WAIT [0a]
 	adr r1, proc_46_continue_155
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_46_continue_155:
 	; BC_PROC [07]
@@ -6301,7 +6301,7 @@ proc_46_continue_155:
 	; BC_WAIT [0a]
 	adr r1, proc_46_continue_156
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_46_continue_156:
 	; BC_PROC [07]
@@ -6323,7 +6323,7 @@ proc_46_continue_156:
 	; BC_WAIT [0a]
 	adr r1, proc_46_continue_157
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_46_continue_157:
 	; BC_PROC [07]
@@ -6345,7 +6345,7 @@ proc_46_continue_157:
 	; BC_WAIT [0a]
 	adr r1, proc_46_continue_158
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_46_continue_158:
 	; BC_END [02]
@@ -6370,7 +6370,7 @@ proc_47_start:
 	; BC_WAIT [0a]
 	adr r1, proc_47_continue_159
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_47_continue_159:
 	; BC_CONST [99]
@@ -6388,7 +6388,7 @@ proc_47_continue_159:
 	; BC_WAIT [0a]
 	adr r1, proc_47_continue_160
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_47_continue_160:
 	; BC_CONST [95]
@@ -6406,7 +6406,7 @@ proc_47_continue_160:
 	; BC_WAIT [0a]
 	adr r1, proc_47_continue_161
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_47_continue_161:
 	; BC_CONST [8f]
@@ -6424,7 +6424,7 @@ proc_47_continue_161:
 	; BC_WAIT [0a]
 	adr r1, proc_47_continue_162
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_47_continue_162:
 	; BC_CONST [99]
@@ -6459,7 +6459,7 @@ proc_48_start:
 	; BC_WAIT [0a]
 	adr r1, proc_48_continue_163
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_48_continue_163:
 	; BC_CONST [8f]
@@ -6477,7 +6477,7 @@ proc_48_continue_163:
 	; BC_WAIT [0a]
 	adr r1, proc_48_continue_164
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_48_continue_164:
 	; BC_CONST [80]
@@ -6495,7 +6495,7 @@ proc_48_continue_164:
 	; BC_WAIT [0a]
 	adr r1, proc_48_continue_165
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_48_continue_165:
 	; BC_CONST [95]
@@ -6513,7 +6513,7 @@ proc_48_continue_165:
 	; BC_WAIT [0a]
 	adr r1, proc_48_continue_166
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_48_continue_166:
 	; BC_CONST [99]
@@ -6548,7 +6548,7 @@ proc_49_start:
 	; BC_WAIT [0a]
 	adr r1, proc_49_continue_167
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_49_continue_167:
 	; BC_CONST [99]
@@ -6566,7 +6566,7 @@ proc_49_continue_167:
 	; BC_WAIT [0a]
 	adr r1, proc_49_continue_168
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_49_continue_168:
 	; BC_CONST [80]
@@ -6584,7 +6584,7 @@ proc_49_continue_168:
 	; BC_WAIT [0a]
 	adr r1, proc_49_continue_169
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_49_continue_169:
 	; BC_CONST [8f]
@@ -6602,7 +6602,7 @@ proc_49_continue_169:
 	; BC_WAIT [0a]
 	adr r1, proc_49_continue_170
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_49_continue_170:
 	; BC_CONST [95]
@@ -6637,7 +6637,7 @@ proc_50_start:
 	; BC_WAIT [0a]
 	adr r1, proc_50_continue_171
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_50_continue_171:
 	; BC_CONST [99]
@@ -6655,7 +6655,7 @@ proc_50_continue_171:
 	; BC_WAIT [0a]
 	adr r1, proc_50_continue_172
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_50_continue_172:
 	; BC_CONST [8f]
@@ -6673,7 +6673,7 @@ proc_50_continue_172:
 	; BC_WAIT [0a]
 	adr r1, proc_50_continue_173
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_50_continue_173:
 	; BC_CONST [80]
@@ -7009,7 +7009,7 @@ proc_53_target_176:
 	; BC_WAIT [0a]
 	adr r1, proc_53_continue_177
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_53_continue_177:
 	; BC_RLOCAL [62]
@@ -7154,7 +7154,7 @@ proc_54_start:
 	; BC_WAIT [0a]
 	adr r1, proc_54_continue_180
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_54_continue_180:
 	; BC_PROC [07]
@@ -7411,7 +7411,7 @@ proc_57_start:
 	; BC_WAIT [0a]
 	adr r1, proc_57_continue_183
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_57_continue_183:
 	; BC_CONST [c9]
@@ -7469,7 +7469,7 @@ proc_57_continue_183:
 	; BC_WAIT [0a]
 	adr r1, proc_57_continue_184
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_57_continue_184:
 	; BC_CONST [8f]
@@ -7512,7 +7512,7 @@ proc_57_continue_184:
 	; BC_WAIT [0a]
 	adr r1, proc_57_continue_185
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_57_continue_185:
 	; BC_ELSE [01]
@@ -7552,7 +7552,7 @@ proc_57_target_182:
 	; BC_WAIT [0a]
 	adr r1, proc_57_continue_187
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_57_continue_187:
 	; BC_CONST [c9]
@@ -7683,7 +7683,7 @@ proc_58_start:
 	; BC_WAIT [0a]
 	adr r1, proc_58_continue_190
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_58_continue_190:
 	; BC_CONST [c9]
@@ -7739,7 +7739,7 @@ proc_58_continue_190:
 	; BC_WAIT [0a]
 	adr r1, proc_58_continue_191
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_58_continue_191:
 	; BC_CONST [8f]
@@ -7782,7 +7782,7 @@ proc_58_continue_191:
 	; BC_WAIT [0a]
 	adr r1, proc_58_continue_192
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_58_continue_192:
 	; BC_ELSE [01]
@@ -7820,7 +7820,7 @@ proc_58_target_189:
 	; BC_WAIT [0a]
 	adr r1, proc_58_continue_194
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_58_continue_194:
 	; BC_CONST [c9]
@@ -8098,7 +8098,7 @@ proc_61_start:
 	; BC_WAIT [0a]
 	adr r1, proc_61_continue_196
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_61_continue_196:
 	; BC_CONST [8f]
@@ -8200,7 +8200,7 @@ proc_61_target_198:
 	; BC_WAIT [0a]
 	adr r1, proc_61_continue_199
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_61_continue_199:
 	; BC_CONST [c9]
@@ -8257,7 +8257,7 @@ proc_62_start:
 	; BC_WAIT [0a]
 	adr r1, proc_62_continue_201
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_62_continue_201:
 	; BC_CONST [8f]
@@ -8359,7 +8359,7 @@ proc_62_target_203:
 	; BC_WAIT [0a]
 	adr r1, proc_62_continue_204
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_62_continue_204:
 	; BC_CONST [c9]
@@ -8421,7 +8421,7 @@ proc_63_start:
 	; BC_WAIT [0a]
 	adr r1, proc_63_continue_206
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_63_continue_206:
 	; BC_PROC [07]
@@ -8473,7 +8473,7 @@ proc_64_start:
 	; BC_WAIT [0a]
 	adr r1, proc_64_continue_208
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_64_continue_208:
 	; BC_PROC [07]
@@ -8537,7 +8537,7 @@ proc_65_start:
 	; BC_WAIT [0a]
 	adr r1, proc_65_continue_210
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_65_continue_210:
 	; BC_PROC [07]
@@ -8940,7 +8940,7 @@ proc_70_start:
 	; BC_WAIT [0a]
 	adr r1, proc_70_continue_213
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_70_continue_213:
 	; BC_CONST [95]
@@ -9098,7 +9098,7 @@ proc_71_start:
 	; BC_WAIT [0a]
 	adr r1, proc_71_continue_215
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_71_continue_215:
 	; BC_CONST [92]
@@ -9165,7 +9165,7 @@ proc_72_start:
 	; BC_WAIT [0a]
 	adr r1, proc_72_continue_217
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_72_continue_217:
 	; BC_CONST [92]
@@ -9355,7 +9355,7 @@ proc_74_start:
 	; BC_WAIT [0a]
 	adr r1, proc_74_continue_219
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_74_continue_219:
 	; BC_CONST [d0]
@@ -9412,7 +9412,7 @@ proc_74_continue_219:
 	; BC_WAIT [0a]
 	adr r1, proc_74_continue_220
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_74_continue_220:
 	; BC_CONST [80]
@@ -9467,7 +9467,7 @@ proc_74_continue_220:
 	; BC_WAIT [0a]
 	adr r1, proc_74_continue_221
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_74_continue_221:
 	; BC_CONST [d0]
@@ -9497,7 +9497,7 @@ proc_74_continue_221:
 	; BC_WAIT [0a]
 	adr r1, proc_74_continue_222
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_74_continue_222:
 	; BC_CONST [80]
@@ -9523,7 +9523,7 @@ proc_74_continue_222:
 	; BC_WAIT [0a]
 	adr r1, proc_74_continue_223
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_74_continue_223:
 	; BC_CONST [99]
@@ -9607,7 +9607,7 @@ proc_75_start:
 	; BC_WAIT [0a]
 	adr r1, proc_75_continue_224
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_75_continue_224:
 	; BC_CONST [bc]
@@ -9631,7 +9631,7 @@ proc_75_continue_224:
 	; BC_WAIT [0a]
 	adr r1, proc_75_continue_225
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_75_continue_225:
 	; BC_CONST [bc]
@@ -9655,7 +9655,7 @@ proc_75_continue_225:
 	; BC_WAIT [0a]
 	adr r1, proc_75_continue_226
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_75_continue_226:
 	; BC_CONST [bc]
@@ -9833,7 +9833,7 @@ proc_78_start:
 	; BC_WAIT [0a]
 	adr r1, proc_78_continue_231
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_78_continue_231:
 	; BC_PROC [07]
@@ -9912,7 +9912,7 @@ proc_79_start:
 	; BC_WAIT [0a]
 	adr r1, proc_79_continue_234
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_79_continue_234:
 	; BC_PROC [07]
@@ -10007,7 +10007,7 @@ proc_80_start:
 	; BC_WAIT [0a]
 	adr r1, proc_80_continue_236
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_80_continue_236:
 	; BC_CONST [c9]
@@ -10051,7 +10051,7 @@ proc_80_continue_236:
 	; BC_WAIT [0a]
 	adr r1, proc_80_continue_237
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_80_continue_237:
 	; BC_CONST [c9]
@@ -10093,7 +10093,7 @@ proc_80_continue_237:
 	; BC_WAIT [0a]
 	adr r1, proc_80_continue_238
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_80_continue_238:
 	; BC_CONST [c9]
@@ -10152,7 +10152,7 @@ proc_81_start:
 	; BC_WAIT [0a]
 	adr r1, proc_81_continue_240
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_81_continue_240:
 	; BC_CONST [b0]
@@ -10625,7 +10625,7 @@ proc_84_start:
 	; BC_WAIT [0a]
 	adr r1, proc_84_continue_242
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_84_continue_242:
 	; BC_RLOCAL [61]
@@ -10790,7 +10790,7 @@ proc_86_start:
 	; BC_WAIT [0a]
 	adr r1, proc_86_continue_245
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_86_continue_245:
 	; BC_RLOCAL [61]
@@ -10944,7 +10944,7 @@ proc_88_start:
 	; BC_WAIT [0a]
 	adr r1, proc_88_continue_247
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_88_continue_247:
 	; BC_PROC [07]
@@ -10966,7 +10966,7 @@ proc_88_continue_247:
 	; BC_WAIT [0a]
 	adr r1, proc_88_continue_248
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_88_continue_248:
 	; BC_PROC [07]
@@ -11018,7 +11018,7 @@ proc_89_start:
 	; BC_WAIT [0a]
 	adr r1, proc_89_continue_249
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_89_continue_249:
 	; BC_CONST [95]
@@ -11046,7 +11046,7 @@ proc_89_continue_249:
 	; BC_WAIT [0a]
 	adr r1, proc_89_continue_250
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_89_continue_250:
 	; BC_CONST [99]
@@ -11074,7 +11074,7 @@ proc_89_continue_250:
 	; BC_WAIT [0a]
 	adr r1, proc_89_continue_251
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_89_continue_251:
 	; BC_CONST [8f]
@@ -11102,7 +11102,7 @@ proc_89_continue_251:
 	; BC_WAIT [0a]
 	adr r1, proc_89_continue_252
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_89_continue_252:
 	; BC_CONST [95]
@@ -11130,7 +11130,7 @@ proc_89_continue_252:
 	; BC_WAIT [0a]
 	adr r1, proc_89_continue_253
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_89_continue_253:
 	; BC_CONST [99]
@@ -11158,7 +11158,7 @@ proc_89_continue_253:
 	; BC_WAIT [0a]
 	adr r1, proc_89_continue_254
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_89_continue_254:
 	; BC_CONST [80]
@@ -11242,7 +11242,7 @@ proc_90_start:
 	; BC_WAIT [0a]
 	adr r1, proc_90_continue_256
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_90_continue_256:
 	; BC_PROC [07]
@@ -11341,7 +11341,7 @@ proc_91_start:
 	; BC_WAIT [0a]
 	adr r1, proc_91_continue_259
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_91_continue_259:
 	; BC_RLOCAL [61]
@@ -11402,7 +11402,7 @@ proc_92_start:
 	; BC_WAIT [0a]
 	adr r1, proc_92_continue_261
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_92_continue_261:
 	; BC_PROC [07]
@@ -11463,7 +11463,7 @@ proc_93_start:
 	; BC_WAIT [0a]
 	adr r1, proc_93_continue_262
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_93_continue_262:
 	; BC_CONST [c1]
@@ -11528,7 +11528,7 @@ proc_93_continue_262:
 	; BC_WAIT [0a]
 	adr r1, proc_93_continue_263
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_93_continue_263:
 	; BC_CONST [8f]
@@ -11561,7 +11561,7 @@ proc_93_continue_263:
 	; BC_WAIT [0a]
 	adr r1, proc_93_continue_264
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_93_continue_264:
 	; BC_CONST [99]
@@ -11696,7 +11696,7 @@ proc_94_start:
 	; BC_WAIT [0a]
 	adr r1, proc_94_continue_265
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_94_continue_265:
 	; BC_CONST [9e]
@@ -11846,7 +11846,7 @@ proc_95_start:
 	; BC_WAIT [0a]
 	adr r1, proc_95_continue_266
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_95_continue_266:
 	; BC_CONST [95]
@@ -11871,7 +11871,7 @@ proc_95_continue_266:
 	; BC_WAIT [0a]
 	adr r1, proc_95_continue_267
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_95_continue_267:
 	; BC_CONST [99]
@@ -11938,7 +11938,7 @@ proc_95_continue_267:
 	; BC_WAIT [0a]
 	adr r1, proc_95_continue_268
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_95_continue_268:
 	; BC_CONST [95]
@@ -11963,7 +11963,7 @@ proc_95_continue_268:
 	; BC_WAIT [0a]
 	adr r1, proc_95_continue_269
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_95_continue_269:
 	; BC_END [02]
@@ -11999,7 +11999,7 @@ proc_96_start:
 	; BC_WAIT [0a]
 	adr r1, proc_96_continue_271
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_96_continue_271:
 	; BC_PROC [07]
@@ -12071,7 +12071,7 @@ proc_98_start:
 	; BC_WAIT [0a]
 	adr r1, proc_98_continue_273
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_98_continue_273:
 	; BC_CONST [c1]
@@ -12123,7 +12123,7 @@ proc_99_start:
 	; BC_WAIT [0a]
 	adr r1, proc_99_continue_274
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_99_continue_274:
 	; BC_CONST [80]
@@ -12215,7 +12215,7 @@ proc_100_target_277:
 	; BC_WAIT [0a]
 	adr r1, proc_100_continue_278
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_100_continue_278:
 	; BC_PROC [07]
@@ -12304,7 +12304,7 @@ proc_101_start:
 	; BC_WAIT [0a]
 	adr r1, proc_101_continue_279
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_101_continue_279:
 	; BC_CONST [c9]
@@ -12329,7 +12329,7 @@ proc_101_continue_279:
 	; BC_WAIT [0a]
 	adr r1, proc_101_continue_280
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_101_continue_280:
 	; BC_CONST [a5]
@@ -12344,7 +12344,7 @@ proc_101_continue_280:
 	; BC_WAIT [0a]
 	adr r1, proc_101_continue_281
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_101_continue_281:
 	; BC_CONST [c9]
@@ -12369,7 +12369,7 @@ proc_101_continue_281:
 	; BC_WAIT [0a]
 	adr r1, proc_101_continue_282
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_101_continue_282:
 	; BC_PROC [07]
@@ -12439,7 +12439,7 @@ proc_101_continue_282:
 	; BC_WAIT [0a]
 	adr r1, proc_101_continue_283
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_101_continue_283:
 	; BC_CONST [c9]
@@ -12474,7 +12474,7 @@ proc_101_continue_283:
 	; BC_WAIT [0a]
 	adr r1, proc_101_continue_284
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_101_continue_284:
 	; BC_CONST [92]
@@ -12501,7 +12501,7 @@ proc_101_continue_284:
 	; BC_WAIT [0a]
 	adr r1, proc_101_continue_285
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_101_continue_285:
 	; BC_CONST [c3]
@@ -12542,7 +12542,7 @@ proc_101_continue_285:
 	; BC_WAIT [0a]
 	adr r1, proc_101_continue_286
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_101_continue_286:
 	; BC_CONST [c3]
@@ -12612,7 +12612,7 @@ proc_102_start:
 	; BC_WAIT [0a]
 	adr r1, proc_102_continue_287
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_102_continue_287:
 	; BC_CONST [c9]
@@ -12653,7 +12653,7 @@ proc_102_continue_287:
 	; BC_WAIT [0a]
 	adr r1, proc_102_continue_288
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_102_continue_288:
 	; BC_CONST [b9]
@@ -12704,7 +12704,7 @@ proc_102_continue_288:
 	; BC_WAIT [0a]
 	adr r1, proc_102_continue_289
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_102_continue_289:
 	; BC_CONST [9c]
@@ -12752,7 +12752,7 @@ proc_103_start:
 	; BC_WAIT [0a]
 	adr r1, proc_103_continue_291
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_103_continue_291:
 	; BC_RLOCAL [61]
@@ -12855,7 +12855,7 @@ proc_105_start:
 	; BC_WAIT [0a]
 	adr r1, proc_105_continue_293
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_105_continue_293:
 	; BC_PROC [07]
@@ -12910,7 +12910,7 @@ proc_106_start:
 	; BC_WAIT [0a]
 	adr r1, proc_106_continue_295
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_106_continue_295:
 	; BC_RLOCAL [60]
@@ -12997,7 +12997,7 @@ proc_108_start:
 	; BC_WAIT [0a]
 	adr r1, proc_108_continue_296
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_108_continue_296:
 	; BC_RLOCAL [60]
@@ -13035,7 +13035,7 @@ proc_108_continue_296:
 	; BC_WAIT [0a]
 	adr r1, proc_108_continue_297
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_108_continue_297:
 	; BC_CONST [c9]
@@ -13101,7 +13101,7 @@ proc_109_start:
 	; BC_WAIT [0a]
 	adr r1, proc_109_continue_298
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_109_continue_298:
 	; BC_RLOCAL [60]
@@ -13139,7 +13139,7 @@ proc_109_continue_298:
 	; BC_WAIT [0a]
 	adr r1, proc_109_continue_299
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_109_continue_299:
 	; BC_CONST [c9]
@@ -13218,7 +13218,7 @@ proc_110_start:
 	; BC_WAIT [0a]
 	adr r1, proc_110_continue_300
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_110_continue_300:
 	; BC_CONST [80]
@@ -13277,7 +13277,7 @@ proc_111_start:
 	; BC_WAIT [0a]
 	adr r1, proc_111_continue_301
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_111_continue_301:
 	; BC_CONST [80]
@@ -13359,7 +13359,7 @@ proc_112_start:
 	; BC_WAIT [0a]
 	adr r1, proc_112_continue_303
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_112_continue_303:
 	; BC_PROC [07]
@@ -13444,7 +13444,7 @@ proc_113_start:
 	; BC_WAIT [0a]
 	adr r1, proc_113_continue_305
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_113_continue_305:
 	; BC_PROC [07]
@@ -13493,7 +13493,7 @@ proc_114_start:
 	; BC_WAIT [0a]
 	adr r1, proc_114_continue_306
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_114_continue_306:
 	; BC_CONST [80]
@@ -13564,7 +13564,7 @@ proc_115_start:
 	; BC_WAIT [0a]
 	adr r1, proc_115_continue_308
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_115_continue_308:
 	; BC_PROC [07]
@@ -13636,7 +13636,7 @@ proc_117_start:
 	; BC_WAIT [0a]
 	adr r1, proc_117_continue_309
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_117_continue_309:
 	; BC_CONST [9e]
@@ -13644,7 +13644,7 @@ proc_117_continue_309:
 	; BC_WAIT [0a]
 	adr r1, proc_117_continue_310
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_117_continue_310:
 	; BC_CONST [a1]
@@ -13652,7 +13652,7 @@ proc_117_continue_310:
 	; BC_WAIT [0a]
 	adr r1, proc_117_continue_311
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_117_continue_311:
 	; BC_PLOT [06]
@@ -13675,7 +13675,7 @@ proc_117_continue_311:
 	; BC_WAIT [0a]
 	adr r1, proc_117_continue_312
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_117_continue_312:
 	; BC_PLOT [06]
@@ -13698,7 +13698,7 @@ proc_117_continue_312:
 	; BC_WAIT [0a]
 	adr r1, proc_117_continue_313
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_117_continue_313:
 	; BC_PLOT [06]
@@ -13721,7 +13721,7 @@ proc_117_continue_313:
 	; BC_WAIT [0a]
 	adr r1, proc_117_continue_314
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_117_continue_314:
 	; BC_PLOT [06]
@@ -13744,7 +13744,7 @@ proc_117_continue_314:
 	; BC_WAIT [0a]
 	adr r1, proc_117_continue_315
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_117_continue_315:
 	; BC_PLOT [06]
@@ -13767,7 +13767,7 @@ proc_117_continue_315:
 	; BC_WAIT [0a]
 	adr r1, proc_117_continue_316
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_117_continue_316:
 	; BC_CONST [b1]
@@ -13791,7 +13791,7 @@ proc_117_continue_316:
 	; BC_WAIT [0a]
 	adr r1, proc_117_continue_317
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_117_continue_317:
 	; BC_CONST [b0]
@@ -13815,7 +13815,7 @@ proc_117_continue_317:
 	; BC_WAIT [0a]
 	adr r1, proc_117_continue_318
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_117_continue_318:
 	; BC_CONST [80]
@@ -13860,7 +13860,7 @@ proc_118_start:
 	; BC_WAIT [0a]
 	adr r1, proc_118_continue_320
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_118_continue_320:
 	; BC_CONST [ab]
@@ -13884,7 +13884,7 @@ proc_118_continue_320:
 	; BC_WAIT [0a]
 	adr r1, proc_118_continue_321
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_118_continue_321:
 	; BC_CONST [a7]
@@ -13908,7 +13908,7 @@ proc_118_continue_321:
 	; BC_WAIT [0a]
 	adr r1, proc_118_continue_322
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_118_continue_322:
 	; BC_CONST [8f]
@@ -13952,7 +13952,7 @@ proc_118_continue_322:
 	; BC_WAIT [0a]
 	adr r1, proc_118_continue_323
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_118_continue_323:
 	; BC_CONST [a7]
@@ -13986,7 +13986,7 @@ proc_118_continue_323:
 	; BC_WAIT [0a]
 	adr r1, proc_118_continue_325
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_118_continue_325:
 	; BC_CONST [ac]
@@ -14010,7 +14010,7 @@ proc_118_continue_325:
 	; BC_WAIT [0a]
 	adr r1, proc_118_continue_326
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_118_continue_326:
 	; BC_CONST [ab]
@@ -14034,7 +14034,7 @@ proc_118_continue_326:
 	; BC_WAIT [0a]
 	adr r1, proc_118_continue_327
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_118_continue_327:
 	; BC_CONST [a7]
@@ -14065,7 +14065,7 @@ proc_118_continue_327:
 	; BC_WAIT [0a]
 	adr r1, proc_118_continue_328
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_118_continue_328:
 	; BC_DONE [00]
@@ -14126,7 +14126,7 @@ proc_119_start:
 	; BC_WAIT [0a]
 	adr r1, proc_119_continue_330
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_119_continue_330:
 	; BC_CONST [80]
@@ -14229,7 +14229,7 @@ proc_120_start:
 	; BC_WAIT [0a]
 	adr r1, proc_120_continue_333
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_120_continue_333:
 	; BC_PROC [07]
@@ -15239,7 +15239,7 @@ proc_135_start:
 	; BC_WAIT [0a]
 	adr r1, proc_135_continue_343
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_135_continue_343:
 	; BC_CONST [92]
@@ -15266,7 +15266,7 @@ proc_135_continue_343:
 	; BC_WAIT [0a]
 	adr r1, proc_135_continue_344
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_135_continue_344:
 	; BC_CONST [99]
@@ -15291,7 +15291,7 @@ proc_135_continue_344:
 	; BC_WAIT [0a]
 	adr r1, proc_135_continue_345
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_135_continue_345:
 	; BC_CONST [d5]
@@ -15328,7 +15328,7 @@ proc_135_continue_345:
 	; BC_WAIT [0a]
 	adr r1, proc_135_continue_346
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_135_continue_346:
 	; BC_CONST [99]
@@ -15353,7 +15353,7 @@ proc_135_continue_346:
 	; BC_WAIT [0a]
 	adr r1, proc_135_continue_347
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_135_continue_347:
 	; BC_CONST [c9]
@@ -15392,7 +15392,7 @@ proc_135_continue_347:
 	; BC_WAIT [0a]
 	adr r1, proc_135_continue_348
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_135_continue_348:
 	; BC_CONST [99]
@@ -15417,7 +15417,7 @@ proc_135_continue_348:
 	; BC_WAIT [0a]
 	adr r1, proc_135_continue_349
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_135_continue_349:
 	; BC_CONST [80]
@@ -15459,7 +15459,7 @@ proc_135_continue_349:
 	; BC_WAIT [0a]
 	adr r1, proc_135_continue_351
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_135_continue_351:
 	; BC_CONST [e1]
@@ -15521,7 +15521,7 @@ proc_135_continue_351:
 	; BC_WAIT [0a]
 	adr r1, proc_135_continue_352
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_135_continue_352:
 	; BC_CONST [80]
@@ -15583,7 +15583,7 @@ proc_135_continue_352:
 	; BC_WAIT [0a]
 	adr r1, proc_135_continue_353
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_135_continue_353:
 	; BC_DONE [00]
@@ -15620,7 +15620,7 @@ proc_136_start:
 	; BC_WAIT [0a]
 	adr r1, proc_136_continue_354
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_136_continue_354:
 	; BC_CONST [80]
@@ -15677,7 +15677,7 @@ proc_137_start:
 	; BC_WAIT [0a]
 	adr r1, proc_137_continue_356
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_137_continue_356:
 	; BC_PROC [07]
@@ -15878,7 +15878,7 @@ proc_140_start:
 	; BC_WAIT [0a]
 	adr r1, proc_140_continue_358
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_140_continue_358:
 	; BC_CONST [af]
@@ -15924,7 +15924,7 @@ proc_141_start:
 	; BC_WAIT [0a]
 	adr r1, proc_141_continue_360
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_141_continue_360:
 	; BC_RLOCAL [61]
@@ -16018,7 +16018,7 @@ proc_142_start:
 	; BC_WAIT [0a]
 	adr r1, proc_142_continue_362
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_142_continue_362:
 	; BC_PROC [07]
@@ -16326,7 +16326,7 @@ proc_146_start:
 	; BC_WAIT [0a]
 	adr r1, proc_146_continue_366
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_146_continue_366:
 	; BC_CONST [8f]
@@ -16413,7 +16413,7 @@ proc_146_continue_366:
 	; BC_WAIT [0a]
 	adr r1, proc_146_continue_367
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_146_continue_367:
 	; BC_PROC [07]
@@ -16435,7 +16435,7 @@ proc_146_continue_367:
 	; BC_WAIT [0a]
 	adr r1, proc_146_continue_368
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_146_continue_368:
 	; BC_CONST [99]
@@ -16516,7 +16516,7 @@ proc_146_continue_368:
 	; BC_WAIT [0a]
 	adr r1, proc_146_continue_369
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_146_continue_369:
 	; BC_PROC [07]
@@ -16538,7 +16538,7 @@ proc_146_continue_369:
 	; BC_WAIT [0a]
 	adr r1, proc_146_continue_370
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_146_continue_370:
 	; BC_END [02]
@@ -16600,7 +16600,7 @@ proc_147_start:
 	; BC_WAIT [0a]
 	adr r1, proc_147_continue_371
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_147_continue_371:
 	; BC_RLOCAL [60]
@@ -16624,7 +16624,7 @@ proc_147_continue_371:
 	; BC_WAIT [0a]
 	adr r1, proc_147_continue_372
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_147_continue_372:
 	; BC_CONST [df]
@@ -16665,7 +16665,7 @@ proc_147_continue_372:
 	; BC_WAIT [0a]
 	adr r1, proc_147_continue_373
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_147_continue_373:
 	; BC_RLOCAL [60]
@@ -16689,7 +16689,7 @@ proc_147_continue_373:
 	; BC_WAIT [0a]
 	adr r1, proc_147_continue_374
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_147_continue_374:
 	; BC_CONST [80]
@@ -16730,7 +16730,7 @@ proc_147_continue_374:
 	; BC_WAIT [0a]
 	adr r1, proc_147_continue_375
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_147_continue_375:
 	; BC_RLOCAL [60]
@@ -16761,7 +16761,7 @@ proc_147_continue_375:
 	; BC_WAIT [0a]
 	adr r1, proc_147_continue_376
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_147_continue_376:
 	; BC_CONST [80]
@@ -16846,7 +16846,7 @@ proc_148_start:
 	; BC_WAIT [0a]
 	adr r1, proc_148_continue_377
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_148_continue_377:
 	; BC_RLOCAL [60]
@@ -16870,7 +16870,7 @@ proc_148_continue_377:
 	; BC_WAIT [0a]
 	adr r1, proc_148_continue_378
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_148_continue_378:
 	; BC_CONST [e4]
@@ -16917,7 +16917,7 @@ proc_148_continue_378:
 	; BC_WAIT [0a]
 	adr r1, proc_148_continue_379
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_148_continue_379:
 	; BC_RLOCAL [60]
@@ -16941,7 +16941,7 @@ proc_148_continue_379:
 	; BC_WAIT [0a]
 	adr r1, proc_148_continue_380
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_148_continue_380:
 	; BC_CONST [80]
@@ -16982,7 +16982,7 @@ proc_148_continue_380:
 	; BC_WAIT [0a]
 	adr r1, proc_148_continue_381
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_148_continue_381:
 	; BC_RLOCAL [60]
@@ -17013,7 +17013,7 @@ proc_148_continue_381:
 	; BC_WAIT [0a]
 	adr r1, proc_148_continue_382
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_148_continue_382:
 	; BC_CONST [80]
@@ -17062,7 +17062,7 @@ proc_149_start:
 	; BC_WAIT [0a]
 	adr r1, proc_149_continue_383
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_149_continue_383:
 	; BC_CONST [80]
@@ -17096,7 +17096,7 @@ proc_149_continue_383:
 	; BC_WAIT [0a]
 	adr r1, proc_149_continue_384
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_149_continue_384:
 	; BC_CONST [95]
@@ -17121,7 +17121,7 @@ proc_149_continue_384:
 	; BC_WAIT [0a]
 	adr r1, proc_149_continue_385
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_149_continue_385:
 	; BC_CONST [80]
@@ -17155,7 +17155,7 @@ proc_149_continue_385:
 	; BC_WAIT [0a]
 	adr r1, proc_149_continue_386
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_149_continue_386:
 	; BC_CONST [99]
@@ -17180,7 +17180,7 @@ proc_149_continue_386:
 	; BC_WAIT [0a]
 	adr r1, proc_149_continue_387
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_149_continue_387:
 	; BC_CONST [80]
@@ -17231,7 +17231,7 @@ proc_150_start:
 	; BC_WAIT [0a]
 	adr r1, proc_150_continue_388
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_150_continue_388:
 	; BC_CONST [80]
@@ -17265,7 +17265,7 @@ proc_150_continue_388:
 	; BC_WAIT [0a]
 	adr r1, proc_150_continue_389
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_150_continue_389:
 	; BC_CONST [95]
@@ -17290,7 +17290,7 @@ proc_150_continue_389:
 	; BC_WAIT [0a]
 	adr r1, proc_150_continue_390
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_150_continue_390:
 	; BC_CONST [80]
@@ -17324,7 +17324,7 @@ proc_150_continue_390:
 	; BC_WAIT [0a]
 	adr r1, proc_150_continue_391
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_150_continue_391:
 	; BC_CONST [99]
@@ -17349,7 +17349,7 @@ proc_150_continue_391:
 	; BC_WAIT [0a]
 	adr r1, proc_150_continue_392
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_150_continue_392:
 	; BC_CONST [80]
@@ -17367,7 +17367,7 @@ proc_150_continue_392:
 	; BC_WAIT [0a]
 	adr r1, proc_150_continue_393
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_150_continue_393:
 	; BC_CONST [80]
@@ -17392,7 +17392,7 @@ proc_150_continue_393:
 	; BC_WAIT [0a]
 	adr r1, proc_150_continue_394
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_150_continue_394:
 	; BC_CONST [8f]
@@ -17420,7 +17420,7 @@ proc_150_continue_394:
 	; BC_WAIT [0a]
 	adr r1, proc_150_continue_395
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_150_continue_395:
 	; BC_CONST [8f]
@@ -17455,7 +17455,7 @@ proc_150_continue_395:
 	; BC_WAIT [0a]
 	adr r1, proc_150_continue_396
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_150_continue_396:
 	; BC_CONST [95]
@@ -17490,7 +17490,7 @@ proc_150_continue_396:
 	; BC_WAIT [0a]
 	adr r1, proc_150_continue_397
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_150_continue_397:
 	; BC_CONST [99]
@@ -17539,7 +17539,7 @@ proc_151_start:
 	; BC_WAIT [0a]
 	adr r1, proc_151_continue_398
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_151_continue_398:
 	; BC_CONST [80]
@@ -17573,7 +17573,7 @@ proc_151_continue_398:
 	; BC_WAIT [0a]
 	adr r1, proc_151_continue_399
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_151_continue_399:
 	; BC_CONST [95]
@@ -17598,7 +17598,7 @@ proc_151_continue_399:
 	; BC_WAIT [0a]
 	adr r1, proc_151_continue_400
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_151_continue_400:
 	; BC_CONST [80]
@@ -17632,7 +17632,7 @@ proc_151_continue_400:
 	; BC_WAIT [0a]
 	adr r1, proc_151_continue_401
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_151_continue_401:
 	; BC_CONST [99]
@@ -17657,7 +17657,7 @@ proc_151_continue_401:
 	; BC_WAIT [0a]
 	adr r1, proc_151_continue_402
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_151_continue_402:
 	; BC_CONST [80]
@@ -17691,7 +17691,7 @@ proc_151_continue_402:
 	; BC_WAIT [0a]
 	adr r1, proc_151_continue_403
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_151_continue_403:
 	; BC_CONST [80]
@@ -17716,7 +17716,7 @@ proc_151_continue_403:
 	; BC_WAIT [0a]
 	adr r1, proc_151_continue_404
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_151_continue_404:
 	; BC_CONST [8f]
@@ -17744,7 +17744,7 @@ proc_151_continue_404:
 	; BC_WAIT [0a]
 	adr r1, proc_151_continue_405
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_151_continue_405:
 	; BC_CONST [8f]
@@ -17779,7 +17779,7 @@ proc_151_continue_405:
 	; BC_WAIT [0a]
 	adr r1, proc_151_continue_406
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_151_continue_406:
 	; BC_CONST [95]
@@ -17814,7 +17814,7 @@ proc_151_continue_406:
 	; BC_WAIT [0a]
 	adr r1, proc_151_continue_407
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_151_continue_407:
 	; BC_CONST [99]
@@ -17868,7 +17868,7 @@ proc_152_start:
 	; BC_WAIT [0a]
 	adr r1, proc_152_continue_409
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_152_continue_409:
 	; BC_CONST [95]
@@ -17988,7 +17988,7 @@ proc_153_start:
 	; BC_WAIT [0a]
 	adr r1, proc_153_continue_411
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_153_continue_411:
 	; BC_PROC [07]
@@ -18164,7 +18164,7 @@ proc_156_start:
 	; BC_WAIT [0a]
 	adr r1, proc_156_continue_413
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_156_continue_413:
 	; BC_RLOCAL [61]
@@ -18205,7 +18205,7 @@ proc_156_continue_413:
 	; BC_WAIT [0a]
 	adr r1, proc_156_continue_414
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_156_continue_414:
 	; BC_RLOCAL [61]
@@ -18246,7 +18246,7 @@ proc_156_continue_414:
 	; BC_WAIT [0a]
 	adr r1, proc_156_continue_415
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_156_continue_415:
 	; BC_RLOCAL [61]
@@ -18287,7 +18287,7 @@ proc_156_continue_415:
 	; BC_WAIT [0a]
 	adr r1, proc_156_continue_416
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_156_continue_416:
 	; BC_RLOCAL [61]
@@ -18328,7 +18328,7 @@ proc_156_continue_416:
 	; BC_WAIT [0a]
 	adr r1, proc_156_continue_417
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_156_continue_417:
 	; BC_RLOCAL [61]
@@ -18369,7 +18369,7 @@ proc_156_continue_417:
 	; BC_WAIT [0a]
 	adr r1, proc_156_continue_418
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_156_continue_418:
 	; BC_RLOCAL [61]
@@ -18410,7 +18410,7 @@ proc_156_continue_418:
 	; BC_WAIT [0a]
 	adr r1, proc_156_continue_419
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_156_continue_419:
 	; BC_RLOCAL [61]
@@ -18451,7 +18451,7 @@ proc_156_continue_419:
 	; BC_WAIT [0a]
 	adr r1, proc_156_continue_420
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_156_continue_420:
 	; BC_END [02]
@@ -18695,7 +18695,7 @@ proc_160_start:
 	; BC_WAIT [0a]
 	adr r1, proc_160_continue_430
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_160_continue_430:
 	; BC_PROC [07]
@@ -18764,7 +18764,7 @@ proc_161_start:
 	; BC_WAIT [0a]
 	adr r1, proc_161_continue_432
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_161_continue_432:
 	; BC_CONST [c1]
@@ -18792,7 +18792,7 @@ proc_161_continue_432:
 	; BC_WAIT [0a]
 	adr r1, proc_161_continue_433
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_161_continue_433:
 	; BC_CONST [95]
@@ -18833,7 +18833,7 @@ proc_161_continue_433:
 	; BC_WAIT [0a]
 	adr r1, proc_161_continue_434
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_161_continue_434:
 	; BC_CONST [95]
@@ -18948,7 +18948,7 @@ proc_162_start:
 	; BC_WAIT [0a]
 	adr r1, proc_162_continue_435
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_162_continue_435:
 	; BC_CONST [80]
@@ -18987,7 +18987,7 @@ proc_162_continue_435:
 	; BC_WAIT [0a]
 	adr r1, proc_162_continue_436
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_162_continue_436:
 	; BC_PROC [07]
@@ -19006,7 +19006,7 @@ proc_162_continue_436:
 	; BC_WAIT [0a]
 	adr r1, proc_162_continue_437
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_162_continue_437:
 	; BC_PROC [07]
@@ -19021,7 +19021,7 @@ proc_162_continue_437:
 	; BC_WAIT [0a]
 	adr r1, proc_162_continue_438
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_162_continue_438:
 	; BC_CONST [a8]
@@ -19029,7 +19029,7 @@ proc_162_continue_438:
 	; BC_WAIT [0a]
 	adr r1, proc_162_continue_439
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_162_continue_439:
 	; BC_CONST [8f]
@@ -19093,7 +19093,7 @@ proc_162_target_440:
 	; BC_WAIT [0a]
 	adr r1, proc_162_continue_441
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_162_continue_441:
 	; BC_CONST [80]
@@ -19335,7 +19335,7 @@ proc_164_start:
 	; BC_WAIT [0a]
 	adr r1, proc_164_continue_444
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_164_continue_444:
 	; BC_PROC [07]
@@ -19704,7 +19704,7 @@ proc_169_start:
 	; BC_WAIT [0a]
 	adr r1, proc_169_continue_446
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_169_continue_446:
 	; BC_PROC [07]
@@ -19756,7 +19756,7 @@ proc_170_start:
 	; BC_WAIT [0a]
 	adr r1, proc_170_continue_448
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_170_continue_448:
 	; BC_PROC [07]
@@ -19807,7 +19807,7 @@ proc_171_start:
 	; BC_WAIT [0a]
 	adr r1, proc_171_continue_450
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_171_continue_450:
 	; BC_PROC [07]
@@ -19982,7 +19982,7 @@ proc_174_start:
 	; BC_WAIT [0a]
 	adr r1, proc_174_continue_452
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_174_continue_452:
 	; BC_CONST [9f]
@@ -20053,7 +20053,7 @@ proc_175_start:
 	; BC_WAIT [0a]
 	adr r1, proc_175_continue_454
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_175_continue_454:
 	; BC_PROC [07]
@@ -20451,7 +20451,7 @@ proc_180_start:
 	; BC_WAIT [0a]
 	adr r1, proc_180_continue_459
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_180_continue_459:
 	; BC_RLOCAL [60]
@@ -20472,7 +20472,7 @@ proc_180_continue_459:
 	; BC_WAIT [0a]
 	adr r1, proc_180_continue_460
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_180_continue_460:
 	; BC_CONST [b9]
@@ -20500,7 +20500,7 @@ proc_180_continue_460:
 	; BC_WAIT [0a]
 	adr r1, proc_180_continue_461
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_180_continue_461:
 	; BC_RLOCAL [60]
@@ -20521,7 +20521,7 @@ proc_180_continue_461:
 	; BC_WAIT [0a]
 	adr r1, proc_180_continue_462
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_180_continue_462:
 	; BC_CONST [b9]
@@ -20549,7 +20549,7 @@ proc_180_continue_462:
 	; BC_WAIT [0a]
 	adr r1, proc_180_continue_463
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_180_continue_463:
 	; BC_RLOCAL [60]
@@ -20570,7 +20570,7 @@ proc_180_continue_463:
 	; BC_WAIT [0a]
 	adr r1, proc_180_continue_464
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_180_continue_464:
 	; BC_CONST [b9]
@@ -20598,7 +20598,7 @@ proc_180_continue_464:
 	; BC_WAIT [0a]
 	adr r1, proc_180_continue_465
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_180_continue_465:
 	; BC_RLOCAL [60]
@@ -20619,7 +20619,7 @@ proc_180_continue_465:
 	; BC_WAIT [0a]
 	adr r1, proc_180_continue_466
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_180_continue_466:
 	; BC_CONST [b9]
@@ -20659,7 +20659,7 @@ proc_181_start:
 	; BC_WAIT [0a]
 	adr r1, proc_181_continue_468
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_181_continue_468:
 	; BC_RLOCAL [60]
@@ -20895,7 +20895,7 @@ proc_186_start:
 	; BC_WAIT [0a]
 	adr r1, proc_186_continue_470
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_186_continue_470:
 	; BC_CONST [80]
@@ -20926,7 +20926,7 @@ proc_186_continue_470:
 	; BC_WAIT [0a]
 	adr r1, proc_186_continue_471
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_186_continue_471:
 	; BC_CONST [95]
@@ -20953,7 +20953,7 @@ proc_186_continue_471:
 	; BC_WAIT [0a]
 	adr r1, proc_186_continue_472
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_186_continue_472:
 	; BC_CONST [8f]
@@ -20980,7 +20980,7 @@ proc_186_continue_472:
 	; BC_WAIT [0a]
 	adr r1, proc_186_continue_473
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_186_continue_473:
 	; BC_CONST [95]
@@ -21007,7 +21007,7 @@ proc_186_continue_473:
 	; BC_WAIT [0a]
 	adr r1, proc_186_continue_474
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_186_continue_474:
 	; BC_CONST [8f]
@@ -21034,7 +21034,7 @@ proc_186_continue_474:
 	; BC_WAIT [0a]
 	adr r1, proc_186_continue_475
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_186_continue_475:
 	; BC_CONST [95]
@@ -21061,7 +21061,7 @@ proc_186_continue_475:
 	; BC_WAIT [0a]
 	adr r1, proc_186_continue_476
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_186_continue_476:
 	; BC_CONST [8f]
@@ -21088,7 +21088,7 @@ proc_186_continue_476:
 	; BC_WAIT [0a]
 	adr r1, proc_186_continue_477
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_186_continue_477:
 	; BC_CONST [95]
@@ -21115,7 +21115,7 @@ proc_186_continue_477:
 	; BC_WAIT [0a]
 	adr r1, proc_186_continue_478
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_186_continue_478:
 	; BC_CONST [8f]
@@ -21162,7 +21162,7 @@ proc_187_start:
 	; BC_WAIT [0a]
 	adr r1, proc_187_continue_479
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_187_continue_479:
 	; BC_CONST [80]
@@ -21326,7 +21326,7 @@ proc_189_target_482:
 	; BC_WAIT [0a]
 	adr r1, proc_189_continue_484
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_189_continue_484:
 	; BC_ELSE [01]
@@ -21337,7 +21337,7 @@ proc_189_target_483:
 	; BC_WAIT [0a]
 	adr r1, proc_189_continue_486
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_189_continue_486:
 	; BC_DONE [00]
@@ -21400,7 +21400,7 @@ proc_190_start:
 	; BC_WAIT [0a]
 	adr r1, proc_190_continue_488
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_190_continue_488:
 	; BC_PROC [07]
@@ -21447,7 +21447,7 @@ proc_191_start:
 	; BC_WAIT [0a]
 	adr r1, proc_191_continue_489
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_191_continue_489:
 	; BC_CONST [95]
@@ -21466,7 +21466,7 @@ proc_191_continue_489:
 	; BC_WAIT [0a]
 	adr r1, proc_191_continue_490
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_191_continue_490:
 	; BC_CONST [8f]
@@ -21492,7 +21492,7 @@ proc_191_continue_490:
 	; BC_WAIT [0a]
 	adr r1, proc_191_continue_491
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_191_continue_491:
 	; BC_CONST [95]
@@ -21511,7 +21511,7 @@ proc_191_continue_491:
 	; BC_WAIT [0a]
 	adr r1, proc_191_continue_492
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_191_continue_492:
 	; BC_CONST [99]
@@ -21530,7 +21530,7 @@ proc_191_continue_492:
 	; BC_WAIT [0a]
 	adr r1, proc_191_continue_493
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_191_continue_493:
 	; BC_CONST [80]
@@ -21599,7 +21599,7 @@ proc_192_start:
 	; BC_WAIT [0a]
 	adr r1, proc_192_continue_494
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_192_continue_494:
 	; BC_CONST [a4]
@@ -21643,7 +21643,7 @@ proc_192_continue_494:
 	; BC_WAIT [0a]
 	adr r1, proc_192_continue_495
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_192_continue_495:
 	; BC_CONST [97]
@@ -21707,7 +21707,7 @@ proc_192_continue_495:
 	; BC_WAIT [0a]
 	adr r1, proc_192_continue_496
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_192_continue_496:
 	; BC_CONST [9b]
@@ -21758,7 +21758,7 @@ proc_192_continue_496:
 	; BC_WAIT [0a]
 	adr r1, proc_192_continue_497
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_192_continue_497:
 	; BC_CONST [9d]
@@ -21909,7 +21909,7 @@ proc_193_start:
 	; BC_WAIT [0a]
 	adr r1, proc_193_continue_498
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_193_continue_498:
 	; BC_RLOCAL [60]
@@ -21950,7 +21950,7 @@ proc_193_continue_498:
 	; BC_WAIT [0a]
 	adr r1, proc_193_continue_499
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_193_continue_499:
 	; BC_RLOCAL [60]
@@ -21991,7 +21991,7 @@ proc_193_continue_499:
 	; BC_WAIT [0a]
 	adr r1, proc_193_continue_500
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_193_continue_500:
 	; BC_RLOCAL [60]
@@ -22032,7 +22032,7 @@ proc_193_continue_500:
 	; BC_WAIT [0a]
 	adr r1, proc_193_continue_501
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_193_continue_501:
 	; BC_RLOCAL [60]
@@ -22073,7 +22073,7 @@ proc_193_continue_501:
 	; BC_WAIT [0a]
 	adr r1, proc_193_continue_502
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_193_continue_502:
 	; BC_RLOCAL [60]
@@ -22114,7 +22114,7 @@ proc_193_continue_502:
 	; BC_WAIT [0a]
 	adr r1, proc_193_continue_503
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_193_continue_503:
 	; BC_PROC [07]
@@ -22212,7 +22212,7 @@ proc_194_start:
 	; BC_WAIT [0a]
 	adr r1, proc_194_continue_504
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_194_continue_504:
 	; BC_RLOCAL [60]
@@ -22253,7 +22253,7 @@ proc_194_continue_504:
 	; BC_WAIT [0a]
 	adr r1, proc_194_continue_505
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_194_continue_505:
 	; BC_RLOCAL [60]
@@ -22294,7 +22294,7 @@ proc_194_continue_505:
 	; BC_WAIT [0a]
 	adr r1, proc_194_continue_506
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_194_continue_506:
 	; BC_RLOCAL [60]
@@ -22335,7 +22335,7 @@ proc_194_continue_506:
 	; BC_WAIT [0a]
 	adr r1, proc_194_continue_507
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_194_continue_507:
 	; BC_RLOCAL [60]
@@ -22376,7 +22376,7 @@ proc_194_continue_507:
 	; BC_WAIT [0a]
 	adr r1, proc_194_continue_508
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_194_continue_508:
 	; BC_RLOCAL [60]
@@ -22417,7 +22417,7 @@ proc_194_continue_508:
 	; BC_WAIT [0a]
 	adr r1, proc_194_continue_509
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_194_continue_509:
 	; BC_RLOCAL [60]
@@ -22458,7 +22458,7 @@ proc_194_continue_509:
 	; BC_WAIT [0a]
 	adr r1, proc_194_continue_510
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_194_continue_510:
 	; BC_RLOCAL [60]
@@ -22499,7 +22499,7 @@ proc_194_continue_510:
 	; BC_WAIT [0a]
 	adr r1, proc_194_continue_511
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_194_continue_511:
 	; BC_PROC [07]
@@ -22597,7 +22597,7 @@ proc_195_start:
 	; BC_WAIT [0a]
 	adr r1, proc_195_continue_512
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_195_continue_512:
 	; BC_RLOCAL [60]
@@ -22638,7 +22638,7 @@ proc_195_continue_512:
 	; BC_WAIT [0a]
 	adr r1, proc_195_continue_513
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_195_continue_513:
 	; BC_RLOCAL [60]
@@ -22679,7 +22679,7 @@ proc_195_continue_513:
 	; BC_WAIT [0a]
 	adr r1, proc_195_continue_514
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_195_continue_514:
 	; BC_RLOCAL [60]
@@ -22720,7 +22720,7 @@ proc_195_continue_514:
 	; BC_WAIT [0a]
 	adr r1, proc_195_continue_515
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_195_continue_515:
 	; BC_RLOCAL [60]
@@ -22761,7 +22761,7 @@ proc_195_continue_515:
 	; BC_WAIT [0a]
 	adr r1, proc_195_continue_516
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_195_continue_516:
 	; BC_RLOCAL [60]
@@ -22802,7 +22802,7 @@ proc_195_continue_516:
 	; BC_WAIT [0a]
 	adr r1, proc_195_continue_517
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_195_continue_517:
 	; BC_PROC [07]
@@ -22900,7 +22900,7 @@ proc_196_start:
 	; BC_WAIT [0a]
 	adr r1, proc_196_continue_518
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_196_continue_518:
 	; BC_RLOCAL [60]
@@ -22941,7 +22941,7 @@ proc_196_continue_518:
 	; BC_WAIT [0a]
 	adr r1, proc_196_continue_519
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_196_continue_519:
 	; BC_RLOCAL [60]
@@ -22982,7 +22982,7 @@ proc_196_continue_519:
 	; BC_WAIT [0a]
 	adr r1, proc_196_continue_520
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_196_continue_520:
 	; BC_RLOCAL [60]
@@ -23023,7 +23023,7 @@ proc_196_continue_520:
 	; BC_WAIT [0a]
 	adr r1, proc_196_continue_521
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_196_continue_521:
 	; BC_PROC [07]
@@ -23121,7 +23121,7 @@ proc_197_start:
 	; BC_WAIT [0a]
 	adr r1, proc_197_continue_522
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_197_continue_522:
 	; BC_RLOCAL [60]
@@ -23162,7 +23162,7 @@ proc_197_continue_522:
 	; BC_WAIT [0a]
 	adr r1, proc_197_continue_523
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_197_continue_523:
 	; BC_RLOCAL [60]
@@ -23203,7 +23203,7 @@ proc_197_continue_523:
 	; BC_WAIT [0a]
 	adr r1, proc_197_continue_524
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_197_continue_524:
 	; BC_RLOCAL [60]
@@ -23244,7 +23244,7 @@ proc_197_continue_524:
 	; BC_WAIT [0a]
 	adr r1, proc_197_continue_525
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_197_continue_525:
 	; BC_RLOCAL [60]
@@ -23285,7 +23285,7 @@ proc_197_continue_525:
 	; BC_WAIT [0a]
 	adr r1, proc_197_continue_526
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_197_continue_526:
 	; BC_PROC [07]
@@ -23335,7 +23335,7 @@ proc_198_start:
 	; BC_WAIT [0a]
 	adr r1, proc_198_continue_527
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_198_continue_527:
 	; BC_CONST [9e]
@@ -23365,7 +23365,7 @@ proc_198_continue_527:
 	; BC_WAIT [0a]
 	adr r1, proc_198_continue_528
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_198_continue_528:
 	; BC_CONST [9e]
@@ -23395,7 +23395,7 @@ proc_198_continue_528:
 	; BC_WAIT [0a]
 	adr r1, proc_198_continue_529
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_198_continue_529:
 	; BC_CONST [9e]
@@ -23448,7 +23448,7 @@ proc_199_start:
 	; BC_WAIT [0a]
 	adr r1, proc_199_continue_530
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_199_continue_530:
 	; BC_CONST [9e]
@@ -23489,7 +23489,7 @@ proc_199_continue_530:
 	; BC_WAIT [0a]
 	adr r1, proc_199_continue_531
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_199_continue_531:
 	; BC_CONST [9e]
@@ -23519,7 +23519,7 @@ proc_199_continue_531:
 	; BC_WAIT [0a]
 	adr r1, proc_199_continue_532
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_199_continue_532:
 	; BC_CONST [9e]
@@ -23560,7 +23560,7 @@ proc_199_continue_532:
 	; BC_WAIT [0a]
 	adr r1, proc_199_continue_533
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_199_continue_533:
 	; BC_CONST [9e]
@@ -23613,7 +23613,7 @@ proc_200_start:
 	; BC_WAIT [0a]
 	adr r1, proc_200_continue_534
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_200_continue_534:
 	; BC_CONST [9e]
@@ -23643,7 +23643,7 @@ proc_200_continue_534:
 	; BC_WAIT [0a]
 	adr r1, proc_200_continue_535
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_200_continue_535:
 	; BC_CONST [9e]
@@ -23673,7 +23673,7 @@ proc_200_continue_535:
 	; BC_WAIT [0a]
 	adr r1, proc_200_continue_536
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_200_continue_536:
 	; BC_CONST [9e]
@@ -23726,7 +23726,7 @@ proc_201_start:
 	; BC_WAIT [0a]
 	adr r1, proc_201_continue_537
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_201_continue_537:
 	; BC_CONST [9e]
@@ -23756,7 +23756,7 @@ proc_201_continue_537:
 	; BC_WAIT [0a]
 	adr r1, proc_201_continue_538
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_201_continue_538:
 	; BC_CONST [9e]
@@ -23786,7 +23786,7 @@ proc_201_continue_538:
 	; BC_WAIT [0a]
 	adr r1, proc_201_continue_539
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_201_continue_539:
 	; BC_CONST [9e]
@@ -23816,7 +23816,7 @@ proc_201_continue_539:
 	; BC_WAIT [0a]
 	adr r1, proc_201_continue_540
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_201_continue_540:
 	; BC_CONST [9e]
@@ -23869,7 +23869,7 @@ proc_202_start:
 	; BC_WAIT [0a]
 	adr r1, proc_202_continue_541
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_202_continue_541:
 	; BC_CONST [9e]
@@ -23899,7 +23899,7 @@ proc_202_continue_541:
 	; BC_WAIT [0a]
 	adr r1, proc_202_continue_542
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_202_continue_542:
 	; BC_CONST [9e]
@@ -23929,7 +23929,7 @@ proc_202_continue_542:
 	; BC_WAIT [0a]
 	adr r1, proc_202_continue_543
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_202_continue_543:
 	; BC_CONST [9e]
@@ -23959,7 +23959,7 @@ proc_202_continue_543:
 	; BC_WAIT [0a]
 	adr r1, proc_202_continue_544
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_202_continue_544:
 	; BC_CONST [9e]
@@ -24012,7 +24012,7 @@ proc_203_start:
 	; BC_WAIT [0a]
 	adr r1, proc_203_continue_545
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_203_continue_545:
 	; BC_CONST [9e]
@@ -24042,7 +24042,7 @@ proc_203_continue_545:
 	; BC_WAIT [0a]
 	adr r1, proc_203_continue_546
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_203_continue_546:
 	; BC_CONST [9e]
@@ -24072,7 +24072,7 @@ proc_203_continue_546:
 	; BC_WAIT [0a]
 	adr r1, proc_203_continue_547
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_203_continue_547:
 	; BC_CONST [9e]
@@ -24125,7 +24125,7 @@ proc_204_start:
 	; BC_WAIT [0a]
 	adr r1, proc_204_continue_548
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_204_continue_548:
 	; BC_CONST [9e]
@@ -24155,7 +24155,7 @@ proc_204_continue_548:
 	; BC_WAIT [0a]
 	adr r1, proc_204_continue_549
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_204_continue_549:
 	; BC_CONST [9e]
@@ -24185,7 +24185,7 @@ proc_204_continue_549:
 	; BC_WAIT [0a]
 	adr r1, proc_204_continue_550
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_204_continue_550:
 	; BC_CONST [9e]
@@ -24215,7 +24215,7 @@ proc_204_continue_550:
 	; BC_WAIT [0a]
 	adr r1, proc_204_continue_551
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_204_continue_551:
 	; BC_CONST [9e]
@@ -24268,7 +24268,7 @@ proc_205_start:
 	; BC_WAIT [0a]
 	adr r1, proc_205_continue_552
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_205_continue_552:
 	; BC_CONST [9e]
@@ -24298,7 +24298,7 @@ proc_205_continue_552:
 	; BC_WAIT [0a]
 	adr r1, proc_205_continue_553
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_205_continue_553:
 	; BC_CONST [9e]
@@ -24328,7 +24328,7 @@ proc_205_continue_553:
 	; BC_WAIT [0a]
 	adr r1, proc_205_continue_554
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_205_continue_554:
 	; BC_CONST [9e]
@@ -24358,7 +24358,7 @@ proc_205_continue_554:
 	; BC_WAIT [0a]
 	adr r1, proc_205_continue_555
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_205_continue_555:
 	; BC_CONST [9e]
@@ -24411,7 +24411,7 @@ proc_206_start:
 	; BC_WAIT [0a]
 	adr r1, proc_206_continue_556
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_206_continue_556:
 	; BC_CONST [9e]
@@ -24441,7 +24441,7 @@ proc_206_continue_556:
 	; BC_WAIT [0a]
 	adr r1, proc_206_continue_557
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_206_continue_557:
 	; BC_CONST [9e]
@@ -24471,7 +24471,7 @@ proc_206_continue_557:
 	; BC_WAIT [0a]
 	adr r1, proc_206_continue_558
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_206_continue_558:
 	; BC_CONST [9e]
@@ -24524,7 +24524,7 @@ proc_207_start:
 	; BC_WAIT [0a]
 	adr r1, proc_207_continue_559
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_207_continue_559:
 	; BC_CONST [9e]
@@ -24554,7 +24554,7 @@ proc_207_continue_559:
 	; BC_WAIT [0a]
 	adr r1, proc_207_continue_560
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_207_continue_560:
 	; BC_CONST [9e]
@@ -24584,7 +24584,7 @@ proc_207_continue_560:
 	; BC_WAIT [0a]
 	adr r1, proc_207_continue_561
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_207_continue_561:
 	; BC_CONST [9e]
@@ -24614,7 +24614,7 @@ proc_207_continue_561:
 	; BC_WAIT [0a]
 	adr r1, proc_207_continue_562
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_207_continue_562:
 	; BC_CONST [9e]
@@ -24667,7 +24667,7 @@ proc_208_start:
 	; BC_WAIT [0a]
 	adr r1, proc_208_continue_563
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_208_continue_563:
 	; BC_CONST [9e]
@@ -24697,7 +24697,7 @@ proc_208_continue_563:
 	; BC_WAIT [0a]
 	adr r1, proc_208_continue_564
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_208_continue_564:
 	; BC_CONST [9e]
@@ -24727,7 +24727,7 @@ proc_208_continue_564:
 	; BC_WAIT [0a]
 	adr r1, proc_208_continue_565
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_208_continue_565:
 	; BC_CONST [9e]
@@ -24757,7 +24757,7 @@ proc_208_continue_565:
 	; BC_WAIT [0a]
 	adr r1, proc_208_continue_566
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_208_continue_566:
 	; BC_CONST [9e]
@@ -24810,7 +24810,7 @@ proc_209_start:
 	; BC_WAIT [0a]
 	adr r1, proc_209_continue_567
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_209_continue_567:
 	; BC_CONST [9e]
@@ -24840,7 +24840,7 @@ proc_209_continue_567:
 	; BC_WAIT [0a]
 	adr r1, proc_209_continue_568
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_209_continue_568:
 	; BC_CONST [9e]
@@ -24870,7 +24870,7 @@ proc_209_continue_568:
 	; BC_WAIT [0a]
 	adr r1, proc_209_continue_569
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_209_continue_569:
 	; BC_CONST [9e]
@@ -24923,7 +24923,7 @@ proc_210_start:
 	; BC_WAIT [0a]
 	adr r1, proc_210_continue_570
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_210_continue_570:
 	; BC_CONST [9e]
@@ -24953,7 +24953,7 @@ proc_210_continue_570:
 	; BC_WAIT [0a]
 	adr r1, proc_210_continue_571
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_210_continue_571:
 	; BC_CONST [9e]
@@ -24983,7 +24983,7 @@ proc_210_continue_571:
 	; BC_WAIT [0a]
 	adr r1, proc_210_continue_572
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_210_continue_572:
 	; BC_CONST [9e]
@@ -25036,7 +25036,7 @@ proc_211_start:
 	; BC_WAIT [0a]
 	adr r1, proc_211_continue_573
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_211_continue_573:
 	; BC_CONST [9e]
@@ -25066,7 +25066,7 @@ proc_211_continue_573:
 	; BC_WAIT [0a]
 	adr r1, proc_211_continue_574
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_211_continue_574:
 	; BC_CONST [9e]
@@ -25096,7 +25096,7 @@ proc_211_continue_574:
 	; BC_WAIT [0a]
 	adr r1, proc_211_continue_575
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_211_continue_575:
 	; BC_CONST [9e]
@@ -25126,7 +25126,7 @@ proc_211_continue_575:
 	; BC_WAIT [0a]
 	adr r1, proc_211_continue_576
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_211_continue_576:
 	; BC_CONST [9e]
@@ -25179,7 +25179,7 @@ proc_212_start:
 	; BC_WAIT [0a]
 	adr r1, proc_212_continue_577
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_212_continue_577:
 	; BC_CONST [9e]
@@ -25209,7 +25209,7 @@ proc_212_continue_577:
 	; BC_WAIT [0a]
 	adr r1, proc_212_continue_578
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_212_continue_578:
 	; BC_CONST [9e]
@@ -25262,7 +25262,7 @@ proc_213_start:
 	; BC_WAIT [0a]
 	adr r1, proc_213_continue_579
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_213_continue_579:
 	; BC_CONST [9e]
@@ -25292,7 +25292,7 @@ proc_213_continue_579:
 	; BC_WAIT [0a]
 	adr r1, proc_213_continue_580
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_213_continue_580:
 	; BC_CONST [9e]
@@ -25322,7 +25322,7 @@ proc_213_continue_580:
 	; BC_WAIT [0a]
 	adr r1, proc_213_continue_581
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_213_continue_581:
 	; BC_CONST [9e]
@@ -25352,7 +25352,7 @@ proc_213_continue_581:
 	; BC_WAIT [0a]
 	adr r1, proc_213_continue_582
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_213_continue_582:
 	; BC_CONST [9e]
@@ -25405,7 +25405,7 @@ proc_214_start:
 	; BC_WAIT [0a]
 	adr r1, proc_214_continue_583
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_214_continue_583:
 	; BC_CONST [9e]
@@ -25435,7 +25435,7 @@ proc_214_continue_583:
 	; BC_WAIT [0a]
 	adr r1, proc_214_continue_584
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_214_continue_584:
 	; BC_CONST [9e]
@@ -25465,7 +25465,7 @@ proc_214_continue_584:
 	; BC_WAIT [0a]
 	adr r1, proc_214_continue_585
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_214_continue_585:
 	; BC_CONST [9e]
@@ -25518,7 +25518,7 @@ proc_215_start:
 	; BC_WAIT [0a]
 	adr r1, proc_215_continue_586
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_215_continue_586:
 	; BC_CONST [9e]
@@ -25548,7 +25548,7 @@ proc_215_continue_586:
 	; BC_WAIT [0a]
 	adr r1, proc_215_continue_587
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_215_continue_587:
 	; BC_CONST [9e]
@@ -25578,7 +25578,7 @@ proc_215_continue_587:
 	; BC_WAIT [0a]
 	adr r1, proc_215_continue_588
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_215_continue_588:
 	; BC_CONST [9e]
@@ -25608,7 +25608,7 @@ proc_215_continue_588:
 	; BC_WAIT [0a]
 	adr r1, proc_215_continue_589
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=frames, r1=&continue.
+	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_215_continue_589:
 	; BC_CONST [9e]
@@ -25633,3 +25633,118 @@ proc_215_continue_589:
 	ldr pc, [sp], #4			; Return.
 proc_215_end:
 
+
+; ============================================================================
+; Constants.
+; ============================================================================
+
+r_Constants:
+.long 0x00000000				; [0] = 0.0
+.long 0x00001999				; [1] = 0.0999908447265625
+.long 0x00002666				; [2] = 0.149993896484375
+.long 0x00002ccc				; [3] = 0.17498779296875
+.long 0x00003333				; [4] = 0.1999969482421875
+.long 0x00004000				; [5] = 0.25
+.long 0x000075c2				; [6] = 0.459991455078125
+.long 0x00008000				; [7] = 0.5
+.long 0x00009999				; [8] = 0.5999908447265625
+.long 0x0000c000				; [9] = 0.75
+.long 0x0000cccc				; [10] = 0.79998779296875
+.long 0x0000e147				; [11] = 0.8799896240234375
+.long 0x0000e666				; [12] = 0.899993896484375
+.long 0x0000f0a3				; [13] = 0.9399871826171875
+.long 0x0000f74b				; [14] = 0.9659881591796875
+.long 0x00010000				; [15] = 1.0
+.long 0x00010dd2				; [16] = 1.053985595703125
+.long 0x00016a00				; [17] = 1.4140625
+.long 0x0001745d				; [18] = 1.4545440673828125
+.long 0x00018000				; [19] = 1.5
+.long 0x0001e666				; [20] = 1.899993896484375
+.long 0x00020000				; [21] = 2.0
+.long 0x00023333				; [22] = 2.1999969482421875
+.long 0x00024ccc				; [23] = 2.29998779296875
+.long 0x0002e666				; [24] = 2.899993896484375
+.long 0x00030000				; [25] = 3.0
+.long 0x00031999				; [26] = 3.0999908447265625
+.long 0x00034ccc				; [27] = 3.29998779296875
+.long 0x00040000				; [28] = 4.0
+.long 0x00046666				; [29] = 4.399993896484375
+.long 0x00050000				; [30] = 5.0
+.long 0x00058000				; [31] = 5.5
+.long 0x00059999				; [32] = 5.5999908447265625
+.long 0x00060000				; [33] = 6.0
+.long 0x00061999				; [34] = 6.0999908447265625
+.long 0x00064ccc				; [35] = 6.29998779296875
+.long 0x00070000				; [36] = 7.0
+.long 0x00080000				; [37] = 8.0
+.long 0x00090000				; [38] = 9.0
+.long 0x000a0000				; [39] = 10.0
+.long 0x000b0000				; [40] = 11.0
+.long 0x000d0000				; [41] = 13.0
+.long 0x000e0000				; [42] = 14.0
+.long 0x000f0000				; [43] = 15.0
+.long 0x00100000				; [44] = 16.0
+.long 0x00110000				; [45] = 17.0
+.long 0x00120000				; [46] = 18.0
+.long 0x00130000				; [47] = 19.0
+.long 0x00140000				; [48] = 20.0
+.long 0x00150000				; [49] = 21.0
+.long 0x00160000				; [50] = 22.0
+.long 0x00170000				; [51] = 23.0
+.long 0x00180000				; [52] = 24.0
+.long 0x00190000				; [53] = 25.0
+.long 0x001b0000				; [54] = 27.0
+.long 0x001e0000				; [55] = 30.0
+.long 0x001f0000				; [56] = 31.0
+.long 0x00200000				; [57] = 32.0
+.long 0x00210000				; [58] = 33.0
+.long 0x00230000				; [59] = 35.0
+.long 0x00240000				; [60] = 36.0
+.long 0x00250000				; [61] = 37.0
+.long 0x00270000				; [62] = 39.0
+.long 0x00280000				; [63] = 40.0
+.long 0x002b0000				; [64] = 43.0
+.long 0x002c0000				; [65] = 44.0
+.long 0x002d0000				; [66] = 45.0
+.long 0x00300000				; [67] = 48.0
+.long 0x00320000				; [68] = 50.0
+.long 0x00350000				; [69] = 53.0
+.long 0x00370000				; [70] = 55.0
+.long 0x00380000				; [71] = 56.0
+.long 0x003c0000				; [72] = 60.0
+.long 0x00400000				; [73] = 64.0
+.long 0x00410000				; [74] = 65.0
+.long 0x00420000				; [75] = 66.0
+.long 0x00460000				; [76] = 70.0
+.long 0x00500000				; [77] = 80.0
+.long 0x00570000				; [78] = 87.0
+.long 0x00580000				; [79] = 88.0
+.long 0x00600000				; [80] = 96.0
+.long 0x00640000				; [81] = 100.0
+.long 0x006e0000				; [82] = 110.0
+.long 0x00780000				; [83] = 120.0
+.long 0x007d0000				; [84] = 125.0
+.long 0x00800000				; [85] = 128.0
+.long 0x00820000				; [86] = 130.0
+.long 0x00870000				; [87] = 135.0
+.long 0x008b0000				; [88] = 139.0
+.long 0x008c0000				; [89] = 140.0
+.long 0x00910000				; [90] = 145.0
+.long 0x00a40000				; [91] = 164.0
+.long 0x00aa0000				; [92] = 170.0
+.long 0x00af0000				; [93] = 175.0
+.long 0x00b00000				; [94] = 176.0
+.long 0x00b40000				; [95] = 180.0
+.long 0x00be0000				; [96] = 190.0
+.long 0x00c00000				; [97] = 192.0
+.long 0x00d20000				; [98] = 210.0
+.long 0x00e10000				; [99] = 225.0
+.long 0x00f00000				; [100] = 240.0
+.long 0x00fc0000				; [101] = 252.0
+.long 0x01000000				; [102] = 256.0
+.long 0x01180000				; [103] = 280.0
+.long 0x01190000				; [104] = 281.0
+.long 0x01360000				; [105] = 310.0
+.long 0x01400000				; [106] = 320.0
+.long 0x01580000				; [107] = 344.0
+.long 0x01860000				; [108] = 390.0

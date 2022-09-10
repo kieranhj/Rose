@@ -6,6 +6,7 @@ import sys
 import os
 import struct
 from enum import Enum
+from unittest.mock import NonCallableMagicMock
 
 BC_DONE=0x00
 BC_ELSE=0x01
@@ -422,10 +423,29 @@ class RoseParser:
         #    self._asm_file.write(f'\t.long proc_{x}_start\n')
 
 
+def TranslateConstants(const_file, asm_file):
+    num_constants = 0
+    asm_file.write('\n; ============================================================================\n')
+    asm_file.write(f'; Constants.\n')
+    asm_file.write('; ============================================================================\n')
+    asm_file.write(f'\nr_Constants:\n')
+    
+    while True:
+        b = const_file.read(4)
+        if b == b'':            # break return binary empty string.
+            break
+        c = int.from_bytes(b, "big")
+        asm_file.write(f'.long 0x{c:08x}\t\t\t\t; [{num_constants}] = {(c/(1<<16))}\n')
+        num_constants += 1
+
+    print(f'Wrote {num_constants} constants.\n')
+
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("input", help="Rose bytecodes file")
     parser.add_argument("-o", "--output", metavar="<output>", help="Write ARM asm file to <output> (default is 'bytecodes.asm')")
+    parser.add_argument("-c", "--constants", metavar="<constants>", help="Read constants.bin file and add to asm file.")
     parser.add_argument("-v", "--verbose", action="store_true", help="Print all the debugs")
     args = parser.parse_args()
 
@@ -464,6 +484,11 @@ if __name__ == '__main__':
     # Output Archie ARM asm.
     parser = RoseParser(byte_file)
     parser.TranslateByteCode(asm_file)
+
+    if args.constants is not None:
+        const_file = open(args.constants, 'rb')
+        TranslateConstants(const_file, asm_file)
+        const_file.close()
 
     print(f'Wrote {asm_file.tell()} bytes.\n')
 
