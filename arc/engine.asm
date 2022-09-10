@@ -24,8 +24,14 @@
 .equ ST_MAX, 8
 ; ============================================================================
 
-.long r_FrameCounter
-.long r_FreeState             	; Last longword of first free state.
+r_FrameCounter:
+    .long 0
+
+r_MaxFrames:
+    .long MAX_FRAMES-1
+
+r_FreeState:
+    .long 0                  	; Last longword of first free state.
 
 ; ============================================================================
 ; r3 = p_StateStack.
@@ -35,7 +41,7 @@
 ; r7 = r_Sinus.
 ; ============================================================================
 
-RunFame:
+RunFrame:
     adr r7, r_Sinus
     adr r4, r_Constants
 .1:
@@ -212,17 +218,18 @@ DoMove:
 PutCircle:
     swi OS_WriteI + 18          ; GCOL
     swi OS_WriteI + 0           ; 0
-    mov r0, r11                 ; tint
+    mov r0, r11, lsr #16        ; tint
     swi OS_WriteC
 
     mov r0, #4                  ; MOVE
-    mov r1, r8, lsl #2          ; X
-    mov r2, r9, lsl #2          ; Y
+    mov r1, r8, asr #14         ; X [16.16] -> [16.2]
+    mov r2, r9, asr #14         ; Y [16.16] -> [16.2]
     swi OS_Plot
+    
     mov r0, #157                ; CIRCLE FILL
-    mov r1, r8, lsl #2          ; X
-    sub r9, r9, r10             ; Y -= size
-    mov r2, r9, lsl #2          ; Y
+    mov r1, r8, asr #14         ; X [16.16] -> [16.2]
+    sub r2, r9, r10             ; Y -= size
+    mov r2, r2, asr #14         ; Y [16.16] -> [16.2]
     swi OS_Plot
     mov pc, lr
 
@@ -230,28 +237,33 @@ PutCircle:
 PutSquare:
     swi OS_WriteI + 18          ; GCOL
     swi OS_WriteI + 0           ; 0
-    mov r0, r11                 ; tint
+    mov r0, r11, lsr #16        ; tint
     swi OS_WriteC
 
     mov r0, #4                  ; MOVE
-    mov r1, r8, lsl #2          ; X
-    mov r2, r9, lsl #2          ; Y
-    sub r1, r1, r10, lsl #1     ; X -= st_size
-    sub r2, r2, r10, lsl #1     ; Y -= st_size
+
+    sub r1, r8, r10             ; bottom left X -= st_size
+    sub r2, r8, r10             ; bottom left Y -= st_size
+    mov r1, r1, asr #14         ; X [16.16] -> [16.2]
+    mov r2, r2, asr #14         ; Y [16.16] -> [16.2]
     swi OS_Plot
+
     mov r0, #101                ; RECTANGLE FILL
-    mov r1, r8, lsl #2          ; X
-    mov r2, r9, lsl #2          ; Y
-    add r1, r1, r10, lsl #1     ; X += st_size
-    add r2, r2, r10, lsl #1     ; Y += st_size
+    add r1, r8, r10             ; top right X += st_size
+    add r2, r8, r10             ; top right Y += st_size
+    mov r1, r1, asr #14         ; X [16.16] -> [16.2]
+    mov r2, r2, asr #14         ; Y [16.16] -> [16.2]
     swi OS_Plot
     mov pc, lr
 
 MakeSinus:
     adr r8, r_Sinus
+    mov r10, #DEGREES/2*4       ; offset halfway through the table.
+    sub r11, r10, #4            ; #DEGREES/2*4-4
+
     mov r0, #0
     str r0, [r8], #4
-    add r9, r8, #DEGREES/2*4-4
+    add r9, r8, r11             ; #DEGREES/2*4-4
     str r0, [r9]
 
     mov r7, #1
@@ -275,8 +287,8 @@ MakeSinus:
     str r0, [r8], #4
     str r0, [r9, #-4]!
     rsb r0, r0, #0
-    str r0, [r9, #DEGREES/2*4]
-    str r0, [r8, #DEGREES/2*4-4]
+    str r0, [r9, r10]              ; #DEGREES/2*4
+    str r0, [r8, r11]              ; #DEGREES/2*4-4
 
     add r7, r7, #1
     cmp r7, #DEGREES/4
@@ -285,20 +297,20 @@ MakeSinus:
     rsb r0, r0, #0
     str r0, [r9, #-4]!
     rsb r0, r0, #0
-    str r0, [r9, #DEGREES/2*4]
+    str r0, [r9, r10]
     mov pc, lr
 
 ; ============================================================================
 
-.equ STATE_SIZE, ST_MAX+(WIRE_CAPACITY+MAX_STACK+2)*4
+.equ STATE_SIZE, (ST_MAX+WIRE_CAPACITY+MAX_STACK+2)*4
 
 r_StateLists:
-    .long	MAX_FRAMES+MAX_WAIT
+    .skip   (MAX_FRAMES+MAX_WAIT)*4
 
 r_StateSpace:
-    .byte   (MAX_TURTLES+1)*STATE_SIZE
+    .skip  (MAX_TURTLES+1)*STATE_SIZE
 
 r_Sinus:
-    .long   DEGREES
+    .skip   (DEGREES)*4
 
 ; ============================================================================

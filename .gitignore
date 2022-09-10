@@ -4,3 +4,4 @@ dist
 music
 scripts
 .vscode/settings.json
+arc/build/compile.txt
