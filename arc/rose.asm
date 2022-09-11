@@ -107,7 +107,7 @@ main_loop:
     ; next frame.
     ldr r2, r_FrameCounter
     add r2, r2, #1
-    ldr r2, r_FrameCounter
+    str r2, r_FrameCounter
     ldr r1, r_MaxFrames
     cmp r2, r1
     bge exit

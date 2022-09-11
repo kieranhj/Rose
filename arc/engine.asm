@@ -143,13 +143,14 @@ ForkState:
     stmia r0!, {r8-r10}         ; copy 3 words
 
     sub r8, r2, r1, lsl #2      ; p_NewStateStackBottom = p_NewState - num_args * 4
+    mov r9, r1
 .1:
-    cmp r1, #0                  ; while nargs > 0
+    cmp r9, #0                  ; while nargs > 0
     beq .2
 
     ldr r0, [r3], #4            ; pop arg from p_CurrentStateStack.
     str r0, [r8], #4            ; copy arg into p_NewStateStackBottom.
-    subs r1, r1, #1
+    subs r9, r9, #1
     b .1
 .2:
 
@@ -189,20 +190,17 @@ DoMove:
 
 .1:                             ; big move
     mov r0, r0, asr #14         ; keep only 2 bits of fractional part [14.2]
-    mul r8, r0, r8              ; r8 = units * sine(dir) [14.2] * [1.16] = [14.18]
-    mul r9, r0, r9              ; r9 = units * cosine(dir) [14.2] * [1.16] = [14.18]
-    ; TODO: Check fp position here!
-    mov r8, r8, asr #2          ; [14.16]
-    mov r9, r9, asr #2          ; [14.16]
+    mul r8, r0, r8              ; r8 = units * sine(dir) [14.2] * [1.14] = [14.16]
+    mul r9, r0, r9              ; r9 = units * cosine(dir) [14.2] * [1.14] = [14.16]
     b .3
 
 .2:                             ; small move
     mov r0, r0, asr #6          ; keep 10 bits of fractional part [6.10]
-    mul r8, r0, r8              ; r8 = units * sine(dir) [6.10] * [1.16] = [6.26]
-    mul r9, r0, r9              ; r9 = units * cosine(dir) [6.10] * [1.16] = [6.26]
+    mul r8, r0, r8              ; r8 = units * sine(dir) [6.10] * [1.14] = [6.24]
+    mul r9, r0, r9              ; r9 = units * cosine(dir) [6.10] * [1.14] = [6.24]
     ; TODO: Check fp position here!
-    mov r8, r8, asr #10         ; [6.16]
-    mov r9, r9, asr #10         ; [6.16]
+    mov r8, r8, asr #8         ; [6.16] 
+    mov r9, r9, asr #8         ; [6.16]
 
 .3:
     ldr r1, [r5, #ST_X * 4]
@@ -210,7 +208,7 @@ DoMove:
     str r1, [r5, #ST_X * 4]     ; st_x += units * cosine(st_dir)
 
     ldr r1, [r5, #ST_Y * 4]
-    add r1, r0, r8
+    add r1, r1, r8
     str r1, [r5, #ST_Y * 4]     ; st_y += units * sine(st_dir)
     mov pc, lr
 
@@ -224,12 +222,14 @@ PutCircle:
     mov r0, #4                  ; MOVE
     mov r1, r8, asr #14         ; X [16.16] -> [16.2]
     mov r2, r9, asr #14         ; Y [16.16] -> [16.2]
+    rsb r2, r2, #1024           ; flip for Archie!
     swi OS_Plot
     
     mov r0, #157                ; CIRCLE FILL
     mov r1, r8, asr #14         ; X [16.16] -> [16.2]
     sub r2, r9, r10             ; Y -= size
     mov r2, r2, asr #14         ; Y [16.16] -> [16.2]
+    rsb r2, r2, #1024           ; flip for Archie!
     swi OS_Plot
     mov pc, lr
 
@@ -256,6 +256,7 @@ PutSquare:
     swi OS_Plot
     mov pc, lr
 
+; Makes sine values [0-0x4000]
 MakeSinus:
     adr r8, r_Sinus
     mov r10, #DEGREES/2*4       ; offset halfway through the table.
