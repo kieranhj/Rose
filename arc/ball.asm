@@ -74,7 +74,8 @@ proc_1_start:
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_DRAW [04]
-	ldmia r5, {r8-r11}			; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	add r6, r5, #4
+	ldmia r6, {r8-r11}			; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutCircle
 	ldr lr, [sp], #4			; Pop lr off program stack.
@@ -87,7 +88,8 @@ proc_1_start:
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_DRAW [04]
-	ldmia r5, {r8-r11}			; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	add r6, r5, #4
+	ldmia r6, {r8-r11}			; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutCircle
 	ldr lr, [sp], #4			; Pop lr off program stack.

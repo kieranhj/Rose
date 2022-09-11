@@ -301,6 +301,48 @@ MakeSinus:
     str r0, [r9, r10]
     mov pc, lr
 
+; Divide RO by Rl
+; Taken from Archimedes Operating System, page 28.
+divide:
+    CMP R0,R1                   ; Test if result is zero
+    MOVMI R0, #0                ; If it is, give result *
+    MOVMI PC,R14                ; and return
+    CMP R1,#0                   ; Test for division by zero
+    ADREQ R0,divbyzero          ; and flag an error
+    SWIEQ OS_GenerateError      ; when necessary
+
+    MOV R8, #1
+    MOV R9,#0
+    CMP R1,#0
+    .1:                         ; raiseloop
+    BMI .3
+    CMP R1,R0
+    BHI .2
+    MOVS R1,R1,LSL #1
+    MOV R8,R8,LSL #1
+    B .1  
+    .2:                         ; nearlydone
+    MOV R1,R1,LSR #1
+    MOV R8,R8,LSR #1
+    .3:                         ; raisedone
+    CMP R0,R1
+    SUBCS R0,R0,R1
+    ADDCS R9,R9,R8              ; Accumulate result
+    MOV R1,R1,LSR #1
+    MOVS R8,R8,LSR #1
+    BCC .3
+    MOV R0,R9                   ; Move result into RO *
+    MOV PC,R14                  ; and return
+
+    ; * Remove the lines marked with asterisks to
+    ; return RO MOD Rl instead of RO DIV Rl
+
+    divbyzero: ;The error block
+    .long 18
+	.byte "Divide by Zero"
+	.align 4
+	.long 0
+
 ; ============================================================================
 
 .equ STATE_SIZE, (ST_MAX+WIRE_CAPACITY+MAX_STACK+2)*4

@@ -150,7 +150,11 @@ exit:
 .include "engine.asm"
 
 r_Instructions:
-.include "circle.asm"
+.include "circle.asm"			; WORKS! \o/
+;.include "ball.asm"			; INVISIBLE! :\
+;.include "tree.asm"			; MATHS WRONG! :(
+;.include "chiperia.asm"		; CRASHES! :S
+;.include "teaser.asm"			; BLANK" 8)
 
 ; ============================================================================
 ; Data Segment
