@@ -36,14 +36,15 @@ proc_0_start:
 	; BC_CONST [8d]
 	ldr r0, [r4, #13*4]			; r0=rConstants[13]
 	; BC_NEG [0d]
-	rsb r0, r0, #0		; r0=0-r0
+	rsb r0, r0, #0				; r0=0-r0
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
 	; BC_CONST [8a]
 	ldr r0, [r4, #10*4]			; r0=rConstants[10]
 	; BC_SEED [0c]
 	; TODO: Implement BC_SEED as State[ST_RAND]=r0*0x9d3d+r0 etc.
-	str r0, [r5, #ST_RAND*4]		; State[ST_RAND]=r0
+	mov r0, r0, asr #16			; FIXED SEED
+	str r0, [r5, #ST_RAND*4]	; State[ST_RAND]=r0
 	; BC_CONST [85]
 	ldr r0, [r4, #5*4]			; r0=rConstants[5]
 	; BC_CONST [87]
@@ -104,6 +105,9 @@ proc_1_start:
 proc_1_continue_1:
 	; BC_RAND [03]
 	; TODO: Set R0 from RNG using State[st_rand].
+	ldr r0, [r5, #ST_RAND*4]	; FIXED RAND
+	bic r0, r0, #0xff000000
+	bic r0, r0, #0x00ff0000
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #0*4]			; r0=rConstants[0]
@@ -142,11 +146,14 @@ proc_1_target_2:
 	; BC_RAND [03]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	; TODO: Set R0 from RNG using State[st_rand].
+	ldr r0, [r5, #ST_RAND*4]	; FIXED RAND
+	bic r0, r0, #0xff000000
+	bic r0, r0, #0x00ff0000
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
 	mov r1, r1, lsr #8
-	mul r0, r1, r0			; r0=r0*r1
+	mul r0, r1, r0				; r0=r0*r1
 	; BC_CONST [86]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #6*4]			; r0=rConstants[6]
@@ -182,7 +189,7 @@ proc_1_target_2:
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
 	mov r1, r1, lsr #8
-	mul r0, r1, r0			; r0=r0*r1
+	mul r0, r1, r0				; r0=r0*r1
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_1_start		; r0=r_Procedures[1]
@@ -194,7 +201,7 @@ proc_1_target_2:
 	; BC_CONST [82]
 	ldr r0, [r4, #2*4]			; r0=rConstants[2]
 	; BC_NEG [0d]
-	rsb r0, r0, #0		; r0=0-r0
+	rsb r0, r0, #0				; r0=0-r0
 	; BC_RLOCAL [63]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-4*4]			; r0=StateStack[-4]
@@ -202,7 +209,7 @@ proc_1_target_2:
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
 	mov r1, r1, lsr #8
-	mul r0, r1, r0			; r0=r0*r1
+	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -213,6 +220,9 @@ proc_1_target_2:
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
 	; BC_RAND [03]
 	; TODO: Set R0 from RNG using State[st_rand].
+	ldr r0, [r5, #ST_RAND*4]	; FIXED RAND
+	bic r0, r0, #0xff000000
+	bic r0, r0, #0x00ff0000
 	; BC_CONST [81]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #1*4]			; r0=rConstants[1]
@@ -232,7 +242,7 @@ proc_1_target_2:
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
 	mov r1, r1, lsr #8
-	mul r0, r1, r0			; r0=r0*r1
+	mul r0, r1, r0				; r0=r0*r1
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_1_start		; r0=r_Procedures[1]
@@ -249,6 +259,9 @@ proc_1_target_2:
 proc_1_target_3:
 	; BC_RAND [03]
 	; TODO: Set R0 from RNG using State[st_rand].
+	ldr r0, [r5, #ST_RAND*4]	; FIXED RAND
+	bic r0, r0, #0xff000000
+	bic r0, r0, #0x00ff0000
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_X*4]		; r0=State[ST_X]
@@ -265,12 +278,12 @@ proc_1_target_3:
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
 	mov r1, r1, lsr #8
-	mul r0, r1, r0			; r0=r0*r1
+	mul r0, r1, r0				; r0=r0*r1
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
 	mov r1, r1, lsr #8
-	mul r0, r1, r0			; r0=r0*r1
+	mul r0, r1, r0				; r0=r0*r1
 	; BC_OP [3b]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	cmp r0, r1					; r0 cmp r1
@@ -324,20 +337,24 @@ proc_1_target_0:
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
 	mov r1, r1, lsr #8
-	mul r0, r1, r0			; r0=r0*r1
+	mul r0, r1, r0				; r0=r0*r1
 	; BC_SEED [0c]
 	; TODO: Implement BC_SEED as State[ST_RAND]=r0*0x9d3d+r0 etc.
-	str r0, [r5, #ST_RAND*4]		; State[ST_RAND]=r0
+	mov r0, r0, asr #16			; FIXED SEED
+	str r0, [r5, #ST_RAND*4]	; State[ST_RAND]=r0
 	; BC_CONST [8b]
 	ldr r0, [r4, #11*4]			; r0=rConstants[11]
 	; BC_RAND [03]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	; TODO: Set R0 from RNG using State[st_rand].
+	ldr r0, [r5, #ST_RAND*4]	; FIXED RAND
+	bic r0, r0, #0xff000000
+	bic r0, r0, #0x00ff0000
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
 	mov r1, r1, lsr #8
-	mul r0, r1, r0			; r0=r0*r1
+	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_1_continue_6
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -366,7 +383,6 @@ proc_1_continue_6:
 	b proc_1_target_8
 proc_1_target_7:
 	; BC_CONST [82]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #2*4]			; r0=rConstants[2]
 	; BC_DONE [00]
 proc_1_target_8:

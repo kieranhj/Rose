@@ -42,7 +42,7 @@ proc_0_start:
 	; BC_CONST [85]
 	ldr r0, [r4, #5*4]			; r0=rConstants[5]
 	; BC_NEG [0d]
-	rsb r0, r0, #0		; r0=0-r0
+	rsb r0, r0, #0				; r0=0-r0
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]

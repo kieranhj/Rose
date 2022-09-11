@@ -143,6 +143,16 @@ TODO: Check unreachable code after fork? - DONE
     - ForkState - DONE
 
 - Test!
+    - circle - WORKS!
+    - ball - INVISIBLE
+    - tree - CRASHES LATER ON!
+    - chiperia - CRASHES AFTER FIRST SEQUENCE
+    - teaser - HARD CRASH!
+    - everyway - WON'T ASSEMBLE!
+
+TODO:
+    - Incorrect push on StateStack after ELSE in tree.asm
+        Need to store stack state before split or some assumption possible here?
 
 - Implement colorscript.bin, LOOK, PLAN etc.
 

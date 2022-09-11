@@ -150,9 +150,9 @@ exit:
 .include "engine.asm"
 
 r_Instructions:
-.include "circle.asm"			; WORKS! \o/
+;.include "circle.asm"			; WORKS! \o/
 ;.include "ball.asm"			; INVISIBLE! :\
-;.include "tree.asm"			; MATHS WRONG! :(
+.include "tree.asm"			; WORKS? :)
 ;.include "chiperia.asm"		; CRASHES! :S
 ;.include "teaser.asm"			; BLANK" 8)
 
