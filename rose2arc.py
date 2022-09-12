@@ -262,6 +262,7 @@ class RoseParser:
         self._asm_file.write(f'\tb{suffix} proc_{self._proc_no}_target_{self._label_no}\n')
         self._label_stack.append(self._label_no)    # Push label.
         self._label_no += 1
+        self._push_pending = False  # TO CHECK!
 
     def write_fork(self, c):
         self._asm_file.write(f'\t; BC_FORK [{c:02x}]\n')

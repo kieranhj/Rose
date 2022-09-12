@@ -33,6 +33,11 @@ r_MaxFrames:
 r_FreeState:
     .long 0                  	; Last longword of first free state.
 
+.if _DEBUG
+r_NumTurtles:
+    .long 1
+.endif
+
 ; ============================================================================
 ; r3 = p_StateStack.
 ; r4 = r_Constants.
@@ -96,6 +101,12 @@ FreeState:
     ldr r6, r_FreeState
     str r6, [r5]                ; first word of state block points to prev free state.
     str r5, r_FreeState         ; this state becomes the next free state.
+
+    .if _DEBUG
+    ldr r6, r_NumTurtles
+    sub r6, r6, #1
+    str r6, r_NumTurtles
+    .endif
     mov pc, lr
 
 ; r0 = wait_frames
@@ -127,6 +138,13 @@ WaitState:
 ForkState:
     ldr r2, r_FreeState         ; p_NewState.
     ldr r6, [r2]                ; first word of state block is ptr to next state.
+
+    .if _DEBUG
+    cmp r6, #0
+    adreq r0, outofturtles
+    swieq OS_GenerateError
+    .endif
+
     str r6, r_FreeState         ; this becomes the next free state.
     str r0, [r2, #ST_PROC*4]    ; *p_NewState.st_proc = procedure address.
 
@@ -164,7 +182,19 @@ ForkState:
     ldr r9, [r6, r0, lsr #14]   ; r_StateLists[current_time]
     str r9, [r8, #-4]!          ; push existing StateStackPtr onto NewStateStack.
     str r8, [r6, r0, lsr #14]   ; make NewStateStackPtr the new entry in the state list for this frame.
+
+    .if _DEBUG
+    ldr r6, r_NumTurtles
+    add r6, r6, #1
+    str r6, r_NumTurtles
+    .endif
     mov pc, lr
+
+outofturtles: ;The error block
+    .long 18
+	.byte "Out of turtles!"
+	.align 4
+	.long 0
 
 ; r0 = units.
 ; r5 = p_State.
@@ -352,6 +382,7 @@ r_StateLists:
 
 r_StateSpace:
     .skip  (MAX_TURTLES+1)*STATE_SIZE
+r_StateSpaceEnd:
 
 r_Sinus:
     .skip   (DEGREES)*4

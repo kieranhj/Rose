@@ -1178,7 +1178,6 @@ proc_4_start:
 	; BC_WHEN [17]
 	beq proc_4_target_20
 	; BC_CONST [80]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #0*4]			; r0=rConstants[0]
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -1347,7 +1346,6 @@ proc_6_start:
 	bl PutCircle
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_CONST [86]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #6*4]			; r0=rConstants[6]
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -1592,7 +1590,6 @@ proc_8_start:
 	bl PutCircle
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [62]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
 	; BC_WAIT [0a]
 	adr r1, proc_8_continue_27
@@ -1829,7 +1826,6 @@ proc_11_continue_28:
 	; BC_WHEN [17]
 	beq proc_11_target_29
 	; BC_PROC [07]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_11_start		; r0=r_Procedures[11]
 	; BC_CONST [84]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -1907,7 +1903,6 @@ proc_13_start:
 	; BC_WHEN [17]
 	beq proc_13_target_30
 	; BC_PROC [07]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_13_start		; r0=r_Procedures[13]
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -2106,7 +2101,6 @@ proc_16_start:
 	; BC_WHEN [17]
 	beq proc_16_target_32
 	; BC_RLOCAL [60]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -2186,7 +2180,6 @@ proc_17_start:
 	; BC_WHEN [17]
 	beq proc_17_target_33
 	; BC_RLOCAL [60]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0

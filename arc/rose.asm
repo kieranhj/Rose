@@ -152,9 +152,9 @@ exit:
 r_Instructions:
 ;.include "circle.asm"			; WORKS! \o/
 ;.include "ball.asm"			; INVISIBLE! :\
-.include "tree.asm"			; WORKS? :)
-;.include "chiperia.asm"		; CRASHES! :S
-;.include "teaser.asm"			; BLANK" 8)
+;.include "tree.asm"			; WORKS? :)
+.include "chiperia.asm"		; CRASHES! :S
+;include "teaser.asm"			; BLANK" 8)
 
 ; ============================================================================
 ; Data Segment

@@ -147,12 +147,19 @@ TODO: Check unreachable code after fork? - DONE
     - ball - INVISIBLE
     - tree - CRASHES LATER ON!
     - chiperia - CRASHES AFTER FIRST SEQUENCE
+        - STACK OVERFLOW in line2 (proc_19)
+
     - teaser - HARD CRASH!
     - everyway - WON'T ASSEMBLE!
 
 TODO:
-    - Incorrect push on StateStack after ELSE in tree.asm
-        Need to store stack state before split or some assumption possible here?
+    - Incorrect push on StateStack after ELSE in tree.asm - DONE
+    - Need more debug:
+        - Display frame no., number of turtles etc.
+        - Stop on frame no.
+        - Single step frames after stop.
+        - Play/pause frames.
+        - Restart.
 
 - Implement colorscript.bin, LOOK, PLAN etc.
 

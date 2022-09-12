@@ -115,21 +115,21 @@ plan
 
 
 proc main
-	fork cdots without_orbit
+	fork cdots without_orbit	# proc_6 + proc_22
 	wait 96
-	fork hdots without_orbit
+	fork hdots without_orbit	# proc_8 + proc_22
 	wait 96
-	fork idots without_orbit
+	fork idots without_orbit	# proc_10 + proc_22
 	wait 96
-	fork pdots without_orbit
+	fork pdots without_orbit	# proc_12 + proc_22
 
-	fork cdots with_orbit
+	fork cdots with_orbit	# proc_6 + proc_21
 	wait 96
-	fork hdots with_orbit
+	fork hdots with_orbit	# proc_8 + proc_21
 	wait 96
-	fork idots with_orbit
+	fork idots with_orbit	# proc_10 + proc_21
 	wait 96
-	fork pdots with_orbit
+	fork pdots with_orbit	# proc_12 + proc_21
 	wait 96
 	wait 96
 
@@ -187,7 +187,7 @@ proc beam w s ms ds
 		fork beam w s+ds ms ds
 	done
 
-proc cdots p
+proc cdots p			# proc_6
 	fork p 231 58 100
 	wait 12
 	fork p 105 75 20
@@ -196,7 +196,7 @@ proc cdots p
 	wait 12
 	fork p 231 222 200
 
-proc clines
+proc clines				# proc_7
 	wait 1
 	fork arc dot 180 140 100 206 ~4 1 11
 	wait 12
@@ -256,7 +256,7 @@ proc plines
 	wait 14
 	fork line dot 150 192 64 12 4 2
 
-proc flashdot x y
+proc flashdot x y			# proc_14
 	size 15
 	jump x y
 	tint 2 draw
@@ -275,13 +275,13 @@ proc dot
 	wait 39
 	tint 0 draw
 
-proc string
+proc string						# proc_16
 	size 2
 	tint 3 draw
 	wait 20
 	tint 0 draw
 
-proc arc p cx cy r a da w n
+proc arc p cx cy r a da w n		# proc_17
 	when n
 		jump cx cy
 		face a
@@ -291,12 +291,12 @@ proc arc p cx cy r a da w n
 		fork arc p cx cy r a+da da w n-1
 	done
 
-proc line p sx sy a d w n
+proc line p sx sy a d w n		# proc_18
 	jump sx sy
 	face a
 	fork line2 p d w n
 
-proc line2 p d w n
+proc line2 p d w n				# proc_19
 	when n
 		fork p
 		wait w
@@ -304,14 +304,14 @@ proc line2 p d w n
 		fork line2 p d w n-1
 	done
 
-proc orbit cx cy ac as w
+proc orbit cx cy ac as w		# proc_20
 	temp lstep = 3
 	temp astep = 5
 	temp nl = 70
 	wait 96-(as+nl)*w
 	jump cx cy face ac-as*astep move 19
 	turn ~64 move nl*lstep turn 128
-	fork line string x y dir lstep w nl
+	fork line string x y dir lstep w nl		# proc_18
 	wait nl*w
 	fork arc string cx cy 18 ac-as*astep astep w as*2+1
 	wait as*2*w
@@ -319,12 +319,12 @@ proc orbit cx cy ac as w
 	turn 64
 	fork line string x y dir lstep w nl
 
-proc with_orbit cx cy a
-	fork orbit cx cy a 10 0.3
+proc with_orbit cx cy a			# proc_21
+	fork orbit cx cy a 10 0.3	# proc_20
 	wait 96
-	fork flashdot cx cy
+	fork flashdot cx cy			# proc_14
 
-proc without_orbit cx cy a
+proc without_orbit cx cy a		# proc_22
 	fork flashdot cx cy
 
 
