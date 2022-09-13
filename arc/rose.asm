@@ -35,10 +35,8 @@ stack_base:
 ; ============================================================================
 
 main:
-	MOV r0,#22	;Set MODE
-	SWI OS_WriteC
-	MOV r0,#Screen_Mode
-	SWI OS_WriteC
+	SWI OS_WriteI + 22		; Set MODE
+	SWI OS_WriteI + Screen_Mode
 
 	; Set screen size for number of buffers
 	MOV r0, #DynArea_Screen
@@ -53,10 +51,8 @@ main:
 	ADRCC r0, error_noscreenmem
 	SWICC OS_GenerateError
 
-	MOV r0,#23	;Disable cursor
-	SWI OS_WriteC
-	MOV r0,#1
-	SWI OS_WriteC
+	SWI OS_WriteI + 23		; Disable cursor
+	SWI OS_WriteI + 1
 	MOV r0,#0
 	SWI OS_WriteC
 	SWI OS_WriteC
@@ -86,6 +82,10 @@ main:
     bl InitStates
 
 main_loop:
+
+	.if _DEBUG
+	bl debug_info
+	.endif
 
 	; exit if Escape is pressed
 	MOV r0, #OSByte_ReadKey
@@ -142,6 +142,44 @@ exit:
 .endif
 
 	SWI OS_Exit
+
+.if _DEBUG
+debug_info:
+	swi OS_WriteI + 30			; Home.
+
+	ldr r0, r_FrameCounter
+	adr r1, debug_string
+	mov r2, #8
+	swi OS_ConvertHex4
+	adr r0, debug_string
+	swi OS_WriteO
+
+	swi OS_WriteI + 32			; Space.
+
+	ldr r0, r_NumTurtles
+	adr r1, debug_string
+	mov r2, #8
+	swi OS_ConvertCardinal4
+	adr r0, debug_string
+	swi OS_WriteO
+
+	swi OS_WriteI + 32			; Space.
+
+	ldr r0, r_MaxTurtles
+	adr r1, debug_string
+	mov r2, #8
+	swi OS_ConvertCardinal4
+	adr r0, debug_string
+	swi OS_WriteO
+
+	swi OS_WriteI + 32			; Space.
+
+	mov pc, lr
+
+debug_string:
+	.skip 16
+
+.endif
 
 ; ============================================================================
 ; Additional code modules

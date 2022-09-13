@@ -36,6 +36,9 @@ r_FreeState:
 .if _DEBUG
 r_NumTurtles:
     .long 1
+
+r_MaxTurtles:
+    .long 0
 .endif
 
 ; ============================================================================
@@ -187,6 +190,10 @@ ForkState:
     ldr r6, r_NumTurtles
     add r6, r6, #1
     str r6, r_NumTurtles
+
+    ldr r8, r_MaxTurtles
+    cmp r6, r8
+    strgt r6, r_MaxTurtles
     .endif
     mov pc, lr
 

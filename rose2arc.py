@@ -345,6 +345,7 @@ class RoseParser:
         self.load_var(0)
         x = c & 0xf
         self._asm_file.write(f'\tldr r0, [r5, #{~x}*4]\t\t\t; r0=StateStack[{~x}]\n')
+        self._asm_file.write(f'\tmovs r0, r0\t\t\t\t\t; update Status flags\n')
         self.push_var(0)
 
     def write_rstate(self, c):
@@ -352,6 +353,7 @@ class RoseParser:
         self.load_var(0)
         x = c & 0xf
         self._asm_file.write(f'\tldr r0, [r5, #{STATE_NAMES[x]}*4]\t\t; r0=State[{STATE_NAMES[x]}]\n')
+        self._asm_file.write(f'\tmovs r0, r0\t\t\t\t\t; update Status flags\n')
         self.push_var(0)
 
 

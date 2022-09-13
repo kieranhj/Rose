@@ -321,6 +321,7 @@ proc_1_start:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -364,6 +365,7 @@ proc_1_continue_10:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -407,6 +409,7 @@ proc_1_continue_11:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -458,6 +461,7 @@ proc_2_start:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_CONST [aa]
@@ -504,6 +508,7 @@ proc_2_end:
 proc_3_start:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_WHEN [17]
 	beq proc_3_target_14
 	; BC_CONST [80]
@@ -526,6 +531,7 @@ proc_3_start:
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_PLOT [06]
@@ -550,6 +556,7 @@ proc_3_continue_15:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
@@ -559,6 +566,7 @@ proc_3_continue_15:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -663,6 +671,7 @@ proc_4_continue_18:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -792,6 +801,7 @@ proc_4_continue_21:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -848,6 +858,7 @@ proc_4_continue_22:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -878,6 +889,7 @@ proc_4_end:
 proc_5_start:
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_CONST [ad]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #45*4]			; r0=rConstants[45]
@@ -896,9 +908,11 @@ proc_5_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [62]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_6_start		; r0=r_Procedures[6]
@@ -921,6 +935,7 @@ proc_5_continue_23:
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_CONST [ad]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #45*4]			; r0=rConstants[45]
@@ -939,9 +954,11 @@ proc_5_continue_23:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [62]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_6_start		; r0=r_Procedures[6]
@@ -959,19 +976,24 @@ proc_5_end:
 proc_6_start:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_WHEN [17]
 	beq proc_6_target_24
 	; BC_RLOCAL [63]
 	ldr r0, [r5, #-4*4]			; r0=StateStack[-4]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [64]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-5*4]			; r0=StateStack[-5]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [65]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-6*4]			; r0=StateStack[-6]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [67]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-8*4]			; r0=StateStack[-8]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_7_start		; r0=r_Procedures[7]
@@ -982,6 +1004,7 @@ proc_6_start:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_WAIT [0a]
 	adr r1, proc_6_continue_25
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -990,9 +1013,11 @@ proc_6_start:
 proc_6_continue_25:
 	; BC_RLOCAL [66]
 	ldr r0, [r5, #-7*4]			; r0=StateStack[-7]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -1001,6 +1026,7 @@ proc_6_continue_25:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -1014,15 +1040,18 @@ proc_6_continue_25:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
 	; BC_RLOCAL [62]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_WLOCAL [42]
 	str r0, [r5, #-3*4]			; StateStack[-3]=r0
 	; BC_WLOCAL [41]
@@ -1048,6 +1077,7 @@ proc_6_end:
 proc_7_start:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_CONST [8f]
@@ -1066,6 +1096,7 @@ proc_7_start:
 	; BC_RLOCAL [63]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-4*4]			; r0=StateStack[-4]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_8_start		; r0=r_Procedures[8]
@@ -1090,6 +1121,7 @@ proc_7_start:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -1097,6 +1129,7 @@ proc_7_start:
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_CONST [8f]
@@ -1115,6 +1148,7 @@ proc_7_start:
 	; BC_RLOCAL [63]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-4*4]			; r0=StateStack[-4]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_8_start		; r0=r_Procedures[8]
@@ -1139,6 +1173,7 @@ proc_7_start:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -1146,6 +1181,7 @@ proc_7_start:
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
 	; BC_RLOCAL [62]
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_PROC [07]
@@ -1167,6 +1203,7 @@ proc_7_start:
 	; BC_RLOCAL [63]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-4*4]			; r0=StateStack[-4]
+	movs r0, r0					; update Status flags
 	; BC_WLOCAL [42]
 	str r0, [r5, #-3*4]			; StateStack[-3]=r0
 	; BC_WLOCAL [41]
@@ -1192,6 +1229,7 @@ proc_7_end:
 proc_8_start:
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_WHEN [17]
 	beq proc_8_target_26
 	; BC_CONST [a3]
@@ -1199,6 +1237,7 @@ proc_8_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -1228,9 +1267,11 @@ proc_8_start:
 proc_8_continue_27:
 	; BC_RLOCAL [62]
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -1244,6 +1285,7 @@ proc_8_continue_27:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -1253,6 +1295,7 @@ proc_8_continue_27:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
@@ -1362,6 +1405,7 @@ proc_10_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [3b]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	cmp r0, r1					; r0 cmp r1
@@ -1376,6 +1420,7 @@ proc_10_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -1398,6 +1443,7 @@ proc_10_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -1416,6 +1462,7 @@ proc_10_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -1463,6 +1510,7 @@ proc_10_continue_32:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -1485,6 +1533,7 @@ proc_10_end:
 proc_11_start:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_WHEN [17]
 	beq proc_11_target_33
 	; BC_CONST [bb]
@@ -1521,6 +1570,7 @@ proc_11_continue_34:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
@@ -1550,9 +1600,11 @@ proc_12_start:
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_X*4]		; r0=State[ST_X]
+	movs r0, r0					; update Status flags
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_Y*4]		; r0=State[ST_Y]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_13_start		; r0=r_Procedures[13]
@@ -1571,9 +1623,11 @@ proc_12_start:
 proc_12_continue_35:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_X*4]		; r0=State[ST_X]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -1588,9 +1642,11 @@ proc_12_continue_35:
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_X*4]		; r0=State[ST_X]
+	movs r0, r0					; update Status flags
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_Y*4]		; r0=State[ST_Y]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_13_start		; r0=r_Procedures[13]
@@ -1609,9 +1665,11 @@ proc_12_continue_35:
 proc_12_continue_36:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_X*4]		; r0=State[ST_X]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -1622,9 +1680,11 @@ proc_12_continue_36:
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_X*4]		; r0=State[ST_X]
+	movs r0, r0					; update Status flags
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_Y*4]		; r0=State[ST_Y]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_13_start		; r0=r_Procedures[13]
@@ -1643,9 +1703,11 @@ proc_12_continue_36:
 proc_12_continue_37:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_X*4]		; r0=State[ST_X]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -1660,9 +1722,11 @@ proc_12_continue_37:
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_X*4]		; r0=State[ST_X]
+	movs r0, r0					; update Status flags
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_Y*4]		; r0=State[ST_Y]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_13_start		; r0=r_Procedures[13]
@@ -1681,9 +1745,11 @@ proc_12_continue_37:
 proc_12_continue_38:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_X*4]		; r0=State[ST_X]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -1698,9 +1764,11 @@ proc_12_continue_38:
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_X*4]		; r0=State[ST_X]
+	movs r0, r0					; update Status flags
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_Y*4]		; r0=State[ST_Y]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_13_start		; r0=r_Procedures[13]
@@ -1719,9 +1787,11 @@ proc_12_continue_38:
 proc_12_continue_39:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_X*4]		; r0=State[ST_X]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -1732,9 +1802,11 @@ proc_12_continue_39:
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_X*4]		; r0=State[ST_X]
+	movs r0, r0					; update Status flags
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_Y*4]		; r0=State[ST_Y]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_13_start		; r0=r_Procedures[13]
@@ -1753,9 +1825,11 @@ proc_12_continue_39:
 proc_12_continue_40:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_X*4]		; r0=State[ST_X]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -1770,9 +1844,11 @@ proc_12_continue_40:
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_X*4]		; r0=State[ST_X]
+	movs r0, r0					; update Status flags
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_Y*4]		; r0=State[ST_Y]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_13_start		; r0=r_Procedures[13]
@@ -1791,9 +1867,11 @@ proc_12_continue_40:
 proc_12_continue_41:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_X*4]		; r0=State[ST_X]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -1808,9 +1886,11 @@ proc_12_continue_41:
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_X*4]		; r0=State[ST_X]
+	movs r0, r0					; update Status flags
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_Y*4]		; r0=State[ST_Y]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_13_start		; r0=r_Procedures[13]
@@ -1833,6 +1913,7 @@ proc_13_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [3b]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	cmp r0, r1					; r0 cmp r1
@@ -1840,9 +1921,11 @@ proc_13_start:
 	ble proc_13_target_42
 	; BC_RLOCAL [62]
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
@@ -1857,6 +1940,7 @@ proc_13_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -1876,6 +1960,7 @@ proc_13_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -1890,6 +1975,7 @@ proc_13_start:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_14_start		; r0=r_Procedures[14]
@@ -1903,6 +1989,7 @@ proc_13_start:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -1916,6 +2003,7 @@ proc_13_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -1930,6 +2018,7 @@ proc_13_start:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_14_start		; r0=r_Procedures[14]
@@ -1948,9 +2037,11 @@ proc_13_start:
 proc_13_continue_43:
 	; BC_RLOCAL [62]
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
@@ -1978,6 +2069,7 @@ proc_13_continue_43:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
@@ -2005,6 +2097,7 @@ proc_14_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [3b]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	cmp r0, r1					; r0 cmp r1
@@ -2016,6 +2109,7 @@ proc_14_start:
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_DRAW [04]
@@ -2029,6 +2123,7 @@ proc_14_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -2046,6 +2141,7 @@ proc_14_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
@@ -2193,6 +2289,7 @@ proc_15_end:
 proc_16_start:
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_CONST [b0]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #48*4]			; r0=rConstants[48]
@@ -2222,6 +2319,7 @@ proc_16_start:
 proc_16_continue_49:
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_CONST [b0]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #48*4]			; r0=rConstants[48]
@@ -2283,6 +2381,7 @@ proc_16_continue_51:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_CONST [a7]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #39*4]			; r0=rConstants[39]
@@ -2318,6 +2417,7 @@ proc_16_continue_52:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_CONST [b0]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #48*4]			; r0=rConstants[48]
@@ -2371,6 +2471,7 @@ proc_16_continue_54:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_CONST [a7]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #39*4]			; r0=rConstants[39]
@@ -2406,6 +2507,7 @@ proc_16_continue_55:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_CONST [a7]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #39*4]			; r0=rConstants[39]
@@ -2427,6 +2529,7 @@ proc_16_continue_55:
 proc_16_continue_56:
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_CONST [b0]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #48*4]			; r0=rConstants[48]
@@ -2488,6 +2591,7 @@ proc_16_continue_58:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_CONST [a7]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #39*4]			; r0=rConstants[39]
@@ -2541,6 +2645,7 @@ proc_16_continue_60:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_CONST [b0]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #48*4]			; r0=rConstants[48]
@@ -2606,6 +2711,7 @@ proc_16_end:
 proc_17_start:
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_CONST [a7]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #39*4]			; r0=rConstants[39]
@@ -2648,6 +2754,7 @@ proc_17_continue_63:
 proc_17_continue_64:
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_CONST [b0]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #48*4]			; r0=rConstants[48]
@@ -2709,6 +2816,7 @@ proc_17_continue_66:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_CONST [b0]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #48*4]			; r0=rConstants[48]
@@ -2770,6 +2878,7 @@ proc_17_continue_68:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_CONST [a1]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #33*4]			; r0=rConstants[33]
@@ -2823,6 +2932,7 @@ proc_17_continue_70:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_CONST [a1]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #33*4]			; r0=rConstants[33]
@@ -2876,6 +2986,7 @@ proc_17_continue_72:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_CONST [b0]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #48*4]			; r0=rConstants[48]
@@ -2937,6 +3048,7 @@ proc_17_continue_74:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_CONST [a1]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #33*4]			; r0=rConstants[33]
@@ -2990,6 +3102,7 @@ proc_17_continue_76:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_CONST [a7]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #39*4]			; r0=rConstants[39]
@@ -3028,6 +3141,7 @@ proc_17_continue_77:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_CONST [a7]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #39*4]			; r0=rConstants[39]
@@ -3051,6 +3165,7 @@ proc_17_end:
 proc_18_start:
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_WHEN [17]
 	beq proc_18_target_78
 	; BC_CONST [a1]
@@ -3058,6 +3173,7 @@ proc_18_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [3b]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	cmp r0, r1					; r0 cmp r1
@@ -3069,6 +3185,7 @@ proc_18_start:
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_DRAW [04]
@@ -3086,6 +3203,7 @@ proc_18_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -3108,6 +3226,7 @@ proc_18_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -3130,6 +3249,7 @@ proc_18_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -3157,6 +3277,7 @@ proc_18_continue_80:
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_PLOT [06]
@@ -3173,6 +3294,7 @@ proc_18_continue_80:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
@@ -3182,6 +3304,7 @@ proc_18_continue_80:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
@@ -3209,6 +3332,7 @@ proc_18_end:
 proc_19_start:
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_WHEN [17]
 	beq proc_19_target_81
 	; BC_CONST [a1]
@@ -3216,6 +3340,7 @@ proc_19_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [3b]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	cmp r0, r1					; r0 cmp r1
@@ -3227,6 +3352,7 @@ proc_19_start:
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_PLOT [06]
@@ -3244,6 +3370,7 @@ proc_19_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -3266,6 +3393,7 @@ proc_19_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -3288,6 +3416,7 @@ proc_19_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -3315,6 +3444,7 @@ proc_19_continue_83:
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_PLOT [06]
@@ -3331,6 +3461,7 @@ proc_19_continue_83:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
@@ -3340,6 +3471,7 @@ proc_19_continue_83:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
@@ -3367,6 +3499,7 @@ proc_19_end:
 proc_20_start:
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_WHEN [17]
 	beq proc_20_target_84
 	; BC_CONST [a1]
@@ -3374,6 +3507,7 @@ proc_20_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [3b]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	cmp r0, r1					; r0 cmp r1
@@ -3385,6 +3519,7 @@ proc_20_start:
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_PLOT [06]
@@ -3402,6 +3537,7 @@ proc_20_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -3424,6 +3560,7 @@ proc_20_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -3446,6 +3583,7 @@ proc_20_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -3475,6 +3613,7 @@ proc_20_continue_86:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -3484,6 +3623,7 @@ proc_20_continue_86:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
@@ -3526,6 +3666,7 @@ proc_21_start:
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_Y*4]		; r0=State[ST_Y]
+	movs r0, r0					; update Status flags
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
@@ -3535,6 +3676,7 @@ proc_21_start:
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_X*4]		; r0=State[ST_X]
+	movs r0, r0					; update Status flags
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
@@ -3551,6 +3693,7 @@ proc_21_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_23_start		; r0=r_Procedures[23]
@@ -3564,6 +3707,7 @@ proc_21_start:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -3574,6 +3718,7 @@ proc_21_start:
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_Y*4]		; r0=State[ST_Y]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -3583,6 +3728,7 @@ proc_21_start:
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_X*4]		; r0=State[ST_X]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -3599,6 +3745,7 @@ proc_21_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_23_start		; r0=r_Procedures[23]
@@ -3635,6 +3782,7 @@ proc_22_start:
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_Y*4]		; r0=State[ST_Y]
+	movs r0, r0					; update Status flags
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
@@ -3644,6 +3792,7 @@ proc_22_start:
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_X*4]		; r0=State[ST_X]
+	movs r0, r0					; update Status flags
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
@@ -3660,6 +3809,7 @@ proc_22_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_23_start		; r0=r_Procedures[23]
@@ -3673,6 +3823,7 @@ proc_22_start:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -3683,6 +3834,7 @@ proc_22_start:
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_Y*4]		; r0=State[ST_Y]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -3692,6 +3844,7 @@ proc_22_start:
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_X*4]		; r0=State[ST_X]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -3708,6 +3861,7 @@ proc_22_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_23_start		; r0=r_Procedures[23]
@@ -3736,6 +3890,7 @@ proc_23_start:
 	; BC_RLOCAL [62]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_OP [3b]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	cmp r0, r1					; r0 cmp r1
@@ -3749,6 +3904,7 @@ proc_23_start:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_WAIT [0a]
 	adr r1, proc_23_continue_90
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -3768,6 +3924,7 @@ proc_23_target_89:
 	; BC_RLOCAL [62]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_OP [3b]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	cmp r0, r1					; r0 cmp r1
@@ -3781,6 +3938,7 @@ proc_23_target_89:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_WAIT [0a]
 	adr r1, proc_23_continue_92
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -3800,6 +3958,7 @@ proc_23_target_91:
 	; BC_RLOCAL [62]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_OP [3b]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	cmp r0, r1					; r0 cmp r1
@@ -3813,6 +3972,7 @@ proc_23_target_91:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_WAIT [0a]
 	adr r1, proc_23_continue_94
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -3832,6 +3992,7 @@ proc_23_target_93:
 	; BC_RLOCAL [62]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_OP [3b]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	cmp r0, r1					; r0 cmp r1
@@ -4292,6 +4453,7 @@ proc_27_continue_108:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -4381,10 +4543,12 @@ proc_27_end:
 proc_28_start:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_WHEN [17]
 	beq proc_28_target_111
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_DRAW [04]
@@ -4409,6 +4573,7 @@ proc_28_continue_112:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
@@ -4418,6 +4583,7 @@ proc_28_continue_112:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -4515,6 +4681,7 @@ proc_29_continue_113:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -4540,6 +4707,7 @@ proc_29_continue_113:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -4573,6 +4741,7 @@ proc_29_continue_113:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -4776,6 +4945,7 @@ proc_31_continue_118:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -4867,6 +5037,7 @@ proc_31_continue_121:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -5069,6 +5240,7 @@ proc_33_continue_125:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -5087,6 +5259,7 @@ proc_33_continue_125:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -5235,6 +5408,7 @@ proc_34_continue_128:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -5335,6 +5509,7 @@ proc_35_continue_129:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -5359,6 +5534,7 @@ proc_35_continue_129:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -5390,6 +5566,7 @@ proc_36_start:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -5416,6 +5593,7 @@ proc_36_start:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -5617,6 +5795,7 @@ proc_38_continue_134:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -5650,6 +5829,7 @@ proc_38_continue_134:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -5683,6 +5863,7 @@ proc_38_continue_134:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -5759,6 +5940,7 @@ proc_39_continue_135:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -5810,9 +5992,11 @@ proc_40_continue_136:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -5898,9 +6082,11 @@ proc_40_continue_139:
 proc_40_continue_140:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -5929,9 +6115,11 @@ proc_40_continue_140:
 proc_40_continue_141:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -6060,6 +6248,7 @@ proc_41_continue_145:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -6134,6 +6323,7 @@ proc_41_continue_147:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -6186,10 +6376,12 @@ proc_42_end:
 proc_43_start:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_WHEN [17]
 	beq proc_43_target_149
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_PLOT [06]
@@ -6221,6 +6413,7 @@ proc_43_continue_150:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
@@ -6230,6 +6423,7 @@ proc_43_continue_150:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
@@ -6289,10 +6483,12 @@ proc_44_end:
 proc_45_start:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_WHEN [17]
 	beq proc_45_target_152
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_PLOT [06]
@@ -6317,6 +6513,7 @@ proc_45_continue_153:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
@@ -6326,6 +6523,7 @@ proc_45_continue_153:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -6826,6 +7024,7 @@ proc_51_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_52_start		; r0=r_Procedures[52]
@@ -6839,6 +7038,7 @@ proc_51_start:
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_Y*4]		; r0=State[ST_Y]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -6848,6 +7048,7 @@ proc_51_start:
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_X*4]		; r0=State[ST_X]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -6861,6 +7062,7 @@ proc_51_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_52_start		; r0=r_Procedures[52]
@@ -6874,6 +7076,7 @@ proc_51_start:
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_Y*4]		; r0=State[ST_Y]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -6883,6 +7086,7 @@ proc_51_start:
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_X*4]		; r0=State[ST_X]
+	movs r0, r0					; update Status flags
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
@@ -6896,6 +7100,7 @@ proc_51_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_52_start		; r0=r_Procedures[52]
@@ -6909,6 +7114,7 @@ proc_51_start:
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_Y*4]		; r0=State[ST_Y]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -6918,6 +7124,7 @@ proc_51_start:
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_X*4]		; r0=State[ST_X]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -6931,6 +7138,7 @@ proc_51_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_52_start		; r0=r_Procedures[52]
@@ -6944,6 +7152,7 @@ proc_51_start:
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_Y*4]		; r0=State[ST_Y]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -6953,6 +7162,7 @@ proc_51_start:
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_X*4]		; r0=State[ST_X]
+	movs r0, r0					; update Status flags
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
@@ -6966,6 +7176,7 @@ proc_51_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_52_start		; r0=r_Procedures[52]
@@ -6979,6 +7190,7 @@ proc_51_start:
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_Y*4]		; r0=State[ST_Y]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -6988,6 +7200,7 @@ proc_51_start:
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_X*4]		; r0=State[ST_X]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -7001,6 +7214,7 @@ proc_51_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_52_start		; r0=r_Procedures[52]
@@ -7018,6 +7232,7 @@ proc_51_end:
 proc_52_start:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_WHEN [17]
 	beq proc_52_target_174
 	; BC_CONST [ce]
@@ -7034,6 +7249,7 @@ proc_52_start:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_53_start		; r0=r_Procedures[53]
@@ -7064,6 +7280,7 @@ proc_52_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
@@ -7086,10 +7303,12 @@ proc_52_end:
 proc_53_start:
 	; BC_RLOCAL [64]
 	ldr r0, [r5, #-5*4]			; r0=StateStack[-5]
+	movs r0, r0					; update Status flags
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_WHEN [17]
 	beq proc_53_target_175
 	; BC_CONST [80]
@@ -7097,6 +7316,7 @@ proc_53_start:
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_X*4]		; r0=State[ST_X]
+	movs r0, r0					; update Status flags
 	; BC_OP [3b]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	cmp r0, r1					; r0 cmp r1
@@ -7120,6 +7340,7 @@ proc_53_target_176:
 proc_53_continue_177:
 	; BC_RLOCAL [62]
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_WHEN [17]
 	beq proc_53_target_178
 	; BC_CONST [99]
@@ -7136,6 +7357,7 @@ proc_53_continue_177:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
@@ -7145,6 +7367,7 @@ proc_53_continue_177:
 	; BC_RLOCAL [62]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
@@ -7167,6 +7390,7 @@ proc_53_target_178:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -7186,18 +7410,21 @@ proc_53_target_178:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_CONST [8f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #15*4]			; r0=rConstants[15]
 	; BC_RLOCAL [63]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-4*4]			; r0=StateStack[-4]
+	movs r0, r0					; update Status flags
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
@@ -7357,6 +7584,7 @@ proc_55_start:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -7450,6 +7678,7 @@ proc_56_start:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -7474,6 +7703,7 @@ proc_56_end:
 proc_57_start:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_WHEN [17]
 	beq proc_57_target_181
 	; BC_CONST [8f]
@@ -7481,6 +7711,7 @@ proc_57_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [3b]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	cmp r0, r1					; r0 cmp r1
@@ -7531,6 +7762,7 @@ proc_57_continue_183:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -7675,6 +7907,7 @@ proc_57_continue_187:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -7730,6 +7963,7 @@ proc_57_target_186:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
@@ -7752,6 +7986,7 @@ proc_57_end:
 proc_58_start:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_WHEN [17]
 	beq proc_58_target_188
 	; BC_CONST [8f]
@@ -7759,6 +7994,7 @@ proc_58_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [3b]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	cmp r0, r1					; r0 cmp r1
@@ -7805,6 +8041,7 @@ proc_58_continue_190:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -7945,6 +8182,7 @@ proc_58_continue_194:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -8000,6 +8238,7 @@ proc_58_target_193:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
@@ -8091,6 +8330,7 @@ proc_59_start:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -8184,6 +8424,7 @@ proc_60_start:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -8208,6 +8449,7 @@ proc_60_end:
 proc_61_start:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_WHEN [17]
 	beq proc_61_target_195
 	; BC_CONST [b7]
@@ -8227,6 +8469,7 @@ proc_61_continue_196:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [3b]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	cmp r0, r1					; r0 cmp r1
@@ -8334,6 +8577,7 @@ proc_61_continue_199:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -8347,6 +8591,7 @@ proc_61_continue_199:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
@@ -8369,6 +8614,7 @@ proc_61_end:
 proc_62_start:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_WHEN [17]
 	beq proc_62_target_200
 	; BC_CONST [b7]
@@ -8388,6 +8634,7 @@ proc_62_continue_201:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [3b]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	cmp r0, r1					; r0 cmp r1
@@ -8493,6 +8740,7 @@ proc_62_continue_204:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -8506,6 +8754,7 @@ proc_62_continue_204:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
@@ -8528,6 +8777,7 @@ proc_62_end:
 proc_63_start:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_WHEN [17]
 	beq proc_63_target_205
 	; BC_DRAW [04]
@@ -8538,6 +8788,7 @@ proc_63_start:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
@@ -8558,6 +8809,7 @@ proc_63_continue_206:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
@@ -8580,6 +8832,7 @@ proc_63_end:
 proc_64_start:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_WHEN [17]
 	beq proc_64_target_207
 	; BC_PLOT [06]
@@ -8590,6 +8843,7 @@ proc_64_start:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
@@ -8610,6 +8864,7 @@ proc_64_continue_208:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
@@ -8632,6 +8887,7 @@ proc_64_end:
 proc_65_start:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_WHEN [17]
 	beq proc_65_target_209
 	; BC_PROC [07]
@@ -8643,9 +8899,11 @@ proc_65_start:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -8653,6 +8911,7 @@ proc_65_start:
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
 	; BC_RLOCAL [62]
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
@@ -8680,6 +8939,7 @@ proc_65_continue_210:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
@@ -8744,6 +9004,7 @@ proc_67_start:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -8782,6 +9043,7 @@ proc_67_start:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -8806,6 +9068,7 @@ proc_67_end:
 proc_68_start:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_WHEN [17]
 	beq proc_68_target_211
 	; BC_PLOT [06]
@@ -8828,6 +9091,7 @@ proc_68_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
@@ -8850,6 +9114,7 @@ proc_68_end:
 proc_69_start:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_WHEN [17]
 	beq proc_69_target_212
 	; BC_CONST [c9]
@@ -8857,6 +9122,7 @@ proc_69_start:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -8875,6 +9141,7 @@ proc_69_start:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -8900,6 +9167,7 @@ proc_69_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
@@ -8967,6 +9235,7 @@ proc_70_start:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -9005,6 +9274,7 @@ proc_70_start:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -9037,6 +9307,7 @@ proc_70_start:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -9109,6 +9380,7 @@ proc_70_continue_213:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -9147,6 +9419,7 @@ proc_70_continue_213:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -9179,6 +9452,7 @@ proc_70_continue_213:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -9211,6 +9485,7 @@ proc_70_end:
 proc_71_start:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_WHEN [17]
 	beq proc_71_target_214
 	; BC_CONST [a5]
@@ -9242,6 +9517,7 @@ proc_71_continue_215:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -9255,6 +9531,7 @@ proc_71_continue_215:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
@@ -9277,6 +9554,7 @@ proc_71_end:
 proc_72_start:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_WHEN [17]
 	beq proc_72_target_216
 	; BC_CONST [a5]
@@ -9310,6 +9588,7 @@ proc_72_continue_217:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -9323,6 +9602,7 @@ proc_72_continue_217:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
@@ -9345,13 +9625,16 @@ proc_72_end:
 proc_73_start:
 	; BC_RLOCAL [62]
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_WHEN [17]
 	beq proc_73_target_218
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -9361,6 +9644,7 @@ proc_73_start:
 	; BC_RLOCAL [63]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-4*4]			; r0=StateStack[-4]
+	movs r0, r0					; update Status flags
 	; BC_DIV [09]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r1, r1, asr #8
@@ -9373,9 +9657,11 @@ proc_73_start:
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_RLOCAL [63]
 	ldr r0, [r5, #-4*4]			; r0=StateStack[-4]
+	movs r0, r0					; update Status flags
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -9386,6 +9672,7 @@ proc_73_start:
 	; BC_RLOCAL [63]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-4*4]			; r0=StateStack[-4]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -9406,15 +9693,18 @@ proc_73_start:
 	; BC_RLOCAL [63]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-4*4]			; r0=StateStack[-4]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_CONST [8f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #15*4]			; r0=rConstants[15]
 	; BC_RLOCAL [62]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
@@ -9714,6 +10004,7 @@ proc_74_continue_223:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -9837,6 +10128,7 @@ proc_76_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_77_start		; r0=r_Procedures[77]
@@ -9854,6 +10146,7 @@ proc_76_end:
 proc_77_start:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_WHEN [17]
 	beq proc_77_target_227
 	; BC_CONST [80]
@@ -9861,6 +10154,7 @@ proc_77_start:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_OP [3b]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	cmp r0, r1					; r0 cmp r1
@@ -9877,6 +10171,7 @@ proc_77_start:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_78_start		; r0=r_Procedures[78]
@@ -9899,6 +10194,7 @@ proc_77_target_228:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_79_start		; r0=r_Procedures[79]
@@ -9923,6 +10219,7 @@ proc_77_target_229:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
@@ -9945,10 +10242,12 @@ proc_77_end:
 proc_78_start:
 	; BC_RLOCAL [62]
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_WHEN [17]
 	beq proc_78_target_230
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_CONST [80]
@@ -9963,6 +10262,7 @@ proc_78_start:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_CONST [99]
@@ -9991,6 +10291,7 @@ proc_78_continue_231:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -10002,6 +10303,7 @@ proc_78_continue_231:
 	; BC_RLOCAL [62]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
@@ -10040,10 +10342,12 @@ proc_78_end:
 proc_79_start:
 	; BC_RLOCAL [62]
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_WHEN [17]
 	beq proc_79_target_233
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_CONST [80]
@@ -10072,6 +10376,7 @@ proc_79_continue_234:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -10083,6 +10388,7 @@ proc_79_continue_234:
 	; BC_RLOCAL [62]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
@@ -10102,6 +10408,7 @@ proc_79_continue_234:
 proc_79_target_233:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_CONST [80]
@@ -10166,6 +10473,7 @@ proc_80_continue_236:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -10210,6 +10518,7 @@ proc_80_continue_237:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -10252,6 +10561,7 @@ proc_80_continue_238:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -10290,6 +10600,7 @@ proc_80_end:
 proc_81_start:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_WHEN [17]
 	beq proc_81_target_239
 	; BC_PLOT [06]
@@ -10320,6 +10631,7 @@ proc_81_continue_240:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
@@ -10356,9 +10668,11 @@ proc_82_start:
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_84_start		; r0=r_Procedures[84]
@@ -10372,6 +10686,7 @@ proc_82_start:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -10379,9 +10694,11 @@ proc_82_start:
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_84_start		; r0=r_Procedures[84]
@@ -10395,6 +10712,7 @@ proc_82_start:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -10406,9 +10724,11 @@ proc_82_start:
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_84_start		; r0=r_Procedures[84]
@@ -10422,6 +10742,7 @@ proc_82_start:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -10429,9 +10750,11 @@ proc_82_start:
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_84_start		; r0=r_Procedures[84]
@@ -10449,6 +10772,7 @@ proc_82_start:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -10456,9 +10780,11 @@ proc_82_start:
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
 	; BC_RLOCAL [62]
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_86_start		; r0=r_Procedures[86]
@@ -10472,6 +10798,7 @@ proc_82_start:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -10479,9 +10806,11 @@ proc_82_start:
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
 	; BC_RLOCAL [62]
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_86_start		; r0=r_Procedures[86]
@@ -10495,6 +10824,7 @@ proc_82_start:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -10502,9 +10832,11 @@ proc_82_start:
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
 	; BC_RLOCAL [62]
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_86_start		; r0=r_Procedures[86]
@@ -10518,6 +10850,7 @@ proc_82_start:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -10528,6 +10861,7 @@ proc_82_start:
 	; BC_RLOCAL [62]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_WLOCAL [40]
 	str r0, [r5, #-1*4]			; StateStack[-1]=r0
 	; BC_WSTATE [50]
@@ -10561,9 +10895,11 @@ proc_83_start:
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_86_start		; r0=r_Procedures[86]
@@ -10577,6 +10913,7 @@ proc_83_start:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -10584,9 +10921,11 @@ proc_83_start:
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_86_start		; r0=r_Procedures[86]
@@ -10600,6 +10939,7 @@ proc_83_start:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -10611,9 +10951,11 @@ proc_83_start:
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_86_start		; r0=r_Procedures[86]
@@ -10627,6 +10969,7 @@ proc_83_start:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -10634,9 +10977,11 @@ proc_83_start:
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_86_start		; r0=r_Procedures[86]
@@ -10654,6 +10999,7 @@ proc_83_start:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -10661,9 +11007,11 @@ proc_83_start:
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
 	; BC_RLOCAL [62]
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_86_start		; r0=r_Procedures[86]
@@ -10677,6 +11025,7 @@ proc_83_start:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -10684,9 +11033,11 @@ proc_83_start:
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
 	; BC_RLOCAL [62]
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_86_start		; r0=r_Procedures[86]
@@ -10700,6 +11051,7 @@ proc_83_start:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -10707,9 +11059,11 @@ proc_83_start:
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
 	; BC_RLOCAL [62]
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_86_start		; r0=r_Procedures[86]
@@ -10723,6 +11077,7 @@ proc_83_start:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -10733,6 +11088,7 @@ proc_83_start:
 	; BC_RLOCAL [62]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_WLOCAL [40]
 	str r0, [r5, #-1*4]			; StateStack[-1]=r0
 	; BC_WSTATE [50]
@@ -10752,6 +11108,7 @@ proc_83_end:
 proc_84_start:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_WHEN [17]
 	beq proc_84_target_241
 	; BC_CONST [9e]
@@ -10780,9 +11137,11 @@ proc_84_start:
 proc_84_continue_242:
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -10796,6 +11155,7 @@ proc_84_continue_242:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
@@ -10818,10 +11178,12 @@ proc_84_end:
 proc_85_start:
 	; BC_RLOCAL [62]
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_WHEN [17]
 	beq proc_85_target_243
 	; BC_RLOCAL [62]
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_CONST [9e]
@@ -10832,22 +11194,27 @@ proc_85_start:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
 	; BC_RLOCAL [63]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-4*4]			; r0=StateStack[-4]
+	movs r0, r0					; update Status flags
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_RLOCAL [63]
 	ldr r0, [r5, #-4*4]			; r0=StateStack[-4]
+	movs r0, r0					; update Status flags
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -10858,6 +11225,7 @@ proc_85_start:
 	; BC_RLOCAL [63]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-4*4]			; r0=StateStack[-4]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -10878,15 +11246,18 @@ proc_85_start:
 	; BC_RLOCAL [63]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-4*4]			; r0=StateStack[-4]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_CONST [8f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #15*4]			; r0=rConstants[15]
 	; BC_RLOCAL [62]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
@@ -10917,6 +11288,7 @@ proc_85_end:
 proc_86_start:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_WHEN [17]
 	beq proc_86_target_244
 	; BC_CONST [9e]
@@ -10945,9 +11317,11 @@ proc_86_start:
 proc_86_continue_245:
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -10961,6 +11335,7 @@ proc_86_continue_245:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
@@ -10983,6 +11358,7 @@ proc_86_end:
 proc_87_start:
 	; BC_RLOCAL [62]
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_WHEN [17]
 	beq proc_87_target_246
 	; BC_CONST [9e]
@@ -10993,22 +11369,27 @@ proc_87_start:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
 	; BC_RLOCAL [63]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-4*4]			; r0=StateStack[-4]
+	movs r0, r0					; update Status flags
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_RLOCAL [63]
 	ldr r0, [r5, #-4*4]			; r0=StateStack[-4]
+	movs r0, r0					; update Status flags
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -11019,6 +11400,7 @@ proc_87_start:
 	; BC_RLOCAL [63]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-4*4]			; r0=StateStack[-4]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -11039,15 +11421,18 @@ proc_87_start:
 	; BC_RLOCAL [63]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-4*4]			; r0=StateStack[-4]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_CONST [8f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #15*4]			; r0=rConstants[15]
 	; BC_RLOCAL [62]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
@@ -11343,9 +11728,11 @@ proc_89_end:
 proc_90_start:
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [3b]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	cmp r0, r1					; r0 cmp r1
@@ -11353,12 +11740,15 @@ proc_90_start:
 	bge proc_90_target_255
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [62]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_91_start		; r0=r_Procedures[91]
@@ -11369,9 +11759,11 @@ proc_90_start:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [62]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -11386,6 +11778,7 @@ proc_90_start:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -11393,6 +11786,7 @@ proc_90_start:
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_WAIT [0a]
 	adr r1, proc_90_continue_256
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -11407,6 +11801,7 @@ proc_90_continue_256:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -11426,15 +11821,18 @@ proc_90_target_255:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
 	; BC_RLOCAL [62]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_91_start		; r0=r_Procedures[91]
@@ -11445,9 +11843,11 @@ proc_90_target_255:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [62]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -11462,6 +11862,7 @@ proc_90_target_255:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -11478,6 +11879,7 @@ proc_90_end:
 proc_91_start:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_WHEN [17]
 	beq proc_91_target_258
 	; BC_CONST [80]
@@ -11500,6 +11902,7 @@ proc_91_start:
 proc_91_continue_259:
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
@@ -11512,6 +11915,7 @@ proc_91_continue_259:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
@@ -11537,6 +11941,7 @@ proc_92_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [3b]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	cmp r0, r1					; r0 cmp r1
@@ -11544,6 +11949,7 @@ proc_92_start:
 	bge proc_92_target_260
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_PLOT [06]
@@ -11568,6 +11974,7 @@ proc_92_continue_261:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -11634,6 +12041,7 @@ proc_93_continue_262:
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_Y*4]		; r0=State[ST_Y]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -11651,6 +12059,7 @@ proc_93_continue_262:
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_X*4]		; r0=State[ST_X]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -11664,6 +12073,7 @@ proc_93_continue_262:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -11757,6 +12167,7 @@ proc_94_start:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -11783,6 +12194,7 @@ proc_94_start:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -11806,6 +12218,7 @@ proc_94_start:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -11832,6 +12245,7 @@ proc_94_start:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -11879,6 +12293,7 @@ proc_94_continue_265:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -11897,6 +12312,7 @@ proc_94_continue_265:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -11920,6 +12336,7 @@ proc_94_continue_265:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -11946,6 +12363,7 @@ proc_94_continue_265:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -12138,10 +12556,12 @@ proc_95_end:
 proc_96_start:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_WHEN [17]
 	beq proc_96_target_270
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_97_start		; r0=r_Procedures[97]
@@ -12172,6 +12592,7 @@ proc_96_continue_271:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
@@ -12197,6 +12618,7 @@ proc_97_start:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -12218,6 +12640,7 @@ proc_97_end:
 proc_98_start:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_WHEN [17]
 	beq proc_98_target_272
 	; BC_PROC [07]
@@ -12249,6 +12672,7 @@ proc_98_continue_273:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
@@ -12321,6 +12745,7 @@ proc_100_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [3b]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	cmp r0, r1					; r0 cmp r1
@@ -12328,6 +12753,7 @@ proc_100_start:
 	bgt proc_100_target_275
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_CONST [80]
@@ -12341,6 +12767,7 @@ proc_100_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_DIV [09]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r1, r1, asr #8
@@ -12390,6 +12817,7 @@ proc_100_continue_278:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -12477,6 +12905,7 @@ proc_101_continue_279:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -12519,6 +12948,7 @@ proc_101_continue_281:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -12616,6 +13046,7 @@ proc_101_continue_283:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -12696,6 +13127,7 @@ proc_101_continue_285:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -12793,6 +13225,7 @@ proc_102_continue_287:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -12841,6 +13274,7 @@ proc_102_continue_288:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -12909,10 +13343,12 @@ proc_102_end:
 proc_103_start:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_WHEN [17]
 	beq proc_103_target_290
 	; BC_RLOCAL [62]
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_104_start		; r0=r_Procedures[104]
@@ -12931,9 +13367,11 @@ proc_103_start:
 proc_103_continue_291:
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -12947,6 +13385,7 @@ proc_103_continue_291:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
@@ -12975,9 +13414,11 @@ proc_104_start:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -13005,10 +13446,12 @@ proc_104_end:
 proc_105_start:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_WHEN [17]
 	beq proc_105_target_292
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_106_start		; r0=r_Procedures[106]
@@ -13039,6 +13482,7 @@ proc_105_continue_293:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
@@ -13064,6 +13508,7 @@ proc_106_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [3b]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	cmp r0, r1					; r0 cmp r1
@@ -13071,6 +13516,7 @@ proc_106_start:
 	blt proc_106_target_294
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_PLOT [06]
@@ -13089,6 +13535,7 @@ proc_106_start:
 proc_106_continue_295:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_107_start		; r0=r_Procedures[107]
@@ -13105,6 +13552,7 @@ proc_106_continue_295:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
@@ -13130,6 +13578,7 @@ proc_107_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -13178,6 +13627,7 @@ proc_108_start:
 proc_108_continue_296:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_114_start		; r0=r_Procedures[114]
@@ -13191,6 +13641,7 @@ proc_108_continue_296:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -13198,6 +13649,7 @@ proc_108_continue_296:
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_114_start		; r0=r_Procedures[114]
@@ -13219,6 +13671,7 @@ proc_108_continue_297:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -13236,6 +13689,7 @@ proc_108_continue_297:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -13283,6 +13737,7 @@ proc_109_start:
 proc_109_continue_298:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_114_start		; r0=r_Procedures[114]
@@ -13296,6 +13751,7 @@ proc_109_continue_298:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -13303,6 +13759,7 @@ proc_109_continue_298:
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_114_start		; r0=r_Procedures[114]
@@ -13324,6 +13781,7 @@ proc_109_continue_299:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -13341,6 +13799,7 @@ proc_109_continue_299:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -13375,6 +13834,7 @@ proc_110_start:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -13434,6 +13894,7 @@ proc_111_start:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -13484,6 +13945,7 @@ proc_111_end:
 proc_112_start:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_WHEN [17]
 	beq proc_112_target_302
 	; BC_DRAW [04]
@@ -13548,6 +14010,7 @@ proc_112_continue_303:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
@@ -13570,6 +14033,7 @@ proc_112_end:
 proc_113_start:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_WHEN [17]
 	beq proc_113_target_304
 	; BC_DRAW [04]
@@ -13634,6 +14098,7 @@ proc_113_continue_305:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
@@ -13659,6 +14124,7 @@ proc_114_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_115_start		; r0=r_Procedures[115]
@@ -13684,6 +14150,7 @@ proc_114_continue_306:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_115_start		; r0=r_Procedures[115]
@@ -13701,6 +14168,7 @@ proc_114_end:
 proc_115_start:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_WHEN [17]
 	beq proc_115_target_307
 	; BC_PROC [07]
@@ -13712,9 +14180,11 @@ proc_115_start:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -13729,9 +14199,11 @@ proc_115_start:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -13753,6 +14225,7 @@ proc_115_continue_308:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
@@ -13794,6 +14267,7 @@ proc_116_end:
 proc_117_start:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_122_start		; r0=r_Procedures[122]
@@ -13804,6 +14278,7 @@ proc_117_start:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_CONST [80]
@@ -14021,6 +14496,7 @@ proc_117_end:
 proc_118_start:
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_WHEN [17]
 	beq proc_118_target_319
 	; BC_CONST [ac]
@@ -14028,6 +14504,7 @@ proc_118_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #0*4]			; r0=rConstants[0]
@@ -14052,6 +14529,7 @@ proc_118_continue_320:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_CONST [8f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #15*4]			; r0=rConstants[15]
@@ -14076,6 +14554,7 @@ proc_118_continue_321:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_CONST [95]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #21*4]			; r0=rConstants[21]
@@ -14114,6 +14593,7 @@ proc_118_continue_322:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_CONST [a5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #37*4]			; r0=rConstants[37]
@@ -14146,6 +14626,7 @@ proc_118_continue_323:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_CONST [9c]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #28*4]			; r0=rConstants[28]
@@ -14162,6 +14643,7 @@ proc_118_continue_323:
 	; BC_RLOCAL [62]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_OP [3b]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	cmp r0, r1					; r0 cmp r1
@@ -14180,6 +14662,7 @@ proc_118_continue_325:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_CONST [9e]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #30*4]			; r0=rConstants[30]
@@ -14204,6 +14687,7 @@ proc_118_continue_326:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_CONST [a1]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #33*4]			; r0=rConstants[33]
@@ -14228,6 +14712,7 @@ proc_118_continue_327:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_CONST [a4]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #36*4]			; r0=rConstants[36]
@@ -14265,6 +14750,7 @@ proc_118_target_324:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
@@ -14290,6 +14776,7 @@ proc_119_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [3b]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	cmp r0, r1					; r0 cmp r1
@@ -14297,9 +14784,11 @@ proc_119_start:
 	blt proc_119_target_329
 	; BC_RLOCAL [62]
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_121_start		; r0=r_Procedures[121]
@@ -14321,6 +14810,7 @@ proc_119_continue_330:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [3b]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	cmp r0, r1					; r0 cmp r1
@@ -14331,6 +14821,7 @@ proc_119_continue_330:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -14356,6 +14847,7 @@ proc_119_target_331:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
@@ -14365,6 +14857,7 @@ proc_119_target_331:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -14395,6 +14888,7 @@ proc_120_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [3b]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	cmp r0, r1					; r0 cmp r1
@@ -14402,9 +14896,11 @@ proc_120_start:
 	blt proc_120_target_332
 	; BC_RLOCAL [62]
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_121_start		; r0=r_Procedures[121]
@@ -14429,6 +14925,7 @@ proc_120_continue_333:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
@@ -14438,6 +14935,7 @@ proc_120_continue_333:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -14468,6 +14966,7 @@ proc_121_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [3b]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	cmp r0, r1					; r0 cmp r1
@@ -14475,6 +14974,7 @@ proc_121_start:
 	bne proc_121_target_334
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_122_start		; r0=r_Procedures[122]
@@ -14490,6 +14990,7 @@ proc_121_target_334:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [3b]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	cmp r0, r1					; r0 cmp r1
@@ -14497,6 +14998,7 @@ proc_121_target_334:
 	bne proc_121_target_335
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_123_start		; r0=r_Procedures[123]
@@ -14512,6 +15014,7 @@ proc_121_target_335:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [3b]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	cmp r0, r1					; r0 cmp r1
@@ -14519,6 +15022,7 @@ proc_121_target_335:
 	bne proc_121_target_336
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_124_start		; r0=r_Procedures[124]
@@ -14534,6 +15038,7 @@ proc_121_target_336:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [3b]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	cmp r0, r1					; r0 cmp r1
@@ -14541,6 +15046,7 @@ proc_121_target_336:
 	bne proc_121_target_337
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_125_start		; r0=r_Procedures[125]
@@ -14556,6 +15062,7 @@ proc_121_target_337:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [3b]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	cmp r0, r1					; r0 cmp r1
@@ -14563,6 +15070,7 @@ proc_121_target_337:
 	bne proc_121_target_338
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_126_start		; r0=r_Procedures[126]
@@ -14578,6 +15086,7 @@ proc_121_target_338:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [3b]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	cmp r0, r1					; r0 cmp r1
@@ -14585,6 +15094,7 @@ proc_121_target_338:
 	bne proc_121_target_339
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_127_start		; r0=r_Procedures[127]
@@ -14600,6 +15110,7 @@ proc_121_target_339:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [3b]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	cmp r0, r1					; r0 cmp r1
@@ -14607,6 +15118,7 @@ proc_121_target_339:
 	bne proc_121_target_340
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_128_start		; r0=r_Procedures[128]
@@ -14622,6 +15134,7 @@ proc_121_target_340:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [3b]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	cmp r0, r1					; r0 cmp r1
@@ -14629,6 +15142,7 @@ proc_121_target_340:
 	bne proc_121_target_341
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_129_start		; r0=r_Procedures[129]
@@ -14644,6 +15158,7 @@ proc_121_target_341:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [3b]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	cmp r0, r1					; r0 cmp r1
@@ -14654,6 +15169,7 @@ proc_121_target_341:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_WLOCAL [40]
 	str r0, [r5, #-1*4]			; StateStack[-1]=r0
 	; BC_WSTATE [50]
@@ -14679,6 +15195,7 @@ proc_122_start:
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_131_start		; r0=r_Procedures[131]
@@ -14696,6 +15213,7 @@ proc_122_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -14721,6 +15239,7 @@ proc_122_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -14747,6 +15266,7 @@ proc_123_start:
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_132_start		; r0=r_Procedures[132]
@@ -14764,6 +15284,7 @@ proc_123_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -14789,6 +15310,7 @@ proc_123_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -14815,6 +15337,7 @@ proc_124_start:
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_133_start		; r0=r_Procedures[133]
@@ -14832,6 +15355,7 @@ proc_124_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -14857,6 +15381,7 @@ proc_124_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -14883,6 +15408,7 @@ proc_125_start:
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_134_start		; r0=r_Procedures[134]
@@ -14900,6 +15426,7 @@ proc_125_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -14925,6 +15452,7 @@ proc_125_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -14951,6 +15479,7 @@ proc_126_start:
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_131_start		; r0=r_Procedures[131]
@@ -14968,6 +15497,7 @@ proc_126_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -14993,6 +15523,7 @@ proc_126_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -15019,6 +15550,7 @@ proc_127_start:
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_134_start		; r0=r_Procedures[134]
@@ -15036,6 +15568,7 @@ proc_127_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -15061,6 +15594,7 @@ proc_127_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -15087,6 +15621,7 @@ proc_128_start:
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_131_start		; r0=r_Procedures[131]
@@ -15104,6 +15639,7 @@ proc_128_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -15129,6 +15665,7 @@ proc_128_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -15155,6 +15692,7 @@ proc_129_start:
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_133_start		; r0=r_Procedures[133]
@@ -15172,6 +15710,7 @@ proc_129_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -15197,6 +15736,7 @@ proc_129_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -15223,6 +15763,7 @@ proc_130_start:
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_131_start		; r0=r_Procedures[131]
@@ -15240,6 +15781,7 @@ proc_130_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -15265,6 +15807,7 @@ proc_130_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -15287,6 +15830,7 @@ proc_130_end:
 proc_131_start:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_DRAW [04]
@@ -15300,6 +15844,7 @@ proc_131_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -15326,6 +15871,7 @@ proc_131_end:
 proc_132_start:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_DRAW [04]
@@ -15339,6 +15885,7 @@ proc_132_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
@@ -15363,6 +15910,7 @@ proc_132_end:
 proc_133_start:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_DRAW [04]
@@ -15376,6 +15924,7 @@ proc_133_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
@@ -15400,6 +15949,7 @@ proc_133_end:
 proc_134_start:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_DRAW [04]
@@ -15413,6 +15963,7 @@ proc_134_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -15522,6 +16073,7 @@ proc_135_continue_345:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -15586,6 +16138,7 @@ proc_135_continue_347:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -15650,6 +16203,7 @@ proc_135_continue_349:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [3b]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	cmp r0, r1					; r0 cmp r1
@@ -15707,6 +16261,7 @@ proc_135_continue_351:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -15769,6 +16324,7 @@ proc_135_continue_352:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -15829,6 +16385,7 @@ proc_136_start:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_CONST [aa]
@@ -15875,6 +16432,7 @@ proc_136_end:
 proc_137_start:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_WHEN [17]
 	beq proc_137_target_355
 	; BC_PROC [07]
@@ -15914,6 +16472,7 @@ proc_137_continue_356:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
@@ -15955,6 +16514,7 @@ proc_138_start:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -15975,6 +16535,7 @@ proc_138_start:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -15999,6 +16560,7 @@ proc_138_end:
 proc_139_start:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_WHEN [17]
 	beq proc_139_target_357
 	; BC_CONST [c9]
@@ -16008,6 +16570,7 @@ proc_139_start:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -16024,6 +16587,7 @@ proc_139_start:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -16049,6 +16613,7 @@ proc_139_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
@@ -16082,6 +16647,7 @@ proc_140_start:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -16092,6 +16658,7 @@ proc_140_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_142_start		; r0=r_Procedures[142]
@@ -16133,10 +16700,12 @@ proc_140_end:
 proc_141_start:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_WHEN [17]
 	beq proc_141_target_359
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_144_start		; r0=r_Procedures[144]
@@ -16155,6 +16724,7 @@ proc_141_start:
 proc_141_continue_360:
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_143_start		; r0=r_Procedures[143]
@@ -16171,15 +16741,18 @@ proc_141_continue_360:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
 	; BC_RLOCAL [62]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -16207,6 +16780,7 @@ proc_141_end:
 proc_142_start:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_WHEN [17]
 	beq proc_142_target_361
 	; BC_CONST [9f]
@@ -16231,9 +16805,11 @@ proc_142_start:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -16255,6 +16831,7 @@ proc_142_continue_362:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
@@ -16280,9 +16857,11 @@ proc_143_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -16299,6 +16878,7 @@ proc_143_start:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_OP [3b]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	cmp r0, r1					; r0 cmp r1
@@ -16309,9 +16889,11 @@ proc_143_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -16352,9 +16934,11 @@ proc_143_end:
 proc_144_start:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -16373,6 +16957,7 @@ proc_144_start:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -16380,6 +16965,7 @@ proc_144_start:
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_145_start		; r0=r_Procedures[145]
@@ -16393,6 +16979,7 @@ proc_144_start:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -16400,6 +16987,7 @@ proc_144_start:
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_145_start		; r0=r_Procedures[145]
@@ -16413,6 +17001,7 @@ proc_144_start:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -16420,6 +17009,7 @@ proc_144_start:
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_145_start		; r0=r_Procedures[145]
@@ -16433,6 +17023,7 @@ proc_144_start:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -16457,6 +17048,7 @@ proc_145_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
@@ -16466,6 +17058,7 @@ proc_145_start:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_OP [3b]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	cmp r0, r1					; r0 cmp r1
@@ -16476,9 +17069,11 @@ proc_145_start:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -16493,9 +17088,11 @@ proc_145_start:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -16514,6 +17111,7 @@ proc_145_start:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_WLOCAL [40]
 	str r0, [r5, #-1*4]			; StateStack[-1]=r0
 	; BC_WSTATE [50]
@@ -16807,6 +17405,7 @@ proc_147_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_CONST [80]
@@ -16828,6 +17427,7 @@ proc_147_start:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #0*4]			; r0=rConstants[0]
@@ -16852,9 +17452,11 @@ proc_147_start:
 proc_147_continue_371:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_CONST [9e]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #30*4]			; r0=rConstants[30]
@@ -16893,6 +17495,7 @@ proc_147_continue_372:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #0*4]			; r0=rConstants[0]
@@ -16917,9 +17520,11 @@ proc_147_continue_372:
 proc_147_continue_373:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_CONST [9e]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #30*4]			; r0=rConstants[30]
@@ -16958,6 +17563,7 @@ proc_147_continue_374:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #0*4]			; r0=rConstants[0]
@@ -16982,9 +17588,11 @@ proc_147_continue_374:
 proc_147_continue_375:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_CONST [9e]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #30*4]			; r0=rConstants[30]
@@ -17048,6 +17656,7 @@ proc_148_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_CONST [ac]
@@ -17075,6 +17684,7 @@ proc_148_start:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #0*4]			; r0=rConstants[0]
@@ -17099,9 +17709,11 @@ proc_148_start:
 proc_148_continue_377:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_CONST [9e]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #30*4]			; r0=rConstants[30]
@@ -17146,6 +17758,7 @@ proc_148_continue_378:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #0*4]			; r0=rConstants[0]
@@ -17170,9 +17783,11 @@ proc_148_continue_378:
 proc_148_continue_379:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_CONST [9e]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #30*4]			; r0=rConstants[30]
@@ -17211,6 +17826,7 @@ proc_148_continue_380:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #0*4]			; r0=rConstants[0]
@@ -17235,9 +17851,11 @@ proc_148_continue_380:
 proc_148_continue_381:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_CONST [9e]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #30*4]			; r0=rConstants[30]
@@ -17298,6 +17916,7 @@ proc_149_start:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_153_start		; r0=r_Procedures[153]
@@ -17320,9 +17939,11 @@ proc_149_continue_383:
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_CONST [87]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #7*4]			; r0=rConstants[7]
@@ -17339,6 +17960,7 @@ proc_149_continue_383:
 	; BC_RLOCAL [62]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
@@ -17357,6 +17979,7 @@ proc_149_continue_384:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_153_start		; r0=r_Procedures[153]
@@ -17379,9 +18002,11 @@ proc_149_continue_385:
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_CONST [87]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #7*4]			; r0=rConstants[7]
@@ -17398,6 +18023,7 @@ proc_149_continue_385:
 	; BC_RLOCAL [62]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
@@ -17416,6 +18042,7 @@ proc_149_continue_386:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_153_start		; r0=r_Procedures[153]
@@ -17426,6 +18053,7 @@ proc_149_continue_386:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [62]
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_WAIT [0a]
 	adr r1, proc_149_continue_387
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -17467,6 +18095,7 @@ proc_150_start:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_153_start		; r0=r_Procedures[153]
@@ -17489,9 +18118,11 @@ proc_150_continue_388:
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_CONST [87]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #7*4]			; r0=rConstants[7]
@@ -17508,6 +18139,7 @@ proc_150_continue_388:
 	; BC_RLOCAL [62]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
@@ -17526,6 +18158,7 @@ proc_150_continue_389:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_153_start		; r0=r_Procedures[153]
@@ -17548,9 +18181,11 @@ proc_150_continue_390:
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_CONST [87]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #7*4]			; r0=rConstants[7]
@@ -17567,6 +18202,7 @@ proc_150_continue_390:
 	; BC_RLOCAL [62]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
@@ -17585,6 +18221,7 @@ proc_150_continue_391:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_153_start		; r0=r_Procedures[153]
@@ -17610,6 +18247,7 @@ proc_150_continue_392:
 	; BC_RLOCAL [62]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
@@ -17628,6 +18266,7 @@ proc_150_continue_393:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_153_start		; r0=r_Procedures[153]
@@ -17650,9 +18289,11 @@ proc_150_continue_394:
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_CONST [87]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #7*4]			; r0=rConstants[7]
@@ -17666,6 +18307,7 @@ proc_150_continue_394:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [62]
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_WAIT [0a]
 	adr r1, proc_150_continue_395
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -17678,9 +18320,11 @@ proc_150_continue_395:
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_CONST [87]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #7*4]			; r0=rConstants[7]
@@ -17697,6 +18341,7 @@ proc_150_continue_395:
 	; BC_RLOCAL [62]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -17714,9 +18359,11 @@ proc_150_continue_396:
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_CONST [87]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #7*4]			; r0=rConstants[7]
@@ -17733,6 +18380,7 @@ proc_150_continue_396:
 	; BC_RLOCAL [62]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -17777,6 +18425,7 @@ proc_151_start:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_153_start		; r0=r_Procedures[153]
@@ -17799,9 +18448,11 @@ proc_151_continue_398:
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_CONST [87]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #7*4]			; r0=rConstants[7]
@@ -17818,6 +18469,7 @@ proc_151_continue_398:
 	; BC_RLOCAL [62]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
@@ -17836,6 +18488,7 @@ proc_151_continue_399:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_153_start		; r0=r_Procedures[153]
@@ -17858,9 +18511,11 @@ proc_151_continue_400:
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_CONST [87]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #7*4]			; r0=rConstants[7]
@@ -17877,6 +18532,7 @@ proc_151_continue_400:
 	; BC_RLOCAL [62]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
@@ -17895,6 +18551,7 @@ proc_151_continue_401:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_153_start		; r0=r_Procedures[153]
@@ -17917,9 +18574,11 @@ proc_151_continue_402:
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_CONST [87]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #7*4]			; r0=rConstants[7]
@@ -17936,6 +18595,7 @@ proc_151_continue_402:
 	; BC_RLOCAL [62]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
@@ -17954,6 +18614,7 @@ proc_151_continue_403:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_153_start		; r0=r_Procedures[153]
@@ -17976,9 +18637,11 @@ proc_151_continue_404:
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_CONST [87]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #7*4]			; r0=rConstants[7]
@@ -17992,6 +18655,7 @@ proc_151_continue_404:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [62]
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_WAIT [0a]
 	adr r1, proc_151_continue_405
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -18004,9 +18668,11 @@ proc_151_continue_405:
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_CONST [87]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #7*4]			; r0=rConstants[7]
@@ -18023,6 +18689,7 @@ proc_151_continue_405:
 	; BC_RLOCAL [62]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -18040,9 +18707,11 @@ proc_151_continue_406:
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_CONST [87]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #7*4]			; r0=rConstants[7]
@@ -18059,6 +18728,7 @@ proc_151_continue_406:
 	; BC_RLOCAL [62]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -18096,10 +18766,12 @@ proc_151_end:
 proc_152_start:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_WHEN [17]
 	beq proc_152_target_408
 	; BC_RLOCAL [62]
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_CONST [a4]
@@ -18107,6 +18779,7 @@ proc_152_start:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_154_start		; r0=r_Procedures[154]
@@ -18138,6 +18811,7 @@ proc_152_continue_409:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -18158,15 +18832,18 @@ proc_152_continue_409:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
 	; BC_RLOCAL [63]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-4*4]			; r0=StateStack[-4]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [62]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -18192,6 +18869,7 @@ proc_152_end:
 proc_153_start:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_WHEN [17]
 	beq proc_153_target_410
 	; BC_CONST [c9]
@@ -18201,6 +18879,7 @@ proc_153_start:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -18211,6 +18890,7 @@ proc_153_start:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_154_start		; r0=r_Procedures[154]
@@ -18224,6 +18904,7 @@ proc_153_start:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -18231,6 +18912,7 @@ proc_153_start:
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
@@ -18251,6 +18933,7 @@ proc_153_continue_411:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
@@ -18273,6 +18956,7 @@ proc_153_end:
 proc_154_start:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_WHEN [17]
 	beq proc_154_target_412
 	; BC_PLOT [06]
@@ -18283,6 +18967,7 @@ proc_154_start:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
@@ -18295,6 +18980,7 @@ proc_154_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
@@ -18344,12 +19030,15 @@ proc_155_end:
 proc_156_start:
 	; BC_RSTATE [71]
 	ldr r0, [r5, #ST_X*4]		; r0=State[ST_X]
+	movs r0, r0					; update Status flags
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_Y*4]		; r0=State[ST_Y]
+	movs r0, r0					; update Status flags
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_CONST [c9]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #73*4]			; r0=rConstants[73]
@@ -18358,6 +19047,7 @@ proc_156_start:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -18365,6 +19055,7 @@ proc_156_start:
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
@@ -18374,6 +19065,7 @@ proc_156_start:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -18381,9 +19073,11 @@ proc_156_start:
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [62]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_198_start		; r0=r_Procedures[198]
@@ -18397,6 +19091,7 @@ proc_156_start:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -18411,6 +19106,7 @@ proc_156_start:
 	; BC_RLOCAL [62]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -18424,9 +19120,11 @@ proc_156_start:
 proc_156_continue_413:
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [62]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_199_start		; r0=r_Procedures[199]
@@ -18440,6 +19138,7 @@ proc_156_continue_413:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -18454,6 +19153,7 @@ proc_156_continue_413:
 	; BC_RLOCAL [62]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -18467,9 +19167,11 @@ proc_156_continue_413:
 proc_156_continue_414:
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [62]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_198_start		; r0=r_Procedures[198]
@@ -18483,6 +19185,7 @@ proc_156_continue_414:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -18497,6 +19200,7 @@ proc_156_continue_414:
 	; BC_RLOCAL [62]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -18510,9 +19214,11 @@ proc_156_continue_414:
 proc_156_continue_415:
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [62]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_200_start		; r0=r_Procedures[200]
@@ -18526,6 +19232,7 @@ proc_156_continue_415:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -18540,6 +19247,7 @@ proc_156_continue_415:
 	; BC_RLOCAL [62]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -18553,9 +19261,11 @@ proc_156_continue_415:
 proc_156_continue_416:
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [62]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_201_start		; r0=r_Procedures[201]
@@ -18569,6 +19279,7 @@ proc_156_continue_416:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -18583,6 +19294,7 @@ proc_156_continue_416:
 	; BC_RLOCAL [62]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -18596,9 +19308,11 @@ proc_156_continue_416:
 proc_156_continue_417:
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [62]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_202_start		; r0=r_Procedures[202]
@@ -18612,6 +19326,7 @@ proc_156_continue_417:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -18626,6 +19341,7 @@ proc_156_continue_417:
 	; BC_RLOCAL [62]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -18639,9 +19355,11 @@ proc_156_continue_417:
 proc_156_continue_418:
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [62]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_203_start		; r0=r_Procedures[203]
@@ -18655,6 +19373,7 @@ proc_156_continue_418:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -18669,6 +19388,7 @@ proc_156_continue_418:
 	; BC_RLOCAL [62]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -18682,9 +19402,11 @@ proc_156_continue_418:
 proc_156_continue_419:
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [62]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_201_start		; r0=r_Procedures[201]
@@ -18698,6 +19420,7 @@ proc_156_continue_419:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -18712,6 +19435,7 @@ proc_156_continue_419:
 	; BC_RLOCAL [62]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -18737,6 +19461,7 @@ proc_157_start:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -18758,6 +19483,7 @@ proc_157_end:
 proc_158_start:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_WHEN [17]
 	beq proc_158_target_421
 	; BC_CONST [8f]
@@ -18782,6 +19508,7 @@ proc_158_target_423:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_OP [3c]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	and r0, r0, r1				; r0=r0 and r1
@@ -18797,6 +19524,7 @@ proc_158_target_423:
 proc_158_target_424:
 	; BC_RLOCAL [62]
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
@@ -18809,6 +19537,7 @@ proc_158_target_424:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
@@ -18818,6 +19547,7 @@ proc_158_target_424:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_DIV [09]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r1, r1, asr #8
@@ -18848,6 +19578,7 @@ proc_158_end:
 proc_159_start:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_WHEN [17]
 	beq proc_159_target_425
 	; BC_CONST [8f]
@@ -18872,6 +19603,7 @@ proc_159_target_427:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_OP [3c]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	and r0, r0, r1				; r0=r0 and r1
@@ -18887,6 +19619,7 @@ proc_159_target_427:
 proc_159_target_428:
 	; BC_RLOCAL [62]
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
@@ -18899,6 +19632,7 @@ proc_159_target_428:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
@@ -18908,6 +19642,7 @@ proc_159_target_428:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_DIV [09]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r1, r1, asr #8
@@ -18938,9 +19673,11 @@ proc_159_end:
 proc_160_start:
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [3b]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	cmp r0, r1					; r0 cmp r1
@@ -18948,6 +19685,7 @@ proc_160_start:
 	bgt proc_160_target_429
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_PLOT [06]
@@ -18972,6 +19710,7 @@ proc_160_continue_430:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -18994,6 +19733,7 @@ proc_160_end:
 proc_161_start:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_WHEN [17]
 	beq proc_161_target_431
 	; BC_CONST [b2]
@@ -19016,6 +19756,7 @@ proc_161_start:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_162_start		; r0=r_Procedures[162]
@@ -19074,6 +19815,7 @@ proc_161_continue_433:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -19108,6 +19850,7 @@ proc_161_continue_434:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -19124,6 +19867,7 @@ proc_161_continue_434:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -19134,6 +19878,7 @@ proc_161_continue_434:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -19148,6 +19893,7 @@ proc_161_continue_434:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -19161,6 +19907,7 @@ proc_161_continue_434:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
@@ -19336,6 +20083,7 @@ proc_162_continue_439:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [3b]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	cmp r0, r1					; r0 cmp r1
@@ -19402,6 +20150,7 @@ proc_162_continue_441:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [3b]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	cmp r0, r1					; r0 cmp r1
@@ -19452,6 +20201,7 @@ proc_163_start:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -19472,6 +20222,7 @@ proc_163_start:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -19492,6 +20243,7 @@ proc_163_start:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -19512,6 +20264,7 @@ proc_163_start:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -19526,6 +20279,7 @@ proc_163_end:
 proc_164_start:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_WHEN [17]
 	beq proc_164_target_443
 	; BC_CONST [a1]
@@ -19562,6 +20316,7 @@ proc_164_start:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -19601,6 +20356,7 @@ proc_164_start:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -19622,6 +20378,7 @@ proc_164_continue_444:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
@@ -19644,6 +20401,7 @@ proc_164_end:
 proc_165_start:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
@@ -19680,6 +20438,7 @@ proc_166_start:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -19687,6 +20446,7 @@ proc_166_start:
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_CONST [85]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #5*4]			; r0=rConstants[5]
@@ -19714,12 +20474,15 @@ proc_167_start:
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [62]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_170_start		; r0=r_Procedures[170]
@@ -19733,6 +20496,7 @@ proc_167_start:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -19740,12 +20504,15 @@ proc_167_start:
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [62]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_170_start		; r0=r_Procedures[170]
@@ -19759,6 +20526,7 @@ proc_167_start:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -19766,12 +20534,15 @@ proc_167_start:
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [62]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_170_start		; r0=r_Procedures[170]
@@ -19785,6 +20556,7 @@ proc_167_start:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -19792,12 +20564,15 @@ proc_167_start:
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [62]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_170_start		; r0=r_Procedures[170]
@@ -19811,6 +20586,7 @@ proc_167_start:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -19829,12 +20605,15 @@ proc_168_start:
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [62]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_169_start		; r0=r_Procedures[169]
@@ -19848,6 +20627,7 @@ proc_168_start:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -19855,12 +20635,15 @@ proc_168_start:
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [62]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_169_start		; r0=r_Procedures[169]
@@ -19874,6 +20657,7 @@ proc_168_start:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -19881,12 +20665,15 @@ proc_168_start:
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [62]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_169_start		; r0=r_Procedures[169]
@@ -19900,6 +20687,7 @@ proc_168_start:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -19907,12 +20695,15 @@ proc_168_start:
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [62]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_169_start		; r0=r_Procedures[169]
@@ -19926,6 +20717,7 @@ proc_168_start:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -19957,6 +20749,7 @@ proc_169_start:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -19964,6 +20757,7 @@ proc_169_start:
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_WHEN [17]
 	beq proc_169_target_445
 	; BC_DRAW [04]
@@ -19974,12 +20768,14 @@ proc_169_start:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [62]
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_WAIT [0a]
 	adr r1, proc_169_continue_446
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -19994,6 +20790,7 @@ proc_169_continue_446:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
@@ -20016,6 +20813,7 @@ proc_169_end:
 proc_170_start:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_WHEN [17]
 	beq proc_170_target_447
 	; BC_DRAW [04]
@@ -20026,12 +20824,14 @@ proc_170_start:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [62]
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_WAIT [0a]
 	adr r1, proc_170_continue_448
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -20046,6 +20846,7 @@ proc_170_continue_448:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
@@ -20068,10 +20869,12 @@ proc_170_end:
 proc_171_start:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_WHEN [17]
 	beq proc_171_target_449
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_177_start		; r0=r_Procedures[177]
@@ -20103,15 +20906,18 @@ proc_171_continue_450:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
 	; BC_RLOCAL [62]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
@@ -20159,6 +20965,7 @@ proc_172_start:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -20176,6 +20983,7 @@ proc_172_start:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -20193,6 +21001,7 @@ proc_172_start:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -20233,6 +21042,7 @@ proc_173_end:
 proc_174_start:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_WHEN [17]
 	beq proc_174_target_451
 	; BC_CONST [9f]
@@ -20247,9 +21057,11 @@ proc_174_start:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -20281,6 +21093,7 @@ proc_174_continue_452:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
@@ -20303,10 +21116,12 @@ proc_174_end:
 proc_175_start:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_WHEN [17]
 	beq proc_175_target_453
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_177_start		; r0=r_Procedures[177]
@@ -20317,9 +21132,11 @@ proc_175_start:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [62]
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -20341,6 +21158,7 @@ proc_175_continue_454:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
@@ -20384,9 +21202,11 @@ proc_176_end:
 proc_177_start:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -20399,6 +21219,7 @@ proc_177_start:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -20410,6 +21231,7 @@ proc_177_start:
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_179_start		; r0=r_Procedures[179]
@@ -20423,6 +21245,7 @@ proc_177_start:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -20434,6 +21257,7 @@ proc_177_start:
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_179_start		; r0=r_Procedures[179]
@@ -20447,6 +21271,7 @@ proc_177_start:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -20458,6 +21283,7 @@ proc_177_start:
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_179_start		; r0=r_Procedures[179]
@@ -20471,6 +21297,7 @@ proc_177_start:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -20499,6 +21326,7 @@ proc_178_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
@@ -20508,6 +21336,7 @@ proc_178_start:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_OP [3b]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	cmp r0, r1					; r0 cmp r1
@@ -20518,9 +21347,11 @@ proc_178_start:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -20538,9 +21369,11 @@ proc_178_start:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -20557,6 +21390,7 @@ proc_178_start:
 	; BC_RLOCAL [62]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_OP [3b]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	cmp r0, r1					; r0 cmp r1
@@ -20564,6 +21398,7 @@ proc_178_start:
 	ble proc_178_target_456
 	; BC_RLOCAL [62]
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_PLOT [06]
@@ -20579,6 +21414,7 @@ proc_178_target_456:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_WLOCAL [40]
 	str r0, [r5, #-1*4]			; StateStack[-1]=r0
 	; BC_WSTATE [50]
@@ -20611,6 +21447,7 @@ proc_179_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
@@ -20620,6 +21457,7 @@ proc_179_start:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_OP [3b]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	cmp r0, r1					; r0 cmp r1
@@ -20630,9 +21468,11 @@ proc_179_start:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -20650,9 +21490,11 @@ proc_179_start:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -20669,6 +21511,7 @@ proc_179_start:
 	; BC_RLOCAL [62]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_OP [3b]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	cmp r0, r1					; r0 cmp r1
@@ -20676,6 +21519,7 @@ proc_179_start:
 	ble proc_179_target_458
 	; BC_RLOCAL [62]
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_PLOT [06]
@@ -20691,6 +21535,7 @@ proc_179_target_458:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_WLOCAL [40]
 	str r0, [r5, #-1*4]			; StateStack[-1]=r0
 	; BC_WSTATE [50]
@@ -20725,6 +21570,7 @@ proc_180_start:
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_183_start		; r0=r_Procedures[183]
@@ -20743,6 +21589,7 @@ proc_180_start:
 proc_180_continue_459:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_CONST [b2]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
@@ -20767,6 +21614,7 @@ proc_180_continue_460:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -20774,6 +21622,7 @@ proc_180_continue_460:
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_183_start		; r0=r_Procedures[183]
@@ -20792,6 +21641,7 @@ proc_180_continue_460:
 proc_180_continue_461:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_CONST [b2]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
@@ -20816,6 +21666,7 @@ proc_180_continue_462:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -20823,6 +21674,7 @@ proc_180_continue_462:
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_183_start		; r0=r_Procedures[183]
@@ -20841,6 +21693,7 @@ proc_180_continue_462:
 proc_180_continue_463:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_CONST [b2]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
@@ -20865,6 +21718,7 @@ proc_180_continue_464:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -20872,6 +21726,7 @@ proc_180_continue_464:
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_183_start		; r0=r_Procedures[183]
@@ -20890,6 +21745,7 @@ proc_180_continue_464:
 proc_180_continue_465:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_CONST [b2]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
@@ -20914,6 +21770,7 @@ proc_180_continue_466:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -20928,10 +21785,12 @@ proc_180_end:
 proc_181_start:
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_WHEN [17]
 	beq proc_181_target_467
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_183_start		; r0=r_Procedures[183]
@@ -20950,6 +21809,7 @@ proc_181_start:
 proc_181_continue_468:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_182_start		; r0=r_Procedures[182]
@@ -20963,6 +21823,7 @@ proc_181_continue_468:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -20976,6 +21837,7 @@ proc_181_continue_468:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
@@ -21020,6 +21882,7 @@ proc_182_end:
 proc_183_start:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_184_start		; r0=r_Procedures[184]
@@ -21033,6 +21896,7 @@ proc_183_start:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -21040,6 +21904,7 @@ proc_183_start:
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
@@ -21051,6 +21916,7 @@ proc_183_start:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -21058,6 +21924,7 @@ proc_183_start:
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_184_start		; r0=r_Procedures[184]
@@ -21071,6 +21938,7 @@ proc_183_start:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -21078,6 +21946,7 @@ proc_183_start:
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
@@ -21089,6 +21958,7 @@ proc_183_start:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -21113,6 +21983,7 @@ proc_184_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_185_start		; r0=r_Procedures[185]
@@ -21130,10 +22001,12 @@ proc_184_end:
 proc_185_start:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_WHEN [17]
 	beq proc_185_target_469
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
@@ -21152,6 +22025,7 @@ proc_185_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
@@ -21432,9 +22306,11 @@ proc_186_end:
 proc_187_start:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_188_start		; r0=r_Procedures[188]
@@ -21471,9 +22347,11 @@ proc_187_end:
 proc_188_start:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -21500,9 +22378,11 @@ proc_188_start:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -21513,6 +22393,7 @@ proc_188_start:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -21520,9 +22401,11 @@ proc_188_start:
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -21556,6 +22439,7 @@ proc_188_end:
 proc_189_start:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_WHEN [17]
 	beq proc_189_target_480
 	; BC_CONST [84]
@@ -21599,6 +22483,7 @@ proc_189_target_482:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [3c]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	and r0, r0, r1				; r0=r0 and r1
@@ -21606,6 +22491,7 @@ proc_189_target_482:
 	beq proc_189_target_483
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_WAIT [0a]
 	adr r1, proc_189_continue_484
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -21617,6 +22503,7 @@ proc_189_continue_484:
 proc_189_target_483:
 	; BC_RLOCAL [62]
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_WAIT [0a]
 	adr r1, proc_189_continue_486
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -21633,6 +22520,7 @@ proc_189_target_485:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
@@ -21655,9 +22543,11 @@ proc_189_end:
 proc_190_start:
 	; BC_RLOCAL [62]
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_OP [3b]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	cmp r0, r1					; r0 cmp r1
@@ -21665,6 +22555,7 @@ proc_190_start:
 	bge proc_190_target_487
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_DRAW [04]
@@ -21681,6 +22572,7 @@ proc_190_start:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_WAIT [0a]
 	adr r1, proc_190_continue_488
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -21692,9 +22584,11 @@ proc_190_continue_488:
 	; BC_RLOCAL [63]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-4*4]			; r0=StateStack[-4]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -21850,6 +22744,7 @@ proc_192_start:
 	; BC_RLOCAL [62]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	movs r0, r0					; update Status flags
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_CONST [a4]
@@ -21858,9 +22753,11 @@ proc_192_start:
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
@@ -21868,6 +22765,7 @@ proc_192_start:
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
 	; BC_RLOCAL [63]
 	ldr r0, [r5, #-4*4]			; r0=StateStack[-4]
+	movs r0, r0					; update Status flags
 	; BC_CONST [87]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #7*4]			; r0=rConstants[7]
@@ -21892,6 +22790,7 @@ proc_192_continue_494:
 	; BC_RLOCAL [63]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-4*4]			; r0=StateStack[-4]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -21900,12 +22799,14 @@ proc_192_continue_494:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
@@ -21913,6 +22814,7 @@ proc_192_continue_494:
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
 	; BC_RLOCAL [63]
 	ldr r0, [r5, #-4*4]			; r0=StateStack[-4]
+	movs r0, r0					; update Status flags
 	; BC_CONST [87]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #7*4]			; r0=rConstants[7]
@@ -21940,6 +22842,7 @@ proc_192_continue_495:
 	; BC_RLOCAL [63]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-4*4]			; r0=StateStack[-4]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -21953,12 +22856,14 @@ proc_192_continue_495:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
 	; BC_RLOCAL [63]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-4*4]			; r0=StateStack[-4]
+	movs r0, r0					; update Status flags
 	; BC_CONST [ab]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #43*4]			; r0=rConstants[43]
@@ -21970,6 +22875,7 @@ proc_192_continue_495:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -21980,6 +22886,7 @@ proc_192_continue_495:
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
 	; BC_RLOCAL [63]
 	ldr r0, [r5, #-4*4]			; r0=StateStack[-4]
+	movs r0, r0					; update Status flags
 	; BC_CONST [87]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #7*4]			; r0=rConstants[7]
@@ -22007,6 +22914,7 @@ proc_192_continue_496:
 	; BC_RLOCAL [63]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-4*4]			; r0=StateStack[-4]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -22020,12 +22928,14 @@ proc_192_continue_496:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
@@ -22033,6 +22943,7 @@ proc_192_continue_496:
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
 	; BC_RLOCAL [63]
 	ldr r0, [r5, #-4*4]			; r0=StateStack[-4]
+	movs r0, r0					; update Status flags
 	; BC_CONST [87]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #7*4]			; r0=rConstants[7]
@@ -22060,6 +22971,7 @@ proc_192_continue_497:
 	; BC_RLOCAL [63]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-4*4]			; r0=StateStack[-4]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -22073,12 +22985,14 @@ proc_192_continue_497:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
 	; BC_RLOCAL [63]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-4*4]			; r0=StateStack[-4]
+	movs r0, r0					; update Status flags
 	; BC_CONST [a5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #37*4]			; r0=rConstants[37]
@@ -22090,6 +23004,7 @@ proc_192_continue_497:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -22103,6 +23018,7 @@ proc_192_continue_497:
 	; BC_RLOCAL [63]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-4*4]			; r0=StateStack[-4]
+	movs r0, r0					; update Status flags
 	; BC_CONST [87]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #7*4]			; r0=rConstants[7]
@@ -22130,12 +23046,15 @@ proc_192_end:
 proc_193_start:
 	; BC_RSTATE [71]
 	ldr r0, [r5, #ST_X*4]		; r0=State[ST_X]
+	movs r0, r0					; update Status flags
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_Y*4]		; r0=State[ST_Y]
+	movs r0, r0					; update Status flags
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_CONST [c9]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #73*4]			; r0=rConstants[73]
@@ -22144,6 +23063,7 @@ proc_193_start:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -22151,6 +23071,7 @@ proc_193_start:
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
@@ -22160,6 +23081,7 @@ proc_193_start:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -22167,9 +23089,11 @@ proc_193_start:
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_204_start		; r0=r_Procedures[204]
@@ -22183,6 +23107,7 @@ proc_193_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -22197,6 +23122,7 @@ proc_193_start:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -22210,9 +23136,11 @@ proc_193_start:
 proc_193_continue_498:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_205_start		; r0=r_Procedures[205]
@@ -22226,6 +23154,7 @@ proc_193_continue_498:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -22240,6 +23169,7 @@ proc_193_continue_498:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -22253,9 +23183,11 @@ proc_193_continue_498:
 proc_193_continue_499:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_206_start		; r0=r_Procedures[206]
@@ -22269,6 +23201,7 @@ proc_193_continue_499:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -22283,6 +23216,7 @@ proc_193_continue_499:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -22296,9 +23230,11 @@ proc_193_continue_499:
 proc_193_continue_500:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_206_start		; r0=r_Procedures[206]
@@ -22312,6 +23248,7 @@ proc_193_continue_500:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -22326,6 +23263,7 @@ proc_193_continue_500:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -22339,9 +23277,11 @@ proc_193_continue_500:
 proc_193_continue_501:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_207_start		; r0=r_Procedures[207]
@@ -22355,6 +23295,7 @@ proc_193_continue_501:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -22369,6 +23310,7 @@ proc_193_continue_501:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -22382,9 +23324,11 @@ proc_193_continue_501:
 proc_193_continue_502:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_203_start		; r0=r_Procedures[203]
@@ -22398,6 +23342,7 @@ proc_193_continue_502:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -22412,6 +23357,7 @@ proc_193_continue_502:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -22445,12 +23391,15 @@ proc_193_end:
 proc_194_start:
 	; BC_RSTATE [71]
 	ldr r0, [r5, #ST_X*4]		; r0=State[ST_X]
+	movs r0, r0					; update Status flags
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_Y*4]		; r0=State[ST_Y]
+	movs r0, r0					; update Status flags
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_CONST [c9]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #73*4]			; r0=rConstants[73]
@@ -22459,6 +23408,7 @@ proc_194_start:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -22466,6 +23416,7 @@ proc_194_start:
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
@@ -22475,6 +23426,7 @@ proc_194_start:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -22482,9 +23434,11 @@ proc_194_start:
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_209_start		; r0=r_Procedures[209]
@@ -22498,6 +23452,7 @@ proc_194_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -22512,6 +23467,7 @@ proc_194_start:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -22525,9 +23481,11 @@ proc_194_start:
 proc_194_continue_504:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_210_start		; r0=r_Procedures[210]
@@ -22541,6 +23499,7 @@ proc_194_continue_504:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -22555,6 +23514,7 @@ proc_194_continue_504:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -22568,9 +23528,11 @@ proc_194_continue_504:
 proc_194_continue_505:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_211_start		; r0=r_Procedures[211]
@@ -22584,6 +23546,7 @@ proc_194_continue_505:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -22598,6 +23561,7 @@ proc_194_continue_505:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -22611,9 +23575,11 @@ proc_194_continue_505:
 proc_194_continue_506:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_198_start		; r0=r_Procedures[198]
@@ -22627,6 +23593,7 @@ proc_194_continue_506:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -22641,6 +23608,7 @@ proc_194_continue_506:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -22654,9 +23622,11 @@ proc_194_continue_506:
 proc_194_continue_507:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_209_start		; r0=r_Procedures[209]
@@ -22670,6 +23640,7 @@ proc_194_continue_507:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -22684,6 +23655,7 @@ proc_194_continue_507:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -22697,9 +23669,11 @@ proc_194_continue_507:
 proc_194_continue_508:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_198_start		; r0=r_Procedures[198]
@@ -22713,6 +23687,7 @@ proc_194_continue_508:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -22727,6 +23702,7 @@ proc_194_continue_508:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -22740,9 +23716,11 @@ proc_194_continue_508:
 proc_194_continue_509:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_200_start		; r0=r_Procedures[200]
@@ -22756,6 +23734,7 @@ proc_194_continue_509:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -22770,6 +23749,7 @@ proc_194_continue_509:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -22783,9 +23763,11 @@ proc_194_continue_509:
 proc_194_continue_510:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_200_start		; r0=r_Procedures[200]
@@ -22799,6 +23781,7 @@ proc_194_continue_510:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -22813,6 +23796,7 @@ proc_194_continue_510:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -22846,12 +23830,15 @@ proc_194_end:
 proc_195_start:
 	; BC_RSTATE [71]
 	ldr r0, [r5, #ST_X*4]		; r0=State[ST_X]
+	movs r0, r0					; update Status flags
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_Y*4]		; r0=State[ST_Y]
+	movs r0, r0					; update Status flags
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_CONST [c9]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #73*4]			; r0=rConstants[73]
@@ -22860,6 +23847,7 @@ proc_195_start:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -22867,6 +23855,7 @@ proc_195_start:
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
@@ -22876,6 +23865,7 @@ proc_195_start:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -22883,9 +23873,11 @@ proc_195_start:
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_199_start		; r0=r_Procedures[199]
@@ -22899,6 +23891,7 @@ proc_195_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -22913,6 +23906,7 @@ proc_195_start:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -22926,9 +23920,11 @@ proc_195_start:
 proc_195_continue_512:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_212_start		; r0=r_Procedures[212]
@@ -22942,6 +23938,7 @@ proc_195_continue_512:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -22956,6 +23953,7 @@ proc_195_continue_512:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -22969,9 +23967,11 @@ proc_195_continue_512:
 proc_195_continue_513:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_213_start		; r0=r_Procedures[213]
@@ -22985,6 +23985,7 @@ proc_195_continue_513:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -22999,6 +24000,7 @@ proc_195_continue_513:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -23012,9 +24014,11 @@ proc_195_continue_513:
 proc_195_continue_514:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_211_start		; r0=r_Procedures[211]
@@ -23028,6 +24032,7 @@ proc_195_continue_514:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -23042,6 +24047,7 @@ proc_195_continue_514:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -23055,9 +24061,11 @@ proc_195_continue_514:
 proc_195_continue_515:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_203_start		; r0=r_Procedures[203]
@@ -23071,6 +24079,7 @@ proc_195_continue_515:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -23085,6 +24094,7 @@ proc_195_continue_515:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -23098,9 +24108,11 @@ proc_195_continue_515:
 proc_195_continue_516:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_210_start		; r0=r_Procedures[210]
@@ -23114,6 +24126,7 @@ proc_195_continue_516:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -23128,6 +24141,7 @@ proc_195_continue_516:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -23161,12 +24175,15 @@ proc_195_end:
 proc_196_start:
 	; BC_RSTATE [71]
 	ldr r0, [r5, #ST_X*4]		; r0=State[ST_X]
+	movs r0, r0					; update Status flags
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_Y*4]		; r0=State[ST_Y]
+	movs r0, r0					; update Status flags
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_CONST [c9]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #73*4]			; r0=rConstants[73]
@@ -23175,6 +24192,7 @@ proc_196_start:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -23182,6 +24200,7 @@ proc_196_start:
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
@@ -23191,6 +24210,7 @@ proc_196_start:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -23198,9 +24218,11 @@ proc_196_start:
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_207_start		; r0=r_Procedures[207]
@@ -23214,6 +24236,7 @@ proc_196_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -23228,6 +24251,7 @@ proc_196_start:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -23241,9 +24265,11 @@ proc_196_start:
 proc_196_continue_518:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_211_start		; r0=r_Procedures[211]
@@ -23257,6 +24283,7 @@ proc_196_continue_518:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -23271,6 +24298,7 @@ proc_196_continue_518:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -23284,9 +24312,11 @@ proc_196_continue_518:
 proc_196_continue_519:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_213_start		; r0=r_Procedures[213]
@@ -23300,6 +24330,7 @@ proc_196_continue_519:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -23314,6 +24345,7 @@ proc_196_continue_519:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -23327,9 +24359,11 @@ proc_196_continue_519:
 proc_196_continue_520:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_212_start		; r0=r_Procedures[212]
@@ -23343,6 +24377,7 @@ proc_196_continue_520:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -23357,6 +24392,7 @@ proc_196_continue_520:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -23390,12 +24426,15 @@ proc_196_end:
 proc_197_start:
 	; BC_RSTATE [71]
 	ldr r0, [r5, #ST_X*4]		; r0=State[ST_X]
+	movs r0, r0					; update Status flags
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_Y*4]		; r0=State[ST_Y]
+	movs r0, r0					; update Status flags
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_CONST [c9]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #73*4]			; r0=rConstants[73]
@@ -23404,6 +24443,7 @@ proc_197_start:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -23411,6 +24451,7 @@ proc_197_start:
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
@@ -23420,6 +24461,7 @@ proc_197_start:
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	movs r0, r0					; update Status flags
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	add r0, r0, r1				; r0=r0 add r1
@@ -23427,9 +24469,11 @@ proc_197_start:
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_198_start		; r0=r_Procedures[198]
@@ -23443,6 +24487,7 @@ proc_197_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -23457,6 +24502,7 @@ proc_197_start:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -23470,9 +24516,11 @@ proc_197_start:
 proc_197_continue_522:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_208_start		; r0=r_Procedures[208]
@@ -23486,6 +24534,7 @@ proc_197_continue_522:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -23500,6 +24549,7 @@ proc_197_continue_522:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -23513,9 +24563,11 @@ proc_197_continue_522:
 proc_197_continue_523:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_215_start		; r0=r_Procedures[215]
@@ -23529,6 +24581,7 @@ proc_197_continue_523:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -23543,6 +24596,7 @@ proc_197_continue_523:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -23556,9 +24610,11 @@ proc_197_continue_523:
 proc_197_continue_524:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_212_start		; r0=r_Procedures[212]
@@ -23572,6 +24628,7 @@ proc_197_continue_524:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -23586,6 +24643,7 @@ proc_197_continue_524:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -23599,9 +24657,11 @@ proc_197_continue_524:
 proc_197_continue_525:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_208_start		; r0=r_Procedures[208]
@@ -23615,6 +24675,7 @@ proc_197_continue_525:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -23629,6 +24690,7 @@ proc_197_continue_525:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, lsr #8
@@ -23668,6 +24730,7 @@ proc_198_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_157_start		; r0=r_Procedures[157]
@@ -23678,12 +24741,14 @@ proc_198_start:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_WAIT [0a]
 	adr r1, proc_198_continue_527
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -23698,6 +24763,7 @@ proc_198_continue_527:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_157_start		; r0=r_Procedures[157]
@@ -23708,12 +24774,14 @@ proc_198_continue_527:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_WAIT [0a]
 	adr r1, proc_198_continue_528
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -23728,6 +24796,7 @@ proc_198_continue_528:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_157_start		; r0=r_Procedures[157]
@@ -23738,12 +24807,14 @@ proc_198_continue_528:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_WAIT [0a]
 	adr r1, proc_198_continue_529
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -23758,6 +24829,7 @@ proc_198_continue_529:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_157_start		; r0=r_Procedures[157]
@@ -23781,6 +24853,7 @@ proc_199_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_157_start		; r0=r_Procedures[157]
@@ -23791,12 +24864,14 @@ proc_199_start:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_WAIT [0a]
 	adr r1, proc_199_continue_530
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -23822,6 +24897,7 @@ proc_199_continue_530:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_157_start		; r0=r_Procedures[157]
@@ -23832,12 +24908,14 @@ proc_199_continue_530:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_WAIT [0a]
 	adr r1, proc_199_continue_531
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -23852,6 +24930,7 @@ proc_199_continue_531:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_157_start		; r0=r_Procedures[157]
@@ -23862,12 +24941,14 @@ proc_199_continue_531:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_WAIT [0a]
 	adr r1, proc_199_continue_532
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -23893,6 +24974,7 @@ proc_199_continue_532:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_157_start		; r0=r_Procedures[157]
@@ -23903,12 +24985,14 @@ proc_199_continue_532:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_WAIT [0a]
 	adr r1, proc_199_continue_533
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -23923,6 +25007,7 @@ proc_199_continue_533:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_157_start		; r0=r_Procedures[157]
@@ -23946,6 +25031,7 @@ proc_200_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_157_start		; r0=r_Procedures[157]
@@ -23956,12 +25042,14 @@ proc_200_start:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_WAIT [0a]
 	adr r1, proc_200_continue_534
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -23976,6 +25064,7 @@ proc_200_continue_534:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_157_start		; r0=r_Procedures[157]
@@ -23986,12 +25075,14 @@ proc_200_continue_534:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_WAIT [0a]
 	adr r1, proc_200_continue_535
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -24006,6 +25097,7 @@ proc_200_continue_535:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_157_start		; r0=r_Procedures[157]
@@ -24016,12 +25108,14 @@ proc_200_continue_535:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_WAIT [0a]
 	adr r1, proc_200_continue_536
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -24036,6 +25130,7 @@ proc_200_continue_536:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_157_start		; r0=r_Procedures[157]
@@ -24059,6 +25154,7 @@ proc_201_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_157_start		; r0=r_Procedures[157]
@@ -24069,12 +25165,14 @@ proc_201_start:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_WAIT [0a]
 	adr r1, proc_201_continue_537
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -24089,6 +25187,7 @@ proc_201_continue_537:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_157_start		; r0=r_Procedures[157]
@@ -24099,12 +25198,14 @@ proc_201_continue_537:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_WAIT [0a]
 	adr r1, proc_201_continue_538
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -24119,6 +25220,7 @@ proc_201_continue_538:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_157_start		; r0=r_Procedures[157]
@@ -24129,12 +25231,14 @@ proc_201_continue_538:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_WAIT [0a]
 	adr r1, proc_201_continue_539
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -24149,6 +25253,7 @@ proc_201_continue_539:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_157_start		; r0=r_Procedures[157]
@@ -24159,12 +25264,14 @@ proc_201_continue_539:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_WAIT [0a]
 	adr r1, proc_201_continue_540
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -24179,6 +25286,7 @@ proc_201_continue_540:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_157_start		; r0=r_Procedures[157]
@@ -24202,6 +25310,7 @@ proc_202_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_157_start		; r0=r_Procedures[157]
@@ -24212,12 +25321,14 @@ proc_202_start:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_WAIT [0a]
 	adr r1, proc_202_continue_541
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -24232,6 +25343,7 @@ proc_202_continue_541:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_157_start		; r0=r_Procedures[157]
@@ -24242,12 +25354,14 @@ proc_202_continue_541:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_WAIT [0a]
 	adr r1, proc_202_continue_542
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -24262,6 +25376,7 @@ proc_202_continue_542:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_157_start		; r0=r_Procedures[157]
@@ -24272,12 +25387,14 @@ proc_202_continue_542:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_WAIT [0a]
 	adr r1, proc_202_continue_543
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -24292,6 +25409,7 @@ proc_202_continue_543:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_157_start		; r0=r_Procedures[157]
@@ -24302,12 +25420,14 @@ proc_202_continue_543:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_WAIT [0a]
 	adr r1, proc_202_continue_544
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -24322,6 +25442,7 @@ proc_202_continue_544:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_157_start		; r0=r_Procedures[157]
@@ -24345,6 +25466,7 @@ proc_203_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_157_start		; r0=r_Procedures[157]
@@ -24355,12 +25477,14 @@ proc_203_start:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_WAIT [0a]
 	adr r1, proc_203_continue_545
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -24375,6 +25499,7 @@ proc_203_continue_545:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_157_start		; r0=r_Procedures[157]
@@ -24385,12 +25510,14 @@ proc_203_continue_545:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_WAIT [0a]
 	adr r1, proc_203_continue_546
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -24405,6 +25532,7 @@ proc_203_continue_546:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_157_start		; r0=r_Procedures[157]
@@ -24415,12 +25543,14 @@ proc_203_continue_546:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_WAIT [0a]
 	adr r1, proc_203_continue_547
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -24435,6 +25565,7 @@ proc_203_continue_547:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_157_start		; r0=r_Procedures[157]
@@ -24458,6 +25589,7 @@ proc_204_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_157_start		; r0=r_Procedures[157]
@@ -24468,12 +25600,14 @@ proc_204_start:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_WAIT [0a]
 	adr r1, proc_204_continue_548
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -24488,6 +25622,7 @@ proc_204_continue_548:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_157_start		; r0=r_Procedures[157]
@@ -24498,12 +25633,14 @@ proc_204_continue_548:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_WAIT [0a]
 	adr r1, proc_204_continue_549
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -24518,6 +25655,7 @@ proc_204_continue_549:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_157_start		; r0=r_Procedures[157]
@@ -24528,12 +25666,14 @@ proc_204_continue_549:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_WAIT [0a]
 	adr r1, proc_204_continue_550
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -24548,6 +25688,7 @@ proc_204_continue_550:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_157_start		; r0=r_Procedures[157]
@@ -24558,12 +25699,14 @@ proc_204_continue_550:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_WAIT [0a]
 	adr r1, proc_204_continue_551
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -24578,6 +25721,7 @@ proc_204_continue_551:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_157_start		; r0=r_Procedures[157]
@@ -24601,6 +25745,7 @@ proc_205_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_157_start		; r0=r_Procedures[157]
@@ -24611,12 +25756,14 @@ proc_205_start:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_WAIT [0a]
 	adr r1, proc_205_continue_552
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -24631,6 +25778,7 @@ proc_205_continue_552:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_157_start		; r0=r_Procedures[157]
@@ -24641,12 +25789,14 @@ proc_205_continue_552:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_WAIT [0a]
 	adr r1, proc_205_continue_553
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -24661,6 +25811,7 @@ proc_205_continue_553:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_157_start		; r0=r_Procedures[157]
@@ -24671,12 +25822,14 @@ proc_205_continue_553:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_WAIT [0a]
 	adr r1, proc_205_continue_554
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -24691,6 +25844,7 @@ proc_205_continue_554:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_157_start		; r0=r_Procedures[157]
@@ -24701,12 +25855,14 @@ proc_205_continue_554:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_WAIT [0a]
 	adr r1, proc_205_continue_555
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -24721,6 +25877,7 @@ proc_205_continue_555:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_157_start		; r0=r_Procedures[157]
@@ -24744,6 +25901,7 @@ proc_206_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_157_start		; r0=r_Procedures[157]
@@ -24754,12 +25912,14 @@ proc_206_start:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_WAIT [0a]
 	adr r1, proc_206_continue_556
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -24774,6 +25934,7 @@ proc_206_continue_556:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_157_start		; r0=r_Procedures[157]
@@ -24784,12 +25945,14 @@ proc_206_continue_556:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_WAIT [0a]
 	adr r1, proc_206_continue_557
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -24804,6 +25967,7 @@ proc_206_continue_557:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_157_start		; r0=r_Procedures[157]
@@ -24814,12 +25978,14 @@ proc_206_continue_557:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_WAIT [0a]
 	adr r1, proc_206_continue_558
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -24834,6 +26000,7 @@ proc_206_continue_558:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_157_start		; r0=r_Procedures[157]
@@ -24857,6 +26024,7 @@ proc_207_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_157_start		; r0=r_Procedures[157]
@@ -24867,12 +26035,14 @@ proc_207_start:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_WAIT [0a]
 	adr r1, proc_207_continue_559
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -24887,6 +26057,7 @@ proc_207_continue_559:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_157_start		; r0=r_Procedures[157]
@@ -24897,12 +26068,14 @@ proc_207_continue_559:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_WAIT [0a]
 	adr r1, proc_207_continue_560
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -24917,6 +26090,7 @@ proc_207_continue_560:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_157_start		; r0=r_Procedures[157]
@@ -24927,12 +26101,14 @@ proc_207_continue_560:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_WAIT [0a]
 	adr r1, proc_207_continue_561
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -24947,6 +26123,7 @@ proc_207_continue_561:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_157_start		; r0=r_Procedures[157]
@@ -24957,12 +26134,14 @@ proc_207_continue_561:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_WAIT [0a]
 	adr r1, proc_207_continue_562
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -24977,6 +26156,7 @@ proc_207_continue_562:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_157_start		; r0=r_Procedures[157]
@@ -25000,6 +26180,7 @@ proc_208_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_157_start		; r0=r_Procedures[157]
@@ -25010,12 +26191,14 @@ proc_208_start:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_WAIT [0a]
 	adr r1, proc_208_continue_563
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -25030,6 +26213,7 @@ proc_208_continue_563:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_157_start		; r0=r_Procedures[157]
@@ -25040,12 +26224,14 @@ proc_208_continue_563:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_WAIT [0a]
 	adr r1, proc_208_continue_564
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -25060,6 +26246,7 @@ proc_208_continue_564:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_157_start		; r0=r_Procedures[157]
@@ -25070,12 +26257,14 @@ proc_208_continue_564:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_WAIT [0a]
 	adr r1, proc_208_continue_565
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -25090,6 +26279,7 @@ proc_208_continue_565:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_157_start		; r0=r_Procedures[157]
@@ -25100,12 +26290,14 @@ proc_208_continue_565:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_WAIT [0a]
 	adr r1, proc_208_continue_566
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -25120,6 +26312,7 @@ proc_208_continue_566:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_157_start		; r0=r_Procedures[157]
@@ -25143,6 +26336,7 @@ proc_209_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_157_start		; r0=r_Procedures[157]
@@ -25153,12 +26347,14 @@ proc_209_start:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_WAIT [0a]
 	adr r1, proc_209_continue_567
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -25173,6 +26369,7 @@ proc_209_continue_567:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_157_start		; r0=r_Procedures[157]
@@ -25183,12 +26380,14 @@ proc_209_continue_567:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_WAIT [0a]
 	adr r1, proc_209_continue_568
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -25203,6 +26402,7 @@ proc_209_continue_568:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_157_start		; r0=r_Procedures[157]
@@ -25213,12 +26413,14 @@ proc_209_continue_568:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_WAIT [0a]
 	adr r1, proc_209_continue_569
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -25233,6 +26435,7 @@ proc_209_continue_569:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_157_start		; r0=r_Procedures[157]
@@ -25256,6 +26459,7 @@ proc_210_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_157_start		; r0=r_Procedures[157]
@@ -25266,12 +26470,14 @@ proc_210_start:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_WAIT [0a]
 	adr r1, proc_210_continue_570
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -25286,6 +26492,7 @@ proc_210_continue_570:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_157_start		; r0=r_Procedures[157]
@@ -25296,12 +26503,14 @@ proc_210_continue_570:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_WAIT [0a]
 	adr r1, proc_210_continue_571
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -25316,6 +26525,7 @@ proc_210_continue_571:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_157_start		; r0=r_Procedures[157]
@@ -25326,12 +26536,14 @@ proc_210_continue_571:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_WAIT [0a]
 	adr r1, proc_210_continue_572
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -25346,6 +26558,7 @@ proc_210_continue_572:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_157_start		; r0=r_Procedures[157]
@@ -25369,6 +26582,7 @@ proc_211_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_157_start		; r0=r_Procedures[157]
@@ -25379,12 +26593,14 @@ proc_211_start:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_WAIT [0a]
 	adr r1, proc_211_continue_573
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -25399,6 +26615,7 @@ proc_211_continue_573:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_157_start		; r0=r_Procedures[157]
@@ -25409,12 +26626,14 @@ proc_211_continue_573:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_WAIT [0a]
 	adr r1, proc_211_continue_574
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -25429,6 +26648,7 @@ proc_211_continue_574:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_157_start		; r0=r_Procedures[157]
@@ -25439,12 +26659,14 @@ proc_211_continue_574:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_WAIT [0a]
 	adr r1, proc_211_continue_575
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -25459,6 +26681,7 @@ proc_211_continue_575:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_157_start		; r0=r_Procedures[157]
@@ -25469,12 +26692,14 @@ proc_211_continue_575:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_WAIT [0a]
 	adr r1, proc_211_continue_576
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -25489,6 +26714,7 @@ proc_211_continue_576:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_157_start		; r0=r_Procedures[157]
@@ -25512,6 +26738,7 @@ proc_212_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_157_start		; r0=r_Procedures[157]
@@ -25522,12 +26749,14 @@ proc_212_start:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_WAIT [0a]
 	adr r1, proc_212_continue_577
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -25542,6 +26771,7 @@ proc_212_continue_577:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_157_start		; r0=r_Procedures[157]
@@ -25552,12 +26782,14 @@ proc_212_continue_577:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_WAIT [0a]
 	adr r1, proc_212_continue_578
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -25572,6 +26804,7 @@ proc_212_continue_578:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_157_start		; r0=r_Procedures[157]
@@ -25595,6 +26828,7 @@ proc_213_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_157_start		; r0=r_Procedures[157]
@@ -25605,12 +26839,14 @@ proc_213_start:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_WAIT [0a]
 	adr r1, proc_213_continue_579
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -25625,6 +26861,7 @@ proc_213_continue_579:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_157_start		; r0=r_Procedures[157]
@@ -25635,12 +26872,14 @@ proc_213_continue_579:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_WAIT [0a]
 	adr r1, proc_213_continue_580
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -25655,6 +26894,7 @@ proc_213_continue_580:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_157_start		; r0=r_Procedures[157]
@@ -25665,12 +26905,14 @@ proc_213_continue_580:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_WAIT [0a]
 	adr r1, proc_213_continue_581
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -25685,6 +26927,7 @@ proc_213_continue_581:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_157_start		; r0=r_Procedures[157]
@@ -25695,12 +26938,14 @@ proc_213_continue_581:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_WAIT [0a]
 	adr r1, proc_213_continue_582
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -25715,6 +26960,7 @@ proc_213_continue_582:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_157_start		; r0=r_Procedures[157]
@@ -25738,6 +26984,7 @@ proc_214_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_157_start		; r0=r_Procedures[157]
@@ -25748,12 +26995,14 @@ proc_214_start:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_WAIT [0a]
 	adr r1, proc_214_continue_583
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -25768,6 +27017,7 @@ proc_214_continue_583:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_157_start		; r0=r_Procedures[157]
@@ -25778,12 +27028,14 @@ proc_214_continue_583:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_WAIT [0a]
 	adr r1, proc_214_continue_584
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -25798,6 +27050,7 @@ proc_214_continue_584:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_157_start		; r0=r_Procedures[157]
@@ -25808,12 +27061,14 @@ proc_214_continue_584:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_WAIT [0a]
 	adr r1, proc_214_continue_585
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -25828,6 +27083,7 @@ proc_214_continue_585:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_157_start		; r0=r_Procedures[157]
@@ -25851,6 +27107,7 @@ proc_215_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_157_start		; r0=r_Procedures[157]
@@ -25861,12 +27118,14 @@ proc_215_start:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_WAIT [0a]
 	adr r1, proc_215_continue_586
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -25881,6 +27140,7 @@ proc_215_continue_586:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_157_start		; r0=r_Procedures[157]
@@ -25891,12 +27151,14 @@ proc_215_continue_586:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_WAIT [0a]
 	adr r1, proc_215_continue_587
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -25911,6 +27173,7 @@ proc_215_continue_587:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_157_start		; r0=r_Procedures[157]
@@ -25921,12 +27184,14 @@ proc_215_continue_587:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_WAIT [0a]
 	adr r1, proc_215_continue_588
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -25941,6 +27206,7 @@ proc_215_continue_588:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_157_start		; r0=r_Procedures[157]
@@ -25951,12 +27217,14 @@ proc_215_continue_588:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	movs r0, r0					; update Status flags
 	; BC_WAIT [0a]
 	adr r1, proc_215_continue_589
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -25971,6 +27239,7 @@ proc_215_continue_589:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	movs r0, r0					; update Status flags
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_157_start		; r0=r_Procedures[157]
