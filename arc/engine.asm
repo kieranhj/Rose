@@ -33,6 +33,9 @@ r_MaxFrames:
 r_FreeState:
     .long 0                  	; Last longword of first free state.
 
+r_BabeFeed:
+    .long 0xbabefeed
+
 .if _DEBUG
 r_NumTurtles:
     .long 1
@@ -89,7 +92,8 @@ InitMainTurtle:
     ldr r0, [r5]                ; ptr to prev state.
     str r0, r_FreeState         ; becomes the first free state.
     str r1, [r5, #ST_PROC*4]    ; st_proc = r_Instructions (first procedure).
-    ; TODO: USERANDOM
+    ldr r0, r_BabeFeed
+    str r0, [r5, #ST_RAND*4]    ; st_rand = $BABEFEED
     mov r3, r5                  ; r3 = p_StateStack (grows downwards)
     str r5, [r3, #-4]!          ; push p_State on StateStack.
     adr r6, r_StateLists

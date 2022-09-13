@@ -11,14 +11,12 @@
 .equ ST_RAND, 5
 .equ ST_DIR, 6
 .equ ST_TIME, 7
-.equ ST_WIRE0, 8
-.equ ST_WIRE1, 9
 
 ; ============================================================================
 ; r3 = p_StateStack.
 ; r4 = r_Constants.
 ; r5 = p_State.
-; r6 = r_StateSpace.
+; r6 = <temp>           ; r_StateSpace.
 ; r7 = r_Sinus.
 ; ============================================================================
 
@@ -42,9 +40,19 @@ proc_0_start:
 	; BC_CONST [8a]
 	ldr r0, [r4, #10*4]			; r0=rConstants[10]
 	; BC_SEED [0c]
-	; TODO: Implement BC_SEED as State[ST_RAND]=r0*0x9d3d+r0 etc.
-	mov r0, r0, asr #16			; FIXED SEED
-	str r0, [r5, #ST_RAND*4]	; State[ST_RAND]=r0
+	mov r1, r0
+	mov r2, r0, lsl #16
+	orr r0, r2, r0, lsr #16
+	mov r2, #0x9d3d
+	mul r1, r2, r1
+	add r0, r0, r1
+	mov r1, r0
+	mov r2, r0, lsl #16
+	orr r0, r2, r0, lsr #16
+	mov r2, #0x9d3d
+	mul r1, r2, r1
+	add r0, r0, r1
+	str r0, [r5, #ST_RAND*4]
 	; BC_CONST [85]
 	ldr r0, [r4, #5*4]			; r0=rConstants[5]
 	; BC_CONST [87]
@@ -106,10 +114,15 @@ proc_1_start:
 	ldr pc, [sp], #4			; Return
 proc_1_continue_1:
 	; BC_RAND [03]
-	; TODO: Set R0 from RNG using State[st_rand].
-	ldr r0, [r5, #ST_RAND*4]	; FIXED RAND
-	bic r0, r0, #0xff000000
-	bic r0, r0, #0x00ff0000
+	ldr r0, [r5, #ST_RAND*4]
+	mov r1, r0
+	mov r2, r0, lsl #16
+	orr r0, r2, r0, lsr #16
+	mov r2, #0x9d3d
+	mul r1, r2, r1
+	add r0, r0, r1
+	str r0, [r5, #ST_RAND*4]
+	mov r0, r0, lsr #16
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #0*4]			; r0=rConstants[0]
@@ -150,14 +163,19 @@ proc_1_target_2:
 	ldr r0, [r4, #9*4]			; r0=rConstants[9]
 	; BC_RAND [03]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	; TODO: Set R0 from RNG using State[st_rand].
-	ldr r0, [r5, #ST_RAND*4]	; FIXED RAND
-	bic r0, r0, #0xff000000
-	bic r0, r0, #0x00ff0000
+	ldr r0, [r5, #ST_RAND*4]
+	mov r1, r0
+	mov r2, r0, lsl #16
+	orr r0, r2, r0, lsr #16
+	mov r2, #0x9d3d
+	mul r1, r2, r1
+	add r0, r0, r1
+	str r0, [r5, #ST_RAND*4]
+	mov r0, r0, lsr #16
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_CONST [86]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -196,8 +214,8 @@ proc_1_target_2:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -217,8 +235,8 @@ proc_1_target_2:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -230,10 +248,15 @@ proc_1_target_2:
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
 	; BC_RAND [03]
-	; TODO: Set R0 from RNG using State[st_rand].
-	ldr r0, [r5, #ST_RAND*4]	; FIXED RAND
-	bic r0, r0, #0xff000000
-	bic r0, r0, #0x00ff0000
+	ldr r0, [r5, #ST_RAND*4]
+	mov r1, r0
+	mov r2, r0, lsl #16
+	orr r0, r2, r0, lsr #16
+	mov r2, #0x9d3d
+	mul r1, r2, r1
+	add r0, r0, r1
+	str r0, [r5, #ST_RAND*4]
+	mov r0, r0, lsr #16
 	; BC_CONST [81]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #1*4]			; r0=rConstants[1]
@@ -253,8 +276,8 @@ proc_1_target_2:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -271,10 +294,15 @@ proc_1_target_2:
 	; BC_DONE [00]
 proc_1_target_3:
 	; BC_RAND [03]
-	; TODO: Set R0 from RNG using State[st_rand].
-	ldr r0, [r5, #ST_RAND*4]	; FIXED RAND
-	bic r0, r0, #0xff000000
-	bic r0, r0, #0x00ff0000
+	ldr r0, [r5, #ST_RAND*4]
+	mov r1, r0
+	mov r2, r0, lsl #16
+	orr r0, r2, r0, lsr #16
+	mov r2, #0x9d3d
+	mul r1, r2, r1
+	add r0, r0, r1
+	str r0, [r5, #ST_RAND*4]
+	mov r0, r0, lsr #16
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_X*4]		; r0=State[ST_X]
@@ -291,13 +319,13 @@ proc_1_target_3:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_OP [3b]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
@@ -353,25 +381,40 @@ proc_1_target_0:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_SEED [0c]
-	; TODO: Implement BC_SEED as State[ST_RAND]=r0*0x9d3d+r0 etc.
-	mov r0, r0, asr #16			; FIXED SEED
-	str r0, [r5, #ST_RAND*4]	; State[ST_RAND]=r0
+	mov r1, r0
+	mov r2, r0, lsl #16
+	orr r0, r2, r0, lsr #16
+	mov r2, #0x9d3d
+	mul r1, r2, r1
+	add r0, r0, r1
+	mov r1, r0
+	mov r2, r0, lsl #16
+	orr r0, r2, r0, lsr #16
+	mov r2, #0x9d3d
+	mul r1, r2, r1
+	add r0, r0, r1
+	str r0, [r5, #ST_RAND*4]
 	; BC_CONST [8b]
 	ldr r0, [r4, #11*4]			; r0=rConstants[11]
 	; BC_RAND [03]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	; TODO: Set R0 from RNG using State[st_rand].
-	ldr r0, [r5, #ST_RAND*4]	; FIXED RAND
-	bic r0, r0, #0xff000000
-	bic r0, r0, #0x00ff0000
+	ldr r0, [r5, #ST_RAND*4]
+	mov r1, r0
+	mov r2, r0, lsl #16
+	orr r0, r2, r0, lsr #16
+	mov r2, #0x9d3d
+	mul r1, r2, r1
+	add r0, r0, r1
+	str r0, [r5, #ST_RAND*4]
+	mov r0, r0, lsr #16
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_1_continue_6

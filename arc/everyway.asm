@@ -11,14 +11,12 @@
 .equ ST_RAND, 5
 .equ ST_DIR, 6
 .equ ST_TIME, 7
-.equ ST_WIRE0, 8
-.equ ST_WIRE1, 9
 
 ; ============================================================================
 ; r3 = p_StateStack.
 ; r4 = r_Constants.
 ; r5 = p_State.
-; r6 = r_StateSpace.
+; r6 = <temp>           ; r_StateSpace.
 ; r7 = r_Sinus.
 ; ============================================================================
 
@@ -47,8 +45,8 @@ proc_0_start:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_0_continue_0
@@ -70,8 +68,8 @@ proc_0_continue_0:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_0_continue_1
@@ -93,8 +91,8 @@ proc_0_continue_1:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_0_continue_2
@@ -116,8 +114,8 @@ proc_0_continue_2:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_0_continue_3
@@ -139,8 +137,8 @@ proc_0_continue_3:
 	ldr r0, [r4, #79*4]			; r0=rConstants[79]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_0_continue_4
@@ -162,8 +160,8 @@ proc_0_continue_4:
 	ldr r0, [r4, #79*4]			; r0=rConstants[79]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_0_continue_5
@@ -185,8 +183,8 @@ proc_0_continue_5:
 	ldr r0, [r4, #79*4]			; r0=rConstants[79]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_0_continue_6
@@ -208,8 +206,8 @@ proc_0_continue_6:
 	ldr r0, [r4, #79*4]			; r0=rConstants[79]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_0_continue_7
@@ -234,8 +232,8 @@ proc_0_continue_7:
 	ldr r0, [r4, #79*4]			; r0=rConstants[79]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
@@ -569,8 +567,8 @@ proc_3_continue_15:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WLOCAL [41]
 	str r0, [r5, #-2*4]			; StateStack[-2]=r0
@@ -645,8 +643,8 @@ proc_4_continue_17:
 	ldr r0, [r4, #79*4]			; r0=rConstants[79]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_4_continue_18
@@ -704,8 +702,8 @@ proc_4_continue_18:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_4_continue_19
@@ -774,8 +772,8 @@ proc_4_continue_20:
 	ldr r0, [r4, #79*4]			; r0=rConstants[79]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
@@ -834,8 +832,8 @@ proc_4_continue_21:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_4_continue_22
@@ -1020,8 +1018,8 @@ proc_6_continue_25:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -1090,8 +1088,8 @@ proc_7_start:
 	ldr r0, [r4, #45*4]			; r0=rConstants[45]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RLOCAL [63]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -1114,7 +1112,7 @@ proc_7_start:
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r1, r1, asr #8
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl divide			; r0=r0/r1
+	bl divide					; r0=r0/r1
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; TODO: Sign extend r0?
 	mov r0, r0, asl #8
@@ -1142,8 +1140,8 @@ proc_7_start:
 	ldr r0, [r4, #45*4]			; r0=rConstants[45]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RLOCAL [63]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -1166,7 +1164,7 @@ proc_7_start:
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r1, r1, asr #8
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl divide			; r0=r0/r1
+	bl divide					; r0=r0/r1
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; TODO: Sign extend r0?
 	mov r0, r0, asl #8
@@ -1197,8 +1195,8 @@ proc_7_start:
 	ldr r0, [r4, #45*4]			; r0=rConstants[45]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RLOCAL [63]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -1240,8 +1238,8 @@ proc_8_start:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
@@ -1336,8 +1334,8 @@ proc_9_start:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_9_continue_28
@@ -1423,8 +1421,8 @@ proc_10_start:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
@@ -1446,8 +1444,8 @@ proc_10_start:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
@@ -1465,8 +1463,8 @@ proc_10_start:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
@@ -1553,8 +1551,8 @@ proc_11_start:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_11_continue_34
@@ -1966,8 +1964,8 @@ proc_13_start:
 	add r0, r0, r1				; r0=r0 add r1
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -2009,8 +2007,8 @@ proc_13_start:
 	add r0, r0, r1				; r0=r0 add r1
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -2126,8 +2124,8 @@ proc_14_start:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -2192,8 +2190,8 @@ proc_15_start:
 	ldr r0, [r4, #79*4]			; r0=rConstants[79]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_15_continue_45
@@ -2221,8 +2219,8 @@ proc_15_continue_45:
 	ldr r0, [r4, #79*4]			; r0=rConstants[79]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_15_continue_46
@@ -2250,8 +2248,8 @@ proc_15_continue_46:
 	ldr r0, [r4, #79*4]			; r0=rConstants[79]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_15_continue_47
@@ -2308,8 +2306,8 @@ proc_16_start:
 	ldr r0, [r4, #40*4]			; r0=rConstants[40]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_16_continue_49
@@ -2356,8 +2354,8 @@ proc_16_continue_50:
 	ldr r0, [r4, #40*4]			; r0=rConstants[40]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_16_continue_51
@@ -2566,8 +2564,8 @@ proc_16_continue_57:
 	ldr r0, [r4, #40*4]			; r0=rConstants[40]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_16_continue_58
@@ -2791,8 +2789,8 @@ proc_17_continue_65:
 	ldr r0, [r4, #40*4]			; r0=rConstants[40]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_17_continue_66
@@ -2853,8 +2851,8 @@ proc_17_continue_67:
 	ldr r0, [r4, #40*4]			; r0=rConstants[40]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_17_continue_68
@@ -3023,8 +3021,8 @@ proc_17_continue_73:
 	ldr r0, [r4, #40*4]			; r0=rConstants[40]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_17_continue_74
@@ -3206,8 +3204,8 @@ proc_18_start:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
@@ -3229,8 +3227,8 @@ proc_18_start:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
@@ -3252,8 +3250,8 @@ proc_18_start:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
@@ -3373,8 +3371,8 @@ proc_19_start:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
@@ -3396,8 +3394,8 @@ proc_19_start:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
@@ -3419,8 +3417,8 @@ proc_19_start:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
@@ -3540,8 +3538,8 @@ proc_20_start:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
@@ -3563,8 +3561,8 @@ proc_20_start:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
@@ -3586,8 +3584,8 @@ proc_20_start:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
@@ -4052,8 +4050,8 @@ proc_25_start:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_25_continue_96
@@ -4079,8 +4077,8 @@ proc_25_continue_96:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_25_continue_97
@@ -4106,8 +4104,8 @@ proc_25_continue_97:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_25_continue_98
@@ -4133,8 +4131,8 @@ proc_25_continue_98:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_25_continue_99
@@ -4160,8 +4158,8 @@ proc_25_continue_99:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_25_continue_100
@@ -4187,8 +4185,8 @@ proc_25_continue_100:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_25_continue_101
@@ -4214,8 +4212,8 @@ proc_25_continue_101:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_25_continue_102
@@ -4241,8 +4239,8 @@ proc_25_continue_102:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_25_continue_103
@@ -4264,8 +4262,8 @@ proc_26_start:
 	ldr r0, [r4, #40*4]			; r0=rConstants[40]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_26_continue_104
@@ -4280,8 +4278,8 @@ proc_26_continue_104:
 	ldr r0, [r4, #75*4]			; r0=rConstants[75]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_CONST [be]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -4318,8 +4316,8 @@ proc_26_continue_104:
 	ldr r0, [r4, #75*4]			; r0=rConstants[75]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_CONST [cd]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -4614,8 +4612,8 @@ proc_29_start:
 	ldr r0, [r4, #40*4]			; r0=rConstants[40]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_29_continue_113
@@ -4667,8 +4665,8 @@ proc_29_continue_113:
 	ldr r0, [r4, #75*4]			; r0=rConstants[75]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -4727,8 +4725,8 @@ proc_29_continue_113:
 	ldr r0, [r4, #75*4]			; r0=rConstants[75]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -4772,8 +4770,8 @@ proc_30_start:
 	ldr r0, [r4, #40*4]			; r0=rConstants[40]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_30_continue_114
@@ -4809,8 +4807,8 @@ proc_30_continue_114:
 	ldr r0, [r4, #75*4]			; r0=rConstants[75]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_CONST [be]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -4826,8 +4824,8 @@ proc_30_continue_114:
 	ldr r0, [r4, #75*4]			; r0=rConstants[75]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_CONST [cd]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -5091,8 +5089,8 @@ proc_32_start:
 	ldr r0, [r4, #40*4]			; r0=rConstants[40]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_32_continue_123
@@ -5144,8 +5142,8 @@ proc_32_continue_123:
 	ldr r0, [r4, #75*4]			; r0=rConstants[75]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_CONST [be]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -5161,8 +5159,8 @@ proc_32_continue_123:
 	ldr r0, [r4, #75*4]			; r0=rConstants[75]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_CONST [cd]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -5348,8 +5346,8 @@ proc_34_start:
 	ldr r0, [r4, #40*4]			; r0=rConstants[40]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_34_continue_128
@@ -5373,8 +5371,8 @@ proc_34_continue_128:
 	ldr r0, [r4, #75*4]			; r0=rConstants[75]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_CONST [cd]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -5444,8 +5442,8 @@ proc_35_start:
 	ldr r0, [r4, #40*4]			; r0=rConstants[40]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_35_continue_129
@@ -5497,8 +5495,8 @@ proc_35_continue_129:
 	ldr r0, [r4, #75*4]			; r0=rConstants[75]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -5522,8 +5520,8 @@ proc_35_continue_129:
 	ldr r0, [r4, #75*4]			; r0=rConstants[75]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -5579,8 +5577,8 @@ proc_36_start:
 	ldr r0, [r4, #75*4]			; r0=rConstants[75]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -5734,8 +5732,8 @@ proc_38_start:
 	ldr r0, [r4, #40*4]			; r0=rConstants[40]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_38_continue_134
@@ -5781,8 +5779,8 @@ proc_38_continue_134:
 	ldr r0, [r4, #75*4]			; r0=rConstants[75]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -5815,8 +5813,8 @@ proc_38_continue_134:
 	ldr r0, [r4, #75*4]			; r0=rConstants[75]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -5849,8 +5847,8 @@ proc_38_continue_134:
 	ldr r0, [r4, #75*4]			; r0=rConstants[75]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -5894,8 +5892,8 @@ proc_39_start:
 	ldr r0, [r4, #40*4]			; r0=rConstants[40]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_39_continue_135
@@ -6574,8 +6572,8 @@ proc_46_start:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_46_continue_155
@@ -6597,8 +6595,8 @@ proc_46_continue_155:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_46_continue_156
@@ -6620,8 +6618,8 @@ proc_46_continue_156:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_46_continue_157
@@ -6643,8 +6641,8 @@ proc_46_continue_157:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_46_continue_158
@@ -7265,8 +7263,8 @@ proc_52_start:
 	ldr r0, [r4, #75*4]			; r0=rConstants[75]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -7481,8 +7479,8 @@ proc_54_start:
 	ldr r0, [r4, #65*4]			; r0=rConstants[65]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_54_continue_180
@@ -7518,8 +7516,8 @@ proc_55_start:
 	ldr r0, [r4, #75*4]			; r0=rConstants[75]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_CONST [be]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -7565,8 +7563,8 @@ proc_55_start:
 	ldr r0, [r4, #75*4]			; r0=rConstants[75]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_CONST [cd]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -7614,8 +7612,8 @@ proc_56_start:
 	ldr r0, [r4, #75*4]			; r0=rConstants[75]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_CONST [be]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -7659,8 +7657,8 @@ proc_56_start:
 	ldr r0, [r4, #75*4]			; r0=rConstants[75]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_CONST [cd]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -7733,8 +7731,8 @@ proc_57_start:
 	rsb r0, r0, #0				; r0=0-r0
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -7788,14 +7786,14 @@ proc_57_continue_183:
 	ldr r0, [r4, #75*4]			; r0=rConstants[75]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_DIV [09]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r1, r1, asr #8
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl divide			; r0=r0/r1
+	bl divide					; r0=r0/r1
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; TODO: Sign extend r0?
 	mov r0, r0, asl #8
@@ -7844,8 +7842,8 @@ proc_57_continue_184:
 	ldr r0, [r4, #75*4]			; r0=rConstants[75]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -7878,8 +7876,8 @@ proc_57_target_182:
 	rsb r0, r0, #0				; r0=0-r0
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -7934,14 +7932,14 @@ proc_57_continue_187:
 	ldr r0, [r4, #75*4]			; r0=rConstants[75]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_DIV [09]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r1, r1, asr #8
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl divide			; r0=r0/r1
+	bl divide					; r0=r0/r1
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; TODO: Sign extend r0?
 	mov r0, r0, asl #8
@@ -8014,8 +8012,8 @@ proc_58_start:
 	ldr r0, [r4, #18*4]			; r0=rConstants[18]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -8067,14 +8065,14 @@ proc_58_continue_190:
 	ldr r0, [r4, #75*4]			; r0=rConstants[75]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_DIV [09]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r1, r1, asr #8
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl divide			; r0=r0/r1
+	bl divide					; r0=r0/r1
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; TODO: Sign extend r0?
 	mov r0, r0, asl #8
@@ -8123,8 +8121,8 @@ proc_58_continue_191:
 	ldr r0, [r4, #75*4]			; r0=rConstants[75]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -8155,8 +8153,8 @@ proc_58_target_189:
 	ldr r0, [r4, #18*4]			; r0=rConstants[18]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -8209,14 +8207,14 @@ proc_58_continue_194:
 	ldr r0, [r4, #75*4]			; r0=rConstants[75]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_DIV [09]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r1, r1, asr #8
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl divide			; r0=r0/r1
+	bl divide					; r0=r0/r1
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; TODO: Sign extend r0?
 	mov r0, r0, asl #8
@@ -8294,8 +8292,8 @@ proc_59_start:
 	ldr r0, [r4, #75*4]			; r0=rConstants[75]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_CONST [be]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -8311,8 +8309,8 @@ proc_59_start:
 	ldr r0, [r4, #75*4]			; r0=rConstants[75]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_CONST [cd]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -8388,8 +8386,8 @@ proc_60_start:
 	ldr r0, [r4, #75*4]			; r0=rConstants[75]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_CONST [be]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -8405,8 +8403,8 @@ proc_60_start:
 	ldr r0, [r4, #75*4]			; r0=rConstants[75]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_CONST [cd]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -8492,14 +8490,14 @@ proc_61_continue_196:
 	ldr r0, [r4, #75*4]			; r0=rConstants[75]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_DIV [09]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r1, r1, asr #8
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl divide			; r0=r0/r1
+	bl divide					; r0=r0/r1
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; TODO: Sign extend r0?
 	mov r0, r0, asl #8
@@ -8527,14 +8525,14 @@ proc_61_target_197:
 	ldr r0, [r4, #75*4]			; r0=rConstants[75]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_DIV [09]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r1, r1, asr #8
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl divide			; r0=r0/r1
+	bl divide					; r0=r0/r1
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; TODO: Sign extend r0?
 	mov r0, r0, asl #8
@@ -8555,8 +8553,8 @@ proc_61_target_198:
 	ldr r0, [r4, #75*4]			; r0=rConstants[75]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -8657,14 +8655,14 @@ proc_62_continue_201:
 	ldr r0, [r4, #75*4]			; r0=rConstants[75]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_DIV [09]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r1, r1, asr #8
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl divide			; r0=r0/r1
+	bl divide					; r0=r0/r1
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; TODO: Sign extend r0?
 	mov r0, r0, asl #8
@@ -8692,14 +8690,14 @@ proc_62_target_202:
 	ldr r0, [r4, #75*4]			; r0=rConstants[75]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_DIV [09]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r1, r1, asr #8
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl divide			; r0=r0/r1
+	bl divide					; r0=r0/r1
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; TODO: Sign extend r0?
 	mov r0, r0, asl #8
@@ -8720,8 +8718,8 @@ proc_62_target_203:
 	ldr r0, [r4, #75*4]			; r0=rConstants[75]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -8992,8 +8990,8 @@ proc_67_start:
 	ldr r0, [r4, #38*4]			; r0=rConstants[38]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -9037,8 +9035,8 @@ proc_67_start:
 	ldr r0, [r4, #73*4]			; r0=rConstants[73]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -9216,8 +9214,8 @@ proc_70_start:
 	ldr r0, [r4, #79*4]			; r0=rConstants[79]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
@@ -9255,8 +9253,8 @@ proc_70_start:
 	ldr r0, [r4, #79*4]			; r0=rConstants[79]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
@@ -9291,8 +9289,8 @@ proc_70_start:
 	ldr r0, [r4, #79*4]			; r0=rConstants[79]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -9320,8 +9318,8 @@ proc_70_start:
 	ldr r0, [r4, #79*4]			; r0=rConstants[79]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -9338,8 +9336,8 @@ proc_70_start:
 	ldr r0, [r4, #79*4]			; r0=rConstants[79]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_70_continue_213
@@ -9361,8 +9359,8 @@ proc_70_continue_213:
 	ldr r0, [r4, #79*4]			; r0=rConstants[79]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
@@ -9400,8 +9398,8 @@ proc_70_continue_213:
 	ldr r0, [r4, #79*4]			; r0=rConstants[79]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
@@ -9436,8 +9434,8 @@ proc_70_continue_213:
 	ldr r0, [r4, #79*4]			; r0=rConstants[79]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -9465,8 +9463,8 @@ proc_70_continue_213:
 	ldr r0, [r4, #79*4]			; r0=rConstants[79]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -9649,7 +9647,7 @@ proc_73_start:
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r1, r1, asr #8
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl divide			; r0=r0/r1
+	bl divide					; r0=r0/r1
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; TODO: Sign extend r0?
 	mov r0, r0, asl #8
@@ -9675,8 +9673,8 @@ proc_73_start:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -9743,8 +9741,8 @@ proc_74_start:
 	ldr r0, [r4, #79*4]			; r0=rConstants[79]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
@@ -9760,8 +9758,8 @@ proc_74_start:
 	ldr r0, [r4, #79*4]			; r0=rConstants[79]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -9778,8 +9776,8 @@ proc_74_start:
 	ldr r0, [r4, #79*4]			; r0=rConstants[79]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_74_continue_219
@@ -9801,8 +9799,8 @@ proc_74_continue_219:
 	ldr r0, [r4, #79*4]			; r0=rConstants[79]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
@@ -9820,8 +9818,8 @@ proc_74_continue_219:
 	ldr r0, [r4, #79*4]			; r0=rConstants[79]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -9838,8 +9836,8 @@ proc_74_continue_219:
 	ldr r0, [r4, #79*4]			; r0=rConstants[79]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_74_continue_220
@@ -9861,8 +9859,8 @@ proc_74_continue_220:
 	ldr r0, [r4, #79*4]			; r0=rConstants[79]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
@@ -9878,8 +9876,8 @@ proc_74_continue_220:
 	ldr r0, [r4, #79*4]			; r0=rConstants[79]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -9896,8 +9894,8 @@ proc_74_continue_220:
 	ldr r0, [r4, #79*4]			; r0=rConstants[79]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_74_continue_221
@@ -9953,8 +9951,8 @@ proc_74_continue_222:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_74_continue_223
@@ -9969,8 +9967,8 @@ proc_74_continue_223:
 	ldr r0, [r4, #60*4]			; r0=rConstants[60]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_CONST [ac]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -10294,8 +10292,8 @@ proc_78_continue_231:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_CONST [8f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -10379,8 +10377,8 @@ proc_79_continue_234:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_CONST [8f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -11228,8 +11226,8 @@ proc_85_start:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -11403,8 +11401,8 @@ proc_87_start:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -11475,8 +11473,8 @@ proc_88_start:
 	ldr r0, [r4, #79*4]			; r0=rConstants[79]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_88_continue_247
@@ -11498,8 +11496,8 @@ proc_88_continue_247:
 	ldr r0, [r4, #79*4]			; r0=rConstants[79]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_88_continue_248
@@ -11766,8 +11764,8 @@ proc_90_start:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -11850,8 +11848,8 @@ proc_90_target_255:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -12035,8 +12033,8 @@ proc_93_continue_262:
 	ldr r0, [r4, #28*4]			; r0=rConstants[28]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -12053,8 +12051,8 @@ proc_93_continue_262:
 	ldr r0, [r4, #30*4]			; r0=rConstants[30]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -12180,8 +12178,8 @@ proc_94_start:
 	ldr r0, [r4, #65*4]			; r0=rConstants[65]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -12231,8 +12229,8 @@ proc_94_start:
 	ldr r0, [r4, #65*4]			; r0=rConstants[65]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -12279,8 +12277,8 @@ proc_94_continue_265:
 	ldr r0, [r4, #65*4]			; r0=rConstants[65]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -12349,8 +12347,8 @@ proc_94_continue_265:
 	ldr r0, [r4, #65*4]			; r0=rConstants[65]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -12468,8 +12466,8 @@ proc_95_continue_267:
 	ldr r0, [r4, #65*4]			; r0=rConstants[65]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -12486,8 +12484,8 @@ proc_95_continue_267:
 	ldr r0, [r4, #65*4]			; r0=rConstants[65]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -12739,8 +12737,8 @@ proc_100_start:
 	ldr r0, [r4, #38*4]			; r0=rConstants[38]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -12772,7 +12770,7 @@ proc_100_start:
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r1, r1, asr #8
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl divide			; r0=r0/r1
+	bl divide					; r0=r0/r1
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; TODO: Sign extend r0?
 	mov r0, r0, asl #8
@@ -12891,8 +12889,8 @@ proc_101_start:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_101_continue_279
@@ -12918,8 +12916,8 @@ proc_101_continue_279:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_101_continue_280
@@ -12934,8 +12932,8 @@ proc_101_continue_280:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_101_continue_281
@@ -12961,8 +12959,8 @@ proc_101_continue_281:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_101_continue_282
@@ -13032,8 +13030,8 @@ proc_101_continue_282:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_101_continue_283
@@ -13069,8 +13067,8 @@ proc_101_continue_283:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_101_continue_284
@@ -13097,8 +13095,8 @@ proc_101_continue_284:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_101_continue_285
@@ -13140,8 +13138,8 @@ proc_101_continue_285:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_101_continue_286
@@ -13211,8 +13209,8 @@ proc_102_start:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_102_continue_287
@@ -13254,8 +13252,8 @@ proc_102_continue_287:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_102_continue_288
@@ -13307,8 +13305,8 @@ proc_102_continue_288:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_102_continue_289
@@ -13616,8 +13614,8 @@ proc_108_start:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_108_continue_296
@@ -13726,8 +13724,8 @@ proc_109_start:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_109_continue_298
@@ -13963,7 +13961,7 @@ proc_112_start:
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r1, r1, asr #8
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl divide			; r0=r0/r1
+	bl divide					; r0=r0/r1
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; TODO: Sign extend r0?
 	mov r0, r0, asl #8
@@ -13986,7 +13984,7 @@ proc_112_start:
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r1, r1, asr #8
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl divide			; r0=r0/r1
+	bl divide					; r0=r0/r1
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; TODO: Sign extend r0?
 	mov r0, r0, asl #8
@@ -14051,7 +14049,7 @@ proc_113_start:
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r1, r1, asr #8
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl divide			; r0=r0/r1
+	bl divide					; r0=r0/r1
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; TODO: Sign extend r0?
 	mov r0, r0, asl #8
@@ -14074,7 +14072,7 @@ proc_113_start:
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r1, r1, asr #8
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl divide			; r0=r0/r1
+	bl divide					; r0=r0/r1
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; TODO: Sign extend r0?
 	mov r0, r0, asl #8
@@ -14584,8 +14582,8 @@ proc_118_continue_322:
 	ldr r0, [r4, #40*4]			; r0=rConstants[40]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
@@ -14612,8 +14610,8 @@ proc_118_continue_322:
 	ldr r0, [r4, #40*4]			; r0=rConstants[40]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_118_continue_323
@@ -14731,8 +14729,8 @@ proc_118_continue_327:
 	ldr r0, [r4, #40*4]			; r0=rConstants[40]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_118_continue_328
@@ -14860,8 +14858,8 @@ proc_119_target_331:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WLOCAL [41]
 	str r0, [r5, #-2*4]			; StateStack[-2]=r0
@@ -14938,8 +14936,8 @@ proc_120_continue_333:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WLOCAL [41]
 	str r0, [r5, #-2*4]			; StateStack[-2]=r0
@@ -15216,8 +15214,8 @@ proc_122_start:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -15242,8 +15240,8 @@ proc_122_start:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WLOCAL [40]
 	str r0, [r5, #-1*4]			; StateStack[-1]=r0
@@ -15287,8 +15285,8 @@ proc_123_start:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -15313,8 +15311,8 @@ proc_123_start:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WLOCAL [40]
 	str r0, [r5, #-1*4]			; StateStack[-1]=r0
@@ -15358,8 +15356,8 @@ proc_124_start:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -15384,8 +15382,8 @@ proc_124_start:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WLOCAL [40]
 	str r0, [r5, #-1*4]			; StateStack[-1]=r0
@@ -15429,8 +15427,8 @@ proc_125_start:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -15455,8 +15453,8 @@ proc_125_start:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WLOCAL [40]
 	str r0, [r5, #-1*4]			; StateStack[-1]=r0
@@ -15500,8 +15498,8 @@ proc_126_start:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -15526,8 +15524,8 @@ proc_126_start:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WLOCAL [40]
 	str r0, [r5, #-1*4]			; StateStack[-1]=r0
@@ -15571,8 +15569,8 @@ proc_127_start:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -15597,8 +15595,8 @@ proc_127_start:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WLOCAL [40]
 	str r0, [r5, #-1*4]			; StateStack[-1]=r0
@@ -15642,8 +15640,8 @@ proc_128_start:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -15668,8 +15666,8 @@ proc_128_start:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WLOCAL [40]
 	str r0, [r5, #-1*4]			; StateStack[-1]=r0
@@ -15713,8 +15711,8 @@ proc_129_start:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -15739,8 +15737,8 @@ proc_129_start:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WLOCAL [40]
 	str r0, [r5, #-1*4]			; StateStack[-1]=r0
@@ -15784,8 +15782,8 @@ proc_130_start:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -15810,8 +15808,8 @@ proc_130_start:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WLOCAL [40]
 	str r0, [r5, #-1*4]			; StateStack[-1]=r0
@@ -15847,8 +15845,8 @@ proc_131_start:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
@@ -15966,8 +15964,8 @@ proc_134_start:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
@@ -16003,8 +16001,8 @@ proc_135_start:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_135_continue_343
@@ -16021,8 +16019,8 @@ proc_135_continue_343:
 	rsb r0, r0, #0				; r0=0-r0
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -16057,8 +16055,8 @@ proc_135_continue_344:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_135_continue_345
@@ -16086,8 +16084,8 @@ proc_135_continue_345:
 	ldr r0, [r4, #21*4]			; r0=rConstants[21]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -16122,8 +16120,8 @@ proc_135_continue_346:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_135_continue_347
@@ -16153,8 +16151,8 @@ proc_135_continue_347:
 	rsb r0, r0, #0				; r0=0-r0
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -16189,8 +16187,8 @@ proc_135_continue_348:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_135_continue_349
@@ -16223,8 +16221,8 @@ proc_135_continue_349:
 	ldr r0, [r4, #21*4]			; r0=rConstants[21]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -16449,8 +16447,8 @@ proc_137_start:
 	ldr r0, [r4, #37*4]			; r0=rConstants[37]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -16755,8 +16753,8 @@ proc_141_continue_360:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WLOCAL [41]
 	str r0, [r5, #-2*4]			; StateStack[-2]=r0
@@ -16864,13 +16862,13 @@ proc_143_start:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_CONST [c5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -16896,13 +16894,13 @@ proc_143_start:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
@@ -16941,8 +16939,8 @@ proc_144_start:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
@@ -17079,8 +17077,8 @@ proc_145_start:
 	add r0, r0, r1				; r0=r0 add r1
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -17095,8 +17093,8 @@ proc_145_start:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
@@ -17155,8 +17153,8 @@ proc_146_start:
 	ldr r0, [r4, #79*4]			; r0=rConstants[79]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_146_continue_366
@@ -17175,8 +17173,8 @@ proc_146_continue_366:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_CONST [da]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -17192,8 +17190,8 @@ proc_146_continue_366:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_CONST [de]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -17222,8 +17220,8 @@ proc_146_continue_366:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_CONST [de]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -17246,8 +17244,8 @@ proc_146_continue_366:
 	ldr r0, [r4, #79*4]			; r0=rConstants[79]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_146_continue_367
@@ -17269,8 +17267,8 @@ proc_146_continue_367:
 	ldr r0, [r4, #79*4]			; r0=rConstants[79]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_146_continue_368
@@ -17285,8 +17283,8 @@ proc_146_continue_368:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_CONST [da]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -17302,8 +17300,8 @@ proc_146_continue_368:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_CONST [de]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -17330,8 +17328,8 @@ proc_146_continue_368:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_CONST [de]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -17354,8 +17352,8 @@ proc_146_continue_368:
 	ldr r0, [r4, #79*4]			; r0=rConstants[79]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_146_continue_369
@@ -17377,8 +17375,8 @@ proc_146_continue_369:
 	ldr r0, [r4, #79*4]			; r0=rConstants[79]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_146_continue_370
@@ -17611,8 +17609,8 @@ proc_147_continue_375:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_147_continue_376
@@ -17874,8 +17872,8 @@ proc_148_continue_381:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_148_continue_382
@@ -18344,8 +18342,8 @@ proc_150_continue_395:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_150_continue_396
@@ -18383,8 +18381,8 @@ proc_150_continue_396:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_150_continue_397
@@ -18692,8 +18690,8 @@ proc_151_continue_405:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_151_continue_406
@@ -18731,8 +18729,8 @@ proc_151_continue_406:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_151_continue_407
@@ -18805,8 +18803,8 @@ proc_152_continue_409:
 	rsb r0, r0, #0				; r0=0-r0
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -19094,8 +19092,8 @@ proc_156_start:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -19109,8 +19107,8 @@ proc_156_start:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_156_continue_413
@@ -19141,8 +19139,8 @@ proc_156_continue_413:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -19156,8 +19154,8 @@ proc_156_continue_413:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_156_continue_414
@@ -19188,8 +19186,8 @@ proc_156_continue_414:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -19203,8 +19201,8 @@ proc_156_continue_414:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_156_continue_415
@@ -19235,8 +19233,8 @@ proc_156_continue_415:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -19250,8 +19248,8 @@ proc_156_continue_415:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_156_continue_416
@@ -19282,8 +19280,8 @@ proc_156_continue_416:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -19297,8 +19295,8 @@ proc_156_continue_416:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_156_continue_417
@@ -19329,8 +19327,8 @@ proc_156_continue_417:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -19344,8 +19342,8 @@ proc_156_continue_417:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_156_continue_418
@@ -19376,8 +19374,8 @@ proc_156_continue_418:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -19391,8 +19389,8 @@ proc_156_continue_418:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_156_continue_419
@@ -19423,8 +19421,8 @@ proc_156_continue_419:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -19438,8 +19436,8 @@ proc_156_continue_419:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_156_continue_420
@@ -19552,7 +19550,7 @@ proc_158_target_424:
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r1, r1, asr #8
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl divide			; r0=r0/r1
+	bl divide					; r0=r0/r1
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; TODO: Sign extend r0?
 	mov r0, r0, asl #8
@@ -19647,7 +19645,7 @@ proc_159_target_428:
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r1, r1, asr #8
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl divide			; r0=r0/r1
+	bl divide					; r0=r0/r1
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; TODO: Sign extend r0?
 	mov r0, r0, asl #8
@@ -19793,8 +19791,8 @@ proc_161_continue_432:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_161_continue_433
@@ -19809,8 +19807,8 @@ proc_161_continue_433:
 	ldr r0, [r4, #57*4]			; r0=rConstants[57]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -19853,8 +19851,8 @@ proc_161_continue_434:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -19881,8 +19879,8 @@ proc_161_continue_434:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -19943,8 +19941,8 @@ proc_162_start:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_CONST [87]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -19979,8 +19977,8 @@ proc_162_continue_435:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_CONST [87]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -20061,8 +20059,8 @@ proc_162_continue_439:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_CONST [87]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -20096,8 +20094,8 @@ proc_162_continue_439:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -20128,8 +20126,8 @@ proc_162_continue_441:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_CONST [87]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -20166,8 +20164,8 @@ proc_162_continue_441:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WLOCAL [40]
 	str r0, [r5, #-1*4]			; StateStack[-1]=r0
@@ -20289,8 +20287,8 @@ proc_164_start:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -20309,7 +20307,7 @@ proc_164_start:
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r1, r1, asr #8
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl divide			; r0=r0/r1
+	bl divide					; r0=r0/r1
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; TODO: Sign extend r0?
 	mov r0, r0, asl #8
@@ -20329,8 +20327,8 @@ proc_164_start:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -20349,7 +20347,7 @@ proc_164_start:
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r1, r1, asr #8
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl divide			; r0=r0/r1
+	bl divide					; r0=r0/r1
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; TODO: Sign extend r0?
 	mov r0, r0, asl #8
@@ -20426,8 +20424,8 @@ proc_166_start:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -20737,8 +20735,8 @@ proc_169_start:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -21209,8 +21207,8 @@ proc_177_start:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
@@ -21357,8 +21355,8 @@ proc_178_start:
 	add r0, r0, r1				; r0=r0 add r1
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -21376,13 +21374,13 @@ proc_178_start:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_CONST [8f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -21478,8 +21476,8 @@ proc_179_start:
 	add r0, r0, r1				; r0=r0 add r1
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -21497,13 +21495,13 @@ proc_179_start:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_CONST [8f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -22665,8 +22663,8 @@ proc_191_continue_490:
 	ldr r0, [r4, #79*4]			; r0=rConstants[79]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_191_continue_491
@@ -22793,8 +22791,8 @@ proc_192_continue_494:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -22845,13 +22843,13 @@ proc_192_continue_495:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -22869,8 +22867,8 @@ proc_192_continue_495:
 	ldr r0, [r4, #43*4]			; r0=rConstants[43]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -22917,13 +22915,13 @@ proc_192_continue_496:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -22974,13 +22972,13 @@ proc_192_continue_497:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -22998,8 +22996,8 @@ proc_192_continue_497:
 	ldr r0, [r4, #37*4]			; r0=rConstants[37]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -23110,8 +23108,8 @@ proc_193_start:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -23125,8 +23123,8 @@ proc_193_start:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_193_continue_498
@@ -23157,8 +23155,8 @@ proc_193_continue_498:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -23172,8 +23170,8 @@ proc_193_continue_498:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_193_continue_499
@@ -23204,8 +23202,8 @@ proc_193_continue_499:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -23219,8 +23217,8 @@ proc_193_continue_499:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_193_continue_500
@@ -23251,8 +23249,8 @@ proc_193_continue_500:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -23266,8 +23264,8 @@ proc_193_continue_500:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_193_continue_501
@@ -23298,8 +23296,8 @@ proc_193_continue_501:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -23313,8 +23311,8 @@ proc_193_continue_501:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_193_continue_502
@@ -23345,8 +23343,8 @@ proc_193_continue_502:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -23360,8 +23358,8 @@ proc_193_continue_502:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_193_continue_503
@@ -23455,8 +23453,8 @@ proc_194_start:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -23470,8 +23468,8 @@ proc_194_start:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_194_continue_504
@@ -23502,8 +23500,8 @@ proc_194_continue_504:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -23517,8 +23515,8 @@ proc_194_continue_504:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_194_continue_505
@@ -23549,8 +23547,8 @@ proc_194_continue_505:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -23564,8 +23562,8 @@ proc_194_continue_505:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_194_continue_506
@@ -23596,8 +23594,8 @@ proc_194_continue_506:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -23611,8 +23609,8 @@ proc_194_continue_506:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_194_continue_507
@@ -23643,8 +23641,8 @@ proc_194_continue_507:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -23658,8 +23656,8 @@ proc_194_continue_507:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_194_continue_508
@@ -23690,8 +23688,8 @@ proc_194_continue_508:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -23705,8 +23703,8 @@ proc_194_continue_508:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_194_continue_509
@@ -23737,8 +23735,8 @@ proc_194_continue_509:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -23752,8 +23750,8 @@ proc_194_continue_509:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_194_continue_510
@@ -23784,8 +23782,8 @@ proc_194_continue_510:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -23799,8 +23797,8 @@ proc_194_continue_510:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_194_continue_511
@@ -23894,8 +23892,8 @@ proc_195_start:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -23909,8 +23907,8 @@ proc_195_start:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_195_continue_512
@@ -23941,8 +23939,8 @@ proc_195_continue_512:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -23956,8 +23954,8 @@ proc_195_continue_512:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_195_continue_513
@@ -23988,8 +23986,8 @@ proc_195_continue_513:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -24003,8 +24001,8 @@ proc_195_continue_513:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_195_continue_514
@@ -24035,8 +24033,8 @@ proc_195_continue_514:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -24050,8 +24048,8 @@ proc_195_continue_514:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_195_continue_515
@@ -24082,8 +24080,8 @@ proc_195_continue_515:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -24097,8 +24095,8 @@ proc_195_continue_515:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_195_continue_516
@@ -24129,8 +24127,8 @@ proc_195_continue_516:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -24144,8 +24142,8 @@ proc_195_continue_516:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_195_continue_517
@@ -24239,8 +24237,8 @@ proc_196_start:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -24254,8 +24252,8 @@ proc_196_start:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_196_continue_518
@@ -24286,8 +24284,8 @@ proc_196_continue_518:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -24301,8 +24299,8 @@ proc_196_continue_518:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_196_continue_519
@@ -24333,8 +24331,8 @@ proc_196_continue_519:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -24348,8 +24346,8 @@ proc_196_continue_519:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_196_continue_520
@@ -24380,8 +24378,8 @@ proc_196_continue_520:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -24395,8 +24393,8 @@ proc_196_continue_520:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_196_continue_521
@@ -24490,8 +24488,8 @@ proc_197_start:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -24505,8 +24503,8 @@ proc_197_start:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_197_continue_522
@@ -24537,8 +24535,8 @@ proc_197_continue_522:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -24552,8 +24550,8 @@ proc_197_continue_522:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_197_continue_523
@@ -24584,8 +24582,8 @@ proc_197_continue_523:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -24599,8 +24597,8 @@ proc_197_continue_523:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_197_continue_524
@@ -24631,8 +24629,8 @@ proc_197_continue_524:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -24646,8 +24644,8 @@ proc_197_continue_524:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_197_continue_525
@@ -24678,8 +24676,8 @@ proc_197_continue_525:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -24693,8 +24691,8 @@ proc_197_continue_525:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_197_continue_526
@@ -24890,7 +24888,7 @@ proc_199_continue_530:
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r1, r1, asr #8
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl divide			; r0=r0/r1
+	bl divide					; r0=r0/r1
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; TODO: Sign extend r0?
 	mov r0, r0, asl #8
@@ -24967,7 +24965,7 @@ proc_199_continue_532:
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r1, r1, asr #8
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl divide			; r0=r0/r1
+	bl divide					; r0=r0/r1
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; TODO: Sign extend r0?
 	mov r0, r0, asl #8

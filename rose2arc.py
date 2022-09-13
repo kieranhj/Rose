@@ -70,9 +70,8 @@ ST_TINT=4
 ST_RAND=5
 ST_DIR=6
 ST_TIME=7
-ST_WIRE0=8
 
-STATE_NAMES = ["ST_PROC", "ST_X", "ST_Y", "ST_SIZE", "ST_TINT", "ST_RAND", "ST_DIR", "ST_TIME", "ST_WIRE0", "ST_WIRE1"]
+STATE_NAMES = ["ST_PROC", "ST_X", "ST_Y", "ST_SIZE", "ST_TINT", "ST_RAND", "ST_DIR", "ST_TIME"]
 
 # Push or pop?
 MIN_INPUT=0x08
@@ -140,10 +139,15 @@ class RoseParser:
     def write_rand(self, c):
         self._asm_file.write(f'\t; BC_RAND [{c:02x}]\n')
         self.load_var(0)
-        self._asm_file.write(f'\t; TODO: Set R0 from RNG using State[st_rand].\n')
-        self._asm_file.write(f'\tldr r0, [r5, #ST_RAND*4]\t; FIXED RAND\n')
-        self._asm_file.write(f'\tbic r0, r0, #0xff000000\n')
-        self._asm_file.write(f'\tbic r0, r0, #0x00ff0000\n')
+        self._asm_file.write(f'\tldr r0, [r5, #ST_RAND*4]\n')
+        self._asm_file.write(f'\tmov r1, r0\n')
+        self._asm_file.write(f'\tmov r2, r0, lsl #16\n')
+        self._asm_file.write(f'\torr r0, r2, r0, lsr #16\n')
+        self._asm_file.write(f'\tmov r2, #0x9d3d\n')
+        self._asm_file.write(f'\tmul r1, r2, r1\n')
+        self._asm_file.write(f'\tadd r0, r0, r1\n')
+        self._asm_file.write(f'\tstr r0, [r5, #ST_RAND*4]\n')
+        self._asm_file.write(f'\tmov r0, r0, lsr #16\n')
         self.push_var(0)
 
     def write_draw(self, c):
@@ -185,7 +189,7 @@ class RoseParser:
         self.pop_var(1)
         self._asm_file.write(f'\tmov r1, r1, asr #8\n')
         self._asm_file.write(f'\tstr lr, [sp, #-4]!\t\t\t; Push lr on program stack.\n')
-        self._asm_file.write(f'\tbl divide\t\t\t; r0=r0/r1\n')
+        self._asm_file.write(f'\tbl divide\t\t\t\t\t; r0=r0/r1\n')
         self._asm_file.write(f'\tldr lr, [sp], #4\t\t\t; Pop lr off program stack.\n')
         self._asm_file.write(f'\t; TODO: Sign extend r0?\n')
         self._asm_file.write(f'\tmov r0, r0, asl #8\n')
@@ -214,9 +218,19 @@ class RoseParser:
     def write_seed(self, c):
         self._asm_file.write(f'\t; BC_SEED [{c:02x}]\n')
         self.pop_var(0)
-        self._asm_file.write(f'\t; TODO: Implement BC_SEED as State[ST_RAND]=r0*0x9d3d+r0 etc.\n')
-        self._asm_file.write(f'\tmov r0, r0, asr #16\t\t\t; FIXED SEED\n')
-        self._asm_file.write(f'\tstr r0, [r5, #ST_RAND*4]\t; State[ST_RAND]=r0\n')
+        self._asm_file.write(f'\tmov r1, r0\n')
+        self._asm_file.write(f'\tmov r2, r0, lsl #16\n')
+        self._asm_file.write(f'\torr r0, r2, r0, lsr #16\n')
+        self._asm_file.write(f'\tmov r2, #0x9d3d\n')
+        self._asm_file.write(f'\tmul r1, r2, r1\n')
+        self._asm_file.write(f'\tadd r0, r0, r1\n')
+        self._asm_file.write(f'\tmov r1, r0\n')
+        self._asm_file.write(f'\tmov r2, r0, lsl #16\n')
+        self._asm_file.write(f'\torr r0, r2, r0, lsr #16\n')
+        self._asm_file.write(f'\tmov r2, #0x9d3d\n')
+        self._asm_file.write(f'\tmul r1, r2, r1\n')
+        self._asm_file.write(f'\tadd r0, r0, r1\n')
+        self._asm_file.write(f'\tstr r0, [r5, #ST_RAND*4]\n')
 
     def write_neg(self, c):
         self._asm_file.write(f'\t; BC_NEG [{c:02x}]\n')
@@ -235,8 +249,8 @@ class RoseParser:
         self._asm_file.write(f'\t; BC_MUL [{c:02x}]\n')
         self.pop_var(0)
         self.pop_var(1)
-        self._asm_file.write(f'\tmov r0, r0, lsr #8\n')
-        self._asm_file.write(f'\tmov r1, r1, lsr #8\n')
+        self._asm_file.write(f'\tmov r0, r0, asr #8\n')
+        self._asm_file.write(f'\tmov r1, r1, asr #8\n')
         self._asm_file.write(f'\tmul r0, r1, r0\t\t\t\t; r0=r0*r1\n')
         self.push_var(0)
 
@@ -488,7 +502,7 @@ if __name__ == '__main__':
     asm_file.write('; r3 = p_StateStack.\n')
     asm_file.write('; r4 = r_Constants.\n')
     asm_file.write('; r5 = p_State.\n')
-    asm_file.write('; r6 = r_StateSpace.\n')
+    asm_file.write('; r6 = <temp>           ; r_StateSpace.\n')
     asm_file.write('; r7 = r_Sinus.\n')
     asm_file.write('; ============================================================================\n\n')
 

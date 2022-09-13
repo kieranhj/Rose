@@ -11,14 +11,12 @@
 .equ ST_RAND, 5
 .equ ST_DIR, 6
 .equ ST_TIME, 7
-.equ ST_WIRE0, 8
-.equ ST_WIRE1, 9
 
 ; ============================================================================
 ; r3 = p_StateStack.
 ; r4 = r_Constants.
 ; r5 = p_State.
-; r6 = r_StateSpace.
+; r6 = <temp>           ; r_StateSpace.
 ; r7 = r_Sinus.
 ; ============================================================================
 
@@ -1298,8 +1296,8 @@ proc_5_start:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_CONST [ae]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -1378,7 +1376,7 @@ proc_6_start:
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r1, r1, asr #8
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl divide			; r0=r0/r1
+	bl divide					; r0=r0/r1
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; TODO: Sign extend r0?
 	mov r0, r0, asl #8
@@ -1390,8 +1388,8 @@ proc_6_start:
 	mov r0, r0, asl #2
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -1474,8 +1472,8 @@ proc_7_start:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RLOCAL [66]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -1492,13 +1490,23 @@ proc_7_start:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_SEED [0c]
-	; TODO: Implement BC_SEED as State[ST_RAND]=r0*0x9d3d+r0 etc.
-	mov r0, r0, asr #16			; FIXED SEED
-	str r0, [r5, #ST_RAND*4]	; State[ST_RAND]=r0
+	mov r1, r0
+	mov r2, r0, lsl #16
+	orr r0, r2, r0, lsr #16
+	mov r2, #0x9d3d
+	mul r1, r2, r1
+	add r0, r0, r1
+	mov r1, r0
+	mov r2, r0, lsl #16
+	orr r0, r2, r0, lsr #16
+	mov r2, #0x9d3d
+	mul r1, r2, r1
+	add r0, r0, r1
+	str r0, [r5, #ST_RAND*4]
 	; BC_CONST [84]
 	ldr r0, [r4, #4*4]			; r0=rConstants[4]
 	; BC_NEG [0d]
@@ -1518,14 +1526,14 @@ proc_7_start:
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r1, r1, asr #8
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl divide			; r0=r0/r1
+	bl divide					; r0=r0/r1
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; TODO: Sign extend r0?
 	mov r0, r0, asl #8
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_OP [3c]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
@@ -1558,14 +1566,14 @@ proc_7_start:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_DIV [09]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r1, r1, asr #8
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl divide			; r0=r0/r1
+	bl divide					; r0=r0/r1
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; TODO: Sign extend r0?
 	mov r0, r0, asl #8
@@ -1573,7 +1581,7 @@ proc_7_start:
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r1, r1, asr #8
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl divide			; r0=r0/r1
+	bl divide					; r0=r0/r1
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; TODO: Sign extend r0?
 	mov r0, r0, asl #8
@@ -1662,18 +1670,23 @@ proc_8_continue_27:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_CONST [82]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #2*4]			; r0=rConstants[2]
 	; BC_RAND [03]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	; TODO: Set R0 from RNG using State[st_rand].
-	ldr r0, [r5, #ST_RAND*4]	; FIXED RAND
-	bic r0, r0, #0xff000000
-	bic r0, r0, #0x00ff0000
+	ldr r0, [r5, #ST_RAND*4]
+	mov r1, r0
+	mov r2, r0, lsl #16
+	orr r0, r2, r0, lsr #16
+	mov r2, #0x9d3d
+	mul r1, r2, r1
+	add r0, r0, r1
+	str r0, [r5, #ST_RAND*4]
+	mov r0, r0, lsr #16
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
@@ -1682,8 +1695,8 @@ proc_8_continue_27:
 	sub r0, r0, r1				; r0=r0 sub r1
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -1801,8 +1814,8 @@ proc_10_start:
 	ldr r0, [r4, #0*4]			; r0=rConstants[0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -1848,8 +1861,8 @@ proc_11_start:
 	ldr r0, [r4, #9*4]			; r0=rConstants[9]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -1966,8 +1979,8 @@ proc_13_start:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -2135,7 +2148,7 @@ proc_15_start:
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r1, r1, asr #8
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl divide			; r0=r0/r1
+	bl divide					; r0=r0/r1
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; TODO: Sign extend r0?
 	mov r0, r0, asl #8

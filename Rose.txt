@@ -170,3 +170,30 @@ TODO:
 - Add QTM Player for MOD.
 
 - Win. :)
+
+
+proc streg x0 y0 d step l t
+	jump x0 y0
+	face d
+	temp s = step*step
+	size s
+	defy seed x*y
+	temp n = (l/step*16)&~1
+	fork stregstep d step t*step/l/16 n
+
+fork streg 285 220 ~64 3    8 24 
+proc streg x0  y0  d   step l t
+x0=$11d y0=$dc d=$ffc0 step=3 l=8 t=$18
+
+proc stregstep d step w n
+d=$ffc0 step=3 w=$9000 n=$2a0000
+
+proc stregstep d step w n
+	when n
+		draw
+		wait w
+		move step
+		temp rel = dir-d
+		defy turn (rand-0.4-rel*0.0078125)*5
+		fork stregstep d step w n-1
+	done

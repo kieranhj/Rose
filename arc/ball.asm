@@ -11,14 +11,12 @@
 .equ ST_RAND, 5
 .equ ST_DIR, 6
 .equ ST_TIME, 7
-.equ ST_WIRE0, 8
-.equ ST_WIRE1, 9
 
 ; ============================================================================
 ; r3 = p_StateStack.
 ; r4 = r_Constants.
 ; r5 = p_State.
-; r6 = r_StateSpace.
+; r6 = <temp>           ; r_StateSpace.
 ; r7 = r_Sinus.
 ; ============================================================================
 

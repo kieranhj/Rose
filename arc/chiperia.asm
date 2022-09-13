@@ -11,14 +11,12 @@
 .equ ST_RAND, 5
 .equ ST_DIR, 6
 .equ ST_TIME, 7
-.equ ST_WIRE0, 8
-.equ ST_WIRE1, 9
 
 ; ============================================================================
 ; r3 = p_StateStack.
 ; r4 = r_Constants.
 ; r5 = p_State.
-; r6 = r_StateSpace.
+; r6 = <temp>           ; r_StateSpace.
 ; r7 = r_Sinus.
 ; ============================================================================
 
@@ -1991,8 +1989,8 @@ proc_20_start:
 	add r0, r0, r1				; r0=r0 add r1
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_CONST [b0]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -2027,8 +2025,8 @@ proc_20_continue_52:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RLOCAL [62]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -2067,8 +2065,8 @@ proc_20_continue_52:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -2128,8 +2126,8 @@ proc_20_continue_52:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_20_continue_53
@@ -2160,8 +2158,8 @@ proc_20_continue_53:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RLOCAL [62]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -2190,8 +2188,8 @@ proc_20_continue_53:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
@@ -2216,13 +2214,13 @@ proc_20_continue_53:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_20_continue_54
@@ -2251,8 +2249,8 @@ proc_20_continue_54:
 	movs r0, r0					; update Status flags
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RLOCAL [62]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -2553,9 +2551,19 @@ proc_25_start:
 	; BC_CONST [88]
 	ldr r0, [r4, #8*4]			; r0=rConstants[8]
 	; BC_SEED [0c]
-	; TODO: Implement BC_SEED as State[ST_RAND]=r0*0x9d3d+r0 etc.
-	mov r0, r0, asr #16			; FIXED SEED
-	str r0, [r5, #ST_RAND*4]	; State[ST_RAND]=r0
+	mov r1, r0
+	mov r2, r0, lsl #16
+	orr r0, r2, r0, lsr #16
+	mov r2, #0x9d3d
+	mul r1, r2, r1
+	add r0, r0, r1
+	mov r1, r0
+	mov r2, r0, lsl #16
+	orr r0, r2, r0, lsr #16
+	mov r2, #0x9d3d
+	mul r1, r2, r1
+	add r0, r0, r1
+	str r0, [r5, #ST_RAND*4]
 	; BC_CONST [87]
 	ldr r0, [r4, #7*4]			; r0=rConstants[7]
 	; BC_CONST [99]
@@ -2647,9 +2655,19 @@ proc_25_continue_60:
 	; BC_CONST [8a]
 	ldr r0, [r4, #10*4]			; r0=rConstants[10]
 	; BC_SEED [0c]
-	; TODO: Implement BC_SEED as State[ST_RAND]=r0*0x9d3d+r0 etc.
-	mov r0, r0, asr #16			; FIXED SEED
-	str r0, [r5, #ST_RAND*4]	; State[ST_RAND]=r0
+	mov r1, r0
+	mov r2, r0, lsl #16
+	orr r0, r2, r0, lsr #16
+	mov r2, #0x9d3d
+	mul r1, r2, r1
+	add r0, r0, r1
+	mov r1, r0
+	mov r2, r0, lsl #16
+	orr r0, r2, r0, lsr #16
+	mov r2, #0x9d3d
+	mul r1, r2, r1
+	add r0, r0, r1
+	str r0, [r5, #ST_RAND*4]
 	; BC_CONST [87]
 	ldr r0, [r4, #7*4]			; r0=rConstants[7]
 	; BC_CONST [99]
@@ -2741,9 +2759,19 @@ proc_25_continue_62:
 	; BC_CONST [8b]
 	ldr r0, [r4, #11*4]			; r0=rConstants[11]
 	; BC_SEED [0c]
-	; TODO: Implement BC_SEED as State[ST_RAND]=r0*0x9d3d+r0 etc.
-	mov r0, r0, asr #16			; FIXED SEED
-	str r0, [r5, #ST_RAND*4]	; State[ST_RAND]=r0
+	mov r1, r0
+	mov r2, r0, lsl #16
+	orr r0, r2, r0, lsr #16
+	mov r2, #0x9d3d
+	mul r1, r2, r1
+	add r0, r0, r1
+	mov r1, r0
+	mov r2, r0, lsl #16
+	orr r0, r2, r0, lsr #16
+	mov r2, #0x9d3d
+	mul r1, r2, r1
+	add r0, r0, r1
+	str r0, [r5, #ST_RAND*4]
 	; BC_CONST [87]
 	ldr r0, [r4, #7*4]			; r0=rConstants[7]
 	; BC_CONST [99]
@@ -2833,9 +2861,19 @@ proc_25_continue_64:
 	; BC_CONST [8e]
 	ldr r0, [r4, #14*4]			; r0=rConstants[14]
 	; BC_SEED [0c]
-	; TODO: Implement BC_SEED as State[ST_RAND]=r0*0x9d3d+r0 etc.
-	mov r0, r0, asr #16			; FIXED SEED
-	str r0, [r5, #ST_RAND*4]	; State[ST_RAND]=r0
+	mov r1, r0
+	mov r2, r0, lsl #16
+	orr r0, r2, r0, lsr #16
+	mov r2, #0x9d3d
+	mul r1, r2, r1
+	add r0, r0, r1
+	mov r1, r0
+	mov r2, r0, lsl #16
+	orr r0, r2, r0, lsr #16
+	mov r2, #0x9d3d
+	mul r1, r2, r1
+	add r0, r0, r1
+	str r0, [r5, #ST_RAND*4]
 	; BC_CONST [87]
 	ldr r0, [r4, #7*4]			; r0=rConstants[7]
 	; BC_CONST [99]
@@ -2919,31 +2957,41 @@ proc_26_start:
 	ldr r0, [r4, #5*4]			; r0=rConstants[5]
 	; BC_RAND [03]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	; TODO: Set R0 from RNG using State[st_rand].
-	ldr r0, [r5, #ST_RAND*4]	; FIXED RAND
-	bic r0, r0, #0xff000000
-	bic r0, r0, #0x00ff0000
+	ldr r0, [r5, #ST_RAND*4]
+	mov r1, r0
+	mov r2, r0, lsl #16
+	orr r0, r2, r0, lsr #16
+	mov r2, #0x9d3d
+	mul r1, r2, r1
+	add r0, r0, r1
+	str r0, [r5, #ST_RAND*4]
+	mov r0, r0, lsr #16
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_CONST [97]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #23*4]			; r0=rConstants[23]
 	; BC_RAND [03]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	; TODO: Set R0 from RNG using State[st_rand].
-	ldr r0, [r5, #ST_RAND*4]	; FIXED RAND
-	bic r0, r0, #0xff000000
-	bic r0, r0, #0x00ff0000
+	ldr r0, [r5, #ST_RAND*4]
+	mov r1, r0
+	mov r2, r0, lsl #16
+	orr r0, r2, r0, lsr #16
+	mov r2, #0x9d3d
+	mul r1, r2, r1
+	add r0, r0, r1
+	str r0, [r5, #ST_RAND*4]
+	mov r0, r0, lsr #16
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -3062,17 +3110,22 @@ proc_27_start:
 	ldr r0, [r4, #4*4]			; r0=rConstants[4]
 	; BC_RAND [03]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	; TODO: Set R0 from RNG using State[st_rand].
-	ldr r0, [r5, #ST_RAND*4]	; FIXED RAND
-	bic r0, r0, #0xff000000
-	bic r0, r0, #0x00ff0000
+	ldr r0, [r5, #ST_RAND*4]
+	mov r1, r0
+	mov r2, r0, lsl #16
+	orr r0, r2, r0, lsr #16
+	mov r2, #0x9d3d
+	mul r1, r2, r1
+	add r0, r0, r1
+	str r0, [r5, #ST_RAND*4]
+	mov r0, r0, lsr #16
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RLOCAL [63]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -3162,17 +3215,22 @@ proc_27_target_69:
 	ldr r0, [r4, #4*4]			; r0=rConstants[4]
 	; BC_RAND [03]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	; TODO: Set R0 from RNG using State[st_rand].
-	ldr r0, [r5, #ST_RAND*4]	; FIXED RAND
-	bic r0, r0, #0xff000000
-	bic r0, r0, #0x00ff0000
+	ldr r0, [r5, #ST_RAND*4]
+	mov r1, r0
+	mov r2, r0, lsl #16
+	orr r0, r2, r0, lsr #16
+	mov r2, #0x9d3d
+	mul r1, r2, r1
+	add r0, r0, r1
+	str r0, [r5, #ST_RAND*4]
+	mov r0, r0, lsr #16
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	sub r0, r0, r1				; r0=r0 sub r1
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, lsr #8
-	mov r1, r1, lsr #8
+	mov r0, r0, asr #8
+	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
