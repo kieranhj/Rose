@@ -44,6 +44,46 @@ r_MaxTurtles:
     .long 0
 .endif
 
+p_ColorScript:
+    .long r_ColorScript
+
+; ============================================================================
+
+RunColorScript:
+    ldr r6, p_ColorScript
+    ldr r0, [r6]                ; delta_frame.
+    adds r0, r0, #1             ; increment frame.
+    str r0, [r6]
+    bmi .2                      ; not yet.
+
+    adr r1, palette_osword_block
+    mov r0, #16
+    strb r0, [r1, #1]       ; physical colour
+.1:
+    ldr r2, [r6, #4]!           ; get index + RGB
+    movs r2, r2                 ; status.
+    bmi .2                      ; next delta.
+
+    ; Set palette! [RGBx word]
+    mov r0, r2, lsr #24
+    strb r0, [r1, #0]       ; logical colour
+    strb r2, [r1, #2]       ; red
+    mov r0, r2, lsr #8
+    strb r0, [r1, #3]       ; green
+    mov r0, r2, lsr #16
+    strb r0, [r1, #4]       ; blue
+    mov r0, #12
+    swi OS_Word
+
+    b .1
+
+.2:
+    str r6, p_ColorScript
+    mov pc, lr
+
+palette_osword_block:
+    .skip 8
+
 ; ============================================================================
 ; r3 = p_StateStack.
 ; r4 = r_Constants.

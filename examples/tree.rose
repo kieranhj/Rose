@@ -5,7 +5,7 @@ plan
 proc main
 	jump 176 250
 	face ~64
-	seed 42
+	# seed 42
 	fork tree 8 30
 
 proc tree s n

@@ -242,24 +242,24 @@ RoseInterrupt:
 	if	COMPATIBILITY<=1
 	lea.l	$188(a3),a0
 	else
-	lea.l	$190(a3),a0
+	lea.l	$190(a3),a0					; presume a0 = p_Palette
 	endc
 	if	COMPATIBILITY=1
 	btst.b	#1,$004(a3)
 	beq.b	.noaga
 	addq.l	#8,a0
 .noaga:	endc
-	move.l	r_ColorScript(a6),a1
-	addq.w	#1,(a1)+
-	bmi.b	.colorsdone
-.putcolor:	move.w	(a1)+,d2
-	move.w	d2,d1
-	rol.w	#5,d1
-	and.w	#14,d1
-	move.w	d2,(a0,d1.w)
-	tst.w	(a1)
-	bpl.b	.putcolor
-	move.l	a1,r_ColorScript(a6)
+	move.l	r_ColorScript(a6),a1		; a1 = *r_ColorScript = p_ColorScript
+	addq.w	#1,(a1)+					; delta = *(p_ColorScript++) += 1
+	bmi.b	.colorsdone					; if delta < 0 goto colorsdone
+.putcolor:	move.w	(a1)+,d2			; d2 = *(p_ColorScript++)
+	move.w	d2,d1						; d1 = d2
+	rol.w	#5,d1						; d1 = d1 << 5
+	and.w	#14,d1						; d1 = d1 & 14
+	move.w	d2,(a0,d1.w)				; pPalette[d1] = d2
+	tst.w	(a1)						; if *pColorScript > 0
+	bpl.b	.putcolor					; goto putcolor
+	move.l	a1,r_ColorScript(a6)		; r_ColorScript = p_ColorScript
 .colorsdone:
 
 	; Set next copperlist

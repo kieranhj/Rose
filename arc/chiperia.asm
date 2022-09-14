@@ -3418,3 +3418,50 @@ r_Constants:
 .long 0x00540000				; [97] = 84.0
 .long 0x00320000				; [98] = 50.0
 .long 0x001c0000				; [99] = 28.0
+
+; ============================================================================
+; Color Script.
+; ============================================================================
+
+r_ColorScript:
+.long -1, 0x00554444, 0x02ffffff, 0x01ff77dd			; delta_frames=1 [0]
+.long -96, 0x01ff8866			; delta_frames=96 [96]
+.long -96, 0x0155ee55			; delta_frames=96 [192]
+.long -96, 0x0144ddff			; delta_frames=96 [288]
+.long -84, 0x03bb4499			; delta_frames=84 [372]
+.long -12, 0x01ff77dd			; delta_frames=12 [384]
+.long -84, 0x03cc4444			; delta_frames=84 [468]
+.long -12, 0x01ff8866			; delta_frames=12 [480]
+.long -84, 0x03339933			; delta_frames=84 [564]
+.long -12, 0x0155ee55			; delta_frames=12 [576]
+.long -84, 0x030088bb			; delta_frames=84 [660]
+.long -12, 0x0144ddff			; delta_frames=12 [672]
+.long -96, 0x01ff77dd, 0x03bb4499			; delta_frames=96 [768]
+.long -96, 0x01ff8866, 0x03cc4444			; delta_frames=96 [864]
+.long -96, 0x0155ee55, 0x03339933			; delta_frames=96 [960]
+.long -96, 0x0144ddff, 0x030088bb			; delta_frames=96 [1056]
+.long -84, 0x00665533			; delta_frames=84 [1140]
+.long -3, 0x00776622			; delta_frames=3 [1143]
+.long -3, 0x00887711			; delta_frames=3 [1146]
+.long -3, 0x00998800			; delta_frames=3 [1149]
+.long -3, 0x01000000			; delta_frames=3 [1152]
+.long -210, 0x000088bb			; delta_frames=210 [1362]
+.long -150, 0x00222288			; delta_frames=150 [1512]
+.long -200, 0x03882244			; delta_frames=200 [1712]
+.long -35, 0x00882244			; delta_frames=35 [1747]
+.long -50, 0x00554444			; delta_frames=50 [1797]
+.long -28, 0x01ffffff			; delta_frames=28 [1825]
+.long -6, 0x01ff77dd			; delta_frames=6 [1831]
+.long -6, 0x01bb4499, 0x02ffffff			; delta_frames=6 [1837]
+.long -6, 0x02ff8866			; delta_frames=6 [1843]
+.long -6, 0x01554444, 0x02cc4444, 0x03ffffff			; delta_frames=6 [1849]
+.long -6, 0x0355ee55			; delta_frames=6 [1855]
+.long -6, 0x02554444, 0x03339933, 0x01ffffff			; delta_frames=6 [1861]
+.long -6, 0x0144ddff			; delta_frames=6 [1867]
+.long -6, 0x03554444, 0x010088bb			; delta_frames=6 [1873]
+.long -12, 0x01554444			; delta_frames=12 [1885]
+.long -12, 0x00443333, 0x01443333, 0x02443333, 0x03443333			; delta_frames=12 [1897]
+.long -6, 0x00332222, 0x01332222, 0x02332222, 0x03332222			; delta_frames=6 [1903]
+.long -6, 0x00221111, 0x01221111, 0x02221111, 0x03221111			; delta_frames=6 [1909]
+.long -6, 0x00000000, 0x01000000, 0x02000000, 0x03000000			; delta_frames=6 [1915]
+.long 0x80000000	; END_SCRIPT.

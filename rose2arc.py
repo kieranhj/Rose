@@ -457,7 +457,7 @@ def TranslateConstants(const_file, asm_file):
     
     while True:
         b = const_file.read(4)
-        if b == b'':            # break return binary empty string.
+        if b == b'':            # binary empty string == EOF
             break
         c = int.from_bytes(b, "big")
         asm_file.write(f'.long 0x{c:08x}\t\t\t\t; [{num_constants}] = {(c/(1<<16))}\n')
@@ -465,12 +465,61 @@ def TranslateConstants(const_file, asm_file):
 
     print(f'Wrote {num_constants} constants.\n')
 
+def TranslateColorScript(color_file, asm_file):
+    num_events = 0
+    asm_file.write('\n; ============================================================================\n')
+    asm_file.write(f'; Color Script.\n')
+    asm_file.write('; ============================================================================\n')
+    asm_file.write(f'\nr_ColorScript:\n')
+
+    done=False
+    total_frames=-1
+
+    while not done:
+        b = color_file.read(2)
+        if b == b'':            # binary empty string == EOF
+            break
+        c = int.from_bytes(b, "big")
+
+        if c >= 0x8000:
+            # New delta.
+            if total_frames >= 0:
+                asm_file.write(f'\t\t\t; delta_frames={delta_frames} [{total_frames}]\n')
+
+            if c == 0x8000:
+                done=True
+                delta_frames = 0x80000000
+                asm_file.write(f'.long 0x{delta_frames:08x}')
+            else:    
+                delta_frames = ((~c)+1)&0xffff
+                total_frames += delta_frames
+
+                # asm_file.write(f'.short 0x{c:04x}')
+                asm_file.write(f'.long {-delta_frames}')
+
+            num_events += 1
+        else:
+            # asm_file.write(f', 0x{c:04x}')
+            i = c >> 12
+            r = (c >> 8) & 0xf
+            r = r | r<<4
+            g = (c >> 4) & 0xf
+            g = g | g<<4
+            bl = c & 0xf
+            bl = bl | bl<<4
+            # asm_file.write(f', 0x{c:08x}')
+            asm_file.write(f', 0x{i:02x}{bl:02x}{g:02x}{r:02x}')
+
+    asm_file.write(f'\t; END_SCRIPT.\n')
+    print(f'Wrote {num_events} events from ColorScript.\n')
+
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("input", help="Rose bytecodes file")
-    parser.add_argument("-o", "--output", metavar="<output>", help="Write ARM asm file to <output> (default is 'bytecodes.asm')")
     parser.add_argument("-c", "--constants", metavar="<constants>", help="Read constants.bin file and add to asm file.")
+    parser.add_argument("-o", "--output", metavar="<output>", help="Write ARM asm file to <output> (default is 'bytecodes.asm')")
+    parser.add_argument("-s", "--script", metavar="<script>", help="Read colorscript.bin file and add to asm file.")
     parser.add_argument("-v", "--verbose", action="store_true", help="Print all the debugs")
     args = parser.parse_args()
 
@@ -514,6 +563,11 @@ if __name__ == '__main__':
         const_file = open(args.constants, 'rb')
         TranslateConstants(const_file, asm_file)
         const_file.close()
+
+    if args.script is not None:
+        color_file = open(args.script, 'rb')
+        TranslateColorScript(color_file, asm_file)
+        color_file.close()
 
     print(f'Wrote {asm_file.tell()} bytes.\n')
 

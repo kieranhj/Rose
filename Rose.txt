@@ -145,23 +145,25 @@ TODO: Check unreachable code after fork? - DONE
 - Test!
     - circle - WORKS!
     - ball - INVISIBLE
-    - tree - CRASHES LATER ON!
-    - chiperia - CRASHES AFTER FIRST SEQUENCE
-        - STACK OVERFLOW in line2 (proc_19)
-
-    - teaser - HARD CRASH!
-    - everyway - WON'T ASSEMBLE!
+    - tree - WORKS! NOT SURE ABOUT RNG...
+    - chiperia - WORKS! NOT SURE ABOUT SOME MATHS.
+    - teaser - WORKS! LINES ARE TOO BENDY..!
+    - everyway - WON'T EVEN ASSEMBLE!
 
 TODO:
     - Incorrect push on StateStack after ELSE in tree.asm - DONE
+    - CHECK: Sign extend on division?
+    - CHECK: Random number generator vs. Visualiser.
+    - CHECK: Status flags for all OPS?
+    - Optimise redundant 'movs r0, r0' for WHEN without OP case only.
     - Need more debug:
-        - Display frame no., number of turtles etc.
+        - Display frame no., number of turtles etc - DONE
         - Stop on frame no.
         - Single step frames after stop.
         - Play/pause frames.
         - Restart.
 
-- Implement colorscript.bin, LOOK, PLAN etc.
+- Implement colorscript.bin, LOOK, PLAN etc. - DONE
 
 - Write more optimal Circle & Square plotting fn.
     - Ask Sarah for her routines from Horizon?
@@ -170,30 +172,3 @@ TODO:
 - Add QTM Player for MOD.
 
 - Win. :)
-
-
-proc streg x0 y0 d step l t
-	jump x0 y0
-	face d
-	temp s = step*step
-	size s
-	defy seed x*y
-	temp n = (l/step*16)&~1
-	fork stregstep d step t*step/l/16 n
-
-fork streg 285 220 ~64 3    8 24 
-proc streg x0  y0  d   step l t
-x0=$11d y0=$dc d=$ffc0 step=3 l=8 t=$18
-
-proc stregstep d step w n
-d=$ffc0 step=3 w=$9000 n=$2a0000
-
-proc stregstep d step w n
-	when n
-		draw
-		wait w
-		move step
-		temp rel = dir-d
-		defy turn (rand-0.4-rel*0.0078125)*5
-		fork stregstep d step w n-1
-	done

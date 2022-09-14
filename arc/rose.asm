@@ -101,6 +101,9 @@ main_loop:
 	mov r0, #19
 	swi OS_Byte
 
+	; process color script.
+	bl RunColorScript
+
     ; do the rose thing!
     bl RunFrame
 

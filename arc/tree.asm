@@ -21,38 +21,22 @@
 ; ============================================================================
 
 proc_0_start:
-	; BC_CONST [90]
-	ldr r0, [r4, #16*4]			; r0=rConstants[16]
 	; BC_CONST [8f]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #15*4]			; r0=rConstants[15]
+	; BC_CONST [8e]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r4, #14*4]			; r0=rConstants[14]
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [8d]
-	ldr r0, [r4, #13*4]			; r0=rConstants[13]
+	; BC_CONST [8c]
+	ldr r0, [r4, #12*4]			; r0=rConstants[12]
 	; BC_NEG [0d]
 	rsb r0, r0, #0				; r0=0-r0
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [8a]
-	ldr r0, [r4, #10*4]			; r0=rConstants[10]
-	; BC_SEED [0c]
-	mov r1, r0
-	mov r2, r0, lsl #16
-	orr r0, r2, r0, lsr #16
-	mov r2, #0x9d3d
-	mul r1, r2, r1
-	add r0, r0, r1
-	mov r1, r0
-	mov r2, r0, lsl #16
-	orr r0, r2, r0, lsr #16
-	mov r2, #0x9d3d
-	mul r1, r2, r1
-	add r0, r0, r1
-	str r0, [r5, #ST_RAND*4]
 	; BC_CONST [85]
 	ldr r0, [r4, #5*4]			; r0=rConstants[5]
 	; BC_CONST [87]
@@ -332,8 +316,8 @@ proc_1_target_3:
 	cmp r0, r1					; r0 cmp r1
 	; BC_WHEN [1c]
 	bge proc_1_target_4
-	; BC_CONST [8c]
-	ldr r0, [r4, #12*4]			; r0=rConstants[12]
+	; BC_CONST [8b]
+	ldr r0, [r4, #11*4]			; r0=rConstants[11]
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -398,8 +382,8 @@ proc_1_target_0:
 	mul r1, r2, r1
 	add r0, r0, r1
 	str r0, [r5, #ST_RAND*4]
-	; BC_CONST [8b]
-	ldr r0, [r4, #11*4]			; r0=rConstants[11]
+	; BC_CONST [8a]
+	ldr r0, [r4, #10*4]			; r0=rConstants[10]
 	; BC_RAND [03]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_RAND*4]
@@ -427,9 +411,9 @@ proc_1_continue_6:
 	; BC_CONST [81]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #1*4]			; r0=rConstants[1]
-	; BC_CONST [8e]
+	; BC_CONST [8d]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #14*4]			; r0=rConstants[14]
+	ldr r0, [r4, #13*4]			; r0=rConstants[13]
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_X*4]		; r0=State[ST_X]
@@ -547,10 +531,17 @@ r_Constants:
 .long 0x001e0000				; [7] = 30.0
 .long 0x00200000				; [8] = 32.0
 .long 0x00280000				; [9] = 40.0
-.long 0x002a0000				; [10] = 42.0
-.long 0x00320000				; [11] = 50.0
-.long 0x003c0000				; [12] = 60.0
-.long 0x00400000				; [13] = 64.0
-.long 0x00640000				; [14] = 100.0
-.long 0x00b00000				; [15] = 176.0
-.long 0x00fa0000				; [16] = 250.0
+.long 0x00320000				; [10] = 50.0
+.long 0x003c0000				; [11] = 60.0
+.long 0x00400000				; [12] = 64.0
+.long 0x00640000				; [13] = 100.0
+.long 0x00b00000				; [14] = 176.0
+.long 0x00fa0000				; [15] = 250.0
+
+; ============================================================================
+; Color Script.
+; ============================================================================
+
+r_ColorScript:
+.long -1, 0x00221111, 0x01112244, 0x020000ff, 0x0333cc33			; delta_frames=1 [0]
+.long 0x80000000	; END_SCRIPT.
