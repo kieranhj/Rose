@@ -85,6 +85,7 @@ class RoseParser:
         self._byte_file = byte_file
         self._label_stack = []
         self._push_pending = False
+        self._load_without_op = False
     
     def push_var(self, reg):
         # TODO: Stack optimisation.
@@ -96,6 +97,7 @@ class RoseParser:
         if self._push_pending:
             self._asm_file.write(f'\tstr r{reg}, [r3, #-4]!\t\t\t; Push r{reg} on StateStack.\n')
             self._push_pending = False
+        self._load_without_op = True
 
     def pop_var(self, reg):
         if self._push_pending:
@@ -256,6 +258,11 @@ class RoseParser:
 
     def write_when(self, c):
         self._asm_file.write(f'\t; BC_WHEN [{c:02x}]\n')
+
+        # Need to update status flags after load without op.
+        if self._load_without_op:
+            self._asm_file.write(f'\tmovs r0, r0\t\t\t\t\t; update Status flags\n')
+
         cond = c & 0xf
         # NOTE: Uses negated condition for WHEN!
         if cond == CMP_EQ:
@@ -321,15 +328,15 @@ class RoseParser:
             opcode = 'movs'
             shift = 'rol'
         elif op == OP_OR:
-            opcode = 'ora'
+            opcode = 'oras'
         elif op == OP_SUB:
-            opcode = 'sub'
+            opcode = 'subs'
         elif op == OP_CMP:
             opcode = 'cmp'
         elif op == OP_AND:
-            opcode = 'and'
+            opcode = 'ands'
         elif op == OP_ADD:
-            opcode = 'add'
+            opcode = 'adds'
         else:
             opcode = 'unknown'
 
@@ -341,6 +348,8 @@ class RoseParser:
             else:
                 self._asm_file.write(f'\t{opcode} r0, r0, {shift}, r1\t\t\t; r0=r0 {shift} r1\n')
             self.push_var(0)
+
+        self._load_without_op = False
 
     def write_wlocal(self, c):
         self._asm_file.write(f'\t; BC_WLOCAL [{c:02x}]\n')
@@ -359,7 +368,6 @@ class RoseParser:
         self.load_var(0)
         x = c & 0xf
         self._asm_file.write(f'\tldr r0, [r5, #{~x}*4]\t\t\t; r0=StateStack[{~x}]\n')
-        self._asm_file.write(f'\tmovs r0, r0\t\t\t\t\t; update Status flags\n')
         self.push_var(0)
 
     def write_rstate(self, c):
@@ -367,7 +375,6 @@ class RoseParser:
         self.load_var(0)
         x = c & 0xf
         self._asm_file.write(f'\tldr r0, [r5, #{STATE_NAMES[x]}*4]\t\t; r0=State[{STATE_NAMES[x]}]\n')
-        self._asm_file.write(f'\tmovs r0, r0\t\t\t\t\t; update Status flags\n')
         self.push_var(0)
 
 

@@ -154,8 +154,8 @@ TODO:
     - Incorrect push on StateStack after ELSE in tree.asm - DONE
     - CHECK: Sign extend on division?
     - CHECK: Random number generator vs. Visualiser.
-    - CHECK: Status flags for all OPS?
-    - Optimise redundant 'movs r0, r0' for WHEN without OP case only.
+    - CHECK: Status flags for all OPS? - DONE.
+    - Optimise redundant 'movs r0, r0' for WHEN without OP case only. - DONE
     - Need more debug:
         - Display frame no., number of turtles etc - DONE
         - Stop on frame no.
