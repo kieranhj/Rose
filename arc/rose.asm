@@ -194,9 +194,12 @@ r_Instructions:
 ;.include "circle.asm"			; WORKS! \o/
 ;.include "ball.asm"			; INVISIBLE! :\
 ;.include "tree.asm"			; WORKS? :)
-.include "chiperia.asm"		; SOME MATHS ERRORS STILL?
+;.include "chiperia.asm"		; SOME MATHS ERRORS STILL?
 ;.include "teaser.asm"			; SOME MATHS ERRORS STILL?
 ;.include "everyway.asm"		; WON'T EVEN COMPILE!
+.include "jesuis.asm"
+;.include "euphoria.asm"
+;.include "frustration.asm"
 
 ; ============================================================================
 ; Data Segment

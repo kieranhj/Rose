@@ -144,8 +144,8 @@ TODO: Check unreachable code after fork? - DONE
 
 - Test!
     - circle - WORKS!
-    - ball - INVISIBLE
-    - tree - WORKS! NOT SURE ABOUT RNG...
+    - ball - INVISIBLE - CIRCLES NEED TO BE SORTED BY Y.
+    - tree - WORKS!
     - chiperia - WORKS! NOT SURE ABOUT SOME MATHS.
     - teaser - WORKS! LINES ARE TOO BENDY..!
     - everyway - WON'T EVEN ASSEMBLE!
@@ -153,7 +153,7 @@ TODO: Check unreachable code after fork? - DONE
 TODO:
     - Incorrect push on StateStack after ELSE in tree.asm - DONE
     - CHECK: Sign extend on division?
-    - CHECK: Random number generator vs. Visualiser.
+    - CHECK: Random number generator vs. Visualiser. - DONE
     - CHECK: Status flags for all OPS? - DONE.
     - Optimise redundant 'movs r0, r0' for WHEN without OP case only. - DONE
     - Need more debug:
