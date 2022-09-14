@@ -138,16 +138,23 @@ class RoseParser:
         self._asm_file.write(f'proc_{self._proc_no}_end:\n\n')
         self._proc_no += 1
 
-    def write_rand(self, c):
-        self._asm_file.write(f'\t; BC_RAND [{c:02x}]\n')
-        self.load_var(0)
-        self._asm_file.write(f'\tldr r0, [r5, #ST_RAND*4]\n')
-        self._asm_file.write(f'\tmov r1, r0\n')
+
+    def write_random_iteration(self):
+        # return ((v & 0xFFFF) * 0x9D3D) + ((v << 16) | ((v >> 16) & 0xFFFF));
+        self._asm_file.write(f'\tbic r1, r0, #0xff000000\n')
+        self._asm_file.write(f'\tbic r1, r1, #0x00ff0000\n')
         self._asm_file.write(f'\tmov r2, r0, lsl #16\n')
         self._asm_file.write(f'\torr r0, r2, r0, lsr #16\n')
         self._asm_file.write(f'\tmov r2, #0x9d3d\n')
         self._asm_file.write(f'\tmul r1, r2, r1\n')
         self._asm_file.write(f'\tadd r0, r0, r1\n')
+
+
+    def write_rand(self, c):
+        self._asm_file.write(f'\t; BC_RAND [{c:02x}]\n')
+        self.load_var(0)
+        self._asm_file.write(f'\tldr r0, [r5, #ST_RAND*4]\n')
+        self.write_random_iteration()
         self._asm_file.write(f'\tstr r0, [r5, #ST_RAND*4]\n')
         self._asm_file.write(f'\tmov r0, r0, lsr #16\n')
         self.push_var(0)
@@ -220,18 +227,8 @@ class RoseParser:
     def write_seed(self, c):
         self._asm_file.write(f'\t; BC_SEED [{c:02x}]\n')
         self.pop_var(0)
-        self._asm_file.write(f'\tmov r1, r0\n')
-        self._asm_file.write(f'\tmov r2, r0, lsl #16\n')
-        self._asm_file.write(f'\torr r0, r2, r0, lsr #16\n')
-        self._asm_file.write(f'\tmov r2, #0x9d3d\n')
-        self._asm_file.write(f'\tmul r1, r2, r1\n')
-        self._asm_file.write(f'\tadd r0, r0, r1\n')
-        self._asm_file.write(f'\tmov r1, r0\n')
-        self._asm_file.write(f'\tmov r2, r0, lsl #16\n')
-        self._asm_file.write(f'\torr r0, r2, r0, lsr #16\n')
-        self._asm_file.write(f'\tmov r2, #0x9d3d\n')
-        self._asm_file.write(f'\tmul r1, r2, r1\n')
-        self._asm_file.write(f'\tadd r0, r0, r1\n')
+        self.write_random_iteration()
+        self.write_random_iteration()
         self._asm_file.write(f'\tstr r0, [r5, #ST_RAND*4]\n')
 
     def write_neg(self, c):

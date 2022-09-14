@@ -2451,13 +2451,15 @@ proc_25_start:
 	; BC_CONST [88]
 	ldr r0, [r4, #8*4]			; r0=rConstants[8]
 	; BC_SEED [0c]
-	mov r1, r0
+	bic r1, r0, #0xff000000
+	bic r1, r1, #0x00ff0000
 	mov r2, r0, lsl #16
 	orr r0, r2, r0, lsr #16
 	mov r2, #0x9d3d
 	mul r1, r2, r1
 	add r0, r0, r1
-	mov r1, r0
+	bic r1, r0, #0xff000000
+	bic r1, r1, #0x00ff0000
 	mov r2, r0, lsl #16
 	orr r0, r2, r0, lsr #16
 	mov r2, #0x9d3d
@@ -2555,13 +2557,15 @@ proc_25_continue_60:
 	; BC_CONST [8a]
 	ldr r0, [r4, #10*4]			; r0=rConstants[10]
 	; BC_SEED [0c]
-	mov r1, r0
+	bic r1, r0, #0xff000000
+	bic r1, r1, #0x00ff0000
 	mov r2, r0, lsl #16
 	orr r0, r2, r0, lsr #16
 	mov r2, #0x9d3d
 	mul r1, r2, r1
 	add r0, r0, r1
-	mov r1, r0
+	bic r1, r0, #0xff000000
+	bic r1, r1, #0x00ff0000
 	mov r2, r0, lsl #16
 	orr r0, r2, r0, lsr #16
 	mov r2, #0x9d3d
@@ -2659,13 +2663,15 @@ proc_25_continue_62:
 	; BC_CONST [8b]
 	ldr r0, [r4, #11*4]			; r0=rConstants[11]
 	; BC_SEED [0c]
-	mov r1, r0
+	bic r1, r0, #0xff000000
+	bic r1, r1, #0x00ff0000
 	mov r2, r0, lsl #16
 	orr r0, r2, r0, lsr #16
 	mov r2, #0x9d3d
 	mul r1, r2, r1
 	add r0, r0, r1
-	mov r1, r0
+	bic r1, r0, #0xff000000
+	bic r1, r1, #0x00ff0000
 	mov r2, r0, lsl #16
 	orr r0, r2, r0, lsr #16
 	mov r2, #0x9d3d
@@ -2761,13 +2767,15 @@ proc_25_continue_64:
 	; BC_CONST [8e]
 	ldr r0, [r4, #14*4]			; r0=rConstants[14]
 	; BC_SEED [0c]
-	mov r1, r0
+	bic r1, r0, #0xff000000
+	bic r1, r1, #0x00ff0000
 	mov r2, r0, lsl #16
 	orr r0, r2, r0, lsr #16
 	mov r2, #0x9d3d
 	mul r1, r2, r1
 	add r0, r0, r1
-	mov r1, r0
+	bic r1, r0, #0xff000000
+	bic r1, r1, #0x00ff0000
 	mov r2, r0, lsl #16
 	orr r0, r2, r0, lsr #16
 	mov r2, #0x9d3d
@@ -2858,7 +2866,8 @@ proc_26_start:
 	; BC_RAND [03]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_RAND*4]
-	mov r1, r0
+	bic r1, r0, #0xff000000
+	bic r1, r1, #0x00ff0000
 	mov r2, r0, lsl #16
 	orr r0, r2, r0, lsr #16
 	mov r2, #0x9d3d
@@ -2880,7 +2889,8 @@ proc_26_start:
 	; BC_RAND [03]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_RAND*4]
-	mov r1, r0
+	bic r1, r0, #0xff000000
+	bic r1, r1, #0x00ff0000
 	mov r2, r0, lsl #16
 	orr r0, r2, r0, lsr #16
 	mov r2, #0x9d3d
@@ -3003,7 +3013,8 @@ proc_27_start:
 	; BC_RAND [03]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_RAND*4]
-	mov r1, r0
+	bic r1, r0, #0xff000000
+	bic r1, r1, #0x00ff0000
 	mov r2, r0, lsl #16
 	orr r0, r2, r0, lsr #16
 	mov r2, #0x9d3d
@@ -3101,7 +3112,8 @@ proc_27_target_69:
 	; BC_RAND [03]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_RAND*4]
-	mov r1, r0
+	bic r1, r0, #0xff000000
+	bic r1, r1, #0x00ff0000
 	mov r2, r0, lsl #16
 	orr r0, r2, r0, lsr #16
 	mov r2, #0x9d3d

@@ -1470,13 +1470,15 @@ proc_7_start:
 	mov r1, r1, asr #8
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_SEED [0c]
-	mov r1, r0
+	bic r1, r0, #0xff000000
+	bic r1, r1, #0x00ff0000
 	mov r2, r0, lsl #16
 	orr r0, r2, r0, lsr #16
 	mov r2, #0x9d3d
 	mul r1, r2, r1
 	add r0, r0, r1
-	mov r1, r0
+	bic r1, r0, #0xff000000
+	bic r1, r1, #0x00ff0000
 	mov r2, r0, lsl #16
 	orr r0, r2, r0, lsr #16
 	mov r2, #0x9d3d
@@ -1642,7 +1644,8 @@ proc_8_continue_27:
 	; BC_RAND [03]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_RAND*4]
-	mov r1, r0
+	bic r1, r0, #0xff000000
+	bic r1, r1, #0x00ff0000
 	mov r2, r0, lsl #16
 	orr r0, r2, r0, lsr #16
 	mov r2, #0x9d3d

@@ -48,6 +48,8 @@ p_ColorScript:
     .long r_ColorScript
 
 ; ============================================================================
+; ColorScript / Palette.
+; ============================================================================
 
 RunColorScript:
     ldr r6, p_ColorScript
@@ -141,6 +143,10 @@ InitMainTurtle:
     str r1, [r3, #-4]!          ; push ptr to prev StateStack on StateStack!
     str r3, [r6, #0]            ; store StackStack ptr in StateList.
     mov pc, lr
+
+; ============================================================================
+; Code Snippets.
+; ============================================================================
 
 ; r5 = p_State
 ; r6 = <temp>

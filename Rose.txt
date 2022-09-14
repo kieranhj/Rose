@@ -162,6 +162,7 @@ TODO:
         - Single step frames after stop.
         - Play/pause frames.
         - Restart.
+    - Send everyway.asm test case to Frank at vasm.
 
 - Implement colorscript.bin, LOOK, PLAN etc. - DONE
 
