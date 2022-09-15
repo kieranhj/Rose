@@ -146,10 +146,12 @@ TODO: Check unreachable code after fork? - DONE
     - circle - WORKS!
     - ball - INVISIBLE - CIRCLES NEED TO BE SORTED BY Y.
     - tree - WORKS!
-    - chiperia - WORKS! NOT SURE ABOUT SOME MATHS?
+    - chiperia - WORKS! NOT SURE ABOUT SOME MATHS ON THE GROWING BITS?
     - teaser - WORKS! LINES ARE TOO BENDY..!
     - everyway - WON'T EVEN ASSEMBLE!
     - jesuis - WORKS! ALTHOUGH CREDITS MISSING?
+    - frustration - BASICALLY WORKS ALTHOUGH BENDY LINES STILL WRONG.
+    - euphoria - FREEZES (?) AT TRANSITION POINT FRAME 0x404..!
 
 TODO:
     - Incorrect push on StateStack after ELSE in tree.asm - DONE
@@ -159,6 +161,7 @@ TODO:
     - Optimise redundant 'movs r0, r0' for WHEN without OP case only. - DONE
     - Need more debug:
         - Display frame no., number of turtles etc - DONE
+        - Frame rate, number of circles etc - DONE
         - Stop on frame no.
         - Single step frames after stop.
         - Play/pause frames.
@@ -170,6 +173,8 @@ TODO:
 - Write more optimal Circle & Square plotting fn.
     - Ask Sarah for her routines from Horizon?
     - Might need raster span sort routine to remove flicker?
+
+- Sort plots per frame from top to bottom.
 
 - Add QTM Player for MOD.
 

@@ -42,6 +42,12 @@ r_NumTurtles:
 
 r_MaxTurtles:
     .long 0
+
+r_NumCircles:
+    .long 0
+
+r_MaxCircles:
+    .long 0
 .endif
 
 p_ColorScript:
@@ -95,6 +101,11 @@ palette_osword_block:
 ; ============================================================================
 
 RunFrame:
+    .if _DEBUG
+    mov r0, #0
+    str r0, r_NumCircles
+    .endif
+
     adr r7, r_Sinus
     adr r4, r_Constants
 .1:
@@ -113,6 +124,13 @@ RunFrame:
 	mov pc, r1                  ; jsr st_proc
     .3:
 	ldr lr, [sp], #4			; Pop lr off program stack.
+
+    .if _DEBUG
+    ldr r8, r_MaxTurtles
+    ldr r6, r_NumTurtles
+    cmp r6, r8
+    strgt r6, r_MaxTurtles
+    .endif
     b .1
 .2:
     mov pc, lr
@@ -240,10 +258,6 @@ ForkState:
     ldr r6, r_NumTurtles
     add r6, r6, #1
     str r6, r_NumTurtles
-
-    ldr r8, r_MaxTurtles
-    cmp r6, r8
-    strgt r6, r_MaxTurtles
     .endif
     mov pc, lr
 
@@ -318,6 +332,15 @@ PutCircle:
     mov r2, r2, asr #14         ; Y [16.16] -> [16.2]
     rsb r2, r2, #1024           ; flip for Archie!
     swi OS_Plot
+
+    .if _DEBUG
+    ldr r1, r_NumCircles
+    ldr r2, r_MaxCircles
+    add r1, r1, #1
+    str r1, r_NumCircles
+    cmp r1, r2
+    strgt r1, r_MaxCircles
+    .endif
     mov pc, lr
 
 ; r8=st_x, r9=st_y, r10=st_size, r11=st_tint.
@@ -342,6 +365,15 @@ PutSquare:
     mov r2, r2, asr #14         ; Y [16.16] -> [16.2]
     rsb r2, r2, #1024           ; flip for Archie!
     swi OS_Plot
+
+    .if _DEBUG
+    ldr r1, r_NumCircles
+    ldr r2, r_MaxCircles
+    add r1, r1, #1
+    str r1, r_NumCircles
+    cmp r1, r2
+    strgt r1, r_MaxCircles
+    .endif
     mov pc, lr
 
 ; Makes sine values [0-0x4000]
