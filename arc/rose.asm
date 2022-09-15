@@ -4,6 +4,7 @@
 
 .equ _DEBUG, 1
 .equ _ENABLE_MUSIC, 0
+.equ _STOP_ON_FRAME, -1
 
 .equ Screen_Banks, 1
 .equ Screen_Mode, 9
@@ -100,6 +101,7 @@ main_loop:
 
 	.if _DEBUG
 	bl debug_info
+	bl debug_controls
 	.endif
 
 	; Exit if Escape is pressed
@@ -125,6 +127,17 @@ main_loop:
 	.endif
 	str r2, last_vsync
 
+	.if _DEBUG
+	ldrb r0, debug_play_pause
+	cmp r0, #0
+	bne .2
+
+	ldrb r0, debug_play_step
+	cmp r0, #0
+	beq main_loop
+	.2:
+	.endif
+
 	; Process color script.
 	bl RunColorScript
 
@@ -135,6 +148,16 @@ main_loop:
     ldr r2, r_FrameCounter
     add r2, r2, #1
     str r2, r_FrameCounter
+
+	.if _DEBUG
+	ldr r1, d_StopOnFrame
+	cmp r2, r1
+	bne .3
+	mov r1, #1
+	str r1, debug_play_pause
+	.3:
+	.endif
+
     ldr r1, r_MaxFrames
     cmp r2, r1
     bge exit
@@ -295,6 +318,69 @@ debug_info:
 debug_string:
 	.skip 16
 
+debug_controls:
+	MOV r0, #OSByte_ReadKey
+	MOV r1, #IKey_Space
+	MOV r2, #0xff
+	SWI OS_Byte
+	CMP r1, #0xff
+	CMPEQ r2, #0xff
+	BNE .1 ; not pressed
+	ldrb r0, debug_debounce_space
+	cmp r0, #0
+	bne .1 ; still pressed
+
+	; Toggle play/pause.
+	ldrb r0, debug_play_pause
+	eor r0, r0, #1
+	strb r0, debug_play_pause
+	.1:
+	strb r1, debug_debounce_space
+
+	mov r0, #0
+	strb r0, debug_play_step
+
+	; Advance frame (with repeat):
+	MOV r0, #OSByte_ReadKey
+	MOV r1, #IKey_RightArrow
+	MOV r2, #0xff
+	SWI OS_Byte
+	CMP r1, #0xff
+	CMPEQ r2, #0xff
+	streqb r1, debug_play_step
+
+	.2:
+	; Advance frame (without repeat):
+	MOV r0, #OSByte_ReadKey
+	MOV r1, #IKey_S
+	MOV r2, #0xff
+	SWI OS_Byte
+	CMP r1, #0xff
+	CMPEQ r2, #0xff
+	bne .3
+	ldrb r0, debug_debounce_s
+	cmp r0, #0
+	bne .3
+	strb r1, debug_play_step
+	.3:
+	strb r1, debug_debounce_s
+
+	mov pc, lr
+
+debug_debounce_space:
+	.byte 0
+
+debug_debounce_s:
+	.byte 0
+
+debug_play_pause:
+	.byte 1
+
+debug_play_step:
+	.byte 0
+
+d_StopOnFrame:
+	.long _STOP_ON_FRAME
 .endif
 
 ; ============================================================================
@@ -323,3 +409,18 @@ module_filename:
 	.byte "<Demo$Dir>.Music",0
 	.align 4
 .endif
+
+; ============================================================================
+; BSS Segment
+; TODO: Figure out vlink so can hack off BSS segment from binary!!
+; ============================================================================
+
+r_StateLists:
+    .skip	(MAX_FRAMES+MAX_WAIT)*4
+
+r_StateSpace:
+    .skip	(MAX_TURTLES+1)*STATE_SIZE
+r_StateSpaceEnd:
+
+r_Sinus:
+    .skip	(DEGREES)*4

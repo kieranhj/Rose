@@ -467,14 +467,4 @@ divide:
 
 .equ STATE_SIZE, (ST_MAX+WIRE_CAPACITY+MAX_STACK+2)*4
 
-r_StateLists:
-    .skip   (MAX_FRAMES+MAX_WAIT)*4
-
-r_StateSpace:
-    .skip  (MAX_TURTLES+1)*STATE_SIZE
-r_StateSpaceEnd:
-
-r_Sinus:
-    .skip   (DEGREES)*4
-
 ; ============================================================================

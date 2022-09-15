@@ -162,11 +162,11 @@ TODO:
     - Need more debug:
         - Display frame no., number of turtles etc - DONE
         - Frame rate, number of circles etc - DONE
-        - Stop on frame no.
-        - Single step frames after stop.
-        - Play/pause frames.
-        - Restart.
-    - Send everyway.asm test case to Frank at vasm.
+        - Stop on frame no. - DONE
+        - Single step frames after stop. - DONE
+        - Play/pause frames. - DONE
+        - Restart. - JUST QUIT?
+    - Send everyway.asm test case to Frank at vasm. - IN PROGRESS
 
 - Implement colorscript.bin, LOOK, PLAN etc. - DONE
 
@@ -179,3 +179,6 @@ TODO:
 - Add QTM Player for MOD.
 
 - Win. :)
+
+- Bonus TODO: Figure out how to make custom screen modes for Archie: 352x280x16.
+- Bonus TODO: Figure out vlink for different sections (jetison BSS segment)
