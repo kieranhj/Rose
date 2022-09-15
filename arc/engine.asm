@@ -328,18 +328,19 @@ PutSquare:
     swi OS_WriteC
 
     mov r0, #4                  ; MOVE
-
     sub r1, r8, r10             ; bottom left X -= st_size
-    sub r2, r8, r10             ; bottom left Y -= st_size
+    sub r2, r9, r10             ; bottom left Y -= st_size
     mov r1, r1, asr #14         ; X [16.16] -> [16.2]
     mov r2, r2, asr #14         ; Y [16.16] -> [16.2]
+    rsb r2, r2, #1024           ; flip for Archie!
     swi OS_Plot
 
     mov r0, #101                ; RECTANGLE FILL
     add r1, r8, r10             ; top right X += st_size
-    add r2, r8, r10             ; top right Y += st_size
+    add r2, r9, r10             ; top right Y += st_size
     mov r1, r1, asr #14         ; X [16.16] -> [16.2]
     mov r2, r2, asr #14         ; Y [16.16] -> [16.2]
+    rsb r2, r2, #1024           ; flip for Archie!
     swi OS_Plot
     mov pc, lr
 

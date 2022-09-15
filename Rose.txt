@@ -146,9 +146,10 @@ TODO: Check unreachable code after fork? - DONE
     - circle - WORKS!
     - ball - INVISIBLE - CIRCLES NEED TO BE SORTED BY Y.
     - tree - WORKS!
-    - chiperia - WORKS! NOT SURE ABOUT SOME MATHS.
+    - chiperia - WORKS! NOT SURE ABOUT SOME MATHS?
     - teaser - WORKS! LINES ARE TOO BENDY..!
     - everyway - WON'T EVEN ASSEMBLE!
+    - jesuis - WORKS! ALTHOUGH CREDITS MISSING?
 
 TODO:
     - Incorrect push on StateStack after ELSE in tree.asm - DONE
