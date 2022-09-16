@@ -3,7 +3,7 @@
 ; ============================================================================
 
 .equ _DEBUG, 1
-.equ _ENABLE_MUSIC, 0
+.equ _ENABLE_MUSIC, 1
 .equ _STOP_ON_FRAME, -1
 
 .equ Screen_Banks, 1
@@ -96,6 +96,10 @@ main:
 	mov r0, #OSByte_EventEnable
 	mov r1, #Event_VSync
 	SWI OS_Byte
+
+	.if _ENABLE_MUSIC
+	SWI QTM_Start
+	.endif
 
 main_loop:
 
@@ -395,9 +399,9 @@ r_Instructions:
 ;.include "tree.asm"			; WORKS! \o/
 ;.include "chiperia.asm"		; SOME MATHS ERRORS STILL?
 ;.include "teaser.asm"			; WORKS ALTHOUGH WOBBLY LINES NOT QUITE CORRECT?
-;.include "everyway.asm"		; WON'T EVEN COMPILE!
+.include "everyway.asm"		; V SLOW, FLICKERS, FREEZES AT FRAME 0x1080!
 ;.include "jesuis.asm"			; WORKS ALTHOUGH FINAL CREDITS SCENE MISSING?
-.include "frustration.asm"		; WORKS ALTHOUGH WOBBLY LINES NOT QUITE CORRECT?
+;.include "frustration.asm"		; WORKS ALTHOUGH WOBBLY LINES NOT QUITE CORRECT?
 ;.include "euphoria.asm"		; FREEZES AT TRANSITION WITH CIRCLES & SQUARES (SQUARES DON'T ROTATE PROPERLY EITHER)
 
 ; ============================================================================

@@ -20,6 +20,7 @@ if NOT EXIST %FOLDER% mkdir %FOLDER%
 echo Adding files...
 copy folder\*.* "%FOLDER%\*.*"
 copy build\rose-arc.bin "%FOLDER%\!RunImage,ff8"
+copy "music\h0ffman_-_everyway.mod" "%FOLDER%\Music,001"
 
 echo Copying !folder...
 set HOSTFS=..\..\..\Arculator_V2.1_Windows\hostfs
