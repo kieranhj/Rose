@@ -421,15 +421,23 @@ MakeSinus:
     str r0, [r9, r10]
     mov pc, lr
 
-; Divide RO by Rl
+; Divide R0 by R1
 ; Taken from Archimedes Operating System, page 28.
 divide:
-    CMP R0,R1                   ; Test if result is zero
-    MOVMI R0, #0                ; If it is, give result *
-    MOVMI PC,R14                ; and return
     CMP R1,#0                   ; Test for division by zero
     ADREQ R0,divbyzero          ; and flag an error
     SWIEQ OS_GenerateError      ; when necessary
+
+    ; Signed division - any better way to do this?
+    eor r10, r0, r1             ; R0 eor R1 indicates sign of result
+    cmp r0, #0
+    rsbmi r0, r0, #0            ; make positive
+    cmp r1, #0
+    rsbmi r1, r1, #0            ; make positive  
+
+;    CMP R0,R1                   ; Test if result is zero
+;    MOVMI R0, #0                ; If it is, give result *
+;    MOVMI PC,R14                ; and return
 
     MOV R8, #1
     MOV R9,#0
@@ -451,11 +459,14 @@ divide:
     MOV R1,R1,LSR #1
     MOVS R8,R8,LSR #1
     BCC .3
-    MOV R0,R9                   ; Move result into RO *
+
+    movs r10, r10               ; get sign back
+    movpl r0, r9                ; Move positive result into R0*
+    rsbmi r0, r9, #0            ; Neative result into R0*
     MOV PC,R14                  ; and return
 
     ; * Remove the lines marked with asterisks to
-    ; return RO MOD Rl instead of RO DIV Rl
+    ; return R0 MOD R1 instead of R0 DIV R1
 
     divbyzero: ;The error block
     .long 18

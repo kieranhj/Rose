@@ -171,8 +171,7 @@ TODO:
 - Implement colorscript.bin, LOOK, PLAN etc. - DONE
 
 - Write more optimal Circle & Square plotting fn.
-    - Ask Sarah for her routines from Horizon?
-    - Might need raster span sort routine to remove flicker?
+    - Ask Sarah for her routines from Horizon? - IN PROGRESS
 
 - Sort plots per frame from top to bottom.
 

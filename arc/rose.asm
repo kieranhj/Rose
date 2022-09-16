@@ -396,8 +396,8 @@ r_Instructions:
 ;.include "chiperia.asm"		; SOME MATHS ERRORS STILL?
 ;.include "teaser.asm"			; WORKS ALTHOUGH WOBBLY LINES NOT QUITE CORRECT?
 ;.include "everyway.asm"		; WON'T EVEN COMPILE!
-.include "jesuis.asm"			; WORKS ALTHOUGH FINAL CREDITS SCENE MISSING?
-;.include "frustration.asm"		; WORKS ALTHOUGH WOBBLY LINES NOT QUITE CORRECT?
+;.include "jesuis.asm"			; WORKS ALTHOUGH FINAL CREDITS SCENE MISSING?
+.include "frustration.asm"		; WORKS ALTHOUGH WOBBLY LINES NOT QUITE CORRECT?
 ;.include "euphoria.asm"		; FREEZES AT TRANSITION WITH CIRCLES & SQUARES (SQUARES DON'T ROTATE PROPERLY EITHER)
 
 ; ============================================================================
