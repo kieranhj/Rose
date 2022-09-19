@@ -166,18 +166,20 @@ TODO:
         - Single step frames after stop. - DONE
         - Play/pause frames. - DONE
         - Restart. - JUST QUIT?
+        - Raster time for turles vs plots.
     - Send everyway.asm test case to Frank at vasm. - IN PROGRESS
 
 - Implement colorscript.bin, LOOK, PLAN etc. - DONE
 
 - Write more optimal Circle & Square plotting fn.
-    - Ask Sarah for her routines from Horizon? - IN PROGRESS
+    - Ask Sarah for her routines from Horizon? - RECEIVED \o/
 
 - Sort plots per frame from top to bottom.
 
-- Add QTM Player for MOD.
+- Add QTM Player for MOD. - DONE
 
 - Win. :)
 
 - Bonus TODO: Figure out how to make custom screen modes for Archie: 352x280x16.
 - Bonus TODO: Figure out vlink for different sections (jetison BSS segment)
+- Bonus TODO: Setup a Makefile to make all the Rose apps as different targets etc.

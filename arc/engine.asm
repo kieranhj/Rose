@@ -53,6 +53,9 @@ r_MaxCircles:
 p_ColorScript:
     .long r_ColorScript
 
+p_Sinus:
+    .long r_Sinus
+
 ; ============================================================================
 ; ColorScript / Palette.
 ; ============================================================================
@@ -106,7 +109,8 @@ RunFrame:
     str r0, r_NumCircles
     .endif
 
-    adr r7, r_Sinus
+    ; adrl r7, r_Sinus
+    ldr r7, p_Sinus
     adr r4, r_Constants
 .1:
     adr r6, r_StateLists
@@ -315,6 +319,7 @@ DoMove:
 
 ; r8=st_x, r9=st_y, r10=st_size, r11=st_tint.
 PutCircle:
+.if 0
     swi OS_WriteI + 18          ; GCOL
     swi OS_WriteI + 0           ; 0
     mov r0, r11, lsr #16        ; tint
@@ -332,6 +337,17 @@ PutCircle:
     mov r2, r2, asr #14         ; Y [16.16] -> [16.2]
     rsb r2, r2, #1024           ; flip for Archie!
     swi OS_Plot
+.else
+    stmfd sp!, {r0-r7, lr}
+
+    mov r0, r8, asr #16
+    mov r1, r9, asr #16
+    mov r2, r10, asr #16
+    mov r11, r11, lsr #16
+    bl plot_circle
+
+    ldmfd sp!, {r0-r7, lr}
+.endif
 
     .if _DEBUG
     ldr r1, r_NumCircles
@@ -378,7 +394,8 @@ PutSquare:
 
 ; Makes sine values [0-0x4000]
 MakeSinus:
-    adr r8, r_Sinus
+    ; adrl r8, r_Sinus
+    ldr r8, p_Sinus
     mov r10, #DEGREES/2*4       ; offset halfway through the table.
     sub r11, r10, #4            ; #DEGREES/2*4-4
 

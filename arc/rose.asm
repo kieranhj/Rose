@@ -64,7 +64,7 @@ main:
 	SWI OS_WriteC
 	SWI OS_WriteC
 
-	; LOAD STUFF HERE!
+	; EARLY INITIALISATION HERE!
 
 .if _ENABLE_MUSIC
 	; Load module
@@ -75,6 +75,12 @@ main:
 	mov r0, #48
 	swi QTM_SetSampleSpeed
 .endif
+
+	; Make tables etc.
+	bl get_screen_addr			; single buffer so only needed once.
+	bl gen_code
+    bl MakeSinus
+    bl InitStates
 
 	; Claim the Error vector
 	MOV r0, #ErrorV
@@ -89,8 +95,6 @@ main:
 	swi OS_AddToVector
 
     ; LATE INITIALISATION HERE!
-    bl MakeSinus
-    bl InitStates
 
 	; Enable Vsync event
 	mov r0, #OSByte_EventEnable
@@ -392,6 +396,7 @@ d_StopOnFrame:
 ; ============================================================================
 
 .include "engine.asm"
+.include "circles.asm"
 
 r_Instructions:
 ;.include "circle.asm"			; WORKS! \o/
@@ -419,12 +424,23 @@ module_filename:
 ; TODO: Figure out vlink so can hack off BSS segment from binary!!
 ; ============================================================================
 
+.p2align 12
+
 r_StateLists:
     .skip	(MAX_FRAMES+MAX_WAIT)*4
+
+.p2align 12
 
 r_StateSpace:
     .skip	(MAX_TURTLES+1)*STATE_SIZE
 r_StateSpaceEnd:
 
+.p2align 12
+
 r_Sinus:
     .skip	(DEGREES)*4
+
+gen_code_pointers:
+	.skip	4*8*320
+
+gen_code_start:
