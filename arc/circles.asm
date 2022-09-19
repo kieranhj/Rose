@@ -34,7 +34,7 @@ plot_circle:
 	MOV r14, r2, LSL #1
 	ADD r14, r14, #1 ;Line count
 
-	CMP r1, #240 ;Off bottom of screen?
+	CMP r1, #Screen_Height ;Off bottom of screen?
 	BCC isnt_off_top
 	TST r1, r1
 	LDRPL pc, [sp], #4
@@ -51,9 +51,9 @@ isnt_off_top:
 
 plot_circle_nottop:
 	ADD r3, r1, r14
-	CMP r3, #240
+	CMP r3, #Screen_Height
 	BCC plot_circle_notbottom
-	SUB r3, r3, #240
+	SUB r3, r3, #Screen_Height
 	SUB r14, r14, r3
 
 plot_circle_notbottom:
@@ -70,12 +70,12 @@ circle_loop:
 
 	TST r2, r2 ;Clip on left?
 	MOVMI r2, #0
-	CMP r2, #320 ;Off left?
+	CMP r2, #Screen_Width ;Off left?
 	BCS circle_skip_line
 	CMP r1, #0 ;Off right?
 	BMI circle_skip_line
-	CMP r1, #320 ;Clip on right?
-	MOVCS r1, #320
+	CMP r1, #Screen_Width ;Clip on right?
+	MOVCS r1, #Screen_Width
 	SUBCS r1, r1, #1
 
 	MOV r3, r2, LSR #3
@@ -89,7 +89,7 @@ circle_loop:
 	LDR pc, [r5, r4, LSL #2]
 
 circle_skip_line:
-	ADD r11, r11, #160
+	ADD r11, r11, #Screen_Stride
 	SUBS r14, r14, #1
 	BNE circle_loop
 
@@ -330,7 +330,7 @@ gen_last_word_table:
 	.long gen_last_word_over
 
 gen_end_code:
-	ADD r11, r11, #160
+	ADD r11, r11, #Screen_Stride
 	SUBS r14, r14, #1
 gen_end_code_end:
 	BNE circle_loop
@@ -522,7 +522,7 @@ gen_code_end_copy:
 	ANDS r0, r0, #7
 	BNE gen_code_main_loop
 	ADD r1, r1, #1
-	CMP r1, #320
+	CMP r1, #Screen_Width
 	BNE gen_code_main_loop
 
 ;gen_code_ended:

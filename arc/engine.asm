@@ -361,6 +361,7 @@ PutCircle:
 
 ; r8=st_x, r9=st_y, r10=st_size, r11=st_tint.
 PutSquare:
+.if 0
     swi OS_WriteI + 18          ; GCOL
     swi OS_WriteI + 0           ; 0
     mov r0, r11, lsr #16        ; tint
@@ -381,6 +382,28 @@ PutSquare:
     mov r2, r2, asr #14         ; Y [16.16] -> [16.2]
     rsb r2, r2, #1024           ; flip for Archie!
     swi OS_Plot
+.else
+    stmfd sp!, {r0-r7, lr}
+
+    mov r0, r8, asr #16
+    mov r1, r9, asr #16
+    mov r2, r10, asr #16
+
+    ldr r10, circle_loop
+    str r10, [sp, #-4]!         ; holy hack balls!
+
+    ldr r10, plot_square_hack
+    orr r10, r10, r2            ; mov r1, #st_size
+    str r10, circle_loop        ; self-mod const!!
+
+    mov r11, r11, lsr #16
+    bl plot_circle
+
+    ldr r10, [sp], #4
+    str r10, circle_loop        ; remove hackery.
+
+    ldmfd sp!, {r0-r7, lr}
+.endif
 
     .if _DEBUG
     ldr r1, r_NumCircles
@@ -391,6 +414,9 @@ PutSquare:
     strgt r1, r_MaxCircles
     .endif
     mov pc, lr
+
+plot_square_hack:
+    .long 0xe3a01000            ; mov r1, #0
 
 ; Makes sine values [0-0x4000]
 MakeSinus:
@@ -445,16 +471,19 @@ divide:
     ADREQ R0,divbyzero          ; and flag an error
     SWIEQ OS_GenerateError      ; when necessary
 
+    cmp r0, #0                  ; Test if result is zero
+    moveq pc, lr
+
+;    CMP R0,R1                   ; Test if result is zero
+;    MOVMI R0, #0                ; If it is, give result *
+;    MOVMI PC,R14                ; and return
+
     ; Signed division - any better way to do this?
     eor r10, r0, r1             ; R0 eor R1 indicates sign of result
     cmp r0, #0
     rsbmi r0, r0, #0            ; make positive
     cmp r1, #0
     rsbmi r1, r1, #0            ; make positive  
-
-;    CMP R0,R1                   ; Test if result is zero
-;    MOVMI R0, #0                ; If it is, give result *
-;    MOVMI PC,R14                ; and return
 
     MOV R8, #1
     MOV R9,#0

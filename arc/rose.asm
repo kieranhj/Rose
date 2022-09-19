@@ -2,7 +2,7 @@
 ; Rose Arc Port.
 ; ============================================================================
 
-.equ _DEBUG, 1
+.equ _DEBUG, 0
 .equ _ENABLE_MUSIC, 1
 .equ _STOP_ON_FRAME, -1
 
@@ -247,6 +247,13 @@ event_handler:
 
 error_handler:
 	STMDB sp!, {r0-r2, lr}
+
+.if _ENABLE_MUSIC
+	; disable music
+	mov r0, #0
+	swi QTM_Stop
+.endif
+
 	MOV r0, #OSByte_EventDisable
 	MOV r1, #Event_VSync
 	SWI OS_Byte
