@@ -3,7 +3,6 @@
 ; ============================================================================
 
 .equ MAX_FRAMES, 10000	        ; Length of Rose animation
-.equ MAX_CIRCLES, 200           ; Max circles drawn in a frame (!)
 .equ MAX_TURTLES, 500           ; Max turtles alive at the same time (!)
 .equ MAX_STACK, 20              ; Max depth of execution stack
 .equ MAX_WAIT, 1000             ; Max wait beyond end of program
@@ -344,19 +343,13 @@ PutCircle:
     mov r1, r9, asr #16
     mov r2, r10, asr #16
     mov r11, r11, lsr #16
-    bl plot_circle
+    ; bl plot_circle
+	ldr r4, plot_circle_instruction
+    bl link_circle
 
     ldmfd sp!, {r0-r7, lr}
 .endif
 
-    .if _DEBUG
-    ldr r1, r_NumCircles
-    ldr r2, r_MaxCircles
-    add r1, r1, #1
-    str r1, r_NumCircles
-    cmp r1, r2
-    strgt r1, r_MaxCircles
-    .endif
     mov pc, lr
 
 ; r8=st_x, r9=st_y, r10=st_size, r11=st_tint.
@@ -388,35 +381,22 @@ PutSquare:
     mov r0, r8, asr #16
     mov r1, r9, asr #16
     mov r2, r10, asr #16
-
-    ldr r10, circle_loop
-    str r10, [sp, #-4]!         ; holy hack balls!
-
-    ldr r10, plot_square_hack
-    orr r10, r10, r2            ; mov r1, #st_size
-    str r10, circle_loop        ; self-mod const!!
+	ldr r4, plot_square_instruction
+    orr r4, r4, r2            	; mov r1, #st_size
 
     mov r11, r11, lsr #16
-    bl plot_circle
-
-    ldr r10, [sp], #4
-    str r10, circle_loop        ; remove hackery.
+    bl link_circle
 
     ldmfd sp!, {r0-r7, lr}
 .endif
 
-    .if _DEBUG
-    ldr r1, r_NumCircles
-    ldr r2, r_MaxCircles
-    add r1, r1, #1
-    str r1, r_NumCircles
-    cmp r1, r2
-    strgt r1, r_MaxCircles
-    .endif
     mov pc, lr
 
-plot_square_hack:
+plot_square_instruction:
     .long 0xe3a01000            ; mov r1, #0
+
+plot_circle_instruction:
+    .long 0xe4dc1001            ; LDRB r1, [r12], #1
 
 ; Makes sine values [0-0x4000]
 MakeSinus:

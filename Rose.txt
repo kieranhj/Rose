@@ -146,16 +146,17 @@ TODO: Check unreachable code after fork? - DONE
     - circle - WORKS!
     - ball - INVISIBLE - CIRCLES NEED TO BE SORTED BY Y.
     - tree - WORKS!
-    - chiperia - WORKS! NOT SURE ABOUT SOME MATHS ON THE GROWING BITS?
+    - chiperia - WORKS! CHECK SMALL CIRCLE SIZES?
     - teaser - WORKS! LINES ARE TOO BENDY..!
-    - everyway - WON'T EVEN ASSEMBLE!
+    - everyway - WORKS BAR DRAW ORDER - NEED SORT BY Y.
     - jesuis - WORKS! ALTHOUGH CREDITS MISSING?
     - frustration - BASICALLY WORKS ALTHOUGH BENDY LINES STILL WRONG.
-    - euphoria - FREEZES (?) AT TRANSITION POINT FRAME 0x404..!
+    - euphoria - WORKS!
+    - waytoorude - HARD CRASH!
 
 TODO:
     - Incorrect push on StateStack after ELSE in tree.asm - DONE
-    - CHECK: Sign extend on division?
+    - CHECK: Sign extend on division? - DONE
     - CHECK: Random number generator vs. Visualiser. - DONE
     - CHECK: Status flags for all OPS? - DONE.
     - Optimise redundant 'movs r0, r0' for WHEN without OP case only. - DONE
@@ -166,20 +167,38 @@ TODO:
         - Single step frames after stop. - DONE
         - Play/pause frames. - DONE
         - Restart. - JUST QUIT?
-        - Raster time for turles vs plots.
-    - Send everyway.asm test case to Frank at vasm. - IN PROGRESS
+    - Send everyway.asm test case to Frank at vasm. - DONE
+    - BUG: Sign extend sine lookup. - No, actually already done with RSB.
+    - MISSING: Lookup with BIGCONSTANT. - DONE?
 
 - Implement colorscript.bin, LOOK, PLAN etc. - DONE
 
-- Write more optimal Circle & Square plotting fn.
+- Write more optimal Circle & Square plotting fn. - DONE
     - Ask Sarah for her routines from Horizon? - RECEIVED \o/
-
-- Sort plots per frame from top to bottom.
 
 - Add QTM Player for MOD. - DONE
 
-- Win. :)
+- Win, i.e. send to Hoffman. :) - DONE
 
-- Bonus TODO: Figure out how to make custom screen modes for Archie: 352x280x16.
-- Bonus TODO: Figure out vlink for different sections (jetison BSS segment)
-- Bonus TODO: Setup a Makefile to make all the Rose apps as different targets etc.
+
+Looks like Service_ModeExtension is your friend
+you identify your magic mode number, then return a VIDC list specifying MODE 9 as the base mode and then new register values for the display start and end registers
+oh, and you'll need to indicate ScreenSize has changed if you want double buffering to work
+http://www.riscos.com/support/developers/prm/vdu.html#90282
+
+https://pdjstone.github.io/arculator-wasm/arculator.html?disc=https://bitshifters.github.io/content/wip/arc-rose.adf&autoboot=desktop%20filer_run%20adfs::0.$.!Rose
+
+
+20/9/22 TODO
+- Sort plots per frame from top to bottom. - MUST DO!
+- Add raster time debug for turles vs plots.
+- Make custom screen mode for Archie: 352x280x16.
+- Fix incorrect wobbly lines in Painters*.
+- Check small circle sizes vs Amiga implementation.
+- Tidy up code generally, e.g. split out span plot code gen into lib.
+- Look for optimisations, register use etc.
+- Figure out vlink for different sections (jetison BSS segment)
+- Tidy up folder structure.
+- Setup a Makefile to make all the Rose apps as different targets etc.
+- Remove all redundant code & data to reduce exe sizes.
+- Add LZ4 or Shrinker compression.

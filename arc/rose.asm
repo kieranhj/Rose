@@ -2,7 +2,7 @@
 ; Rose Arc Port.
 ; ============================================================================
 
-.equ _DEBUG, 0
+.equ _DEBUG, 1
 .equ _ENABLE_MUSIC, 1
 .equ _STOP_ON_FRAME, -1
 
@@ -145,12 +145,19 @@ main_loop:
 	beq main_loop
 	.2:
 	.endif
+	
+	; Reset array of circles.
+	adr r0, r_circleBufEnd
+	str r0, r_FreeCircle
 
 	; Process color script.
 	bl RunColorScript
 
     ; Do the rose thing!
     bl RunFrame
+
+	; Plot circles sorted by Y.
+	bl plot_all_circles
 
     ; Next frame.
     ldr r2, r_FrameCounter
@@ -411,10 +418,11 @@ r_Instructions:
 ;.include "tree.asm"			; WORKS! \o/
 ;.include "chiperia.asm"		; SOME MATHS ERRORS STILL?
 ;.include "teaser.asm"			; WORKS ALTHOUGH WOBBLY LINES NOT QUITE CORRECT?
-.include "everyway.asm"		; V SLOW, FLICKERS, FREEZES AT FRAME 0x1080!
+.include "everyway.asm"		; WORKS, ALTHOUGH DRAW ORDER ISSUES.
 ;.include "jesuis.asm"			; WORKS ALTHOUGH FINAL CREDITS SCENE MISSING?
 ;.include "frustration.asm"		; WORKS ALTHOUGH WOBBLY LINES NOT QUITE CORRECT?
-;.include "euphoria.asm"		; FREEZES AT TRANSITION WITH CIRCLES & SQUARES (SQUARES DON'T ROTATE PROPERLY EITHER)
+;.include "euphoria.asm"		; WORKS?
+;.include "waytoorude.asm"
 
 ; ============================================================================
 ; Data Segment
@@ -447,7 +455,14 @@ r_StateSpaceEnd:
 r_Sinus:
     .skip	(DEGREES)*4
 
+r_CircleBuffer:
+	.skip	(MAX_CIRCLES)*(CIRCLEDATA+4)
+r_circleBufEnd:
+
+r_CircleBufPtrs:
+	.skip	(Screen_Height)*4
+
 gen_code_pointers:
-	.skip	4*8*320
+	.skip	4*8*Screen_Width
 
 gen_code_start:

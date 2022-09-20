@@ -11,6 +11,14 @@
 .equ ST_RAND, 5
 .equ ST_DIR, 6
 .equ ST_TIME, 7
+.equ ST_WIRE0, 8
+.equ ST_WIRE1, 9
+.equ ST_WIRE2, 10
+.equ ST_WIRE3, 11
+.equ ST_WIRE4, 12
+.equ ST_WIRE5, 13
+.equ ST_WIRE6, 14
+.equ ST_WIRE7, 15
 
 ; ============================================================================
 ; r3 = p_StateStack.
@@ -228,7 +236,6 @@ proc_0_continue_6:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl divide					; r0=r0/r1
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; TODO: Sign extend r0?
 	mov r0, r0, asl #8
 	; BC_CONST [8b]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -1165,7 +1172,6 @@ proc_0_continue_28:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl divide					; r0=r0/r1
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; TODO: Sign extend r0?
 	mov r0, r0, asl #8
 	; BC_CONST [8b]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -1873,7 +1879,6 @@ proc_0_continue_44:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl divide					; r0=r0/r1
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; TODO: Sign extend r0?
 	mov r0, r0, asl #8
 	; BC_CONST [8b]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -1920,7 +1925,6 @@ proc_0_continue_45:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl divide					; r0=r0/r1
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; TODO: Sign extend r0?
 	mov r0, r0, asl #8
 	; BC_CONST [8b]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -4610,7 +4614,6 @@ proc_14_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl divide					; r0=r0/r1
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; TODO: Sign extend r0?
 	mov r0, r0, asl #8
 	; BC_CONST [96]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -4630,7 +4633,6 @@ proc_14_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl divide					; r0=r0/r1
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; TODO: Sign extend r0?
 	mov r0, r0, asl #8
 	; BC_RLOCAL [65]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -4988,13 +4990,11 @@ proc_15_continue_119:
 	mov r1, #0xfffc
 	and r0, r0, r1
 	ldr r0, [r7, r0]		; r7=r_Sinus
-	; TODO: Sign extend r0?
 	mov r0, r0, asl #2
 	; BC_SINE [0b]
 	mov r1, #0xfffc
 	and r0, r0, r1
 	ldr r0, [r7, r0]		; r7=r_Sinus
-	; TODO: Sign extend r0?
 	mov r0, r0, asl #2
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
@@ -5007,7 +5007,6 @@ proc_15_continue_119:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl divide					; r0=r0/r1
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; TODO: Sign extend r0?
 	mov r0, r0, asl #8
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.

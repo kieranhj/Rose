@@ -59,12 +59,12 @@ MakeCircles:
 
 
 InitCircleBuffer:
-	lea	r_CircleBufPtr(a6),a2
-	move.w	#MAXRADIUS*2+SCREENHEIGHT-1,d5
-.lineloop:	clr.l	(a2)+
-	dbf	d5,.lineloop
-	lea	r_CircleBufEnd(a6),a4
-	move.l	a4,r_FreeCircle(a6)
+	lea	r_CircleBufPtr(a6),a2					; a2 = p_CircleBufPtr
+	move.w	#MAXRADIUS*2+SCREENHEIGHT-1,d5		; d5 = max_circles
+.lineloop:	clr.l	(a2)+						; *p_CircleBufPtr++ = 0
+	dbf	d5,.lineloop							; if --max_circles != -1 goto lineloop
+	lea	r_CircleBufEnd(a6),a4					; a4 = &r_CircleBufEnd
+	move.l	a4,r_FreeCircle(a6)					; r_FreeCircle = &CircleBufEnd
 	rts
 
 
@@ -118,15 +118,15 @@ PutCircle:
 	ble.b	.outside
 .nobottomclip:
 	; Put circle
-	lea	r_FreeCircle(a6),a2
-	move.l	(a2),a1
-	subq.l	#4,a1
-	movem.w	d0/d2/d3/d4/d6,-(a1)
-	move.l	a1,(a2)
-	lea	r_CircleBufPtr+MAXRADIUS*2*4(a6),a2
-	lsl.w	#2,d1
-	add.w	d1,a2
-	move.l	(a2),CIRCLEDATA(a1)
+	lea	r_FreeCircle(a6),a2						; p_FreeCircle = r_FreeCircle
+	move.l	(a2),a1								; p_CircleData = *p_FreeCircle
+	subq.l	#4,a1								; p_CircleData -= 4
+	movem.w	d0/d2/d3/d4/d6,-(a1)				; *(--p_CircleData) = d0, d2, d3, d4, d6 (as words)
+	move.l	a1,(a2)								; *p_FreeCircle = p_CircleData
+	lea	r_CircleBufPtr+MAXRADIUS*2*4(a6),a2		; a2 = 
+	lsl.w	#2,d1								; d1 = Y * 4
+	add.w	d1,a2								; 
+	move.l	(a2),CIRCLEDATA(a1)					; LinkedList of pre-culled circles per Y value.
 	move.l	a1,(a2)
 .outside:
 	rts

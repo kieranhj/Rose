@@ -11,6 +11,14 @@
 .equ ST_RAND, 5
 .equ ST_DIR, 6
 .equ ST_TIME, 7
+.equ ST_WIRE0, 8
+.equ ST_WIRE1, 9
+.equ ST_WIRE2, 10
+.equ ST_WIRE3, 11
+.equ ST_WIRE4, 12
+.equ ST_WIRE5, 13
+.equ ST_WIRE6, 14
+.equ ST_WIRE7, 15
 
 ; ============================================================================
 ; r3 = p_StateStack.
@@ -10824,7 +10832,6 @@ proc_18_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl divide					; r0=r0/r1
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; TODO: Sign extend r0?
 	mov r0, r0, asl #8
 	; BC_WAIT [0a]
 	adr r1, proc_18_continue_129
@@ -10900,7 +10907,6 @@ proc_19_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl divide					; r0=r0/r1
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; TODO: Sign extend r0?
 	mov r0, r0, asl #8
 	; BC_WAIT [0a]
 	adr r1, proc_19_continue_131

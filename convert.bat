@@ -7,3 +7,4 @@ python3 rose2arc.py arc/teaser/bytecodes.bin -c arc/teaser/constants.bin -s arc/
 python3 rose2arc.py arc/jesuis/bytecodes.bin -c arc/jesuis/constants.bin -s arc/jesuis/colorscript.bin -o arc/jesuis.asm
 python3 rose2arc.py arc/euphoria/bytecodes.bin -c arc/euphoria/constants.bin -s arc/euphoria/colorscript.bin -o arc/euphoria.asm
 python3 rose2arc.py arc/frustration/bytecodes.bin -c arc/frustration/constants.bin -s arc/frustration/colorscript.bin -o arc/frustration.asm
+python3 rose2arc.py arc/waytoorude/bytecodes.bin -c arc/waytoorude/constants.bin -s arc/waytoorude/colorscript.bin -o arc/waytoorude.asm

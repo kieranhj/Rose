@@ -71,7 +71,8 @@ ST_RAND=5
 ST_DIR=6
 ST_TIME=7
 
-STATE_NAMES = ["ST_PROC", "ST_X", "ST_Y", "ST_SIZE", "ST_TINT", "ST_RAND", "ST_DIR", "ST_TIME"]
+STATE_NAMES = ["ST_PROC", "ST_X", "ST_Y", "ST_SIZE", "ST_TINT", "ST_RAND", "ST_DIR", "ST_TIME",
+    "ST_WIRE0", "ST_WIRE1", "ST_WIRE2", "ST_WIRE3", "ST_WIRE4", "ST_WIRE5", "ST_WIRE6", "ST_WIRE7" ]
 
 # Push or pop?
 MIN_INPUT=0x08
@@ -111,10 +112,11 @@ class RoseParser:
         index = c & 127
         self.load_var(0)
         if index == BIG_CONSTANT_BASE:
-            self._asm_file.write(f'\t; TODO: Load BIG_CONSTANT\n')
-        else:
-            # Write constant load.
-            self._asm_file.write(f'\tldr r0, [r4, #{index}*4]\t\t\t; r0=rConstants[{index}]\n')
+            big = int.from_bytes(self._byte_file.read(1), "big")
+            index += big
+
+        # Write constant load.
+        self._asm_file.write(f'\tldr r0, [r4, #{index}*4]\t\t\t; r0=rConstants[{index}]\n')
         self.push_var(0)
 
     def write_done(self, c):
@@ -219,7 +221,6 @@ class RoseParser:
         self._asm_file.write(f'\tmov r1, #0xfffc\n')
         self._asm_file.write(f'\tand r0, r0, r1\n')
         self._asm_file.write(f'\tldr r0, [r7, r0]\t\t; r7=r_Sinus\n')
-        self._asm_file.write(f'\t; TODO: Sign extend r0?\n')
         self._asm_file.write(f'\tmov r0, r0, asl #2\n')
         self.push_var(0)
 
@@ -342,7 +343,7 @@ class RoseParser:
             if shift == None:
                 self._asm_file.write(f'\t{opcode} r0, r0, r1\t\t\t\t; r0=r0 {opcode} r1\n')
             else:
-                self._asm_file.write(f'\t{opcode} r0, r0, {shift}, r1\t\t\t; r0=r0 {shift} r1\n')
+                self._asm_file.write(f'\t{opcode} r0, r0, {shift} r1\t\t\t; r0=r0 {shift} r1\n')
             self.push_var(0)
 
         self._load_without_op = False

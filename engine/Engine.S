@@ -54,7 +54,7 @@ InitStates:
 .state:	lea.l	STATE_SIZE(a1),a2	; a2 = p_NextState = p_State + STATE_SIZE
 	move.l	a1,(a2)					; *p_NextState = p_State
 	move.l	a2,a1					; p_State = p_NextState
-	dbf	d7,.state					; if d7 != -1 then goto state
+	dbf	d7,.state					; if --d7 != -1 then goto state
 ;	move.l	a2,r_FreeState(a6)
 
 InitMainTurtle:

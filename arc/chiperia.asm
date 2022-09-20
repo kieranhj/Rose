@@ -11,6 +11,14 @@
 .equ ST_RAND, 5
 .equ ST_DIR, 6
 .equ ST_TIME, 7
+.equ ST_WIRE0, 8
+.equ ST_WIRE1, 9
+.equ ST_WIRE2, 10
+.equ ST_WIRE3, 11
+.equ ST_WIRE4, 12
+.equ ST_WIRE5, 13
+.equ ST_WIRE6, 14
+.equ ST_WIRE7, 15
 
 ; ============================================================================
 ; r3 = p_StateStack.
