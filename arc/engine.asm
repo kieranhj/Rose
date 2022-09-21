@@ -91,6 +91,25 @@ RunColorScript:
     str r6, p_ColorScript
     mov pc, lr
 
+.if _DEBUG
+; R4 = RGBx word
+; Uses R0,R1 
+palette_set_border:
+    adrl r1, palette_osword_block
+    mov r0, #24
+    strb r0, [r1, #0]       ; logical colour
+    strb r0, [r1, #1]       ; mode
+    and r0, r4, #0xff
+    strb r0, [r1, #2]       ; red
+    mov r0, r4, lsr #8
+    strb r0, [r1, #3]       ; green
+    mov r0, r4, lsr #16
+    strb r0, [r1, #4]       ; blue
+    mov r0, #12
+    swi OS_Word
+    mov pc,lr
+.endif
+
 palette_osword_block:
     .skip 8
 

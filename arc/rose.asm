@@ -5,6 +5,7 @@
 .equ _DEBUG, 1
 .equ _ENABLE_MUSIC, 1
 .equ _STOP_ON_FRAME, -1
+.equ _DEBUG_RASTERS, (_DEBUG && 1)
 
 .equ Screen_Banks, 1
 .equ Screen_Mode, 9
@@ -107,8 +108,12 @@ main:
 
 main_loop:
 
+	.if _DEBUG_RASTERS
+	mov r4, #0x000000		; black
+	blne palette_set_border
+	.endif
+
 	.if _DEBUG
-	bl debug_info
 	bl debug_controls
 	.endif
 
@@ -121,7 +126,39 @@ main_loop:
 	CMP r1, #0xff
 	CMPEQ r2, #0xff
 	BEQ exit
-	
+
+	.if _DEBUG_RASTERS
+	mov r4, #0x00ffff		; yellow
+	ldrb r0, debug_show_rasters
+	cmp r0, #0
+	blne palette_set_border
+	.endif
+
+	.if _DEBUG
+	bl debug_info
+	.endif
+
+	.if _DEBUG_RASTERS
+	mov r4, #0xff0000		; blue
+	ldrb r0, debug_show_rasters
+	cmp r0, #0
+	blne palette_set_border
+	.endif
+
+	; Reset array of circles.
+	adr r0, r_circleBufEnd
+	str r0, r_FreeCircle
+
+    ; Do the rose thing!
+    bl RunFrame
+
+	.if _DEBUG_RASTERS
+	mov r4, #0x000000		; black
+	ldrb r0, debug_show_rasters
+	cmp r0, #0
+	blne palette_set_border
+	.endif
+
 	; Wait for vsync.
 	; Limit to 50Hz max but don't wait if we're running too slow.
 	ldr r1, last_vsync
@@ -145,19 +182,33 @@ main_loop:
 	beq main_loop
 	.2:
 	.endif
-	
-	; Reset array of circles.
-	adr r0, r_circleBufEnd
-	str r0, r_FreeCircle
+
+	.if _DEBUG_RASTERS
+	mov r4, #0x00ff00		; green
+	ldrb r0, debug_show_rasters
+	cmp r0, #0
+	blne palette_set_border
+	.endif
 
 	; Process color script.
 	bl RunColorScript
 
-    ; Do the rose thing!
-    bl RunFrame
+	.if _DEBUG_RASTERS
+	mov r4, #0x0000ff		; red
+	ldrb r0, debug_show_rasters
+	cmp r0, #0
+	blne palette_set_border
+	.endif
 
 	; Plot circles sorted by Y.
 	bl plot_all_circles
+
+	.if _DEBUG_RASTERS
+	mov r4, #0x000000		; black
+	ldrb r0, debug_show_rasters
+	cmp r0, #0
+	blne palette_set_border
+	.endif
 
     ; Next frame.
     ldr r2, r_FrameCounter
@@ -277,6 +328,10 @@ error_handler:
 
 .if _DEBUG
 debug_info:
+	ldrb r0, debug_show_info
+	cmp r0, #0
+	moveq pc, lr
+
 	swi OS_WriteI + 30			; Home.
 
 	ldr r0, r_FrameCounter
@@ -387,6 +442,41 @@ debug_controls:
 	.3:
 	strb r1, debug_debounce_s
 
+	; Toggle debug info.
+	MOV r0, #OSByte_ReadKey
+	MOV r1, #IKey_D
+	MOV r2, #0xff
+	SWI OS_Byte
+	CMP r1, #0xff
+	CMPEQ r2, #0xff
+	bne .4
+	ldrb r0, debug_debounce_d
+	cmp r0, #0
+	bne .4
+	ldrb r0, debug_show_info
+	eor r0, r0, #1
+	strb r0, debug_show_info
+	.4:
+	strb r1, debug_debounce_d
+
+
+	; Toggle rasters
+	MOV r0, #OSByte_ReadKey
+	MOV r1, #IKey_R
+	MOV r2, #0xff
+	SWI OS_Byte
+	CMP r1, #0xff
+	CMPEQ r2, #0xff
+	bne .5
+	ldrb r0, debug_debounce_r
+	cmp r0, #0
+	bne .5
+	ldrb r0, debug_show_rasters
+	eor r0, r0, #1
+	strb r0, debug_show_rasters
+	.5:
+	strb r1, debug_debounce_r
+
 	mov pc, lr
 
 debug_debounce_space:
@@ -395,11 +485,23 @@ debug_debounce_space:
 debug_debounce_s:
 	.byte 0
 
+debug_debounce_d:
+	.byte 0
+
+debug_debounce_r:
+	.byte 0
+
 debug_play_pause:
 	.byte 1
 
 debug_play_step:
 	.byte 0
+
+debug_show_info:
+	.byte 0
+
+debug_show_rasters:
+	.byte 1
 
 d_StopOnFrame:
 	.long _STOP_ON_FRAME

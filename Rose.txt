@@ -190,15 +190,16 @@ https://pdjstone.github.io/arculator-wasm/arculator.html?disc=https://bitshifter
 
 
 20/9/22 TODO
-- Sort plots per frame from top to bottom. - MUST DO!
-- Add raster time debug for turles vs plots.
+- Sort plots per frame from top to bottom. - INITIAL IMPLEMENTATION DONE!
+- Add raster time debug for turles vs plots. - DONE
 - Make custom screen mode for Archie: 352x280x16.
 - Fix incorrect wobbly lines in Painters*.
 - Check small circle sizes vs Amiga implementation.
-- Tidy up code generally, e.g. split out span plot code gen into lib.
+- Tidy up code generally, esp. engine.asm e.g. split out span plot code gen into lib.
 - Look for optimisations, register use etc.
 - Figure out vlink for different sections (jetison BSS segment)
 - Tidy up folder structure.
 - Setup a Makefile to make all the Rose apps as different targets etc.
 - Remove all redundant code & data to reduce exe sizes.
 - Add LZ4 or Shrinker compression.
+- Contact steve3000 about the latest standalone version of QTM.
