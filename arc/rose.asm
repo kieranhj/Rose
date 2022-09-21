@@ -9,13 +9,15 @@
 
 .equ Screen_Banks, 1
 .equ Screen_Mode, 9
-.equ Screen_Width, 320
-.equ Screen_Height, 256
-.equ Mode_Height, 256
+.equ Screen_Width, 352		; 320
+.equ Screen_Height, 280		; 256
+.equ Mode_Height, 280		; 256
 .equ Screen_PixelsPerByte, 2
 .equ Screen_Stride, Screen_Width/Screen_PixelsPerByte
 .equ Screen_Bytes, Screen_Stride*Screen_Height
 .equ Mode_Bytes, Screen_Stride*Mode_Height
+
+.equ Mode_Centre, 291
 
 .include "lib/swis.h.asm"
 
@@ -36,22 +38,18 @@ stack_base:
 ; Main
 ; ============================================================================
 
+vidc_regs:
+	.long VIDC_HDisplayStart | ((((MODE9_HCentrePixels - Screen_Width/2))-7)/2)<<14
+	.long VIDC_HDisplayEnd   | ((((MODE9_HCentrePixels + Screen_Width/2))-7)/2)<<14
+	.long VIDC_VDisplayStart | (MODE9_VCentreRasters - Screen_Height/2)<<14
+	.long VIDC_VDisplayEnd   | (MODE9_VCentreRasters + Screen_Height/2)<<14
+
+vidc_write:
+	.long VIDC_Write
+
 main:
 	SWI OS_WriteI + 22		; Set MODE
 	SWI OS_WriteI + Screen_Mode
-
-	; Set screen size for number of buffers
-	MOV r0, #DynArea_Screen
-	SWI OS_ReadDynamicArea
-	MOV r0, #DynArea_Screen
-	MOV r2, #Mode_Bytes * Screen_Banks
-	SUBS r1, r2, r1
-	SWI OS_ChangeDynamicArea
-	MOV r0, #DynArea_Screen
-	SWI OS_ReadDynamicArea
-	CMP r1, #Mode_Bytes * Screen_Banks
-	ADRCC r0, error_noscreenmem
-	SWICC OS_GenerateError
 
 	SWI OS_WriteI + 23		; Disable cursor
 	SWI OS_WriteI + 1
@@ -64,6 +62,36 @@ main:
 	SWI OS_WriteC
 	SWI OS_WriteC
 	SWI OS_WriteC
+
+	; Set screen size for number of buffers
+	MOV r0, #DynArea_Screen
+	SWI OS_ReadDynamicArea
+	MOV r0, #DynArea_Screen
+	MOV r2, #Mode_Bytes * Screen_Banks
+	mov r3, r2
+	SUBS r1, r2, r1
+	SWI OS_ChangeDynamicArea
+	MOV r0, #DynArea_Screen
+	SWI OS_ReadDynamicArea
+	CMP r1, r3
+	ADRCC r0, error_noscreenmem
+	SWICC OS_GenerateError
+
+	; Clear screen (extended).
+
+	bl get_screen_addr			; single buffer so only needed once.
+	bl cls
+
+	; Extend screen size.
+
+	mov r0, #4
+	adr r1, vidc_regs
+	ldr r3, vidc_write
+.1:
+	ldr r2, [r1], #4
+	str r2, [r3]
+	subs r0, r0, #1
+	bne .1
 
 	; EARLY INITIALISATION HERE!
 
@@ -78,7 +106,6 @@ main:
 .endif
 
 	; Make tables etc.
-	bl get_screen_addr			; single buffer so only needed once.
 	bl gen_code
     bl MakeSinus
     bl InitStates
@@ -419,7 +446,7 @@ debug_controls:
 
 	; Advance frame (with repeat):
 	MOV r0, #OSByte_ReadKey
-	MOV r1, #IKey_RightArrow
+	MOV r1, #IKey_ArrowRight
 	MOV r2, #0xff
 	SWI OS_Byte
 	CMP r1, #0xff
@@ -511,6 +538,23 @@ d_StopOnFrame:
 ; Additional code modules
 ; ============================================================================
 
+cls:
+	mov r0, #0
+	mov r1, r0
+	mov r2, r0
+	mov r3, r0
+	mov r4, r0
+	mov r5, r0
+	mov r6, r0
+	mov r7, r0
+	mov r8, #Screen_Bytes/(4*8)
+	ldr r9, screen_addr
+.1:
+	stmia r9!, {r0-r7}
+	subs r8, r8, #1
+	bne .1
+	mov pc, lr
+
 .include "engine.asm"
 .include "circles.asm"
 
@@ -518,13 +562,13 @@ r_Instructions:
 ;.include "circle.asm"			; WORKS! \o/
 ;.include "ball.asm"			; INVISIBLE! :\
 ;.include "tree.asm"			; WORKS! \o/
-;.include "chiperia.asm"		; SOME MATHS ERRORS STILL?
+;.include "chiperia.asm"		; WORKS! CHECK SMALL CIRCLE SIZE?
 ;.include "teaser.asm"			; WORKS ALTHOUGH WOBBLY LINES NOT QUITE CORRECT?
-.include "everyway.asm"		; WORKS, ALTHOUGH DRAW ORDER ISSUES.
+.include "everyway.asm"		; WORKS! \o/
 ;.include "jesuis.asm"			; WORKS ALTHOUGH FINAL CREDITS SCENE MISSING?
 ;.include "frustration.asm"		; WORKS ALTHOUGH WOBBLY LINES NOT QUITE CORRECT?
 ;.include "euphoria.asm"		; WORKS?
-;.include "waytoorude.asm"
+;.include "waytoorude.asm"		; HARD CRASH :)
 
 ; ============================================================================
 ; Data Segment

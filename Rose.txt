@@ -203,3 +203,16 @@ https://pdjstone.github.io/arculator-wasm/arculator.html?disc=https://bitshifter
 - Remove all redundant code & data to reduce exe sizes.
 - Add LZ4 or Shrinker compression.
 - Contact steve3000 about the latest standalone version of QTM.
+
+
+MODE 9 VIDC defaults:
+ Horizontal cycle        = 512   Vertical cycle        = 312
+ Horizontal sync width   =  38   Vertical sync width   =   3
+ Horizontal border start =  83   Vertical border start =  22
+ Horizontal display start= 131   Vertical display start=  38
+ Horizontal display end  = 451   Vertical display end  = 294
+ Horizontal border end   = 499   Vertical border end   = 310
+ Horizontal cursor start = 240   Vertical cursor start =  37
+                                 Vertical cursor end   =  37
+
+"Centre" of screen is 291, 166
