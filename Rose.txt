@@ -192,7 +192,7 @@ https://pdjstone.github.io/arculator-wasm/arculator.html?disc=https://bitshifter
 20/9/22 TODO
 - Sort plots per frame from top to bottom. - INITIAL IMPLEMENTATION DONE!
 - Add raster time debug for turles vs plots. - DONE
-- Make custom screen mode for Archie: 352x280x16.
+- Make custom screen mode for Archie: 352x280x16. - HACKY VERSION DONE (DIRECT VIDC WRITE)!
 - Fix incorrect wobbly lines in Painters*.
 - Check small circle sizes vs Amiga implementation.
 - Tidy up code generally, esp. engine.asm e.g. split out span plot code gen into lib.
@@ -202,7 +202,11 @@ https://pdjstone.github.io/arculator-wasm/arculator.html?disc=https://bitshifter
 - Setup a Makefile to make all the Rose apps as different targets etc.
 - Remove all redundant code & data to reduce exe sizes.
 - Add LZ4 or Shrinker compression.
-- Contact steve3000 about the latest standalone version of QTM.
+- Contact steve3000 about the latest standalone version of QTM. - IN PROGRESS.
+- Hoffman reports there is an audio sync drift during Everyway?
+    - Is this an online Arculator problem, the Rose engine or QTM?
+- Nicer overscan MODE module, if cba.
+
 
 
 MODE 9 VIDC defaults:

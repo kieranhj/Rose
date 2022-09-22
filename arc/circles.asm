@@ -124,7 +124,9 @@ circles_per_Y_loop:
 	LDR r11, screen_addr
 	ADD r11, r11, r8, LSL #7
 	ADD r11, r11, r8, LSL #5 ;r11 = screen addr
+	.if Screen_Width == 352
 	ADD r11, r11, r8, LSL #4 ;r11 = screen addr
+	.endif
 
 circle_loop:
 	LDRB r1, [r12], #1 ;neg offset from X

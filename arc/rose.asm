@@ -6,20 +6,36 @@
 .equ _ENABLE_MUSIC, 1
 .equ _STOP_ON_FRAME, -1
 .equ _DEBUG_RASTERS, (_DEBUG && 1)
+.equ _OVERSCAN, 1
 
 .equ Screen_Banks, 1
 .equ Screen_Mode, 9
-.equ Screen_Width, 352		; 320
-.equ Screen_Height, 280		; 256
-.equ Mode_Height, 280		; 256
+
+.if _OVERSCAN
+.equ Screen_Width, 352			; +32
+.equ Screen_Height, 280			; +24
+.equ Mode_Height, 280
+.else
+.equ Screen_Width, 320
+.equ Screen_Height, 256
+.equ Mode_Height, 256
+.endif
+
 .equ Screen_PixelsPerByte, 2
 .equ Screen_Stride, Screen_Width/Screen_PixelsPerByte
 .equ Screen_Bytes, Screen_Stride*Screen_Height
 .equ Mode_Bytes, Screen_Stride*Mode_Height
 
-.equ Mode_Centre, 291
-
 .include "lib/swis.h.asm"
+
+.macro SET_BORDER rgb
+	.if _DEBUG_RASTERS
+	mov r4, #\rgb
+	ldrb r0, debug_show_rasters
+	cmp r0, #0
+	blne palette_set_border
+	.endif
+.endm
 
 .org 0x8000
 
@@ -38,17 +54,8 @@ stack_base:
 ; Main
 ; ============================================================================
 
-vidc_regs:
-	.long VIDC_HDisplayStart | ((((MODE9_HCentrePixels - Screen_Width/2))-7)/2)<<14
-	.long VIDC_HDisplayEnd   | ((((MODE9_HCentrePixels + Screen_Width/2))-7)/2)<<14
-	.long VIDC_VDisplayStart | (MODE9_VCentreRasters - Screen_Height/2)<<14
-	.long VIDC_VDisplayEnd   | (MODE9_VCentreRasters + Screen_Height/2)<<14
-
-vidc_write:
-	.long VIDC_Write
-
 main:
-	SWI OS_WriteI + 22		; Set MODE
+	SWI OS_WriteI + 22		; Set base MODE
 	SWI OS_WriteI + Screen_Mode
 
 	SWI OS_WriteI + 23		; Disable cursor
@@ -63,7 +70,7 @@ main:
 	SWI OS_WriteC
 	SWI OS_WriteC
 
-	; Set screen size for number of buffers
+	; Set RAM size for screen size * number of buffers.
 	MOV r0, #DynArea_Screen
 	SWI OS_ReadDynamicArea
 	MOV r0, #DynArea_Screen
@@ -83,25 +90,19 @@ main:
 	bl cls
 
 	; Extend screen size.
-
-	mov r0, #4
-	adr r1, vidc_regs
-	ldr r3, vidc_write
-.1:
-	ldr r2, [r1], #4
-	str r2, [r3]
-	subs r0, r0, #1
-	bne .1
+	bl set_vidc_regs
 
 	; EARLY INITIALISATION HERE!
 
 .if _ENABLE_MUSIC
 	; Load module
+	; TODO: Embed module in exe.
 	adrl r0, module_filename
 	mov r1, #0
 	swi QTM_Load
 
-	mov r0, #48
+	; TODO: Can we afford higher quality audio?
+	mov r0, #24
 	swi QTM_SetSampleSpeed
 .endif
 
@@ -154,12 +155,8 @@ main_loop:
 	CMPEQ r2, #0xff
 	BEQ exit
 
-	.if _DEBUG_RASTERS
-	mov r4, #0x00ffff		; yellow
-	ldrb r0, debug_show_rasters
-	cmp r0, #0
-	blne palette_set_border
-	.endif
+	; Time debug portion.
+	SET_BORDER 0x00ffff
 
 	.if _DEBUG
 	bl debug_info
@@ -535,8 +532,18 @@ d_StopOnFrame:
 .endif
 
 ; ============================================================================
-; Additional code modules
+; Additional code.
 ; ============================================================================
+
+set_vidc_regs:
+	adr r1, vidc_regs
+	ldr r2, vidc_write
+.1:
+	ldr r0, [r1], #4
+	cmp r0, #-1
+	moveq pc, lr
+	str r0, [r2]
+	b .1
 
 cls:
 	mov r0, #0
@@ -554,6 +561,20 @@ cls:
 	subs r8, r8, #1
 	bne .1
 	mov pc, lr
+
+vidc_write:
+	.long VIDC_Write
+
+vidc_regs:
+	.long VIDC_HDisplayStart | ((((MODE9_HCentrePixels - Screen_Width/2))-7)/2)<<14
+	.long VIDC_HDisplayEnd   | ((((MODE9_HCentrePixels + Screen_Width/2))-7)/2)<<14
+	.long VIDC_VDisplayStart | (MODE9_VCentreRasters - Screen_Height/2)<<14
+	.long VIDC_VDisplayEnd   | (MODE9_VCentreRasters + Screen_Height/2)<<14
+	.long -1
+
+; ============================================================================
+; Additional code modules.
+; ============================================================================
 
 .include "engine.asm"
 .include "circles.asm"
