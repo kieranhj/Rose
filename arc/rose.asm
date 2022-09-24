@@ -7,6 +7,7 @@
 .equ _STOP_ON_FRAME, -1
 .equ _DEBUG_RASTERS, (_DEBUG && 1)
 .equ _OVERSCAN, 0
+.equ _DUAL_PLAYFIELD, 1
 
 .equ Screen_Banks, 1
 .equ Screen_Mode, 9
@@ -17,7 +18,7 @@
 .equ Mode_Height, 280
 .else
 .equ Screen_Width, 320
-.equ Screen_Height, 256
+.equ Screen_Height, 180
 .equ Mode_Height, 256
 .endif
 
@@ -544,8 +545,8 @@ vidc_write:
 vidc_regs:
 	.long VIDC_HDisplayStart | ((((MODE9_HCentrePixels - Screen_Width/2))-7)/2)<<14
 	.long VIDC_HDisplayEnd   | ((((MODE9_HCentrePixels + Screen_Width/2))-7)/2)<<14
-	.long VIDC_VDisplayStart | (MODE9_VCentreRasters - Screen_Height/2)<<14
-	.long VIDC_VDisplayEnd   | (MODE9_VCentreRasters + Screen_Height/2)<<14
+	.long VIDC_VDisplayStart | (MODE9_VCentreRasters - Mode_Height/2)<<14
+	.long VIDC_VDisplayEnd   | (MODE9_VCentreRasters + Mode_Height/2)<<14
 	.long -1
 
 ; ============================================================================
@@ -565,7 +566,7 @@ r_Instructions:
 ;.include "jesuis.asm"			; WORKS ALTHOUGH FINAL CREDITS SCENE MISSING?
 ;.include "frustration.asm"		; WORKS ALTHOUGH WOBBLY LINES NOT QUITE CORRECT?
 ;.include "euphoria.asm"		; WORKS?
-.include "waytoorude.asm"		; HARD CRASH :)
+.include "waytoorude.asm"		; GETTING THERE! STILL SOME GLITCHES.
 
 ; ============================================================================
 ; Data Segment

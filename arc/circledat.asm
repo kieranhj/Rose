@@ -7,7 +7,7 @@ circle_0:
 	.byte 0
 
 circle_1:
-	.byte 0,1,0
+	.byte 1,1,1	; Was 0,1,0 but Rose has a fatter circle at this size!
 
 circle_2:
 	.byte 1,2,2,2,1

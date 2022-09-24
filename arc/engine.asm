@@ -60,6 +60,7 @@ p_Sinus:
 ; ============================================================================
 
 RunColorScript:
+    str lr, [sp, #-4]!
     ldr r6, p_ColorScript
     ldr r0, [r6]                ; delta_frame.
     adds r0, r0, #1             ; increment frame.
@@ -68,27 +69,68 @@ RunColorScript:
 
     adr r1, palette_osword_block
     mov r0, #16
-    strb r0, [r1, #1]       ; physical colour
+    strb r0, [r1, #1]           ; physical colour
 .1:
     ldr r2, [r6, #4]!           ; get index + RGB
     movs r2, r2                 ; status.
     bmi .2                      ; next delta.
 
-    ; Set palette! [RGBx word]
-    mov r0, r2, lsr #24
-    strb r0, [r1, #0]       ; logical colour
-    strb r2, [r1, #2]       ; red
-    mov r0, r2, lsr #8
-    strb r0, [r1, #3]       ; green
-    mov r0, r2, lsr #16
-    strb r0, [r1, #4]       ; blue
-    mov r0, #12
-    swi OS_Word
+    .if _DUAL_PLAYFIELD
+    ; Set palette! [tBGR word]
+    mov r4, r2, lsr #24         ; tint
+    cmp r4, #4                  ; ignore tint 4!
+    beq .1
 
+	; Compute layer.
+	mov r7, r4, lsr #2  		; layer = tint >> 2 (0 or 1)
+
+	; Compute pixel bits for layer.
+	and r8, r4, #3				; pixel = tint & 3
+
+    mov r0, r8, lsl r7
+    mov r0, r0, lsl r7          ; shift pixel bits by layer.
+    bl set_colour
+
+    cmp r7, #0
+    beq .1                      ; layer 0 done
+
+    ; layer 1
+    mov r0, r8, lsl #2
+    orr r0, r0, #0b01
+    bl set_colour               ; and layer 0 pixels 01
+
+    mov r0, r8, lsl #2
+    orr r0, r0, #0b10
+    bl set_colour               ; and layer 0 pixels 10
+
+    mov r0, r8, lsl #2
+    orr r0, r0, #0b11
+    bl set_colour               ; and layer 0 pixels 11
+    .else
+    ; Set palette! [tBGR word]
+    mov r0, r2, lsr #24         ; tint
+    bl set_colour
+    .endif
+    
     b .1
 
 .2:
     str r6, p_ColorScript
+    ldr pc, [sp], #4
+
+; r0 = logical colour
+; r1 = osword_block
+; r2 = xBGR word
+; r3 = temp
+set_colour:
+    strb r0, [r1, #0]       ; logical colour
+    strb r2, [r1, #2]       ; red
+    mov r3, r2, lsr #8
+    strb r3, [r1, #3]       ; green
+    mov r3, r2, lsr #16
+    strb r3, [r1, #4]       ; blue
+    mov r0, #12
+    swi OS_Word
     mov pc, lr
 
 .if _DEBUG
