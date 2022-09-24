@@ -1,6 +1,6 @@
 ; ============================================================================
 ; rose2arc.py
-; input = arc/waytoorude/bytecodes.bin.
+; input = ../waytoorude/bytecodes.bin.
 ; ============================================================================
 
 .equ ST_PROC, 0
@@ -12172,6 +12172,8 @@ proc_68_continue_418:
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
 	; BC_OP [33]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
+	mov r1, r1, lsr #16			; swap.w r1
+	and r1, r1, #63				; only bottom 6 bits are valid.
 	movs r0, r0, ror r1			; r0=r0 ror r1
 	; BC_CONST [91]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -12283,6 +12285,8 @@ proc_70_continue_421:
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
 	; BC_OP [33]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
+	mov r1, r1, lsr #16			; swap.w r1
+	and r1, r1, #63				; only bottom 6 bits are valid.
 	movs r0, r0, ror r1			; r0=r0 ror r1
 	; BC_WLOCAL [41]
 	str r0, [r5, #-2*4]			; StateStack[-2]=r0
@@ -12366,6 +12370,8 @@ proc_72_continue_423:
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
 	; BC_OP [33]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
+	mov r1, r1, lsr #16			; swap.w r1
+	and r1, r1, #63				; only bottom 6 bits are valid.
 	movs r0, r0, ror r1			; r0=r0 ror r1
 	; BC_CONST [91]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -12468,6 +12474,8 @@ proc_74_target_425:
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
 	; BC_OP [33]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
+	mov r1, r1, lsr #16			; swap.w r1
+	and r1, r1, #63				; only bottom 6 bits are valid.
 	movs r0, r0, ror r1			; r0=r0 ror r1
 	; BC_WLOCAL [41]
 	str r0, [r5, #-2*4]			; StateStack[-2]=r0
@@ -29632,6 +29640,8 @@ proc_174_continue_876:
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
 	; BC_OP [34]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
+	mov r1, r1, lsr #16			; swap.w r1
+	and r1, r1, #63				; only bottom 6 bits are valid.
 	movs r0, r0, asl r1			; r0=r0 asl r1
 	; BC_RLOCAL [63]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -29872,6 +29882,8 @@ proc_178_start:
 	ldr r0, [r5, #ST_X*4]		; r0=State[ST_X]
 	; BC_OP [30]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
+	mov r1, r1, lsr #16			; swap.w r1
+	and r1, r1, #63				; only bottom 6 bits are valid.
 	movs r0, r0, asr r1			; r0=r0 asr r1
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
@@ -29887,6 +29899,8 @@ proc_178_start:
 	ldr r0, [r5, #ST_Y*4]		; r0=State[ST_Y]
 	; BC_OP [30]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
+	mov r1, r1, lsr #16			; swap.w r1
+	and r1, r1, #63				; only bottom 6 bits are valid.
 	movs r0, r0, asr r1			; r0=r0 asr r1
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.

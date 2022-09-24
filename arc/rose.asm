@@ -6,7 +6,7 @@
 .equ _ENABLE_MUSIC, 1
 .equ _STOP_ON_FRAME, -1
 .equ _DEBUG_RASTERS, (_DEBUG && 1)
-.equ _OVERSCAN, 1
+.equ _OVERSCAN, 0
 
 .equ Screen_Banks, 1
 .equ Screen_Mode, 9
@@ -585,11 +585,11 @@ r_Instructions:
 ;.include "tree.asm"			; WORKS! \o/
 ;.include "chiperia.asm"		; WORKS! CHECK SMALL CIRCLE SIZE?
 ;.include "teaser.asm"			; WORKS ALTHOUGH WOBBLY LINES NOT QUITE CORRECT?
-.include "everyway.asm"		; WORKS! \o/
+;.include "everyway.asm"		; WORKS! \o/
 ;.include "jesuis.asm"			; WORKS ALTHOUGH FINAL CREDITS SCENE MISSING?
 ;.include "frustration.asm"		; WORKS ALTHOUGH WOBBLY LINES NOT QUITE CORRECT?
 ;.include "euphoria.asm"		; WORKS?
-;.include "waytoorude.asm"		; HARD CRASH :)
+.include "waytoorude.asm"		; HARD CRASH :)
 
 ; ============================================================================
 ; Data Segment

@@ -343,6 +343,8 @@ class RoseParser:
             if shift == None:
                 self._asm_file.write(f'\t{opcode} r0, r0, r1\t\t\t\t; r0=r0 {opcode} r1\n')
             else:
+                self._asm_file.write(f'\tmov r1, r1, lsr #16\t\t\t; swap.w r1\n')
+                self._asm_file.write(f'\tand r1, r1, #63\t\t\t\t; only bottom 6 bits are valid.\n')
                 self._asm_file.write(f'\t{opcode} r0, r0, {shift} r1\t\t\t; r0=r0 {shift} r1\n')
             self.push_var(0)
 

@@ -135,6 +135,7 @@ public:
 		int current_proc_index = 0;
 		traverse<AProcDecl>(prog, [&](AProcDecl proc) {
 			procs.push_back(proc);
+			printf("proc[%d] = '%s'\n", current_proc_index, proc.getName().getText().c_str());
 			global_scope->add(proc.getName(), VarKind::PROCEDURE, current_proc_index++);
 			if (current_proc_index > 256) {
 				throw CompileException(proc.getName(), "Too many procedures");
