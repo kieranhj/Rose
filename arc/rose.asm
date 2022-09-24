@@ -138,7 +138,7 @@ main_loop:
 
 	.if _DEBUG_RASTERS
 	mov r4, #0x000000		; black
-	blne palette_set_border
+	bl palette_set_border
 	.endif
 
 	.if _DEBUG
@@ -156,18 +156,14 @@ main_loop:
 	BEQ exit
 
 	; Time debug portion.
-	SET_BORDER 0x00ffff
+	SET_BORDER 0x00ffff		; yellow
 
 	.if _DEBUG
 	bl debug_info
 	.endif
 
-	.if _DEBUG_RASTERS
-	mov r4, #0xff0000		; blue
-	ldrb r0, debug_show_rasters
-	cmp r0, #0
-	blne palette_set_border
-	.endif
+	; Time Rose script execution.
+	SET_BORDER 0xff0000		; blue
 
 	; Reset array of circles.
 	adr r0, r_circleBufEnd
@@ -176,14 +172,9 @@ main_loop:
     ; Do the rose thing!
     bl RunFrame
 
-	.if _DEBUG_RASTERS
-	mov r4, #0x000000		; black
-	ldrb r0, debug_show_rasters
-	cmp r0, #0
-	blne palette_set_border
-	.endif
-
 	; Wait for vsync.
+	SET_BORDER 0x000000		; black
+
 	; Limit to 50Hz max but don't wait if we're running too slow.
 	ldr r1, last_vsync
 .1:
@@ -207,32 +198,17 @@ main_loop:
 	.2:
 	.endif
 
-	.if _DEBUG_RASTERS
-	mov r4, #0x00ff00		; green
-	ldrb r0, debug_show_rasters
-	cmp r0, #0
-	blne palette_set_border
-	.endif
+	; Time Rose colour script execution.
+	SET_BORDER 0x00ff00		; green
 
 	; Process color script.
 	bl RunColorScript
 
-	.if _DEBUG_RASTERS
-	mov r4, #0x0000ff		; red
-	ldrb r0, debug_show_rasters
-	cmp r0, #0
-	blne palette_set_border
-	.endif
+	; Time circle plotting.
+	SET_BORDER 0x0000ff		; red
 
 	; Plot circles sorted by Y.
 	bl plot_all_circles
-
-	.if _DEBUG_RASTERS
-	mov r4, #0x000000		; black
-	ldrb r0, debug_show_rasters
-	cmp r0, #0
-	blne palette_set_border
-	.endif
 
     ; Next frame.
     ldr r2, r_FrameCounter
