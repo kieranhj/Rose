@@ -9,3 +9,5 @@ python3 rose2arc.py arc/euphoria/bytecodes.bin -c arc/euphoria/constants.bin -s 
 python3 rose2arc.py arc/frustration/bytecodes.bin -c arc/frustration/constants.bin -s arc/frustration/colorscript.bin -o arc/frustration.asm
 python3 rose2arc.py arc/waytoorude/bytecodes.bin -c arc/waytoorude/constants.bin -s arc/waytoorude/colorscript.bin -o arc/waytoorude.asm
 python3 rose2arc.py arc/revision/bytecodes.bin -c arc/revision/constants.bin -s arc/revision/colorscript.bin -o arc/revision.asm
+python3 rose2arc.py arc/logicos/bytecodes.bin -c arc/logicos/constants.bin -s arc/logicos/colorscript.bin -o arc/logicos.asm
+python3 rose2arc.py arc/technova/bytecodes.bin -c arc/technova/constants.bin -s arc/technova/colorscript.bin -o arc/technova.asm

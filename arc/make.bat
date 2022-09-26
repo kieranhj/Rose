@@ -21,7 +21,9 @@ echo Adding files...
 copy folder\*.* "%FOLDER%\*.*"
 copy build\rose-arc.bin "%FOLDER%\!RunImage,ff8"
 rem copy "music\h0ffman_-_everyway.mod" "%FOLDER%\Music,001"
-copy "music\way_too_rude.mod" "%FOLDER%\Music,001"
+rem copy "music\way_too_rude.mod" "%FOLDER%\Music,001"
+rem copy "music\logicos.mod" "%FOLDER%\Music,001"
+copy "music\h0ffman_-_technova.mod" "%FOLDER%\Music,001"
 
 echo Copying !folder...
 set HOSTFS=..\..\..\Arculator_V2.1_Windows\hostfs

@@ -574,8 +574,10 @@ r_Instructions:
 ;.include "jesuis.asm"			; WORKS ALTHOUGH FINAL CREDITS SCENE MISSING?
 ;.include "frustration.asm"		; WORKS ALTHOUGH WOBBLY LINES NOT QUITE CORRECT?
 ;.include "euphoria.asm"		; WORKS?
-.include "waytoorude.asm"		; WORKS APART FROM CREDITS?
-;.include "revision.asm"
+;.include "waytoorude.asm"		; WORKS APART FROM CREDITS?
+;.include "revision.asm"		; WORKS - USEFUL TEST!
+;.include "logicos.asm"			; MAX STACK HEIGHT 31!
+.include "technova.asm"			; CRASHES AT 3D BIT?
 
 ; ============================================================================
 ; Data Segment
