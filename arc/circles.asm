@@ -71,8 +71,9 @@ clip_circle_notbottom:
 	mov r5, r5, lsl r6
 	mov r5, r5, lsl r6					; shift mask to correct layer.
 
-	cmp r11, #0
-	moveq r5, #0xffffffff				; except tint 0 affects both layers.
+	; Hoffman says tint 0 erases both layers, but I don't think this is true!
+	; cmp r11, #0
+	; moveq r5, #0xffffffff				; except tint 0 affects both layers.
 	
 	; Compute pixel bits for layer.
 	and r11, r11, #3					; pixel = tint & 3

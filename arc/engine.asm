@@ -111,7 +111,7 @@ RunColorScript:
     mov r0, r2, lsr #24         ; tint
     bl set_colour
     .endif
-    
+
     b .1
 
 .2:
@@ -164,6 +164,8 @@ palette_osword_block:
 ; ============================================================================
 
 RunFrame:
+	str lr, [sp, #-4]!			; Push lr on program stack.
+
     .if _DEBUG
     mov r0, #0
     str r0, r_NumCircles
@@ -182,12 +184,10 @@ RunFrame:
     str r1, [r6, r2, lsl #2]    ; store this in state list
     ldr r5, [r3], #4            ; pop state ptr
     ldr r1, [r5, #ST_PROC*4]    ; load st_proc
-	str lr, [sp, #-4]!			; Push lr on program stack.
     adr lr, .3
     ; TODO: Think about stashing registers?
 	mov pc, r1                  ; jsr st_proc
     .3:
-	ldr lr, [sp], #4			; Pop lr off program stack.
 
     .if _DEBUG
     ldr r8, r_MaxTurtles
@@ -197,7 +197,7 @@ RunFrame:
     .endif
     b .1
 .2:
-    mov pc, lr
+	ldr pc, [sp], #4			; Pop lr off program stack.
 
 InitStates:
     adr r1, r_StateSpace

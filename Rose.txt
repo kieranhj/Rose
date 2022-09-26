@@ -190,13 +190,13 @@ https://pdjstone.github.io/arculator-wasm/arculator.html?disc=https://bitshifter
 
 
 20/9/22 TODO
-- Sort plots per frame from top to bottom. - INITIAL IMPLEMENTATION DONE!
-- Add raster time debug for turles vs plots. - DONE
+- Sort plots per frame from top to bottom. - DONE.
+- Add raster time debug for turles vs plots. - DONE.
 - Make custom screen mode for Archie: 352x280x16. - HACKY VERSION DONE (DIRECT VIDC WRITE)!
 - Fix incorrect wobbly lines in Painters*.
-- Check small circle sizes vs Amiga implementation.
-|- size <expression>
-|  Set pen radius in pixels (rounded to nearest integer-and-a-half).
+- Check small circle sizes vs Amiga implementation. - DONE, JUST SIZE 1?
+    |- size <expression>
+    |  Set pen radius in pixels (rounded to nearest integer-and-a-half).
 
 - Tidy up code generally, esp. engine.asm e.g. split out span plot code gen into lib.
 - Look for optimisations, register use etc.
@@ -208,9 +208,11 @@ https://pdjstone.github.io/arculator-wasm/arculator.html?disc=https://bitshifter
 - Contact steve3000 about the latest standalone version of QTM. - IN PROGRESS.
 - Hoffman reports there is an audio sync drift during Everyway?
     - Is this an online Arculator problem, the Rose engine or QTM?
-- Nicer overscan MODE module, if cba. - STEVE SENDING CODE.
-- Way Too Rude - need second bitplane!
-    - Runs out of frames..!
+- Nicer overscan MODE module, if cba. - GOT STEVE'S CODE.
+    - Use Steve's MODE98 module.
+- Way Too Rude - need second bitplane! - DONE!
+- QTM sample offset bug - REPORTED TO STEVE.
+    - Way Too Rude 'Wuaaa, uh uh' vocal.
 
 
 

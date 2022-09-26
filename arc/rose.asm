@@ -1,13 +1,21 @@
 ; ============================================================================
 ; Rose Arc Port.
+; Original Amiga engine and language code by Blueberry of Loonies.
+; Archimedes version by Kieran of Bitshifters.
+; Additional code by Progen (Sarah Walker).
+; QTM Module Player by Phoenix of Quantum (steve3000).
 ; ============================================================================
 
 .equ _DEBUG, 1
 .equ _ENABLE_MUSIC, 1
-.equ _STOP_ON_FRAME, -1
-.equ _DEBUG_RASTERS, (_DEBUG && 1)
-.equ _OVERSCAN, 0
-.equ _DUAL_PLAYFIELD, 1
+.equ _OVERSCAN, 0						; TODO: Move to config.
+.equ _DUAL_PLAYFIELD, 1					; TODO: Move to config.
+
+.equ _DEBUG_RASTERS, (_DEBUG && 1)		; removes code
+.equ _DEBUG_STOP_ON_FRAME, -1
+.equ _DEBUG_DEFAULT_PLAY_PAUSE, 1		; play
+.equ _DEBUG_DEFAULT_SHOW_RASTERS, 1
+.equ _DEBUG_DEFAULT_SHOW_INFO, 0		; slow
 
 .equ Screen_Banks, 1
 .equ Screen_Mode, 9
@@ -493,19 +501,19 @@ debug_debounce_r:
 	.byte 0
 
 debug_play_pause:
-	.byte 1
+	.byte _DEBUG_DEFAULT_PLAY_PAUSE
 
 debug_play_step:
 	.byte 0
 
 debug_show_info:
-	.byte 0
+	.byte _DEBUG_DEFAULT_SHOW_INFO
 
 debug_show_rasters:
-	.byte 1
+	.byte _DEBUG_DEFAULT_SHOW_RASTERS
 
 d_StopOnFrame:
-	.long _STOP_ON_FRAME
+	.long _DEBUG_STOP_ON_FRAME
 .endif
 
 ; ============================================================================
@@ -566,7 +574,8 @@ r_Instructions:
 ;.include "jesuis.asm"			; WORKS ALTHOUGH FINAL CREDITS SCENE MISSING?
 ;.include "frustration.asm"		; WORKS ALTHOUGH WOBBLY LINES NOT QUITE CORRECT?
 ;.include "euphoria.asm"		; WORKS?
-.include "waytoorude.asm"		; GETTING THERE! STILL SOME GLITCHES.
+.include "waytoorude.asm"		; WORKS APART FROM CREDITS?
+;.include "revision.asm"
 
 ; ============================================================================
 ; Data Segment
@@ -600,7 +609,7 @@ r_Sinus:
     .skip	(DEGREES)*4
 
 r_CircleBuffer:
-	.skip	(MAX_CIRCLES)*(CIRCLEDATA+4)
+	.skip	(MAX_CIRCLES)*(CIRCLEDATA+1)*4
 r_circleBufEnd:
 
 r_CircleBufPtrs:
