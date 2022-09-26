@@ -15,7 +15,7 @@
 .equ _DEBUG_STOP_ON_FRAME, -1
 .equ _DEBUG_DEFAULT_PLAY_PAUSE, 1		; play
 .equ _DEBUG_DEFAULT_SHOW_RASTERS, 1
-.equ _DEBUG_DEFAULT_SHOW_INFO, 0		; slow
+.equ _DEBUG_DEFAULT_SHOW_INFO, 1		; slow
 
 .equ Screen_Banks, 1
 .equ Screen_Mode, 9

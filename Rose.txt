@@ -213,7 +213,7 @@ https://pdjstone.github.io/arculator-wasm/arculator.html?disc=https://bitshifter
 - Way Too Rude - need second bitplane! - DONE!
 - QTM sample offset bug - REPORTED TO STEVE.
     - Way Too Rude 'Wuaaa, uh uh' vocal.
-
+- Chek significant audio lag - maybe bluetooth headphones this morning?!
 
 
 MODE 9 VIDC defaults:
