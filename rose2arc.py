@@ -198,7 +198,8 @@ class RoseParser:
         self._asm_file.write(f'\t; BC_DIV [{c:02x}]\n')
         self.pop_var(0)
         self.pop_var(1)
-        self._asm_file.write(f'\tmov r1, r1, asr #8\n')
+        self._asm_file.write(f'\tmov r1, r1, asl #8\n')
+        self._asm_file.write(f'\tmov r1, r1, asr #16\t\t\t; Implement divs.w overflow behaviour!\n')
         self._asm_file.write(f'\tstr lr, [sp, #-4]!\t\t\t; Push lr on program stack.\n')
         self._asm_file.write(f'\tbl divide\t\t\t\t\t; r0=r0/r1\n')
         self._asm_file.write(f'\tldr lr, [sp], #4\t\t\t; Pop lr off program stack.\n')
@@ -220,7 +221,7 @@ class RoseParser:
         self.pop_var(0)
         self._asm_file.write(f'\tmov r1, #0xfffc\n')
         self._asm_file.write(f'\tand r0, r0, r1\n')
-        self._asm_file.write(f'\tldr r0, [r7, r0]\t\t; r7=r_Sinus\n')
+        self._asm_file.write(f'\tldr r0, [r7, r0]\t\t\t; r7=r_Sinus\n')
         self._asm_file.write(f'\tmov r0, r0, asl #2\n')
         self.push_var(0)
 

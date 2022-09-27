@@ -289,3 +289,36 @@ Becomes:
 
 So over twice as slow... although first, last and same word already does this,
 which will likely apply to most circles of size < 16 so might be OK?
+
+
+3D size bug...
+
+proc project px py pz 
+	temp centrez = 90
+	temp fl = 90
+	temp scale = fl / (fl + pz + centrez)
+	temp point_x = px * scale
+	temp point_y = py * scale
+
+	fork plot_xy point_x point_y pz
+
+Can't see a problem! px=25 py=25 pz=25 at rotation 0.
+scale = 90 / (90 + 25 + 90) ~= 0.44
+point_x = 25 * 0.44 ~= 11
+point_y = 25 * 0.44 += 11
+
+But appears in Visualiser to be about 40, 40
+point_x = 40 = 25 * scale
+scale = 40 / 25 = 1.6
+1.6 = 90 / (90 + pz + 90)
+180 + pz = 90 / 1.6
+180 + pz = 56.25 => pz = -123.75
+WTF?!
+
+Turns out that divs.w doesn't work quite as I expected..!
+C implementation is:
+    int divisor = b << 8 >> 16;
+    int div_result = a / divisor;
+    return div_result << 8;
+Where the divisor will be sign extended if it overflows (128<<16)!!!
+This was happening technova, so the divisor (fl + pz + centrez) become negative..!

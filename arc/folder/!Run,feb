@@ -1,13 +1,13 @@
 Set Demo$Dir <Obey$Dir>
 |
 RMLoad <Demo$Dir>.MemAlloc 
-SCREENSIZE 80K
+SCREENSIZE 40K
 |RMASIZE 24K 
 FONTSIZE 0
 SPRITESIZE 0
 RMKILL MemAlloc 
 
 RMLOAD <Demo$Dir>.QTMModule
-wimpslot -min 1600k
+wimpslot -min 1296k
 <Demo$Dir>.!RunImage
 RMKILL QTMTracker

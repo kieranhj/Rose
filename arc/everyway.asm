@@ -1089,7 +1089,8 @@ proc_7_start:
 	ldr r0, [r4, #102*4]			; r0=rConstants[102]
 	; BC_DIV [09]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r1, r1, asr #8
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement divs.w overflow behaviour!
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl divide					; r0=r0/r1
 	ldr lr, [sp], #4			; Pop lr off program stack.
@@ -1137,7 +1138,8 @@ proc_7_start:
 	ldr r0, [r4, #102*4]			; r0=rConstants[102]
 	; BC_DIV [09]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r1, r1, asr #8
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement divs.w overflow behaviour!
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl divide					; r0=r0/r1
 	ldr lr, [sp], #4			; Pop lr off program stack.
@@ -7579,7 +7581,8 @@ proc_57_continue_183:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_DIV [09]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r1, r1, asr #8
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement divs.w overflow behaviour!
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl divide					; r0=r0/r1
 	ldr lr, [sp], #4			; Pop lr off program stack.
@@ -7723,7 +7726,8 @@ proc_57_continue_187:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_DIV [09]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r1, r1, asr #8
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement divs.w overflow behaviour!
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl divide					; r0=r0/r1
 	ldr lr, [sp], #4			; Pop lr off program stack.
@@ -7852,7 +7856,8 @@ proc_58_continue_190:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_DIV [09]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r1, r1, asr #8
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement divs.w overflow behaviour!
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl divide					; r0=r0/r1
 	ldr lr, [sp], #4			; Pop lr off program stack.
@@ -7992,7 +7997,8 @@ proc_58_continue_194:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_DIV [09]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r1, r1, asr #8
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement divs.w overflow behaviour!
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl divide					; r0=r0/r1
 	ldr lr, [sp], #4			; Pop lr off program stack.
@@ -8270,7 +8276,8 @@ proc_61_continue_196:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_DIV [09]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r1, r1, asr #8
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement divs.w overflow behaviour!
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl divide					; r0=r0/r1
 	ldr lr, [sp], #4			; Pop lr off program stack.
@@ -8304,7 +8311,8 @@ proc_61_target_197:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_DIV [09]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r1, r1, asr #8
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement divs.w overflow behaviour!
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl divide					; r0=r0/r1
 	ldr lr, [sp], #4			; Pop lr off program stack.
@@ -8430,7 +8438,8 @@ proc_62_continue_201:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_DIV [09]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r1, r1, asr #8
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement divs.w overflow behaviour!
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl divide					; r0=r0/r1
 	ldr lr, [sp], #4			; Pop lr off program stack.
@@ -8464,7 +8473,8 @@ proc_62_target_202:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_DIV [09]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r1, r1, asr #8
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement divs.w overflow behaviour!
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl divide					; r0=r0/r1
 	ldr lr, [sp], #4			; Pop lr off program stack.
@@ -9384,7 +9394,8 @@ proc_73_start:
 	ldr r0, [r5, #-4*4]			; r0=StateStack[-4]
 	; BC_DIV [09]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r1, r1, asr #8
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement divs.w overflow behaviour!
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl divide					; r0=r0/r1
 	ldr lr, [sp], #4			; Pop lr off program stack.
@@ -12374,7 +12385,8 @@ proc_100_start:
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
 	; BC_DIV [09]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r1, r1, asr #8
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement divs.w overflow behaviour!
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl divide					; r0=r0/r1
 	ldr lr, [sp], #4			; Pop lr off program stack.
@@ -13532,7 +13544,8 @@ proc_112_start:
 	ldr r0, [r4, #81*4]			; r0=rConstants[81]
 	; BC_DIV [09]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r1, r1, asr #8
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement divs.w overflow behaviour!
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl divide					; r0=r0/r1
 	ldr lr, [sp], #4			; Pop lr off program stack.
@@ -13554,7 +13567,8 @@ proc_112_start:
 	ldr r0, [r4, #81*4]			; r0=rConstants[81]
 	; BC_DIV [09]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r1, r1, asr #8
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement divs.w overflow behaviour!
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl divide					; r0=r0/r1
 	ldr lr, [sp], #4			; Pop lr off program stack.
@@ -13617,7 +13631,8 @@ proc_113_start:
 	ldr r0, [r4, #81*4]			; r0=rConstants[81]
 	; BC_DIV [09]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r1, r1, asr #8
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement divs.w overflow behaviour!
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl divide					; r0=r0/r1
 	ldr lr, [sp], #4			; Pop lr off program stack.
@@ -13639,7 +13654,8 @@ proc_113_start:
 	ldr r0, [r4, #81*4]			; r0=rConstants[81]
 	; BC_DIV [09]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r1, r1, asr #8
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement divs.w overflow behaviour!
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl divide					; r0=r0/r1
 	ldr lr, [sp], #4			; Pop lr off program stack.
@@ -18860,7 +18876,8 @@ proc_158_target_424:
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
 	; BC_DIV [09]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r1, r1, asr #8
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement divs.w overflow behaviour!
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl divide					; r0=r0/r1
 	ldr lr, [sp], #4			; Pop lr off program stack.
@@ -18950,7 +18967,8 @@ proc_159_target_428:
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
 	; BC_DIV [09]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r1, r1, asr #8
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement divs.w overflow behaviour!
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl divide					; r0=r0/r1
 	ldr lr, [sp], #4			; Pop lr off program stack.
@@ -19594,7 +19612,8 @@ proc_164_start:
 	ldr r0, [r4, #18*4]			; r0=rConstants[18]
 	; BC_DIV [09]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r1, r1, asr #8
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement divs.w overflow behaviour!
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl divide					; r0=r0/r1
 	ldr lr, [sp], #4			; Pop lr off program stack.
@@ -19632,7 +19651,8 @@ proc_164_start:
 	ldr r0, [r4, #18*4]			; r0=rConstants[18]
 	; BC_DIV [09]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r1, r1, asr #8
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement divs.w overflow behaviour!
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl divide					; r0=r0/r1
 	ldr lr, [sp], #4			; Pop lr off program stack.
@@ -23860,7 +23880,8 @@ proc_199_continue_530:
 	ldr r0, [r4, #52*4]			; r0=rConstants[52]
 	; BC_DIV [09]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r1, r1, asr #8
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement divs.w overflow behaviour!
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl divide					; r0=r0/r1
 	ldr lr, [sp], #4			; Pop lr off program stack.
@@ -23930,7 +23951,8 @@ proc_199_continue_532:
 	ldr r0, [r4, #52*4]			; r0=rConstants[52]
 	; BC_DIV [09]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r1, r1, asr #8
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement divs.w overflow behaviour!
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl divide					; r0=r0/r1
 	ldr lr, [sp], #4			; Pop lr off program stack.

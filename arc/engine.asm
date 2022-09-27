@@ -2,7 +2,7 @@
 ; engine.asm - ARM port of Engine.S
 ; ============================================================================
 
-.equ MAX_FRAMES, 13000	        ; Length of Rose animation
+.equ MAX_FRAMES, 7500	        ; Length of Rose animation
 .equ MAX_TURTLES, 500           ; Max turtles alive at the same time (!)
 .equ MAX_STACK, 20              ; Max depth of execution stack
 .equ MAX_WAIT, 1000             ; Max wait beyond end of program
