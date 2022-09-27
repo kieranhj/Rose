@@ -163,6 +163,7 @@ circles_per_Y_loop:
 
 	; DO NOT SUBMIT: Way Too Rude hack!
 	add r1, r8, #76;((Mode_Height-Screen_Height)/2)
+	;mov r1, r8
 
 	ADD r11, r11, r1, LSL #7
 	ADD r11, r11, r1, LSL #5 ;r11 = screen addr

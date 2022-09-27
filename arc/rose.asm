@@ -26,7 +26,7 @@
 .equ Mode_Height, 280
 .else
 .equ Screen_Width, 320
-.equ Screen_Height, 180
+.equ Screen_Height, 180;256
 .equ Mode_Height, 256
 .endif
 
@@ -113,6 +113,11 @@ main:
 	; TODO: Can we afford higher quality audio?
 	mov r0, #24
 	swi QTM_SetSampleSpeed
+
+	; Set to mono - modern MOD composers prefer this!
+	mov r0, #0
+	mov r1, #2
+	swi QTM_Stereo
 .endif
 
 	; Make tables etc.
@@ -175,7 +180,7 @@ main_loop:
 	SET_BORDER 0xff0000		; blue
 
 	; Reset array of circles.
-	adr r0, r_circleBufEnd
+	ldr r0, p_CircleBufEnd
 	str r0, r_FreeCircle
 
     ; Do the rose thing!
@@ -557,6 +562,9 @@ vidc_regs:
 	.long VIDC_VDisplayEnd   | (MODE9_VCentreRasters + Mode_Height/2)<<14
 	.long -1
 
+p_CircleBufEnd:
+	.long r_circleBufEnd
+
 ; ============================================================================
 ; Additional code modules.
 ; ============================================================================
@@ -566,18 +574,18 @@ vidc_regs:
 
 r_Instructions:
 ;.include "circle.asm"			; WORKS! \o/
-;.include "ball.asm"			; INVISIBLE! :\
+;.include "ball.asm"			; WORKS! \o/
 ;.include "tree.asm"			; WORKS! \o/
-;.include "chiperia.asm"		; WORKS! CHECK SMALL CIRCLE SIZE?
-;.include "teaser.asm"			; WORKS ALTHOUGH WOBBLY LINES NOT QUITE CORRECT?
+;.include "chiperia.asm"		; WORKS! \o/
+;.include "teaser.asm"			; WORKS ALTHOUGH WOBBLY LINES STILL NOT CORRECT!
 ;.include "everyway.asm"		; WORKS! \o/
 ;.include "jesuis.asm"			; WORKS ALTHOUGH FINAL CREDITS SCENE MISSING?
-;.include "frustration.asm"		; WORKS ALTHOUGH WOBBLY LINES NOT QUITE CORRECT?
+;.include "frustration.asm"		; WORKS ALTHOUGH WOBBLY LINES STILL NOT CORRECT!
 ;.include "euphoria.asm"		; WORKS?
-;.include "waytoorude.asm"		; WORKS APART FROM CREDITS?
-;.include "revision.asm"		; WORKS - USEFUL TEST!
-;.include "logicos.asm"			; MAX STACK HEIGHT 31!
-.include "technova.asm"			; CRASHES AT 3D BIT?
+.include "waytoorude.asm"		; WORKS MOSTLY - ONE EFFECT DOESN'T ANIMATE AND CREDITS ARE BUST?
+;.include "revision.asm"		; WORKS! - A USEFUL TEST!
+;.include "logicos.asm"			; WORKS? - MAX STACK HEIGHT 31!
+;.include "technova.asm"		; WORKS! \o/
 
 ; ============================================================================
 ; Data Segment

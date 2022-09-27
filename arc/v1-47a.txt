@@ -1,0 +1,28 @@
+QTMv1.47a alpha-test version, (c) S. Harrison 26-Sep-2022
+
+Differences from previous QTM for RasterMan, version v1.45c:
+
+v1.46 (!Django version)
+- music interrupts enabled, use carefully :)
+- new QTM MusicOptions setting, bit 3 set = keep QTM sound enabled after
+Pause/Stop/Clear
+- First two bytes of each sample only cleared if not a looping sample. This
+follows ProTracker 2.3f method, rather than 2.3a as used previously in QTM.
+Hopefully this improves chip tunes :)
+- Retrig note effect E-9x bug fixed, where retrig timer reloaded incorrect
+value.
+- Vibrato effect 6 bug fixed, where LSR was used instead of ASR, so vibrato
+values never changed sign!
+- Note period reset bug fixed. Period should reset on a blank note (to avoid
+effects like vibrato leaving adjusted period playing when the effect is
+finished), but this was changed in QTM v1.44/1.45 because it reset sound
+effect samples too. Now fixed in v1.46 to reset period for music samples,
+but not sound effect samples.
+
+v1.47 (alpha test)
+- Sample offset effect 9 issues fixed: Bug fixed where the new 9xx offset is
+now stored in case note is replayed with no sample number. QTM also now
+follows PT2.3D code exactly in calling effect 9 twice if new note played
+(once before and once after the note). This was probably a bug in PT, but
+very likely it's slipped into a few tracks, and it doubles the new offset if
+note replayed.

@@ -204,16 +204,30 @@ https://pdjstone.github.io/arculator-wasm/arculator.html?disc=https://bitshifter
 - Tidy up folder structure.
 - Setup a Makefile to make all the Rose apps as different targets etc.
 - Remove all redundant code & data to reduce exe sizes.
-- Add LZ4 or Shrinker compression.
-- Contact steve3000 about the latest standalone version of QTM. - IN PROGRESS.
+    - Way Too Rude requires 4mb! Everything else runs in 2Mb.
+    - Should only need span routines up to ~140 pixels (MAX_RADIUS=70)
+- Add LZ4 or Shrinker compression to final exe.
+- Contact steve3000 about the latest standalone version of QTM. - DONE, HAVE v1.47a
 - Hoffman reports there is an audio sync drift during Everyway?
     - Is this an online Arculator problem, the Rose engine or QTM?
+    - Add debug to count dropped frames.
+    - Trial scheme to catch up dropped frames?
 - Nicer overscan MODE module, if cba. - GOT STEVE'S CODE.
     - Use Steve's MODE98 module.
 - Way Too Rude - need second bitplane! - DONE!
-- QTM sample offset bug - REPORTED TO STEVE.
+- QTM sample offset bug - FIXED WITH NEW VERSION OF QTM v1.47a!
     - Way Too Rude 'Wuaaa, uh uh' vocal.
-- Chek significant audio lag - maybe bluetooth headphones this morning?!
+- Make MOD playback Mono. - DONE
+- Accomodate underscanned modes 320x180 properly.
+    - Centre this and make equivalent to wait for vsync for max raster time.
+- Optimisations...
+    - Dual Playfield demos drop frames on 8MHz machines. :(
+    - Look for potential optimisations on circle drawing generally.
+    - Are there any optimisations for the DPF implementation?
+    - Look for optimisations in the Rose bytecode assembly.
+        - Load constants directly where can be made from 8 or 16-bit rotations.
+        - Directly embed some functions rather than bl? (Check code size).
+        - (Most of it is just load value, push/pop to stack.)
 
 
 MODE 9 VIDC defaults:
@@ -322,3 +336,10 @@ C implementation is:
     return div_result << 8;
 Where the divisor will be sign extended if it overflows (128<<16)!!!
 This was happening technova, so the divisor (fl + pz + centrez) become negative..!
+
+Other Rose notes:
+- Bytecode compiler does no compile time optimisations!
+    - Redudant code will be executed.
+    - Compiler does not calculate constants e.g. (2+3) will do the addition at runtime.
+- All numbers are considered fixed point.
+    - E.g. number/4 will be treated as number/4.0, so use << >> if possible.

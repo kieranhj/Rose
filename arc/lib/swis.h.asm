@@ -61,6 +61,7 @@
 .equ QTM_Pause, 0x47E43
 .equ QTM_SetSampleSpeed, 0x47E49
 .equ QTM_Pos, 0x47E46
+.equ QTM_Stereo, 0x47E4D
 
 .equ VIDC_Write, 0x03400000
 
