@@ -45,7 +45,7 @@ CIRCLE_DST=$(CIRCLE_BLD)/$(CIRCLE_ARC)
 .PHONY:circle
 circle: $(ARCULATOR_HOSTFS)/$(CIRCLE_ARC)
 
-$(CIRCLE_SRC)/instructions.asm: $(CIRCLE_SRC)/bytecodes.bin $(CIRCLE_SRC)/constants.bin $(CIRCLE_SRC)/colorscript.bin
+$(CIRCLE_SRC)/instructions.asm: $(CIRCLE_SRC)/bytecodes.bin $(CIRCLE_SRC)/constants.bin $(CIRCLE_SRC)/colorscript.bin $(ROSE2ARC)
 	$(PYTHON3) $(ROSE2ARC) $(CIRCLE_SRC)/bytecodes.bin -c $(CIRCLE_SRC)/constants.bin -s $(CIRCLE_SRC)/colorscript.bin -o $(CIRCLE_SRC)/instructions.asm
 
 $(CIRCLE_BLD)/circle.bin: $(CIRCLE_SRC)/instructions.asm $(ENGINE_DEPS)
@@ -77,7 +77,7 @@ EVERYWAY_DST=$(EVERYWAY_BLD)/$(EVERYWAY_ARC)
 .PHONY:everyway
 everyway: $(ARCULATOR_HOSTFS)/$(EVERYWAY_ARC)
 
-$(EVERYWAY_SRC)/instructions.asm: $(EVERYWAY_SRC)/bytecodes.bin $(EVERYWAY_SRC)/constants.bin $(EVERYWAY_SRC)/colorscript.bin
+$(EVERYWAY_SRC)/instructions.asm: $(EVERYWAY_SRC)/bytecodes.bin $(EVERYWAY_SRC)/constants.bin $(EVERYWAY_SRC)/colorscript.bin $(ROSE2ARC)
 	$(PYTHON3) $(ROSE2ARC) $(EVERYWAY_SRC)/bytecodes.bin -c $(EVERYWAY_SRC)/constants.bin -s $(EVERYWAY_SRC)/colorscript.bin -o $(EVERYWAY_SRC)/instructions.asm
 
 $(EVERYWAY_BLD)/everyway.bin: $(EVERYWAY_SRC)/instructions.asm $(ENGINE_DEPS)
@@ -111,7 +111,7 @@ WAYTOORUDE_DST=$(WAYTOORUDE_BLD)/$(WAYTOORUDE_ARC)
 .PHONY:waytoorude
 waytoorude: $(ARCULATOR_HOSTFS)/$(WAYTOORUDE_ARC)
 
-$(WAYTOORUDE_SRC)/instructions.asm: $(WAYTOORUDE_SRC)/bytecodes.bin $(WAYTOORUDE_SRC)/constants.bin $(WAYTOORUDE_SRC)/colorscript.bin
+$(WAYTOORUDE_SRC)/instructions.asm: $(WAYTOORUDE_SRC)/bytecodes.bin $(WAYTOORUDE_SRC)/constants.bin $(WAYTOORUDE_SRC)/colorscript.bin $(ROSE2ARC)
 	$(PYTHON3) $(ROSE2ARC) $(WAYTOORUDE_SRC)/bytecodes.bin -c $(WAYTOORUDE_SRC)/constants.bin -s $(WAYTOORUDE_SRC)/colorscript.bin -o $(WAYTOORUDE_SRC)/instructions.asm
 
 $(WAYTOORUDE_BLD)/waytoorude.bin: $(WAYTOORUDE_SRC)/instructions.asm $(ENGINE_DEPS)
@@ -145,7 +145,7 @@ LOGICOS_DST=$(LOGICOS_BLD)/$(LOGICOS_ARC)
 .PHONY:logicos
 logicos: $(ARCULATOR_HOSTFS)/$(LOGICOS_ARC)
 
-$(LOGICOS_SRC)/instructions.asm: $(LOGICOS_SRC)/bytecodes.bin $(LOGICOS_SRC)/constants.bin $(LOGICOS_SRC)/colorscript.bin
+$(LOGICOS_SRC)/instructions.asm: $(LOGICOS_SRC)/bytecodes.bin $(LOGICOS_SRC)/constants.bin $(LOGICOS_SRC)/colorscript.bin $(ROSE2ARC)
 	$(PYTHON3) $(ROSE2ARC) $(LOGICOS_SRC)/bytecodes.bin -c $(LOGICOS_SRC)/constants.bin -s $(LOGICOS_SRC)/colorscript.bin -o $(LOGICOS_SRC)/instructions.asm
 
 $(LOGICOS_BLD)/logicos.bin: $(LOGICOS_SRC)/instructions.asm $(ENGINE_DEPS)
@@ -179,7 +179,7 @@ TECHNOVA_DST=$(TECHNOVA_BLD)/$(TECHNOVA_ARC)
 .PHONY:technova
 technova: $(ARCULATOR_HOSTFS)/$(TECHNOVA_ARC)
 
-$(TECHNOVA_SRC)/instructions.asm: $(TECHNOVA_SRC)/bytecodes.bin $(TECHNOVA_SRC)/constants.bin $(TECHNOVA_SRC)/colorscript.bin
+$(TECHNOVA_SRC)/instructions.asm: $(TECHNOVA_SRC)/bytecodes.bin $(TECHNOVA_SRC)/constants.bin $(TECHNOVA_SRC)/colorscript.bin $(ROSE2ARC)
 	$(PYTHON3) $(ROSE2ARC) $(TECHNOVA_SRC)/bytecodes.bin -c $(TECHNOVA_SRC)/constants.bin -s $(TECHNOVA_SRC)/colorscript.bin -o $(TECHNOVA_SRC)/instructions.asm
 
 $(TECHNOVA_BLD)/technova.bin: $(TECHNOVA_SRC)/instructions.asm $(ENGINE_DEPS)
@@ -213,7 +213,7 @@ EUPHORIA_DST=$(EUPHORIA_BLD)/$(EUPHORIA_ARC)
 .PHONY:euphoria
 euphoria: $(ARCULATOR_HOSTFS)/$(EUPHORIA_ARC)
 
-$(EUPHORIA_SRC)/instructions.asm: $(EUPHORIA_SRC)/bytecodes.bin $(EUPHORIA_SRC)/constants.bin $(EUPHORIA_SRC)/colorscript.bin
+$(EUPHORIA_SRC)/instructions.asm: $(EUPHORIA_SRC)/bytecodes.bin $(EUPHORIA_SRC)/constants.bin $(EUPHORIA_SRC)/colorscript.bin $(ROSE2ARC)
 	$(PYTHON3) $(ROSE2ARC) $(EUPHORIA_SRC)/bytecodes.bin -c $(EUPHORIA_SRC)/constants.bin -s $(EUPHORIA_SRC)/colorscript.bin -o $(EUPHORIA_SRC)/instructions.asm
 
 $(EUPHORIA_BLD)/euphoria.bin: $(EUPHORIA_SRC)/instructions.asm $(ENGINE_DEPS)

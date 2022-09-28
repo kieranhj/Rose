@@ -79,7 +79,7 @@ MIN_INPUT=0x08
 MAX_INPUT=0x5F
 
 class RoseParser:
-    def __init__(self, byte_file) -> None:
+    def __init__(self, byte_file, constants) -> None:
         self._num_vars = 0
         self._proc_no = 0
         self._label_no = 0
@@ -87,6 +87,7 @@ class RoseParser:
         self._label_stack = []
         self._push_pending = False
         self._load_without_op = False
+        self._constants = constants
     
     def push_var(self, reg):
         # TODO: Stack optimisation.
@@ -116,7 +117,8 @@ class RoseParser:
             index += big
 
         # Write constant load.
-        self._asm_file.write(f'\tldr r0, [r4, #{index}*4]\t\t\t; r0=rConstants[{index}]\n')
+        c = self._constants[index]
+        self._asm_file.write(f'\tldr r0, [r4, #{index}*4]\t\t\t; r0=rConstants[{index}]=0x{c:08x} ({(c/(1<<16)):.4f})\n')
         self.push_var(0)
 
     def write_done(self, c):
@@ -457,22 +459,28 @@ class RoseParser:
         #    self._asm_file.write(f'\t.long proc_{x}_start\n')
 
 
-def TranslateConstants(const_file, asm_file):
+def TranslateConstants(const_file):
+    constants = []
+    while True:
+        b = const_file.read(4)
+        if b == b'':            # binary empty string == EOF
+            break
+        c = int.from_bytes(b, "big")
+        constants.append(c)
+    return constants
+
+def WriteConstants(constants, asm_file):
     num_constants = 0
     asm_file.write('\n; ============================================================================\n')
     asm_file.write(f'; Constants.\n')
     asm_file.write('; ============================================================================\n')
     asm_file.write(f'\nr_Constants:\n')
     
-    while True:
-        b = const_file.read(4)
-        if b == b'':            # binary empty string == EOF
-            break
-        c = int.from_bytes(b, "big")
-        asm_file.write(f'.long 0x{c:08x}\t\t\t\t; [{num_constants}] = {(c/(1<<16))}\n')
+    for c in constants:
+        asm_file.write(f'.long 0x{c:08x}\t\t\t\t; [{num_constants}] = {(c/(1<<16)):.4f}\n')
         num_constants += 1
 
-    print(f'Wrote {num_constants} constants.\n')
+    print(f'Wrote {len(constants)} constants.\n')
 
 def TranslateColorScript(color_file, asm_file):
     num_events = 0
@@ -564,14 +572,17 @@ if __name__ == '__main__':
     asm_file.write('; r7 = r_Sinus.\n')
     asm_file.write('; ============================================================================\n\n')
 
-    # Output Archie ARM asm.
-    parser = RoseParser(byte_file)
-    parser.TranslateByteCode(asm_file)
-
     if args.constants is not None:
         const_file = open(args.constants, 'rb')
-        TranslateConstants(const_file, asm_file)
+        constants = TranslateConstants(const_file)
         const_file.close()
+
+    # Output Archie ARM asm.
+    parser = RoseParser(byte_file, constants)
+    parser.TranslateByteCode(asm_file)
+
+    if constants is not None:
+        WriteConstants(constants, asm_file)
 
     if args.script is not None:
         color_file = open(args.script, 'rb')

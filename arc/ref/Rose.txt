@@ -144,15 +144,17 @@ TODO: Check unreachable code after fork? - DONE
 
 - Test!
     - circle - WORKS!
-    - ball - INVISIBLE - CIRCLES NEED TO BE SORTED BY Y.
+    - ball - WORKS!
     - tree - WORKS!
-    - chiperia - WORKS! CHECK SMALL CIRCLE SIZES?
-    - teaser - WORKS! LINES ARE TOO BENDY..!
-    - everyway - WORKS BAR DRAW ORDER - NEED SORT BY Y.
+    - chiperia - WORKS!
+    - teaser - WORKS!
+    - everyway - WORKS!
     - jesuis - WORKS! ALTHOUGH CREDITS MISSING?
-    - frustration - BASICALLY WORKS ALTHOUGH BENDY LINES STILL WRONG.
-    - euphoria - WORKS!
-    - waytoorude - HARD CRASH!
+    - frustration - WORKS!
+    - euphoria - WORKS! ALTHOUGH LAST BIT BLANK?
+    - waytoorude - WORKS MOSTLY - CREDITS ARE BUST
+    - logicos - WORKS?
+    - technova - WORKS!
 
 TODO:
     - Incorrect push on StateStack after ELSE in tree.asm - DONE
@@ -201,8 +203,8 @@ https://pdjstone.github.io/arculator-wasm/arculator.html?disc=https://bitshifter
 - Tidy up code generally, esp. engine.asm e.g. split out span plot code gen into lib.
 - Look for optimisations, register use etc.
 - Figure out vlink for different sections (jetison BSS segment)
-- Tidy up folder structure.
-- Setup a Makefile to make all the Rose apps as different targets etc.
+- Tidy up folder structure. - DONE
+- Setup a Makefile to make all the Rose apps as different targets etc. - DONE
 - Remove all redundant code & data to reduce exe sizes.
     - Way Too Rude requires 4mb! Everything else runs in 2Mb.
     - Should only need span routines up to ~140 pixels (MAX_RADIUS=70)
@@ -224,6 +226,9 @@ https://pdjstone.github.io/arculator-wasm/arculator.html?disc=https://bitshifter
     - Dual Playfield demos drop frames on 8MHz machines. :(
     - Look for potential optimisations on circle drawing generally.
     - Are there any optimisations for the DPF implementation?
+        - Potential option for writing to each PF as separate buffers then doing
+          an unrolled merge to a final screen? Presume the cost of all the extra
+          reads & write for every pixel will massively outweight doing it inline.
     - Look for optimisations in the Rose bytecode assembly.
         - Load constants directly where can be made from 8 or 16-bit rotations.
         - Directly embed some functions rather than bl? (Check code size).

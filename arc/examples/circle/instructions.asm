@@ -30,13 +30,13 @@
 
 proc_0_start:
 	; BC_CONST [87]
-	ldr r0, [r4, #7*4]			; r0=rConstants[7]
+	ldr r0, [r4, #7*4]			; r0=rConstants[7]=0x00fa0000 (250.0000)
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_CONST [85]
-	ldr r0, [r4, #5*4]			; r0=rConstants[5]
+	ldr r0, [r4, #5*4]			; r0=rConstants[5]=0x00400000 (64.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -46,24 +46,24 @@ proc_0_start:
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
 	; BC_CONST [86]
-	ldr r0, [r4, #6*4]			; r0=rConstants[6]
+	ldr r0, [r4, #6*4]			; r0=rConstants[6]=0x008c0000 (140.0000)
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_CONST [82]
-	ldr r0, [r4, #2*4]			; r0=rConstants[2]
+	ldr r0, [r4, #2*4]			; r0=rConstants[2]=0x00010000 (1.0000)
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_CONST [84]
-	ldr r0, [r4, #4*4]			; r0=rConstants[4]
+	ldr r0, [r4, #4*4]			; r0=rConstants[4]=0x00030000 (3.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_CONST [82]
-	ldr r0, [r4, #2*4]			; r0=rConstants[2]
+	ldr r0, [r4, #2*4]			; r0=rConstants[2]=0x00010000 (1.0000)
 	; BC_CONST [88]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #8*4]			; r0=rConstants[8]
+	ldr r0, [r4, #8*4]			; r0=rConstants[8]=0x01000000 (256.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_1_start		; r0=r_Procedures[1]
@@ -86,7 +86,7 @@ proc_1_start:
 	bl PutCircle
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_CONST [83]
-	ldr r0, [r4, #3*4]			; r0=rConstants[3]
+	ldr r0, [r4, #3*4]			; r0=rConstants[3]=0x00020000 (2.0000)
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
@@ -102,7 +102,7 @@ proc_1_start:
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
 	; BC_CONST [81]
-	ldr r0, [r4, #1*4]			; r0=rConstants[1]
+	ldr r0, [r4, #1*4]			; r0=rConstants[1]=0x00008000 (0.5000)
 	; BC_WAIT [0a]
 	adr r1, proc_1_continue_0
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -110,7 +110,7 @@ proc_1_start:
 	ldr pc, [sp], #4			; Return
 proc_1_continue_0:
 	; BC_CONST [80]
-	ldr r0, [r4, #0*4]			; r0=rConstants[0]
+	ldr r0, [r4, #0*4]			; r0=rConstants[0]=0x00000000 (0.0000)
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
@@ -123,7 +123,7 @@ proc_1_continue_0:
 	adr r0, proc_1_start		; r0=r_Procedures[1]
 	; BC_CONST [82]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #2*4]			; r0=rConstants[2]
+	ldr r0, [r4, #2*4]			; r0=rConstants[2]=0x00010000 (1.0000)
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
@@ -152,15 +152,15 @@ proc_1_end:
 ; ============================================================================
 
 r_Constants:
-.long 0x00000000				; [0] = 0.0
-.long 0x00008000				; [1] = 0.5
-.long 0x00010000				; [2] = 1.0
-.long 0x00020000				; [3] = 2.0
-.long 0x00030000				; [4] = 3.0
-.long 0x00400000				; [5] = 64.0
-.long 0x008c0000				; [6] = 140.0
-.long 0x00fa0000				; [7] = 250.0
-.long 0x01000000				; [8] = 256.0
+.long 0x00000000				; [0] = 0.0000
+.long 0x00008000				; [1] = 0.5000
+.long 0x00010000				; [2] = 1.0000
+.long 0x00020000				; [3] = 2.0000
+.long 0x00030000				; [4] = 3.0000
+.long 0x00400000				; [5] = 64.0000
+.long 0x008c0000				; [6] = 140.0000
+.long 0x00fa0000				; [7] = 250.0000
+.long 0x01000000				; [8] = 256.0000
 
 ; ============================================================================
 ; Color Script.
