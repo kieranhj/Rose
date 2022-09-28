@@ -7,9 +7,11 @@
 ; ============================================================================
 
 .equ _DEBUG, 1
-.equ _ENABLE_MUSIC, 1
-.equ _OVERSCAN, 0						; TODO: Move to config.
-.equ _DUAL_PLAYFIELD, 1					; TODO: Move to config.
+
+; Symbols now defined when involking the assembler.
+;.equ _ENABLE_MUSIC, 1
+;.equ _OVERSCAN, 0
+;.equ _DUAL_PLAYFIELD, 1
 
 .equ _DEBUG_RASTERS, (_DEBUG && 1)		; removes code
 .equ _DEBUG_STOP_ON_FRAME, -1
@@ -20,14 +22,13 @@
 .equ Screen_Banks, 1
 .equ Screen_Mode, 9
 
-.if _OVERSCAN
-.equ Screen_Width, 352			; +32
-.equ Screen_Height, 280			; +24
-.equ Mode_Height, 280
-.else
-.equ Screen_Width, 320
-.equ Screen_Height, 180 ;256
+.equ Screen_Width, _FORM_WIDTH
+.equ Screen_Height, _FORM_HEIGHT
+
+.if _FORM_HEIGHT < 256					; TODO: Shrink MODE!
 .equ Mode_Height, 256
+.else
+.equ Mode_Height, _FORM_HEIGHT
 .endif
 
 .equ Screen_PixelsPerByte, 2
@@ -233,7 +234,7 @@ main_loop:
 	ldr r1, d_StopOnFrame
 	cmp r2, r1
 	bne .3
-	mov r1, #1
+	mov r1, #0
 	str r1, debug_play_pause
 	.3:
 	.endif
@@ -565,6 +566,9 @@ vidc_regs:
 p_CircleBufEnd:
 	.long r_circleBufEnd
 
+p_StateSpace:
+	.long r_StateSpace
+
 ; ============================================================================
 ; Additional code modules.
 ; ============================================================================
@@ -573,19 +577,7 @@ p_CircleBufEnd:
 .include "circles.asm"
 
 r_Instructions:
-;.include "circle.asm"			; WORKS! \o/
-;.include "ball.asm"			; WORKS! \o/
-;.include "tree.asm"			; WORKS! \o/
-;.include "chiperia.asm"		; WORKS! \o/
-;.include "teaser.asm"			; WORKS! \o/
-;.include "everyway.asm"		; WORKS! \o/
-;.include "jesuis.asm"			; WORKS ALTHOUGH FINAL CREDITS SCENE MISSING?
-;.include "frustration.asm"		; WORKS! \o/
-;.include "euphoria.asm"		; WORKS?
-.include "waytoorude.asm"		; WORKS MOSTLY - ONE EFFECT DOESN'T ANIMATE AND CREDITS ARE BUST?
-;.include "revision.asm"		; WORKS! - A USEFUL TEST!
-;.include "logicos.asm"			; WORKS? - MAX STACK HEIGHT 31!
-;.include "technova.asm"		; WORKS! \o/
+.include "instructions.asm"			; Include folder specified at assemble involkation.
 
 ; ============================================================================
 ; Data Segment

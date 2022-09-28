@@ -1,6 +1,6 @@
 ; ============================================================================
 ; rose2arc.py
-; input = arc/waytoorude/bytecodes.bin.
+; input = examples/waytoorude/bytecodes.bin.
 ; ============================================================================
 
 .equ ST_PROC, 0

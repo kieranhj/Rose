@@ -2,11 +2,22 @@
 ; engine.asm - ARM port of Engine.S
 ; ============================================================================
 
-.equ MAX_FRAMES, 13000	        ; Length of Rose animation
+.ifndef MAX_FRAMES
+.equ MAX_FRAMES, 10000	        ; Length of Rose animation
+.endif
+
 .equ MAX_TURTLES, 500           ; Max turtles alive at the same time (!)
-.equ MAX_STACK, 31              ; Max depth of execution stack
+
+.ifndef MAX_STACK
+.equ MAX_STACK, 20              ; Max depth of execution stack
+.endif
+
 .equ MAX_WAIT, 1000             ; Max wait beyond end of program
-.equ WIRE_CAPACITY, 8           ; Number of wire slots <== IF THIS CHANGES CHECK StateFork!!
+
+.ifndef WIRE_CAPACITY
+.equ WIRE_CAPACITY, 8           ; Number of wire slots <== IF THIS CHANGES CHECK ForkState!!
+.endif
+
 .equ MAXRADIUS, 70              ;
 .equ DEGREES, 16384
 
@@ -200,7 +211,7 @@ RunFrame:
 	ldr pc, [sp], #4			; Pop lr off program stack.
 
 InitStates:
-    adr r1, r_StateSpace
+    ldr r1, p_StateSpace
     mov r7, #MAX_TURTLES-1
 .1:
     add r5, r1, #STATE_SIZE
@@ -294,6 +305,10 @@ ForkState:
     stmia r0!, {r8-r11}         ; copy 4 words
     ldmia r6!, {r8-r10}         ; st_wire5, st_wire6, st_wire7
     stmia r0!, {r8-r10}         ; copy 3 words
+
+    .if WIRE_CAPACITY != 8
+    .err WIRE_CAPACITY is not 8 as expected!
+    .endif
 
     sub r8, r2, r1, lsl #2      ; p_NewStateStackBottom = p_NewState - num_args * 4
     mov r9, r1
@@ -403,11 +418,14 @@ PutCircle:
     mov r0, r8, asr #16
     mov r1, r9, asr #16
     mov r2, r10, asr #16
+    ; Guard against negative radius from dodgy Rose maths...
+    cmp r2, #0
+    blt .1
     mov r11, r11, lsr #16
     ; bl plot_circle
 	ldr r4, plot_circle_instruction
     bl link_circle
-
+    .1:
     ldmfd sp!, {r0-r7, lr}
 .endif
 
@@ -442,12 +460,15 @@ PutSquare:
     mov r0, r8, asr #16
     mov r1, r9, asr #16
     mov r2, r10, asr #16
+    ; Guard against negative radius from dodgy Rose maths...
+    cmp r2, #0
+    blt .1
 	ldr r4, plot_square_instruction
     orr r4, r4, r2            	; mov r1, #st_size
 
     mov r11, r11, lsr #16
     bl link_circle
-
+    .1:
     ldmfd sp!, {r0-r7, lr}
 .endif
 
