@@ -7,9 +7,9 @@
 ; ============================================================================
 
 .equ _DEBUG, 1
-.equ _ENABLE_MUSIC, 1
+.equ _ENABLE_MUSIC, 0
 .equ _OVERSCAN, 0						; TODO: Move to config.
-.equ _DUAL_PLAYFIELD, 1					; TODO: Move to config.
+.equ _DUAL_PLAYFIELD, 0					; TODO: Move to config.
 
 .equ _DEBUG_RASTERS, (_DEBUG && 1)		; removes code
 .equ _DEBUG_STOP_ON_FRAME, -1
@@ -26,7 +26,7 @@
 .equ Mode_Height, 280
 .else
 .equ Screen_Width, 320
-.equ Screen_Height, 180;256
+.equ Screen_Height, 256	;180
 .equ Mode_Height, 256
 .endif
 
@@ -577,12 +577,12 @@ r_Instructions:
 ;.include "ball.asm"			; WORKS! \o/
 ;.include "tree.asm"			; WORKS! \o/
 ;.include "chiperia.asm"		; WORKS! \o/
-;.include "teaser.asm"			; WORKS ALTHOUGH WOBBLY LINES STILL NOT CORRECT!
+;.include "teaser.asm"			; WORKS! \o/
 ;.include "everyway.asm"		; WORKS! \o/
 ;.include "jesuis.asm"			; WORKS ALTHOUGH FINAL CREDITS SCENE MISSING?
-;.include "frustration.asm"		; WORKS ALTHOUGH WOBBLY LINES STILL NOT CORRECT!
+.include "frustration.asm"		; WORKS! \o/
 ;.include "euphoria.asm"		; WORKS?
-.include "waytoorude.asm"		; WORKS MOSTLY - ONE EFFECT DOESN'T ANIMATE AND CREDITS ARE BUST?
+;.include "waytoorude.asm"		; WORKS MOSTLY - ONE EFFECT DOESN'T ANIMATE AND CREDITS ARE BUST?
 ;.include "revision.asm"		; WORKS! - A USEFUL TEST!
 ;.include "logicos.asm"			; WORKS? - MAX STACK HEIGHT 31!
 ;.include "technova.asm"		; WORKS! \o/

@@ -43,8 +43,10 @@ proc_0_start:
 	ldr r0, [r4, #43*4]			; r0=rConstants[43]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_0_continue_0
@@ -59,8 +61,10 @@ proc_0_continue_0:
 	ldr r0, [r4, #43*4]			; r0=rConstants[43]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_0_continue_1
@@ -75,8 +79,10 @@ proc_0_continue_1:
 	ldr r0, [r4, #43*4]			; r0=rConstants[43]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_0_continue_2
@@ -91,8 +97,10 @@ proc_0_continue_2:
 	ldr r0, [r4, #43*4]			; r0=rConstants[43]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_0_continue_3
@@ -107,8 +115,10 @@ proc_0_continue_3:
 	ldr r0, [r4, #43*4]			; r0=rConstants[43]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_0_continue_4
@@ -123,8 +133,10 @@ proc_0_continue_4:
 	ldr r0, [r4, #43*4]			; r0=rConstants[43]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_0_continue_5
@@ -139,8 +151,10 @@ proc_0_continue_5:
 	ldr r0, [r4, #43*4]			; r0=rConstants[43]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_0_continue_6
@@ -155,8 +169,10 @@ proc_0_continue_6:
 	ldr r0, [r4, #43*4]			; r0=rConstants[43]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_0_continue_7
@@ -178,8 +194,10 @@ proc_0_continue_7:
 	ldr r0, [r4, #43*4]			; r0=rConstants[43]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_0_continue_8
@@ -194,8 +212,10 @@ proc_0_continue_8:
 	ldr r0, [r4, #43*4]			; r0=rConstants[43]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_0_continue_9
@@ -210,8 +230,10 @@ proc_0_continue_9:
 	ldr r0, [r4, #43*4]			; r0=rConstants[43]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_0_continue_10
@@ -226,8 +248,10 @@ proc_0_continue_10:
 	ldr r0, [r4, #43*4]			; r0=rConstants[43]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_0_continue_11
@@ -249,8 +273,10 @@ proc_0_continue_11:
 	ldr r0, [r4, #43*4]			; r0=rConstants[43]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_0_continue_12
@@ -265,8 +291,10 @@ proc_0_continue_12:
 	ldr r0, [r4, #43*4]			; r0=rConstants[43]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_0_continue_13
@@ -281,8 +309,10 @@ proc_0_continue_13:
 	ldr r0, [r4, #43*4]			; r0=rConstants[43]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_0_continue_14
@@ -297,8 +327,10 @@ proc_0_continue_14:
 	ldr r0, [r4, #43*4]			; r0=rConstants[43]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_0_continue_15
@@ -320,8 +352,10 @@ proc_0_continue_15:
 	ldr r0, [r4, #43*4]			; r0=rConstants[43]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_0_continue_16
@@ -336,8 +370,10 @@ proc_0_continue_16:
 	ldr r0, [r4, #43*4]			; r0=rConstants[43]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_0_continue_17
@@ -352,8 +388,10 @@ proc_0_continue_17:
 	ldr r0, [r4, #43*4]			; r0=rConstants[43]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_0_continue_18
@@ -368,8 +406,10 @@ proc_0_continue_18:
 	ldr r0, [r4, #43*4]			; r0=rConstants[43]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_0_continue_19
@@ -391,8 +431,10 @@ proc_0_continue_19:
 	ldr r0, [r4, #43*4]			; r0=rConstants[43]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_0_continue_20
@@ -407,8 +449,10 @@ proc_0_continue_20:
 	ldr r0, [r4, #43*4]			; r0=rConstants[43]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_0_continue_21
@@ -423,8 +467,10 @@ proc_0_continue_21:
 	ldr r0, [r4, #43*4]			; r0=rConstants[43]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_0_continue_22
@@ -439,8 +485,10 @@ proc_0_continue_22:
 	ldr r0, [r4, #43*4]			; r0=rConstants[43]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_0_continue_23
@@ -455,8 +503,10 @@ proc_0_continue_23:
 	ldr r0, [r4, #43*4]			; r0=rConstants[43]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_0_continue_24
@@ -471,8 +521,10 @@ proc_0_continue_24:
 	ldr r0, [r4, #43*4]			; r0=rConstants[43]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_0_continue_25
@@ -494,8 +546,10 @@ proc_0_continue_25:
 	ldr r0, [r4, #43*4]			; r0=rConstants[43]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_0_continue_26
@@ -510,8 +564,10 @@ proc_0_continue_26:
 	ldr r0, [r4, #43*4]			; r0=rConstants[43]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_0_continue_27
@@ -526,8 +582,10 @@ proc_0_continue_27:
 	ldr r0, [r4, #43*4]			; r0=rConstants[43]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_0_continue_28
@@ -542,8 +600,10 @@ proc_0_continue_28:
 	ldr r0, [r4, #43*4]			; r0=rConstants[43]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_0_continue_29
@@ -777,8 +837,10 @@ proc_4_start:
 	mov r0, r0, asl #2
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
@@ -2160,8 +2222,10 @@ proc_19_start:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_19_continue_66
@@ -2214,8 +2278,10 @@ proc_19_continue_66:
 	ldr r0, [r4, #30*4]			; r0=rConstants[30]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_19_continue_67
@@ -2256,8 +2322,10 @@ proc_19_continue_67:
 	ldr r0, [r4, #30*4]			; r0=rConstants[30]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_19_continue_68
@@ -2272,8 +2340,10 @@ proc_19_continue_68:
 	ldr r0, [r4, #30*4]			; r0=rConstants[30]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_19_continue_69
@@ -2288,8 +2358,10 @@ proc_19_continue_69:
 	ldr r0, [r4, #30*4]			; r0=rConstants[30]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_19_continue_70
@@ -2321,8 +2393,10 @@ proc_19_continue_70:
 	ldr r0, [r4, #30*4]			; r0=rConstants[30]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_19_continue_71
@@ -2337,8 +2411,10 @@ proc_19_continue_71:
 	ldr r0, [r4, #30*4]			; r0=rConstants[30]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_19_continue_72
@@ -2363,8 +2439,10 @@ proc_19_continue_72:
 	ldr r0, [r4, #30*4]			; r0=rConstants[30]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_19_continue_73
@@ -2379,8 +2457,10 @@ proc_19_continue_73:
 	ldr r0, [r4, #30*4]			; r0=rConstants[30]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_19_continue_74
@@ -2405,8 +2485,10 @@ proc_19_continue_74:
 	ldr r0, [r4, #30*4]			; r0=rConstants[30]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_19_continue_75
@@ -2421,8 +2503,10 @@ proc_19_continue_75:
 	ldr r0, [r4, #30*4]			; r0=rConstants[30]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_19_continue_76
@@ -2447,8 +2531,10 @@ proc_19_continue_76:
 	ldr r0, [r4, #30*4]			; r0=rConstants[30]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_19_continue_77
@@ -2463,8 +2549,10 @@ proc_19_continue_77:
 	ldr r0, [r4, #30*4]			; r0=rConstants[30]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_19_continue_78
@@ -2489,8 +2577,10 @@ proc_19_continue_78:
 	ldr r0, [r4, #30*4]			; r0=rConstants[30]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_19_continue_79
@@ -2505,8 +2595,10 @@ proc_19_continue_79:
 	ldr r0, [r4, #30*4]			; r0=rConstants[30]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_19_continue_80
@@ -2531,8 +2623,10 @@ proc_19_continue_80:
 	ldr r0, [r4, #30*4]			; r0=rConstants[30]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_19_continue_81
@@ -2547,8 +2641,10 @@ proc_19_continue_81:
 	ldr r0, [r4, #30*4]			; r0=rConstants[30]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_19_continue_82
@@ -2573,8 +2669,10 @@ proc_19_continue_82:
 	ldr r0, [r4, #30*4]			; r0=rConstants[30]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_19_continue_83
@@ -2589,8 +2687,10 @@ proc_19_continue_83:
 	ldr r0, [r4, #30*4]			; r0=rConstants[30]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_19_continue_84
@@ -2747,8 +2847,10 @@ proc_19_continue_93:
 	ldr r0, [r4, #30*4]			; r0=rConstants[30]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_19_continue_94
@@ -2815,8 +2917,10 @@ proc_19_continue_94:
 	ldr r0, [r4, #30*4]			; r0=rConstants[30]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_19_continue_95
@@ -2831,8 +2935,10 @@ proc_19_continue_95:
 	ldr r0, [r4, #30*4]			; r0=rConstants[30]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_19_continue_96
@@ -2847,8 +2953,10 @@ proc_19_continue_96:
 	ldr r0, [r4, #30*4]			; r0=rConstants[30]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_19_continue_97
@@ -2863,8 +2971,10 @@ proc_19_continue_97:
 	ldr r0, [r4, #30*4]			; r0=rConstants[30]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_19_continue_98
@@ -2879,8 +2989,10 @@ proc_19_continue_98:
 	ldr r0, [r4, #30*4]			; r0=rConstants[30]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_19_continue_99
@@ -2895,8 +3007,10 @@ proc_19_continue_99:
 	ldr r0, [r4, #30*4]			; r0=rConstants[30]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_19_continue_100
@@ -4058,8 +4172,10 @@ proc_26_start:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_26_continue_112
@@ -4810,13 +4926,17 @@ proc_34_start:
 	mov r0, r0, asl #2
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
@@ -4867,13 +4987,17 @@ proc_34_start:
 	mov r0, r0, asl #2
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
@@ -4924,13 +5048,17 @@ proc_34_start:
 	mov r0, r0, asl #2
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
@@ -5118,8 +5246,10 @@ proc_36_continue_140:
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WLOCAL [41]
 	str r0, [r5, #-2*4]			; StateStack[-2]=r0
@@ -5259,8 +5389,10 @@ proc_39_start:
 	ldr r0, [r4, #30*4]			; r0=rConstants[30]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_39_continue_145
@@ -5275,8 +5407,10 @@ proc_39_continue_145:
 	ldr r0, [r4, #30*4]			; r0=rConstants[30]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_39_continue_146
@@ -5389,13 +5523,17 @@ proc_40_continue_152:
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -5450,13 +5588,17 @@ proc_40_continue_154:
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -5519,13 +5661,17 @@ proc_40_continue_157:
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -7321,8 +7467,10 @@ proc_50_continue_262:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_CONST [ba]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -8371,8 +8519,10 @@ proc_53_start:
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WSTATE [58]
 	str r0, [r5, #ST_WIRE0*4]		; State[ST_WIRE0]=r0
@@ -8560,8 +8710,10 @@ proc_54_start:
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WSTATE [58]
 	str r0, [r5, #ST_WIRE0*4]		; State[ST_WIRE0]=r0
@@ -8683,8 +8835,10 @@ proc_54_continue_344:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -8719,8 +8873,10 @@ proc_54_continue_344:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -8739,8 +8895,10 @@ proc_54_continue_344:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -8759,8 +8917,10 @@ proc_54_continue_344:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -8779,8 +8939,10 @@ proc_54_continue_344:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -8799,8 +8961,10 @@ proc_54_continue_344:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -8819,8 +8983,10 @@ proc_54_continue_344:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -8839,8 +9005,10 @@ proc_54_continue_344:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -8859,8 +9027,10 @@ proc_54_continue_344:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -8879,8 +9049,10 @@ proc_54_continue_344:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -8923,8 +9095,10 @@ proc_55_target_345:
 	ldr r0, [r4, #33*4]			; r0=rConstants[33]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -8962,8 +9136,10 @@ proc_55_target_347:
 	ldr r0, [r4, #33*4]			; r0=rConstants[33]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -9001,8 +9177,10 @@ proc_55_target_349:
 	ldr r0, [r4, #33*4]			; r0=rConstants[33]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -9040,8 +9218,10 @@ proc_55_target_351:
 	ldr r0, [r4, #33*4]			; r0=rConstants[33]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -9079,8 +9259,10 @@ proc_56_start:
 	ldr r0, [r4, #33*4]			; r0=rConstants[33]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -9111,8 +9293,10 @@ proc_56_continue_353:
 	ldr r0, [r4, #33*4]			; r0=rConstants[33]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -9143,8 +9327,10 @@ proc_56_continue_354:
 	ldr r0, [r4, #33*4]			; r0=rConstants[33]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -9175,8 +9361,10 @@ proc_56_continue_355:
 	ldr r0, [r4, #33*4]			; r0=rConstants[33]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -9222,8 +9410,10 @@ proc_57_start:
 	ldr r0, [r4, #33*4]			; r0=rConstants[33]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -9254,8 +9444,10 @@ proc_57_continue_357:
 	ldr r0, [r4, #33*4]			; r0=rConstants[33]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -9286,8 +9478,10 @@ proc_57_continue_358:
 	ldr r0, [r4, #33*4]			; r0=rConstants[33]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -9318,8 +9512,10 @@ proc_57_continue_359:
 	ldr r0, [r4, #33*4]			; r0=rConstants[33]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -9357,8 +9553,10 @@ proc_58_start:
 	ldr r0, [r4, #33*4]			; r0=rConstants[33]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -9389,8 +9587,10 @@ proc_58_continue_360:
 	ldr r0, [r4, #33*4]			; r0=rConstants[33]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -9417,8 +9617,10 @@ proc_59_start:
 	ldr r0, [r4, #30*4]			; r0=rConstants[30]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_59_continue_361
@@ -9440,8 +9642,10 @@ proc_59_continue_361:
 	ldr r0, [r4, #30*4]			; r0=rConstants[30]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_59_continue_362
@@ -9463,8 +9667,10 @@ proc_59_continue_362:
 	ldr r0, [r4, #30*4]			; r0=rConstants[30]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_59_continue_363
@@ -9486,8 +9692,10 @@ proc_59_continue_363:
 	ldr r0, [r4, #30*4]			; r0=rConstants[30]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_59_continue_364
@@ -9509,8 +9717,10 @@ proc_59_continue_364:
 	ldr r0, [r4, #30*4]			; r0=rConstants[30]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_59_continue_365
@@ -9532,8 +9742,10 @@ proc_59_continue_365:
 	ldr r0, [r4, #30*4]			; r0=rConstants[30]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_59_continue_366
@@ -9555,8 +9767,10 @@ proc_59_continue_366:
 	ldr r0, [r4, #30*4]			; r0=rConstants[30]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_59_continue_367
@@ -9578,8 +9792,10 @@ proc_59_continue_367:
 	ldr r0, [r4, #30*4]			; r0=rConstants[30]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_59_continue_368
@@ -9601,8 +9817,10 @@ proc_59_continue_368:
 	ldr r0, [r4, #30*4]			; r0=rConstants[30]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_59_continue_369
@@ -9624,8 +9842,10 @@ proc_59_continue_369:
 	ldr r0, [r4, #30*4]			; r0=rConstants[30]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_59_continue_370
@@ -9647,8 +9867,10 @@ proc_59_continue_370:
 	ldr r0, [r4, #30*4]			; r0=rConstants[30]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_59_continue_371
@@ -9670,8 +9892,10 @@ proc_59_continue_371:
 	ldr r0, [r4, #30*4]			; r0=rConstants[30]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_59_continue_372
@@ -9693,8 +9917,10 @@ proc_59_continue_372:
 	ldr r0, [r4, #30*4]			; r0=rConstants[30]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_59_continue_373
@@ -9716,8 +9942,10 @@ proc_59_continue_373:
 	ldr r0, [r4, #30*4]			; r0=rConstants[30]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_59_continue_374
@@ -9739,8 +9967,10 @@ proc_59_continue_374:
 	ldr r0, [r4, #30*4]			; r0=rConstants[30]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_59_continue_375
@@ -9762,8 +9992,10 @@ proc_59_continue_375:
 	ldr r0, [r4, #30*4]			; r0=rConstants[30]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_59_continue_376
@@ -9818,8 +10050,10 @@ proc_60_continue_377:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -9835,8 +10069,10 @@ proc_60_continue_377:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -9862,8 +10098,10 @@ proc_60_continue_377:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -9879,8 +10117,10 @@ proc_60_continue_377:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -9929,8 +10169,10 @@ proc_60_continue_379:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -9946,8 +10188,10 @@ proc_60_continue_379:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -9973,8 +10217,10 @@ proc_60_continue_379:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -9990,8 +10236,10 @@ proc_60_continue_379:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -10040,8 +10288,10 @@ proc_60_continue_381:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -10057,8 +10307,10 @@ proc_60_continue_381:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -10084,8 +10336,10 @@ proc_60_continue_381:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -10101,8 +10355,10 @@ proc_60_continue_381:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -10151,8 +10407,10 @@ proc_60_continue_383:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -10168,8 +10426,10 @@ proc_60_continue_383:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -10195,8 +10455,10 @@ proc_60_continue_383:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -10212,8 +10474,10 @@ proc_60_continue_383:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -10262,8 +10526,10 @@ proc_60_continue_385:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -10279,8 +10545,10 @@ proc_60_continue_385:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -10306,8 +10574,10 @@ proc_60_continue_385:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -10323,8 +10593,10 @@ proc_60_continue_385:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -10392,8 +10664,10 @@ proc_61_continue_387:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -10409,8 +10683,10 @@ proc_61_continue_387:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -10436,8 +10712,10 @@ proc_61_continue_387:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -10453,8 +10731,10 @@ proc_61_continue_387:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -10503,8 +10783,10 @@ proc_61_continue_389:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -10520,8 +10802,10 @@ proc_61_continue_389:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -10547,8 +10831,10 @@ proc_61_continue_389:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -10564,8 +10850,10 @@ proc_61_continue_389:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -10614,8 +10902,10 @@ proc_61_continue_391:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -10631,8 +10921,10 @@ proc_61_continue_391:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -10658,8 +10950,10 @@ proc_61_continue_391:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -10675,8 +10969,10 @@ proc_61_continue_391:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -10725,8 +11021,10 @@ proc_61_continue_393:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -10742,8 +11040,10 @@ proc_61_continue_393:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -10769,8 +11069,10 @@ proc_61_continue_393:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -10786,8 +11088,10 @@ proc_61_continue_393:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -10836,8 +11140,10 @@ proc_61_continue_395:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -10853,8 +11159,10 @@ proc_61_continue_395:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -10880,8 +11188,10 @@ proc_61_continue_395:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -10897,8 +11207,10 @@ proc_61_continue_395:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -10966,8 +11278,10 @@ proc_62_continue_397:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -10983,8 +11297,10 @@ proc_62_continue_397:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -11010,8 +11326,10 @@ proc_62_continue_397:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -11027,8 +11345,10 @@ proc_62_continue_397:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -11077,8 +11397,10 @@ proc_62_continue_399:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -11094,8 +11416,10 @@ proc_62_continue_399:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -11121,8 +11445,10 @@ proc_62_continue_399:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -11138,8 +11464,10 @@ proc_62_continue_399:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -11188,8 +11516,10 @@ proc_62_continue_401:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -11205,8 +11535,10 @@ proc_62_continue_401:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -11232,8 +11564,10 @@ proc_62_continue_401:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -11249,8 +11583,10 @@ proc_62_continue_401:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -11299,8 +11635,10 @@ proc_62_continue_403:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -11316,8 +11654,10 @@ proc_62_continue_403:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -11343,8 +11683,10 @@ proc_62_continue_403:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -11360,8 +11702,10 @@ proc_62_continue_403:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -11410,8 +11754,10 @@ proc_62_continue_405:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -11427,8 +11773,10 @@ proc_62_continue_405:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -11454,8 +11802,10 @@ proc_62_continue_405:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -11471,8 +11821,10 @@ proc_62_continue_405:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -11540,8 +11892,10 @@ proc_63_continue_407:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -11557,8 +11911,10 @@ proc_63_continue_407:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -11584,8 +11940,10 @@ proc_63_continue_407:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -11601,8 +11959,10 @@ proc_63_continue_407:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -11651,8 +12011,10 @@ proc_63_continue_409:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -11668,8 +12030,10 @@ proc_63_continue_409:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -11695,8 +12059,10 @@ proc_63_continue_409:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -11712,8 +12078,10 @@ proc_63_continue_409:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -11762,8 +12130,10 @@ proc_63_continue_411:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -11779,8 +12149,10 @@ proc_63_continue_411:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -11806,8 +12178,10 @@ proc_63_continue_411:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -11823,8 +12197,10 @@ proc_63_continue_411:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -11873,8 +12249,10 @@ proc_63_continue_413:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -11890,8 +12268,10 @@ proc_63_continue_413:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -11917,8 +12297,10 @@ proc_63_continue_413:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -11934,8 +12316,10 @@ proc_63_continue_413:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -12840,8 +13224,10 @@ proc_80_start:
 	mov r0, r0, asl #2
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_CONST [a0]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -13526,8 +13912,10 @@ proc_87_start:
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
@@ -13690,8 +14078,10 @@ proc_88_start:
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
@@ -13805,13 +14195,17 @@ proc_89_start:
 	mov r0, r0, lsr #16
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
@@ -13825,8 +14219,10 @@ proc_89_start:
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
@@ -13848,8 +14244,10 @@ proc_89_start:
 	mov r0, r0, lsr #16
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_CONST [9c]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -13874,8 +14272,10 @@ proc_89_start:
 	mov r0, r0, lsr #16
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_CONST [96]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -13946,8 +14346,10 @@ proc_90_start:
 	mov r0, r0, lsr #16
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_CONST [a0]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -14000,8 +14402,10 @@ proc_90_continue_454:
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WLOCAL [41]
 	str r0, [r5, #-2*4]			; StateStack[-2]=r0
@@ -14077,8 +14481,10 @@ proc_92_start:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_CONST [a0]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -14111,8 +14517,10 @@ proc_92_start:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_CONST [a0]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -14145,8 +14553,10 @@ proc_92_start:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_CONST [a0]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -14179,8 +14589,10 @@ proc_92_start:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_CONST [a0]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -14213,8 +14625,10 @@ proc_92_start:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_CONST [a0]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -14247,8 +14661,10 @@ proc_92_start:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_CONST [a0]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -14323,8 +14739,10 @@ proc_93_continue_458:
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WLOCAL [41]
 	str r0, [r5, #-2*4]			; StateStack[-2]=r0
@@ -14395,8 +14813,10 @@ proc_95_start:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_CONST [9e]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -14406,61 +14826,10 @@ proc_95_start:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
-	mul r0, r1, r0				; r0=r0*r1
-	; BC_PROC [07]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	adr r0, proc_96_start		; r0=r_Procedures[96]
-	; BC_FORK [22]
-	mov r1, #2
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl ForkState				; r0=proc address, r1=num_args
-	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [af]
-	ldr r0, [r4, #47*4]			; r0=rConstants[47]
-	; BC_NEG [0d]
-	rsb r0, r0, #0				; r0=0-r0
-	; BC_MOVE [0e]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl DoMove
-	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [c6]
-	ldr r0, [r4, #70*4]			; r0=rConstants[70]
-	; BC_RSTATE [76]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
-	; BC_OP [3d]
-	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	adds r0, r0, r1				; r0=r0 adds r1
-	; BC_WSTATE [56]
-	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [c3]
-	ldr r0, [r4, #67*4]			; r0=rConstants[67]
-	; BC_MOVE [0e]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl DoMove
-	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9e]
-	ldr r0, [r4, #30*4]			; r0=rConstants[30]
-	; BC_CONST [b2]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #50*4]			; r0=rConstants[50]
-	; BC_MUL [0f]
-	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
-	mul r0, r1, r0				; r0=r0*r1
-	; BC_CONST [9e]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #30*4]			; r0=rConstants[30]
-	; BC_CONST [b2]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #50*4]			; r0=rConstants[50]
-	; BC_MUL [0f]
-	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -14501,8 +14870,10 @@ proc_95_start:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_CONST [9e]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -14512,8 +14883,10 @@ proc_95_start:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -14554,8 +14927,10 @@ proc_95_start:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_CONST [9e]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -14565,8 +14940,67 @@ proc_95_start:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
+	mul r0, r1, r0				; r0=r0*r1
+	; BC_PROC [07]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	adr r0, proc_96_start		; r0=r_Procedures[96]
+	; BC_FORK [22]
+	mov r1, #2
+	str lr, [sp, #-4]!			; Push lr on program stack.
+	bl ForkState				; r0=proc address, r1=num_args
+	ldr lr, [sp], #4			; Pop lr off program stack.
+	; BC_CONST [af]
+	ldr r0, [r4, #47*4]			; r0=rConstants[47]
+	; BC_NEG [0d]
+	rsb r0, r0, #0				; r0=0-r0
+	; BC_MOVE [0e]
+	str lr, [sp, #-4]!			; Push lr on program stack.
+	bl DoMove
+	ldr lr, [sp], #4			; Pop lr off program stack.
+	; BC_CONST [c6]
+	ldr r0, [r4, #70*4]			; r0=rConstants[70]
+	; BC_RSTATE [76]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	; BC_OP [3d]
+	ldr r1, [r3], #4			; Pop r1 off StateStack.
+	adds r0, r0, r1				; r0=r0 adds r1
+	; BC_WSTATE [56]
+	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
+	; BC_CONST [c3]
+	ldr r0, [r4, #67*4]			; r0=rConstants[67]
+	; BC_MOVE [0e]
+	str lr, [sp, #-4]!			; Push lr on program stack.
+	bl DoMove
+	ldr lr, [sp], #4			; Pop lr off program stack.
+	; BC_CONST [9e]
+	ldr r0, [r4, #30*4]			; r0=rConstants[30]
+	; BC_CONST [b2]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r4, #50*4]			; r0=rConstants[50]
+	; BC_MUL [0f]
+	ldr r1, [r3], #4			; Pop r1 off StateStack.
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
+	mul r0, r1, r0				; r0=r0*r1
+	; BC_CONST [9e]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r4, #30*4]			; r0=rConstants[30]
+	; BC_CONST [b2]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r4, #50*4]			; r0=rConstants[50]
+	; BC_MUL [0f]
+	ldr r1, [r3], #4			; Pop r1 off StateStack.
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -14626,8 +15060,10 @@ proc_96_start:
 	mov r0, r0, asl #2
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -14768,8 +15204,10 @@ proc_98_start:
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
@@ -14804,8 +15242,10 @@ proc_98_start:
 	mov r0, r0, asl #8
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_SINE [0b]
 	mov r1, #0xfffc
@@ -14814,8 +15254,10 @@ proc_98_start:
 	mov r0, r0, asl #2
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RLOCAL [62]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -14859,8 +15301,10 @@ proc_98_start:
 	mov r0, r0, asl #8
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_SINE [0b]
 	mov r1, #0xfffc
@@ -14869,8 +15313,10 @@ proc_98_start:
 	mov r0, r0, asl #2
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RLOCAL [62]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -14916,8 +15362,10 @@ proc_98_start:
 	mov r0, r0, asl #8
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_SINE [0b]
 	mov r1, #0xfffc
@@ -14926,8 +15374,10 @@ proc_98_start:
 	mov r0, r0, asl #2
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RLOCAL [62]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -14984,8 +15434,10 @@ proc_98_target_461:
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
@@ -17018,8 +17470,10 @@ proc_110_start:
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_CONST [91]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -17057,8 +17511,10 @@ proc_111_start:
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WSTATE [58]
 	str r0, [r5, #ST_WIRE0*4]		; State[ST_WIRE0]=r0
@@ -17367,8 +17823,10 @@ proc_115_continue_534:
 	ldr r0, [r4, #67*4]			; r0=rConstants[67]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_CONST [e4]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -17395,8 +17853,10 @@ proc_115_continue_534:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_115_continue_535
@@ -17433,8 +17893,10 @@ proc_115_continue_536:
 	ldr r0, [r4, #67*4]			; r0=rConstants[67]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_CONST [e4]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -17461,8 +17923,10 @@ proc_115_continue_536:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_115_continue_537
@@ -17503,8 +17967,10 @@ proc_115_continue_537:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_115_continue_538
@@ -17541,8 +18007,10 @@ proc_115_continue_539:
 	ldr r0, [r4, #67*4]			; r0=rConstants[67]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_CONST [e4]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -17569,8 +18037,10 @@ proc_115_continue_539:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_115_continue_540
@@ -17607,8 +18077,10 @@ proc_115_continue_541:
 	ldr r0, [r4, #67*4]			; r0=rConstants[67]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_CONST [e4]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -17635,8 +18107,10 @@ proc_115_continue_541:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_115_continue_542
@@ -17677,8 +18151,10 @@ proc_115_continue_542:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_115_continue_543
@@ -17715,8 +18191,10 @@ proc_115_continue_544:
 	ldr r0, [r4, #67*4]			; r0=rConstants[67]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_CONST [e4]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -17743,8 +18221,10 @@ proc_115_continue_544:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_115_continue_545
@@ -17781,8 +18261,10 @@ proc_115_continue_546:
 	ldr r0, [r4, #67*4]			; r0=rConstants[67]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_CONST [e4]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -17809,8 +18291,10 @@ proc_115_continue_546:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_115_continue_547
@@ -17853,8 +18337,10 @@ proc_115_continue_548:
 	ldr r0, [r4, #67*4]			; r0=rConstants[67]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_CONST [e4]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -17901,8 +18387,10 @@ proc_115_continue_548:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_115_continue_549
@@ -17943,8 +18431,10 @@ proc_115_continue_549:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_115_continue_550
@@ -17981,8 +18471,10 @@ proc_115_continue_551:
 	ldr r0, [r4, #67*4]			; r0=rConstants[67]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_CONST [e4]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -18023,8 +18515,10 @@ proc_115_continue_552:
 	ldr r0, [r4, #67*4]			; r0=rConstants[67]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_CONST [e4]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -18065,8 +18559,10 @@ proc_115_continue_553:
 	ldr r0, [r4, #67*4]			; r0=rConstants[67]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_CONST [e4]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -18170,8 +18666,10 @@ proc_115_continue_555:
 	ldr r0, [r4, #67*4]			; r0=rConstants[67]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_CONST [e4]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -18206,8 +18704,10 @@ proc_115_continue_556:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_115_continue_557
@@ -18236,8 +18736,10 @@ proc_115_continue_557:
 	ldr r0, [r4, #67*4]			; r0=rConstants[67]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_CONST [e4]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -18272,8 +18774,10 @@ proc_115_continue_558:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_115_continue_559
@@ -18314,8 +18818,10 @@ proc_115_continue_559:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_115_continue_560
@@ -18344,8 +18850,10 @@ proc_115_continue_560:
 	ldr r0, [r4, #67*4]			; r0=rConstants[67]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_CONST [e4]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -18380,8 +18888,10 @@ proc_115_continue_561:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_115_continue_562
@@ -18424,8 +18934,10 @@ proc_115_continue_563:
 	ldr r0, [r4, #67*4]			; r0=rConstants[67]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_CONST [e4]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -18458,8 +18970,10 @@ proc_115_continue_563:
 	ldr r0, [r4, #67*4]			; r0=rConstants[67]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_CONST [e4]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -18492,8 +19006,10 @@ proc_115_continue_563:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_115_continue_564
@@ -18519,8 +19035,10 @@ proc_115_continue_564:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_115_continue_565
@@ -18549,8 +19067,10 @@ proc_115_continue_565:
 	ldr r0, [r4, #67*4]			; r0=rConstants[67]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_CONST [e4]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -18585,8 +19105,10 @@ proc_115_continue_566:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_115_continue_567
@@ -18615,8 +19137,10 @@ proc_115_continue_567:
 	ldr r0, [r4, #67*4]			; r0=rConstants[67]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_CONST [e4]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -18651,8 +19175,10 @@ proc_115_continue_568:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_115_continue_569
@@ -18697,8 +19223,10 @@ proc_115_continue_569:
 	ldr r0, [r4, #67*4]			; r0=rConstants[67]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_CONST [e4]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -18715,8 +19243,10 @@ proc_115_continue_569:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_115_continue_570
@@ -18761,8 +19291,10 @@ proc_115_continue_570:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_115_continue_571
@@ -18951,8 +19483,10 @@ proc_116_start:
 	ldr r0, [r4, #67*4]			; r0=rConstants[67]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_CONST [e4]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -18993,8 +19527,10 @@ proc_116_start:
 	ldr r0, [r4, #67*4]			; r0=rConstants[67]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_CONST [e4]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -19051,8 +19587,10 @@ proc_116_continue_576:
 	ldr r0, [r4, #67*4]			; r0=rConstants[67]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_CONST [e4]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -19090,8 +19628,10 @@ proc_116_continue_576:
 	ldr r0, [r4, #67*4]			; r0=rConstants[67]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_CONST [e4]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -19667,8 +20207,10 @@ proc_124_start:
 	subs r0, r0, r1				; r0=r0 subs r1
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -19727,8 +20269,10 @@ proc_124_start:
 	mov r0, r0, asl #8
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
@@ -19825,8 +20369,10 @@ proc_125_start:
 	subs r0, r0, r1				; r0=r0 subs r1
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -19883,8 +20429,10 @@ proc_125_start:
 	mov r0, r0, asl #8
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
@@ -19981,8 +20529,10 @@ proc_126_start:
 	subs r0, r0, r1				; r0=r0 subs r1
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -20039,8 +20589,10 @@ proc_126_start:
 	mov r0, r0, asl #8
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
@@ -20137,8 +20689,10 @@ proc_127_start:
 	subs r0, r0, r1				; r0=r0 subs r1
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -20195,8 +20749,10 @@ proc_127_start:
 	mov r0, r0, asl #8
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
@@ -20258,8 +20814,10 @@ proc_127_start:
 	mov r0, r0, asl #2
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RLOCAL [62]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -20340,8 +20898,10 @@ proc_128_start:
 	subs r0, r0, r1				; r0=r0 subs r1
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -20400,8 +20960,10 @@ proc_128_start:
 	mov r0, r0, asl #8
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
@@ -20463,8 +21025,10 @@ proc_128_start:
 	mov r0, r0, asl #2
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RLOCAL [62]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -20545,8 +21109,10 @@ proc_129_start:
 	subs r0, r0, r1				; r0=r0 subs r1
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -20597,8 +21163,10 @@ proc_129_start:
 	mov r0, r0, asl #8
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
@@ -20660,8 +21228,10 @@ proc_129_start:
 	mov r0, r0, asl #2
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RLOCAL [62]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -20742,8 +21312,10 @@ proc_130_start:
 	subs r0, r0, r1				; r0=r0 subs r1
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -20796,8 +21368,10 @@ proc_130_start:
 	rsb r0, r0, #0				; r0=0-r0
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
@@ -20859,8 +21433,10 @@ proc_130_start:
 	mov r0, r0, asl #2
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RLOCAL [62]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -21074,8 +21650,10 @@ proc_135_start:
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
@@ -21201,8 +21779,10 @@ proc_136_start:
 	adds r0, r0, r1				; r0=r0 adds r1
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -21215,8 +21795,10 @@ proc_136_start:
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
@@ -21289,8 +21871,10 @@ proc_137_start:
 	ldr r0, [r4, #35*4]			; r0=rConstants[35]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_137_continue_611
@@ -21315,8 +21899,10 @@ proc_137_continue_611:
 	ldr r0, [r4, #35*4]			; r0=rConstants[35]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_137_continue_612
@@ -21341,8 +21927,10 @@ proc_137_continue_612:
 	ldr r0, [r4, #36*4]			; r0=rConstants[36]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_137_continue_613
@@ -21367,8 +21955,10 @@ proc_137_continue_613:
 	ldr r0, [r4, #28*4]			; r0=rConstants[28]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_137_continue_614
@@ -21393,8 +21983,10 @@ proc_137_continue_614:
 	ldr r0, [r4, #30*4]			; r0=rConstants[30]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_137_continue_615
@@ -21433,8 +22025,10 @@ proc_137_continue_615:
 	ldr r0, [r4, #35*4]			; r0=rConstants[35]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_137_continue_616
@@ -21459,8 +22053,10 @@ proc_137_continue_616:
 	ldr r0, [r4, #35*4]			; r0=rConstants[35]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_137_continue_617
@@ -21485,8 +22081,10 @@ proc_137_continue_617:
 	ldr r0, [r4, #36*4]			; r0=rConstants[36]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_137_continue_618
@@ -21525,8 +22123,10 @@ proc_137_continue_618:
 	ldr r0, [r4, #26*4]			; r0=rConstants[26]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_137_continue_619
@@ -21586,8 +22186,10 @@ proc_138_start:
 	mov r0, r0, lsr #16
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_CONST [91]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -21613,8 +22215,10 @@ proc_138_start:
 	mov r0, r0, lsr #16
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_CONST [a5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -21942,8 +22546,10 @@ proc_141_start:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_141_continue_629
@@ -21968,8 +22574,10 @@ proc_141_continue_629:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_141_continue_630
@@ -22009,8 +22617,10 @@ proc_141_continue_630:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_141_continue_631
@@ -22032,8 +22642,10 @@ proc_141_continue_631:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_141_continue_632
@@ -22695,8 +23307,10 @@ proc_144_continue_662:
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WLOCAL [41]
 	str r0, [r5, #-2*4]			; StateStack[-2]=r0
@@ -26227,8 +26841,10 @@ proc_169_start:
 	ldr r0, [r4, #30*4]			; r0=rConstants[30]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
@@ -26314,8 +26930,10 @@ proc_169_continue_815:
 	ldr r0, [r4, #30*4]			; r0=rConstants[30]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_CONST [a1]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -26355,8 +26973,10 @@ proc_169_continue_816:
 	ldr r0, [r4, #30*4]			; r0=rConstants[30]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
@@ -26444,8 +27064,10 @@ proc_169_continue_818:
 	ldr r0, [r4, #30*4]			; r0=rConstants[30]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_CONST [a1]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -26485,8 +27107,10 @@ proc_169_continue_819:
 	ldr r0, [r4, #30*4]			; r0=rConstants[30]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
@@ -26574,8 +27198,10 @@ proc_169_continue_821:
 	ldr r0, [r4, #30*4]			; r0=rConstants[30]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_CONST [a1]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -26615,8 +27241,10 @@ proc_169_continue_822:
 	ldr r0, [r4, #30*4]			; r0=rConstants[30]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
@@ -26700,8 +27328,10 @@ proc_169_continue_824:
 	ldr r0, [r4, #30*4]			; r0=rConstants[30]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_CONST [a1]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -26790,8 +27420,10 @@ proc_170_start:
 	ldr r0, [r4, #30*4]			; r0=rConstants[30]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_170_continue_826
@@ -26900,8 +27532,10 @@ proc_170_continue_826:
 	ldr r0, [r4, #28*4]			; r0=rConstants[28]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_170_continue_827
@@ -26963,8 +27597,10 @@ proc_170_continue_827:
 	ldr r0, [r4, #17*4]			; r0=rConstants[17]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_170_continue_828
@@ -27026,8 +27662,10 @@ proc_170_continue_828:
 	ldr r0, [r4, #30*4]			; r0=rConstants[30]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_170_continue_829
@@ -27089,8 +27727,10 @@ proc_170_continue_829:
 	ldr r0, [r4, #28*4]			; r0=rConstants[28]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_170_continue_830
@@ -27152,8 +27792,10 @@ proc_170_continue_830:
 	ldr r0, [r4, #17*4]			; r0=rConstants[17]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_170_continue_831
@@ -27215,8 +27857,10 @@ proc_170_continue_831:
 	ldr r0, [r4, #30*4]			; r0=rConstants[30]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_170_continue_832
@@ -27278,8 +27922,10 @@ proc_170_continue_832:
 	ldr r0, [r4, #28*4]			; r0=rConstants[28]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_170_continue_833
@@ -27388,8 +28034,10 @@ proc_170_continue_833:
 	ldr r0, [r4, #17*4]			; r0=rConstants[17]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_170_continue_834
@@ -27451,8 +28099,10 @@ proc_170_continue_834:
 	ldr r0, [r4, #30*4]			; r0=rConstants[30]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_170_continue_835
@@ -27514,8 +28164,10 @@ proc_170_continue_835:
 	ldr r0, [r4, #28*4]			; r0=rConstants[28]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_170_continue_836
@@ -27577,8 +28229,10 @@ proc_170_continue_836:
 	ldr r0, [r4, #17*4]			; r0=rConstants[17]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_170_continue_837
@@ -27640,8 +28294,10 @@ proc_170_continue_837:
 	ldr r0, [r4, #30*4]			; r0=rConstants[30]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_170_continue_838
@@ -27703,8 +28359,10 @@ proc_170_continue_838:
 	ldr r0, [r4, #28*4]			; r0=rConstants[28]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_170_continue_839
@@ -27766,8 +28424,10 @@ proc_170_continue_839:
 	ldr r0, [r4, #17*4]			; r0=rConstants[17]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_170_continue_840
@@ -27829,8 +28489,10 @@ proc_170_continue_840:
 	ldr r0, [r4, #30*4]			; r0=rConstants[30]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_170_continue_841
@@ -27939,8 +28601,10 @@ proc_170_continue_841:
 	ldr r0, [r4, #28*4]			; r0=rConstants[28]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_170_continue_842
@@ -28002,8 +28666,10 @@ proc_170_continue_842:
 	ldr r0, [r4, #17*4]			; r0=rConstants[17]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_170_continue_843
@@ -28065,8 +28731,10 @@ proc_170_continue_843:
 	ldr r0, [r4, #30*4]			; r0=rConstants[30]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_170_continue_844
@@ -28128,8 +28796,10 @@ proc_170_continue_844:
 	ldr r0, [r4, #28*4]			; r0=rConstants[28]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_170_continue_845
@@ -28191,8 +28861,10 @@ proc_170_continue_845:
 	ldr r0, [r4, #17*4]			; r0=rConstants[17]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_170_continue_846
@@ -28302,8 +28974,10 @@ proc_171_start:
 	ldr r0, [r4, #30*4]			; r0=rConstants[30]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_171_continue_847
@@ -28359,8 +29033,10 @@ proc_171_continue_847:
 	ldr r0, [r4, #30*4]			; r0=rConstants[30]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_171_continue_848
@@ -28414,8 +29090,10 @@ proc_171_continue_848:
 	ldr r0, [r4, #30*4]			; r0=rConstants[30]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_171_continue_849
@@ -28469,8 +29147,10 @@ proc_171_continue_849:
 	ldr r0, [r4, #30*4]			; r0=rConstants[30]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_171_continue_850
@@ -28524,8 +29204,10 @@ proc_171_continue_850:
 	ldr r0, [r4, #30*4]			; r0=rConstants[30]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_171_continue_851
@@ -28581,8 +29263,10 @@ proc_171_continue_851:
 	ldr r0, [r4, #30*4]			; r0=rConstants[30]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_171_continue_852
@@ -28638,8 +29322,10 @@ proc_171_continue_852:
 	ldr r0, [r4, #30*4]			; r0=rConstants[30]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_171_continue_853
@@ -28693,8 +29379,10 @@ proc_171_continue_853:
 	ldr r0, [r4, #30*4]			; r0=rConstants[30]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_171_continue_854
@@ -28750,8 +29438,10 @@ proc_171_continue_854:
 	ldr r0, [r4, #30*4]			; r0=rConstants[30]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_171_continue_855
@@ -28805,8 +29495,10 @@ proc_171_continue_855:
 	ldr r0, [r4, #30*4]			; r0=rConstants[30]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_171_continue_856
@@ -28860,8 +29552,10 @@ proc_171_continue_856:
 	ldr r0, [r4, #30*4]			; r0=rConstants[30]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_171_continue_857
@@ -28915,8 +29609,10 @@ proc_171_continue_857:
 	ldr r0, [r4, #30*4]			; r0=rConstants[30]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_171_continue_858
@@ -28970,8 +29666,10 @@ proc_171_continue_858:
 	ldr r0, [r4, #30*4]			; r0=rConstants[30]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_171_continue_859
@@ -29029,8 +29727,10 @@ proc_171_continue_859:
 	ldr r0, [r4, #30*4]			; r0=rConstants[30]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_171_continue_860
@@ -29086,8 +29786,10 @@ proc_171_continue_860:
 	ldr r0, [r4, #30*4]			; r0=rConstants[30]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_171_continue_861
@@ -29965,8 +30667,10 @@ proc_178_start:
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -29976,8 +30680,10 @@ proc_178_start:
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
@@ -30027,8 +30733,10 @@ proc_179_start:
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_OP [3b]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
@@ -30064,8 +30772,10 @@ proc_179_target_879:
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_179_continue_881
@@ -32117,8 +32827,10 @@ proc_191_start:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_191_continue_962
@@ -32159,8 +32871,10 @@ proc_191_continue_963:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_191_continue_964
@@ -32200,8 +32914,10 @@ proc_191_continue_965:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_191_continue_966
@@ -32238,8 +32954,10 @@ proc_191_continue_967:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_191_continue_968
@@ -32264,8 +32982,10 @@ proc_191_continue_968:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_191_continue_969
@@ -32302,8 +33022,10 @@ proc_191_continue_970:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_191_continue_971
@@ -32361,8 +33083,10 @@ proc_191_continue_973:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_191_continue_974
@@ -32399,8 +33123,10 @@ proc_191_continue_975:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_191_continue_976
@@ -32425,8 +33151,10 @@ proc_191_continue_976:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_191_continue_977
@@ -32480,8 +33208,10 @@ proc_191_continue_977:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_191_continue_978
@@ -32522,8 +33252,10 @@ proc_191_continue_979:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_191_continue_980
@@ -32563,8 +33295,10 @@ proc_191_continue_981:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_191_continue_982
@@ -32601,8 +33335,10 @@ proc_191_continue_983:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_191_continue_984
@@ -32694,8 +33430,10 @@ proc_191_continue_987:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_191_continue_988
@@ -32732,8 +33470,10 @@ proc_191_continue_989:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_191_continue_990
@@ -32791,8 +33531,10 @@ proc_191_continue_992:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_191_continue_993
@@ -32829,8 +33571,10 @@ proc_191_continue_994:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_191_continue_995
@@ -32855,8 +33599,10 @@ proc_191_continue_995:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_191_continue_996
@@ -32922,8 +33668,10 @@ proc_192_start:
 	ldr r0, [r4, #35*4]			; r0=rConstants[35]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_192_continue_997
@@ -32973,8 +33721,10 @@ proc_192_continue_997:
 	ldr r0, [r4, #35*4]			; r0=rConstants[35]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_192_continue_998
@@ -33018,8 +33768,10 @@ proc_192_continue_998:
 	ldr r0, [r4, #35*4]			; r0=rConstants[35]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_192_continue_999
@@ -33034,8 +33786,10 @@ proc_192_continue_999:
 	ldr r0, [r4, #35*4]			; r0=rConstants[35]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_192_continue_1000
@@ -33634,8 +34388,10 @@ proc_199_start:
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_CONST [c6]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -33645,8 +34401,10 @@ proc_199_start:
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
@@ -34055,8 +34813,10 @@ proc_203_start:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_203_continue_1023
@@ -34071,8 +34831,10 @@ proc_203_continue_1023:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_203_continue_1024
@@ -34131,8 +34893,10 @@ proc_203_continue_1024:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_203_continue_1025
@@ -34147,8 +34911,10 @@ proc_203_continue_1025:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_203_continue_1026
@@ -34207,8 +34973,10 @@ proc_203_continue_1026:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_203_continue_1027
@@ -34223,8 +34991,10 @@ proc_203_continue_1027:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_203_continue_1028
@@ -34539,8 +35309,10 @@ proc_207_start:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_207_continue_1031
@@ -34555,8 +35327,10 @@ proc_207_continue_1031:
 	ldr r0, [r4, #50*4]			; r0=rConstants[50]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_207_continue_1032
@@ -34630,8 +35404,10 @@ proc_208_start:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -34671,8 +35447,10 @@ proc_208_continue_1034:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -34712,8 +35490,10 @@ proc_208_continue_1035:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -34753,8 +35533,10 @@ proc_208_continue_1036:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -34794,8 +35576,10 @@ proc_208_continue_1037:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -34835,8 +35619,10 @@ proc_208_continue_1038:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -34876,8 +35662,10 @@ proc_208_continue_1039:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -34917,8 +35705,10 @@ proc_208_continue_1040:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -34958,8 +35748,10 @@ proc_208_continue_1041:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asr #8
-	mov r1, r1, asr #8
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.

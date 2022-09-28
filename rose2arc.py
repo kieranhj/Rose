@@ -249,8 +249,10 @@ class RoseParser:
         self._asm_file.write(f'\t; BC_MUL [{c:02x}]\n')
         self.pop_var(0)
         self.pop_var(1)
-        self._asm_file.write(f'\tmov r0, r0, asr #8\n')
-        self._asm_file.write(f'\tmov r1, r1, asr #8\n')
+        self._asm_file.write(f'\tmov r0, r0, asl #8\n')
+        self._asm_file.write(f'\tmov r0, r0, asr #16\t\t\t; Implement muls.w (signed)\n')
+        self._asm_file.write(f'\tmov r1, r1, asl #8\n')
+        self._asm_file.write(f'\tmov r1, r1, asr #16\t\t\t; Implement muls.w (signed)\n')
         self._asm_file.write(f'\tmul r0, r1, r0\t\t\t\t; r0=r0*r1\n')
         self.push_var(0)
 
