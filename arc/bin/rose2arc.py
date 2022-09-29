@@ -88,6 +88,25 @@ class RoseParser:
         self._push_pending = False
         self._load_without_op = False
         self._constants = constants
+
+    def get_immediate_for_constant(self, c):
+        # Check if constant can be represented as an immediate load.
+        if c == 0:
+            return True
+
+        first_bit=32
+        last_bit=-1
+
+        for bit in range(0, 31):
+            if c & (1<<bit) != 0:
+                if bit < first_bit:
+                    first_bit = bit
+                
+                if bit > last_bit:
+                    last_bit = bit
+
+        bit_range = last_bit - first_bit
+        return bit_range <= 8
     
     def push_var(self, reg):
         # TODO: Stack optimisation.
@@ -118,7 +137,11 @@ class RoseParser:
 
         # Write constant load.
         c = self._constants[index]
-        self._asm_file.write(f'\tldr r0, [r4, #{index}*4]\t\t\t; r0=rConstants[{index}]=0x{c:08x} ({(c/(1<<16)):.4f})\n')
+
+        if self.get_immediate_for_constant(c):
+            self._asm_file.write(f'\tmov r0, #0x{c:08x}\t\t\t; r0=rConstants[{index}] ({(c/(1<<16)):.4f})\n')
+        else:
+            self._asm_file.write(f'\tldr r0, [r4, #{index}*4]\t\t\t; r0=rConstants[{index}]=0x{c:08x} ({(c/(1<<16)):.4f})\n')
         self.push_var(0)
 
     def write_done(self, c):
