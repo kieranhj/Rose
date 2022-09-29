@@ -212,8 +212,8 @@ https://pdjstone.github.io/arculator-wasm/arculator.html?disc=https://bitshifter
 - Contact steve3000 about the latest standalone version of QTM. - DONE, HAVE v1.47a
 - Hoffman reports there is an audio sync drift during Everyway?
     - Is this an online Arculator problem, the Rose engine or QTM?
-    - Add debug to count dropped frames.
-    - Trial scheme to catch up dropped frames?
+    - Add debug to count dropped frames. - DONE
+    - Trial scheme to catch up dropped frames? - TRIED, LOOKS TERRIBLE :(
 - Nicer overscan MODE module, if cba. - GOT STEVE'S CODE.
     - Use Steve's MODE98 module.
 - Way Too Rude - need second bitplane! - DONE!

@@ -12,6 +12,8 @@
 ;.equ _ENABLE_MUSIC, 1
 ;.equ _DUAL_PLAYFIELD, 1
 
+.equ _ENABLE_CATCH_UP, 0				; looks awful usually (tearing).
+
 .equ _DEBUG_RASTERS, (_DEBUG && 1)		; removes code
 .equ _DEBUG_STOP_ON_FRAME, -1
 .equ _DEBUG_DEFAULT_PLAY_PAUSE, 1		; play
@@ -201,27 +203,39 @@ main_loop:
 	; Wait for vsync.
 	SET_BORDER 0x000000		; black
 
+	; Try to catch up!
+	ldr r3, dropped_frames
+	.if _ENABLE_CATCH_UP
+	cmp r3, #0
+	movne r1, #-1
+	bne .2
+	.endif
+
 	; Limit to 50Hz max but don't wait if we're running too slow.
 	ldr r1, last_vsync
 .1:
 	ldr r2, vsync_count
 	cmp r1, r2
 	beq .1
-	.if _DEBUG
 	sub r1, r2, r1
+	str r2, last_vsync
+	.if _DEBUG
 	str r1, vsync_delta
 	.endif
-	str r2, last_vsync
+	sub r1, r1, #1
+	.2:
+	add r3, r3, r1
+	str r3, dropped_frames
 
 	.if _DEBUG
 	ldrb r0, debug_play_pause
 	cmp r0, #0
-	bne .2
+	bne .3
 
 	ldrb r0, debug_play_step
 	cmp r0, #0
 	beq main_loop
-	.2:
+	.3:
 	.endif
 
 	; Time Rose colour script execution.
@@ -244,10 +258,10 @@ main_loop:
 	.if _DEBUG
 	ldr r1, d_StopOnFrame
 	cmp r2, r1
-	bne .3
+	bne .4
 	mov r1, #0
 	str r1, debug_play_pause
-	.3:
+	.4:
 	.endif
 
     ldr r1, r_MaxFrames
@@ -282,12 +296,20 @@ vsync_count:
 last_vsync:
 	.long 0
 
+dropped_frames:
+	.long 0
+
 .if _DEBUG
 vsync_delta:
 	.long 0
 .endif
 
 exit:	
+	.if _DEBUG_RASTERS
+	mov r4, #0x000000		; black
+	bl palette_set_border
+	.endif
+
 	; wait for vsync (any pending buffers)
 	mov r0, #19
 	swi OS_Byte
@@ -377,6 +399,15 @@ debug_info:
 	swi OS_WriteO
 	swi OS_WriteI + 32			; Space.
 
+	ldr r0, dropped_frames
+	adr r1, debug_string
+	mov r2, #8
+	swi OS_ConvertCardinal4
+	adr r0, debug_string
+	swi OS_WriteO
+	swi OS_WriteI + 32			; Space.
+
+.if 0
 	ldr r0, r_NumTurtles
 	adr r1, debug_string
 	mov r2, #8
@@ -410,8 +441,9 @@ debug_info:
 	swi OS_ConvertCardinal4
 	adr r0, debug_string
 	swi OS_WriteO
-
 	swi OS_WriteI + 32			; Space.
+.endif
+
 	swi OS_WriteI + 32			; Space.
 	swi OS_WriteI + 32			; Space.
 	swi OS_WriteI + 32			; Space.
