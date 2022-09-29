@@ -10,7 +10,6 @@
 
 ; Symbols now defined when involking the assembler.
 ;.equ _ENABLE_MUSIC, 1
-;.equ _OVERSCAN, 0
 ;.equ _DUAL_PLAYFIELD, 1
 
 .equ _DEBUG_RASTERS, (_DEBUG && 1)		; removes code
@@ -35,6 +34,13 @@
 .equ Screen_Stride, Screen_Width/Screen_PixelsPerByte
 .equ Screen_Bytes, Screen_Stride*Screen_Height
 .equ Mode_Bytes, Screen_Stride*Mode_Height
+
+; TODO: Revisit audio quality but assume DPF is expensive so need the CPU time!
+.if _DUAL_PLAYFIELD
+.equ Music_SampleQuality, 48
+.else
+.equ Music_SampleQuality, 24
+.endif
 
 .include "lib/swis.h.asm"
 
@@ -112,13 +118,18 @@ main:
 	swi QTM_Load
 
 	; TODO: Can we afford higher quality audio?
-	mov r0, #24
+	mov r0, #Music_SampleQuality
 	swi QTM_SetSampleSpeed
 
 	; Set to mono - modern MOD composers prefer this!
 	mov r0, #0
 	mov r1, #2
 	swi QTM_Stereo
+
+	; Stop track from looping at the end.
+	mov r0, #0b010
+	mov r1, #0b010
+	swi QTM_MusicOptions
 .endif
 
 	; Make tables etc.

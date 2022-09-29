@@ -62,6 +62,7 @@
 .equ QTM_SetSampleSpeed, 0x47E49
 .equ QTM_Pos, 0x47E46
 .equ QTM_Stereo, 0x47E4D
+.equ QTM_MusicOptions, 0x47E5E
 
 .equ VIDC_Write, 0x03400000
 
