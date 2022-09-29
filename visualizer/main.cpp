@@ -90,8 +90,12 @@ int main(int argc, char *argv[]) {
 	MusicPlayer player;
 	int frames = FRAMES;
 	if (argc > arg) {
-		player.load(argv[arg++]);
-		frames = (int) (player.length() * framerate);
+		if (argv[arg][0] == '+') {
+			frames = atoi(argv[arg++]+1);
+		} else {
+			player.load(argv[arg++]);
+			frames = (int) (player.length() * framerate);
+		}
 	}
 
 	// Load code

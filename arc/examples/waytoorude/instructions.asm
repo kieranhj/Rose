@@ -36,11 +36,11 @@ proc_0_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [ab]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [ae]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00100000			; r0=rConstants[43] (16.0000)
+	mov r0, #0x00100000			; r0=rConstants[46] (16.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -54,11 +54,11 @@ proc_0_start:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_0_continue_0:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [ab]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [ae]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00100000			; r0=rConstants[43] (16.0000)
+	mov r0, #0x00100000			; r0=rConstants[46] (16.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -72,11 +72,11 @@ proc_0_continue_0:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_0_continue_1:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [ab]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [ae]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00100000			; r0=rConstants[43] (16.0000)
+	mov r0, #0x00100000			; r0=rConstants[46] (16.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -90,11 +90,11 @@ proc_0_continue_1:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_0_continue_2:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [ab]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [ae]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00100000			; r0=rConstants[43] (16.0000)
+	mov r0, #0x00100000			; r0=rConstants[46] (16.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -108,11 +108,11 @@ proc_0_continue_2:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_0_continue_3:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [ab]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [ae]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00100000			; r0=rConstants[43] (16.0000)
+	mov r0, #0x00100000			; r0=rConstants[46] (16.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -126,11 +126,11 @@ proc_0_continue_3:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_0_continue_4:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [ab]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [ae]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00100000			; r0=rConstants[43] (16.0000)
+	mov r0, #0x00100000			; r0=rConstants[46] (16.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -144,11 +144,11 @@ proc_0_continue_4:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_0_continue_5:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [ab]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [ae]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00100000			; r0=rConstants[43] (16.0000)
+	mov r0, #0x00100000			; r0=rConstants[46] (16.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -162,11 +162,11 @@ proc_0_continue_5:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_0_continue_6:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [ab]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [ae]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00100000			; r0=rConstants[43] (16.0000)
+	mov r0, #0x00100000			; r0=rConstants[46] (16.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -187,11 +187,11 @@ proc_0_continue_7:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [ab]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [ae]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00100000			; r0=rConstants[43] (16.0000)
+	mov r0, #0x00100000			; r0=rConstants[46] (16.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -205,11 +205,11 @@ proc_0_continue_7:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_0_continue_8:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [ab]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [ae]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00100000			; r0=rConstants[43] (16.0000)
+	mov r0, #0x00100000			; r0=rConstants[46] (16.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -223,11 +223,11 @@ proc_0_continue_8:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_0_continue_9:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [ab]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [ae]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00100000			; r0=rConstants[43] (16.0000)
+	mov r0, #0x00100000			; r0=rConstants[46] (16.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -241,11 +241,11 @@ proc_0_continue_9:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_0_continue_10:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [ab]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [ae]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00100000			; r0=rConstants[43] (16.0000)
+	mov r0, #0x00100000			; r0=rConstants[46] (16.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -266,11 +266,11 @@ proc_0_continue_11:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [ab]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [ae]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00100000			; r0=rConstants[43] (16.0000)
+	mov r0, #0x00100000			; r0=rConstants[46] (16.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -284,11 +284,11 @@ proc_0_continue_11:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_0_continue_12:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [ab]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [ae]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00100000			; r0=rConstants[43] (16.0000)
+	mov r0, #0x00100000			; r0=rConstants[46] (16.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -302,11 +302,11 @@ proc_0_continue_12:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_0_continue_13:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [ab]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [ae]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00100000			; r0=rConstants[43] (16.0000)
+	mov r0, #0x00100000			; r0=rConstants[46] (16.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -320,11 +320,11 @@ proc_0_continue_13:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_0_continue_14:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [ab]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [ae]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00100000			; r0=rConstants[43] (16.0000)
+	mov r0, #0x00100000			; r0=rConstants[46] (16.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -345,11 +345,11 @@ proc_0_continue_15:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [ab]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [ae]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00100000			; r0=rConstants[43] (16.0000)
+	mov r0, #0x00100000			; r0=rConstants[46] (16.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -363,11 +363,11 @@ proc_0_continue_15:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_0_continue_16:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [ab]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [ae]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00100000			; r0=rConstants[43] (16.0000)
+	mov r0, #0x00100000			; r0=rConstants[46] (16.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -381,11 +381,11 @@ proc_0_continue_16:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_0_continue_17:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [ab]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [ae]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00100000			; r0=rConstants[43] (16.0000)
+	mov r0, #0x00100000			; r0=rConstants[46] (16.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -399,11 +399,11 @@ proc_0_continue_17:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_0_continue_18:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [ab]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [ae]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00100000			; r0=rConstants[43] (16.0000)
+	mov r0, #0x00100000			; r0=rConstants[46] (16.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -424,11 +424,11 @@ proc_0_continue_19:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [ab]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [ae]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00100000			; r0=rConstants[43] (16.0000)
+	mov r0, #0x00100000			; r0=rConstants[46] (16.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -442,11 +442,11 @@ proc_0_continue_19:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_0_continue_20:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [ab]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [ae]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00100000			; r0=rConstants[43] (16.0000)
+	mov r0, #0x00100000			; r0=rConstants[46] (16.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -460,11 +460,11 @@ proc_0_continue_20:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_0_continue_21:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [ab]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [ae]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00100000			; r0=rConstants[43] (16.0000)
+	mov r0, #0x00100000			; r0=rConstants[46] (16.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -478,11 +478,11 @@ proc_0_continue_21:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_0_continue_22:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [ab]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [ae]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00100000			; r0=rConstants[43] (16.0000)
+	mov r0, #0x00100000			; r0=rConstants[46] (16.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -496,11 +496,11 @@ proc_0_continue_22:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_0_continue_23:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [ab]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [ae]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00100000			; r0=rConstants[43] (16.0000)
+	mov r0, #0x00100000			; r0=rConstants[46] (16.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -514,11 +514,11 @@ proc_0_continue_23:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_0_continue_24:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [ab]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [ae]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00100000			; r0=rConstants[43] (16.0000)
+	mov r0, #0x00100000			; r0=rConstants[46] (16.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -539,11 +539,11 @@ proc_0_continue_25:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [ab]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [ae]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00100000			; r0=rConstants[43] (16.0000)
+	mov r0, #0x00100000			; r0=rConstants[46] (16.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -557,11 +557,11 @@ proc_0_continue_25:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_0_continue_26:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [ab]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [ae]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00100000			; r0=rConstants[43] (16.0000)
+	mov r0, #0x00100000			; r0=rConstants[46] (16.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -575,11 +575,11 @@ proc_0_continue_26:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_0_continue_27:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [ab]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [ae]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00100000			; r0=rConstants[43] (16.0000)
+	mov r0, #0x00100000			; r0=rConstants[46] (16.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -593,11 +593,11 @@ proc_0_continue_27:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_0_continue_28:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [ab]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [ae]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00100000			; r0=rConstants[43] (16.0000)
+	mov r0, #0x00100000			; r0=rConstants[46] (16.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -639,17 +639,17 @@ proc_1_start:
 proc_1_end:
 
 proc_2_start:
-	; BC_CONST [b1]
-	mov r0, #0x00170000			; r0=rConstants[49] (23.0000)
-	; BC_CONST [c8]
+	; BC_CONST [b4]
+	mov r0, #0x00170000			; r0=rConstants[52] (23.0000)
+	; BC_CONST [cd]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00440000			; r0=rConstants[72] (68.0000)
-	; BC_CONST [b1]
+	mov r0, #0x00440000			; r0=rConstants[77] (68.0000)
+	; BC_CONST [b4]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00170000			; r0=rConstants[49] (23.0000)
-	; BC_CONST [9a]
+	mov r0, #0x00170000			; r0=rConstants[52] (23.0000)
+	; BC_CONST [9b]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
@@ -661,14 +661,14 @@ proc_2_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b1]
-	mov r0, #0x00170000			; r0=rConstants[49] (23.0000)
-	; BC_CONST [c0]
+	; BC_CONST [b4]
+	mov r0, #0x00170000			; r0=rConstants[52] (23.0000)
+	; BC_CONST [c4]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00300000			; r0=rConstants[64] (48.0000)
-	; BC_CONST [b1]
+	mov r0, #0x00300000			; r0=rConstants[68] (48.0000)
+	; BC_CONST [b4]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00170000			; r0=rConstants[49] (23.0000)
+	mov r0, #0x00170000			; r0=rConstants[52] (23.0000)
 	; BC_CONST [91]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00010000			; r0=rConstants[17] (1.0000)
@@ -683,14 +683,14 @@ proc_2_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b1]
-	mov r0, #0x00170000			; r0=rConstants[49] (23.0000)
+	; BC_CONST [b4]
+	mov r0, #0x00170000			; r0=rConstants[52] (23.0000)
+	; BC_CONST [b7]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	mov r0, #0x001c0000			; r0=rConstants[55] (28.0000)
 	; BC_CONST [b4]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x001c0000			; r0=rConstants[52] (28.0000)
-	; BC_CONST [b1]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00170000			; r0=rConstants[49] (23.0000)
+	mov r0, #0x00170000			; r0=rConstants[52] (23.0000)
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -705,19 +705,19 @@ proc_2_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a7]
-	mov r0, #0x000c0000			; r0=rConstants[39] (12.0000)
+	; BC_CONST [aa]
+	mov r0, #0x000c0000			; r0=rConstants[42] (12.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_2_continue_30
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_2_continue_30:
-	; BC_CONST [a7]
-	mov r0, #0x000c0000			; r0=rConstants[39] (12.0000)
-	; BC_CONST [c9]
+	; BC_CONST [aa]
+	mov r0, #0x000c0000			; r0=rConstants[42] (12.0000)
+	; BC_CONST [ce]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00460000			; r0=rConstants[73] (70.0000)
+	mov r0, #0x00460000			; r0=rConstants[78] (70.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_3_start		; r0=r_Procedures[3]
@@ -799,9 +799,9 @@ proc_4_start:
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
-	; BC_CONST [9a]
+	; BC_CONST [9b]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_RLOCAL [62]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
@@ -906,21 +906,21 @@ proc_5_start:
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
 	; BC_WSTATE [58]
 	str r0, [r5, #ST_WIRE0*4]		; State[ST_WIRE0]=r0
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_CONST [91]
 	mov r0, #0x00010000			; r0=rConstants[17] (1.0000)
-	; BC_CONST [9c]
+	; BC_CONST [9d]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_CONST [91]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00010000			; r0=rConstants[17] (1.0000)
-	; BC_CONST [a1]
+	; BC_CONST [a3]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
+	mov r0, #0x00060000			; r0=rConstants[35] (6.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_14_start		; r0=r_Procedures[14]
@@ -929,8 +929,8 @@ proc_5_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b7]
-	mov r0, #0x00200000			; r0=rConstants[55] (32.0000)
+	; BC_CONST [ba]
+	mov r0, #0x00200000			; r0=rConstants[58] (32.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -939,8 +939,8 @@ proc_5_start:
 	adds r0, r0, r1				; r0=r0 adds r1
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [a3]
-	mov r0, #0x00080000			; r0=rConstants[35] (8.0000)
+	; BC_CONST [a6]
+	mov r0, #0x00080000			; r0=rConstants[38] (8.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_5_continue_37
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -949,15 +949,15 @@ proc_5_start:
 proc_5_continue_37:
 	; BC_CONST [91]
 	mov r0, #0x00010000			; r0=rConstants[17] (1.0000)
-	; BC_CONST [a2]
+	; BC_CONST [a5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00070000			; r0=rConstants[34] (7.0000)
+	mov r0, #0x00070000			; r0=rConstants[37] (7.0000)
 	; BC_CONST [86]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #6*4]			; r0=rConstants[6]=0x00004ccc (0.3000)
-	; BC_CONST [a1]
+	; BC_CONST [a3]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
+	mov r0, #0x00060000			; r0=rConstants[35] (6.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_14_start		; r0=r_Procedures[14]
@@ -966,8 +966,8 @@ proc_5_continue_37:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b7]
-	mov r0, #0x00200000			; r0=rConstants[55] (32.0000)
+	; BC_CONST [ba]
+	mov r0, #0x00200000			; r0=rConstants[58] (32.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -976,8 +976,8 @@ proc_5_continue_37:
 	adds r0, r0, r1				; r0=r0 adds r1
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [a3]
-	mov r0, #0x00080000			; r0=rConstants[35] (8.0000)
+	; BC_CONST [a6]
+	mov r0, #0x00080000			; r0=rConstants[38] (8.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_5_continue_38
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -986,15 +986,15 @@ proc_5_continue_37:
 proc_5_continue_38:
 	; BC_CONST [91]
 	mov r0, #0x00010000			; r0=rConstants[17] (1.0000)
-	; BC_CONST [a5]
+	; BC_CONST [a8]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x000a0000			; r0=rConstants[37] (10.0000)
+	mov r0, #0x000a0000			; r0=rConstants[40] (10.0000)
 	; BC_CONST [88]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #8*4]			; r0=rConstants[8]=0x00009999 (0.6000)
-	; BC_CONST [a1]
+	; BC_CONST [a3]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
+	mov r0, #0x00060000			; r0=rConstants[35] (6.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_14_start		; r0=r_Procedures[14]
@@ -1003,8 +1003,8 @@ proc_5_continue_38:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a2]
-	mov r0, #0x00070000			; r0=rConstants[34] (7.0000)
+	; BC_CONST [a5]
+	mov r0, #0x00070000			; r0=rConstants[37] (7.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_5_continue_39
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -1015,8 +1015,8 @@ proc_5_continue_39:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
-	; BC_CONST [c9]
-	mov r0, #0x00460000			; r0=rConstants[73] (70.0000)
+	; BC_CONST [ce]
+	mov r0, #0x00460000			; r0=rConstants[78] (70.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_PLOT [06]
@@ -1032,25 +1032,25 @@ proc_5_continue_39:
 proc_5_end:
 
 proc_6_start:
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_WSTATE [58]
 	str r0, [r5, #ST_WIRE0*4]		; State[ST_WIRE0]=r0
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_CONST [91]
 	mov r0, #0x00010000			; r0=rConstants[17] (1.0000)
-	; BC_CONST [9c]
+	; BC_CONST [9d]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_CONST [91]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00010000			; r0=rConstants[17] (1.0000)
-	; BC_CONST [a1]
+	; BC_CONST [a3]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
+	mov r0, #0x00060000			; r0=rConstants[35] (6.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_14_start		; r0=r_Procedures[14]
@@ -1059,8 +1059,8 @@ proc_6_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b7]
-	mov r0, #0x00200000			; r0=rConstants[55] (32.0000)
+	; BC_CONST [ba]
+	mov r0, #0x00200000			; r0=rConstants[58] (32.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -1069,8 +1069,8 @@ proc_6_start:
 	adds r0, r0, r1				; r0=r0 adds r1
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [a3]
-	mov r0, #0x00080000			; r0=rConstants[35] (8.0000)
+	; BC_CONST [a6]
+	mov r0, #0x00080000			; r0=rConstants[38] (8.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_6_continue_40
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -1079,15 +1079,15 @@ proc_6_start:
 proc_6_continue_40:
 	; BC_CONST [91]
 	mov r0, #0x00010000			; r0=rConstants[17] (1.0000)
-	; BC_CONST [a2]
+	; BC_CONST [a5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00070000			; r0=rConstants[34] (7.0000)
+	mov r0, #0x00070000			; r0=rConstants[37] (7.0000)
 	; BC_CONST [86]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #6*4]			; r0=rConstants[6]=0x00004ccc (0.3000)
-	; BC_CONST [a1]
+	; BC_CONST [a3]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
+	mov r0, #0x00060000			; r0=rConstants[35] (6.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_14_start		; r0=r_Procedures[14]
@@ -1096,8 +1096,8 @@ proc_6_continue_40:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b7]
-	mov r0, #0x00200000			; r0=rConstants[55] (32.0000)
+	; BC_CONST [ba]
+	mov r0, #0x00200000			; r0=rConstants[58] (32.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -1106,8 +1106,8 @@ proc_6_continue_40:
 	adds r0, r0, r1				; r0=r0 adds r1
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [a3]
-	mov r0, #0x00080000			; r0=rConstants[35] (8.0000)
+	; BC_CONST [a6]
+	mov r0, #0x00080000			; r0=rConstants[38] (8.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_6_continue_41
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -1116,15 +1116,15 @@ proc_6_continue_40:
 proc_6_continue_41:
 	; BC_CONST [91]
 	mov r0, #0x00010000			; r0=rConstants[17] (1.0000)
-	; BC_CONST [a5]
+	; BC_CONST [a8]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x000a0000			; r0=rConstants[37] (10.0000)
+	mov r0, #0x000a0000			; r0=rConstants[40] (10.0000)
 	; BC_CONST [88]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #8*4]			; r0=rConstants[8]=0x00009999 (0.6000)
-	; BC_CONST [a1]
+	; BC_CONST [a3]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
+	mov r0, #0x00060000			; r0=rConstants[35] (6.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_14_start		; r0=r_Procedures[14]
@@ -1133,8 +1133,8 @@ proc_6_continue_41:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a2]
-	mov r0, #0x00070000			; r0=rConstants[34] (7.0000)
+	; BC_CONST [a5]
+	mov r0, #0x00070000			; r0=rConstants[37] (7.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_6_continue_42
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -1145,8 +1145,8 @@ proc_6_continue_42:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
-	; BC_CONST [c9]
-	mov r0, #0x00460000			; r0=rConstants[73] (70.0000)
+	; BC_CONST [ce]
+	mov r0, #0x00460000			; r0=rConstants[78] (70.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_PLOT [06]
@@ -1162,27 +1162,27 @@ proc_6_continue_42:
 proc_6_end:
 
 proc_7_start:
-	; BC_CONST [a0]
-	mov r0, #0x00050000			; r0=rConstants[32] (5.0000)
+	; BC_CONST [a1]
+	mov r0, #0x00050000			; r0=rConstants[33] (5.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_WSTATE [58]
 	str r0, [r5, #ST_WIRE0*4]		; State[ST_WIRE0]=r0
-	; BC_CONST [b1]
-	mov r0, #0x00170000			; r0=rConstants[49] (23.0000)
-	; BC_CONST [af]
+	; BC_CONST [b4]
+	mov r0, #0x00170000			; r0=rConstants[52] (23.0000)
+	; BC_CONST [b2]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
 	; BC_CONST [87]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00008000			; r0=rConstants[7] (0.5000)
 	; BC_NEG [0d]
 	rsb r0, r0, #0				; r0=0-r0
-	; BC_CONST [a9]
+	; BC_CONST [ac]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x000e0000			; r0=rConstants[41] (14.0000)
+	mov r0, #0x000e0000			; r0=rConstants[44] (14.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_14_start		; r0=r_Procedures[14]
@@ -1191,16 +1191,16 @@ proc_7_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b1]
-	mov r0, #0x00170000			; r0=rConstants[49] (23.0000)
+	; BC_CONST [b4]
+	mov r0, #0x00170000			; r0=rConstants[52] (23.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_7_continue_43
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_7_continue_43:
-	; BC_CONST [bc]
-	mov r0, #0x00290000			; r0=rConstants[60] (41.0000)
+	; BC_CONST [c0]
+	mov r0, #0x00290000			; r0=rConstants[64] (41.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_CONST [80]
@@ -1228,27 +1228,27 @@ proc_7_continue_44:
 proc_7_end:
 
 proc_8_start:
-	; BC_CONST [a0]
-	mov r0, #0x00050000			; r0=rConstants[32] (5.0000)
+	; BC_CONST [a1]
+	mov r0, #0x00050000			; r0=rConstants[33] (5.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_CONST [80]
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
 	; BC_WSTATE [58]
 	str r0, [r5, #ST_WIRE0*4]		; State[ST_WIRE0]=r0
-	; BC_CONST [b1]
-	mov r0, #0x00170000			; r0=rConstants[49] (23.0000)
-	; BC_CONST [af]
+	; BC_CONST [b4]
+	mov r0, #0x00170000			; r0=rConstants[52] (23.0000)
+	; BC_CONST [b2]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
 	; BC_CONST [87]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00008000			; r0=rConstants[7] (0.5000)
 	; BC_NEG [0d]
 	rsb r0, r0, #0				; r0=0-r0
-	; BC_CONST [a9]
+	; BC_CONST [ac]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x000e0000			; r0=rConstants[41] (14.0000)
+	mov r0, #0x000e0000			; r0=rConstants[44] (14.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_14_start		; r0=r_Procedures[14]
@@ -1257,16 +1257,16 @@ proc_8_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b1]
-	mov r0, #0x00170000			; r0=rConstants[49] (23.0000)
+	; BC_CONST [b4]
+	mov r0, #0x00170000			; r0=rConstants[52] (23.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_8_continue_45
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_8_continue_45:
-	; BC_CONST [bc]
-	mov r0, #0x00290000			; r0=rConstants[60] (41.0000)
+	; BC_CONST [c0]
+	mov r0, #0x00290000			; r0=rConstants[64] (41.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_CONST [80]
@@ -1294,25 +1294,25 @@ proc_8_continue_46:
 proc_8_end:
 
 proc_9_start:
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_WSTATE [58]
 	str r0, [r5, #ST_WIRE0*4]		; State[ST_WIRE0]=r0
-	; BC_CONST [a7]
-	mov r0, #0x000c0000			; r0=rConstants[39] (12.0000)
-	; BC_CONST [af]
+	; BC_CONST [aa]
+	mov r0, #0x000c0000			; r0=rConstants[42] (12.0000)
+	; BC_CONST [b2]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
 	; BC_CONST [91]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00010000			; r0=rConstants[17] (1.0000)
-	; BC_CONST [a1]
+	; BC_CONST [a3]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
+	mov r0, #0x00060000			; r0=rConstants[35] (6.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_14_start		; r0=r_Procedures[14]
@@ -1321,25 +1321,25 @@ proc_9_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a7]
-	mov r0, #0x000c0000			; r0=rConstants[39] (12.0000)
+	; BC_CONST [aa]
+	mov r0, #0x000c0000			; r0=rConstants[42] (12.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_9_continue_47
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_9_continue_47:
-	; BC_CONST [a7]
-	mov r0, #0x000c0000			; r0=rConstants[39] (12.0000)
-	; BC_CONST [af]
+	; BC_CONST [aa]
+	mov r0, #0x000c0000			; r0=rConstants[42] (12.0000)
+	; BC_CONST [b2]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
 	; BC_CONST [91]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00010000			; r0=rConstants[17] (1.0000)
-	; BC_CONST [a1]
+	; BC_CONST [a3]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
+	mov r0, #0x00060000			; r0=rConstants[35] (6.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_14_start		; r0=r_Procedures[14]
@@ -1348,25 +1348,25 @@ proc_9_continue_47:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a7]
-	mov r0, #0x000c0000			; r0=rConstants[39] (12.0000)
+	; BC_CONST [aa]
+	mov r0, #0x000c0000			; r0=rConstants[42] (12.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_9_continue_48
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_9_continue_48:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_CONST [91]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00010000			; r0=rConstants[17] (1.0000)
 	; BC_CONST [88]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #8*4]			; r0=rConstants[8]=0x00009999 (0.6000)
-	; BC_CONST [a1]
+	; BC_CONST [a3]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
+	mov r0, #0x00060000			; r0=rConstants[35] (6.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_14_start		; r0=r_Procedures[14]
@@ -1375,16 +1375,16 @@ proc_9_continue_48:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_9_continue_49
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_9_continue_49:
-	; BC_CONST [80]
-	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
+	; BC_CONST [be]
+	mov r0, #0x00270000			; r0=rConstants[62] (39.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_RSTATE [78]
@@ -1410,25 +1410,25 @@ proc_9_continue_49:
 proc_9_end:
 
 proc_10_start:
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_WSTATE [58]
 	str r0, [r5, #ST_WIRE0*4]		; State[ST_WIRE0]=r0
-	; BC_CONST [a7]
-	mov r0, #0x000c0000			; r0=rConstants[39] (12.0000)
-	; BC_CONST [af]
+	; BC_CONST [aa]
+	mov r0, #0x000c0000			; r0=rConstants[42] (12.0000)
+	; BC_CONST [b2]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
 	; BC_CONST [91]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00010000			; r0=rConstants[17] (1.0000)
-	; BC_CONST [a1]
+	; BC_CONST [a3]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
+	mov r0, #0x00060000			; r0=rConstants[35] (6.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_14_start		; r0=r_Procedures[14]
@@ -1437,25 +1437,25 @@ proc_10_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a7]
-	mov r0, #0x000c0000			; r0=rConstants[39] (12.0000)
+	; BC_CONST [aa]
+	mov r0, #0x000c0000			; r0=rConstants[42] (12.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_10_continue_50
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_10_continue_50:
-	; BC_CONST [a7]
-	mov r0, #0x000c0000			; r0=rConstants[39] (12.0000)
-	; BC_CONST [bb]
+	; BC_CONST [aa]
+	mov r0, #0x000c0000			; r0=rConstants[42] (12.0000)
+	; BC_CONST [bf]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00280000			; r0=rConstants[59] (40.0000)
+	mov r0, #0x00280000			; r0=rConstants[63] (40.0000)
 	; BC_CONST [86]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #6*4]			; r0=rConstants[6]=0x00004ccc (0.3000)
-	; BC_CONST [af]
+	; BC_CONST [b2]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_14_start		; r0=r_Procedures[14]
@@ -1464,25 +1464,25 @@ proc_10_continue_50:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a7]
-	mov r0, #0x000c0000			; r0=rConstants[39] (12.0000)
+	; BC_CONST [aa]
+	mov r0, #0x000c0000			; r0=rConstants[42] (12.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_10_continue_51
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_10_continue_51:
-	; BC_CONST [a7]
-	mov r0, #0x000c0000			; r0=rConstants[39] (12.0000)
-	; BC_CONST [af]
+	; BC_CONST [aa]
+	mov r0, #0x000c0000			; r0=rConstants[42] (12.0000)
+	; BC_CONST [b2]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
 	; BC_CONST [91]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00010000			; r0=rConstants[17] (1.0000)
-	; BC_CONST [a1]
+	; BC_CONST [a3]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
+	mov r0, #0x00060000			; r0=rConstants[35] (6.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_14_start		; r0=r_Procedures[14]
@@ -1491,25 +1491,25 @@ proc_10_continue_51:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a7]
-	mov r0, #0x000c0000			; r0=rConstants[39] (12.0000)
+	; BC_CONST [aa]
+	mov r0, #0x000c0000			; r0=rConstants[42] (12.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_10_continue_52
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_10_continue_52:
-	; BC_CONST [a7]
-	mov r0, #0x000c0000			; r0=rConstants[39] (12.0000)
-	; BC_CONST [bb]
+	; BC_CONST [aa]
+	mov r0, #0x000c0000			; r0=rConstants[42] (12.0000)
+	; BC_CONST [bf]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00280000			; r0=rConstants[59] (40.0000)
+	mov r0, #0x00280000			; r0=rConstants[63] (40.0000)
 	; BC_CONST [86]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #6*4]			; r0=rConstants[6]=0x00004ccc (0.3000)
-	; BC_CONST [af]
+	; BC_CONST [b2]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_14_start		; r0=r_Procedures[14]
@@ -1518,16 +1518,16 @@ proc_10_continue_52:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a7]
-	mov r0, #0x000c0000			; r0=rConstants[39] (12.0000)
+	; BC_CONST [aa]
+	mov r0, #0x000c0000			; r0=rConstants[42] (12.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_10_continue_53
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_10_continue_53:
-	; BC_CONST [c1]
-	mov r0, #0x00320000			; r0=rConstants[65] (50.0000)
+	; BC_CONST [c5]
+	mov r0, #0x00320000			; r0=rConstants[69] (50.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_RSTATE [78]
@@ -1553,25 +1553,25 @@ proc_10_continue_53:
 proc_10_end:
 
 proc_11_start:
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_WSTATE [58]
 	str r0, [r5, #ST_WIRE0*4]		; State[ST_WIRE0]=r0
-	; BC_CONST [a7]
-	mov r0, #0x000c0000			; r0=rConstants[39] (12.0000)
-	; BC_CONST [af]
+	; BC_CONST [aa]
+	mov r0, #0x000c0000			; r0=rConstants[42] (12.0000)
+	; BC_CONST [b2]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
 	; BC_CONST [91]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00010000			; r0=rConstants[17] (1.0000)
-	; BC_CONST [a1]
+	; BC_CONST [a3]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
+	mov r0, #0x00060000			; r0=rConstants[35] (6.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_14_start		; r0=r_Procedures[14]
@@ -1580,25 +1580,25 @@ proc_11_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a7]
-	mov r0, #0x000c0000			; r0=rConstants[39] (12.0000)
+	; BC_CONST [aa]
+	mov r0, #0x000c0000			; r0=rConstants[42] (12.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_11_continue_54
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_11_continue_54:
-	; BC_CONST [a7]
-	mov r0, #0x000c0000			; r0=rConstants[39] (12.0000)
-	; BC_CONST [af]
+	; BC_CONST [aa]
+	mov r0, #0x000c0000			; r0=rConstants[42] (12.0000)
+	; BC_CONST [b2]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
 	; BC_CONST [91]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00010000			; r0=rConstants[17] (1.0000)
-	; BC_CONST [a1]
+	; BC_CONST [a3]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
+	mov r0, #0x00060000			; r0=rConstants[35] (6.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_14_start		; r0=r_Procedures[14]
@@ -1607,25 +1607,25 @@ proc_11_continue_54:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a7]
-	mov r0, #0x000c0000			; r0=rConstants[39] (12.0000)
+	; BC_CONST [aa]
+	mov r0, #0x000c0000			; r0=rConstants[42] (12.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_11_continue_55
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_11_continue_55:
-	; BC_CONST [a7]
-	mov r0, #0x000c0000			; r0=rConstants[39] (12.0000)
-	; BC_CONST [af]
+	; BC_CONST [aa]
+	mov r0, #0x000c0000			; r0=rConstants[42] (12.0000)
+	; BC_CONST [b2]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
 	; BC_CONST [91]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00010000			; r0=rConstants[17] (1.0000)
-	; BC_CONST [a1]
+	; BC_CONST [a3]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
+	mov r0, #0x00060000			; r0=rConstants[35] (6.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_14_start		; r0=r_Procedures[14]
@@ -1634,25 +1634,25 @@ proc_11_continue_55:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a7]
-	mov r0, #0x000c0000			; r0=rConstants[39] (12.0000)
+	; BC_CONST [aa]
+	mov r0, #0x000c0000			; r0=rConstants[42] (12.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_11_continue_56
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_11_continue_56:
-	; BC_CONST [a7]
-	mov r0, #0x000c0000			; r0=rConstants[39] (12.0000)
-	; BC_CONST [af]
+	; BC_CONST [aa]
+	mov r0, #0x000c0000			; r0=rConstants[42] (12.0000)
+	; BC_CONST [b2]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
 	; BC_CONST [91]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00010000			; r0=rConstants[17] (1.0000)
-	; BC_CONST [a1]
+	; BC_CONST [a3]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
+	mov r0, #0x00060000			; r0=rConstants[35] (6.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_14_start		; r0=r_Procedures[14]
@@ -1661,16 +1661,16 @@ proc_11_continue_56:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a7]
-	mov r0, #0x000c0000			; r0=rConstants[39] (12.0000)
+	; BC_CONST [aa]
+	mov r0, #0x000c0000			; r0=rConstants[42] (12.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_11_continue_57
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_11_continue_57:
-	; BC_CONST [c1]
-	mov r0, #0x00320000			; r0=rConstants[65] (50.0000)
+	; BC_CONST [c5]
+	mov r0, #0x00320000			; r0=rConstants[69] (50.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_RSTATE [78]
@@ -1696,16 +1696,16 @@ proc_11_continue_57:
 proc_11_end:
 
 proc_12_start:
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
-	; BC_CONST [9a]
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	; BC_CONST [9b]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_WSTATE [58]
 	str r0, [r5, #ST_WIRE0*4]		; State[ST_WIRE0]=r0
-	; BC_CONST [d3]
-	mov r0, #0x00640000			; r0=rConstants[83] (100.0000)
+	; BC_CONST [d9]
+	mov r0, #0x00640000			; r0=rConstants[89] (100.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_13_start		; r0=r_Procedures[13]
@@ -1726,17 +1726,17 @@ proc_13_start:
 	; BC_WHEN [17]
 	movs r0, r0					; update Status flags
 	beq proc_13_target_58
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [af]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
 	; BC_CONST [91]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00010000			; r0=rConstants[17] (1.0000)
-	; BC_CONST [a1]
+	; BC_CONST [a3]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
+	mov r0, #0x00060000			; r0=rConstants[35] (6.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_14_start		; r0=r_Procedures[14]
@@ -1745,25 +1745,25 @@ proc_13_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_13_continue_59
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_13_continue_59:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [bb]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [bf]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00280000			; r0=rConstants[59] (40.0000)
+	mov r0, #0x00280000			; r0=rConstants[63] (40.0000)
 	; BC_CONST [86]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #6*4]			; r0=rConstants[6]=0x00004ccc (0.3000)
-	; BC_CONST [af]
+	; BC_CONST [b2]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_14_start		; r0=r_Procedures[14]
@@ -1772,25 +1772,25 @@ proc_13_continue_59:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_13_continue_60
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_13_continue_60:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_CONST [91]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00010000			; r0=rConstants[17] (1.0000)
 	; BC_CONST [88]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #8*4]			; r0=rConstants[8]=0x00009999 (0.6000)
-	; BC_CONST [a1]
+	; BC_CONST [a3]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
+	mov r0, #0x00060000			; r0=rConstants[35] (6.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_14_start		; r0=r_Procedures[14]
@@ -1799,27 +1799,27 @@ proc_13_continue_60:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_13_continue_61
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_13_continue_61:
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [af]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
 	; BC_CONST [87]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00008000			; r0=rConstants[7] (0.5000)
 	; BC_NEG [0d]
 	rsb r0, r0, #0				; r0=0-r0
-	; BC_CONST [a9]
+	; BC_CONST [ac]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x000e0000			; r0=rConstants[41] (14.0000)
+	mov r0, #0x000e0000			; r0=rConstants[44] (14.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_14_start		; r0=r_Procedures[14]
@@ -1828,8 +1828,8 @@ proc_13_continue_61:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_13_continue_62
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -1890,11 +1890,11 @@ proc_14_start:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_14_continue_64:
-	; BC_CONST [be]
-	mov r0, #0x002c0000			; r0=rConstants[62] (44.0000)
-	; BC_CONST [dc]
+	; BC_CONST [c2]
+	mov r0, #0x002c0000			; r0=rConstants[66] (44.0000)
+	; BC_CONST [e2]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00800000			; r0=rConstants[92] (128.0000)
+	mov r0, #0x00800000			; r0=rConstants[98] (128.0000)
 	; BC_DIV [09]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r1, r1, asl #8
@@ -1951,8 +1951,8 @@ proc_14_target_63:
 proc_14_end:
 
 proc_15_start:
-	; BC_CONST [c9]
-	mov r0, #0x00460000			; r0=rConstants[73] (70.0000)
+	; BC_CONST [ce]
+	mov r0, #0x00460000			; r0=rConstants[78] (70.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_17_start		; r0=r_Procedures[17]
@@ -1961,8 +1961,8 @@ proc_15_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a4]
-	mov r0, #0x00090000			; r0=rConstants[36] (9.0000)
+	; BC_CONST [a7]
+	mov r0, #0x00090000			; r0=rConstants[39] (9.0000)
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
@@ -1977,8 +1977,8 @@ proc_15_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [c6]
-	mov r0, #0x00400000			; r0=rConstants[70] (64.0000)
+	; BC_CONST [ca]
+	mov r0, #0x00400000			; r0=rConstants[74] (64.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -1987,8 +1987,8 @@ proc_15_start:
 	adds r0, r0, r1				; r0=r0 adds r1
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [a4]
-	mov r0, #0x00090000			; r0=rConstants[36] (9.0000)
+	; BC_CONST [a7]
+	mov r0, #0x00090000			; r0=rConstants[39] (9.0000)
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
@@ -2003,8 +2003,8 @@ proc_15_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [c6]
-	mov r0, #0x00400000			; r0=rConstants[70] (64.0000)
+	; BC_CONST [ca]
+	mov r0, #0x00400000			; r0=rConstants[74] (64.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -2013,8 +2013,8 @@ proc_15_start:
 	adds r0, r0, r1				; r0=r0 adds r1
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [a4]
-	mov r0, #0x00090000			; r0=rConstants[36] (9.0000)
+	; BC_CONST [a7]
+	mov r0, #0x00090000			; r0=rConstants[39] (9.0000)
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
@@ -2029,8 +2029,8 @@ proc_15_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [c6]
-	mov r0, #0x00400000			; r0=rConstants[70] (64.0000)
+	; BC_CONST [ca]
+	mov r0, #0x00400000			; r0=rConstants[74] (64.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -2039,8 +2039,8 @@ proc_15_start:
 	adds r0, r0, r1				; r0=r0 adds r1
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [a4]
-	mov r0, #0x00090000			; r0=rConstants[36] (9.0000)
+	; BC_CONST [a7]
+	mov r0, #0x00090000			; r0=rConstants[39] (9.0000)
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
@@ -2191,22 +2191,22 @@ proc_19_start:
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [a5]
-	mov r0, #0x000a0000			; r0=rConstants[37] (10.0000)
+	; BC_CONST [a8]
+	mov r0, #0x000a0000			; r0=rConstants[40] (10.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
-	; BC_CONST [d0]
-	mov r0, #0x005a0000			; r0=rConstants[80] (90.0000)
-	; BC_CONST [cc]
+	; BC_CONST [d6]
+	mov r0, #0x005a0000			; r0=rConstants[86] (90.0000)
+	; BC_CONST [d2]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00500000			; r0=rConstants[76] (80.0000)
+	mov r0, #0x00500000			; r0=rConstants[82] (80.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_47_start		; r0=r_Procedures[47]
@@ -2215,11 +2215,11 @@ proc_19_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [ab]
-	mov r0, #0x00100000			; r0=rConstants[43] (16.0000)
-	; BC_CONST [b2]
+	; BC_CONST [ae]
+	mov r0, #0x00100000			; r0=rConstants[46] (16.0000)
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -2233,8 +2233,8 @@ proc_19_start:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_19_continue_66:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_SEED [0c]
 	bic r1, r0, #0xff000000
 	bic r1, r1, #0x00ff0000
@@ -2251,18 +2251,18 @@ proc_19_continue_66:
 	mul r1, r2, r1
 	add r0, r0, r1
 	str r0, [r5, #ST_RAND*4]
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
-	; BC_CONST [e4]
-	mov r0, #0x00a00000			; r0=rConstants[100] (160.0000)
+	; BC_CONST [ea]
+	mov r0, #0x00a00000			; r0=rConstants[106] (160.0000)
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9a]
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	; BC_CONST [9b]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_39_start		; r0=r_Procedures[39]
@@ -2271,11 +2271,11 @@ proc_19_continue_66:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [9e]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [9f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -2289,8 +2289,8 @@ proc_19_continue_66:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_19_continue_67:
-	; BC_CONST [dc]
-	mov r0, #0x00800000			; r0=rConstants[92] (128.0000)
+	; BC_CONST [e2]
+	mov r0, #0x00800000			; r0=rConstants[98] (128.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -2299,14 +2299,14 @@ proc_19_continue_67:
 	adds r0, r0, r1				; r0=r0 adds r1
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [e4]
-	mov r0, #0x00a00000			; r0=rConstants[100] (160.0000)
+	; BC_CONST [ea]
+	mov r0, #0x00a00000			; r0=rConstants[106] (160.0000)
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9a]
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	; BC_CONST [9b]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_39_start		; r0=r_Procedures[39]
@@ -2315,11 +2315,11 @@ proc_19_continue_67:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [9e]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [9f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -2333,11 +2333,11 @@ proc_19_continue_67:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_19_continue_68:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [9e]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [9f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -2351,11 +2351,11 @@ proc_19_continue_68:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_19_continue_69:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [9e]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [9f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -2376,8 +2376,8 @@ proc_19_continue_70:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_25_start		; r0=r_Procedures[25]
@@ -2386,11 +2386,11 @@ proc_19_continue_70:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [9e]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [9f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -2404,11 +2404,11 @@ proc_19_continue_70:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_19_continue_71:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [9e]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [9f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -2422,8 +2422,8 @@ proc_19_continue_71:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_19_continue_72:
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_25_start		; r0=r_Procedures[25]
@@ -2432,11 +2432,11 @@ proc_19_continue_72:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [9e]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [9f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -2450,11 +2450,11 @@ proc_19_continue_72:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_19_continue_73:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [9e]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [9f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -2468,8 +2468,8 @@ proc_19_continue_73:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_19_continue_74:
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_25_start		; r0=r_Procedures[25]
@@ -2478,11 +2478,11 @@ proc_19_continue_74:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [9e]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [9f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -2496,11 +2496,11 @@ proc_19_continue_74:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_19_continue_75:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [9e]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [9f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -2514,8 +2514,8 @@ proc_19_continue_75:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_19_continue_76:
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_25_start		; r0=r_Procedures[25]
@@ -2524,11 +2524,11 @@ proc_19_continue_76:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [9e]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [9f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -2542,11 +2542,11 @@ proc_19_continue_76:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_19_continue_77:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [9e]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [9f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -2560,8 +2560,8 @@ proc_19_continue_77:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_19_continue_78:
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_25_start		; r0=r_Procedures[25]
@@ -2570,11 +2570,11 @@ proc_19_continue_78:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [9e]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [9f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -2588,11 +2588,11 @@ proc_19_continue_78:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_19_continue_79:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [9e]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [9f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -2606,8 +2606,8 @@ proc_19_continue_79:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_19_continue_80:
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_25_start		; r0=r_Procedures[25]
@@ -2616,11 +2616,11 @@ proc_19_continue_80:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [9e]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [9f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -2634,11 +2634,11 @@ proc_19_continue_80:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_19_continue_81:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [9e]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [9f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -2652,8 +2652,8 @@ proc_19_continue_81:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_19_continue_82:
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_25_start		; r0=r_Procedures[25]
@@ -2662,11 +2662,11 @@ proc_19_continue_82:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [9e]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [9f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -2680,11 +2680,11 @@ proc_19_continue_82:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_19_continue_83:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [9e]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [9f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -2698,8 +2698,8 @@ proc_19_continue_83:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_19_continue_84:
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_25_start		; r0=r_Procedures[25]
@@ -2708,40 +2708,40 @@ proc_19_continue_84:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_19_continue_85
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_19_continue_85:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_19_continue_86
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_19_continue_86:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_19_continue_87
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_19_continue_87:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_19_continue_88
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_19_continue_88:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_19_continue_89
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -2758,16 +2758,16 @@ proc_19_continue_89:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_19_continue_90
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_19_continue_90:
-	; BC_CONST [a7]
-	mov r0, #0x000c0000			; r0=rConstants[39] (12.0000)
+	; BC_CONST [aa]
+	mov r0, #0x000c0000			; r0=rConstants[42] (12.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_19_continue_91
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -2784,27 +2784,27 @@ proc_19_continue_91:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a7]
-	mov r0, #0x000c0000			; r0=rConstants[39] (12.0000)
+	; BC_CONST [aa]
+	mov r0, #0x000c0000			; r0=rConstants[42] (12.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_19_continue_92
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_19_continue_92:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_19_continue_93
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_19_continue_93:
-	; BC_CONST [d0]
-	mov r0, #0x005a0000			; r0=rConstants[80] (90.0000)
-	; BC_CONST [cc]
+	; BC_CONST [d6]
+	mov r0, #0x005a0000			; r0=rConstants[86] (90.0000)
+	; BC_CONST [d2]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00500000			; r0=rConstants[76] (80.0000)
+	mov r0, #0x00500000			; r0=rConstants[82] (80.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
@@ -2814,8 +2814,8 @@ proc_19_continue_93:
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_39_start		; r0=r_Procedures[39]
@@ -2824,14 +2824,14 @@ proc_19_continue_93:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [e4]
-	mov r0, #0x00a00000			; r0=rConstants[100] (160.0000)
+	; BC_CONST [ea]
+	mov r0, #0x00a00000			; r0=rConstants[106] (160.0000)
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_39_start		; r0=r_Procedures[39]
@@ -2840,11 +2840,11 @@ proc_19_continue_93:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [9e]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [9f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -2858,8 +2858,8 @@ proc_19_continue_93:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_19_continue_94:
-	; BC_CONST [dc]
-	mov r0, #0x00800000			; r0=rConstants[92] (128.0000)
+	; BC_CONST [e2]
+	mov r0, #0x00800000			; r0=rConstants[98] (128.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -2868,14 +2868,14 @@ proc_19_continue_94:
 	adds r0, r0, r1				; r0=r0 adds r1
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [e4]
-	mov r0, #0x00a00000			; r0=rConstants[100] (160.0000)
+	; BC_CONST [ea]
+	mov r0, #0x00a00000			; r0=rConstants[106] (160.0000)
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_39_start		; r0=r_Procedures[39]
@@ -2884,8 +2884,8 @@ proc_19_continue_94:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [dc]
-	mov r0, #0x00800000			; r0=rConstants[92] (128.0000)
+	; BC_CONST [e2]
+	mov r0, #0x00800000			; r0=rConstants[98] (128.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -2894,14 +2894,14 @@ proc_19_continue_94:
 	adds r0, r0, r1				; r0=r0 adds r1
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [e4]
-	mov r0, #0x00a00000			; r0=rConstants[100] (160.0000)
+	; BC_CONST [ea]
+	mov r0, #0x00a00000			; r0=rConstants[106] (160.0000)
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_39_start		; r0=r_Procedures[39]
@@ -2910,11 +2910,11 @@ proc_19_continue_94:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [9e]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [9f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -2928,11 +2928,11 @@ proc_19_continue_94:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_19_continue_95:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [9e]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [9f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -2946,11 +2946,11 @@ proc_19_continue_95:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_19_continue_96:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [9e]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [9f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -2964,11 +2964,11 @@ proc_19_continue_96:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_19_continue_97:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [9e]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [9f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -2982,11 +2982,11 @@ proc_19_continue_97:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_19_continue_98:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [9e]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [9f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -3000,11 +3000,11 @@ proc_19_continue_98:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_19_continue_99:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [9e]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [9f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -3025,18 +3025,18 @@ proc_19_continue_100:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [d0]
-	mov r0, #0x005a0000			; r0=rConstants[80] (90.0000)
-	; BC_CONST [e4]
+	; BC_CONST [d6]
+	mov r0, #0x005a0000			; r0=rConstants[86] (90.0000)
+	; BC_CONST [ea]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00a00000			; r0=rConstants[100] (160.0000)
+	mov r0, #0x00a00000			; r0=rConstants[106] (160.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [c7]
-	mov r0, #0x00410000			; r0=rConstants[71] (65.0000)
+	; BC_CONST [cc]
+	mov r0, #0x00410000			; r0=rConstants[76] (65.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_CONST [80]
@@ -3049,8 +3049,8 @@ proc_19_continue_100:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_19_continue_101
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -3067,8 +3067,8 @@ proc_19_continue_101:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_19_continue_102
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -3085,16 +3085,16 @@ proc_19_continue_102:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_19_continue_103
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_19_continue_103:
-	; BC_CONST [a0]
-	mov r0, #0x00050000			; r0=rConstants[32] (5.0000)
+	; BC_CONST [a1]
+	mov r0, #0x00050000			; r0=rConstants[33] (5.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_PROC [07]
@@ -3118,16 +3118,16 @@ proc_19_continue_103:
 proc_19_end:
 
 proc_20_start:
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
-	; BC_CONST [b5]
-	mov r0, #0x001e0000			; r0=rConstants[53] (30.0000)
+	; BC_CONST [b8]
+	mov r0, #0x001e0000			; r0=rConstants[56] (30.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
-	; BC_CONST [d0]
-	mov r0, #0x005a0000			; r0=rConstants[80] (90.0000)
+	; BC_CONST [d6]
+	mov r0, #0x005a0000			; r0=rConstants[86] (90.0000)
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -3136,8 +3136,8 @@ proc_20_start:
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [ab]
-	mov r0, #0x00100000			; r0=rConstants[43] (16.0000)
+	; BC_CONST [ae]
+	mov r0, #0x00100000			; r0=rConstants[46] (16.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_21_start		; r0=r_Procedures[21]
@@ -3146,18 +3146,18 @@ proc_20_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [d0]
-	mov r0, #0x005a0000			; r0=rConstants[80] (90.0000)
-	; BC_CONST [f5]
+	; BC_CONST [d6]
+	mov r0, #0x005a0000			; r0=rConstants[86] (90.0000)
+	; BC_CONST [fb]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x01400000			; r0=rConstants[117] (320.0000)
+	mov r0, #0x01400000			; r0=rConstants[123] (320.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [dc]
-	mov r0, #0x00800000			; r0=rConstants[92] (128.0000)
+	; BC_CONST [e2]
+	mov r0, #0x00800000			; r0=rConstants[98] (128.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -3166,8 +3166,8 @@ proc_20_start:
 	adds r0, r0, r1				; r0=r0 adds r1
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [ab]
-	mov r0, #0x00100000			; r0=rConstants[43] (16.0000)
+	; BC_CONST [ae]
+	mov r0, #0x00100000			; r0=rConstants[46] (16.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_21_start		; r0=r_Procedures[21]
@@ -3188,8 +3188,8 @@ proc_21_start:
 	; BC_WHEN [17]
 	movs r0, r0					; update Status flags
 	beq proc_21_target_104
-	; BC_CONST [a5]
-	mov r0, #0x000a0000			; r0=rConstants[37] (10.0000)
+	; BC_CONST [a8]
+	mov r0, #0x000a0000			; r0=rConstants[40] (10.0000)
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
@@ -3236,11 +3236,11 @@ proc_21_target_104:
 proc_21_end:
 
 proc_22_start:
-	; BC_CONST [ca]
-	mov r0, #0x004a0000			; r0=rConstants[74] (74.0000)
-	; BC_CONST [e0]
+	; BC_CONST [cf]
+	mov r0, #0x004a0000			; r0=rConstants[79] (74.0000)
+	; BC_CONST [e6]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x008c0000			; r0=rConstants[96] (140.0000)
+	mov r0, #0x008c0000			; r0=rConstants[102] (140.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
@@ -3250,14 +3250,14 @@ proc_22_start:
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [a2]
-	mov r0, #0x00070000			; r0=rConstants[34] (7.0000)
+	; BC_CONST [a5]
+	mov r0, #0x00070000			; r0=rConstants[37] (7.0000)
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [bb]
+	; BC_CONST [bf]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00280000			; r0=rConstants[59] (40.0000)
+	mov r0, #0x00280000			; r0=rConstants[63] (40.0000)
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -3269,17 +3269,17 @@ proc_22_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a3]
-	mov r0, #0x00080000			; r0=rConstants[35] (8.0000)
+	; BC_CONST [a6]
+	mov r0, #0x00080000			; r0=rConstants[38] (8.0000)
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_Y*4]		; r0=State[ST_Y]
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	subs r0, r0, r1				; r0=r0 subs r1
-	; BC_CONST [af]
+	; BC_CONST [b2]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_X*4]		; r0=State[ST_X]
@@ -3291,18 +3291,18 @@ proc_22_start:
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [c6]
-	mov r0, #0x00400000			; r0=rConstants[70] (64.0000)
+	; BC_CONST [ca]
+	mov r0, #0x00400000			; r0=rConstants[74] (64.0000)
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [a2]
-	mov r0, #0x00070000			; r0=rConstants[34] (7.0000)
+	; BC_CONST [a5]
+	mov r0, #0x00070000			; r0=rConstants[37] (7.0000)
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [a3]
+	; BC_CONST [a6]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00080000			; r0=rConstants[35] (8.0000)
+	mov r0, #0x00080000			; r0=rConstants[38] (8.0000)
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -3314,17 +3314,17 @@ proc_22_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a3]
-	mov r0, #0x00080000			; r0=rConstants[35] (8.0000)
+	; BC_CONST [a6]
+	mov r0, #0x00080000			; r0=rConstants[38] (8.0000)
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_Y*4]		; r0=State[ST_Y]
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	adds r0, r0, r1				; r0=r0 adds r1
-	; BC_CONST [af]
+	; BC_CONST [b2]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_X*4]		; r0=State[ST_X]
@@ -3336,18 +3336,18 @@ proc_22_start:
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [cc]
-	mov r0, #0x00500000			; r0=rConstants[76] (80.0000)
+	; BC_CONST [d2]
+	mov r0, #0x00500000			; r0=rConstants[82] (80.0000)
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [a2]
-	mov r0, #0x00070000			; r0=rConstants[34] (7.0000)
+	; BC_CONST [a5]
+	mov r0, #0x00070000			; r0=rConstants[37] (7.0000)
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [c2]
+	; BC_CONST [c6]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00340000			; r0=rConstants[66] (52.0000)
+	mov r0, #0x00340000			; r0=rConstants[70] (52.0000)
 	; BC_CONST [91]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00010000			; r0=rConstants[17] (1.0000)
@@ -3359,17 +3359,17 @@ proc_22_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [af]
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
+	; BC_CONST [b2]
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_Y*4]		; r0=State[ST_Y]
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	adds r0, r0, r1				; r0=r0 adds r1
-	; BC_CONST [af]
+	; BC_CONST [b2]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_X*4]		; r0=State[ST_X]
@@ -3381,41 +3381,18 @@ proc_22_start:
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [c6]
-	mov r0, #0x00400000			; r0=rConstants[70] (64.0000)
+	; BC_CONST [ca]
+	mov r0, #0x00400000			; r0=rConstants[74] (64.0000)
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [a2]
-	mov r0, #0x00070000			; r0=rConstants[34] (7.0000)
+	; BC_CONST [a5]
+	mov r0, #0x00070000			; r0=rConstants[37] (7.0000)
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [b2]
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [80]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_PROC [07]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	adr r0, proc_23_start		; r0=r_Procedures[23]
-	; BC_FORK [24]
-	mov r1, #4
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl ForkState				; r0=proc address, r1=num_args
-	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [af]
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
-	; BC_WSTATE [56]
-	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [a2]
-	mov r0, #0x00070000			; r0=rConstants[34] (7.0000)
-	; BC_CONST [80]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [b2]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -3428,37 +3405,60 @@ proc_22_start:
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
+	; BC_WSTATE [56]
+	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
+	; BC_CONST [a5]
+	mov r0, #0x00070000			; r0=rConstants[37] (7.0000)
+	; BC_CONST [80]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
+	; BC_CONST [b5]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [80]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
+	; BC_PROC [07]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	adr r0, proc_23_start		; r0=r_Procedures[23]
+	; BC_FORK [24]
+	mov r1, #4
+	str lr, [sp, #-4]!			; Push lr on program stack.
+	bl ForkState				; r0=proc address, r1=num_args
+	ldr lr, [sp], #4			; Pop lr off program stack.
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_22_continue_106
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_22_continue_106:
-	; BC_CONST [d0]
-	mov r0, #0x005a0000			; r0=rConstants[80] (90.0000)
-	; BC_CONST [d0]
+	; BC_CONST [d6]
+	mov r0, #0x005a0000			; r0=rConstants[86] (90.0000)
+	; BC_CONST [d6]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x005a0000			; r0=rConstants[80] (90.0000)
+	mov r0, #0x005a0000			; r0=rConstants[86] (90.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [b7]
-	mov r0, #0x00200000			; r0=rConstants[55] (32.0000)
+	; BC_CONST [ba]
+	mov r0, #0x00200000			; r0=rConstants[58] (32.0000)
 	; BC_NEG [0d]
 	rsb r0, r0, #0				; r0=0-r0
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [a2]
-	mov r0, #0x00070000			; r0=rConstants[34] (7.0000)
+	; BC_CONST [a5]
+	mov r0, #0x00070000			; r0=rConstants[37] (7.0000)
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [b4]
+	; BC_CONST [b7]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x001c0000			; r0=rConstants[52] (28.0000)
+	mov r0, #0x001c0000			; r0=rConstants[55] (28.0000)
 	; BC_CONST [91]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00010000			; r0=rConstants[17] (1.0000)
@@ -3472,17 +3472,17 @@ proc_22_continue_106:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [ab]
-	mov r0, #0x00100000			; r0=rConstants[43] (16.0000)
+	; BC_CONST [ae]
+	mov r0, #0x00100000			; r0=rConstants[46] (16.0000)
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_Y*4]		; r0=State[ST_Y]
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	subs r0, r0, r1				; r0=r0 subs r1
-	; BC_CONST [a7]
+	; BC_CONST [aa]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x000c0000			; r0=rConstants[39] (12.0000)
+	mov r0, #0x000c0000			; r0=rConstants[42] (12.0000)
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_X*4]		; r0=State[ST_X]
@@ -3498,14 +3498,14 @@ proc_22_continue_106:
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [a2]
-	mov r0, #0x00070000			; r0=rConstants[34] (7.0000)
+	; BC_CONST [a5]
+	mov r0, #0x00070000			; r0=rConstants[37] (7.0000)
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [b2]
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -3517,17 +3517,17 @@ proc_22_continue_106:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a3]
-	mov r0, #0x00080000			; r0=rConstants[35] (8.0000)
+	; BC_CONST [a6]
+	mov r0, #0x00080000			; r0=rConstants[38] (8.0000)
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_Y*4]		; r0=State[ST_Y]
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	subs r0, r0, r1				; r0=r0 subs r1
-	; BC_CONST [b2]
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_X*4]		; r0=State[ST_X]
@@ -3539,18 +3539,18 @@ proc_22_continue_106:
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [c6]
-	mov r0, #0x00400000			; r0=rConstants[70] (64.0000)
+	; BC_CONST [ca]
+	mov r0, #0x00400000			; r0=rConstants[74] (64.0000)
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [a2]
-	mov r0, #0x00070000			; r0=rConstants[34] (7.0000)
+	; BC_CONST [a5]
+	mov r0, #0x00070000			; r0=rConstants[37] (7.0000)
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [c6]
+	; BC_CONST [ca]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00400000			; r0=rConstants[70] (64.0000)
+	mov r0, #0x00400000			; r0=rConstants[74] (64.0000)
 	; BC_CONST [8e]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #14*4]			; r0=rConstants[14]=0x0000e666 (0.9000)
@@ -3562,17 +3562,17 @@ proc_22_continue_106:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b7]
-	mov r0, #0x00200000			; r0=rConstants[55] (32.0000)
+	; BC_CONST [ba]
+	mov r0, #0x00200000			; r0=rConstants[58] (32.0000)
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_Y*4]		; r0=State[ST_Y]
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	adds r0, r0, r1				; r0=r0 adds r1
-	; BC_CONST [a5]
+	; BC_CONST [a8]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x000a0000			; r0=rConstants[37] (10.0000)
+	mov r0, #0x000a0000			; r0=rConstants[40] (10.0000)
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_X*4]		; r0=State[ST_X]
@@ -3584,20 +3584,20 @@ proc_22_continue_106:
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [d1]
-	mov r0, #0x00600000			; r0=rConstants[81] (96.0000)
+	; BC_CONST [d7]
+	mov r0, #0x00600000			; r0=rConstants[87] (96.0000)
 	; BC_NEG [0d]
 	rsb r0, r0, #0				; r0=0-r0
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [a2]
-	mov r0, #0x00070000			; r0=rConstants[34] (7.0000)
+	; BC_CONST [a5]
+	mov r0, #0x00070000			; r0=rConstants[37] (7.0000)
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [ab]
+	; BC_CONST [ae]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00100000			; r0=rConstants[43] (16.0000)
+	mov r0, #0x00100000			; r0=rConstants[46] (16.0000)
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -3609,11 +3609,11 @@ proc_22_continue_106:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [d0]
-	mov r0, #0x005a0000			; r0=rConstants[80] (90.0000)
-	; BC_CONST [e9]
+	; BC_CONST [d6]
+	mov r0, #0x005a0000			; r0=rConstants[86] (90.0000)
+	; BC_CONST [ef]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00be0000			; r0=rConstants[105] (190.0000)
+	mov r0, #0x00be0000			; r0=rConstants[111] (190.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
@@ -3623,14 +3623,14 @@ proc_22_continue_106:
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [a2]
-	mov r0, #0x00070000			; r0=rConstants[34] (7.0000)
+	; BC_CONST [a5]
+	mov r0, #0x00070000			; r0=rConstants[37] (7.0000)
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [c0]
+	; BC_CONST [c4]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00300000			; r0=rConstants[64] (48.0000)
+	mov r0, #0x00300000			; r0=rConstants[68] (48.0000)
 	; BC_CONST [8c]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #12*4]			; r0=rConstants[12]=0x0000cccc (0.8000)
@@ -3644,17 +3644,17 @@ proc_22_continue_106:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a3]
-	mov r0, #0x00080000			; r0=rConstants[35] (8.0000)
+	; BC_CONST [a6]
+	mov r0, #0x00080000			; r0=rConstants[38] (8.0000)
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_Y*4]		; r0=State[ST_Y]
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	subs r0, r0, r1				; r0=r0 subs r1
-	; BC_CONST [b2]
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_X*4]		; r0=State[ST_X]
@@ -3666,18 +3666,18 @@ proc_22_continue_106:
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [c6]
-	mov r0, #0x00400000			; r0=rConstants[70] (64.0000)
+	; BC_CONST [ca]
+	mov r0, #0x00400000			; r0=rConstants[74] (64.0000)
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [a2]
-	mov r0, #0x00070000			; r0=rConstants[34] (7.0000)
+	; BC_CONST [a5]
+	mov r0, #0x00070000			; r0=rConstants[37] (7.0000)
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [b7]
+	; BC_CONST [ba]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00200000			; r0=rConstants[55] (32.0000)
+	mov r0, #0x00200000			; r0=rConstants[58] (32.0000)
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -3689,19 +3689,19 @@ proc_22_continue_106:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_22_continue_107
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_22_continue_107:
-	; BC_CONST [ca]
-	mov r0, #0x004a0000			; r0=rConstants[74] (74.0000)
-	; BC_CONST [bb]
+	; BC_CONST [cf]
+	mov r0, #0x004a0000			; r0=rConstants[79] (74.0000)
+	; BC_CONST [bf]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00280000			; r0=rConstants[59] (40.0000)
+	mov r0, #0x00280000			; r0=rConstants[63] (40.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
@@ -3711,14 +3711,14 @@ proc_22_continue_107:
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [a2]
-	mov r0, #0x00070000			; r0=rConstants[34] (7.0000)
+	; BC_CONST [a5]
+	mov r0, #0x00070000			; r0=rConstants[37] (7.0000)
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [bb]
+	; BC_CONST [bf]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00280000			; r0=rConstants[59] (40.0000)
+	mov r0, #0x00280000			; r0=rConstants[63] (40.0000)
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -3732,21 +3732,21 @@ proc_22_continue_107:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [c6]
-	mov r0, #0x00400000			; r0=rConstants[70] (64.0000)
+	; BC_CONST [ca]
+	mov r0, #0x00400000			; r0=rConstants[74] (64.0000)
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [a5]
-	mov r0, #0x000a0000			; r0=rConstants[37] (10.0000)
+	; BC_CONST [a8]
+	mov r0, #0x000a0000			; r0=rConstants[40] (10.0000)
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_Y*4]		; r0=State[ST_Y]
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	subs r0, r0, r1				; r0=r0 subs r1
-	; BC_CONST [a3]
+	; BC_CONST [a6]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00080000			; r0=rConstants[35] (8.0000)
+	mov r0, #0x00080000			; r0=rConstants[38] (8.0000)
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_X*4]		; r0=State[ST_X]
@@ -3758,14 +3758,14 @@ proc_22_continue_107:
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [a2]
-	mov r0, #0x00070000			; r0=rConstants[34] (7.0000)
+	; BC_CONST [a5]
+	mov r0, #0x00070000			; r0=rConstants[37] (7.0000)
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [af]
+	; BC_CONST [b2]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -3777,8 +3777,8 @@ proc_22_continue_107:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [af]
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
+	; BC_CONST [b2]
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_X*4]		; r0=State[ST_X]
@@ -3787,14 +3787,14 @@ proc_22_continue_107:
 	adds r0, r0, r1				; r0=r0 adds r1
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
-	; BC_CONST [a2]
-	mov r0, #0x00070000			; r0=rConstants[34] (7.0000)
+	; BC_CONST [a5]
+	mov r0, #0x00070000			; r0=rConstants[37] (7.0000)
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [b2]
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -3806,8 +3806,8 @@ proc_22_continue_107:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_Y*4]		; r0=State[ST_Y]
@@ -3816,17 +3816,17 @@ proc_22_continue_107:
 	adds r0, r0, r1				; r0=r0 adds r1
 	; BC_WSTATE [52]
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [a2]
-	mov r0, #0x00070000			; r0=rConstants[34] (7.0000)
+	; BC_CONST [a5]
+	mov r0, #0x00070000			; r0=rConstants[37] (7.0000)
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [b2]
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [9c]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [9d]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_23_start		; r0=r_Procedures[23]
@@ -3835,30 +3835,30 @@ proc_22_continue_107:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [d7]
-	mov r0, #0x00720000			; r0=rConstants[87] (114.0000)
-	; BC_CONST [ef]
+	; BC_CONST [dd]
+	mov r0, #0x00720000			; r0=rConstants[93] (114.0000)
+	; BC_CONST [f5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00f00000			; r0=rConstants[111] (240.0000)
+	mov r0, #0x00f00000			; r0=rConstants[117] (240.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [a3]
-	mov r0, #0x00080000			; r0=rConstants[35] (8.0000)
+	; BC_CONST [a6]
+	mov r0, #0x00080000			; r0=rConstants[38] (8.0000)
 	; BC_NEG [0d]
 	rsb r0, r0, #0				; r0=0-r0
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [a2]
-	mov r0, #0x00070000			; r0=rConstants[34] (7.0000)
+	; BC_CONST [a5]
+	mov r0, #0x00070000			; r0=rConstants[37] (7.0000)
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [c3]
+	; BC_CONST [c7]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x003c0000			; r0=rConstants[67] (60.0000)
+	mov r0, #0x003c0000			; r0=rConstants[71] (60.0000)
 	; BC_CONST [91]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00010000			; r0=rConstants[17] (1.0000)
@@ -3872,17 +3872,17 @@ proc_22_continue_107:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_Y*4]		; r0=State[ST_Y]
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	subs r0, r0, r1				; r0=r0 subs r1
-	; BC_CONST [a7]
+	; BC_CONST [aa]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x000c0000			; r0=rConstants[39] (12.0000)
+	mov r0, #0x000c0000			; r0=rConstants[42] (12.0000)
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_X*4]		; r0=State[ST_X]
@@ -3894,18 +3894,18 @@ proc_22_continue_107:
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [af]
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
+	; BC_CONST [b2]
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [a2]
-	mov r0, #0x00070000			; r0=rConstants[34] (7.0000)
+	; BC_CONST [a5]
+	mov r0, #0x00070000			; r0=rConstants[37] (7.0000)
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [b7]
+	; BC_CONST [ba]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00200000			; r0=rConstants[55] (32.0000)
+	mov r0, #0x00200000			; r0=rConstants[58] (32.0000)
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -3996,8 +3996,8 @@ proc_23_target_108:
 proc_23_end:
 
 proc_24_start:
-	; BC_CONST [c6]
-	mov r0, #0x00400000			; r0=rConstants[70] (64.0000)
+	; BC_CONST [ca]
+	mov r0, #0x00400000			; r0=rConstants[74] (64.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -4006,8 +4006,8 @@ proc_24_start:
 	adds r0, r0, r1				; r0=r0 adds r1
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_NEG [0d]
 	rsb r0, r0, #0				; r0=0-r0
 	; BC_MOVE [0e]
@@ -4034,14 +4034,14 @@ proc_24_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutCircle
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9a]
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	; BC_CONST [9b]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_RLOCAL [60]
@@ -4081,18 +4081,18 @@ proc_24_start:
 proc_24_end:
 
 proc_25_start:
-	; BC_CONST [cc]
-	mov r0, #0x00500000			; r0=rConstants[76] (80.0000)
-	; BC_CONST [e4]
+	; BC_CONST [d2]
+	mov r0, #0x00500000			; r0=rConstants[82] (80.0000)
+	; BC_CONST [ea]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00a00000			; r0=rConstants[100] (160.0000)
+	mov r0, #0x00a00000			; r0=rConstants[106] (160.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_25_continue_110
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -4103,15 +4103,15 @@ proc_25_continue_110:
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
 	; BC_WSTATE [58]
 	str r0, [r5, #ST_WIRE0*4]		; State[ST_WIRE0]=r0
-	; BC_CONST [a0]
-	mov r0, #0x00050000			; r0=rConstants[32] (5.0000)
+	; BC_CONST [a1]
+	mov r0, #0x00050000			; r0=rConstants[33] (5.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
-	; BC_CONST [aa]
+	; BC_CONST [ad]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x000f0000			; r0=rConstants[42] (15.0000)
+	mov r0, #0x000f0000			; r0=rConstants[45] (15.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_26_start		; r0=r_Procedures[26]
@@ -4120,8 +4120,8 @@ proc_25_continue_110:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [dc]
-	mov r0, #0x00800000			; r0=rConstants[92] (128.0000)
+	; BC_CONST [e2]
+	mov r0, #0x00800000			; r0=rConstants[98] (128.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -4132,9 +4132,9 @@ proc_25_continue_110:
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
-	; BC_CONST [aa]
+	; BC_CONST [ad]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x000f0000			; r0=rConstants[42] (15.0000)
+	mov r0, #0x000f0000			; r0=rConstants[45] (15.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_26_start		; r0=r_Procedures[26]
@@ -4165,11 +4165,11 @@ proc_26_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9a]
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
-	; BC_CONST [b2]
+	; BC_CONST [9b]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -4213,9 +4213,9 @@ proc_26_end:
 proc_27_start:
 	; BC_RSTATE [78]
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
-	; BC_CONST [9c]
+	; BC_CONST [9d]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	adds r0, r0, r1				; r0=r0 adds r1
@@ -4231,8 +4231,8 @@ proc_27_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_27_continue_113
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -4241,9 +4241,9 @@ proc_27_start:
 proc_27_continue_113:
 	; BC_RSTATE [78]
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
-	; BC_CONST [9a]
+	; BC_CONST [9b]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	adds r0, r0, r1				; r0=r0 adds r1
@@ -4259,8 +4259,8 @@ proc_27_continue_113:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_27_continue_114
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -4287,8 +4287,8 @@ proc_27_continue_114:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_27_continue_115
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -4330,8 +4330,8 @@ proc_28_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutSquare
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a6]
-	mov r0, #0x000b0000			; r0=rConstants[38] (11.0000)
+	; BC_CONST [a9]
+	mov r0, #0x000b0000			; r0=rConstants[41] (11.0000)
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
@@ -4372,11 +4372,11 @@ proc_28_target_116:
 proc_28_end:
 
 proc_29_start:
-	; BC_CONST [b5]
-	mov r0, #0x001e0000			; r0=rConstants[53] (30.0000)
-	; BC_CONST [d3]
+	; BC_CONST [b8]
+	mov r0, #0x001e0000			; r0=rConstants[56] (30.0000)
+	; BC_CONST [d9]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00640000			; r0=rConstants[83] (100.0000)
+	mov r0, #0x00640000			; r0=rConstants[89] (100.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
@@ -4384,12 +4384,12 @@ proc_29_start:
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
 	; BC_PROC [07]
 	adr r0, proc_31_start		; r0=r_Procedures[31]
-	; BC_CONST [b6]
+	; BC_CONST [b9]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x001f0000			; r0=rConstants[54] (31.0000)
-	; BC_CONST [c0]
+	mov r0, #0x001f0000			; r0=rConstants[57] (31.0000)
+	; BC_CONST [c4]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00300000			; r0=rConstants[64] (48.0000)
+	mov r0, #0x00300000			; r0=rConstants[68] (48.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_30_start		; r0=r_Procedures[30]
@@ -4398,11 +4398,11 @@ proc_29_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b5]
-	mov r0, #0x001e0000			; r0=rConstants[53] (30.0000)
-	; BC_CONST [ed]
+	; BC_CONST [b8]
+	mov r0, #0x001e0000			; r0=rConstants[56] (30.0000)
+	; BC_CONST [f3]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00d20000			; r0=rConstants[109] (210.0000)
+	mov r0, #0x00d20000			; r0=rConstants[115] (210.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
@@ -4410,12 +4410,12 @@ proc_29_start:
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
 	; BC_PROC [07]
 	adr r0, proc_31_start		; r0=r_Procedures[31]
-	; BC_CONST [b6]
+	; BC_CONST [b9]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x001f0000			; r0=rConstants[54] (31.0000)
-	; BC_CONST [c0]
+	mov r0, #0x001f0000			; r0=rConstants[57] (31.0000)
+	; BC_CONST [c4]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00300000			; r0=rConstants[64] (48.0000)
+	mov r0, #0x00300000			; r0=rConstants[68] (48.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_30_start		; r0=r_Procedures[30]
@@ -4424,19 +4424,19 @@ proc_29_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a7]
-	mov r0, #0x000c0000			; r0=rConstants[39] (12.0000)
+	; BC_CONST [aa]
+	mov r0, #0x000c0000			; r0=rConstants[42] (12.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_29_continue_118
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_29_continue_118:
-	; BC_CONST [b5]
-	mov r0, #0x001e0000			; r0=rConstants[53] (30.0000)
-	; BC_CONST [e4]
+	; BC_CONST [b8]
+	mov r0, #0x001e0000			; r0=rConstants[56] (30.0000)
+	; BC_CONST [ea]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00a00000			; r0=rConstants[100] (160.0000)
+	mov r0, #0x00a00000			; r0=rConstants[106] (160.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
@@ -4444,12 +4444,12 @@ proc_29_continue_118:
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
 	; BC_PROC [07]
 	adr r0, proc_33_start		; r0=r_Procedures[33]
-	; BC_CONST [c5]
+	; BC_CONST [c9]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x003f0000			; r0=rConstants[69] (63.0000)
-	; BC_CONST [b2]
+	mov r0, #0x003f0000			; r0=rConstants[73] (63.0000)
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_30_start		; r0=r_Procedures[30]
@@ -4458,35 +4458,35 @@ proc_29_continue_118:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a7]
-	mov r0, #0x000c0000			; r0=rConstants[39] (12.0000)
+	; BC_CONST [aa]
+	mov r0, #0x000c0000			; r0=rConstants[42] (12.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_29_continue_119
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_29_continue_119:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_29_continue_120
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_29_continue_120:
-	; BC_CONST [a3]
-	mov r0, #0x00080000			; r0=rConstants[35] (8.0000)
+	; BC_CONST [a6]
+	mov r0, #0x00080000			; r0=rConstants[38] (8.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_29_continue_121
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_29_continue_121:
-	; BC_CONST [d9]
-	mov r0, #0x00780000			; r0=rConstants[89] (120.0000)
-	; BC_CONST [e4]
+	; BC_CONST [df]
+	mov r0, #0x00780000			; r0=rConstants[95] (120.0000)
+	; BC_CONST [ea]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00a00000			; r0=rConstants[100] (160.0000)
+	mov r0, #0x00a00000			; r0=rConstants[106] (160.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
@@ -4494,12 +4494,12 @@ proc_29_continue_121:
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
 	; BC_PROC [07]
 	adr r0, proc_31_start		; r0=r_Procedures[31]
-	; BC_CONST [aa]
+	; BC_CONST [ad]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x000f0000			; r0=rConstants[42] (15.0000)
-	; BC_CONST [d1]
+	mov r0, #0x000f0000			; r0=rConstants[45] (15.0000)
+	; BC_CONST [d7]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00600000			; r0=rConstants[81] (96.0000)
+	mov r0, #0x00600000			; r0=rConstants[87] (96.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_30_start		; r0=r_Procedures[30]
@@ -4508,24 +4508,24 @@ proc_29_continue_121:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_29_continue_122
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_29_continue_122:
-	; BC_CONST [a7]
-	mov r0, #0x000c0000			; r0=rConstants[39] (12.0000)
+	; BC_CONST [aa]
+	mov r0, #0x000c0000			; r0=rConstants[42] (12.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_29_continue_123
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_29_continue_123:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_29_continue_124
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -4587,12 +4587,12 @@ proc_30_target_125:
 proc_30_end:
 
 proc_31_start:
-	; BC_CONST [a5]
-	mov r0, #0x000a0000			; r0=rConstants[37] (10.0000)
+	; BC_CONST [a8]
+	mov r0, #0x000a0000			; r0=rConstants[40] (10.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_PLOT [06]
@@ -4601,8 +4601,8 @@ proc_31_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutSquare
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a4]
-	mov r0, #0x00090000			; r0=rConstants[36] (9.0000)
+	; BC_CONST [a7]
+	mov r0, #0x00090000			; r0=rConstants[39] (9.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_CONST [80]
@@ -4615,20 +4615,20 @@ proc_31_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutSquare
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9a]
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	; BC_CONST [9b]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_31_continue_127
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_31_continue_127:
-	; BC_CONST [a5]
-	mov r0, #0x000a0000			; r0=rConstants[37] (10.0000)
+	; BC_CONST [a8]
+	mov r0, #0x000a0000			; r0=rConstants[40] (10.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
-	; BC_CONST [9a]
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	; BC_CONST [9b]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_PLOT [06]
@@ -4637,8 +4637,8 @@ proc_31_continue_127:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutSquare
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a4]
-	mov r0, #0x00090000			; r0=rConstants[36] (9.0000)
+	; BC_CONST [a7]
+	mov r0, #0x00090000			; r0=rConstants[39] (9.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_CONST [80]
@@ -4651,16 +4651,16 @@ proc_31_continue_127:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutSquare
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9a]
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	; BC_CONST [9b]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_31_continue_128
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_31_continue_128:
-	; BC_CONST [a5]
-	mov r0, #0x000a0000			; r0=rConstants[37] (10.0000)
+	; BC_CONST [a8]
+	mov r0, #0x000a0000			; r0=rConstants[40] (10.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_CONST [91]
@@ -4673,8 +4673,8 @@ proc_31_continue_128:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutSquare
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a4]
-	mov r0, #0x00090000			; r0=rConstants[36] (9.0000)
+	; BC_CONST [a7]
+	mov r0, #0x00090000			; r0=rConstants[39] (9.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_CONST [80]
@@ -4687,16 +4687,16 @@ proc_31_continue_128:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutSquare
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9a]
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	; BC_CONST [9b]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_31_continue_129
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_31_continue_129:
-	; BC_CONST [a5]
-	mov r0, #0x000a0000			; r0=rConstants[37] (10.0000)
+	; BC_CONST [a8]
+	mov r0, #0x000a0000			; r0=rConstants[40] (10.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_CONST [80]
@@ -4716,12 +4716,12 @@ proc_31_continue_129:
 proc_31_end:
 
 proc_32_start:
-	; BC_CONST [a5]
-	mov r0, #0x000a0000			; r0=rConstants[37] (10.0000)
+	; BC_CONST [a8]
+	mov r0, #0x000a0000			; r0=rConstants[40] (10.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_PLOT [06]
@@ -4730,8 +4730,8 @@ proc_32_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutSquare
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a4]
-	mov r0, #0x00090000			; r0=rConstants[36] (9.0000)
+	; BC_CONST [a7]
+	mov r0, #0x00090000			; r0=rConstants[39] (9.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_CONST [80]
@@ -4744,20 +4744,20 @@ proc_32_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutSquare
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9a]
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	; BC_CONST [9b]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_32_continue_130
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_32_continue_130:
-	; BC_CONST [a5]
-	mov r0, #0x000a0000			; r0=rConstants[37] (10.0000)
+	; BC_CONST [a8]
+	mov r0, #0x000a0000			; r0=rConstants[40] (10.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
-	; BC_CONST [9a]
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	; BC_CONST [9b]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_PLOT [06]
@@ -4766,8 +4766,8 @@ proc_32_continue_130:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutSquare
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a4]
-	mov r0, #0x00090000			; r0=rConstants[36] (9.0000)
+	; BC_CONST [a7]
+	mov r0, #0x00090000			; r0=rConstants[39] (9.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_CONST [80]
@@ -4780,16 +4780,16 @@ proc_32_continue_130:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutSquare
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9a]
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	; BC_CONST [9b]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_32_continue_131
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_32_continue_131:
-	; BC_CONST [a5]
-	mov r0, #0x000a0000			; r0=rConstants[37] (10.0000)
+	; BC_CONST [a8]
+	mov r0, #0x000a0000			; r0=rConstants[40] (10.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_CONST [91]
@@ -4802,8 +4802,8 @@ proc_32_continue_131:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutSquare
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a4]
-	mov r0, #0x00090000			; r0=rConstants[36] (9.0000)
+	; BC_CONST [a7]
+	mov r0, #0x00090000			; r0=rConstants[39] (9.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_CONST [80]
@@ -4816,16 +4816,16 @@ proc_32_continue_131:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutSquare
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9a]
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	; BC_CONST [9b]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_32_continue_132
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_32_continue_132:
-	; BC_CONST [a5]
-	mov r0, #0x000a0000			; r0=rConstants[37] (10.0000)
+	; BC_CONST [a8]
+	mov r0, #0x000a0000			; r0=rConstants[40] (10.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_CONST [80]
@@ -4845,12 +4845,12 @@ proc_32_continue_132:
 proc_32_end:
 
 proc_33_start:
-	; BC_CONST [a7]
-	mov r0, #0x000c0000			; r0=rConstants[39] (12.0000)
+	; BC_CONST [aa]
+	mov r0, #0x000c0000			; r0=rConstants[42] (12.0000)
 	; BC_WSTATE [58]
 	str r0, [r5, #ST_WIRE0*4]		; State[ST_WIRE0]=r0
-	; BC_CONST [c6]
-	mov r0, #0x00400000			; r0=rConstants[70] (64.0000)
+	; BC_CONST [ca]
+	mov r0, #0x00400000			; r0=rConstants[74] (64.0000)
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
 	; BC_RSTATE [78]
@@ -4875,8 +4875,8 @@ proc_34_start:
 	; BC_WHEN [17]
 	movs r0, r0					; update Status flags
 	beq proc_34_target_133
-	; BC_CONST [b5]
-	mov r0, #0x001e0000			; r0=rConstants[53] (30.0000)
+	; BC_CONST [b8]
+	mov r0, #0x001e0000			; r0=rConstants[56] (30.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_CONST [80]
@@ -4889,14 +4889,14 @@ proc_34_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutSquare
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9a]
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	; BC_CONST [9b]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_RSTATE [78]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
-	; BC_CONST [9e]
+	; BC_CONST [9f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_RSTATE [78]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
@@ -4950,14 +4950,14 @@ proc_34_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutCircle
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [99]
-	ldr r0, [r4, #25*4]			; r0=rConstants[25]=0x0001d999 (1.8500)
+	; BC_CONST [9a]
+	ldr r0, [r4, #26*4]			; r0=rConstants[26]=0x0001d999 (1.8500)
 	; BC_RSTATE [78]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
-	; BC_CONST [9e]
+	; BC_CONST [9f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_RSTATE [78]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
@@ -5001,8 +5001,8 @@ proc_34_start:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
-	; BC_CONST [9a]
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	; BC_CONST [9b]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_DRAW [04]
@@ -5011,14 +5011,14 @@ proc_34_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutCircle
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [97]
-	ldr r0, [r4, #23*4]			; r0=rConstants[23]=0x0001b333 (1.7000)
+	; BC_CONST [98]
+	ldr r0, [r4, #24*4]			; r0=rConstants[24]=0x0001b333 (1.7000)
 	; BC_RSTATE [78]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
-	; BC_CONST [9e]
+	; BC_CONST [9f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_RSTATE [78]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
@@ -5062,8 +5062,8 @@ proc_34_start:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_DRAW [04]
@@ -5121,8 +5121,8 @@ proc_34_target_135:
 proc_34_end:
 
 proc_35_start:
-	; BC_CONST [bb]
-	mov r0, #0x00280000			; r0=rConstants[59] (40.0000)
+	; BC_CONST [bf]
+	mov r0, #0x00280000			; r0=rConstants[63] (40.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_CONST [91]
@@ -5156,11 +5156,11 @@ proc_35_target_137:
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
-	; BC_CONST [a3]
-	mov r0, #0x00080000			; r0=rConstants[35] (8.0000)
-	; BC_CONST [a5]
+	; BC_CONST [a6]
+	mov r0, #0x00080000			; r0=rConstants[38] (8.0000)
+	; BC_CONST [a8]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x000a0000			; r0=rConstants[37] (10.0000)
+	mov r0, #0x000a0000			; r0=rConstants[40] (10.0000)
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
@@ -5172,16 +5172,16 @@ proc_35_target_137:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a3]
-	mov r0, #0x00080000			; r0=rConstants[35] (8.0000)
+	; BC_CONST [a6]
+	mov r0, #0x00080000			; r0=rConstants[38] (8.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_35_continue_138
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_35_continue_138:
-	; BC_CONST [c1]
-	mov r0, #0x00320000			; r0=rConstants[65] (50.0000)
+	; BC_CONST [c5]
+	mov r0, #0x00320000			; r0=rConstants[69] (50.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_PLOT [06]
@@ -5206,8 +5206,8 @@ proc_36_start:
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
-	; BC_CONST [a2]
-	mov r0, #0x00070000			; r0=rConstants[34] (7.0000)
+	; BC_CONST [a5]
+	mov r0, #0x00070000			; r0=rConstants[37] (7.0000)
 	; BC_RLOCAL [62]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
@@ -5238,9 +5238,9 @@ proc_36_continue_140:
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	subs r0, r0, r1				; r0=r0 subs r1
-	; BC_CONST [93]
+	; BC_CONST [94]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #19*4]			; r0=rConstants[19]=0x00012b85 (1.1700)
+	ldr r0, [r4, #20*4]			; r0=rConstants[20]=0x00012b85 (1.1700)
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
@@ -5289,8 +5289,8 @@ proc_37_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [c6]
-	mov r0, #0x00400000			; r0=rConstants[70] (64.0000)
+	; BC_CONST [ca]
+	mov r0, #0x00400000			; r0=rConstants[74] (64.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -5327,8 +5327,8 @@ proc_37_target_141:
 proc_37_end:
 
 proc_38_start:
-	; BC_CONST [bb]
-	mov r0, #0x00280000			; r0=rConstants[59] (40.0000)
+	; BC_CONST [bf]
+	mov r0, #0x00280000			; r0=rConstants[63] (40.0000)
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
@@ -5382,11 +5382,11 @@ proc_39_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [9e]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [9f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -5400,11 +5400,11 @@ proc_39_start:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_39_continue_145:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [9e]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [9f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -5446,56 +5446,56 @@ proc_39_target_144:
 proc_39_end:
 
 proc_40_start:
-	; BC_CONST [a3]
-	mov r0, #0x00080000			; r0=rConstants[35] (8.0000)
+	; BC_CONST [a6]
+	mov r0, #0x00080000			; r0=rConstants[38] (8.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_40_continue_147
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_40_continue_147:
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_40_continue_148
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_40_continue_148:
-	; BC_CONST [a3]
-	mov r0, #0x00080000			; r0=rConstants[35] (8.0000)
+	; BC_CONST [a6]
+	mov r0, #0x00080000			; r0=rConstants[38] (8.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_40_continue_149
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_40_continue_149:
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_40_continue_150
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_40_continue_150:
-	; BC_CONST [a3]
-	mov r0, #0x00080000			; r0=rConstants[35] (8.0000)
+	; BC_CONST [a6]
+	mov r0, #0x00080000			; r0=rConstants[38] (8.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_40_continue_151
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_40_continue_151:
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_40_continue_152
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_40_continue_152:
-	; BC_CONST [b7]
-	mov r0, #0x00200000			; r0=rConstants[55] (32.0000)
+	; BC_CONST [ba]
+	mov r0, #0x00200000			; r0=rConstants[58] (32.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -5504,8 +5504,8 @@ proc_40_continue_152:
 	adds r0, r0, r1				; r0=r0 adds r1
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [a5]
-	mov r0, #0x000a0000			; r0=rConstants[37] (10.0000)
+	; BC_CONST [a8]
+	mov r0, #0x000a0000			; r0=rConstants[40] (10.0000)
 	; BC_RAND [03]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_RAND*4]
@@ -5543,24 +5543,24 @@ proc_40_continue_152:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a3]
-	mov r0, #0x00080000			; r0=rConstants[35] (8.0000)
+	; BC_CONST [a6]
+	mov r0, #0x00080000			; r0=rConstants[38] (8.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_40_continue_153
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_40_continue_153:
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_40_continue_154
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_40_continue_154:
-	; BC_CONST [b7]
-	mov r0, #0x00200000			; r0=rConstants[55] (32.0000)
+	; BC_CONST [ba]
+	mov r0, #0x00200000			; r0=rConstants[58] (32.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -5569,8 +5569,8 @@ proc_40_continue_154:
 	adds r0, r0, r1				; r0=r0 adds r1
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [a5]
-	mov r0, #0x000a0000			; r0=rConstants[37] (10.0000)
+	; BC_CONST [a8]
+	mov r0, #0x000a0000			; r0=rConstants[40] (10.0000)
 	; BC_RAND [03]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_RAND*4]
@@ -5608,32 +5608,32 @@ proc_40_continue_154:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a3]
-	mov r0, #0x00080000			; r0=rConstants[35] (8.0000)
+	; BC_CONST [a6]
+	mov r0, #0x00080000			; r0=rConstants[38] (8.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_40_continue_155
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_40_continue_155:
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_40_continue_156
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_40_continue_156:
-	; BC_CONST [a3]
-	mov r0, #0x00080000			; r0=rConstants[35] (8.0000)
+	; BC_CONST [a6]
+	mov r0, #0x00080000			; r0=rConstants[38] (8.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_40_continue_157
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_40_continue_157:
-	; BC_CONST [b7]
-	mov r0, #0x00200000			; r0=rConstants[55] (32.0000)
+	; BC_CONST [ba]
+	mov r0, #0x00200000			; r0=rConstants[58] (32.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -5642,8 +5642,8 @@ proc_40_continue_157:
 	adds r0, r0, r1				; r0=r0 adds r1
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [a5]
-	mov r0, #0x000a0000			; r0=rConstants[37] (10.0000)
+	; BC_CONST [a8]
+	mov r0, #0x000a0000			; r0=rConstants[40] (10.0000)
 	; BC_RAND [03]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_RAND*4]
@@ -5681,40 +5681,40 @@ proc_40_continue_157:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_40_continue_158
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_40_continue_158:
-	; BC_CONST [a3]
-	mov r0, #0x00080000			; r0=rConstants[35] (8.0000)
+	; BC_CONST [a6]
+	mov r0, #0x00080000			; r0=rConstants[38] (8.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_40_continue_159
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_40_continue_159:
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_40_continue_160
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_40_continue_160:
-	; BC_CONST [a3]
-	mov r0, #0x00080000			; r0=rConstants[35] (8.0000)
+	; BC_CONST [a6]
+	mov r0, #0x00080000			; r0=rConstants[38] (8.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_40_continue_161
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_40_continue_161:
-	; BC_CONST [a0]
-	mov r0, #0x00050000			; r0=rConstants[32] (5.0000)
+	; BC_CONST [a1]
+	mov r0, #0x00050000			; r0=rConstants[33] (5.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_40_continue_162
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -5728,8 +5728,8 @@ proc_40_continue_162:
 proc_40_end:
 
 proc_41_start:
-	; BC_CONST [bb]
-	mov r0, #0x00280000			; r0=rConstants[59] (40.0000)
+	; BC_CONST [bf]
+	mov r0, #0x00280000			; r0=rConstants[63] (40.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_DRAW [04]
@@ -5738,8 +5738,8 @@ proc_41_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutCircle
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [af]
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
+	; BC_CONST [b2]
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_CONST [91]
@@ -5754,8 +5754,8 @@ proc_41_continue_163:
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_45_start		; r0=r_Procedures[45]
@@ -5767,16 +5767,16 @@ proc_41_continue_163:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a1]
-	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
+	; BC_CONST [a3]
+	mov r0, #0x00060000			; r0=rConstants[35] (6.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_41_continue_164
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_41_continue_164:
-	; BC_CONST [bb]
-	mov r0, #0x00280000			; r0=rConstants[59] (40.0000)
+	; BC_CONST [bf]
+	mov r0, #0x00280000			; r0=rConstants[63] (40.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_CONST [80]
@@ -5796,8 +5796,8 @@ proc_41_continue_164:
 proc_41_end:
 
 proc_42_start:
-	; BC_CONST [bb]
-	mov r0, #0x00280000			; r0=rConstants[59] (40.0000)
+	; BC_CONST [bf]
+	mov r0, #0x00280000			; r0=rConstants[63] (40.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_PLOT [06]
@@ -5806,8 +5806,8 @@ proc_42_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutSquare
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [af]
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
+	; BC_CONST [b2]
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_CONST [91]
@@ -5822,8 +5822,8 @@ proc_42_continue_165:
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_46_start		; r0=r_Procedures[46]
@@ -5835,16 +5835,16 @@ proc_42_continue_165:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a1]
-	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
+	; BC_CONST [a3]
+	mov r0, #0x00060000			; r0=rConstants[35] (6.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_42_continue_166
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_42_continue_166:
-	; BC_CONST [bb]
-	mov r0, #0x00280000			; r0=rConstants[59] (40.0000)
+	; BC_CONST [bf]
+	mov r0, #0x00280000			; r0=rConstants[63] (40.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_CONST [80]
@@ -5864,8 +5864,8 @@ proc_42_continue_166:
 proc_42_end:
 
 proc_43_start:
-	; BC_CONST [bb]
-	mov r0, #0x00280000			; r0=rConstants[59] (40.0000)
+	; BC_CONST [bf]
+	mov r0, #0x00280000			; r0=rConstants[63] (40.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_DRAW [04]
@@ -5874,8 +5874,8 @@ proc_43_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutCircle
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [af]
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
+	; BC_CONST [b2]
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_CONST [91]
@@ -5890,8 +5890,8 @@ proc_43_continue_167:
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_46_start		; r0=r_Procedures[46]
@@ -5911,12 +5911,12 @@ proc_43_continue_167:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_43_continue_168:
-	; BC_CONST [b0]
-	mov r0, #0x00150000			; r0=rConstants[48] (21.0000)
+	; BC_CONST [b3]
+	mov r0, #0x00150000			; r0=rConstants[51] (21.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_46_start		; r0=r_Procedures[46]
@@ -5940,8 +5940,8 @@ proc_43_continue_169:
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_46_start		; r0=r_Procedures[46]
@@ -5953,8 +5953,8 @@ proc_43_continue_169:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a1]
-	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
+	; BC_CONST [a3]
+	mov r0, #0x00060000			; r0=rConstants[35] (6.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_43_continue_170
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -5973,8 +5973,8 @@ proc_43_continue_171:
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_46_start		; r0=r_Procedures[46]
@@ -5986,16 +5986,16 @@ proc_43_continue_171:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a1]
-	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
+	; BC_CONST [a3]
+	mov r0, #0x00060000			; r0=rConstants[35] (6.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_43_continue_172
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_43_continue_172:
-	; BC_CONST [bb]
-	mov r0, #0x00280000			; r0=rConstants[59] (40.0000)
+	; BC_CONST [bf]
+	mov r0, #0x00280000			; r0=rConstants[63] (40.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_CONST [80]
@@ -6027,8 +6027,8 @@ proc_44_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [c6]
-	mov r0, #0x00400000			; r0=rConstants[70] (64.0000)
+	; BC_CONST [ca]
+	mov r0, #0x00400000			; r0=rConstants[74] (64.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -6065,8 +6065,8 @@ proc_44_target_173:
 proc_44_end:
 
 proc_45_start:
-	; BC_CONST [b5]
-	mov r0, #0x001e0000			; r0=rConstants[53] (30.0000)
+	; BC_CONST [b8]
+	mov r0, #0x001e0000			; r0=rConstants[56] (30.0000)
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
@@ -6084,8 +6084,8 @@ proc_45_start:
 proc_45_end:
 
 proc_46_start:
-	; BC_CONST [bb]
-	mov r0, #0x00280000			; r0=rConstants[59] (40.0000)
+	; BC_CONST [bf]
+	mov r0, #0x00280000			; r0=rConstants[63] (40.0000)
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
@@ -6108,44 +6108,44 @@ proc_47_start:
 	; BC_WHEN [17]
 	movs r0, r0					; update Status flags
 	beq proc_47_target_174
-	; BC_CONST [ea]
-	mov r0, #0x00c00000			; r0=rConstants[106] (192.0000)
+	; BC_CONST [f0]
+	mov r0, #0x00c00000			; r0=rConstants[112] (192.0000)
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [a3]
-	mov r0, #0x00080000			; r0=rConstants[35] (8.0000)
+	; BC_CONST [a6]
+	mov r0, #0x00080000			; r0=rConstants[38] (8.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_47_continue_175
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_47_continue_175:
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_47_continue_176
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_47_continue_176:
-	; BC_CONST [a3]
-	mov r0, #0x00080000			; r0=rConstants[35] (8.0000)
+	; BC_CONST [a6]
+	mov r0, #0x00080000			; r0=rConstants[38] (8.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_47_continue_177
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_47_continue_177:
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_47_continue_178
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_47_continue_178:
-	; BC_CONST [a3]
-	mov r0, #0x00080000			; r0=rConstants[35] (8.0000)
+	; BC_CONST [a6]
+	mov r0, #0x00080000			; r0=rConstants[38] (8.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_47_continue_179
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -6162,32 +6162,32 @@ proc_47_continue_179:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_47_continue_180
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_47_continue_180:
-	; BC_CONST [a3]
-	mov r0, #0x00080000			; r0=rConstants[35] (8.0000)
+	; BC_CONST [a6]
+	mov r0, #0x00080000			; r0=rConstants[38] (8.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_47_continue_181
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_47_continue_181:
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_47_continue_182
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_47_continue_182:
-	; BC_CONST [d1]
-	mov r0, #0x00600000			; r0=rConstants[81] (96.0000)
+	; BC_CONST [d7]
+	mov r0, #0x00600000			; r0=rConstants[87] (96.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -6206,24 +6206,24 @@ proc_47_continue_182:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a3]
-	mov r0, #0x00080000			; r0=rConstants[35] (8.0000)
+	; BC_CONST [a6]
+	mov r0, #0x00080000			; r0=rConstants[38] (8.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_47_continue_183
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_47_continue_183:
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_47_continue_184
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_47_continue_184:
-	; BC_CONST [c6]
-	mov r0, #0x00400000			; r0=rConstants[70] (64.0000)
+	; BC_CONST [ca]
+	mov r0, #0x00400000			; r0=rConstants[74] (64.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -6242,16 +6242,16 @@ proc_47_continue_184:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a3]
-	mov r0, #0x00080000			; r0=rConstants[35] (8.0000)
+	; BC_CONST [a6]
+	mov r0, #0x00080000			; r0=rConstants[38] (8.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_47_continue_185
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_47_continue_185:
-	; BC_CONST [d1]
-	mov r0, #0x00600000			; r0=rConstants[81] (96.0000)
+	; BC_CONST [d7]
+	mov r0, #0x00600000			; r0=rConstants[87] (96.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -6270,32 +6270,32 @@ proc_47_continue_185:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_47_continue_186
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_47_continue_186:
-	; BC_CONST [a3]
-	mov r0, #0x00080000			; r0=rConstants[35] (8.0000)
+	; BC_CONST [a6]
+	mov r0, #0x00080000			; r0=rConstants[38] (8.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_47_continue_187
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_47_continue_187:
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_47_continue_188
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_47_continue_188:
-	; BC_CONST [c6]
-	mov r0, #0x00400000			; r0=rConstants[70] (64.0000)
+	; BC_CONST [ca]
+	mov r0, #0x00400000			; r0=rConstants[74] (64.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -6314,16 +6314,16 @@ proc_47_continue_188:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a3]
-	mov r0, #0x00080000			; r0=rConstants[35] (8.0000)
+	; BC_CONST [a6]
+	mov r0, #0x00080000			; r0=rConstants[38] (8.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_47_continue_189
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_47_continue_189:
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_47_continue_190
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -6334,14 +6334,14 @@ proc_47_continue_190:
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [e4]
-	mov r0, #0x00a00000			; r0=rConstants[100] (160.0000)
+	; BC_CONST [ea]
+	mov r0, #0x00a00000			; r0=rConstants[106] (160.0000)
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [c6]
-	mov r0, #0x00400000			; r0=rConstants[70] (64.0000)
+	; BC_CONST [ca]
+	mov r0, #0x00400000			; r0=rConstants[74] (64.0000)
 	; BC_NEG [0d]
 	rsb r0, r0, #0				; r0=0-r0
 	; BC_RSTATE [76]
@@ -6352,40 +6352,40 @@ proc_47_continue_190:
 	adds r0, r0, r1				; r0=r0 adds r1
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [a3]
-	mov r0, #0x00080000			; r0=rConstants[35] (8.0000)
+	; BC_CONST [a6]
+	mov r0, #0x00080000			; r0=rConstants[38] (8.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_47_continue_191
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_47_continue_191:
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_47_continue_192
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_47_continue_192:
-	; BC_CONST [a3]
-	mov r0, #0x00080000			; r0=rConstants[35] (8.0000)
+	; BC_CONST [a6]
+	mov r0, #0x00080000			; r0=rConstants[38] (8.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_47_continue_193
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_47_continue_193:
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_47_continue_194
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_47_continue_194:
-	; BC_CONST [a3]
-	mov r0, #0x00080000			; r0=rConstants[35] (8.0000)
+	; BC_CONST [a6]
+	mov r0, #0x00080000			; r0=rConstants[38] (8.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_47_continue_195
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -6404,24 +6404,24 @@ proc_47_continue_195:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_47_continue_196
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_47_continue_196:
-	; BC_CONST [a3]
-	mov r0, #0x00080000			; r0=rConstants[35] (8.0000)
+	; BC_CONST [a6]
+	mov r0, #0x00080000			; r0=rConstants[38] (8.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_47_continue_197
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_47_continue_197:
-	; BC_CONST [d1]
-	mov r0, #0x00600000			; r0=rConstants[81] (96.0000)
+	; BC_CONST [d7]
+	mov r0, #0x00600000			; r0=rConstants[87] (96.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -6442,16 +6442,16 @@ proc_47_continue_197:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_47_continue_198
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_47_continue_198:
-	; BC_CONST [d1]
-	mov r0, #0x00600000			; r0=rConstants[81] (96.0000)
+	; BC_CONST [d7]
+	mov r0, #0x00600000			; r0=rConstants[87] (96.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -6472,24 +6472,24 @@ proc_47_continue_198:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a3]
-	mov r0, #0x00080000			; r0=rConstants[35] (8.0000)
+	; BC_CONST [a6]
+	mov r0, #0x00080000			; r0=rConstants[38] (8.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_47_continue_199
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_47_continue_199:
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_47_continue_200
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_47_continue_200:
-	; BC_CONST [c6]
-	mov r0, #0x00400000			; r0=rConstants[70] (64.0000)
+	; BC_CONST [ca]
+	mov r0, #0x00400000			; r0=rConstants[74] (64.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -6510,16 +6510,16 @@ proc_47_continue_200:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a3]
-	mov r0, #0x00080000			; r0=rConstants[35] (8.0000)
+	; BC_CONST [a6]
+	mov r0, #0x00080000			; r0=rConstants[38] (8.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_47_continue_201
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_47_continue_201:
-	; BC_CONST [d1]
-	mov r0, #0x00600000			; r0=rConstants[81] (96.0000)
+	; BC_CONST [d7]
+	mov r0, #0x00600000			; r0=rConstants[87] (96.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -6540,32 +6540,32 @@ proc_47_continue_201:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_47_continue_202
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_47_continue_202:
-	; BC_CONST [a3]
-	mov r0, #0x00080000			; r0=rConstants[35] (8.0000)
+	; BC_CONST [a6]
+	mov r0, #0x00080000			; r0=rConstants[38] (8.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_47_continue_203
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_47_continue_203:
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_47_continue_204
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_47_continue_204:
-	; BC_CONST [dc]
-	mov r0, #0x00800000			; r0=rConstants[92] (128.0000)
+	; BC_CONST [e2]
+	mov r0, #0x00800000			; r0=rConstants[98] (128.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -6586,28 +6586,28 @@ proc_47_continue_204:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a3]
-	mov r0, #0x00080000			; r0=rConstants[35] (8.0000)
+	; BC_CONST [a6]
+	mov r0, #0x00080000			; r0=rConstants[38] (8.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_47_continue_205
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_47_continue_205:
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_47_continue_206
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_47_continue_206:
-	; BC_CONST [dc]
-	mov r0, #0x00800000			; r0=rConstants[92] (128.0000)
+	; BC_CONST [e2]
+	mov r0, #0x00800000			; r0=rConstants[98] (128.0000)
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [e4]
-	mov r0, #0x00a00000			; r0=rConstants[100] (160.0000)
+	; BC_CONST [ea]
+	mov r0, #0x00a00000			; r0=rConstants[106] (160.0000)
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
@@ -6640,16 +6640,16 @@ proc_47_target_174:
 proc_47_end:
 
 proc_48_start:
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_CONST [91]
 	mov r0, #0x00010000			; r0=rConstants[17] (1.0000)
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
-	; BC_CONST [af]
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
+	; BC_CONST [b2]
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
@@ -6661,24 +6661,24 @@ proc_48_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9a]
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	; BC_CONST [9b]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_48_continue_207
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_48_continue_207:
-	; BC_CONST [9a]
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	; BC_CONST [9b]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
-	; BC_CONST [9a]
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	; BC_CONST [9b]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
-	; BC_CONST [af]
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
+	; BC_CONST [b2]
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
@@ -6690,24 +6690,24 @@ proc_48_continue_207:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9a]
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	; BC_CONST [9b]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_48_continue_208
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_48_continue_208:
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_CONST [80]
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
-	; BC_CONST [af]
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
+	; BC_CONST [b2]
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
@@ -6737,8 +6737,8 @@ proc_49_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutCircle
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
@@ -6793,26 +6793,26 @@ proc_50_start:
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
 	; BC_WSTATE [5a]
 	str r0, [r5, #ST_WIRE2*4]		; State[ST_WIRE2]=r0
-	; BC_CONST [d0]
-	mov r0, #0x005a0000			; r0=rConstants[80] (90.0000)
-	; BC_CONST [e4]
+	; BC_CONST [d6]
+	mov r0, #0x005a0000			; r0=rConstants[86] (90.0000)
+	; BC_CONST [ea]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00a00000			; r0=rConstants[100] (160.0000)
+	mov r0, #0x00a00000			; r0=rConstants[106] (160.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [9a]
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	; BC_CONST [9b]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
-	; BC_CONST [d0]
-	mov r0, #0x005a0000			; r0=rConstants[80] (90.0000)
+	; BC_CONST [d6]
+	mov r0, #0x005a0000			; r0=rConstants[86] (90.0000)
 	; BC_WSTATE [59]
 	str r0, [r5, #ST_WIRE1*4]		; State[ST_WIRE1]=r0
-	; BC_CONST [a0]
-	mov r0, #0x00050000			; r0=rConstants[32] (5.0000)
+	; BC_CONST [a1]
+	mov r0, #0x00050000			; r0=rConstants[33] (5.0000)
 	; BC_WSTATE [58]
 	str r0, [r5, #ST_WIRE0*4]		; State[ST_WIRE0]=r0
 	; BC_PROC [07]
@@ -6822,11 +6822,11 @@ proc_50_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
-	; BC_CONST [a4]
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
+	; BC_CONST [a7]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00090000			; r0=rConstants[36] (9.0000)
+	mov r0, #0x00090000			; r0=rConstants[39] (9.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_88_start		; r0=r_Procedures[88]
@@ -6835,24 +6835,24 @@ proc_50_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_50_continue_211
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_50_continue_211:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_50_continue_212
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_50_continue_212:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_50_continue_213
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -6866,32 +6866,32 @@ proc_50_continue_213:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_50_continue_214
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_50_continue_214:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_50_continue_215
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_50_continue_215:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_50_continue_216
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_50_continue_216:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_50_continue_217
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -6905,32 +6905,32 @@ proc_50_continue_217:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_50_continue_218
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_50_continue_218:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_50_continue_219
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_50_continue_219:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_50_continue_220
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_50_continue_220:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_50_continue_221
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -6944,24 +6944,24 @@ proc_50_continue_221:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_50_continue_222
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_50_continue_222:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_50_continue_223
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_50_continue_223:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_50_continue_224
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -6978,8 +6978,8 @@ proc_50_continue_224:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_50_continue_225
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -6996,32 +6996,32 @@ proc_50_continue_225:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_50_continue_226
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_50_continue_226:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_50_continue_227
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_50_continue_227:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_50_continue_228
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_50_continue_228:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_50_continue_229
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -7035,32 +7035,32 @@ proc_50_continue_229:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_50_continue_230
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_50_continue_230:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_50_continue_231
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_50_continue_231:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_50_continue_232
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_50_continue_232:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_50_continue_233
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -7074,8 +7074,8 @@ proc_50_continue_233:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_50_continue_234
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -7089,19 +7089,19 @@ proc_50_continue_234:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_50_continue_235
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_50_continue_235:
-	; BC_CONST [9a]
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
-	; BC_CONST [a7]
+	; BC_CONST [9b]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
+	; BC_CONST [aa]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x000c0000			; r0=rConstants[39] (12.0000)
+	mov r0, #0x000c0000			; r0=rConstants[42] (12.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_88_start		; r0=r_Procedures[88]
@@ -7110,16 +7110,16 @@ proc_50_continue_235:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_50_continue_236
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_50_continue_236:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_50_continue_237
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -7133,40 +7133,40 @@ proc_50_continue_237:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_50_continue_238
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_50_continue_238:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_50_continue_239
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_50_continue_239:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_50_continue_240
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_50_continue_240:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_50_continue_241
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_50_continue_241:
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_54_start		; r0=r_Procedures[54]
@@ -7175,24 +7175,24 @@ proc_50_continue_241:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_50_continue_242
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_50_continue_242:
-	; BC_CONST [9a]
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	; BC_CONST [9b]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
-	; BC_CONST [cc]
-	mov r0, #0x00500000			; r0=rConstants[76] (80.0000)
+	; BC_CONST [d2]
+	mov r0, #0x00500000			; r0=rConstants[82] (80.0000)
 	; BC_WSTATE [59]
 	str r0, [r5, #ST_WIRE1*4]		; State[ST_WIRE1]=r0
-	; BC_CONST [a4]
-	mov r0, #0x00090000			; r0=rConstants[36] (9.0000)
+	; BC_CONST [a7]
+	mov r0, #0x00090000			; r0=rConstants[39] (9.0000)
 	; BC_WSTATE [58]
 	str r0, [r5, #ST_WIRE0*4]		; State[ST_WIRE0]=r0
 	; BC_PROC [07]
@@ -7212,24 +7212,24 @@ proc_50_continue_242:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_50_continue_243
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_50_continue_243:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_50_continue_244
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_50_continue_244:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_50_continue_245
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -7243,8 +7243,8 @@ proc_50_continue_245:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_50_continue_246
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -7258,24 +7258,24 @@ proc_50_continue_246:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_50_continue_247
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_50_continue_247:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_50_continue_248
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_50_continue_248:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_50_continue_249
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -7289,8 +7289,8 @@ proc_50_continue_249:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_50_continue_250
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -7307,24 +7307,24 @@ proc_50_continue_250:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_50_continue_251
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_50_continue_251:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_50_continue_252
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_50_continue_252:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_50_continue_253
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -7338,19 +7338,19 @@ proc_50_continue_253:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_50_continue_254
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_50_continue_254:
-	; BC_CONST [c0]
-	mov r0, #0x00300000			; r0=rConstants[64] (48.0000)
-	; BC_CONST [c0]
+	; BC_CONST [c4]
+	mov r0, #0x00300000			; r0=rConstants[68] (48.0000)
+	; BC_CONST [c4]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00300000			; r0=rConstants[64] (48.0000)
+	mov r0, #0x00300000			; r0=rConstants[68] (48.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_97_start		; r0=r_Procedures[97]
@@ -7359,16 +7359,16 @@ proc_50_continue_254:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_50_continue_255
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_50_continue_255:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_50_continue_256
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -7385,8 +7385,8 @@ proc_50_continue_256:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_50_continue_257
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -7403,8 +7403,8 @@ proc_50_continue_257:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_50_continue_258
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -7421,24 +7421,24 @@ proc_50_continue_258:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_50_continue_259
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_50_continue_259:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_50_continue_260
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_50_continue_260:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_50_continue_261
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -7452,19 +7452,19 @@ proc_50_continue_261:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_50_continue_262
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_50_continue_262:
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
-	; BC_CONST [b2]
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -7472,9 +7472,9 @@ proc_50_continue_262:
 	mov r1, r1, asl #8
 	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
-	; BC_CONST [ba]
+	; BC_CONST [bd]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00260000			; r0=rConstants[58] (38.0000)
+	mov r0, #0x00260000			; r0=rConstants[61] (38.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_97_start		; r0=r_Procedures[97]
@@ -7483,24 +7483,24 @@ proc_50_continue_262:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_50_continue_263
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_50_continue_263:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_50_continue_264
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_50_continue_264:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_50_continue_265
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -7514,8 +7514,8 @@ proc_50_continue_265:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_50_continue_266
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -7529,19 +7529,19 @@ proc_50_continue_266:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_50_continue_267
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_50_continue_267:
-	; BC_CONST [9a]
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
-	; BC_CONST [c0]
+	; BC_CONST [9b]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
+	; BC_CONST [c4]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00300000			; r0=rConstants[64] (48.0000)
+	mov r0, #0x00300000			; r0=rConstants[68] (48.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_88_start		; r0=r_Procedures[88]
@@ -7550,16 +7550,16 @@ proc_50_continue_267:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_50_continue_268
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_50_continue_268:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_50_continue_269
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -7573,19 +7573,19 @@ proc_50_continue_269:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_50_continue_270
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_50_continue_270:
-	; BC_CONST [c0]
-	mov r0, #0x00300000			; r0=rConstants[64] (48.0000)
-	; BC_CONST [c0]
+	; BC_CONST [c4]
+	mov r0, #0x00300000			; r0=rConstants[68] (48.0000)
+	; BC_CONST [c4]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00300000			; r0=rConstants[64] (48.0000)
+	mov r0, #0x00300000			; r0=rConstants[68] (48.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_97_start		; r0=r_Procedures[97]
@@ -7594,24 +7594,24 @@ proc_50_continue_270:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_50_continue_271
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_50_continue_271:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_50_continue_272
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_50_continue_272:
-	; BC_CONST [9a]
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	; BC_CONST [9b]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_53_start		; r0=r_Procedures[53]
@@ -7620,16 +7620,16 @@ proc_50_continue_272:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_50_continue_273
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_50_continue_273:
-	; BC_CONST [b1]
-	mov r0, #0x00170000			; r0=rConstants[49] (23.0000)
+	; BC_CONST [b4]
+	mov r0, #0x00170000			; r0=rConstants[52] (23.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_50_continue_274
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -7658,24 +7658,24 @@ proc_50_continue_275:
 proc_50_end:
 
 proc_51_start:
-	; BC_CONST [c6]
-	mov r0, #0x00400000			; r0=rConstants[70] (64.0000)
+	; BC_CONST [ca]
+	mov r0, #0x00400000			; r0=rConstants[74] (64.0000)
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [a5]
-	mov r0, #0x000a0000			; r0=rConstants[37] (10.0000)
+	; BC_CONST [a8]
+	mov r0, #0x000a0000			; r0=rConstants[40] (10.0000)
 	; BC_NEG [0d]
 	rsb r0, r0, #0				; r0=0-r0
-	; BC_CONST [f4]
+	; BC_CONST [fa]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x012c0000			; r0=rConstants[116] (300.0000)
+	mov r0, #0x012c0000			; r0=rConstants[122] (300.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [b6]
-	mov r0, #0x001f0000			; r0=rConstants[54] (31.0000)
+	; BC_CONST [b9]
+	mov r0, #0x001f0000			; r0=rConstants[57] (31.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_109_start		; r0=r_Procedures[109]
@@ -7684,18 +7684,18 @@ proc_51_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [e9]
-	mov r0, #0x00be0000			; r0=rConstants[105] (190.0000)
-	; BC_CONST [af]
+	; BC_CONST [ef]
+	mov r0, #0x00be0000			; r0=rConstants[111] (190.0000)
+	; BC_CONST [b2]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [dc]
-	mov r0, #0x00800000			; r0=rConstants[92] (128.0000)
+	; BC_CONST [e2]
+	mov r0, #0x00800000			; r0=rConstants[98] (128.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -7704,8 +7704,8 @@ proc_51_start:
 	adds r0, r0, r1				; r0=r0 adds r1
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [b6]
-	mov r0, #0x001f0000			; r0=rConstants[54] (31.0000)
+	; BC_CONST [b9]
+	mov r0, #0x001f0000			; r0=rConstants[57] (31.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_109_start		; r0=r_Procedures[109]
@@ -7714,89 +7714,89 @@ proc_51_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_51_continue_276
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_51_continue_276:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_51_continue_277
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_51_continue_277:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_51_continue_278
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_51_continue_278:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_51_continue_279
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_51_continue_279:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_51_continue_280
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_51_continue_280:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_51_continue_281
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_51_continue_281:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_51_continue_282
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_51_continue_282:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_51_continue_283
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_51_continue_283:
-	; BC_CONST [a7]
-	mov r0, #0x000c0000			; r0=rConstants[39] (12.0000)
+	; BC_CONST [aa]
+	mov r0, #0x000c0000			; r0=rConstants[42] (12.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_51_continue_284
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_51_continue_284:
-	; BC_CONST [c6]
-	mov r0, #0x00400000			; r0=rConstants[70] (64.0000)
+	; BC_CONST [ca]
+	mov r0, #0x00400000			; r0=rConstants[74] (64.0000)
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [a5]
-	mov r0, #0x000a0000			; r0=rConstants[37] (10.0000)
+	; BC_CONST [a8]
+	mov r0, #0x000a0000			; r0=rConstants[40] (10.0000)
 	; BC_NEG [0d]
 	rsb r0, r0, #0				; r0=0-r0
-	; BC_CONST [f4]
+	; BC_CONST [fa]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x012c0000			; r0=rConstants[116] (300.0000)
+	mov r0, #0x012c0000			; r0=rConstants[122] (300.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
@@ -7812,18 +7812,18 @@ proc_51_continue_284:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [e9]
-	mov r0, #0x00be0000			; r0=rConstants[105] (190.0000)
-	; BC_CONST [af]
+	; BC_CONST [ef]
+	mov r0, #0x00be0000			; r0=rConstants[111] (190.0000)
+	; BC_CONST [b2]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [dc]
-	mov r0, #0x00800000			; r0=rConstants[92] (128.0000)
+	; BC_CONST [e2]
+	mov r0, #0x00800000			; r0=rConstants[98] (128.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -7842,185 +7842,185 @@ proc_51_continue_284:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a7]
-	mov r0, #0x000c0000			; r0=rConstants[39] (12.0000)
+	; BC_CONST [aa]
+	mov r0, #0x000c0000			; r0=rConstants[42] (12.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_51_continue_285
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_51_continue_285:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_51_continue_286
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_51_continue_286:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_51_continue_287
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_51_continue_287:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_51_continue_288
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_51_continue_288:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_51_continue_289
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_51_continue_289:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_51_continue_290
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_51_continue_290:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_51_continue_291
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_51_continue_291:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_51_continue_292
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_51_continue_292:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_51_continue_293
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_51_continue_293:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_51_continue_294
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_51_continue_294:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_51_continue_295
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_51_continue_295:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_51_continue_296
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_51_continue_296:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_51_continue_297
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_51_continue_297:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_51_continue_298
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_51_continue_298:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_51_continue_299
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_51_continue_299:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_51_continue_300
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_51_continue_300:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_51_continue_301
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_51_continue_301:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_51_continue_302
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_51_continue_302:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_51_continue_303
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_51_continue_303:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_51_continue_304
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_51_continue_304:
-	; BC_CONST [a7]
-	mov r0, #0x000c0000			; r0=rConstants[39] (12.0000)
+	; BC_CONST [aa]
+	mov r0, #0x000c0000			; r0=rConstants[42] (12.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_51_continue_305
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_51_continue_305:
-	; BC_CONST [c6]
-	mov r0, #0x00400000			; r0=rConstants[70] (64.0000)
+	; BC_CONST [ca]
+	mov r0, #0x00400000			; r0=rConstants[74] (64.0000)
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [a5]
-	mov r0, #0x000a0000			; r0=rConstants[37] (10.0000)
+	; BC_CONST [a8]
+	mov r0, #0x000a0000			; r0=rConstants[40] (10.0000)
 	; BC_NEG [0d]
 	rsb r0, r0, #0				; r0=0-r0
-	; BC_CONST [f4]
+	; BC_CONST [fa]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x012c0000			; r0=rConstants[116] (300.0000)
+	mov r0, #0x012c0000			; r0=rConstants[122] (300.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
@@ -8036,18 +8036,18 @@ proc_51_continue_305:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [e9]
-	mov r0, #0x00be0000			; r0=rConstants[105] (190.0000)
-	; BC_CONST [af]
+	; BC_CONST [ef]
+	mov r0, #0x00be0000			; r0=rConstants[111] (190.0000)
+	; BC_CONST [b2]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [dc]
-	mov r0, #0x00800000			; r0=rConstants[92] (128.0000)
+	; BC_CONST [e2]
+	mov r0, #0x00800000			; r0=rConstants[98] (128.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -8077,11 +8077,11 @@ proc_52_start:
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [af]
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
-	; BC_CONST [a5]
+	; BC_CONST [b2]
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
+	; BC_CONST [a8]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x000a0000			; r0=rConstants[37] (10.0000)
+	mov r0, #0x000a0000			; r0=rConstants[40] (10.0000)
 	; BC_NEG [0d]
 	rsb r0, r0, #0				; r0=0-r0
 	; BC_WSTATE [51]
@@ -8089,8 +8089,8 @@ proc_52_start:
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [b7]
-	mov r0, #0x00200000			; r0=rConstants[55] (32.0000)
+	; BC_CONST [ba]
+	mov r0, #0x00200000			; r0=rConstants[58] (32.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_109_start		; r0=r_Procedures[109]
@@ -8099,18 +8099,18 @@ proc_52_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [e4]
-	mov r0, #0x00a00000			; r0=rConstants[100] (160.0000)
-	; BC_CONST [f6]
+	; BC_CONST [ea]
+	mov r0, #0x00a00000			; r0=rConstants[106] (160.0000)
+	; BC_CONST [fc]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x014a0000			; r0=rConstants[118] (330.0000)
+	mov r0, #0x014a0000			; r0=rConstants[124] (330.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [dc]
-	mov r0, #0x00800000			; r0=rConstants[92] (128.0000)
+	; BC_CONST [e2]
+	mov r0, #0x00800000			; r0=rConstants[98] (128.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -8119,8 +8119,8 @@ proc_52_start:
 	adds r0, r0, r1				; r0=r0 adds r1
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [b7]
-	mov r0, #0x00200000			; r0=rConstants[55] (32.0000)
+	; BC_CONST [ba]
+	mov r0, #0x00200000			; r0=rConstants[58] (32.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_109_start		; r0=r_Procedures[109]
@@ -8129,72 +8129,72 @@ proc_52_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_52_continue_306
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_52_continue_306:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_52_continue_307
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_52_continue_307:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_52_continue_308
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_52_continue_308:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_52_continue_309
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_52_continue_309:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_52_continue_310
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_52_continue_310:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_52_continue_311
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_52_continue_311:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_52_continue_312
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_52_continue_312:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_52_continue_313
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_52_continue_313:
-	; BC_CONST [a7]
-	mov r0, #0x000c0000			; r0=rConstants[39] (12.0000)
+	; BC_CONST [aa]
+	mov r0, #0x000c0000			; r0=rConstants[42] (12.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_52_continue_314
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -8205,11 +8205,11 @@ proc_52_continue_314:
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [af]
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
-	; BC_CONST [a5]
+	; BC_CONST [b2]
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
+	; BC_CONST [a8]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x000a0000			; r0=rConstants[37] (10.0000)
+	mov r0, #0x000a0000			; r0=rConstants[40] (10.0000)
 	; BC_NEG [0d]
 	rsb r0, r0, #0				; r0=0-r0
 	; BC_WSTATE [51]
@@ -8227,18 +8227,18 @@ proc_52_continue_314:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [e4]
-	mov r0, #0x00a00000			; r0=rConstants[100] (160.0000)
-	; BC_CONST [f6]
+	; BC_CONST [ea]
+	mov r0, #0x00a00000			; r0=rConstants[106] (160.0000)
+	; BC_CONST [fc]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x014a0000			; r0=rConstants[118] (330.0000)
+	mov r0, #0x014a0000			; r0=rConstants[124] (330.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [dc]
-	mov r0, #0x00800000			; r0=rConstants[92] (128.0000)
+	; BC_CONST [e2]
+	mov r0, #0x00800000			; r0=rConstants[98] (128.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -8257,168 +8257,168 @@ proc_52_continue_314:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a7]
-	mov r0, #0x000c0000			; r0=rConstants[39] (12.0000)
+	; BC_CONST [aa]
+	mov r0, #0x000c0000			; r0=rConstants[42] (12.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_52_continue_315
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_52_continue_315:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_52_continue_316
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_52_continue_316:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_52_continue_317
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_52_continue_317:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_52_continue_318
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_52_continue_318:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_52_continue_319
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_52_continue_319:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_52_continue_320
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_52_continue_320:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_52_continue_321
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_52_continue_321:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_52_continue_322
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_52_continue_322:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_52_continue_323
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_52_continue_323:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_52_continue_324
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_52_continue_324:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_52_continue_325
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_52_continue_325:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_52_continue_326
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_52_continue_326:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_52_continue_327
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_52_continue_327:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_52_continue_328
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_52_continue_328:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_52_continue_329
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_52_continue_329:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_52_continue_330
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_52_continue_330:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_52_continue_331
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_52_continue_331:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_52_continue_332
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_52_continue_332:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_52_continue_333
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_52_continue_333:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_52_continue_334
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_52_continue_334:
-	; BC_CONST [a7]
-	mov r0, #0x000c0000			; r0=rConstants[39] (12.0000)
+	; BC_CONST [aa]
+	mov r0, #0x000c0000			; r0=rConstants[42] (12.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_52_continue_335
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -8429,11 +8429,11 @@ proc_52_continue_335:
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [af]
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
-	; BC_CONST [a5]
+	; BC_CONST [b2]
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
+	; BC_CONST [a8]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x000a0000			; r0=rConstants[37] (10.0000)
+	mov r0, #0x000a0000			; r0=rConstants[40] (10.0000)
 	; BC_NEG [0d]
 	rsb r0, r0, #0				; r0=0-r0
 	; BC_WSTATE [51]
@@ -8451,18 +8451,18 @@ proc_52_continue_335:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [e4]
-	mov r0, #0x00a00000			; r0=rConstants[100] (160.0000)
-	; BC_CONST [f6]
+	; BC_CONST [ea]
+	mov r0, #0x00a00000			; r0=rConstants[106] (160.0000)
+	; BC_CONST [fc]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x014a0000			; r0=rConstants[118] (330.0000)
+	mov r0, #0x014a0000			; r0=rConstants[124] (330.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [dc]
-	mov r0, #0x00800000			; r0=rConstants[92] (128.0000)
+	; BC_CONST [e2]
+	mov r0, #0x00800000			; r0=rConstants[98] (128.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -8481,24 +8481,24 @@ proc_52_continue_335:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a7]
-	mov r0, #0x000c0000			; r0=rConstants[39] (12.0000)
+	; BC_CONST [aa]
+	mov r0, #0x000c0000			; r0=rConstants[42] (12.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_52_continue_336
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_52_continue_336:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_52_continue_337
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_52_continue_337:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_52_continue_338
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -8512,8 +8512,8 @@ proc_52_continue_338:
 proc_52_end:
 
 proc_53_start:
-	; BC_CONST [9d]
-	ldr r0, [r4, #29*4]			; r0=rConstants[29]=0x00039999 (3.6000)
+	; BC_CONST [9e]
+	ldr r0, [r4, #30*4]			; r0=rConstants[30]=0x00039999 (3.6000)
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
@@ -8524,8 +8524,8 @@ proc_53_start:
 	mov r1, r1, asl #8
 	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
-	; BC_WSTATE [58]
-	str r0, [r5, #ST_WIRE0*4]		; State[ST_WIRE0]=r0
+	; BC_WSTATE [59]
+	str r0, [r5, #ST_WIRE1*4]		; State[ST_WIRE1]=r0
 	; BC_CONST [91]
 	mov r0, #0x00010000			; r0=rConstants[17] (1.0000)
 	; BC_RLOCAL [60]
@@ -8536,26 +8536,26 @@ proc_53_start:
 	adds r0, r0, r1				; r0=r0 adds r1
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [a1]
-	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
+	; BC_CONST [a3]
+	mov r0, #0x00060000			; r0=rConstants[35] (6.0000)
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
-	; BC_CONST [a5]
-	mov r0, #0x000a0000			; r0=rConstants[37] (10.0000)
-	; BC_CONST [b5]
+	; BC_CONST [a8]
+	mov r0, #0x000a0000			; r0=rConstants[40] (10.0000)
+	; BC_CONST [b8]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x001e0000			; r0=rConstants[53] (30.0000)
+	mov r0, #0x001e0000			; r0=rConstants[56] (30.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [a1]
-	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
+	; BC_CONST [a3]
+	mov r0, #0x00060000			; r0=rConstants[35] (6.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -8565,13 +8565,13 @@ proc_53_start:
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
 	; BC_CONST [fe]
-	ldr r0, [r4, #136*4]			; r0=rConstants[136]=0x881f1f81 (34847.1231)
-	; BC_CONST [fd]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #125*4]			; r0=rConstants[125]=0x14bc3c49 (5308.2355)
+	ldr r0, [r4, #153*4]			; r0=rConstants[153]=0x881f1f81 (34847.1231)
 	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #132*4]			; r0=rConstants[132]=0x82071fa2 (33287.1236)
+	ldr r0, [r4, #133*4]			; r0=rConstants[133]=0x14bc3c49 (5308.2355)
+	; BC_CONST [fe]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r4, #149*4]			; r0=rConstants[149]=0x82071fa2 (33287.1236)
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -8583,22 +8583,22 @@ proc_53_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a0]
-	mov r0, #0x00050000			; r0=rConstants[32] (5.0000)
+	; BC_CONST [a1]
+	mov r0, #0x00050000			; r0=rConstants[33] (5.0000)
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
-	; BC_CONST [bb]
-	mov r0, #0x00280000			; r0=rConstants[59] (40.0000)
-	; BC_CONST [e4]
+	; BC_CONST [bf]
+	mov r0, #0x00280000			; r0=rConstants[63] (40.0000)
+	; BC_CONST [ea]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00a00000			; r0=rConstants[100] (160.0000)
+	mov r0, #0x00a00000			; r0=rConstants[106] (160.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [a7]
-	mov r0, #0x000c0000			; r0=rConstants[39] (12.0000)
+	; BC_CONST [aa]
+	mov r0, #0x000c0000			; r0=rConstants[42] (12.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_53_continue_339
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -8606,13 +8606,13 @@ proc_53_start:
 	ldr pc, [sp], #4			; Return
 proc_53_continue_339:
 	; BC_CONST [fe]
-	ldr r0, [r4, #145*4]			; r0=rConstants[145]=0xf0410107 (61505.0040)
+	ldr r0, [r4, #167*4]			; r0=rConstants[167]=0xf0410107 (61505.0040)
 	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #126*4]			; r0=rConstants[126]=0x185e1e86 (6238.1192)
+	ldr r0, [r4, #134*4]			; r0=rConstants[134]=0x185e1e86 (6238.1192)
 	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #126*4]			; r0=rConstants[126]=0x185e1e86 (6238.1192)
+	ldr r0, [r4, #134*4]			; r0=rConstants[134]=0x185e1e86 (6238.1192)
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -8624,39 +8624,39 @@ proc_53_continue_339:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a2]
-	mov r0, #0x00070000			; r0=rConstants[34] (7.0000)
+	; BC_CONST [a5]
+	mov r0, #0x00070000			; r0=rConstants[37] (7.0000)
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
-	; BC_CONST [a7]
-	mov r0, #0x000c0000			; r0=rConstants[39] (12.0000)
+	; BC_CONST [aa]
+	mov r0, #0x000c0000			; r0=rConstants[42] (12.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_53_continue_340
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_53_continue_340:
-	; BC_CONST [d0]
-	mov r0, #0x005a0000			; r0=rConstants[80] (90.0000)
-	; BC_CONST [d0]
+	; BC_CONST [d6]
+	mov r0, #0x005a0000			; r0=rConstants[86] (90.0000)
+	; BC_CONST [d6]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x005a0000			; r0=rConstants[80] (90.0000)
+	mov r0, #0x005a0000			; r0=rConstants[86] (90.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [fb]
-	ldr r0, [r4, #123*4]			; r0=rConstants[123]=0x107f2c49 (4223.1730)
-	; BC_CONST [f8]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #120*4]			; r0=rConstants[120]=0x081f1f82 (2079.1231)
+	; BC_CONST [fe]
+	ldr r0, [r4, #131*4]			; r0=rConstants[131]=0x107f2c49 (4223.1730)
 	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #128*4]			; r0=rConstants[128]=0x187f3c8a (6271.2365)
+	ldr r0, [r4, #126*4]			; r0=rConstants[126]=0x081f1f82 (2079.1231)
 	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #144*4]			; r0=rConstants[144]=0x9a7f2186 (39551.1310)
+	ldr r0, [r4, #136*4]			; r0=rConstants[136]=0x187f3c8a (6271.2365)
+	; BC_CONST [fe]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r4, #161*4]			; r0=rConstants[161]=0x9a7f2186 (39551.1310)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_55_start		; r0=r_Procedures[55]
@@ -8665,8 +8665,8 @@ proc_53_continue_340:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b1]
-	mov r0, #0x00170000			; r0=rConstants[49] (23.0000)
+	; BC_CONST [b4]
+	mov r0, #0x00170000			; r0=rConstants[52] (23.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_53_continue_341
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -8689,22 +8689,22 @@ proc_53_continue_341:
 proc_53_end:
 
 proc_54_start:
-	; BC_CONST [bf]
-	mov r0, #0x002d0000			; r0=rConstants[63] (45.0000)
-	; BC_CONST [c7]
+	; BC_CONST [c3]
+	mov r0, #0x002d0000			; r0=rConstants[67] (45.0000)
+	; BC_CONST [cc]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00410000			; r0=rConstants[71] (65.0000)
+	mov r0, #0x00410000			; r0=rConstants[76] (65.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [a3]
-	mov r0, #0x00080000			; r0=rConstants[35] (8.0000)
+	; BC_CONST [a6]
+	mov r0, #0x00080000			; r0=rConstants[38] (8.0000)
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
@@ -8715,27 +8715,27 @@ proc_54_start:
 	mov r1, r1, asl #8
 	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
-	; BC_WSTATE [58]
-	str r0, [r5, #ST_WIRE0*4]		; State[ST_WIRE0]=r0
-	; BC_CONST [a0]
-	mov r0, #0x00050000			; r0=rConstants[32] (5.0000)
+	; BC_WSTATE [59]
+	str r0, [r5, #ST_WIRE1*4]		; State[ST_WIRE1]=r0
+	; BC_CONST [a1]
+	mov r0, #0x00050000			; r0=rConstants[33] (5.0000)
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
-	; BC_CONST [fb]
-	ldr r0, [r4, #123*4]			; r0=rConstants[123]=0x107f2c49 (4223.1730)
-	; BC_CONST [f8]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #120*4]			; r0=rConstants[120]=0x081f1f82 (2079.1231)
+	; BC_CONST [fe]
+	ldr r0, [r4, #131*4]			; r0=rConstants[131]=0x107f2c49 (4223.1730)
 	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #128*4]			; r0=rConstants[128]=0x187f3c8a (6271.2365)
+	ldr r0, [r4, #126*4]			; r0=rConstants[126]=0x081f1f82 (2079.1231)
 	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #144*4]			; r0=rConstants[144]=0x9a7f2186 (39551.1310)
+	ldr r0, [r4, #136*4]			; r0=rConstants[136]=0x187f3c8a (6271.2365)
+	; BC_CONST [fe]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r4, #161*4]			; r0=rConstants[161]=0x9a7f2186 (39551.1310)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_55_start		; r0=r_Procedures[55]
@@ -8744,29 +8744,29 @@ proc_54_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9a]
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	; BC_CONST [9b]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_54_continue_342
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_54_continue_342:
-	; BC_CONST [a1]
-	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
+	; BC_CONST [a3]
+	mov r0, #0x00060000			; r0=rConstants[35] (6.0000)
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
-	; BC_CONST [fb]
-	ldr r0, [r4, #123*4]			; r0=rConstants[123]=0x107f2c49 (4223.1730)
-	; BC_CONST [f8]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #120*4]			; r0=rConstants[120]=0x081f1f82 (2079.1231)
+	; BC_CONST [fe]
+	ldr r0, [r4, #131*4]			; r0=rConstants[131]=0x107f2c49 (4223.1730)
 	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #128*4]			; r0=rConstants[128]=0x187f3c8a (6271.2365)
+	ldr r0, [r4, #126*4]			; r0=rConstants[126]=0x081f1f82 (2079.1231)
 	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #144*4]			; r0=rConstants[144]=0x9a7f2186 (39551.1310)
+	ldr r0, [r4, #136*4]			; r0=rConstants[136]=0x187f3c8a (6271.2365)
+	; BC_CONST [fe]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r4, #161*4]			; r0=rConstants[161]=0x9a7f2186 (39551.1310)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_55_start		; r0=r_Procedures[55]
@@ -8775,29 +8775,29 @@ proc_54_continue_342:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9a]
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	; BC_CONST [9b]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_54_continue_343
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_54_continue_343:
-	; BC_CONST [a2]
-	mov r0, #0x00070000			; r0=rConstants[34] (7.0000)
+	; BC_CONST [a5]
+	mov r0, #0x00070000			; r0=rConstants[37] (7.0000)
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
-	; BC_CONST [fb]
-	ldr r0, [r4, #123*4]			; r0=rConstants[123]=0x107f2c49 (4223.1730)
-	; BC_CONST [f8]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #120*4]			; r0=rConstants[120]=0x081f1f82 (2079.1231)
+	; BC_CONST [fe]
+	ldr r0, [r4, #131*4]			; r0=rConstants[131]=0x107f2c49 (4223.1730)
 	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #128*4]			; r0=rConstants[128]=0x187f3c8a (6271.2365)
+	ldr r0, [r4, #126*4]			; r0=rConstants[126]=0x081f1f82 (2079.1231)
 	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #144*4]			; r0=rConstants[144]=0x9a7f2186 (39551.1310)
+	ldr r0, [r4, #136*4]			; r0=rConstants[136]=0x187f3c8a (6271.2365)
+	; BC_CONST [fe]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r4, #161*4]			; r0=rConstants[161]=0x9a7f2186 (39551.1310)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_55_start		; r0=r_Procedures[55]
@@ -8806,16 +8806,16 @@ proc_54_continue_343:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [ae]
-	mov r0, #0x00130000			; r0=rConstants[46] (19.0000)
+	; BC_CONST [b1]
+	mov r0, #0x00130000			; r0=rConstants[49] (19.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_54_continue_344
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_54_continue_344:
-	; BC_CONST [c6]
-	mov r0, #0x00400000			; r0=rConstants[70] (64.0000)
+	; BC_CONST [ca]
+	mov r0, #0x00400000			; r0=rConstants[74] (64.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -8824,15 +8824,15 @@ proc_54_continue_344:
 	adds r0, r0, r1				; r0=r0 adds r1
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
-	; BC_CONST [9b]
-	mov r0, #0x00028000			; r0=rConstants[27] (2.5000)
-	; BC_RSTATE [78]
+	; BC_CONST [9c]
+	mov r0, #0x00028000			; r0=rConstants[28] (2.5000)
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -8844,8 +8844,8 @@ proc_54_continue_344:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [c6]
-	mov r0, #0x00400000			; r0=rConstants[70] (64.0000)
+	; BC_CONST [ca]
+	mov r0, #0x00400000			; r0=rConstants[74] (64.0000)
 	; BC_NEG [0d]
 	rsb r0, r0, #0				; r0=0-r0
 	; BC_RSTATE [76]
@@ -8856,8 +8856,8 @@ proc_54_continue_344:
 	adds r0, r0, r1				; r0=r0 adds r1
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [b5]
-	mov r0, #0x001e0000			; r0=rConstants[53] (30.0000)
+	; BC_CONST [b8]
+	mov r0, #0x001e0000			; r0=rConstants[56] (30.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_DRAW [04]
@@ -8866,11 +8866,11 @@ proc_54_continue_344:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutCircle
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9b]
-	mov r0, #0x00028000			; r0=rConstants[27] (2.5000)
-	; BC_RSTATE [78]
+	; BC_CONST [9c]
+	mov r0, #0x00028000			; r0=rConstants[28] (2.5000)
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -8888,11 +8888,11 @@ proc_54_continue_344:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutCircle
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9b]
-	mov r0, #0x00028000			; r0=rConstants[27] (2.5000)
-	; BC_RSTATE [78]
+	; BC_CONST [9c]
+	mov r0, #0x00028000			; r0=rConstants[28] (2.5000)
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -8910,11 +8910,11 @@ proc_54_continue_344:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutCircle
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9b]
-	mov r0, #0x00028000			; r0=rConstants[27] (2.5000)
-	; BC_RSTATE [78]
+	; BC_CONST [9c]
+	mov r0, #0x00028000			; r0=rConstants[28] (2.5000)
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -8932,11 +8932,11 @@ proc_54_continue_344:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutCircle
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9b]
-	mov r0, #0x00028000			; r0=rConstants[27] (2.5000)
-	; BC_RSTATE [78]
+	; BC_CONST [9c]
+	mov r0, #0x00028000			; r0=rConstants[28] (2.5000)
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -8954,11 +8954,11 @@ proc_54_continue_344:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutCircle
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9b]
-	mov r0, #0x00028000			; r0=rConstants[27] (2.5000)
-	; BC_RSTATE [78]
+	; BC_CONST [9c]
+	mov r0, #0x00028000			; r0=rConstants[28] (2.5000)
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -8976,11 +8976,11 @@ proc_54_continue_344:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutCircle
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9b]
-	mov r0, #0x00028000			; r0=rConstants[27] (2.5000)
-	; BC_RSTATE [78]
+	; BC_CONST [9c]
+	mov r0, #0x00028000			; r0=rConstants[28] (2.5000)
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -8998,11 +8998,11 @@ proc_54_continue_344:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutCircle
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9b]
-	mov r0, #0x00028000			; r0=rConstants[27] (2.5000)
-	; BC_RSTATE [78]
+	; BC_CONST [9c]
+	mov r0, #0x00028000			; r0=rConstants[28] (2.5000)
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -9020,11 +9020,11 @@ proc_54_continue_344:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutCircle
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9b]
-	mov r0, #0x00028000			; r0=rConstants[27] (2.5000)
-	; BC_RSTATE [78]
+	; BC_CONST [9c]
+	mov r0, #0x00028000			; r0=rConstants[28] (2.5000)
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -9042,11 +9042,11 @@ proc_54_continue_344:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutCircle
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9b]
-	mov r0, #0x00028000			; r0=rConstants[27] (2.5000)
-	; BC_RSTATE [78]
+	; BC_CONST [9c]
+	mov r0, #0x00028000			; r0=rConstants[28] (2.5000)
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -9088,11 +9088,11 @@ proc_55_start:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_DONE [00]
 proc_55_target_345:
-	; BC_RSTATE [78]
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
-	; BC_CONST [a1]
+	; BC_RSTATE [79]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
+	; BC_CONST [a3]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
+	mov r0, #0x00060000			; r0=rConstants[35] (6.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -9104,8 +9104,8 @@ proc_55_target_345:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_55_continue_346
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -9129,11 +9129,11 @@ proc_55_continue_346:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_DONE [00]
 proc_55_target_347:
-	; BC_RSTATE [78]
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
-	; BC_CONST [a1]
+	; BC_RSTATE [79]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
+	; BC_CONST [a3]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
+	mov r0, #0x00060000			; r0=rConstants[35] (6.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -9145,8 +9145,8 @@ proc_55_target_347:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_55_continue_348
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -9170,11 +9170,11 @@ proc_55_continue_348:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_DONE [00]
 proc_55_target_349:
-	; BC_RSTATE [78]
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
-	; BC_CONST [a1]
+	; BC_RSTATE [79]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
+	; BC_CONST [a3]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
+	mov r0, #0x00060000			; r0=rConstants[35] (6.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -9186,8 +9186,8 @@ proc_55_target_349:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_55_continue_350
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -9211,11 +9211,11 @@ proc_55_continue_350:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_DONE [00]
 proc_55_target_351:
-	; BC_RSTATE [78]
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
-	; BC_CONST [a1]
+	; BC_RSTATE [79]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
+	; BC_CONST [a3]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
+	mov r0, #0x00060000			; r0=rConstants[35] (6.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -9227,8 +9227,8 @@ proc_55_target_351:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_55_continue_352
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -9242,8 +9242,8 @@ proc_55_continue_352:
 proc_55_end:
 
 proc_56_start:
-	; BC_CONST [fb]
-	ldr r0, [r4, #123*4]			; r0=rConstants[123]=0x107f2c49 (4223.1730)
+	; BC_CONST [fe]
+	ldr r0, [r4, #131*4]			; r0=rConstants[131]=0x107f2c49 (4223.1730)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_71_start		; r0=r_Procedures[71]
@@ -9252,11 +9252,11 @@ proc_56_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_RSTATE [78]
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
-	; BC_CONST [a1]
+	; BC_RSTATE [79]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
+	; BC_CONST [a3]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
+	mov r0, #0x00060000			; r0=rConstants[35] (6.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -9268,16 +9268,16 @@ proc_56_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_56_continue_353
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_56_continue_353:
-	; BC_CONST [f8]
-	ldr r0, [r4, #120*4]			; r0=rConstants[120]=0x081f1f82 (2079.1231)
+	; BC_CONST [fe]
+	ldr r0, [r4, #126*4]			; r0=rConstants[126]=0x081f1f82 (2079.1231)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_71_start		; r0=r_Procedures[71]
@@ -9286,11 +9286,11 @@ proc_56_continue_353:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_RSTATE [78]
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
-	; BC_CONST [a1]
+	; BC_RSTATE [79]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
+	; BC_CONST [a3]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
+	mov r0, #0x00060000			; r0=rConstants[35] (6.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -9302,8 +9302,8 @@ proc_56_continue_353:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_56_continue_354
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -9311,7 +9311,7 @@ proc_56_continue_353:
 	ldr pc, [sp], #4			; Return
 proc_56_continue_354:
 	; BC_CONST [fe]
-	ldr r0, [r4, #128*4]			; r0=rConstants[128]=0x187f3c8a (6271.2365)
+	ldr r0, [r4, #136*4]			; r0=rConstants[136]=0x187f3c8a (6271.2365)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_71_start		; r0=r_Procedures[71]
@@ -9320,11 +9320,11 @@ proc_56_continue_354:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_RSTATE [78]
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
-	; BC_CONST [a1]
+	; BC_RSTATE [79]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
+	; BC_CONST [a3]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
+	mov r0, #0x00060000			; r0=rConstants[35] (6.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -9336,8 +9336,8 @@ proc_56_continue_354:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_56_continue_355
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -9345,7 +9345,7 @@ proc_56_continue_354:
 	ldr pc, [sp], #4			; Return
 proc_56_continue_355:
 	; BC_CONST [fe]
-	ldr r0, [r4, #144*4]			; r0=rConstants[144]=0x9a7f2186 (39551.1310)
+	ldr r0, [r4, #161*4]			; r0=rConstants[161]=0x9a7f2186 (39551.1310)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_71_start		; r0=r_Procedures[71]
@@ -9354,11 +9354,11 @@ proc_56_continue_355:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_RSTATE [78]
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
-	; BC_CONST [a1]
+	; BC_RSTATE [79]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
+	; BC_CONST [a3]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
+	mov r0, #0x00060000			; r0=rConstants[35] (6.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -9370,8 +9370,8 @@ proc_56_continue_355:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_56_continue_356
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -9385,16 +9385,16 @@ proc_56_continue_356:
 proc_56_end:
 
 proc_57_start:
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
-	; BC_CONST [a0]
-	mov r0, #0x00050000			; r0=rConstants[32] (5.0000)
-	; BC_WSTATE [58]
-	str r0, [r5, #ST_WIRE0*4]		; State[ST_WIRE0]=r0
+	; BC_CONST [a1]
+	mov r0, #0x00050000			; r0=rConstants[33] (5.0000)
+	; BC_WSTATE [59]
+	str r0, [r5, #ST_WIRE1*4]		; State[ST_WIRE1]=r0
 	; BC_CONST [fe]
-	ldr r0, [r4, #136*4]			; r0=rConstants[136]=0x881f1f81 (34847.1231)
+	ldr r0, [r4, #153*4]			; r0=rConstants[153]=0x881f1f81 (34847.1231)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_71_start		; r0=r_Procedures[71]
@@ -9403,11 +9403,11 @@ proc_57_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_RSTATE [78]
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
-	; BC_CONST [a1]
+	; BC_RSTATE [79]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
+	; BC_CONST [a3]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
+	mov r0, #0x00060000			; r0=rConstants[35] (6.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -9419,16 +9419,16 @@ proc_57_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_57_continue_357
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_57_continue_357:
-	; BC_CONST [f8]
-	ldr r0, [r4, #120*4]			; r0=rConstants[120]=0x081f1f82 (2079.1231)
+	; BC_CONST [fe]
+	ldr r0, [r4, #126*4]			; r0=rConstants[126]=0x081f1f82 (2079.1231)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_71_start		; r0=r_Procedures[71]
@@ -9437,11 +9437,11 @@ proc_57_continue_357:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_RSTATE [78]
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
-	; BC_CONST [a1]
+	; BC_RSTATE [79]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
+	; BC_CONST [a3]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
+	mov r0, #0x00060000			; r0=rConstants[35] (6.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -9453,16 +9453,16 @@ proc_57_continue_357:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_57_continue_358
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_57_continue_358:
-	; BC_CONST [fd]
-	ldr r0, [r4, #125*4]			; r0=rConstants[125]=0x14bc3c49 (5308.2355)
+	; BC_CONST [fe]
+	ldr r0, [r4, #133*4]			; r0=rConstants[133]=0x14bc3c49 (5308.2355)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_71_start		; r0=r_Procedures[71]
@@ -9471,11 +9471,11 @@ proc_57_continue_358:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_RSTATE [78]
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
-	; BC_CONST [a1]
+	; BC_RSTATE [79]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
+	; BC_CONST [a3]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
+	mov r0, #0x00060000			; r0=rConstants[35] (6.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -9487,16 +9487,16 @@ proc_57_continue_358:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_57_continue_359
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_57_continue_359:
-	; BC_CONST [fd]
-	ldr r0, [r4, #125*4]			; r0=rConstants[125]=0x14bc3c49 (5308.2355)
+	; BC_CONST [fe]
+	ldr r0, [r4, #133*4]			; r0=rConstants[133]=0x14bc3c49 (5308.2355)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_71_start		; r0=r_Procedures[71]
@@ -9505,11 +9505,11 @@ proc_57_continue_359:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_RSTATE [78]
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
-	; BC_CONST [a1]
+	; BC_RSTATE [79]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
+	; BC_CONST [a3]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
+	mov r0, #0x00060000			; r0=rConstants[35] (6.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -9528,16 +9528,16 @@ proc_57_continue_359:
 proc_57_end:
 
 proc_58_start:
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
-	; BC_CONST [a0]
-	mov r0, #0x00050000			; r0=rConstants[32] (5.0000)
-	; BC_WSTATE [58]
-	str r0, [r5, #ST_WIRE0*4]		; State[ST_WIRE0]=r0
-	; BC_CONST [f8]
-	ldr r0, [r4, #120*4]			; r0=rConstants[120]=0x081f1f82 (2079.1231)
+	; BC_CONST [a1]
+	mov r0, #0x00050000			; r0=rConstants[33] (5.0000)
+	; BC_WSTATE [59]
+	str r0, [r5, #ST_WIRE1*4]		; State[ST_WIRE1]=r0
+	; BC_CONST [fe]
+	ldr r0, [r4, #126*4]			; r0=rConstants[126]=0x081f1f82 (2079.1231)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_71_start		; r0=r_Procedures[71]
@@ -9546,11 +9546,11 @@ proc_58_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_RSTATE [78]
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
-	; BC_CONST [a1]
+	; BC_RSTATE [79]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
+	; BC_CONST [a3]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
+	mov r0, #0x00060000			; r0=rConstants[35] (6.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -9562,8 +9562,8 @@ proc_58_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_58_continue_360
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -9571,7 +9571,7 @@ proc_58_start:
 	ldr pc, [sp], #4			; Return
 proc_58_continue_360:
 	; BC_CONST [fe]
-	ldr r0, [r4, #135*4]			; r0=rConstants[135]=0x823f3f20 (33343.2466)
+	ldr r0, [r4, #152*4]			; r0=rConstants[152]=0x823f3f20 (33343.2466)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_71_start		; r0=r_Procedures[71]
@@ -9580,11 +9580,11 @@ proc_58_continue_360:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_RSTATE [78]
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
-	; BC_CONST [a1]
+	; BC_RSTATE [79]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
+	; BC_CONST [a3]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
+	mov r0, #0x00060000			; r0=rConstants[35] (6.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -9610,11 +9610,11 @@ proc_59_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [9e]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [9f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -9635,11 +9635,11 @@ proc_59_continue_361:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [9e]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [9f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -9660,11 +9660,11 @@ proc_59_continue_362:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [9e]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [9f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -9685,11 +9685,11 @@ proc_59_continue_363:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [9e]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [9f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -9710,11 +9710,11 @@ proc_59_continue_364:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [9e]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [9f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -9735,11 +9735,11 @@ proc_59_continue_365:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [9e]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [9f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -9760,11 +9760,11 @@ proc_59_continue_366:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [9e]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [9f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -9785,11 +9785,11 @@ proc_59_continue_367:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [9e]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [9f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -9810,11 +9810,11 @@ proc_59_continue_368:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [9e]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [9f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -9835,11 +9835,11 @@ proc_59_continue_369:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [9e]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [9f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -9860,11 +9860,11 @@ proc_59_continue_370:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [9e]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [9f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -9885,11 +9885,11 @@ proc_59_continue_371:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [9e]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [9f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -9910,11 +9910,11 @@ proc_59_continue_372:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [9e]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [9f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -9935,11 +9935,11 @@ proc_59_continue_373:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [9e]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [9f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -9960,11 +9960,11 @@ proc_59_continue_374:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [9e]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [9f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -9985,11 +9985,11 @@ proc_59_continue_375:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [9e]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [9f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -10010,20 +10010,20 @@ proc_59_continue_376:
 proc_59_end:
 
 proc_60_start:
-	; BC_CONST [b8]
-	mov r0, #0x00210000			; r0=rConstants[56] (33.0000)
+	; BC_CONST [bb]
+	mov r0, #0x00210000			; r0=rConstants[59] (33.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
-	; BC_CONST [a5]
-	mov r0, #0x000a0000			; r0=rConstants[37] (10.0000)
-	; BC_WSTATE [58]
-	str r0, [r5, #ST_WIRE0*4]		; State[ST_WIRE0]=r0
+	; BC_CONST [a8]
+	mov r0, #0x000a0000			; r0=rConstants[40] (10.0000)
+	; BC_WSTATE [59]
+	str r0, [r5, #ST_WIRE1*4]		; State[ST_WIRE1]=r0
 	; BC_CONST [fe]
-	ldr r0, [r4, #147*4]			; r0=rConstants[147]=0xf8800083 (63616.0020)
+	ldr r0, [r4, #169*4]			; r0=rConstants[169]=0xf8800083 (63616.0020)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_64_start		; r0=r_Procedures[64]
@@ -10035,19 +10035,19 @@ proc_60_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b1]
-	mov r0, #0x00170000			; r0=rConstants[49] (23.0000)
+	; BC_CONST [b4]
+	mov r0, #0x00170000			; r0=rConstants[52] (23.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_60_continue_377
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_60_continue_377:
-	; BC_CONST [9b]
-	mov r0, #0x00028000			; r0=rConstants[27] (2.5000)
-	; BC_RSTATE [78]
+	; BC_CONST [9c]
+	mov r0, #0x00028000			; r0=rConstants[28] (2.5000)
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -10061,12 +10061,12 @@ proc_60_continue_377:
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	adds r0, r0, r1				; r0=r0 adds r1
-	; BC_CONST [9a]
+	; BC_CONST [9b]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
-	; BC_RSTATE [78]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -10091,11 +10091,11 @@ proc_60_continue_377:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutSquare
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9b]
-	mov r0, #0x00028000			; r0=rConstants[27] (2.5000)
-	; BC_RSTATE [78]
+	; BC_CONST [9c]
+	mov r0, #0x00028000			; r0=rConstants[28] (2.5000)
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -10109,12 +10109,12 @@ proc_60_continue_377:
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	subs r0, r0, r1				; r0=r0 subs r1
-	; BC_CONST [9a]
+	; BC_CONST [9b]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
-	; BC_RSTATE [78]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -10142,7 +10142,7 @@ proc_60_continue_377:
 	ldr pc, [sp], #4			; Return
 proc_60_continue_378:
 	; BC_CONST [fe]
-	ldr r0, [r4, #143*4]			; r0=rConstants[143]=0x9a7226a6 (39538.1510)
+	ldr r0, [r4, #160*4]			; r0=rConstants[160]=0x9a7226a6 (39538.1510)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_64_start		; r0=r_Procedures[64]
@@ -10154,19 +10154,19 @@ proc_60_continue_378:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b1]
-	mov r0, #0x00170000			; r0=rConstants[49] (23.0000)
+	; BC_CONST [b4]
+	mov r0, #0x00170000			; r0=rConstants[52] (23.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_60_continue_379
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_60_continue_379:
-	; BC_CONST [9b]
-	mov r0, #0x00028000			; r0=rConstants[27] (2.5000)
-	; BC_RSTATE [78]
+	; BC_CONST [9c]
+	mov r0, #0x00028000			; r0=rConstants[28] (2.5000)
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -10180,12 +10180,12 @@ proc_60_continue_379:
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	adds r0, r0, r1				; r0=r0 adds r1
-	; BC_CONST [9a]
+	; BC_CONST [9b]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
-	; BC_RSTATE [78]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -10210,11 +10210,11 @@ proc_60_continue_379:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutSquare
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9b]
-	mov r0, #0x00028000			; r0=rConstants[27] (2.5000)
-	; BC_RSTATE [78]
+	; BC_CONST [9c]
+	mov r0, #0x00028000			; r0=rConstants[28] (2.5000)
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -10228,12 +10228,12 @@ proc_60_continue_379:
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	subs r0, r0, r1				; r0=r0 subs r1
-	; BC_CONST [9a]
+	; BC_CONST [9b]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
-	; BC_RSTATE [78]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -10261,7 +10261,7 @@ proc_60_continue_379:
 	ldr pc, [sp], #4			; Return
 proc_60_continue_380:
 	; BC_CONST [fe]
-	ldr r0, [r4, #138*4]			; r0=rConstants[138]=0x98611bb6 (39009.1082)
+	ldr r0, [r4, #155*4]			; r0=rConstants[155]=0x98611bb6 (39009.1082)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_64_start		; r0=r_Procedures[64]
@@ -10273,19 +10273,19 @@ proc_60_continue_380:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b1]
-	mov r0, #0x00170000			; r0=rConstants[49] (23.0000)
+	; BC_CONST [b4]
+	mov r0, #0x00170000			; r0=rConstants[52] (23.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_60_continue_381
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_60_continue_381:
-	; BC_CONST [9b]
-	mov r0, #0x00028000			; r0=rConstants[27] (2.5000)
-	; BC_RSTATE [78]
+	; BC_CONST [9c]
+	mov r0, #0x00028000			; r0=rConstants[28] (2.5000)
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -10299,12 +10299,12 @@ proc_60_continue_381:
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	adds r0, r0, r1				; r0=r0 adds r1
-	; BC_CONST [9a]
+	; BC_CONST [9b]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
-	; BC_RSTATE [78]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -10329,11 +10329,11 @@ proc_60_continue_381:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutSquare
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9b]
-	mov r0, #0x00028000			; r0=rConstants[27] (2.5000)
-	; BC_RSTATE [78]
+	; BC_CONST [9c]
+	mov r0, #0x00028000			; r0=rConstants[28] (2.5000)
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -10347,12 +10347,12 @@ proc_60_continue_381:
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	subs r0, r0, r1				; r0=r0 subs r1
-	; BC_CONST [9a]
+	; BC_CONST [9b]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
-	; BC_RSTATE [78]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -10380,7 +10380,7 @@ proc_60_continue_381:
 	ldr pc, [sp], #4			; Return
 proc_60_continue_382:
 	; BC_CONST [fe]
-	ldr r0, [r4, #134*4]			; r0=rConstants[134]=0x820f08f0 (33295.0349)
+	ldr r0, [r4, #151*4]			; r0=rConstants[151]=0x820f08f0 (33295.0349)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_64_start		; r0=r_Procedures[64]
@@ -10392,19 +10392,19 @@ proc_60_continue_382:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a6]
-	mov r0, #0x000b0000			; r0=rConstants[38] (11.0000)
+	; BC_CONST [a9]
+	mov r0, #0x000b0000			; r0=rConstants[41] (11.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_60_continue_383
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_60_continue_383:
-	; BC_CONST [9b]
-	mov r0, #0x00028000			; r0=rConstants[27] (2.5000)
-	; BC_RSTATE [78]
+	; BC_CONST [9c]
+	mov r0, #0x00028000			; r0=rConstants[28] (2.5000)
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -10418,12 +10418,12 @@ proc_60_continue_383:
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	adds r0, r0, r1				; r0=r0 adds r1
-	; BC_CONST [9a]
+	; BC_CONST [9b]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
-	; BC_RSTATE [78]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -10448,11 +10448,11 @@ proc_60_continue_383:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutSquare
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9b]
-	mov r0, #0x00028000			; r0=rConstants[27] (2.5000)
-	; BC_RSTATE [78]
+	; BC_CONST [9c]
+	mov r0, #0x00028000			; r0=rConstants[28] (2.5000)
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -10466,12 +10466,12 @@ proc_60_continue_383:
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	subs r0, r0, r1				; r0=r0 subs r1
-	; BC_CONST [9a]
+	; BC_CONST [9b]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
-	; BC_RSTATE [78]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -10499,7 +10499,7 @@ proc_60_continue_383:
 	ldr pc, [sp], #4			; Return
 proc_60_continue_384:
 	; BC_CONST [fe]
-	ldr r0, [r4, #134*4]			; r0=rConstants[134]=0x820f08f0 (33295.0349)
+	ldr r0, [r4, #151*4]			; r0=rConstants[151]=0x820f08f0 (33295.0349)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_64_start		; r0=r_Procedures[64]
@@ -10511,19 +10511,19 @@ proc_60_continue_384:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a6]
-	mov r0, #0x000b0000			; r0=rConstants[38] (11.0000)
+	; BC_CONST [a9]
+	mov r0, #0x000b0000			; r0=rConstants[41] (11.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_60_continue_385
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_60_continue_385:
-	; BC_CONST [9b]
-	mov r0, #0x00028000			; r0=rConstants[27] (2.5000)
-	; BC_RSTATE [78]
+	; BC_CONST [9c]
+	mov r0, #0x00028000			; r0=rConstants[28] (2.5000)
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -10537,12 +10537,12 @@ proc_60_continue_385:
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	adds r0, r0, r1				; r0=r0 adds r1
-	; BC_CONST [9a]
+	; BC_CONST [9b]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
-	; BC_RSTATE [78]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -10567,11 +10567,11 @@ proc_60_continue_385:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutSquare
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9b]
-	mov r0, #0x00028000			; r0=rConstants[27] (2.5000)
-	; BC_RSTATE [78]
+	; BC_CONST [9c]
+	mov r0, #0x00028000			; r0=rConstants[28] (2.5000)
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -10585,12 +10585,12 @@ proc_60_continue_385:
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	subs r0, r0, r1				; r0=r0 subs r1
-	; BC_CONST [9a]
+	; BC_CONST [9b]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
-	; BC_RSTATE [78]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -10624,20 +10624,20 @@ proc_60_continue_386:
 proc_60_end:
 
 proc_61_start:
-	; BC_CONST [b8]
-	mov r0, #0x00210000			; r0=rConstants[56] (33.0000)
+	; BC_CONST [bb]
+	mov r0, #0x00210000			; r0=rConstants[59] (33.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
-	; BC_CONST [a5]
-	mov r0, #0x000a0000			; r0=rConstants[37] (10.0000)
-	; BC_WSTATE [58]
-	str r0, [r5, #ST_WIRE0*4]		; State[ST_WIRE0]=r0
+	; BC_CONST [a8]
+	mov r0, #0x000a0000			; r0=rConstants[40] (10.0000)
+	; BC_WSTATE [59]
+	str r0, [r5, #ST_WIRE1*4]		; State[ST_WIRE1]=r0
 	; BC_CONST [fe]
-	ldr r0, [r4, #147*4]			; r0=rConstants[147]=0xf8800083 (63616.0020)
+	ldr r0, [r4, #169*4]			; r0=rConstants[169]=0xf8800083 (63616.0020)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_64_start		; r0=r_Procedures[64]
@@ -10649,19 +10649,19 @@ proc_61_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b1]
-	mov r0, #0x00170000			; r0=rConstants[49] (23.0000)
+	; BC_CONST [b4]
+	mov r0, #0x00170000			; r0=rConstants[52] (23.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_61_continue_387
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_61_continue_387:
-	; BC_CONST [9b]
-	mov r0, #0x00028000			; r0=rConstants[27] (2.5000)
-	; BC_RSTATE [78]
+	; BC_CONST [9c]
+	mov r0, #0x00028000			; r0=rConstants[28] (2.5000)
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -10675,12 +10675,12 @@ proc_61_continue_387:
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	adds r0, r0, r1				; r0=r0 adds r1
-	; BC_CONST [9a]
+	; BC_CONST [9b]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
-	; BC_RSTATE [78]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -10705,11 +10705,11 @@ proc_61_continue_387:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutSquare
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9b]
-	mov r0, #0x00028000			; r0=rConstants[27] (2.5000)
-	; BC_RSTATE [78]
+	; BC_CONST [9c]
+	mov r0, #0x00028000			; r0=rConstants[28] (2.5000)
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -10723,12 +10723,12 @@ proc_61_continue_387:
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	subs r0, r0, r1				; r0=r0 subs r1
-	; BC_CONST [9a]
+	; BC_CONST [9b]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
-	; BC_RSTATE [78]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -10756,7 +10756,7 @@ proc_61_continue_387:
 	ldr pc, [sp], #4			; Return
 proc_61_continue_388:
 	; BC_CONST [fe]
-	ldr r0, [r4, #147*4]			; r0=rConstants[147]=0xf8800083 (63616.0020)
+	ldr r0, [r4, #169*4]			; r0=rConstants[169]=0xf8800083 (63616.0020)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_64_start		; r0=r_Procedures[64]
@@ -10768,19 +10768,19 @@ proc_61_continue_388:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b1]
-	mov r0, #0x00170000			; r0=rConstants[49] (23.0000)
+	; BC_CONST [b4]
+	mov r0, #0x00170000			; r0=rConstants[52] (23.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_61_continue_389
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_61_continue_389:
-	; BC_CONST [9b]
-	mov r0, #0x00028000			; r0=rConstants[27] (2.5000)
-	; BC_RSTATE [78]
+	; BC_CONST [9c]
+	mov r0, #0x00028000			; r0=rConstants[28] (2.5000)
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -10794,12 +10794,12 @@ proc_61_continue_389:
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	adds r0, r0, r1				; r0=r0 adds r1
-	; BC_CONST [9a]
+	; BC_CONST [9b]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
-	; BC_RSTATE [78]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -10824,11 +10824,11 @@ proc_61_continue_389:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutSquare
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9b]
-	mov r0, #0x00028000			; r0=rConstants[27] (2.5000)
-	; BC_RSTATE [78]
+	; BC_CONST [9c]
+	mov r0, #0x00028000			; r0=rConstants[28] (2.5000)
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -10842,12 +10842,12 @@ proc_61_continue_389:
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	subs r0, r0, r1				; r0=r0 subs r1
-	; BC_CONST [9a]
+	; BC_CONST [9b]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
-	; BC_RSTATE [78]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -10875,7 +10875,7 @@ proc_61_continue_389:
 	ldr pc, [sp], #4			; Return
 proc_61_continue_390:
 	; BC_CONST [fe]
-	ldr r0, [r4, #147*4]			; r0=rConstants[147]=0xf8800083 (63616.0020)
+	ldr r0, [r4, #169*4]			; r0=rConstants[169]=0xf8800083 (63616.0020)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_64_start		; r0=r_Procedures[64]
@@ -10887,19 +10887,19 @@ proc_61_continue_390:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b1]
-	mov r0, #0x00170000			; r0=rConstants[49] (23.0000)
+	; BC_CONST [b4]
+	mov r0, #0x00170000			; r0=rConstants[52] (23.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_61_continue_391
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_61_continue_391:
-	; BC_CONST [9b]
-	mov r0, #0x00028000			; r0=rConstants[27] (2.5000)
-	; BC_RSTATE [78]
+	; BC_CONST [9c]
+	mov r0, #0x00028000			; r0=rConstants[28] (2.5000)
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -10913,12 +10913,12 @@ proc_61_continue_391:
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	adds r0, r0, r1				; r0=r0 adds r1
-	; BC_CONST [9a]
+	; BC_CONST [9b]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
-	; BC_RSTATE [78]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -10943,11 +10943,11 @@ proc_61_continue_391:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutSquare
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9b]
-	mov r0, #0x00028000			; r0=rConstants[27] (2.5000)
-	; BC_RSTATE [78]
+	; BC_CONST [9c]
+	mov r0, #0x00028000			; r0=rConstants[28] (2.5000)
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -10961,12 +10961,12 @@ proc_61_continue_391:
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	subs r0, r0, r1				; r0=r0 subs r1
-	; BC_CONST [9a]
+	; BC_CONST [9b]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
-	; BC_RSTATE [78]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -10994,7 +10994,7 @@ proc_61_continue_391:
 	ldr pc, [sp], #4			; Return
 proc_61_continue_392:
 	; BC_CONST [fe]
-	ldr r0, [r4, #138*4]			; r0=rConstants[138]=0x98611bb6 (39009.1082)
+	ldr r0, [r4, #155*4]			; r0=rConstants[155]=0x98611bb6 (39009.1082)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_64_start		; r0=r_Procedures[64]
@@ -11006,19 +11006,19 @@ proc_61_continue_392:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a6]
-	mov r0, #0x000b0000			; r0=rConstants[38] (11.0000)
+	; BC_CONST [a9]
+	mov r0, #0x000b0000			; r0=rConstants[41] (11.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_61_continue_393
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_61_continue_393:
-	; BC_CONST [9b]
-	mov r0, #0x00028000			; r0=rConstants[27] (2.5000)
-	; BC_RSTATE [78]
+	; BC_CONST [9c]
+	mov r0, #0x00028000			; r0=rConstants[28] (2.5000)
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -11032,12 +11032,12 @@ proc_61_continue_393:
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	adds r0, r0, r1				; r0=r0 adds r1
-	; BC_CONST [9a]
+	; BC_CONST [9b]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
-	; BC_RSTATE [78]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -11062,11 +11062,11 @@ proc_61_continue_393:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutSquare
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9b]
-	mov r0, #0x00028000			; r0=rConstants[27] (2.5000)
-	; BC_RSTATE [78]
+	; BC_CONST [9c]
+	mov r0, #0x00028000			; r0=rConstants[28] (2.5000)
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -11080,12 +11080,12 @@ proc_61_continue_393:
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	subs r0, r0, r1				; r0=r0 subs r1
-	; BC_CONST [9a]
+	; BC_CONST [9b]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
-	; BC_RSTATE [78]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -11113,7 +11113,7 @@ proc_61_continue_393:
 	ldr pc, [sp], #4			; Return
 proc_61_continue_394:
 	; BC_CONST [fe]
-	ldr r0, [r4, #134*4]			; r0=rConstants[134]=0x820f08f0 (33295.0349)
+	ldr r0, [r4, #151*4]			; r0=rConstants[151]=0x820f08f0 (33295.0349)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_64_start		; r0=r_Procedures[64]
@@ -11125,19 +11125,19 @@ proc_61_continue_394:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a6]
-	mov r0, #0x000b0000			; r0=rConstants[38] (11.0000)
+	; BC_CONST [a9]
+	mov r0, #0x000b0000			; r0=rConstants[41] (11.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_61_continue_395
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_61_continue_395:
-	; BC_CONST [9b]
-	mov r0, #0x00028000			; r0=rConstants[27] (2.5000)
-	; BC_RSTATE [78]
+	; BC_CONST [9c]
+	mov r0, #0x00028000			; r0=rConstants[28] (2.5000)
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -11151,12 +11151,12 @@ proc_61_continue_395:
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	adds r0, r0, r1				; r0=r0 adds r1
-	; BC_CONST [9a]
+	; BC_CONST [9b]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
-	; BC_RSTATE [78]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -11181,11 +11181,11 @@ proc_61_continue_395:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutSquare
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9b]
-	mov r0, #0x00028000			; r0=rConstants[27] (2.5000)
-	; BC_RSTATE [78]
+	; BC_CONST [9c]
+	mov r0, #0x00028000			; r0=rConstants[28] (2.5000)
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -11199,12 +11199,12 @@ proc_61_continue_395:
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	subs r0, r0, r1				; r0=r0 subs r1
-	; BC_CONST [9a]
+	; BC_CONST [9b]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
-	; BC_RSTATE [78]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -11238,20 +11238,20 @@ proc_61_continue_396:
 proc_61_end:
 
 proc_62_start:
-	; BC_CONST [b8]
-	mov r0, #0x00210000			; r0=rConstants[56] (33.0000)
+	; BC_CONST [bb]
+	mov r0, #0x00210000			; r0=rConstants[59] (33.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
-	; BC_CONST [a5]
-	mov r0, #0x000a0000			; r0=rConstants[37] (10.0000)
-	; BC_WSTATE [58]
-	str r0, [r5, #ST_WIRE0*4]		; State[ST_WIRE0]=r0
+	; BC_CONST [a8]
+	mov r0, #0x000a0000			; r0=rConstants[40] (10.0000)
+	; BC_WSTATE [59]
+	str r0, [r5, #ST_WIRE1*4]		; State[ST_WIRE1]=r0
 	; BC_CONST [fe]
-	ldr r0, [r4, #147*4]			; r0=rConstants[147]=0xf8800083 (63616.0020)
+	ldr r0, [r4, #169*4]			; r0=rConstants[169]=0xf8800083 (63616.0020)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_64_start		; r0=r_Procedures[64]
@@ -11263,19 +11263,19 @@ proc_62_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b1]
-	mov r0, #0x00170000			; r0=rConstants[49] (23.0000)
+	; BC_CONST [b4]
+	mov r0, #0x00170000			; r0=rConstants[52] (23.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_62_continue_397
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_62_continue_397:
-	; BC_CONST [9b]
-	mov r0, #0x00028000			; r0=rConstants[27] (2.5000)
-	; BC_RSTATE [78]
+	; BC_CONST [9c]
+	mov r0, #0x00028000			; r0=rConstants[28] (2.5000)
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -11289,12 +11289,12 @@ proc_62_continue_397:
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	adds r0, r0, r1				; r0=r0 adds r1
-	; BC_CONST [9a]
+	; BC_CONST [9b]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
-	; BC_RSTATE [78]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -11319,11 +11319,11 @@ proc_62_continue_397:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutSquare
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9b]
-	mov r0, #0x00028000			; r0=rConstants[27] (2.5000)
-	; BC_RSTATE [78]
+	; BC_CONST [9c]
+	mov r0, #0x00028000			; r0=rConstants[28] (2.5000)
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -11337,12 +11337,12 @@ proc_62_continue_397:
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	subs r0, r0, r1				; r0=r0 subs r1
-	; BC_CONST [9a]
+	; BC_CONST [9b]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
-	; BC_RSTATE [78]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -11370,7 +11370,7 @@ proc_62_continue_397:
 	ldr pc, [sp], #4			; Return
 proc_62_continue_398:
 	; BC_CONST [fe]
-	ldr r0, [r4, #143*4]			; r0=rConstants[143]=0x9a7226a6 (39538.1510)
+	ldr r0, [r4, #160*4]			; r0=rConstants[160]=0x9a7226a6 (39538.1510)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_64_start		; r0=r_Procedures[64]
@@ -11382,19 +11382,19 @@ proc_62_continue_398:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b1]
-	mov r0, #0x00170000			; r0=rConstants[49] (23.0000)
+	; BC_CONST [b4]
+	mov r0, #0x00170000			; r0=rConstants[52] (23.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_62_continue_399
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_62_continue_399:
-	; BC_CONST [9b]
-	mov r0, #0x00028000			; r0=rConstants[27] (2.5000)
-	; BC_RSTATE [78]
+	; BC_CONST [9c]
+	mov r0, #0x00028000			; r0=rConstants[28] (2.5000)
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -11408,12 +11408,12 @@ proc_62_continue_399:
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	adds r0, r0, r1				; r0=r0 adds r1
-	; BC_CONST [9a]
+	; BC_CONST [9b]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
-	; BC_RSTATE [78]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -11438,11 +11438,11 @@ proc_62_continue_399:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutSquare
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9b]
-	mov r0, #0x00028000			; r0=rConstants[27] (2.5000)
-	; BC_RSTATE [78]
+	; BC_CONST [9c]
+	mov r0, #0x00028000			; r0=rConstants[28] (2.5000)
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -11456,12 +11456,12 @@ proc_62_continue_399:
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	subs r0, r0, r1				; r0=r0 subs r1
-	; BC_CONST [9a]
+	; BC_CONST [9b]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
-	; BC_RSTATE [78]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -11489,7 +11489,7 @@ proc_62_continue_399:
 	ldr pc, [sp], #4			; Return
 proc_62_continue_400:
 	; BC_CONST [fe]
-	ldr r0, [r4, #138*4]			; r0=rConstants[138]=0x98611bb6 (39009.1082)
+	ldr r0, [r4, #155*4]			; r0=rConstants[155]=0x98611bb6 (39009.1082)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_64_start		; r0=r_Procedures[64]
@@ -11501,19 +11501,19 @@ proc_62_continue_400:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [ae]
-	mov r0, #0x00130000			; r0=rConstants[46] (19.0000)
+	; BC_CONST [b1]
+	mov r0, #0x00130000			; r0=rConstants[49] (19.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_62_continue_401
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_62_continue_401:
-	; BC_CONST [9b]
-	mov r0, #0x00028000			; r0=rConstants[27] (2.5000)
-	; BC_RSTATE [78]
+	; BC_CONST [9c]
+	mov r0, #0x00028000			; r0=rConstants[28] (2.5000)
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -11527,12 +11527,12 @@ proc_62_continue_401:
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	adds r0, r0, r1				; r0=r0 adds r1
-	; BC_CONST [9a]
+	; BC_CONST [9b]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
-	; BC_RSTATE [78]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -11557,11 +11557,11 @@ proc_62_continue_401:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutSquare
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9b]
-	mov r0, #0x00028000			; r0=rConstants[27] (2.5000)
-	; BC_RSTATE [78]
+	; BC_CONST [9c]
+	mov r0, #0x00028000			; r0=rConstants[28] (2.5000)
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -11575,12 +11575,12 @@ proc_62_continue_401:
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	subs r0, r0, r1				; r0=r0 subs r1
-	; BC_CONST [9a]
+	; BC_CONST [9b]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
-	; BC_RSTATE [78]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -11608,7 +11608,7 @@ proc_62_continue_401:
 	ldr pc, [sp], #4			; Return
 proc_62_continue_402:
 	; BC_CONST [fe]
-	ldr r0, [r4, #143*4]			; r0=rConstants[143]=0x9a7226a6 (39538.1510)
+	ldr r0, [r4, #160*4]			; r0=rConstants[160]=0x9a7226a6 (39538.1510)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_64_start		; r0=r_Procedures[64]
@@ -11620,19 +11620,19 @@ proc_62_continue_402:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [aa]
-	mov r0, #0x000f0000			; r0=rConstants[42] (15.0000)
+	; BC_CONST [ad]
+	mov r0, #0x000f0000			; r0=rConstants[45] (15.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_62_continue_403
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_62_continue_403:
-	; BC_CONST [9b]
-	mov r0, #0x00028000			; r0=rConstants[27] (2.5000)
-	; BC_RSTATE [78]
+	; BC_CONST [9c]
+	mov r0, #0x00028000			; r0=rConstants[28] (2.5000)
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -11646,12 +11646,12 @@ proc_62_continue_403:
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	adds r0, r0, r1				; r0=r0 adds r1
-	; BC_CONST [9a]
+	; BC_CONST [9b]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
-	; BC_RSTATE [78]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -11676,11 +11676,11 @@ proc_62_continue_403:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutSquare
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9b]
-	mov r0, #0x00028000			; r0=rConstants[27] (2.5000)
-	; BC_RSTATE [78]
+	; BC_CONST [9c]
+	mov r0, #0x00028000			; r0=rConstants[28] (2.5000)
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -11694,12 +11694,12 @@ proc_62_continue_403:
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	subs r0, r0, r1				; r0=r0 subs r1
-	; BC_CONST [9a]
+	; BC_CONST [9b]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
-	; BC_RSTATE [78]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -11727,7 +11727,7 @@ proc_62_continue_403:
 	ldr pc, [sp], #4			; Return
 proc_62_continue_404:
 	; BC_CONST [fe]
-	ldr r0, [r4, #134*4]			; r0=rConstants[134]=0x820f08f0 (33295.0349)
+	ldr r0, [r4, #151*4]			; r0=rConstants[151]=0x820f08f0 (33295.0349)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_64_start		; r0=r_Procedures[64]
@@ -11739,19 +11739,19 @@ proc_62_continue_404:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a6]
-	mov r0, #0x000b0000			; r0=rConstants[38] (11.0000)
+	; BC_CONST [a9]
+	mov r0, #0x000b0000			; r0=rConstants[41] (11.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_62_continue_405
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_62_continue_405:
-	; BC_CONST [9b]
-	mov r0, #0x00028000			; r0=rConstants[27] (2.5000)
-	; BC_RSTATE [78]
+	; BC_CONST [9c]
+	mov r0, #0x00028000			; r0=rConstants[28] (2.5000)
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -11765,12 +11765,12 @@ proc_62_continue_405:
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	adds r0, r0, r1				; r0=r0 adds r1
-	; BC_CONST [9a]
+	; BC_CONST [9b]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
-	; BC_RSTATE [78]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -11795,11 +11795,11 @@ proc_62_continue_405:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutSquare
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9b]
-	mov r0, #0x00028000			; r0=rConstants[27] (2.5000)
-	; BC_RSTATE [78]
+	; BC_CONST [9c]
+	mov r0, #0x00028000			; r0=rConstants[28] (2.5000)
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -11813,12 +11813,12 @@ proc_62_continue_405:
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	subs r0, r0, r1				; r0=r0 subs r1
-	; BC_CONST [9a]
+	; BC_CONST [9b]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
-	; BC_RSTATE [78]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -11852,20 +11852,20 @@ proc_62_continue_406:
 proc_62_end:
 
 proc_63_start:
-	; BC_CONST [b8]
-	mov r0, #0x00210000			; r0=rConstants[56] (33.0000)
+	; BC_CONST [bb]
+	mov r0, #0x00210000			; r0=rConstants[59] (33.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
-	; BC_CONST [a5]
-	mov r0, #0x000a0000			; r0=rConstants[37] (10.0000)
-	; BC_WSTATE [58]
-	str r0, [r5, #ST_WIRE0*4]		; State[ST_WIRE0]=r0
+	; BC_CONST [a8]
+	mov r0, #0x000a0000			; r0=rConstants[40] (10.0000)
+	; BC_WSTATE [59]
+	str r0, [r5, #ST_WIRE1*4]		; State[ST_WIRE1]=r0
 	; BC_CONST [fe]
-	ldr r0, [r4, #147*4]			; r0=rConstants[147]=0xf8800083 (63616.0020)
+	ldr r0, [r4, #169*4]			; r0=rConstants[169]=0xf8800083 (63616.0020)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_64_start		; r0=r_Procedures[64]
@@ -11877,19 +11877,19 @@ proc_63_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b1]
-	mov r0, #0x00170000			; r0=rConstants[49] (23.0000)
+	; BC_CONST [b4]
+	mov r0, #0x00170000			; r0=rConstants[52] (23.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_63_continue_407
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_63_continue_407:
-	; BC_CONST [9b]
-	mov r0, #0x00028000			; r0=rConstants[27] (2.5000)
-	; BC_RSTATE [78]
+	; BC_CONST [9c]
+	mov r0, #0x00028000			; r0=rConstants[28] (2.5000)
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -11903,12 +11903,12 @@ proc_63_continue_407:
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	adds r0, r0, r1				; r0=r0 adds r1
-	; BC_CONST [9a]
+	; BC_CONST [9b]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
-	; BC_RSTATE [78]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -11933,11 +11933,11 @@ proc_63_continue_407:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutSquare
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9b]
-	mov r0, #0x00028000			; r0=rConstants[27] (2.5000)
-	; BC_RSTATE [78]
+	; BC_CONST [9c]
+	mov r0, #0x00028000			; r0=rConstants[28] (2.5000)
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -11951,12 +11951,12 @@ proc_63_continue_407:
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	subs r0, r0, r1				; r0=r0 subs r1
-	; BC_CONST [9a]
+	; BC_CONST [9b]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
-	; BC_RSTATE [78]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -11984,7 +11984,7 @@ proc_63_continue_407:
 	ldr pc, [sp], #4			; Return
 proc_63_continue_408:
 	; BC_CONST [fe]
-	ldr r0, [r4, #143*4]			; r0=rConstants[143]=0x9a7226a6 (39538.1510)
+	ldr r0, [r4, #160*4]			; r0=rConstants[160]=0x9a7226a6 (39538.1510)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_64_start		; r0=r_Procedures[64]
@@ -11996,19 +11996,19 @@ proc_63_continue_408:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b1]
-	mov r0, #0x00170000			; r0=rConstants[49] (23.0000)
+	; BC_CONST [b4]
+	mov r0, #0x00170000			; r0=rConstants[52] (23.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_63_continue_409
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_63_continue_409:
-	; BC_CONST [9b]
-	mov r0, #0x00028000			; r0=rConstants[27] (2.5000)
-	; BC_RSTATE [78]
+	; BC_CONST [9c]
+	mov r0, #0x00028000			; r0=rConstants[28] (2.5000)
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -12022,12 +12022,12 @@ proc_63_continue_409:
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	adds r0, r0, r1				; r0=r0 adds r1
-	; BC_CONST [9a]
+	; BC_CONST [9b]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
-	; BC_RSTATE [78]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -12052,11 +12052,11 @@ proc_63_continue_409:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutSquare
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9b]
-	mov r0, #0x00028000			; r0=rConstants[27] (2.5000)
-	; BC_RSTATE [78]
+	; BC_CONST [9c]
+	mov r0, #0x00028000			; r0=rConstants[28] (2.5000)
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -12070,12 +12070,12 @@ proc_63_continue_409:
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	subs r0, r0, r1				; r0=r0 subs r1
-	; BC_CONST [9a]
+	; BC_CONST [9b]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
-	; BC_RSTATE [78]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -12103,7 +12103,7 @@ proc_63_continue_409:
 	ldr pc, [sp], #4			; Return
 proc_63_continue_410:
 	; BC_CONST [fe]
-	ldr r0, [r4, #138*4]			; r0=rConstants[138]=0x98611bb6 (39009.1082)
+	ldr r0, [r4, #155*4]			; r0=rConstants[155]=0x98611bb6 (39009.1082)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_64_start		; r0=r_Procedures[64]
@@ -12115,19 +12115,19 @@ proc_63_continue_410:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b1]
-	mov r0, #0x00170000			; r0=rConstants[49] (23.0000)
+	; BC_CONST [b4]
+	mov r0, #0x00170000			; r0=rConstants[52] (23.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_63_continue_411
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_63_continue_411:
-	; BC_CONST [9b]
-	mov r0, #0x00028000			; r0=rConstants[27] (2.5000)
-	; BC_RSTATE [78]
+	; BC_CONST [9c]
+	mov r0, #0x00028000			; r0=rConstants[28] (2.5000)
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -12141,12 +12141,12 @@ proc_63_continue_411:
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	adds r0, r0, r1				; r0=r0 adds r1
-	; BC_CONST [9a]
+	; BC_CONST [9b]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
-	; BC_RSTATE [78]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -12171,11 +12171,11 @@ proc_63_continue_411:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutSquare
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9b]
-	mov r0, #0x00028000			; r0=rConstants[27] (2.5000)
-	; BC_RSTATE [78]
+	; BC_CONST [9c]
+	mov r0, #0x00028000			; r0=rConstants[28] (2.5000)
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -12189,12 +12189,12 @@ proc_63_continue_411:
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	subs r0, r0, r1				; r0=r0 subs r1
-	; BC_CONST [9a]
+	; BC_CONST [9b]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
-	; BC_RSTATE [78]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -12222,7 +12222,7 @@ proc_63_continue_411:
 	ldr pc, [sp], #4			; Return
 proc_63_continue_412:
 	; BC_CONST [fe]
-	ldr r0, [r4, #134*4]			; r0=rConstants[134]=0x820f08f0 (33295.0349)
+	ldr r0, [r4, #151*4]			; r0=rConstants[151]=0x820f08f0 (33295.0349)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_64_start		; r0=r_Procedures[64]
@@ -12234,19 +12234,19 @@ proc_63_continue_412:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b1]
-	mov r0, #0x00170000			; r0=rConstants[49] (23.0000)
+	; BC_CONST [b4]
+	mov r0, #0x00170000			; r0=rConstants[52] (23.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_63_continue_413
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_63_continue_413:
-	; BC_CONST [9b]
-	mov r0, #0x00028000			; r0=rConstants[27] (2.5000)
-	; BC_RSTATE [78]
+	; BC_CONST [9c]
+	mov r0, #0x00028000			; r0=rConstants[28] (2.5000)
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -12260,12 +12260,12 @@ proc_63_continue_413:
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	adds r0, r0, r1				; r0=r0 adds r1
-	; BC_CONST [9a]
+	; BC_CONST [9b]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
-	; BC_RSTATE [78]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -12290,11 +12290,11 @@ proc_63_continue_413:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutSquare
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9b]
-	mov r0, #0x00028000			; r0=rConstants[27] (2.5000)
-	; BC_RSTATE [78]
+	; BC_CONST [9c]
+	mov r0, #0x00028000			; r0=rConstants[28] (2.5000)
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -12308,12 +12308,12 @@ proc_63_continue_413:
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	subs r0, r0, r1				; r0=r0 subs r1
-	; BC_CONST [9a]
+	; BC_CONST [9b]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
-	; BC_RSTATE [78]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -12347,12 +12347,12 @@ proc_63_continue_414:
 proc_63_end:
 
 proc_64_start:
+	; BC_CONST [a3]
+	mov r0, #0x00060000			; r0=rConstants[35] (6.0000)
+	; BC_WSTATE [54]
+	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_CONST [a1]
-	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
-	; BC_WSTATE [54]
-	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
-	; BC_CONST [a0]
-	mov r0, #0x00050000			; r0=rConstants[32] (5.0000)
+	mov r0, #0x00050000			; r0=rConstants[33] (5.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_PLOT [06]
@@ -12361,12 +12361,12 @@ proc_64_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutSquare
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_PLOT [06]
@@ -12375,12 +12375,12 @@ proc_64_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutSquare
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a2]
-	mov r0, #0x00070000			; r0=rConstants[34] (7.0000)
+	; BC_CONST [a5]
+	mov r0, #0x00070000			; r0=rConstants[37] (7.0000)
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
-	; BC_CONST [a0]
-	mov r0, #0x00050000			; r0=rConstants[32] (5.0000)
+	; BC_CONST [a1]
+	mov r0, #0x00050000			; r0=rConstants[33] (5.0000)
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -12464,9 +12464,9 @@ proc_65_end:
 proc_66_start:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
-	; BC_CONST [a0]
+	; BC_CONST [a1]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00050000			; r0=rConstants[32] (5.0000)
+	mov r0, #0x00050000			; r0=rConstants[33] (5.0000)
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
@@ -12522,8 +12522,8 @@ proc_68_start:
 	; BC_WHEN [17]
 	movs r0, r0					; update Status flags
 	beq proc_68_target_417
-	; BC_CONST [a1]
-	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
+	; BC_CONST [a3]
+	mov r0, #0x00060000			; r0=rConstants[35] (6.0000)
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
@@ -12541,8 +12541,8 @@ proc_68_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_RSTATE [78]
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	; BC_RSTATE [79]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
@@ -12557,9 +12557,9 @@ proc_68_start:
 proc_68_continue_418:
 	; BC_PROC [07]
 	adr r0, proc_68_start		; r0=r_Procedures[68]
-	; BC_CONST [a1]
+	; BC_CONST [a3]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
+	mov r0, #0x00060000			; r0=rConstants[35] (6.0000)
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
@@ -12597,8 +12597,8 @@ proc_68_target_417:
 proc_68_end:
 
 proc_69_start:
-	; BC_CONST [c6]
-	mov r0, #0x00400000			; r0=rConstants[70] (64.0000)
+	; BC_CONST [ca]
+	mov r0, #0x00400000			; r0=rConstants[74] (64.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -12645,8 +12645,8 @@ proc_70_start:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_DONE [00]
 proc_70_target_420:
-	; BC_RSTATE [78]
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	; BC_RSTATE [79]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
@@ -12703,9 +12703,9 @@ proc_70_end:
 proc_71_start:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
-	; BC_CONST [a0]
+	; BC_CONST [a1]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00050000			; r0=rConstants[32] (5.0000)
+	mov r0, #0x00050000			; r0=rConstants[33] (5.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_72_start		; r0=r_Procedures[72]
@@ -12726,8 +12726,8 @@ proc_72_start:
 	; BC_WHEN [17]
 	movs r0, r0					; update Status flags
 	beq proc_72_target_422
-	; BC_CONST [a1]
-	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
+	; BC_CONST [a3]
+	mov r0, #0x00060000			; r0=rConstants[35] (6.0000)
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
@@ -12739,8 +12739,8 @@ proc_72_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_RSTATE [78]
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	; BC_RSTATE [79]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
@@ -12755,9 +12755,9 @@ proc_72_start:
 proc_72_continue_423:
 	; BC_PROC [07]
 	adr r0, proc_72_start		; r0=r_Procedures[72]
-	; BC_CONST [a1]
+	; BC_CONST [a3]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
+	mov r0, #0x00060000			; r0=rConstants[35] (6.0000)
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
@@ -12795,8 +12795,8 @@ proc_72_target_422:
 proc_72_end:
 
 proc_73_start:
-	; BC_CONST [c6]
-	mov r0, #0x00400000			; r0=rConstants[70] (64.0000)
+	; BC_CONST [ca]
+	mov r0, #0x00400000			; r0=rConstants[74] (64.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -12842,8 +12842,8 @@ proc_74_start:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_DONE [00]
 proc_74_target_425:
-	; BC_RSTATE [78]
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	; BC_RSTATE [79]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
@@ -12894,29 +12894,29 @@ proc_75_start:
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [bf]
-	mov r0, #0x002d0000			; r0=rConstants[63] (45.0000)
+	; BC_CONST [c3]
+	mov r0, #0x002d0000			; r0=rConstants[67] (45.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
+	; BC_CONST [c3]
+	mov r0, #0x002d0000			; r0=rConstants[67] (45.0000)
 	; BC_CONST [bf]
-	mov r0, #0x002d0000			; r0=rConstants[63] (45.0000)
-	; BC_CONST [bb]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00280000			; r0=rConstants[59] (40.0000)
+	mov r0, #0x00280000			; r0=rConstants[63] (40.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [cc]
-	mov r0, #0x00500000			; r0=rConstants[76] (80.0000)
-	; BC_CONST [9e]
+	; BC_CONST [d2]
+	mov r0, #0x00500000			; r0=rConstants[82] (80.0000)
+	; BC_CONST [9f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_76_start		; r0=r_Procedures[76]
@@ -12925,8 +12925,8 @@ proc_75_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [dc]
-	mov r0, #0x00800000			; r0=rConstants[92] (128.0000)
+	; BC_CONST [e2]
+	mov r0, #0x00800000			; r0=rConstants[98] (128.0000)
 	; BC_NEG [0d]
 	rsb r0, r0, #0				; r0=0-r0
 	; BC_RSTATE [76]
@@ -12937,21 +12937,21 @@ proc_75_start:
 	adds r0, r0, r1				; r0=r0 adds r1
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [de]
-	mov r0, #0x00860000			; r0=rConstants[94] (134.0000)
-	; BC_CONST [f3]
+	; BC_CONST [e4]
+	mov r0, #0x00860000			; r0=rConstants[100] (134.0000)
+	; BC_CONST [f9]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x01180000			; r0=rConstants[115] (280.0000)
+	mov r0, #0x01180000			; r0=rConstants[121] (280.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [cc]
-	mov r0, #0x00500000			; r0=rConstants[76] (80.0000)
-	; BC_CONST [9e]
+	; BC_CONST [d2]
+	mov r0, #0x00500000			; r0=rConstants[82] (80.0000)
+	; BC_CONST [9f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_76_start		; r0=r_Procedures[76]
@@ -13024,8 +13024,8 @@ proc_77_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [c6]
-	mov r0, #0x00400000			; r0=rConstants[70] (64.0000)
+	; BC_CONST [ca]
+	mov r0, #0x00400000			; r0=rConstants[74] (64.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -13062,12 +13062,12 @@ proc_77_target_427:
 proc_77_end:
 
 proc_78_start:
-	; BC_CONST [ab]
-	mov r0, #0x00100000			; r0=rConstants[43] (16.0000)
+	; BC_CONST [ae]
+	mov r0, #0x00100000			; r0=rConstants[46] (16.0000)
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_79_start		; r0=r_Procedures[79]
@@ -13086,15 +13086,15 @@ proc_78_start:
 proc_78_end:
 
 proc_79_start:
-	; BC_CONST [a2]
-	mov r0, #0x00070000			; r0=rConstants[34] (7.0000)
+	; BC_CONST [a5]
+	mov r0, #0x00070000			; r0=rConstants[37] (7.0000)
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
-	; BC_CONST [b1]
-	mov r0, #0x00170000			; r0=rConstants[49] (23.0000)
-	; BC_CONST [b1]
+	; BC_CONST [b4]
+	mov r0, #0x00170000			; r0=rConstants[52] (23.0000)
+	; BC_CONST [b4]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00170000			; r0=rConstants[49] (23.0000)
+	mov r0, #0x00170000			; r0=rConstants[52] (23.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_80_start		; r0=r_Procedures[80]
@@ -13103,23 +13103,23 @@ proc_79_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9a]
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	; BC_CONST [9b]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_79_continue_428
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_79_continue_428:
-	; BC_CONST [a1]
-	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
+	; BC_CONST [a3]
+	mov r0, #0x00060000			; r0=rConstants[35] (6.0000)
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
-	; BC_CONST [b1]
-	mov r0, #0x00170000			; r0=rConstants[49] (23.0000)
-	; BC_CONST [b1]
+	; BC_CONST [b4]
+	mov r0, #0x00170000			; r0=rConstants[52] (23.0000)
+	; BC_CONST [b4]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00170000			; r0=rConstants[49] (23.0000)
+	mov r0, #0x00170000			; r0=rConstants[52] (23.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_80_start		; r0=r_Procedures[80]
@@ -13128,23 +13128,23 @@ proc_79_continue_428:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9a]
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	; BC_CONST [9b]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_79_continue_429
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_79_continue_429:
-	; BC_CONST [a0]
-	mov r0, #0x00050000			; r0=rConstants[32] (5.0000)
+	; BC_CONST [a1]
+	mov r0, #0x00050000			; r0=rConstants[33] (5.0000)
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
-	; BC_CONST [b1]
-	mov r0, #0x00170000			; r0=rConstants[49] (23.0000)
-	; BC_CONST [b1]
+	; BC_CONST [b4]
+	mov r0, #0x00170000			; r0=rConstants[52] (23.0000)
+	; BC_CONST [b4]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00170000			; r0=rConstants[49] (23.0000)
+	mov r0, #0x00170000			; r0=rConstants[52] (23.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_80_start		; r0=r_Procedures[80]
@@ -13153,23 +13153,23 @@ proc_79_continue_429:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9a]
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	; BC_CONST [9b]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_79_continue_430
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_79_continue_430:
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
-	; BC_CONST [b1]
-	mov r0, #0x00170000			; r0=rConstants[49] (23.0000)
-	; BC_CONST [b1]
+	; BC_CONST [b4]
+	mov r0, #0x00170000			; r0=rConstants[52] (23.0000)
+	; BC_CONST [b4]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00170000			; r0=rConstants[49] (23.0000)
+	mov r0, #0x00170000			; r0=rConstants[52] (23.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_80_start		; r0=r_Procedures[80]
@@ -13190,11 +13190,11 @@ proc_80_start:
 	; BC_WHEN [17]
 	movs r0, r0					; update Status flags
 	beq proc_80_target_431
-	; BC_CONST [a5]
-	mov r0, #0x000a0000			; r0=rConstants[37] (10.0000)
-	; BC_CONST [9a]
+	; BC_CONST [a8]
+	mov r0, #0x000a0000			; r0=rConstants[40] (10.0000)
+	; BC_CONST [9b]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
@@ -13229,9 +13229,9 @@ proc_80_start:
 	mov r1, r1, asl #8
 	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
-	; BC_CONST [a0]
+	; BC_CONST [a1]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00050000			; r0=rConstants[32] (5.0000)
+	mov r0, #0x00050000			; r0=rConstants[33] (5.0000)
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	adds r0, r0, r1				; r0=r0 adds r1
@@ -13243,14 +13243,14 @@ proc_80_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutCircle
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a5]
-	mov r0, #0x000a0000			; r0=rConstants[37] (10.0000)
+	; BC_CONST [a8]
+	mov r0, #0x000a0000			; r0=rConstants[40] (10.0000)
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a6]
-	mov r0, #0x000b0000			; r0=rConstants[38] (11.0000)
+	; BC_CONST [a9]
+	mov r0, #0x000b0000			; r0=rConstants[41] (11.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -13299,22 +13299,22 @@ proc_81_start:
 	mov r0, #0x00010000			; r0=rConstants[17] (1.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
-	; BC_CONST [c9]
-	mov r0, #0x00460000			; r0=rConstants[73] (70.0000)
+	; BC_CONST [ce]
+	mov r0, #0x00460000			; r0=rConstants[78] (70.0000)
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [a5]
-	mov r0, #0x000a0000			; r0=rConstants[37] (10.0000)
-	; BC_CONST [dd]
+	; BC_CONST [a8]
+	mov r0, #0x000a0000			; r0=rConstants[40] (10.0000)
+	; BC_CONST [e3]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00820000			; r0=rConstants[93] (130.0000)
+	mov r0, #0x00820000			; r0=rConstants[99] (130.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [c0]
-	mov r0, #0x00300000			; r0=rConstants[64] (48.0000)
+	; BC_CONST [c4]
+	mov r0, #0x00300000			; r0=rConstants[68] (48.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_83_start		; r0=r_Procedures[83]
@@ -13331,17 +13331,17 @@ proc_81_start:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_81_continue_433:
-	; BC_CONST [a0]
-	mov r0, #0x00050000			; r0=rConstants[32] (5.0000)
+	; BC_CONST [a1]
+	mov r0, #0x00050000			; r0=rConstants[33] (5.0000)
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_Y*4]		; r0=State[ST_Y]
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	adds r0, r0, r1				; r0=r0 adds r1
-	; BC_CONST [bb]
+	; BC_CONST [bf]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00280000			; r0=rConstants[59] (40.0000)
+	mov r0, #0x00280000			; r0=rConstants[63] (40.0000)
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_X*4]		; r0=State[ST_X]
@@ -13353,8 +13353,8 @@ proc_81_continue_433:
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [c0]
-	mov r0, #0x00300000			; r0=rConstants[64] (48.0000)
+	; BC_CONST [c4]
+	mov r0, #0x00300000			; r0=rConstants[68] (48.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_83_start		; r0=r_Procedures[83]
@@ -13371,17 +13371,17 @@ proc_81_continue_433:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_81_continue_434:
-	; BC_CONST [a0]
-	mov r0, #0x00050000			; r0=rConstants[32] (5.0000)
+	; BC_CONST [a1]
+	mov r0, #0x00050000			; r0=rConstants[33] (5.0000)
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_Y*4]		; r0=State[ST_Y]
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	adds r0, r0, r1				; r0=r0 adds r1
-	; BC_CONST [bb]
+	; BC_CONST [bf]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00280000			; r0=rConstants[59] (40.0000)
+	mov r0, #0x00280000			; r0=rConstants[63] (40.0000)
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_X*4]		; r0=State[ST_X]
@@ -13393,8 +13393,8 @@ proc_81_continue_434:
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [c0]
-	mov r0, #0x00300000			; r0=rConstants[64] (48.0000)
+	; BC_CONST [c4]
+	mov r0, #0x00300000			; r0=rConstants[68] (48.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_83_start		; r0=r_Procedures[83]
@@ -13422,22 +13422,22 @@ proc_82_start:
 	mov r0, #0x00010000			; r0=rConstants[17] (1.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
-	; BC_CONST [a4]
-	mov r0, #0x00090000			; r0=rConstants[36] (9.0000)
+	; BC_CONST [a7]
+	mov r0, #0x00090000			; r0=rConstants[39] (9.0000)
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [b5]
-	mov r0, #0x001e0000			; r0=rConstants[53] (30.0000)
-	; BC_CONST [b5]
+	; BC_CONST [b8]
+	mov r0, #0x001e0000			; r0=rConstants[56] (30.0000)
+	; BC_CONST [b8]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x001e0000			; r0=rConstants[53] (30.0000)
+	mov r0, #0x001e0000			; r0=rConstants[56] (30.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [c0]
-	mov r0, #0x00300000			; r0=rConstants[64] (48.0000)
+	; BC_CONST [c4]
+	mov r0, #0x00300000			; r0=rConstants[68] (48.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_83_start		; r0=r_Procedures[83]
@@ -13454,17 +13454,17 @@ proc_82_start:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_82_continue_436:
-	; BC_CONST [bf]
-	mov r0, #0x002d0000			; r0=rConstants[63] (45.0000)
+	; BC_CONST [c3]
+	mov r0, #0x002d0000			; r0=rConstants[67] (45.0000)
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_Y*4]		; r0=State[ST_Y]
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	adds r0, r0, r1				; r0=r0 adds r1
-	; BC_CONST [c1]
+	; BC_CONST [c5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00320000			; r0=rConstants[65] (50.0000)
+	mov r0, #0x00320000			; r0=rConstants[69] (50.0000)
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_X*4]		; r0=State[ST_X]
@@ -13476,8 +13476,8 @@ proc_82_continue_436:
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [c0]
-	mov r0, #0x00300000			; r0=rConstants[64] (48.0000)
+	; BC_CONST [c4]
+	mov r0, #0x00300000			; r0=rConstants[68] (48.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_83_start		; r0=r_Procedures[83]
@@ -13494,17 +13494,17 @@ proc_82_continue_436:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_82_continue_437:
-	; BC_CONST [bf]
-	mov r0, #0x002d0000			; r0=rConstants[63] (45.0000)
+	; BC_CONST [c3]
+	mov r0, #0x002d0000			; r0=rConstants[67] (45.0000)
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_Y*4]		; r0=State[ST_Y]
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	adds r0, r0, r1				; r0=r0 adds r1
-	; BC_CONST [c1]
+	; BC_CONST [c5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00320000			; r0=rConstants[65] (50.0000)
+	mov r0, #0x00320000			; r0=rConstants[69] (50.0000)
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_X*4]		; r0=State[ST_X]
@@ -13516,8 +13516,8 @@ proc_82_continue_437:
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [c0]
-	mov r0, #0x00300000			; r0=rConstants[64] (48.0000)
+	; BC_CONST [c4]
+	mov r0, #0x00300000			; r0=rConstants[68] (48.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_83_start		; r0=r_Procedures[83]
@@ -13560,8 +13560,8 @@ proc_83_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
@@ -13612,8 +13612,8 @@ proc_83_target_439:
 proc_83_end:
 
 proc_84_start:
-	; BC_CONST [a2]
-	mov r0, #0x00070000			; r0=rConstants[34] (7.0000)
+	; BC_CONST [a5]
+	mov r0, #0x00070000			; r0=rConstants[37] (7.0000)
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_DRAW [04]
@@ -13630,8 +13630,8 @@ proc_84_start:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_84_continue_441:
-	; BC_CONST [a1]
-	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
+	; BC_CONST [a3]
+	mov r0, #0x00060000			; r0=rConstants[35] (6.0000)
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_DRAW [04]
@@ -13640,16 +13640,16 @@ proc_84_continue_441:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutCircle
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a0]
-	mov r0, #0x00050000			; r0=rConstants[32] (5.0000)
+	; BC_CONST [a1]
+	mov r0, #0x00050000			; r0=rConstants[33] (5.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_84_continue_442
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_84_continue_442:
-	; BC_CONST [a0]
-	mov r0, #0x00050000			; r0=rConstants[32] (5.0000)
+	; BC_CONST [a1]
+	mov r0, #0x00050000			; r0=rConstants[33] (5.0000)
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_DRAW [04]
@@ -13658,16 +13658,16 @@ proc_84_continue_442:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutCircle
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a5]
-	mov r0, #0x000a0000			; r0=rConstants[37] (10.0000)
+	; BC_CONST [a8]
+	mov r0, #0x000a0000			; r0=rConstants[40] (10.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_84_continue_443
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_84_continue_443:
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_DRAW [04]
@@ -13687,8 +13687,8 @@ proc_85_start:
 	mov r0, #0x00010000			; r0=rConstants[17] (1.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
-	; BC_CONST [a2]
-	mov r0, #0x00070000			; r0=rConstants[34] (7.0000)
+	; BC_CONST [a5]
+	mov r0, #0x00070000			; r0=rConstants[37] (7.0000)
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_DRAW [04]
@@ -13709,8 +13709,8 @@ proc_85_continue_444:
 	mov r0, #0x00010000			; r0=rConstants[17] (1.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
-	; BC_CONST [a1]
-	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
+	; BC_CONST [a3]
+	mov r0, #0x00060000			; r0=rConstants[35] (6.0000)
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_DRAW [04]
@@ -13719,8 +13719,8 @@ proc_85_continue_444:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutCircle
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a0]
-	mov r0, #0x00050000			; r0=rConstants[32] (5.0000)
+	; BC_CONST [a1]
+	mov r0, #0x00050000			; r0=rConstants[33] (5.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_85_continue_445
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -13731,8 +13731,8 @@ proc_85_continue_445:
 	mov r0, #0x00010000			; r0=rConstants[17] (1.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
-	; BC_CONST [a0]
-	mov r0, #0x00050000			; r0=rConstants[32] (5.0000)
+	; BC_CONST [a1]
+	mov r0, #0x00050000			; r0=rConstants[33] (5.0000)
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_DRAW [04]
@@ -13741,8 +13741,8 @@ proc_85_continue_445:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutCircle
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a5]
-	mov r0, #0x000a0000			; r0=rConstants[37] (10.0000)
+	; BC_CONST [a8]
+	mov r0, #0x000a0000			; r0=rConstants[40] (10.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_85_continue_446
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -13753,8 +13753,8 @@ proc_85_continue_446:
 	mov r0, #0x00010000			; r0=rConstants[17] (1.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_DRAW [04]
@@ -13770,8 +13770,8 @@ proc_85_continue_446:
 proc_85_end:
 
 proc_86_start:
-	; BC_CONST [9a]
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	; BC_CONST [9b]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_CONST [91]
@@ -13784,20 +13784,20 @@ proc_86_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutCircle
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a0]
-	mov r0, #0x00050000			; r0=rConstants[32] (5.0000)
+	; BC_CONST [a1]
+	mov r0, #0x00050000			; r0=rConstants[33] (5.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_86_continue_447
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_86_continue_447:
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
-	; BC_CONST [9a]
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	; BC_CONST [9b]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_DRAW [04]
@@ -13806,8 +13806,8 @@ proc_86_continue_447:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutCircle
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_86_continue_448
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -13824,8 +13824,8 @@ proc_86_continue_448:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutCircle
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_86_continue_449
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -13857,26 +13857,26 @@ proc_87_start:
 	mul r1, r2, r1
 	add r0, r0, r1
 	str r0, [r5, #ST_RAND*4]
-	; BC_CONST [d0]
-	mov r0, #0x005a0000			; r0=rConstants[80] (90.0000)
-	; BC_CONST [e4]
+	; BC_CONST [d6]
+	mov r0, #0x005a0000			; r0=rConstants[86] (90.0000)
+	; BC_CONST [ea]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00a00000			; r0=rConstants[100] (160.0000)
+	mov r0, #0x00a00000			; r0=rConstants[106] (160.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [b5]
-	mov r0, #0x001e0000			; r0=rConstants[53] (30.0000)
+	; BC_CONST [b8]
+	mov r0, #0x001e0000			; r0=rConstants[56] (30.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
-	; BC_CONST [a5]
-	mov r0, #0x000a0000			; r0=rConstants[37] (10.0000)
+	; BC_CONST [a8]
+	mov r0, #0x000a0000			; r0=rConstants[40] (10.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_91_start		; r0=r_Procedures[91]
@@ -13889,8 +13889,8 @@ proc_87_start:
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
-	; BC_CONST [b5]
-	mov r0, #0x001e0000			; r0=rConstants[53] (30.0000)
+	; BC_CONST [b8]
+	mov r0, #0x001e0000			; r0=rConstants[56] (30.0000)
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
@@ -13904,9 +13904,9 @@ proc_87_start:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_CONST [91]
 	mov r0, #0x00010000			; r0=rConstants[17] (1.0000)
-	; BC_CONST [b2]
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
@@ -13926,19 +13926,19 @@ proc_87_start:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_87_continue_450:
-	; BC_CONST [c9]
-	mov r0, #0x00460000			; r0=rConstants[73] (70.0000)
+	; BC_CONST [ce]
+	mov r0, #0x00460000			; r0=rConstants[78] (70.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
-	; BC_CONST [c9]
-	mov r0, #0x00460000			; r0=rConstants[73] (70.0000)
-	; BC_CONST [d3]
+	; BC_CONST [ce]
+	mov r0, #0x00460000			; r0=rConstants[78] (70.0000)
+	; BC_CONST [d9]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00640000			; r0=rConstants[83] (100.0000)
+	mov r0, #0x00640000			; r0=rConstants[89] (100.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
@@ -13950,11 +13950,11 @@ proc_87_continue_450:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutSquare
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [c9]
-	mov r0, #0x00460000			; r0=rConstants[73] (70.0000)
-	; BC_CONST [ef]
+	; BC_CONST [ce]
+	mov r0, #0x00460000			; r0=rConstants[78] (70.0000)
+	; BC_CONST [f5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00f00000			; r0=rConstants[111] (240.0000)
+	mov r0, #0x00f00000			; r0=rConstants[117] (240.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
@@ -13966,11 +13966,11 @@ proc_87_continue_450:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutSquare
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [ed]
-	mov r0, #0x00d20000			; r0=rConstants[109] (210.0000)
-	; BC_CONST [d3]
+	; BC_CONST [f3]
+	mov r0, #0x00d20000			; r0=rConstants[115] (210.0000)
+	; BC_CONST [d9]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00640000			; r0=rConstants[83] (100.0000)
+	mov r0, #0x00640000			; r0=rConstants[89] (100.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
@@ -13982,11 +13982,11 @@ proc_87_continue_450:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutSquare
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [ed]
-	mov r0, #0x00d20000			; r0=rConstants[109] (210.0000)
-	; BC_CONST [ef]
+	; BC_CONST [f3]
+	mov r0, #0x00d20000			; r0=rConstants[115] (210.0000)
+	; BC_CONST [f5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00f00000			; r0=rConstants[111] (240.0000)
+	mov r0, #0x00f00000			; r0=rConstants[117] (240.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
@@ -14023,26 +14023,26 @@ proc_88_start:
 	mul r1, r2, r1
 	add r0, r0, r1
 	str r0, [r5, #ST_RAND*4]
-	; BC_CONST [d0]
-	mov r0, #0x005a0000			; r0=rConstants[80] (90.0000)
-	; BC_CONST [e4]
+	; BC_CONST [d6]
+	mov r0, #0x005a0000			; r0=rConstants[86] (90.0000)
+	; BC_CONST [ea]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00a00000			; r0=rConstants[100] (160.0000)
+	mov r0, #0x00a00000			; r0=rConstants[106] (160.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [b5]
-	mov r0, #0x001e0000			; r0=rConstants[53] (30.0000)
+	; BC_CONST [b8]
+	mov r0, #0x001e0000			; r0=rConstants[56] (30.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
-	; BC_CONST [a5]
-	mov r0, #0x000a0000			; r0=rConstants[37] (10.0000)
+	; BC_CONST [a8]
+	mov r0, #0x000a0000			; r0=rConstants[40] (10.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_91_start		; r0=r_Procedures[91]
@@ -14055,8 +14055,8 @@ proc_88_start:
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
-	; BC_CONST [bb]
-	mov r0, #0x00280000			; r0=rConstants[59] (40.0000)
+	; BC_CONST [bf]
+	mov r0, #0x00280000			; r0=rConstants[63] (40.0000)
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
@@ -14070,9 +14070,9 @@ proc_88_start:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_CONST [91]
 	mov r0, #0x00010000			; r0=rConstants[17] (1.0000)
-	; BC_CONST [b2]
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
@@ -14092,19 +14092,19 @@ proc_88_start:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_88_continue_451:
-	; BC_CONST [c9]
-	mov r0, #0x00460000			; r0=rConstants[73] (70.0000)
+	; BC_CONST [ce]
+	mov r0, #0x00460000			; r0=rConstants[78] (70.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
-	; BC_CONST [c9]
-	mov r0, #0x00460000			; r0=rConstants[73] (70.0000)
-	; BC_CONST [d3]
+	; BC_CONST [ce]
+	mov r0, #0x00460000			; r0=rConstants[78] (70.0000)
+	; BC_CONST [d9]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00640000			; r0=rConstants[83] (100.0000)
+	mov r0, #0x00640000			; r0=rConstants[89] (100.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
@@ -14116,11 +14116,11 @@ proc_88_continue_451:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutSquare
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [c9]
-	mov r0, #0x00460000			; r0=rConstants[73] (70.0000)
-	; BC_CONST [ef]
+	; BC_CONST [ce]
+	mov r0, #0x00460000			; r0=rConstants[78] (70.0000)
+	; BC_CONST [f5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00f00000			; r0=rConstants[111] (240.0000)
+	mov r0, #0x00f00000			; r0=rConstants[117] (240.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
@@ -14132,11 +14132,11 @@ proc_88_continue_451:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutSquare
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [ed]
-	mov r0, #0x00d20000			; r0=rConstants[109] (210.0000)
-	; BC_CONST [d3]
+	; BC_CONST [f3]
+	mov r0, #0x00d20000			; r0=rConstants[115] (210.0000)
+	; BC_CONST [d9]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00640000			; r0=rConstants[83] (100.0000)
+	mov r0, #0x00640000			; r0=rConstants[89] (100.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
@@ -14148,11 +14148,11 @@ proc_88_continue_451:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutSquare
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [ed]
-	mov r0, #0x00d20000			; r0=rConstants[109] (210.0000)
-	; BC_CONST [ef]
+	; BC_CONST [f3]
+	mov r0, #0x00d20000			; r0=rConstants[115] (210.0000)
+	; BC_CONST [f5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00f00000			; r0=rConstants[111] (240.0000)
+	mov r0, #0x00f00000			; r0=rConstants[117] (240.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
@@ -14176,11 +14176,11 @@ proc_89_start:
 	; BC_WHEN [17]
 	movs r0, r0					; update Status flags
 	beq proc_89_target_452
-	; BC_CONST [a3]
-	mov r0, #0x00080000			; r0=rConstants[35] (8.0000)
-	; BC_CONST [b6]
+	; BC_CONST [a6]
+	mov r0, #0x00080000			; r0=rConstants[38] (8.0000)
+	; BC_CONST [b9]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x001f0000			; r0=rConstants[54] (31.0000)
+	mov r0, #0x001f0000			; r0=rConstants[57] (31.0000)
 	; BC_RAND [03]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_RAND*4]
@@ -14211,9 +14211,9 @@ proc_89_start:
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
 	; BC_CONST [91]
 	mov r0, #0x00010000			; r0=rConstants[17] (1.0000)
-	; BC_CONST [b2]
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
@@ -14227,9 +14227,9 @@ proc_89_start:
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	subs r0, r0, r1				; r0=r0 subs r1
-	; BC_CONST [a3]
+	; BC_CONST [a6]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00080000			; r0=rConstants[35] (8.0000)
+	mov r0, #0x00080000			; r0=rConstants[38] (8.0000)
 	; BC_RAND [03]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_RAND*4]
@@ -14249,15 +14249,15 @@ proc_89_start:
 	mov r1, r1, asl #8
 	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
-	; BC_CONST [9c]
+	; BC_CONST [9d]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	adds r0, r0, r1				; r0=r0 adds r1
-	; BC_CONST [9c]
+	; BC_CONST [9d]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_RAND [03]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_RAND*4]
@@ -14277,9 +14277,9 @@ proc_89_start:
 	mov r1, r1, asl #8
 	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
-	; BC_CONST [96]
+	; BC_CONST [97]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00018000			; r0=rConstants[22] (1.5000)
+	mov r0, #0x00018000			; r0=rConstants[23] (1.5000)
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	subs r0, r0, r1				; r0=r0 subs r1
@@ -14330,8 +14330,8 @@ proc_90_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutCircle
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_RAND [03]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_RAND*4]
@@ -14351,9 +14351,9 @@ proc_90_start:
 	mov r1, r1, asl #8
 	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
-	; BC_CONST [a0]
+	; BC_CONST [a1]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00050000			; r0=rConstants[32] (5.0000)
+	mov r0, #0x00050000			; r0=rConstants[33] (5.0000)
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	adds r0, r0, r1				; r0=r0 adds r1
@@ -14474,96 +14474,24 @@ proc_91_target_455:
 proc_91_end:
 
 proc_92_start:
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
-	; BC_CONST [b2]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_MUL [0f]
-	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asl #8
-	mov r0, r0, asr #16			; Implement muls.w (signed)
-	mov r1, r1, asl #8
-	mov r1, r1, asr #16			; Implement muls.w (signed)
-	mul r0, r1, r0				; r0=r0*r1
-	; BC_CONST [a0]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00050000			; r0=rConstants[32] (5.0000)
-	; BC_CONST [a5]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x000a0000			; r0=rConstants[37] (10.0000)
-	; BC_PROC [07]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	adr r0, proc_93_start		; r0=r_Procedures[93]
-	; BC_FORK [23]
-	mov r1, #3
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl ForkState				; r0=proc address, r1=num_args
-	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [ab]
-	mov r0, #0x00100000			; r0=rConstants[43] (16.0000)
-	; BC_RSTATE [76]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
-	; BC_OP [3d]
-	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	adds r0, r0, r1				; r0=r0 adds r1
-	; BC_WSTATE [56]
-	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
-	; BC_CONST [b2]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_MUL [0f]
-	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asl #8
-	mov r0, r0, asr #16			; Implement muls.w (signed)
-	mov r1, r1, asl #8
-	mov r1, r1, asr #16			; Implement muls.w (signed)
-	mul r0, r1, r0				; r0=r0*r1
-	; BC_CONST [a0]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00050000			; r0=rConstants[32] (5.0000)
-	; BC_CONST [af]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
-	; BC_PROC [07]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	adr r0, proc_93_start		; r0=r_Procedures[93]
-	; BC_FORK [23]
-	mov r1, #3
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl ForkState				; r0=proc address, r1=num_args
-	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [ab]
-	mov r0, #0x00100000			; r0=rConstants[43] (16.0000)
-	; BC_RSTATE [76]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
-	; BC_OP [3d]
-	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	adds r0, r0, r1				; r0=r0 adds r1
-	; BC_WSTATE [56]
-	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
-	; BC_CONST [b2]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_MUL [0f]
-	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asl #8
-	mov r0, r0, asr #16			; Implement muls.w (signed)
-	mov r1, r1, asl #8
-	mov r1, r1, asr #16			; Implement muls.w (signed)
-	mul r0, r1, r0				; r0=r0*r1
-	; BC_CONST [a0]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00050000			; r0=rConstants[32] (5.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x001e0000			; r0=rConstants[53] (30.0000)
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_MUL [0f]
+	ldr r1, [r3], #4			; Pop r1 off StateStack.
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
+	mul r0, r1, r0				; r0=r0*r1
+	; BC_CONST [a1]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	mov r0, #0x00050000			; r0=rConstants[33] (5.0000)
+	; BC_CONST [a8]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	mov r0, #0x000a0000			; r0=rConstants[40] (10.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_93_start		; r0=r_Procedures[93]
@@ -14572,8 +14500,8 @@ proc_92_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [ab]
-	mov r0, #0x00100000			; r0=rConstants[43] (16.0000)
+	; BC_CONST [ae]
+	mov r0, #0x00100000			; r0=rConstants[46] (16.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -14582,11 +14510,11 @@ proc_92_start:
 	adds r0, r0, r1				; r0=r0 adds r1
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
-	; BC_CONST [b2]
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -14594,12 +14522,12 @@ proc_92_start:
 	mov r1, r1, asl #8
 	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
-	; BC_CONST [a0]
+	; BC_CONST [a1]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00050000			; r0=rConstants[32] (5.0000)
-	; BC_CONST [bb]
+	mov r0, #0x00050000			; r0=rConstants[33] (5.0000)
+	; BC_CONST [b2]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00280000			; r0=rConstants[59] (40.0000)
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_93_start		; r0=r_Procedures[93]
@@ -14608,8 +14536,8 @@ proc_92_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [ab]
-	mov r0, #0x00100000			; r0=rConstants[43] (16.0000)
+	; BC_CONST [ae]
+	mov r0, #0x00100000			; r0=rConstants[46] (16.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -14618,11 +14546,11 @@ proc_92_start:
 	adds r0, r0, r1				; r0=r0 adds r1
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
-	; BC_CONST [b2]
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -14630,12 +14558,12 @@ proc_92_start:
 	mov r1, r1, asl #8
 	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
-	; BC_CONST [a0]
+	; BC_CONST [a1]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00050000			; r0=rConstants[32] (5.0000)
-	; BC_CONST [c1]
+	mov r0, #0x00050000			; r0=rConstants[33] (5.0000)
+	; BC_CONST [b8]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00320000			; r0=rConstants[65] (50.0000)
+	mov r0, #0x001e0000			; r0=rConstants[56] (30.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_93_start		; r0=r_Procedures[93]
@@ -14644,8 +14572,8 @@ proc_92_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [ab]
-	mov r0, #0x00100000			; r0=rConstants[43] (16.0000)
+	; BC_CONST [ae]
+	mov r0, #0x00100000			; r0=rConstants[46] (16.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -14654,11 +14582,11 @@ proc_92_start:
 	adds r0, r0, r1				; r0=r0 adds r1
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
-	; BC_CONST [b2]
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -14666,12 +14594,84 @@ proc_92_start:
 	mov r1, r1, asl #8
 	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
-	; BC_CONST [a0]
+	; BC_CONST [a1]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00050000			; r0=rConstants[32] (5.0000)
-	; BC_CONST [c3]
+	mov r0, #0x00050000			; r0=rConstants[33] (5.0000)
+	; BC_CONST [bf]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x003c0000			; r0=rConstants[67] (60.0000)
+	mov r0, #0x00280000			; r0=rConstants[63] (40.0000)
+	; BC_PROC [07]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	adr r0, proc_93_start		; r0=r_Procedures[93]
+	; BC_FORK [23]
+	mov r1, #3
+	str lr, [sp, #-4]!			; Push lr on program stack.
+	bl ForkState				; r0=proc address, r1=num_args
+	ldr lr, [sp], #4			; Pop lr off program stack.
+	; BC_CONST [ae]
+	mov r0, #0x00100000			; r0=rConstants[46] (16.0000)
+	; BC_RSTATE [76]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	; BC_OP [3d]
+	ldr r1, [r3], #4			; Pop r1 off StateStack.
+	adds r0, r0, r1				; r0=r0 adds r1
+	; BC_WSTATE [56]
+	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
+	; BC_CONST [b5]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_MUL [0f]
+	ldr r1, [r3], #4			; Pop r1 off StateStack.
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
+	mul r0, r1, r0				; r0=r0*r1
+	; BC_CONST [a1]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	mov r0, #0x00050000			; r0=rConstants[33] (5.0000)
+	; BC_CONST [c5]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	mov r0, #0x00320000			; r0=rConstants[69] (50.0000)
+	; BC_PROC [07]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	adr r0, proc_93_start		; r0=r_Procedures[93]
+	; BC_FORK [23]
+	mov r1, #3
+	str lr, [sp, #-4]!			; Push lr on program stack.
+	bl ForkState				; r0=proc address, r1=num_args
+	ldr lr, [sp], #4			; Pop lr off program stack.
+	; BC_CONST [ae]
+	mov r0, #0x00100000			; r0=rConstants[46] (16.0000)
+	; BC_RSTATE [76]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
+	; BC_OP [3d]
+	ldr r1, [r3], #4			; Pop r1 off StateStack.
+	adds r0, r0, r1				; r0=r0 adds r1
+	; BC_WSTATE [56]
+	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
+	; BC_CONST [b5]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_MUL [0f]
+	ldr r1, [r3], #4			; Pop r1 off StateStack.
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
+	mul r0, r1, r0				; r0=r0*r1
+	; BC_CONST [a1]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	mov r0, #0x00050000			; r0=rConstants[33] (5.0000)
+	; BC_CONST [c7]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	mov r0, #0x003c0000			; r0=rConstants[71] (60.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_93_start		; r0=r_Procedures[93]
@@ -14731,9 +14731,9 @@ proc_93_continue_458:
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	subs r0, r0, r1				; r0=r0 subs r1
-	; BC_CONST [80]
+	; BC_CONST [92]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
+	ldr r0, [r4, #18*4]			; r0=rConstants[18]=0x000107ae (1.0300)
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
@@ -14786,11 +14786,11 @@ proc_94_start:
 proc_94_end:
 
 proc_95_start:
-	; BC_CONST [cc]
-	mov r0, #0x00500000			; r0=rConstants[76] (80.0000)
-	; BC_CONST [dd]
+	; BC_CONST [d2]
+	mov r0, #0x00500000			; r0=rConstants[82] (80.0000)
+	; BC_CONST [e3]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00820000			; r0=rConstants[93] (130.0000)
+	mov r0, #0x00820000			; r0=rConstants[99] (130.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
@@ -14800,17 +14800,17 @@ proc_95_start:
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [c3]
-	mov r0, #0x003c0000			; r0=rConstants[67] (60.0000)
+	; BC_CONST [c7]
+	mov r0, #0x003c0000			; r0=rConstants[71] (60.0000)
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
-	; BC_CONST [b2]
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -14818,12 +14818,12 @@ proc_95_start:
 	mov r1, r1, asl #8
 	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
-	; BC_CONST [9e]
+	; BC_CONST [9f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
-	; BC_CONST [b2]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -14839,16 +14839,16 @@ proc_95_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [af]
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
+	; BC_CONST [b2]
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
 	; BC_NEG [0d]
 	rsb r0, r0, #0				; r0=0-r0
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [c6]
-	mov r0, #0x00400000			; r0=rConstants[70] (64.0000)
+	; BC_CONST [ca]
+	mov r0, #0x00400000			; r0=rConstants[74] (64.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -14857,17 +14857,17 @@ proc_95_start:
 	adds r0, r0, r1				; r0=r0 adds r1
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [c3]
-	mov r0, #0x003c0000			; r0=rConstants[67] (60.0000)
+	; BC_CONST [c7]
+	mov r0, #0x003c0000			; r0=rConstants[71] (60.0000)
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
-	; BC_CONST [b2]
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -14875,12 +14875,12 @@ proc_95_start:
 	mov r1, r1, asl #8
 	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
-	; BC_CONST [9e]
+	; BC_CONST [9f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
-	; BC_CONST [b2]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -14896,16 +14896,16 @@ proc_95_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [af]
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
+	; BC_CONST [b2]
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
 	; BC_NEG [0d]
 	rsb r0, r0, #0				; r0=0-r0
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [c6]
-	mov r0, #0x00400000			; r0=rConstants[70] (64.0000)
+	; BC_CONST [ca]
+	mov r0, #0x00400000			; r0=rConstants[74] (64.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -14914,17 +14914,17 @@ proc_95_start:
 	adds r0, r0, r1				; r0=r0 adds r1
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [c3]
-	mov r0, #0x003c0000			; r0=rConstants[67] (60.0000)
+	; BC_CONST [c7]
+	mov r0, #0x003c0000			; r0=rConstants[71] (60.0000)
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
-	; BC_CONST [b2]
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -14932,12 +14932,12 @@ proc_95_start:
 	mov r1, r1, asl #8
 	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
-	; BC_CONST [9e]
+	; BC_CONST [9f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
-	; BC_CONST [b2]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -14953,16 +14953,16 @@ proc_95_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [af]
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
+	; BC_CONST [b2]
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
 	; BC_NEG [0d]
 	rsb r0, r0, #0				; r0=0-r0
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [c6]
-	mov r0, #0x00400000			; r0=rConstants[70] (64.0000)
+	; BC_CONST [ca]
+	mov r0, #0x00400000			; r0=rConstants[74] (64.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -14971,17 +14971,17 @@ proc_95_start:
 	adds r0, r0, r1				; r0=r0 adds r1
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [c3]
-	mov r0, #0x003c0000			; r0=rConstants[67] (60.0000)
+	; BC_CONST [c7]
+	mov r0, #0x003c0000			; r0=rConstants[71] (60.0000)
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
-	; BC_CONST [b2]
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -14989,12 +14989,12 @@ proc_95_start:
 	mov r1, r1, asl #8
 	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
-	; BC_CONST [9e]
+	; BC_CONST [9f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
-	; BC_CONST [b2]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -15010,8 +15010,8 @@ proc_95_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [af]
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
+	; BC_CONST [b2]
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
 	; BC_NEG [0d]
 	rsb r0, r0, #0				; r0=0-r0
 	; BC_MOVE [0e]
@@ -15037,8 +15037,8 @@ proc_96_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [bb]
-	mov r0, #0x00280000			; r0=rConstants[59] (40.0000)
+	; BC_CONST [bf]
+	mov r0, #0x00280000			; r0=rConstants[63] (40.0000)
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
@@ -15073,8 +15073,8 @@ proc_96_start:
 	adds r0, r0, r1				; r0=r0 adds r1
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
@@ -15115,15 +15115,15 @@ proc_96_target_459:
 proc_96_end:
 
 proc_97_start:
-	; BC_CONST [a0]
-	mov r0, #0x00050000			; r0=rConstants[32] (5.0000)
+	; BC_CONST [a1]
+	mov r0, #0x00050000			; r0=rConstants[33] (5.0000)
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
-	; BC_CONST [c9]
-	mov r0, #0x00460000			; r0=rConstants[73] (70.0000)
-	; BC_CONST [c9]
+	; BC_CONST [ce]
+	mov r0, #0x00460000			; r0=rConstants[78] (70.0000)
+	; BC_CONST [ce]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00460000			; r0=rConstants[73] (70.0000)
+	mov r0, #0x00460000			; r0=rConstants[78] (70.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
@@ -15140,9 +15140,9 @@ proc_97_start:
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
-	; BC_CONST [b5]
+	; BC_CONST [b8]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x001e0000			; r0=rConstants[53] (30.0000)
+	mov r0, #0x001e0000			; r0=rConstants[56] (30.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_98_start		; r0=r_Procedures[98]
@@ -15151,11 +15151,11 @@ proc_97_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [d5]
-	mov r0, #0x006e0000			; r0=rConstants[85] (110.0000)
-	; BC_CONST [f1]
+	; BC_CONST [db]
+	mov r0, #0x006e0000			; r0=rConstants[91] (110.0000)
+	; BC_CONST [f7]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00fa0000			; r0=rConstants[113] (250.0000)
+	mov r0, #0x00fa0000			; r0=rConstants[119] (250.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
@@ -15174,9 +15174,9 @@ proc_97_start:
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
 	; BC_NEG [0d]
 	rsb r0, r0, #0				; r0=0-r0
-	; BC_CONST [b5]
+	; BC_CONST [b8]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x001e0000			; r0=rConstants[53] (30.0000)
+	mov r0, #0x001e0000			; r0=rConstants[56] (30.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_98_start		; r0=r_Procedures[98]
@@ -15197,8 +15197,8 @@ proc_98_start:
 	; BC_WHEN [17]
 	movs r0, r0					; update Status flags
 	beq proc_98_target_461
-	; BC_CONST [94]
-	ldr r0, [r4, #20*4]			; r0=rConstants[20]=0x00016666 (1.4000)
+	; BC_CONST [95]
+	ldr r0, [r4, #21*4]			; r0=rConstants[21]=0x00016666 (1.4000)
 	; BC_RLOCAL [62]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
@@ -15211,8 +15211,8 @@ proc_98_start:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_PLOT [06]
@@ -15221,137 +15221,17 @@ proc_98_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutSquare
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a5]
-	mov r0, #0x000a0000			; r0=rConstants[37] (10.0000)
-	; BC_CONST [9a]
+	; BC_CONST [a8]
+	mov r0, #0x000a0000			; r0=rConstants[40] (10.0000)
+	; BC_CONST [9b]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
-	; BC_DIV [09]
-	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r1, r1, asl #8
-	mov r1, r1, asr #16			; Implement divs.w overflow behaviour!
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl divide					; r0=r0/r1
-	ldr lr, [sp], #4			; Pop lr off program stack.
-	mov r0, r0, asl #8
-	; BC_MUL [0f]
-	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asl #8
-	mov r0, r0, asr #16			; Implement muls.w (signed)
-	mov r1, r1, asl #8
-	mov r1, r1, asr #16			; Implement muls.w (signed)
-	mul r0, r1, r0				; r0=r0*r1
-	; BC_SINE [0b]
-	mov r1, #0xfffc
-	and r0, r0, r1
-	ldr r0, [r7, r0]			; r7=r_Sinus
-	mov r0, r0, asl #2
-	; BC_MUL [0f]
-	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asl #8
-	mov r0, r0, asr #16			; Implement muls.w (signed)
-	mov r1, r1, asl #8
-	mov r1, r1, asr #16			; Implement muls.w (signed)
-	mul r0, r1, r0				; r0=r0*r1
-	; BC_RLOCAL [62]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
-	; BC_OP [3d]
-	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	adds r0, r0, r1				; r0=r0 adds r1
-	; BC_WSTATE [53]
-	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
-	; BC_CONST [a0]
-	mov r0, #0x00050000			; r0=rConstants[32] (5.0000)
-	; BC_WSTATE [54]
-	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
-	; BC_PLOT [06]
-	add r6, r5, #4
-	ldmia r6, {r8-r11}		; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl PutSquare
-	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9a]
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
-	; BC_CONST [a5]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x000a0000			; r0=rConstants[37] (10.0000)
-	; BC_CONST [9a]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
-	; BC_RLOCAL [61]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
-	; BC_RLOCAL [60]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
-	; BC_DIV [09]
-	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r1, r1, asl #8
-	mov r1, r1, asr #16			; Implement divs.w overflow behaviour!
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl divide					; r0=r0/r1
-	ldr lr, [sp], #4			; Pop lr off program stack.
-	mov r0, r0, asl #8
-	; BC_MUL [0f]
-	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asl #8
-	mov r0, r0, asr #16			; Implement muls.w (signed)
-	mov r1, r1, asl #8
-	mov r1, r1, asr #16			; Implement muls.w (signed)
-	mul r0, r1, r0				; r0=r0*r1
-	; BC_SINE [0b]
-	mov r1, #0xfffc
-	and r0, r0, r1
-	ldr r0, [r7, r0]			; r7=r_Sinus
-	mov r0, r0, asl #2
-	; BC_MUL [0f]
-	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	mov r0, r0, asl #8
-	mov r0, r0, asr #16			; Implement muls.w (signed)
-	mov r1, r1, asl #8
-	mov r1, r1, asr #16			; Implement muls.w (signed)
-	mul r0, r1, r0				; r0=r0*r1
-	; BC_RLOCAL [62]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
-	; BC_OP [3d]
-	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	adds r0, r0, r1				; r0=r0 adds r1
-	; BC_OP [39]
-	ldr r1, [r3], #4			; Pop r1 off StateStack.
-	subs r0, r0, r1				; r0=r0 subs r1
-	; BC_WSTATE [53]
-	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
-	; BC_WSTATE [54]
-	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
-	; BC_PLOT [06]
-	add r6, r5, #4
-	ldmia r6, {r8-r11}		; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl PutSquare
-	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a5]
-	mov r0, #0x000a0000			; r0=rConstants[37] (10.0000)
-	; BC_CONST [9a]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
-	; BC_RLOCAL [61]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
-	; BC_RLOCAL [60]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
-	; BC_NEG [0d]
-	rsb r0, r0, #0				; r0=0-r0
 	; BC_DIV [09]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r1, r1, asl #8
@@ -15388,7 +15268,127 @@ proc_98_start:
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_CONST [a1]
-	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
+	mov r0, #0x00050000			; r0=rConstants[33] (5.0000)
+	; BC_WSTATE [54]
+	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
+	; BC_PLOT [06]
+	add r6, r5, #4
+	ldmia r6, {r8-r11}		; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	str lr, [sp, #-4]!			; Push lr on program stack.
+	bl PutSquare
+	ldr lr, [sp], #4			; Pop lr off program stack.
+	; BC_CONST [9b]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
+	; BC_CONST [a8]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	mov r0, #0x000a0000			; r0=rConstants[40] (10.0000)
+	; BC_CONST [9b]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
+	; BC_RLOCAL [61]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	; BC_RLOCAL [60]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	; BC_DIV [09]
+	ldr r1, [r3], #4			; Pop r1 off StateStack.
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement divs.w overflow behaviour!
+	str lr, [sp, #-4]!			; Push lr on program stack.
+	bl divide					; r0=r0/r1
+	ldr lr, [sp], #4			; Pop lr off program stack.
+	mov r0, r0, asl #8
+	; BC_MUL [0f]
+	ldr r1, [r3], #4			; Pop r1 off StateStack.
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
+	mul r0, r1, r0				; r0=r0*r1
+	; BC_SINE [0b]
+	mov r1, #0xfffc
+	and r0, r0, r1
+	ldr r0, [r7, r0]			; r7=r_Sinus
+	mov r0, r0, asl #2
+	; BC_MUL [0f]
+	ldr r1, [r3], #4			; Pop r1 off StateStack.
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
+	mul r0, r1, r0				; r0=r0*r1
+	; BC_RLOCAL [62]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	; BC_OP [3d]
+	ldr r1, [r3], #4			; Pop r1 off StateStack.
+	adds r0, r0, r1				; r0=r0 adds r1
+	; BC_OP [39]
+	ldr r1, [r3], #4			; Pop r1 off StateStack.
+	subs r0, r0, r1				; r0=r0 subs r1
+	; BC_WSTATE [53]
+	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
+	; BC_WSTATE [54]
+	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
+	; BC_PLOT [06]
+	add r6, r5, #4
+	ldmia r6, {r8-r11}		; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	str lr, [sp, #-4]!			; Push lr on program stack.
+	bl PutSquare
+	ldr lr, [sp], #4			; Pop lr off program stack.
+	; BC_CONST [a8]
+	mov r0, #0x000a0000			; r0=rConstants[40] (10.0000)
+	; BC_CONST [9b]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
+	; BC_RLOCAL [61]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
+	; BC_RLOCAL [60]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
+	; BC_NEG [0d]
+	rsb r0, r0, #0				; r0=0-r0
+	; BC_DIV [09]
+	ldr r1, [r3], #4			; Pop r1 off StateStack.
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement divs.w overflow behaviour!
+	str lr, [sp, #-4]!			; Push lr on program stack.
+	bl divide					; r0=r0/r1
+	ldr lr, [sp], #4			; Pop lr off program stack.
+	mov r0, r0, asl #8
+	; BC_MUL [0f]
+	ldr r1, [r3], #4			; Pop r1 off StateStack.
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
+	mul r0, r1, r0				; r0=r0*r1
+	; BC_SINE [0b]
+	mov r1, #0xfffc
+	and r0, r0, r1
+	ldr r0, [r7, r0]			; r7=r_Sinus
+	mov r0, r0, asl #2
+	; BC_MUL [0f]
+	ldr r1, [r3], #4			; Pop r1 off StateStack.
+	mov r0, r0, asl #8
+	mov r0, r0, asr #16			; Implement muls.w (signed)
+	mov r1, r1, asl #8
+	mov r1, r1, asr #16			; Implement muls.w (signed)
+	mul r0, r1, r0				; r0=r0*r1
+	; BC_RLOCAL [62]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
+	; BC_OP [3d]
+	ldr r1, [r3], #4			; Pop r1 off StateStack.
+	adds r0, r0, r1				; r0=r0 adds r1
+	; BC_WSTATE [53]
+	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
+	; BC_CONST [a3]
+	mov r0, #0x00060000			; r0=rConstants[35] (6.0000)
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_PLOT [06]
@@ -15427,8 +15427,8 @@ proc_98_continue_462:
 	; BC_ELSE [01]
 	b proc_98_target_463
 proc_98_target_461:
-	; BC_CONST [9a]
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	; BC_CONST [9b]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_RLOCAL [62]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
@@ -15441,8 +15441,8 @@ proc_98_target_461:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_PLOT [06]
@@ -15460,15 +15460,15 @@ proc_98_target_463:
 proc_98_end:
 
 proc_99_start:
-	; BC_CONST [a2]
-	mov r0, #0x00070000			; r0=rConstants[34] (7.0000)
+	; BC_CONST [a5]
+	mov r0, #0x00070000			; r0=rConstants[37] (7.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_RSTATE [7a]
 	ldr r0, [r5, #ST_WIRE2*4]		; r0=State[ST_WIRE2]
-	; BC_CONST [a0]
+	; BC_CONST [a1]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00050000			; r0=rConstants[32] (5.0000)
+	mov r0, #0x00050000			; r0=rConstants[33] (5.0000)
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	adds r0, r0, r1				; r0=r0 adds r1
@@ -15480,15 +15480,15 @@ proc_99_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutCircle
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_RSTATE [7a]
 	ldr r0, [r5, #ST_WIRE2*4]		; r0=State[ST_WIRE2]
-	; BC_CONST [a1]
+	; BC_CONST [a3]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
+	mov r0, #0x00060000			; r0=rConstants[35] (6.0000)
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	adds r0, r0, r1				; r0=r0 adds r1
@@ -15508,21 +15508,21 @@ proc_99_start:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_99_continue_464:
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_RSTATE [7a]
 	ldr r0, [r5, #ST_WIRE2*4]		; r0=State[ST_WIRE2]
-	; BC_CONST [a0]
+	; BC_CONST [a1]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00050000			; r0=rConstants[32] (5.0000)
+	mov r0, #0x00050000			; r0=rConstants[33] (5.0000)
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	adds r0, r0, r1				; r0=r0 adds r1
@@ -15542,23 +15542,23 @@ proc_99_continue_464:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_99_continue_465:
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_NEG [0d]
 	rsb r0, r0, #0				; r0=0-r0
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_RSTATE [7a]
 	ldr r0, [r5, #ST_WIRE2*4]		; r0=State[ST_WIRE2]
-	; BC_CONST [9e]
+	; BC_CONST [9f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	adds r0, r0, r1				; r0=r0 adds r1
@@ -15570,23 +15570,23 @@ proc_99_continue_465:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutCircle
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a0]
-	mov r0, #0x00050000			; r0=rConstants[32] (5.0000)
+	; BC_CONST [a1]
+	mov r0, #0x00050000			; r0=rConstants[33] (5.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_99_continue_466
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_99_continue_466:
-	; BC_CONST [a3]
-	mov r0, #0x00080000			; r0=rConstants[35] (8.0000)
+	; BC_CONST [a6]
+	mov r0, #0x00080000			; r0=rConstants[38] (8.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_RSTATE [7a]
 	ldr r0, [r5, #ST_WIRE2*4]		; r0=State[ST_WIRE2]
-	; BC_CONST [9e]
+	; BC_CONST [9f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	adds r0, r0, r1				; r0=r0 adds r1
@@ -15598,8 +15598,8 @@ proc_99_continue_466:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutCircle
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a0]
-	mov r0, #0x00050000			; r0=rConstants[32] (5.0000)
+	; BC_CONST [a1]
+	mov r0, #0x00050000			; r0=rConstants[33] (5.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_99_continue_467
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -15613,22 +15613,22 @@ proc_99_continue_467:
 proc_99_end:
 
 proc_100_start:
-	; BC_CONST [e0]
-	mov r0, #0x008c0000			; r0=rConstants[96] (140.0000)
+	; BC_CONST [e6]
+	mov r0, #0x008c0000			; r0=rConstants[102] (140.0000)
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [d3]
-	mov r0, #0x00640000			; r0=rConstants[83] (100.0000)
-	; BC_CONST [e7]
+	; BC_CONST [d9]
+	mov r0, #0x00640000			; r0=rConstants[89] (100.0000)
+	; BC_CONST [ed]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00b40000			; r0=rConstants[103] (180.0000)
+	mov r0, #0x00b40000			; r0=rConstants[109] (180.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [a3]
-	mov r0, #0x00080000			; r0=rConstants[35] (8.0000)
+	; BC_CONST [a6]
+	mov r0, #0x00080000			; r0=rConstants[38] (8.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_101_start		; r0=r_Procedures[101]
@@ -15637,16 +15637,16 @@ proc_100_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a3]
-	mov r0, #0x00080000			; r0=rConstants[35] (8.0000)
+	; BC_CONST [a6]
+	mov r0, #0x00080000			; r0=rConstants[38] (8.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_100_continue_468
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_100_continue_468:
-	; BC_CONST [af]
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
+	; BC_CONST [b2]
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -15655,8 +15655,8 @@ proc_100_continue_468:
 	adds r0, r0, r1				; r0=r0 adds r1
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [a3]
-	mov r0, #0x00080000			; r0=rConstants[35] (8.0000)
+	; BC_CONST [a6]
+	mov r0, #0x00080000			; r0=rConstants[38] (8.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_101_start		; r0=r_Procedures[101]
@@ -15665,16 +15665,16 @@ proc_100_continue_468:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a3]
-	mov r0, #0x00080000			; r0=rConstants[35] (8.0000)
+	; BC_CONST [a6]
+	mov r0, #0x00080000			; r0=rConstants[38] (8.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_100_continue_469
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_100_continue_469:
-	; BC_CONST [af]
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
+	; BC_CONST [b2]
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -15683,8 +15683,8 @@ proc_100_continue_469:
 	adds r0, r0, r1				; r0=r0 adds r1
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [a3]
-	mov r0, #0x00080000			; r0=rConstants[35] (8.0000)
+	; BC_CONST [a6]
+	mov r0, #0x00080000			; r0=rConstants[38] (8.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_101_start		; r0=r_Procedures[101]
@@ -15693,16 +15693,16 @@ proc_100_continue_469:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a3]
-	mov r0, #0x00080000			; r0=rConstants[35] (8.0000)
+	; BC_CONST [a6]
+	mov r0, #0x00080000			; r0=rConstants[38] (8.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_100_continue_470
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_100_continue_470:
-	; BC_CONST [af]
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
+	; BC_CONST [b2]
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -15711,8 +15711,8 @@ proc_100_continue_470:
 	adds r0, r0, r1				; r0=r0 adds r1
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [a3]
-	mov r0, #0x00080000			; r0=rConstants[35] (8.0000)
+	; BC_CONST [a6]
+	mov r0, #0x00080000			; r0=rConstants[38] (8.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_101_start		; r0=r_Procedures[101]
@@ -15721,16 +15721,16 @@ proc_100_continue_470:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a3]
-	mov r0, #0x00080000			; r0=rConstants[35] (8.0000)
+	; BC_CONST [a6]
+	mov r0, #0x00080000			; r0=rConstants[38] (8.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_100_continue_471
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_100_continue_471:
-	; BC_CONST [af]
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
+	; BC_CONST [b2]
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -15739,8 +15739,8 @@ proc_100_continue_471:
 	adds r0, r0, r1				; r0=r0 adds r1
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [a3]
-	mov r0, #0x00080000			; r0=rConstants[35] (8.0000)
+	; BC_CONST [a6]
+	mov r0, #0x00080000			; r0=rConstants[38] (8.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_101_start		; r0=r_Procedures[101]
@@ -15749,16 +15749,16 @@ proc_100_continue_471:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a3]
-	mov r0, #0x00080000			; r0=rConstants[35] (8.0000)
+	; BC_CONST [a6]
+	mov r0, #0x00080000			; r0=rConstants[38] (8.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_100_continue_472
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_100_continue_472:
-	; BC_CONST [af]
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
+	; BC_CONST [b2]
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -15767,8 +15767,8 @@ proc_100_continue_472:
 	adds r0, r0, r1				; r0=r0 adds r1
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [a3]
-	mov r0, #0x00080000			; r0=rConstants[35] (8.0000)
+	; BC_CONST [a6]
+	mov r0, #0x00080000			; r0=rConstants[38] (8.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_101_start		; r0=r_Procedures[101]
@@ -15777,16 +15777,16 @@ proc_100_continue_472:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a3]
-	mov r0, #0x00080000			; r0=rConstants[35] (8.0000)
+	; BC_CONST [a6]
+	mov r0, #0x00080000			; r0=rConstants[38] (8.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_100_continue_473
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_100_continue_473:
-	; BC_CONST [af]
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
+	; BC_CONST [b2]
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -15795,8 +15795,8 @@ proc_100_continue_473:
 	adds r0, r0, r1				; r0=r0 adds r1
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [a3]
-	mov r0, #0x00080000			; r0=rConstants[35] (8.0000)
+	; BC_CONST [a6]
+	mov r0, #0x00080000			; r0=rConstants[38] (8.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_101_start		; r0=r_Procedures[101]
@@ -15805,16 +15805,16 @@ proc_100_continue_473:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a7]
-	mov r0, #0x000c0000			; r0=rConstants[39] (12.0000)
+	; BC_CONST [aa]
+	mov r0, #0x000c0000			; r0=rConstants[42] (12.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_100_continue_474
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_100_continue_474:
-	; BC_CONST [af]
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
+	; BC_CONST [b2]
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -15823,8 +15823,8 @@ proc_100_continue_474:
 	adds r0, r0, r1				; r0=r0 adds r1
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [a3]
-	mov r0, #0x00080000			; r0=rConstants[35] (8.0000)
+	; BC_CONST [a6]
+	mov r0, #0x00080000			; r0=rConstants[38] (8.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_101_start		; r0=r_Procedures[101]
@@ -15840,8 +15840,8 @@ proc_100_continue_474:
 proc_100_end:
 
 proc_101_start:
-	; BC_CONST [bb]
-	mov r0, #0x00280000			; r0=rConstants[59] (40.0000)
+	; BC_CONST [bf]
+	mov r0, #0x00280000			; r0=rConstants[63] (40.0000)
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
@@ -15872,8 +15872,8 @@ proc_102_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a1]
-	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
+	; BC_CONST [a3]
+	mov r0, #0x00060000			; r0=rConstants[35] (6.0000)
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
@@ -15918,8 +15918,8 @@ proc_103_start:
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [c3]
-	mov r0, #0x003c0000			; r0=rConstants[67] (60.0000)
+	; BC_CONST [c7]
+	mov r0, #0x003c0000			; r0=rConstants[71] (60.0000)
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -15928,11 +15928,11 @@ proc_103_start:
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [b2]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -15947,8 +15947,8 @@ proc_103_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b5]
-	mov r0, #0x001e0000			; r0=rConstants[53] (30.0000)
+	; BC_CONST [b8]
+	mov r0, #0x001e0000			; r0=rConstants[56] (30.0000)
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_Y*4]		; r0=State[ST_Y]
@@ -15957,11 +15957,11 @@ proc_103_start:
 	adds r0, r0, r1				; r0=r0 adds r1
 	; BC_WSTATE [52]
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [b2]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -15976,8 +15976,8 @@ proc_103_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b5]
-	mov r0, #0x001e0000			; r0=rConstants[53] (30.0000)
+	; BC_CONST [b8]
+	mov r0, #0x001e0000			; r0=rConstants[56] (30.0000)
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_Y*4]		; r0=State[ST_Y]
@@ -15986,11 +15986,11 @@ proc_103_start:
 	adds r0, r0, r1				; r0=r0 adds r1
 	; BC_WSTATE [52]
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [b2]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -16012,25 +16012,25 @@ proc_103_start:
 proc_103_end:
 
 proc_104_start:
-	; BC_CONST [af]
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
+	; BC_CONST [b2]
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [cc]
-	mov r0, #0x00500000			; r0=rConstants[76] (80.0000)
-	; BC_CONST [c9]
+	; BC_CONST [d2]
+	mov r0, #0x00500000			; r0=rConstants[82] (80.0000)
+	; BC_CONST [ce]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00460000			; r0=rConstants[73] (70.0000)
+	mov r0, #0x00460000			; r0=rConstants[78] (70.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [b2]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -16045,8 +16045,8 @@ proc_104_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b5]
-	mov r0, #0x001e0000			; r0=rConstants[53] (30.0000)
+	; BC_CONST [b8]
+	mov r0, #0x001e0000			; r0=rConstants[56] (30.0000)
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_Y*4]		; r0=State[ST_Y]
@@ -16055,11 +16055,11 @@ proc_104_start:
 	adds r0, r0, r1				; r0=r0 adds r1
 	; BC_WSTATE [52]
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [b2]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -16074,8 +16074,8 @@ proc_104_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b5]
-	mov r0, #0x001e0000			; r0=rConstants[53] (30.0000)
+	; BC_CONST [b8]
+	mov r0, #0x001e0000			; r0=rConstants[56] (30.0000)
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_Y*4]		; r0=State[ST_Y]
@@ -16084,11 +16084,11 @@ proc_104_start:
 	adds r0, r0, r1				; r0=r0 adds r1
 	; BC_WSTATE [52]
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [b2]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -16125,8 +16125,8 @@ proc_105_start:
 	; BC_WHEN [17]
 	movs r0, r0					; update Status flags
 	beq proc_105_target_478
-	; BC_CONST [ad]
-	mov r0, #0x00120000			; r0=rConstants[45] (18.0000)
+	; BC_CONST [b0]
+	mov r0, #0x00120000			; r0=rConstants[48] (18.0000)
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
@@ -16135,8 +16135,8 @@ proc_105_start:
 	cmp r0, r1					; r0 cmp r1
 	; BC_WHEN [1c]
 	bge proc_105_target_479
-	; BC_CONST [a0]
-	mov r0, #0x00050000			; r0=rConstants[32] (5.0000)
+	; BC_CONST [a1]
+	mov r0, #0x00050000			; r0=rConstants[33] (5.0000)
 	; BC_NEG [0d]
 	rsb r0, r0, #0				; r0=0-r0
 	; BC_RSTATE [76]
@@ -16156,8 +16156,8 @@ proc_105_target_479:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a1]
-	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
+	; BC_CONST [a3]
+	mov r0, #0x00060000			; r0=rConstants[35] (6.0000)
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
@@ -16198,8 +16198,8 @@ proc_105_continue_480:
 	; BC_ELSE [01]
 	b proc_105_target_481
 proc_105_target_478:
-	; BC_CONST [c6]
-	mov r0, #0x00400000			; r0=rConstants[70] (64.0000)
+	; BC_CONST [ca]
+	mov r0, #0x00400000			; r0=rConstants[74] (64.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -16259,8 +16259,8 @@ proc_105_target_477:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a2]
-	mov r0, #0x00070000			; r0=rConstants[34] (7.0000)
+	; BC_CONST [a5]
+	mov r0, #0x00070000			; r0=rConstants[37] (7.0000)
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
@@ -16273,8 +16273,8 @@ proc_105_target_477:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_105_continue_484:
-	; BC_CONST [9a]
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	; BC_CONST [9b]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -16356,8 +16356,8 @@ proc_106_start:
 	; BC_WHEN [17]
 	movs r0, r0					; update Status flags
 	beq proc_106_target_487
-	; BC_CONST [ad]
-	mov r0, #0x00120000			; r0=rConstants[45] (18.0000)
+	; BC_CONST [b0]
+	mov r0, #0x00120000			; r0=rConstants[48] (18.0000)
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
@@ -16366,8 +16366,8 @@ proc_106_start:
 	cmp r0, r1					; r0 cmp r1
 	; BC_WHEN [1c]
 	bge proc_106_target_488
-	; BC_CONST [9a]
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	; BC_CONST [9b]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_NEG [0d]
 	rsb r0, r0, #0				; r0=0-r0
 	; BC_RSTATE [76]
@@ -16387,8 +16387,8 @@ proc_106_target_488:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a1]
-	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
+	; BC_CONST [a3]
+	mov r0, #0x00060000			; r0=rConstants[35] (6.0000)
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
@@ -16429,8 +16429,8 @@ proc_106_continue_489:
 	; BC_ELSE [01]
 	b proc_106_target_490
 proc_106_target_487:
-	; BC_CONST [bb]
-	mov r0, #0x00280000			; r0=rConstants[59] (40.0000)
+	; BC_CONST [bf]
+	mov r0, #0x00280000			; r0=rConstants[63] (40.0000)
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
 	; BC_RLOCAL [60]
@@ -16477,8 +16477,8 @@ proc_106_target_486:
 	; BC_WHEN [17]
 	movs r0, r0					; update Status flags
 	beq proc_106_target_492
-	; BC_CONST [ad]
-	mov r0, #0x00120000			; r0=rConstants[45] (18.0000)
+	; BC_CONST [b0]
+	mov r0, #0x00120000			; r0=rConstants[48] (18.0000)
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
@@ -16487,8 +16487,8 @@ proc_106_target_486:
 	cmp r0, r1					; r0 cmp r1
 	; BC_WHEN [1c]
 	bge proc_106_target_493
-	; BC_CONST [a0]
-	mov r0, #0x00050000			; r0=rConstants[32] (5.0000)
+	; BC_CONST [a1]
+	mov r0, #0x00050000			; r0=rConstants[33] (5.0000)
 	; BC_NEG [0d]
 	rsb r0, r0, #0				; r0=0-r0
 	; BC_RSTATE [76]
@@ -16508,8 +16508,8 @@ proc_106_target_493:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a1]
-	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
+	; BC_CONST [a3]
+	mov r0, #0x00060000			; r0=rConstants[35] (6.0000)
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
@@ -16550,8 +16550,8 @@ proc_106_continue_494:
 	; BC_ELSE [01]
 	b proc_106_target_495
 proc_106_target_492:
-	; BC_CONST [c6]
-	mov r0, #0x00400000			; r0=rConstants[70] (64.0000)
+	; BC_CONST [ca]
+	mov r0, #0x00400000			; r0=rConstants[74] (64.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -16589,8 +16589,8 @@ proc_106_target_492:
 proc_106_target_495:
 	; BC_DONE [00]
 proc_106_target_491:
-	; BC_CONST [9a]
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	; BC_CONST [9b]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_RLOCAL [62]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
@@ -16611,8 +16611,8 @@ proc_106_target_491:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a2]
-	mov r0, #0x00070000			; r0=rConstants[34] (7.0000)
+	; BC_CONST [a5]
+	mov r0, #0x00070000			; r0=rConstants[37] (7.0000)
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
@@ -16625,8 +16625,8 @@ proc_106_target_491:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_106_continue_498:
-	; BC_CONST [9a]
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	; BC_CONST [9b]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -16708,8 +16708,8 @@ proc_107_start:
 	; BC_WHEN [17]
 	movs r0, r0					; update Status flags
 	beq proc_107_target_501
-	; BC_CONST [ad]
-	mov r0, #0x00120000			; r0=rConstants[45] (18.0000)
+	; BC_CONST [b0]
+	mov r0, #0x00120000			; r0=rConstants[48] (18.0000)
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
@@ -16718,8 +16718,8 @@ proc_107_start:
 	cmp r0, r1					; r0 cmp r1
 	; BC_WHEN [1c]
 	bge proc_107_target_502
-	; BC_CONST [9a]
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	; BC_CONST [9b]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -16743,8 +16743,8 @@ proc_107_target_502:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a0]
-	mov r0, #0x00050000			; r0=rConstants[32] (5.0000)
+	; BC_CONST [a1]
+	mov r0, #0x00050000			; r0=rConstants[33] (5.0000)
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
@@ -16840,8 +16840,8 @@ proc_107_target_500:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a0]
-	mov r0, #0x00050000			; r0=rConstants[32] (5.0000)
+	; BC_CONST [a1]
+	mov r0, #0x00050000			; r0=rConstants[33] (5.0000)
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
@@ -16911,8 +16911,8 @@ proc_107_target_506:
 proc_107_target_508:
 	; BC_DONE [00]
 proc_107_target_505:
-	; BC_CONST [9a]
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	; BC_CONST [9b]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_RLOCAL [62]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
@@ -16933,8 +16933,8 @@ proc_107_target_505:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a0]
-	mov r0, #0x00050000			; r0=rConstants[32] (5.0000)
+	; BC_CONST [a1]
+	mov r0, #0x00050000			; r0=rConstants[33] (5.0000)
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
@@ -16947,8 +16947,8 @@ proc_107_target_505:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_107_continue_511:
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_NEG [0d]
 	rsb r0, r0, #0				; r0=0-r0
 	; BC_RSTATE [76]
@@ -17039,8 +17039,8 @@ proc_108_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9f]
-	mov r0, #0x00048000			; r0=rConstants[31] (4.5000)
+	; BC_CONST [a0]
+	mov r0, #0x00048000			; r0=rConstants[32] (4.5000)
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
@@ -17081,8 +17081,8 @@ proc_108_continue_515:
 	; BC_ELSE [01]
 	b proc_108_target_516
 proc_108_target_514:
-	; BC_CONST [af]
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
+	; BC_CONST [b2]
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -17135,8 +17135,8 @@ proc_108_target_513:
 	; BC_WHEN [17]
 	movs r0, r0					; update Status flags
 	beq proc_108_target_518
-	; BC_CONST [ad]
-	mov r0, #0x00120000			; r0=rConstants[45] (18.0000)
+	; BC_CONST [b0]
+	mov r0, #0x00120000			; r0=rConstants[48] (18.0000)
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
@@ -17145,8 +17145,8 @@ proc_108_target_513:
 	cmp r0, r1					; r0 cmp r1
 	; BC_WHEN [1c]
 	bge proc_108_target_519
-	; BC_CONST [a0]
-	mov r0, #0x00050000			; r0=rConstants[32] (5.0000)
+	; BC_CONST [a1]
+	mov r0, #0x00050000			; r0=rConstants[33] (5.0000)
 	; BC_NEG [0d]
 	rsb r0, r0, #0				; r0=0-r0
 	; BC_RSTATE [76]
@@ -17172,8 +17172,8 @@ proc_108_target_519:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a1]
-	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
+	; BC_CONST [a3]
+	mov r0, #0x00060000			; r0=rConstants[35] (6.0000)
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
@@ -17214,8 +17214,8 @@ proc_108_continue_520:
 	; BC_ELSE [01]
 	b proc_108_target_521
 proc_108_target_518:
-	; BC_CONST [c6]
-	mov r0, #0x00400000			; r0=rConstants[70] (64.0000)
+	; BC_CONST [ca]
+	mov r0, #0x00400000			; r0=rConstants[74] (64.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -17253,8 +17253,8 @@ proc_108_target_518:
 proc_108_target_521:
 	; BC_DONE [00]
 proc_108_target_517:
-	; BC_CONST [9a]
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	; BC_CONST [9b]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_RLOCAL [62]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
@@ -17275,8 +17275,8 @@ proc_108_target_517:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a1]
-	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
+	; BC_CONST [a3]
+	mov r0, #0x00060000			; r0=rConstants[35] (6.0000)
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
@@ -17289,8 +17289,8 @@ proc_108_target_517:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_108_continue_524:
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -17375,8 +17375,8 @@ proc_109_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_109_continue_527
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -17418,12 +17418,12 @@ proc_110_start:
 	beq proc_110_target_528
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
-	; BC_CONST [a5]
+	; BC_CONST [a8]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x000a0000			; r0=rConstants[37] (10.0000)
-	; BC_CONST [a4]
+	mov r0, #0x000a0000			; r0=rConstants[40] (10.0000)
+	; BC_CONST [a7]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00090000			; r0=rConstants[36] (9.0000)
+	mov r0, #0x00090000			; r0=rConstants[39] (9.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_111_start		; r0=r_Procedures[111]
@@ -17432,8 +17432,8 @@ proc_110_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [c6]
-	mov r0, #0x00400000			; r0=rConstants[70] (64.0000)
+	; BC_CONST [ca]
+	mov r0, #0x00400000			; r0=rConstants[74] (64.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -17442,14 +17442,14 @@ proc_110_start:
 	adds r0, r0, r1				; r0=r0 adds r1
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [b9]
-	mov r0, #0x00230000			; r0=rConstants[57] (35.0000)
+	; BC_CONST [bc]
+	mov r0, #0x00230000			; r0=rConstants[60] (35.0000)
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [c6]
-	mov r0, #0x00400000			; r0=rConstants[70] (64.0000)
+	; BC_CONST [ca]
+	mov r0, #0x00400000			; r0=rConstants[74] (64.0000)
 	; BC_NEG [0d]
 	rsb r0, r0, #0				; r0=0-r0
 	; BC_RSTATE [76]
@@ -17504,8 +17504,8 @@ proc_110_target_528:
 proc_110_end:
 
 proc_111_start:
-	; BC_CONST [9a]
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	; BC_CONST [9b]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
@@ -17562,8 +17562,8 @@ proc_111_continue_529:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutSquare
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [dc]
-	mov r0, #0x00800000			; r0=rConstants[92] (128.0000)
+	; BC_CONST [e2]
+	mov r0, #0x00800000			; r0=rConstants[98] (128.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -17577,9 +17577,9 @@ proc_111_continue_529:
 	; BC_RLOCAL [62]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
-	; BC_CONST [9a]
+	; BC_CONST [9b]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_RLOCAL [62]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
@@ -17735,11 +17735,11 @@ proc_113_target_533:
 proc_113_end:
 
 proc_114_start:
-	; BC_CONST [a1]
-	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
-	; BC_CONST [9e]
+	; BC_CONST [a3]
+	mov r0, #0x00060000			; r0=rConstants[35] (6.0000)
+	; BC_CONST [9f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_115_start		; r0=r_Procedures[115]
@@ -17770,8 +17770,8 @@ proc_115_start:
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
 	; BC_WSTATE [58]
 	str r0, [r5, #ST_WIRE0*4]		; State[ST_WIRE0]=r0
-	; BC_CONST [dc]
-	mov r0, #0x00800000			; r0=rConstants[92] (128.0000)
+	; BC_CONST [e2]
+	mov r0, #0x00800000			; r0=rConstants[98] (128.0000)
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -17784,8 +17784,8 @@ proc_115_start:
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [9a]
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	; BC_CONST [9b]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_CONST [85]
@@ -17798,29 +17798,29 @@ proc_115_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [d4]
-	mov r0, #0x00670000			; r0=rConstants[84] (103.0000)
-	; BC_CONST [e4]
+	; BC_CONST [da]
+	mov r0, #0x00670000			; r0=rConstants[90] (103.0000)
+	; BC_CONST [ea]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00a00000			; r0=rConstants[100] (160.0000)
+	mov r0, #0x00a00000			; r0=rConstants[106] (160.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_115_continue_534
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_115_continue_534:
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
-	; BC_CONST [c3]
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
+	; BC_CONST [c7]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x003c0000			; r0=rConstants[67] (60.0000)
+	mov r0, #0x003c0000			; r0=rConstants[71] (60.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -17828,16 +17828,16 @@ proc_115_continue_534:
 	mov r1, r1, asl #8
 	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
-	; BC_CONST [e4]
+	; BC_CONST [ea]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00a00000			; r0=rConstants[100] (160.0000)
+	mov r0, #0x00a00000			; r0=rConstants[106] (160.0000)
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	subs r0, r0, r1				; r0=r0 subs r1
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_122_start		; r0=r_Procedures[122]
@@ -17846,11 +17846,11 @@ proc_115_continue_534:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
-	; BC_CONST [b2]
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -17864,12 +17864,12 @@ proc_115_continue_534:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_115_continue_535:
-	; BC_CONST [e4]
-	mov r0, #0x00a00000			; r0=rConstants[100] (160.0000)
+	; BC_CONST [ea]
+	mov r0, #0x00a00000			; r0=rConstants[106] (160.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_122_start		; r0=r_Procedures[122]
@@ -17878,19 +17878,19 @@ proc_115_continue_535:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_115_continue_536
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_115_continue_536:
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
-	; BC_CONST [c3]
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
+	; BC_CONST [c7]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x003c0000			; r0=rConstants[67] (60.0000)
+	mov r0, #0x003c0000			; r0=rConstants[71] (60.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -17898,16 +17898,16 @@ proc_115_continue_536:
 	mov r1, r1, asl #8
 	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
-	; BC_CONST [e4]
+	; BC_CONST [ea]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00a00000			; r0=rConstants[100] (160.0000)
+	mov r0, #0x00a00000			; r0=rConstants[106] (160.0000)
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	subs r0, r0, r1				; r0=r0 subs r1
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
-	; BC_CONST [9a]
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	; BC_CONST [9b]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_122_start		; r0=r_Procedures[122]
@@ -17916,11 +17916,11 @@ proc_115_continue_536:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9a]
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
-	; BC_CONST [b2]
+	; BC_CONST [9b]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -17934,24 +17934,24 @@ proc_115_continue_536:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_115_continue_537:
-	; BC_CONST [c3]
-	mov r0, #0x003c0000			; r0=rConstants[67] (60.0000)
-	; BC_CONST [e4]
+	; BC_CONST [c7]
+	mov r0, #0x003c0000			; r0=rConstants[71] (60.0000)
+	; BC_CONST [ea]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00a00000			; r0=rConstants[100] (160.0000)
+	mov r0, #0x00a00000			; r0=rConstants[106] (160.0000)
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	subs r0, r0, r1				; r0=r0 subs r1
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [b2]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [a0]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [a1]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00050000			; r0=rConstants[32] (5.0000)
+	mov r0, #0x00050000			; r0=rConstants[33] (5.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_127_start		; r0=r_Procedures[127]
@@ -17962,9 +17962,9 @@ proc_115_continue_537:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_CONST [91]
 	mov r0, #0x00010000			; r0=rConstants[17] (1.0000)
-	; BC_CONST [b2]
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -17978,12 +17978,12 @@ proc_115_continue_537:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_115_continue_538:
-	; BC_CONST [e4]
-	mov r0, #0x00a00000			; r0=rConstants[100] (160.0000)
+	; BC_CONST [ea]
+	mov r0, #0x00a00000			; r0=rConstants[106] (160.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_122_start		; r0=r_Procedures[122]
@@ -17992,19 +17992,19 @@ proc_115_continue_538:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_115_continue_539
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_115_continue_539:
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
-	; BC_CONST [c3]
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
+	; BC_CONST [c7]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x003c0000			; r0=rConstants[67] (60.0000)
+	mov r0, #0x003c0000			; r0=rConstants[71] (60.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -18012,16 +18012,16 @@ proc_115_continue_539:
 	mov r1, r1, asl #8
 	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
-	; BC_CONST [e4]
+	; BC_CONST [ea]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00a00000			; r0=rConstants[100] (160.0000)
+	mov r0, #0x00a00000			; r0=rConstants[106] (160.0000)
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	subs r0, r0, r1				; r0=r0 subs r1
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_122_start		; r0=r_Procedures[122]
@@ -18030,11 +18030,11 @@ proc_115_continue_539:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
-	; BC_CONST [b2]
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -18048,12 +18048,12 @@ proc_115_continue_539:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_115_continue_540:
-	; BC_CONST [e4]
-	mov r0, #0x00a00000			; r0=rConstants[100] (160.0000)
+	; BC_CONST [ea]
+	mov r0, #0x00a00000			; r0=rConstants[106] (160.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_122_start		; r0=r_Procedures[122]
@@ -18062,19 +18062,19 @@ proc_115_continue_540:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_115_continue_541
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_115_continue_541:
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
-	; BC_CONST [c3]
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
+	; BC_CONST [c7]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x003c0000			; r0=rConstants[67] (60.0000)
+	mov r0, #0x003c0000			; r0=rConstants[71] (60.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -18082,16 +18082,16 @@ proc_115_continue_541:
 	mov r1, r1, asl #8
 	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
-	; BC_CONST [e4]
+	; BC_CONST [ea]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00a00000			; r0=rConstants[100] (160.0000)
+	mov r0, #0x00a00000			; r0=rConstants[106] (160.0000)
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	subs r0, r0, r1				; r0=r0 subs r1
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
-	; BC_CONST [9a]
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	; BC_CONST [9b]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_122_start		; r0=r_Procedures[122]
@@ -18100,11 +18100,11 @@ proc_115_continue_541:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9a]
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
-	; BC_CONST [b2]
+	; BC_CONST [9b]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -18118,24 +18118,24 @@ proc_115_continue_541:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_115_continue_542:
-	; BC_CONST [c3]
-	mov r0, #0x003c0000			; r0=rConstants[67] (60.0000)
-	; BC_CONST [e4]
+	; BC_CONST [c7]
+	mov r0, #0x003c0000			; r0=rConstants[71] (60.0000)
+	; BC_CONST [ea]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00a00000			; r0=rConstants[100] (160.0000)
+	mov r0, #0x00a00000			; r0=rConstants[106] (160.0000)
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	subs r0, r0, r1				; r0=r0 subs r1
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [b2]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [a0]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [a1]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00050000			; r0=rConstants[32] (5.0000)
+	mov r0, #0x00050000			; r0=rConstants[33] (5.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_129_start		; r0=r_Procedures[129]
@@ -18146,9 +18146,9 @@ proc_115_continue_542:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_CONST [91]
 	mov r0, #0x00010000			; r0=rConstants[17] (1.0000)
-	; BC_CONST [b2]
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -18162,12 +18162,12 @@ proc_115_continue_542:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_115_continue_543:
-	; BC_CONST [e4]
-	mov r0, #0x00a00000			; r0=rConstants[100] (160.0000)
+	; BC_CONST [ea]
+	mov r0, #0x00a00000			; r0=rConstants[106] (160.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_122_start		; r0=r_Procedures[122]
@@ -18176,19 +18176,19 @@ proc_115_continue_543:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_115_continue_544
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_115_continue_544:
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
-	; BC_CONST [c3]
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
+	; BC_CONST [c7]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x003c0000			; r0=rConstants[67] (60.0000)
+	mov r0, #0x003c0000			; r0=rConstants[71] (60.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -18196,16 +18196,16 @@ proc_115_continue_544:
 	mov r1, r1, asl #8
 	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
-	; BC_CONST [e4]
+	; BC_CONST [ea]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00a00000			; r0=rConstants[100] (160.0000)
+	mov r0, #0x00a00000			; r0=rConstants[106] (160.0000)
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	subs r0, r0, r1				; r0=r0 subs r1
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_122_start		; r0=r_Procedures[122]
@@ -18214,11 +18214,11 @@ proc_115_continue_544:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
-	; BC_CONST [b2]
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -18232,12 +18232,12 @@ proc_115_continue_544:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_115_continue_545:
-	; BC_CONST [e4]
-	mov r0, #0x00a00000			; r0=rConstants[100] (160.0000)
+	; BC_CONST [ea]
+	mov r0, #0x00a00000			; r0=rConstants[106] (160.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_122_start		; r0=r_Procedures[122]
@@ -18246,19 +18246,19 @@ proc_115_continue_545:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_115_continue_546
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_115_continue_546:
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
-	; BC_CONST [c3]
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
+	; BC_CONST [c7]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x003c0000			; r0=rConstants[67] (60.0000)
+	mov r0, #0x003c0000			; r0=rConstants[71] (60.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -18266,16 +18266,16 @@ proc_115_continue_546:
 	mov r1, r1, asl #8
 	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
-	; BC_CONST [e4]
+	; BC_CONST [ea]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00a00000			; r0=rConstants[100] (160.0000)
+	mov r0, #0x00a00000			; r0=rConstants[106] (160.0000)
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	subs r0, r0, r1				; r0=r0 subs r1
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_122_start		; r0=r_Procedures[122]
@@ -18284,11 +18284,11 @@ proc_115_continue_546:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
-	; BC_CONST [b2]
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -18302,18 +18302,18 @@ proc_115_continue_546:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_115_continue_547:
-	; BC_CONST [e4]
-	mov r0, #0x00a00000			; r0=rConstants[100] (160.0000)
+	; BC_CONST [ea]
+	mov r0, #0x00a00000			; r0=rConstants[106] (160.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [b2]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [a0]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [a1]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00050000			; r0=rConstants[32] (5.0000)
+	mov r0, #0x00050000			; r0=rConstants[33] (5.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_127_start		; r0=r_Procedures[127]
@@ -18322,19 +18322,19 @@ proc_115_continue_547:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_115_continue_548
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_115_continue_548:
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
-	; BC_CONST [c3]
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
+	; BC_CONST [c7]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x003c0000			; r0=rConstants[67] (60.0000)
+	mov r0, #0x003c0000			; r0=rConstants[71] (60.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -18342,16 +18342,16 @@ proc_115_continue_548:
 	mov r1, r1, asl #8
 	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
-	; BC_CONST [e4]
+	; BC_CONST [ea]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00a00000			; r0=rConstants[100] (160.0000)
+	mov r0, #0x00a00000			; r0=rConstants[106] (160.0000)
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	subs r0, r0, r1				; r0=r0 subs r1
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
-	; BC_CONST [9a]
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	; BC_CONST [9b]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_122_start		; r0=r_Procedures[122]
@@ -18360,18 +18360,18 @@ proc_115_continue_548:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [c3]
-	mov r0, #0x003c0000			; r0=rConstants[67] (60.0000)
-	; BC_CONST [e4]
+	; BC_CONST [c7]
+	mov r0, #0x003c0000			; r0=rConstants[71] (60.0000)
+	; BC_CONST [ea]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00a00000			; r0=rConstants[100] (160.0000)
+	mov r0, #0x00a00000			; r0=rConstants[106] (160.0000)
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	adds r0, r0, r1				; r0=r0 adds r1
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
-	; BC_CONST [9a]
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	; BC_CONST [9b]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_122_start		; r0=r_Procedures[122]
@@ -18380,11 +18380,11 @@ proc_115_continue_548:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9a]
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
-	; BC_CONST [b2]
+	; BC_CONST [9b]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -18398,24 +18398,24 @@ proc_115_continue_548:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_115_continue_549:
-	; BC_CONST [c3]
-	mov r0, #0x003c0000			; r0=rConstants[67] (60.0000)
-	; BC_CONST [e4]
+	; BC_CONST [c7]
+	mov r0, #0x003c0000			; r0=rConstants[71] (60.0000)
+	; BC_CONST [ea]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00a00000			; r0=rConstants[100] (160.0000)
+	mov r0, #0x00a00000			; r0=rConstants[106] (160.0000)
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	subs r0, r0, r1				; r0=r0 subs r1
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [b2]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [a0]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [a1]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00050000			; r0=rConstants[32] (5.0000)
+	mov r0, #0x00050000			; r0=rConstants[33] (5.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_127_start		; r0=r_Procedures[127]
@@ -18426,9 +18426,9 @@ proc_115_continue_549:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_CONST [91]
 	mov r0, #0x00010000			; r0=rConstants[17] (1.0000)
-	; BC_CONST [b2]
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -18442,12 +18442,12 @@ proc_115_continue_549:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_115_continue_550:
-	; BC_CONST [e4]
-	mov r0, #0x00a00000			; r0=rConstants[100] (160.0000)
+	; BC_CONST [ea]
+	mov r0, #0x00a00000			; r0=rConstants[106] (160.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_122_start		; r0=r_Procedures[122]
@@ -18456,19 +18456,19 @@ proc_115_continue_550:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_115_continue_551
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_115_continue_551:
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
-	; BC_CONST [c3]
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
+	; BC_CONST [c7]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x003c0000			; r0=rConstants[67] (60.0000)
+	mov r0, #0x003c0000			; r0=rConstants[71] (60.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -18476,22 +18476,22 @@ proc_115_continue_551:
 	mov r1, r1, asl #8
 	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
-	; BC_CONST [e4]
+	; BC_CONST [ea]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00a00000			; r0=rConstants[100] (160.0000)
+	mov r0, #0x00a00000			; r0=rConstants[106] (160.0000)
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	subs r0, r0, r1				; r0=r0 subs r1
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [b2]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [a0]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [a1]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00050000			; r0=rConstants[32] (5.0000)
+	mov r0, #0x00050000			; r0=rConstants[33] (5.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_125_start		; r0=r_Procedures[125]
@@ -18500,19 +18500,19 @@ proc_115_continue_551:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_115_continue_552
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_115_continue_552:
-	; BC_CONST [9a]
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
-	; BC_CONST [c3]
+	; BC_CONST [9b]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
+	; BC_CONST [c7]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x003c0000			; r0=rConstants[67] (60.0000)
+	mov r0, #0x003c0000			; r0=rConstants[71] (60.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -18520,22 +18520,22 @@ proc_115_continue_552:
 	mov r1, r1, asl #8
 	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
-	; BC_CONST [e4]
+	; BC_CONST [ea]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00a00000			; r0=rConstants[100] (160.0000)
+	mov r0, #0x00a00000			; r0=rConstants[106] (160.0000)
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	subs r0, r0, r1				; r0=r0 subs r1
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [b2]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [a0]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [a1]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00050000			; r0=rConstants[32] (5.0000)
+	mov r0, #0x00050000			; r0=rConstants[33] (5.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_125_start		; r0=r_Procedures[125]
@@ -18544,8 +18544,8 @@ proc_115_continue_552:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_115_continue_553
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -18554,9 +18554,9 @@ proc_115_continue_552:
 proc_115_continue_553:
 	; BC_CONST [91]
 	mov r0, #0x00010000			; r0=rConstants[17] (1.0000)
-	; BC_CONST [c3]
+	; BC_CONST [c7]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x003c0000			; r0=rConstants[67] (60.0000)
+	mov r0, #0x003c0000			; r0=rConstants[71] (60.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -18564,22 +18564,22 @@ proc_115_continue_553:
 	mov r1, r1, asl #8
 	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
-	; BC_CONST [e4]
+	; BC_CONST [ea]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00a00000			; r0=rConstants[100] (160.0000)
+	mov r0, #0x00a00000			; r0=rConstants[106] (160.0000)
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	subs r0, r0, r1				; r0=r0 subs r1
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
-	; BC_CONST [a7]
-	mov r0, #0x000c0000			; r0=rConstants[39] (12.0000)
-	; BC_CONST [a7]
+	; BC_CONST [aa]
+	mov r0, #0x000c0000			; r0=rConstants[42] (12.0000)
+	; BC_CONST [aa]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x000c0000			; r0=rConstants[39] (12.0000)
-	; BC_CONST [a0]
+	mov r0, #0x000c0000			; r0=rConstants[42] (12.0000)
+	; BC_CONST [a1]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00050000			; r0=rConstants[32] (5.0000)
+	mov r0, #0x00050000			; r0=rConstants[33] (5.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_126_start		; r0=r_Procedures[126]
@@ -18588,19 +18588,19 @@ proc_115_continue_553:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a7]
-	mov r0, #0x000c0000			; r0=rConstants[39] (12.0000)
+	; BC_CONST [aa]
+	mov r0, #0x000c0000			; r0=rConstants[42] (12.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_115_continue_554
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_115_continue_554:
-	; BC_CONST [9a]
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
-	; BC_CONST [c3]
+	; BC_CONST [9b]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
+	; BC_CONST [c7]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x003c0000			; r0=rConstants[67] (60.0000)
+	mov r0, #0x003c0000			; r0=rConstants[71] (60.0000)
 	; BC_DIV [09]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r1, r1, asl #8
@@ -18609,22 +18609,22 @@ proc_115_continue_554:
 	bl divide					; r0=r0/r1
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	mov r0, r0, asl #8
-	; BC_CONST [e4]
+	; BC_CONST [ea]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00a00000			; r0=rConstants[100] (160.0000)
+	mov r0, #0x00a00000			; r0=rConstants[106] (160.0000)
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	subs r0, r0, r1				; r0=r0 subs r1
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
-	; BC_CONST [a7]
-	mov r0, #0x000c0000			; r0=rConstants[39] (12.0000)
-	; BC_CONST [a7]
+	; BC_CONST [aa]
+	mov r0, #0x000c0000			; r0=rConstants[42] (12.0000)
+	; BC_CONST [aa]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x000c0000			; r0=rConstants[39] (12.0000)
-	; BC_CONST [a0]
+	mov r0, #0x000c0000			; r0=rConstants[42] (12.0000)
+	; BC_CONST [a1]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00050000			; r0=rConstants[32] (5.0000)
+	mov r0, #0x00050000			; r0=rConstants[33] (5.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_126_start		; r0=r_Procedures[126]
@@ -18633,24 +18633,24 @@ proc_115_continue_554:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a7]
-	mov r0, #0x000c0000			; r0=rConstants[39] (12.0000)
+	; BC_CONST [aa]
+	mov r0, #0x000c0000			; r0=rConstants[42] (12.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_115_continue_555
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_115_continue_555:
-	; BC_CONST [dc]
-	mov r0, #0x00800000			; r0=rConstants[92] (128.0000)
+	; BC_CONST [e2]
+	mov r0, #0x00800000			; r0=rConstants[98] (128.0000)
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [e4]
-	mov r0, #0x00a00000			; r0=rConstants[100] (160.0000)
+	; BC_CONST [ea]
+	mov r0, #0x00a00000			; r0=rConstants[106] (160.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_123_start		; r0=r_Procedures[123]
@@ -18659,11 +18659,11 @@ proc_115_continue_555:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
-	; BC_CONST [c3]
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
+	; BC_CONST [c7]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x003c0000			; r0=rConstants[67] (60.0000)
+	mov r0, #0x003c0000			; r0=rConstants[71] (60.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -18671,24 +18671,24 @@ proc_115_continue_555:
 	mov r1, r1, asl #8
 	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
-	; BC_CONST [e4]
+	; BC_CONST [ea]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00a00000			; r0=rConstants[100] (160.0000)
+	mov r0, #0x00a00000			; r0=rConstants[106] (160.0000)
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	adds r0, r0, r1				; r0=r0 adds r1
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_115_continue_556
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_115_continue_556:
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_123_start		; r0=r_Procedures[123]
@@ -18697,11 +18697,11 @@ proc_115_continue_556:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
-	; BC_CONST [b2]
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -18715,12 +18715,12 @@ proc_115_continue_556:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_115_continue_557:
-	; BC_CONST [e4]
-	mov r0, #0x00a00000			; r0=rConstants[100] (160.0000)
+	; BC_CONST [ea]
+	mov r0, #0x00a00000			; r0=rConstants[106] (160.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_123_start		; r0=r_Procedures[123]
@@ -18729,11 +18729,11 @@ proc_115_continue_557:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
-	; BC_CONST [c3]
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
+	; BC_CONST [c7]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x003c0000			; r0=rConstants[67] (60.0000)
+	mov r0, #0x003c0000			; r0=rConstants[71] (60.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -18741,24 +18741,24 @@ proc_115_continue_557:
 	mov r1, r1, asl #8
 	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
-	; BC_CONST [e4]
+	; BC_CONST [ea]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00a00000			; r0=rConstants[100] (160.0000)
+	mov r0, #0x00a00000			; r0=rConstants[106] (160.0000)
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	adds r0, r0, r1				; r0=r0 adds r1
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_115_continue_558
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_115_continue_558:
-	; BC_CONST [9a]
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	; BC_CONST [9b]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_123_start		; r0=r_Procedures[123]
@@ -18767,11 +18767,11 @@ proc_115_continue_558:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9a]
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
-	; BC_CONST [b2]
+	; BC_CONST [9b]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -18785,24 +18785,24 @@ proc_115_continue_558:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_115_continue_559:
-	; BC_CONST [c3]
-	mov r0, #0x003c0000			; r0=rConstants[67] (60.0000)
-	; BC_CONST [e4]
+	; BC_CONST [c7]
+	mov r0, #0x003c0000			; r0=rConstants[71] (60.0000)
+	; BC_CONST [ea]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00a00000			; r0=rConstants[100] (160.0000)
+	mov r0, #0x00a00000			; r0=rConstants[106] (160.0000)
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	adds r0, r0, r1				; r0=r0 adds r1
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [b2]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [a0]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [a1]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00050000			; r0=rConstants[32] (5.0000)
+	mov r0, #0x00050000			; r0=rConstants[33] (5.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_128_start		; r0=r_Procedures[128]
@@ -18813,9 +18813,9 @@ proc_115_continue_559:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_CONST [91]
 	mov r0, #0x00010000			; r0=rConstants[17] (1.0000)
-	; BC_CONST [b2]
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -18829,12 +18829,12 @@ proc_115_continue_559:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_115_continue_560:
-	; BC_CONST [e4]
-	mov r0, #0x00a00000			; r0=rConstants[100] (160.0000)
+	; BC_CONST [ea]
+	mov r0, #0x00a00000			; r0=rConstants[106] (160.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_123_start		; r0=r_Procedures[123]
@@ -18843,11 +18843,11 @@ proc_115_continue_560:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
-	; BC_CONST [c3]
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
+	; BC_CONST [c7]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x003c0000			; r0=rConstants[67] (60.0000)
+	mov r0, #0x003c0000			; r0=rConstants[71] (60.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -18855,24 +18855,24 @@ proc_115_continue_560:
 	mov r1, r1, asl #8
 	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
-	; BC_CONST [e4]
+	; BC_CONST [ea]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00a00000			; r0=rConstants[100] (160.0000)
+	mov r0, #0x00a00000			; r0=rConstants[106] (160.0000)
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	adds r0, r0, r1				; r0=r0 adds r1
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_115_continue_561
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_115_continue_561:
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_123_start		; r0=r_Procedures[123]
@@ -18881,11 +18881,11 @@ proc_115_continue_561:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
-	; BC_CONST [b2]
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -18899,18 +18899,18 @@ proc_115_continue_561:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_115_continue_562:
-	; BC_CONST [e4]
-	mov r0, #0x00a00000			; r0=rConstants[100] (160.0000)
+	; BC_CONST [ea]
+	mov r0, #0x00a00000			; r0=rConstants[106] (160.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [b2]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [a0]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [a1]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00050000			; r0=rConstants[32] (5.0000)
+	mov r0, #0x00050000			; r0=rConstants[33] (5.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_124_start		; r0=r_Procedures[124]
@@ -18919,19 +18919,19 @@ proc_115_continue_562:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_115_continue_563
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_115_continue_563:
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
-	; BC_CONST [c3]
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
+	; BC_CONST [c7]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x003c0000			; r0=rConstants[67] (60.0000)
+	mov r0, #0x003c0000			; r0=rConstants[71] (60.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -18939,22 +18939,22 @@ proc_115_continue_563:
 	mov r1, r1, asl #8
 	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
-	; BC_CONST [e4]
+	; BC_CONST [ea]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00a00000			; r0=rConstants[100] (160.0000)
+	mov r0, #0x00a00000			; r0=rConstants[106] (160.0000)
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	adds r0, r0, r1				; r0=r0 adds r1
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [b2]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [a0]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [a1]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00050000			; r0=rConstants[32] (5.0000)
+	mov r0, #0x00050000			; r0=rConstants[33] (5.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_130_start		; r0=r_Procedures[130]
@@ -18965,9 +18965,9 @@ proc_115_continue_563:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_CONST [91]
 	mov r0, #0x00010000			; r0=rConstants[17] (1.0000)
-	; BC_CONST [c3]
+	; BC_CONST [c7]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x003c0000			; r0=rConstants[67] (60.0000)
+	mov r0, #0x003c0000			; r0=rConstants[71] (60.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -18975,22 +18975,22 @@ proc_115_continue_563:
 	mov r1, r1, asl #8
 	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
-	; BC_CONST [e4]
+	; BC_CONST [ea]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00a00000			; r0=rConstants[100] (160.0000)
+	mov r0, #0x00a00000			; r0=rConstants[106] (160.0000)
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	subs r0, r0, r1				; r0=r0 subs r1
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [b2]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [a0]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [a1]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00050000			; r0=rConstants[32] (5.0000)
+	mov r0, #0x00050000			; r0=rConstants[33] (5.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_130_start		; r0=r_Procedures[130]
@@ -19001,9 +19001,9 @@ proc_115_continue_563:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_CONST [91]
 	mov r0, #0x00010000			; r0=rConstants[17] (1.0000)
-	; BC_CONST [b2]
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -19017,8 +19017,8 @@ proc_115_continue_563:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_115_continue_564:
-	; BC_CONST [e4]
-	mov r0, #0x00a00000			; r0=rConstants[100] (160.0000)
+	; BC_CONST [ea]
+	mov r0, #0x00a00000			; r0=rConstants[106] (160.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_PROC [07]
@@ -19028,11 +19028,11 @@ proc_115_continue_564:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9a]
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
-	; BC_CONST [b2]
+	; BC_CONST [9b]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -19046,12 +19046,12 @@ proc_115_continue_564:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_115_continue_565:
-	; BC_CONST [e4]
-	mov r0, #0x00a00000			; r0=rConstants[100] (160.0000)
+	; BC_CONST [ea]
+	mov r0, #0x00a00000			; r0=rConstants[106] (160.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_123_start		; r0=r_Procedures[123]
@@ -19060,11 +19060,11 @@ proc_115_continue_565:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
-	; BC_CONST [c3]
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
+	; BC_CONST [c7]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x003c0000			; r0=rConstants[67] (60.0000)
+	mov r0, #0x003c0000			; r0=rConstants[71] (60.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -19072,24 +19072,24 @@ proc_115_continue_565:
 	mov r1, r1, asl #8
 	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
-	; BC_CONST [e4]
+	; BC_CONST [ea]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00a00000			; r0=rConstants[100] (160.0000)
+	mov r0, #0x00a00000			; r0=rConstants[106] (160.0000)
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	adds r0, r0, r1				; r0=r0 adds r1
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_115_continue_566
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_115_continue_566:
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_123_start		; r0=r_Procedures[123]
@@ -19098,11 +19098,11 @@ proc_115_continue_566:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
-	; BC_CONST [b2]
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -19116,12 +19116,12 @@ proc_115_continue_566:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_115_continue_567:
-	; BC_CONST [e4]
-	mov r0, #0x00a00000			; r0=rConstants[100] (160.0000)
+	; BC_CONST [ea]
+	mov r0, #0x00a00000			; r0=rConstants[106] (160.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_123_start		; r0=r_Procedures[123]
@@ -19130,11 +19130,11 @@ proc_115_continue_567:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
-	; BC_CONST [c3]
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
+	; BC_CONST [c7]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x003c0000			; r0=rConstants[67] (60.0000)
+	mov r0, #0x003c0000			; r0=rConstants[71] (60.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -19142,24 +19142,24 @@ proc_115_continue_567:
 	mov r1, r1, asl #8
 	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
-	; BC_CONST [e4]
+	; BC_CONST [ea]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00a00000			; r0=rConstants[100] (160.0000)
+	mov r0, #0x00a00000			; r0=rConstants[106] (160.0000)
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	adds r0, r0, r1				; r0=r0 adds r1
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_115_continue_568
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_115_continue_568:
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_123_start		; r0=r_Procedures[123]
@@ -19168,11 +19168,11 @@ proc_115_continue_568:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
-	; BC_CONST [b2]
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -19186,8 +19186,8 @@ proc_115_continue_568:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_115_continue_569:
-	; BC_CONST [dc]
-	mov r0, #0x00800000			; r0=rConstants[92] (128.0000)
+	; BC_CONST [e2]
+	mov r0, #0x00800000			; r0=rConstants[98] (128.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -19196,18 +19196,18 @@ proc_115_continue_569:
 	adds r0, r0, r1				; r0=r0 adds r1
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [e4]
-	mov r0, #0x00a00000			; r0=rConstants[100] (160.0000)
+	; BC_CONST [ea]
+	mov r0, #0x00a00000			; r0=rConstants[106] (160.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [b2]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [a0]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [a1]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00050000			; r0=rConstants[32] (5.0000)
+	mov r0, #0x00050000			; r0=rConstants[33] (5.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_127_start		; r0=r_Procedures[127]
@@ -19216,11 +19216,11 @@ proc_115_continue_569:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
-	; BC_CONST [c3]
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
+	; BC_CONST [c7]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x003c0000			; r0=rConstants[67] (60.0000)
+	mov r0, #0x003c0000			; r0=rConstants[71] (60.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -19228,9 +19228,9 @@ proc_115_continue_569:
 	mov r1, r1, asl #8
 	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
-	; BC_CONST [e4]
+	; BC_CONST [ea]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00a00000			; r0=rConstants[100] (160.0000)
+	mov r0, #0x00a00000			; r0=rConstants[106] (160.0000)
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	subs r0, r0, r1				; r0=r0 subs r1
@@ -19238,9 +19238,9 @@ proc_115_continue_569:
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_CONST [91]
 	mov r0, #0x00010000			; r0=rConstants[17] (1.0000)
-	; BC_CONST [b2]
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -19254,8 +19254,8 @@ proc_115_continue_569:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_115_continue_570:
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_122_start		; r0=r_Procedures[122]
@@ -19264,18 +19264,18 @@ proc_115_continue_570:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [c3]
-	mov r0, #0x003c0000			; r0=rConstants[67] (60.0000)
-	; BC_CONST [e4]
+	; BC_CONST [c7]
+	mov r0, #0x003c0000			; r0=rConstants[71] (60.0000)
+	; BC_CONST [ea]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00a00000			; r0=rConstants[100] (160.0000)
+	mov r0, #0x00a00000			; r0=rConstants[106] (160.0000)
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	adds r0, r0, r1				; r0=r0 adds r1
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
-	; BC_CONST [9a]
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	; BC_CONST [9b]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_122_start		; r0=r_Procedures[122]
@@ -19284,11 +19284,11 @@ proc_115_continue_570:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
-	; BC_CONST [b2]
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -19302,18 +19302,18 @@ proc_115_continue_570:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_115_continue_571:
-	; BC_CONST [e4]
-	mov r0, #0x00a00000			; r0=rConstants[100] (160.0000)
+	; BC_CONST [ea]
+	mov r0, #0x00a00000			; r0=rConstants[106] (160.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [b2]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [a0]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [a1]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00050000			; r0=rConstants[32] (5.0000)
+	mov r0, #0x00050000			; r0=rConstants[33] (5.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_128_start		; r0=r_Procedures[128]
@@ -19322,8 +19322,8 @@ proc_115_continue_571:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [dc]
-	mov r0, #0x00800000			; r0=rConstants[92] (128.0000)
+	; BC_CONST [e2]
+	mov r0, #0x00800000			; r0=rConstants[98] (128.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -19332,32 +19332,32 @@ proc_115_continue_571:
 	adds r0, r0, r1				; r0=r0 adds r1
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_115_continue_572
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_115_continue_572:
-	; BC_CONST [c3]
-	mov r0, #0x003c0000			; r0=rConstants[67] (60.0000)
-	; BC_CONST [e4]
+	; BC_CONST [c7]
+	mov r0, #0x003c0000			; r0=rConstants[71] (60.0000)
+	; BC_CONST [ea]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00a00000			; r0=rConstants[100] (160.0000)
+	mov r0, #0x00a00000			; r0=rConstants[106] (160.0000)
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	subs r0, r0, r1				; r0=r0 subs r1
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [b2]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [a0]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [a1]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00050000			; r0=rConstants[32] (5.0000)
+	mov r0, #0x00050000			; r0=rConstants[33] (5.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_129_start		; r0=r_Procedures[129]
@@ -19366,16 +19366,16 @@ proc_115_continue_572:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_115_continue_573
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_115_continue_573:
-	; BC_CONST [e4]
-	mov r0, #0x00a00000			; r0=rConstants[100] (160.0000)
+	; BC_CONST [ea]
+	mov r0, #0x00a00000			; r0=rConstants[106] (160.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_PROC [07]
@@ -19385,8 +19385,8 @@ proc_115_continue_573:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_115_continue_574
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -19397,8 +19397,8 @@ proc_115_continue_574:
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
-	; BC_CONST [dc]
-	mov r0, #0x00800000			; r0=rConstants[92] (128.0000)
+	; BC_CONST [e2]
+	mov r0, #0x00800000			; r0=rConstants[98] (128.0000)
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -19421,11 +19421,11 @@ proc_115_continue_574:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [d0]
-	mov r0, #0x005a0000			; r0=rConstants[80] (90.0000)
-	; BC_CONST [e4]
+	; BC_CONST [d6]
+	mov r0, #0x005a0000			; r0=rConstants[86] (90.0000)
+	; BC_CONST [ea]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00a00000			; r0=rConstants[100] (160.0000)
+	mov r0, #0x00a00000			; r0=rConstants[106] (160.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
@@ -19438,20 +19438,20 @@ proc_115_continue_574:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b1]
-	mov r0, #0x00170000			; r0=rConstants[49] (23.0000)
+	; BC_CONST [b4]
+	mov r0, #0x00170000			; r0=rConstants[52] (23.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_115_continue_575
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_115_continue_575:
-	; BC_CONST [c0]
-	mov r0, #0x00300000			; r0=rConstants[64] (48.0000)
+	; BC_CONST [c4]
+	mov r0, #0x00300000			; r0=rConstants[68] (48.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_DRAW [04]
@@ -19475,12 +19475,12 @@ proc_116_start:
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	subs r0, r0, r1				; r0=r0 subs r1
-	; BC_CONST [9a]
+	; BC_CONST [9b]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
-	; BC_CONST [c3]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
+	; BC_CONST [c7]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x003c0000			; r0=rConstants[67] (60.0000)
+	mov r0, #0x003c0000			; r0=rConstants[71] (60.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -19488,9 +19488,9 @@ proc_116_start:
 	mov r1, r1, asl #8
 	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
-	; BC_CONST [e4]
+	; BC_CONST [ea]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00a00000			; r0=rConstants[100] (160.0000)
+	mov r0, #0x00a00000			; r0=rConstants[106] (160.0000)
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	subs r0, r0, r1				; r0=r0 subs r1
@@ -19503,8 +19503,8 @@ proc_116_start:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
-	; BC_CONST [b5]
-	mov r0, #0x001e0000			; r0=rConstants[53] (30.0000)
+	; BC_CONST [b8]
+	mov r0, #0x001e0000			; r0=rConstants[56] (30.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_PLOT [06]
@@ -19520,11 +19520,11 @@ proc_116_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9a]
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
-	; BC_CONST [c3]
+	; BC_CONST [9b]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
+	; BC_CONST [c7]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x003c0000			; r0=rConstants[67] (60.0000)
+	mov r0, #0x003c0000			; r0=rConstants[71] (60.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -19532,9 +19532,9 @@ proc_116_start:
 	mov r1, r1, asl #8
 	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
-	; BC_CONST [e4]
+	; BC_CONST [ea]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00a00000			; r0=rConstants[100] (160.0000)
+	mov r0, #0x00a00000			; r0=rConstants[106] (160.0000)
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	adds r0, r0, r1				; r0=r0 adds r1
@@ -19544,8 +19544,8 @@ proc_116_start:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
-	; BC_CONST [b5]
-	mov r0, #0x001e0000			; r0=rConstants[53] (30.0000)
+	; BC_CONST [b8]
+	mov r0, #0x001e0000			; r0=rConstants[56] (30.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_PLOT [06]
@@ -19561,16 +19561,16 @@ proc_116_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_116_continue_576
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_116_continue_576:
-	; BC_CONST [e4]
-	mov r0, #0x00a00000			; r0=rConstants[100] (160.0000)
+	; BC_CONST [ea]
+	mov r0, #0x00a00000			; r0=rConstants[106] (160.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_PROC [07]
@@ -19580,11 +19580,11 @@ proc_116_continue_576:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9a]
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
-	; BC_CONST [c3]
+	; BC_CONST [9b]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
+	; BC_CONST [c7]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x003c0000			; r0=rConstants[67] (60.0000)
+	mov r0, #0x003c0000			; r0=rConstants[71] (60.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -19592,9 +19592,9 @@ proc_116_continue_576:
 	mov r1, r1, asl #8
 	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
-	; BC_CONST [e4]
+	; BC_CONST [ea]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00a00000			; r0=rConstants[100] (160.0000)
+	mov r0, #0x00a00000			; r0=rConstants[106] (160.0000)
 	; BC_OP [39]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	subs r0, r0, r1				; r0=r0 subs r1
@@ -19604,8 +19604,8 @@ proc_116_continue_576:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
-	; BC_CONST [b5]
-	mov r0, #0x001e0000			; r0=rConstants[53] (30.0000)
+	; BC_CONST [b8]
+	mov r0, #0x001e0000			; r0=rConstants[56] (30.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_PLOT [06]
@@ -19621,11 +19621,11 @@ proc_116_continue_576:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9a]
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
-	; BC_CONST [c3]
+	; BC_CONST [9b]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
+	; BC_CONST [c7]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x003c0000			; r0=rConstants[67] (60.0000)
+	mov r0, #0x003c0000			; r0=rConstants[71] (60.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -19633,9 +19633,9 @@ proc_116_continue_576:
 	mov r1, r1, asl #8
 	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
-	; BC_CONST [e4]
+	; BC_CONST [ea]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00a00000			; r0=rConstants[100] (160.0000)
+	mov r0, #0x00a00000			; r0=rConstants[106] (160.0000)
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	adds r0, r0, r1				; r0=r0 adds r1
@@ -19645,8 +19645,8 @@ proc_116_continue_576:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
-	; BC_CONST [b5]
-	mov r0, #0x001e0000			; r0=rConstants[53] (30.0000)
+	; BC_CONST [b8]
+	mov r0, #0x001e0000			; r0=rConstants[56] (30.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_PLOT [06]
@@ -19669,8 +19669,8 @@ proc_116_continue_576:
 proc_116_end:
 
 proc_117_start:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_120_start		; r0=r_Procedures[120]
@@ -19679,16 +19679,16 @@ proc_117_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a3]
-	mov r0, #0x00080000			; r0=rConstants[35] (8.0000)
+	; BC_CONST [a6]
+	mov r0, #0x00080000			; r0=rConstants[38] (8.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_117_continue_577
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_117_continue_577:
-	; BC_CONST [ae]
-	mov r0, #0x00130000			; r0=rConstants[46] (19.0000)
+	; BC_CONST [b1]
+	mov r0, #0x00130000			; r0=rConstants[49] (19.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_120_start		; r0=r_Procedures[120]
@@ -19697,16 +19697,16 @@ proc_117_continue_577:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a3]
-	mov r0, #0x00080000			; r0=rConstants[35] (8.0000)
+	; BC_CONST [a6]
+	mov r0, #0x00080000			; r0=rConstants[38] (8.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_117_continue_578
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_117_continue_578:
-	; BC_CONST [a9]
-	mov r0, #0x000e0000			; r0=rConstants[41] (14.0000)
+	; BC_CONST [ac]
+	mov r0, #0x000e0000			; r0=rConstants[44] (14.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_120_start		; r0=r_Procedures[120]
@@ -19715,8 +19715,8 @@ proc_117_continue_578:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a3]
-	mov r0, #0x00080000			; r0=rConstants[35] (8.0000)
+	; BC_CONST [a6]
+	mov r0, #0x00080000			; r0=rConstants[38] (8.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_117_continue_579
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -19730,8 +19730,8 @@ proc_117_continue_579:
 proc_117_end:
 
 proc_118_start:
-	; BC_CONST [a9]
-	mov r0, #0x000e0000			; r0=rConstants[41] (14.0000)
+	; BC_CONST [ac]
+	mov r0, #0x000e0000			; r0=rConstants[44] (14.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_120_start		; r0=r_Procedures[120]
@@ -19740,16 +19740,16 @@ proc_118_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a3]
-	mov r0, #0x00080000			; r0=rConstants[35] (8.0000)
+	; BC_CONST [a6]
+	mov r0, #0x00080000			; r0=rConstants[38] (8.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_118_continue_580
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_118_continue_580:
-	; BC_CONST [ae]
-	mov r0, #0x00130000			; r0=rConstants[46] (19.0000)
+	; BC_CONST [b1]
+	mov r0, #0x00130000			; r0=rConstants[49] (19.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_120_start		; r0=r_Procedures[120]
@@ -19758,16 +19758,16 @@ proc_118_continue_580:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a3]
-	mov r0, #0x00080000			; r0=rConstants[35] (8.0000)
+	; BC_CONST [a6]
+	mov r0, #0x00080000			; r0=rConstants[38] (8.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_118_continue_581
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_118_continue_581:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_120_start		; r0=r_Procedures[120]
@@ -19783,8 +19783,8 @@ proc_118_continue_581:
 proc_118_end:
 
 proc_119_start:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_RSTATE [78]
@@ -19797,8 +19797,8 @@ proc_119_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutSquare
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a9]
-	mov r0, #0x000e0000			; r0=rConstants[41] (14.0000)
+	; BC_CONST [ac]
+	mov r0, #0x000e0000			; r0=rConstants[44] (14.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_120_start		; r0=r_Procedures[120]
@@ -19807,8 +19807,8 @@ proc_119_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [ae]
-	mov r0, #0x00130000			; r0=rConstants[46] (19.0000)
+	; BC_CONST [b1]
+	mov r0, #0x00130000			; r0=rConstants[49] (19.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_120_start		; r0=r_Procedures[120]
@@ -19817,16 +19817,16 @@ proc_119_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a3]
-	mov r0, #0x00080000			; r0=rConstants[35] (8.0000)
+	; BC_CONST [a6]
+	mov r0, #0x00080000			; r0=rConstants[38] (8.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_119_continue_582
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_119_continue_582:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_RSTATE [78]
@@ -19839,8 +19839,8 @@ proc_119_continue_582:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutSquare
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a9]
-	mov r0, #0x000e0000			; r0=rConstants[41] (14.0000)
+	; BC_CONST [ac]
+	mov r0, #0x000e0000			; r0=rConstants[44] (14.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_120_start		; r0=r_Procedures[120]
@@ -19849,16 +19849,16 @@ proc_119_continue_582:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a3]
-	mov r0, #0x00080000			; r0=rConstants[35] (8.0000)
+	; BC_CONST [a6]
+	mov r0, #0x00080000			; r0=rConstants[38] (8.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_119_continue_583
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_119_continue_583:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_RSTATE [78]
@@ -19896,8 +19896,8 @@ proc_120_start:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
@@ -19933,8 +19933,8 @@ proc_121_start:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
-	; BC_CONST [bb]
-	mov r0, #0x00280000			; r0=rConstants[59] (40.0000)
+	; BC_CONST [bf]
+	mov r0, #0x00280000			; r0=rConstants[63] (40.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_PLOT [06]
@@ -19943,8 +19943,8 @@ proc_121_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutSquare
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_120_start		; r0=r_Procedures[120]
@@ -19953,16 +19953,16 @@ proc_121_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a3]
-	mov r0, #0x00080000			; r0=rConstants[35] (8.0000)
+	; BC_CONST [a6]
+	mov r0, #0x00080000			; r0=rConstants[38] (8.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_121_continue_584
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_121_continue_584:
-	; BC_CONST [ae]
-	mov r0, #0x00130000			; r0=rConstants[46] (19.0000)
+	; BC_CONST [b1]
+	mov r0, #0x00130000			; r0=rConstants[49] (19.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_120_start		; r0=r_Procedures[120]
@@ -19971,16 +19971,16 @@ proc_121_continue_584:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a3]
-	mov r0, #0x00080000			; r0=rConstants[35] (8.0000)
+	; BC_CONST [a6]
+	mov r0, #0x00080000			; r0=rConstants[38] (8.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_121_continue_585
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_121_continue_585:
-	; BC_CONST [a9]
-	mov r0, #0x000e0000			; r0=rConstants[41] (14.0000)
+	; BC_CONST [ac]
+	mov r0, #0x000e0000			; r0=rConstants[44] (14.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_120_start		; r0=r_Procedures[120]
@@ -19989,8 +19989,8 @@ proc_121_continue_585:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a3]
-	mov r0, #0x00080000			; r0=rConstants[35] (8.0000)
+	; BC_CONST [a6]
+	mov r0, #0x00080000			; r0=rConstants[38] (8.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_121_continue_586
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -20001,8 +20001,8 @@ proc_121_continue_586:
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_PLOT [06]
@@ -20023,14 +20023,14 @@ proc_122_start:
 	; BC_WHEN [17]
 	movs r0, r0					; update Status flags
 	beq proc_122_target_587
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [b2]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [a0]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [a1]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00050000			; r0=rConstants[32] (5.0000)
+	mov r0, #0x00050000			; r0=rConstants[33] (5.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_125_start		; r0=r_Procedures[125]
@@ -20039,16 +20039,16 @@ proc_122_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_122_continue_588
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_122_continue_588:
-	; BC_CONST [c3]
-	mov r0, #0x003c0000			; r0=rConstants[67] (60.0000)
+	; BC_CONST [c7]
+	mov r0, #0x003c0000			; r0=rConstants[71] (60.0000)
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
@@ -20075,8 +20075,8 @@ proc_122_continue_588:
 	; BC_ELSE [01]
 	b proc_122_target_589
 proc_122_target_587:
-	; BC_CONST [b5]
-	mov r0, #0x001e0000			; r0=rConstants[53] (30.0000)
+	; BC_CONST [b8]
+	mov r0, #0x001e0000			; r0=rConstants[56] (30.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_RSTATE [78]
@@ -20103,14 +20103,14 @@ proc_123_start:
 	; BC_WHEN [17]
 	movs r0, r0					; update Status flags
 	beq proc_123_target_590
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [b2]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [a0]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [a1]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00050000			; r0=rConstants[32] (5.0000)
+	mov r0, #0x00050000			; r0=rConstants[33] (5.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_124_start		; r0=r_Procedures[124]
@@ -20119,16 +20119,16 @@ proc_123_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_123_continue_591
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_123_continue_591:
-	; BC_CONST [c3]
-	mov r0, #0x003c0000			; r0=rConstants[67] (60.0000)
+	; BC_CONST [c7]
+	mov r0, #0x003c0000			; r0=rConstants[71] (60.0000)
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
@@ -20155,8 +20155,8 @@ proc_123_continue_591:
 	; BC_ELSE [01]
 	b proc_123_target_592
 proc_123_target_590:
-	; BC_CONST [b5]
-	mov r0, #0x001e0000			; r0=rConstants[53] (30.0000)
+	; BC_CONST [b8]
+	mov r0, #0x001e0000			; r0=rConstants[56] (30.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_RSTATE [78]
@@ -20188,9 +20188,9 @@ proc_124_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
-	; BC_CONST [9a]
+	; BC_CONST [9b]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
@@ -20218,9 +20218,9 @@ proc_124_start:
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	adds r0, r0, r1				; r0=r0 adds r1
-	; BC_CONST [9a]
+	; BC_CONST [9b]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_RLOCAL [62]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
@@ -20243,8 +20243,8 @@ proc_124_start:
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [c6]
-	mov r0, #0x00400000			; r0=rConstants[70] (64.0000)
+	; BC_CONST [ca]
+	mov r0, #0x00400000			; r0=rConstants[74] (64.0000)
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
@@ -20276,8 +20276,8 @@ proc_124_start:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [bb]
-	mov r0, #0x00280000			; r0=rConstants[59] (40.0000)
+	; BC_CONST [bf]
+	mov r0, #0x00280000			; r0=rConstants[63] (40.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_RSTATE [78]
@@ -20350,9 +20350,9 @@ proc_125_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
-	; BC_CONST [9a]
+	; BC_CONST [9b]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
@@ -20380,9 +20380,9 @@ proc_125_start:
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	adds r0, r0, r1				; r0=r0 adds r1
-	; BC_CONST [9a]
+	; BC_CONST [9b]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_RLOCAL [62]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
@@ -20405,8 +20405,8 @@ proc_125_start:
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [c6]
-	mov r0, #0x00400000			; r0=rConstants[70] (64.0000)
+	; BC_CONST [ca]
+	mov r0, #0x00400000			; r0=rConstants[74] (64.0000)
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
@@ -20436,8 +20436,8 @@ proc_125_start:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [bb]
-	mov r0, #0x00280000			; r0=rConstants[59] (40.0000)
+	; BC_CONST [bf]
+	mov r0, #0x00280000			; r0=rConstants[63] (40.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_RSTATE [78]
@@ -20510,9 +20510,9 @@ proc_126_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
-	; BC_CONST [9a]
+	; BC_CONST [9b]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
@@ -20540,9 +20540,9 @@ proc_126_start:
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	adds r0, r0, r1				; r0=r0 adds r1
-	; BC_CONST [9a]
+	; BC_CONST [9b]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_RLOCAL [62]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
@@ -20565,8 +20565,8 @@ proc_126_start:
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [c6]
-	mov r0, #0x00400000			; r0=rConstants[70] (64.0000)
+	; BC_CONST [ca]
+	mov r0, #0x00400000			; r0=rConstants[74] (64.0000)
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
@@ -20596,8 +20596,8 @@ proc_126_start:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [c1]
-	mov r0, #0x00320000			; r0=rConstants[65] (50.0000)
+	; BC_CONST [c5]
+	mov r0, #0x00320000			; r0=rConstants[69] (50.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_RSTATE [78]
@@ -20670,9 +20670,9 @@ proc_127_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
-	; BC_CONST [9a]
+	; BC_CONST [9b]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
@@ -20700,9 +20700,9 @@ proc_127_start:
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	adds r0, r0, r1				; r0=r0 adds r1
-	; BC_CONST [9a]
+	; BC_CONST [9b]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_RLOCAL [62]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
@@ -20725,8 +20725,8 @@ proc_127_start:
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [db]
-	mov r0, #0x007f0000			; r0=rConstants[91] (127.0000)
+	; BC_CONST [e1]
+	mov r0, #0x007f0000			; r0=rConstants[97] (127.0000)
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
@@ -20756,8 +20756,8 @@ proc_127_start:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [c9]
-	mov r0, #0x00460000			; r0=rConstants[73] (70.0000)
+	; BC_CONST [ce]
+	mov r0, #0x00460000			; r0=rConstants[78] (70.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_RSTATE [78]
@@ -20774,11 +20774,11 @@ proc_127_start:
 	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
-	; BC_CONST [96]
-	mov r0, #0x00018000			; r0=rConstants[22] (1.5000)
-	; BC_CONST [9a]
+	; BC_CONST [97]
+	mov r0, #0x00018000			; r0=rConstants[23] (1.5000)
+	; BC_CONST [9b]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
@@ -20879,9 +20879,9 @@ proc_128_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
-	; BC_CONST [9a]
+	; BC_CONST [9b]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
@@ -20909,9 +20909,9 @@ proc_128_start:
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	adds r0, r0, r1				; r0=r0 adds r1
-	; BC_CONST [9a]
+	; BC_CONST [9b]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_RLOCAL [62]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
@@ -20934,8 +20934,8 @@ proc_128_start:
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [db]
-	mov r0, #0x007f0000			; r0=rConstants[91] (127.0000)
+	; BC_CONST [e1]
+	mov r0, #0x007f0000			; r0=rConstants[97] (127.0000)
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
@@ -20967,8 +20967,8 @@ proc_128_start:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [c4]
-	mov r0, #0x003e0000			; r0=rConstants[68] (62.0000)
+	; BC_CONST [c8]
+	mov r0, #0x003e0000			; r0=rConstants[72] (62.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_RSTATE [78]
@@ -20985,11 +20985,11 @@ proc_128_start:
 	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
-	; BC_CONST [96]
-	mov r0, #0x00018000			; r0=rConstants[22] (1.5000)
-	; BC_CONST [9a]
+	; BC_CONST [97]
+	mov r0, #0x00018000			; r0=rConstants[23] (1.5000)
+	; BC_CONST [9b]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
@@ -21090,9 +21090,9 @@ proc_129_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
-	; BC_CONST [9a]
+	; BC_CONST [9b]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
@@ -21120,9 +21120,9 @@ proc_129_start:
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	adds r0, r0, r1				; r0=r0 adds r1
-	; BC_CONST [9a]
+	; BC_CONST [9b]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_RLOCAL [62]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
@@ -21145,8 +21145,8 @@ proc_129_start:
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [c6]
-	mov r0, #0x00400000			; r0=rConstants[70] (64.0000)
+	; BC_CONST [ca]
+	mov r0, #0x00400000			; r0=rConstants[74] (64.0000)
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
@@ -21170,8 +21170,8 @@ proc_129_start:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [bb]
-	mov r0, #0x00280000			; r0=rConstants[59] (40.0000)
+	; BC_CONST [bf]
+	mov r0, #0x00280000			; r0=rConstants[63] (40.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_RSTATE [78]
@@ -21190,9 +21190,9 @@ proc_129_start:
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_CONST [91]
 	mov r0, #0x00010000			; r0=rConstants[17] (1.0000)
-	; BC_CONST [9a]
+	; BC_CONST [9b]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
@@ -21293,9 +21293,9 @@ proc_130_start:
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
-	; BC_CONST [9a]
+	; BC_CONST [9b]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
@@ -21323,9 +21323,9 @@ proc_130_start:
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	adds r0, r0, r1				; r0=r0 adds r1
-	; BC_CONST [9a]
+	; BC_CONST [9b]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_RLOCAL [62]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
@@ -21348,8 +21348,8 @@ proc_130_start:
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [c6]
-	mov r0, #0x00400000			; r0=rConstants[70] (64.0000)
+	; BC_CONST [ca]
+	mov r0, #0x00400000			; r0=rConstants[74] (64.0000)
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
@@ -21375,8 +21375,8 @@ proc_130_start:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [bb]
-	mov r0, #0x00280000			; r0=rConstants[59] (40.0000)
+	; BC_CONST [bf]
+	mov r0, #0x00280000			; r0=rConstants[63] (40.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_RSTATE [78]
@@ -21395,9 +21395,9 @@ proc_130_start:
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_CONST [91]
 	mov r0, #0x00010000			; r0=rConstants[17] (1.0000)
-	; BC_CONST [9a]
+	; BC_CONST [9b]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
@@ -21516,8 +21516,8 @@ proc_132_start:
 proc_132_end:
 
 proc_133_start:
-	; BC_CONST [f5]
-	mov r0, #0x01400000			; r0=rConstants[117] (320.0000)
+	; BC_CONST [fb]
+	mov r0, #0x01400000			; r0=rConstants[123] (320.0000)
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_X*4]		; r0=State[ST_X]
@@ -21540,8 +21540,8 @@ proc_133_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutSquare
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
@@ -21570,11 +21570,11 @@ proc_133_target_607:
 proc_133_end:
 
 proc_134_start:
-	; BC_CONST [d3]
-	mov r0, #0x00640000			; r0=rConstants[83] (100.0000)
-	; BC_CONST [e4]
+	; BC_CONST [d9]
+	mov r0, #0x00640000			; r0=rConstants[89] (100.0000)
+	; BC_CONST [ea]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00a00000			; r0=rConstants[100] (160.0000)
+	mov r0, #0x00a00000			; r0=rConstants[106] (160.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
@@ -21588,14 +21588,14 @@ proc_134_start:
 	mov r0, #0x00010000			; r0=rConstants[17] (1.0000)
 	; BC_WSTATE [59]
 	str r0, [r5, #ST_WIRE1*4]		; State[ST_WIRE1]=r0
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [b2]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [80]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [a2]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
+	ldr r0, [r4, #34*4]			; r0=rConstants[34]=0x00054ccc (5.3000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_127_start		; r0=r_Procedures[127]
@@ -21604,8 +21604,8 @@ proc_134_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [c7]
-	mov r0, #0x00410000			; r0=rConstants[71] (65.0000)
+	; BC_CONST [cc]
+	mov r0, #0x00410000			; r0=rConstants[76] (65.0000)
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_X*4]		; r0=State[ST_X]
@@ -21614,16 +21614,16 @@ proc_134_start:
 	adds r0, r0, r1				; r0=r0 adds r1
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_134_continue_609
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_134_continue_609:
-	; BC_CONST [bb]
-	mov r0, #0x00280000			; r0=rConstants[59] (40.0000)
+	; BC_CONST [bf]
+	mov r0, #0x00280000			; r0=rConstants[63] (40.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_CONST [80]
@@ -21663,8 +21663,8 @@ proc_135_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutCircle
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b7]
-	mov r0, #0x00200000			; r0=rConstants[55] (32.0000)
+	; BC_CONST [ba]
+	mov r0, #0x00200000			; r0=rConstants[58] (32.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -21683,8 +21683,8 @@ proc_135_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [c6]
-	mov r0, #0x00400000			; r0=rConstants[70] (64.0000)
+	; BC_CONST [ca]
+	mov r0, #0x00400000			; r0=rConstants[74] (64.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -21703,8 +21703,8 @@ proc_135_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [c6]
-	mov r0, #0x00400000			; r0=rConstants[70] (64.0000)
+	; BC_CONST [ca]
+	mov r0, #0x00400000			; r0=rConstants[74] (64.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -21723,8 +21723,8 @@ proc_135_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [c6]
-	mov r0, #0x00400000			; r0=rConstants[70] (64.0000)
+	; BC_CONST [ca]
+	mov r0, #0x00400000			; r0=rConstants[74] (64.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -21766,8 +21766,8 @@ proc_136_start:
 	cmp r0, r1					; r0 cmp r1
 	; BC_WHEN [1f]
 	ble proc_136_target_610
-	; BC_CONST [95]
-	mov r0, #0x00016a00			; r0=rConstants[21] (1.4141)
+	; BC_CONST [96]
+	mov r0, #0x00016a00			; r0=rConstants[22] (1.4141)
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
@@ -21832,30 +21832,30 @@ proc_136_target_610:
 proc_136_end:
 
 proc_137_start:
-	; BC_CONST [9a]
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	; BC_CONST [9b]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_CONST [80]
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
-	; BC_CONST [dc]
-	mov r0, #0x00800000			; r0=rConstants[92] (128.0000)
+	; BC_CONST [e2]
+	mov r0, #0x00800000			; r0=rConstants[98] (128.0000)
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
 	; BC_CONST [80]
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [f5]
+	; BC_CONST [fb]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x01400000			; r0=rConstants[117] (320.0000)
+	mov r0, #0x01400000			; r0=rConstants[123] (320.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [a2]
-	mov r0, #0x00070000			; r0=rConstants[34] (7.0000)
+	; BC_CONST [a5]
+	mov r0, #0x00070000			; r0=rConstants[37] (7.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_138_start		; r0=r_Procedures[138]
@@ -21864,11 +21864,11 @@ proc_137_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [a3]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [a6]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00080000			; r0=rConstants[35] (8.0000)
+	mov r0, #0x00080000			; r0=rConstants[38] (8.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -21882,8 +21882,8 @@ proc_137_start:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_137_continue_611:
-	; BC_CONST [a2]
-	mov r0, #0x00070000			; r0=rConstants[34] (7.0000)
+	; BC_CONST [a5]
+	mov r0, #0x00070000			; r0=rConstants[37] (7.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_138_start		; r0=r_Procedures[138]
@@ -21892,11 +21892,11 @@ proc_137_continue_611:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [a3]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [a6]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00080000			; r0=rConstants[35] (8.0000)
+	mov r0, #0x00080000			; r0=rConstants[38] (8.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -21910,8 +21910,8 @@ proc_137_continue_611:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_137_continue_612:
-	; BC_CONST [a2]
-	mov r0, #0x00070000			; r0=rConstants[34] (7.0000)
+	; BC_CONST [a5]
+	mov r0, #0x00070000			; r0=rConstants[37] (7.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_138_start		; r0=r_Procedures[138]
@@ -21920,11 +21920,11 @@ proc_137_continue_612:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [a4]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [a7]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00090000			; r0=rConstants[36] (9.0000)
+	mov r0, #0x00090000			; r0=rConstants[39] (9.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -21938,8 +21938,8 @@ proc_137_continue_612:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_137_continue_613:
-	; BC_CONST [9a]
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	; BC_CONST [9b]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_138_start		; r0=r_Procedures[138]
@@ -21948,11 +21948,11 @@ proc_137_continue_613:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [9c]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [9d]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -21966,8 +21966,8 @@ proc_137_continue_613:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_137_continue_614:
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_138_start		; r0=r_Procedures[138]
@@ -21976,11 +21976,11 @@ proc_137_continue_614:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [9e]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [9f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -22008,8 +22008,8 @@ proc_137_continue_615:
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [a2]
-	mov r0, #0x00070000			; r0=rConstants[34] (7.0000)
+	; BC_CONST [a5]
+	mov r0, #0x00070000			; r0=rConstants[37] (7.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_138_start		; r0=r_Procedures[138]
@@ -22018,11 +22018,11 @@ proc_137_continue_615:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [a3]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [a6]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00080000			; r0=rConstants[35] (8.0000)
+	mov r0, #0x00080000			; r0=rConstants[38] (8.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -22036,8 +22036,8 @@ proc_137_continue_615:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_137_continue_616:
-	; BC_CONST [a0]
-	mov r0, #0x00050000			; r0=rConstants[32] (5.0000)
+	; BC_CONST [a1]
+	mov r0, #0x00050000			; r0=rConstants[33] (5.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_138_start		; r0=r_Procedures[138]
@@ -22046,11 +22046,11 @@ proc_137_continue_616:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [a3]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [a6]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00080000			; r0=rConstants[35] (8.0000)
+	mov r0, #0x00080000			; r0=rConstants[38] (8.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -22064,8 +22064,8 @@ proc_137_continue_616:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_137_continue_617:
-	; BC_CONST [a2]
-	mov r0, #0x00070000			; r0=rConstants[34] (7.0000)
+	; BC_CONST [a5]
+	mov r0, #0x00070000			; r0=rConstants[37] (7.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_138_start		; r0=r_Procedures[138]
@@ -22074,11 +22074,11 @@ proc_137_continue_617:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [a4]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [a7]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00090000			; r0=rConstants[36] (9.0000)
+	mov r0, #0x00090000			; r0=rConstants[39] (9.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -22092,22 +22092,22 @@ proc_137_continue_617:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_137_continue_618:
-	; BC_CONST [dc]
-	mov r0, #0x00800000			; r0=rConstants[92] (128.0000)
+	; BC_CONST [e2]
+	mov r0, #0x00800000			; r0=rConstants[98] (128.0000)
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
 	; BC_CONST [80]
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [f5]
+	; BC_CONST [fb]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x01400000			; r0=rConstants[117] (320.0000)
+	mov r0, #0x01400000			; r0=rConstants[123] (320.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [9a]
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	; BC_CONST [9b]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_138_start		; r0=r_Procedures[138]
@@ -22116,11 +22116,11 @@ proc_137_continue_618:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [9a]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [9b]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -22134,15 +22134,15 @@ proc_137_continue_618:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_137_continue_619:
-	; BC_CONST [dc]
-	mov r0, #0x00800000			; r0=rConstants[92] (128.0000)
+	; BC_CONST [e2]
+	mov r0, #0x00800000			; r0=rConstants[98] (128.0000)
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
 	; BC_CONST [80]
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [f5]
+	; BC_CONST [fb]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x01400000			; r0=rConstants[117] (320.0000)
+	mov r0, #0x01400000			; r0=rConstants[123] (320.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
@@ -22170,8 +22170,8 @@ proc_138_start:
 	; BC_WHEN [17]
 	movs r0, r0					; update Status flags
 	beq proc_138_target_620
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_RAND [03]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_RAND*4]
@@ -22199,8 +22199,8 @@ proc_138_start:
 	adds r0, r0, r1				; r0=r0 adds r1
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
-	; BC_CONST [d3]
-	mov r0, #0x00640000			; r0=rConstants[83] (100.0000)
+	; BC_CONST [d9]
+	mov r0, #0x00640000			; r0=rConstants[89] (100.0000)
 	; BC_RAND [03]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_RAND*4]
@@ -22220,16 +22220,16 @@ proc_138_start:
 	mov r1, r1, asl #8
 	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
-	; BC_CONST [a5]
+	; BC_CONST [a8]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x000a0000			; r0=rConstants[37] (10.0000)
+	mov r0, #0x000a0000			; r0=rConstants[40] (10.0000)
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	adds r0, r0, r1				; r0=r0 adds r1
 	; BC_WSTATE [52]
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_139_start		; r0=r_Procedures[139]
@@ -22238,8 +22238,8 @@ proc_138_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_138_continue_621
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -22286,8 +22286,8 @@ proc_139_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a8]
-	ldr r0, [r4, #40*4]			; r0=rConstants[40]=0x000d5553 (13.3333)
+	; BC_CONST [ab]
+	ldr r0, [r4, #43*4]			; r0=rConstants[43]=0x000d5553 (13.3333)
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
@@ -22338,8 +22338,8 @@ proc_140_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutSquare
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_140_continue_624
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -22356,16 +22356,16 @@ proc_140_continue_624:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutSquare
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_140_continue_625
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_140_continue_625:
-	; BC_CONST [9a]
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	; BC_CONST [9b]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_PLOT [06]
@@ -22374,8 +22374,8 @@ proc_140_continue_625:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutSquare
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_140_continue_626
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -22396,8 +22396,8 @@ proc_140_continue_626:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutSquare
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_140_continue_627
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -22414,16 +22414,16 @@ proc_140_continue_627:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutSquare
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_140_continue_628
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_140_continue_628:
-	; BC_CONST [9a]
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	; BC_CONST [9b]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_PLOT [06]
@@ -22439,11 +22439,11 @@ proc_140_continue_628:
 proc_140_end:
 
 proc_141_start:
-	; BC_CONST [da]
-	mov r0, #0x007d0000			; r0=rConstants[90] (125.0000)
-	; BC_CONST [c9]
+	; BC_CONST [e0]
+	mov r0, #0x007d0000			; r0=rConstants[96] (125.0000)
+	; BC_CONST [ce]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00460000			; r0=rConstants[73] (70.0000)
+	mov r0, #0x00460000			; r0=rConstants[78] (70.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
@@ -22453,8 +22453,8 @@ proc_141_start:
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [a3]
-	mov r0, #0x00080000			; r0=rConstants[35] (8.0000)
+	; BC_CONST [a6]
+	mov r0, #0x00080000			; r0=rConstants[38] (8.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_146_start		; r0=r_Procedures[146]
@@ -22463,22 +22463,22 @@ proc_141_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [ea]
-	mov r0, #0x00c00000			; r0=rConstants[106] (192.0000)
+	; BC_CONST [f0]
+	mov r0, #0x00c00000			; r0=rConstants[112] (192.0000)
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [d0]
-	mov r0, #0x005a0000			; r0=rConstants[80] (90.0000)
-	; BC_CONST [b5]
+	; BC_CONST [d6]
+	mov r0, #0x005a0000			; r0=rConstants[86] (90.0000)
+	; BC_CONST [b8]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x001e0000			; r0=rConstants[53] (30.0000)
+	mov r0, #0x001e0000			; r0=rConstants[56] (30.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [a3]
-	mov r0, #0x00080000			; r0=rConstants[35] (8.0000)
+	; BC_CONST [a6]
+	mov r0, #0x00080000			; r0=rConstants[38] (8.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_145_start		; r0=r_Procedures[145]
@@ -22491,11 +22491,11 @@ proc_141_start:
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [d5]
-	mov r0, #0x006e0000			; r0=rConstants[85] (110.0000)
-	; BC_CONST [af]
+	; BC_CONST [db]
+	mov r0, #0x006e0000			; r0=rConstants[91] (110.0000)
+	; BC_CONST [b2]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
@@ -22508,8 +22508,8 @@ proc_141_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a0]
-	mov r0, #0x00050000			; r0=rConstants[32] (5.0000)
+	; BC_CONST [a1]
+	mov r0, #0x00050000			; r0=rConstants[33] (5.0000)
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_PROC [07]
@@ -22522,11 +22522,11 @@ proc_141_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [cc]
-	mov r0, #0x00500000			; r0=rConstants[76] (80.0000)
-	; BC_CONST [f1]
+	; BC_CONST [d2]
+	mov r0, #0x00500000			; r0=rConstants[82] (80.0000)
+	; BC_CONST [f7]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00fa0000			; r0=rConstants[113] (250.0000)
+	mov r0, #0x00fa0000			; r0=rConstants[119] (250.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
@@ -22539,11 +22539,11 @@ proc_141_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [ac]
-	mov r0, #0x00110000			; r0=rConstants[44] (17.0000)
-	; BC_CONST [b2]
+	; BC_CONST [af]
+	mov r0, #0x00110000			; r0=rConstants[47] (17.0000)
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -22557,8 +22557,8 @@ proc_141_start:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_141_continue_629:
-	; BC_CONST [9a]
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	; BC_CONST [9b]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_147_start		; r0=r_Procedures[147]
@@ -22567,11 +22567,11 @@ proc_141_continue_629:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [aa]
-	mov r0, #0x000f0000			; r0=rConstants[42] (15.0000)
-	; BC_CONST [b2]
+	; BC_CONST [ad]
+	mov r0, #0x000f0000			; r0=rConstants[45] (15.0000)
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -22589,18 +22589,18 @@ proc_141_continue_630:
 	mov r0, #0x00010000			; r0=rConstants[17] (1.0000)
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
-	; BC_CONST [cc]
-	mov r0, #0x00500000			; r0=rConstants[76] (80.0000)
-	; BC_CONST [f1]
+	; BC_CONST [d2]
+	mov r0, #0x00500000			; r0=rConstants[82] (80.0000)
+	; BC_CONST [f7]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00fa0000			; r0=rConstants[113] (250.0000)
+	mov r0, #0x00fa0000			; r0=rConstants[119] (250.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [dc]
-	mov r0, #0x00800000			; r0=rConstants[92] (128.0000)
+	; BC_CONST [e2]
+	mov r0, #0x00800000			; r0=rConstants[98] (128.0000)
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
 	; BC_PROC [07]
@@ -22610,11 +22610,11 @@ proc_141_continue_630:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a3]
-	mov r0, #0x00080000			; r0=rConstants[35] (8.0000)
-	; BC_CONST [b2]
+	; BC_CONST [a6]
+	mov r0, #0x00080000			; r0=rConstants[38] (8.0000)
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -22635,11 +22635,11 @@ proc_141_continue_631:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a3]
-	mov r0, #0x00080000			; r0=rConstants[35] (8.0000)
-	; BC_CONST [b2]
+	; BC_CONST [a6]
+	mov r0, #0x00080000			; r0=rConstants[38] (8.0000)
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -22653,8 +22653,8 @@ proc_141_continue_631:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_141_continue_632:
-	; BC_CONST [dc]
-	mov r0, #0x00800000			; r0=rConstants[92] (128.0000)
+	; BC_CONST [e2]
+	mov r0, #0x00800000			; r0=rConstants[98] (128.0000)
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
 	; BC_PROC [07]
@@ -22671,59 +22671,59 @@ proc_141_continue_632:
 proc_141_end:
 
 proc_142_start:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_142_continue_633
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_142_continue_633:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_142_continue_634
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_142_continue_634:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_142_continue_635
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_142_continue_635:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_142_continue_636
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_142_continue_636:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_142_continue_637
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_142_continue_637:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_142_continue_638
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_142_continue_638:
-	; BC_CONST [a6]
-	mov r0, #0x000b0000			; r0=rConstants[38] (11.0000)
-	; BC_CONST [af]
+	; BC_CONST [a9]
+	mov r0, #0x000b0000			; r0=rConstants[41] (11.0000)
+	; BC_CONST [b2]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_144_start		; r0=r_Procedures[144]
@@ -22732,16 +22732,16 @@ proc_142_continue_638:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a3]
-	mov r0, #0x00080000			; r0=rConstants[35] (8.0000)
+	; BC_CONST [a6]
+	mov r0, #0x00080000			; r0=rConstants[38] (8.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_142_continue_639
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_142_continue_639:
-	; BC_CONST [dc]
-	mov r0, #0x00800000			; r0=rConstants[92] (128.0000)
+	; BC_CONST [e2]
+	mov r0, #0x00800000			; r0=rConstants[98] (128.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -22750,11 +22750,11 @@ proc_142_continue_639:
 	adds r0, r0, r1				; r0=r0 adds r1
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [a6]
-	mov r0, #0x000b0000			; r0=rConstants[38] (11.0000)
-	; BC_CONST [af]
+	; BC_CONST [a9]
+	mov r0, #0x000b0000			; r0=rConstants[41] (11.0000)
+	; BC_CONST [b2]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_144_start		; r0=r_Procedures[144]
@@ -22763,16 +22763,16 @@ proc_142_continue_639:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_142_continue_640
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_142_continue_640:
-	; BC_CONST [dc]
-	mov r0, #0x00800000			; r0=rConstants[92] (128.0000)
+	; BC_CONST [e2]
+	mov r0, #0x00800000			; r0=rConstants[98] (128.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -22781,11 +22781,11 @@ proc_142_continue_640:
 	adds r0, r0, r1				; r0=r0 adds r1
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [a6]
-	mov r0, #0x000b0000			; r0=rConstants[38] (11.0000)
-	; BC_CONST [af]
+	; BC_CONST [a9]
+	mov r0, #0x000b0000			; r0=rConstants[41] (11.0000)
+	; BC_CONST [b2]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_144_start		; r0=r_Procedures[144]
@@ -22794,19 +22794,19 @@ proc_142_continue_640:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a3]
-	mov r0, #0x00080000			; r0=rConstants[35] (8.0000)
+	; BC_CONST [a6]
+	mov r0, #0x00080000			; r0=rConstants[38] (8.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_142_continue_641
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_142_continue_641:
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
-	; BC_CONST [dc]
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
+	; BC_CONST [e2]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00800000			; r0=rConstants[92] (128.0000)
+	mov r0, #0x00800000			; r0=rConstants[98] (128.0000)
 	; BC_DIV [09]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r1, r1, asl #8
@@ -22823,11 +22823,11 @@ proc_142_continue_641:
 	adds r0, r0, r1				; r0=r0 adds r1
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [a6]
-	mov r0, #0x000b0000			; r0=rConstants[38] (11.0000)
-	; BC_CONST [af]
+	; BC_CONST [a9]
+	mov r0, #0x000b0000			; r0=rConstants[41] (11.0000)
+	; BC_CONST [b2]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_144_start		; r0=r_Procedures[144]
@@ -22836,16 +22836,16 @@ proc_142_continue_641:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_142_continue_642
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_142_continue_642:
-	; BC_CONST [dc]
-	mov r0, #0x00800000			; r0=rConstants[92] (128.0000)
+	; BC_CONST [e2]
+	mov r0, #0x00800000			; r0=rConstants[98] (128.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -22854,11 +22854,11 @@ proc_142_continue_642:
 	adds r0, r0, r1				; r0=r0 adds r1
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [a6]
-	mov r0, #0x000b0000			; r0=rConstants[38] (11.0000)
-	; BC_CONST [af]
+	; BC_CONST [a9]
+	mov r0, #0x000b0000			; r0=rConstants[41] (11.0000)
+	; BC_CONST [b2]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_144_start		; r0=r_Procedures[144]
@@ -22867,19 +22867,19 @@ proc_142_continue_642:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a3]
-	mov r0, #0x00080000			; r0=rConstants[35] (8.0000)
+	; BC_CONST [a6]
+	mov r0, #0x00080000			; r0=rConstants[38] (8.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_142_continue_643
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_142_continue_643:
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
-	; BC_CONST [dc]
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
+	; BC_CONST [e2]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00800000			; r0=rConstants[92] (128.0000)
+	mov r0, #0x00800000			; r0=rConstants[98] (128.0000)
 	; BC_DIV [09]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r1, r1, asl #8
@@ -22896,11 +22896,11 @@ proc_142_continue_643:
 	adds r0, r0, r1				; r0=r0 adds r1
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [a6]
-	mov r0, #0x000b0000			; r0=rConstants[38] (11.0000)
-	; BC_CONST [af]
+	; BC_CONST [a9]
+	mov r0, #0x000b0000			; r0=rConstants[41] (11.0000)
+	; BC_CONST [b2]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_144_start		; r0=r_Procedures[144]
@@ -22909,16 +22909,16 @@ proc_142_continue_643:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_142_continue_644
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_142_continue_644:
-	; BC_CONST [dc]
-	mov r0, #0x00800000			; r0=rConstants[92] (128.0000)
+	; BC_CONST [e2]
+	mov r0, #0x00800000			; r0=rConstants[98] (128.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -22927,11 +22927,11 @@ proc_142_continue_644:
 	adds r0, r0, r1				; r0=r0 adds r1
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [a6]
-	mov r0, #0x000b0000			; r0=rConstants[38] (11.0000)
-	; BC_CONST [af]
+	; BC_CONST [a9]
+	mov r0, #0x000b0000			; r0=rConstants[41] (11.0000)
+	; BC_CONST [b2]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_144_start		; r0=r_Procedures[144]
@@ -22940,19 +22940,19 @@ proc_142_continue_644:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a3]
-	mov r0, #0x00080000			; r0=rConstants[35] (8.0000)
+	; BC_CONST [a6]
+	mov r0, #0x00080000			; r0=rConstants[38] (8.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_142_continue_645
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_142_continue_645:
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
-	; BC_CONST [dc]
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
+	; BC_CONST [e2]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00800000			; r0=rConstants[92] (128.0000)
+	mov r0, #0x00800000			; r0=rConstants[98] (128.0000)
 	; BC_DIV [09]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r1, r1, asl #8
@@ -22969,11 +22969,11 @@ proc_142_continue_645:
 	adds r0, r0, r1				; r0=r0 adds r1
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [a6]
-	mov r0, #0x000b0000			; r0=rConstants[38] (11.0000)
-	; BC_CONST [af]
+	; BC_CONST [a9]
+	mov r0, #0x000b0000			; r0=rConstants[41] (11.0000)
+	; BC_CONST [b2]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_144_start		; r0=r_Procedures[144]
@@ -22982,8 +22982,8 @@ proc_142_continue_645:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_142_continue_646
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -22997,67 +22997,67 @@ proc_142_continue_646:
 proc_142_end:
 
 proc_143_start:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_143_continue_647
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_143_continue_647:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_143_continue_648
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_143_continue_648:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_143_continue_649
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_143_continue_649:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_143_continue_650
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_143_continue_650:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_143_continue_651
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_143_continue_651:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_143_continue_652
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_143_continue_652:
-	; BC_CONST [a3]
-	mov r0, #0x00080000			; r0=rConstants[35] (8.0000)
+	; BC_CONST [a6]
+	mov r0, #0x00080000			; r0=rConstants[38] (8.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_143_continue_653
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_143_continue_653:
-	; BC_CONST [a6]
-	mov r0, #0x000b0000			; r0=rConstants[38] (11.0000)
-	; BC_CONST [af]
+	; BC_CONST [a9]
+	mov r0, #0x000b0000			; r0=rConstants[41] (11.0000)
+	; BC_CONST [b2]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_144_start		; r0=r_Procedures[144]
@@ -23066,27 +23066,27 @@ proc_143_continue_653:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_143_continue_654
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_143_continue_654:
-	; BC_CONST [a3]
-	mov r0, #0x00080000			; r0=rConstants[35] (8.0000)
+	; BC_CONST [a6]
+	mov r0, #0x00080000			; r0=rConstants[38] (8.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_143_continue_655
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_143_continue_655:
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
-	; BC_CONST [dc]
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
+	; BC_CONST [e2]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00800000			; r0=rConstants[92] (128.0000)
+	mov r0, #0x00800000			; r0=rConstants[98] (128.0000)
 	; BC_DIV [09]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r1, r1, asl #8
@@ -23103,11 +23103,11 @@ proc_143_continue_655:
 	adds r0, r0, r1				; r0=r0 adds r1
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [a6]
-	mov r0, #0x000b0000			; r0=rConstants[38] (11.0000)
-	; BC_CONST [af]
+	; BC_CONST [a9]
+	mov r0, #0x000b0000			; r0=rConstants[41] (11.0000)
+	; BC_CONST [b2]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_144_start		; r0=r_Procedures[144]
@@ -23116,27 +23116,27 @@ proc_143_continue_655:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_143_continue_656
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_143_continue_656:
-	; BC_CONST [a3]
-	mov r0, #0x00080000			; r0=rConstants[35] (8.0000)
+	; BC_CONST [a6]
+	mov r0, #0x00080000			; r0=rConstants[38] (8.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_143_continue_657
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_143_continue_657:
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
-	; BC_CONST [dc]
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
+	; BC_CONST [e2]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00800000			; r0=rConstants[92] (128.0000)
+	mov r0, #0x00800000			; r0=rConstants[98] (128.0000)
 	; BC_DIV [09]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r1, r1, asl #8
@@ -23153,11 +23153,11 @@ proc_143_continue_657:
 	adds r0, r0, r1				; r0=r0 adds r1
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [a6]
-	mov r0, #0x000b0000			; r0=rConstants[38] (11.0000)
-	; BC_CONST [af]
+	; BC_CONST [a9]
+	mov r0, #0x000b0000			; r0=rConstants[41] (11.0000)
+	; BC_CONST [b2]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_144_start		; r0=r_Procedures[144]
@@ -23166,27 +23166,27 @@ proc_143_continue_657:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_143_continue_658
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_143_continue_658:
-	; BC_CONST [a3]
-	mov r0, #0x00080000			; r0=rConstants[35] (8.0000)
+	; BC_CONST [a6]
+	mov r0, #0x00080000			; r0=rConstants[38] (8.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_143_continue_659
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_143_continue_659:
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
-	; BC_CONST [dc]
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
+	; BC_CONST [e2]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00800000			; r0=rConstants[92] (128.0000)
+	mov r0, #0x00800000			; r0=rConstants[98] (128.0000)
 	; BC_DIV [09]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r1, r1, asl #8
@@ -23203,11 +23203,11 @@ proc_143_continue_659:
 	adds r0, r0, r1				; r0=r0 adds r1
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [a6]
-	mov r0, #0x000b0000			; r0=rConstants[38] (11.0000)
-	; BC_CONST [af]
+	; BC_CONST [a9]
+	mov r0, #0x000b0000			; r0=rConstants[41] (11.0000)
+	; BC_CONST [b2]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_144_start		; r0=r_Procedures[144]
@@ -23223,8 +23223,8 @@ proc_143_continue_659:
 proc_143_end:
 
 proc_144_start:
-	; BC_CONST [a6]
-	mov r0, #0x000b0000			; r0=rConstants[38] (11.0000)
+	; BC_CONST [a9]
+	mov r0, #0x000b0000			; r0=rConstants[41] (11.0000)
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
@@ -23233,8 +23233,8 @@ proc_144_start:
 	cmp r0, r1					; r0 cmp r1
 	; BC_WHEN [16]
 	bne proc_144_target_660
-	; BC_CONST [c1]
-	mov r0, #0x00320000			; r0=rConstants[65] (50.0000)
+	; BC_CONST [c5]
+	mov r0, #0x00320000			; r0=rConstants[69] (50.0000)
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
@@ -23246,8 +23246,8 @@ proc_144_target_660:
 	; BC_WHEN [17]
 	movs r0, r0					; update Status flags
 	beq proc_144_target_661
-	; BC_CONST [a5]
-	mov r0, #0x000a0000			; r0=rConstants[37] (10.0000)
+	; BC_CONST [a8]
+	mov r0, #0x000a0000			; r0=rConstants[40] (10.0000)
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
@@ -23326,8 +23326,8 @@ proc_144_continue_662:
 	; BC_ELSE [01]
 	b proc_144_target_663
 proc_144_target_661:
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_CONST [80]
@@ -23354,32 +23354,32 @@ proc_145_start:
 	; BC_WHEN [17]
 	movs r0, r0					; update Status flags
 	beq proc_145_target_664
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_145_continue_665
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_145_continue_665:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_145_continue_666
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_145_continue_666:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_145_continue_667
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_145_continue_667:
-	; BC_CONST [a3]
-	mov r0, #0x00080000			; r0=rConstants[35] (8.0000)
+	; BC_CONST [a6]
+	mov r0, #0x00080000			; r0=rConstants[38] (8.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_145_continue_668
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -23401,8 +23401,8 @@ proc_145_continue_668:
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_145_continue_669
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -23416,12 +23416,12 @@ proc_145_continue_669:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9a]
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	; BC_CONST [9b]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
-	; BC_CONST [a3]
-	mov r0, #0x00080000			; r0=rConstants[35] (8.0000)
+	; BC_CONST [a6]
+	mov r0, #0x00080000			; r0=rConstants[38] (8.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_145_continue_670
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -23439,8 +23439,8 @@ proc_145_continue_670:
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_145_continue_671
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -23454,32 +23454,32 @@ proc_145_continue_671:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_145_continue_672
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_145_continue_672:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_145_continue_673
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_145_continue_673:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_145_continue_674
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_145_continue_674:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_145_continue_675
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -23519,8 +23519,8 @@ proc_146_start:
 	; BC_WHEN [17]
 	movs r0, r0					; update Status flags
 	beq proc_146_target_676
-	; BC_CONST [9a]
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	; BC_CONST [9b]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_PROC [07]
@@ -23530,8 +23530,8 @@ proc_146_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a7]
-	mov r0, #0x000c0000			; r0=rConstants[39] (12.0000)
+	; BC_CONST [aa]
+	mov r0, #0x000c0000			; r0=rConstants[42] (12.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_146_continue_677
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -23549,64 +23549,64 @@ proc_146_continue_677:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a7]
-	mov r0, #0x000c0000			; r0=rConstants[39] (12.0000)
+	; BC_CONST [aa]
+	mov r0, #0x000c0000			; r0=rConstants[42] (12.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_146_continue_678
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_146_continue_678:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_146_continue_679
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_146_continue_679:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_146_continue_680
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_146_continue_680:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_146_continue_681
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_146_continue_681:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_146_continue_682
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_146_continue_682:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_146_continue_683
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_146_continue_683:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_146_continue_684
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_146_continue_684:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_146_continue_685
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -23646,8 +23646,8 @@ proc_147_start:
 	; BC_WHEN [17]
 	movs r0, r0					; update Status flags
 	beq proc_147_target_686
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_PROC [07]
@@ -23660,16 +23660,16 @@ proc_147_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [c0]
-	mov r0, #0x00300000			; r0=rConstants[64] (48.0000)
+	; BC_CONST [c4]
+	mov r0, #0x00300000			; r0=rConstants[68] (48.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_147_continue_687
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_147_continue_687:
-	; BC_CONST [a0]
-	mov r0, #0x00050000			; r0=rConstants[32] (5.0000)
+	; BC_CONST [a1]
+	mov r0, #0x00050000			; r0=rConstants[33] (5.0000)
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_PROC [07]
@@ -23682,16 +23682,16 @@ proc_147_continue_687:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [c0]
-	mov r0, #0x00300000			; r0=rConstants[64] (48.0000)
+	; BC_CONST [c4]
+	mov r0, #0x00300000			; r0=rConstants[68] (48.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_147_continue_688
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_147_continue_688:
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_PROC [07]
@@ -23704,8 +23704,8 @@ proc_147_continue_688:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [c0]
-	mov r0, #0x00300000			; r0=rConstants[64] (48.0000)
+	; BC_CONST [c4]
+	mov r0, #0x00300000			; r0=rConstants[68] (48.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_147_continue_689
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -23736,8 +23736,8 @@ proc_147_continue_689:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_PROC [07]
@@ -23753,8 +23753,8 @@ proc_147_continue_689:
 	; BC_ELSE [01]
 	b proc_147_target_691
 proc_147_target_690:
-	; BC_CONST [a0]
-	mov r0, #0x00050000			; r0=rConstants[32] (5.0000)
+	; BC_CONST [a1]
+	mov r0, #0x00050000			; r0=rConstants[33] (5.0000)
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_PROC [07]
@@ -23769,8 +23769,8 @@ proc_147_target_690:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_DONE [00]
 proc_147_target_691:
-	; BC_CONST [c0]
-	mov r0, #0x00300000			; r0=rConstants[64] (48.0000)
+	; BC_CONST [c4]
+	mov r0, #0x00300000			; r0=rConstants[68] (48.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_147_continue_692
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -23805,22 +23805,22 @@ proc_147_target_686:
 proc_147_end:
 
 proc_148_start:
-	; BC_CONST [b5]
-	mov r0, #0x001e0000			; r0=rConstants[53] (30.0000)
-	; BC_CONST [e9]
+	; BC_CONST [b8]
+	mov r0, #0x001e0000			; r0=rConstants[56] (30.0000)
+	; BC_CONST [ef]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00be0000			; r0=rConstants[105] (190.0000)
+	mov r0, #0x00be0000			; r0=rConstants[111] (190.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [a5]
-	mov r0, #0x000a0000			; r0=rConstants[37] (10.0000)
+	; BC_CONST [a8]
+	mov r0, #0x000a0000			; r0=rConstants[40] (10.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
-	; BC_CONST [a1]
-	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
+	; BC_CONST [a3]
+	mov r0, #0x00060000			; r0=rConstants[35] (6.0000)
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
@@ -23832,16 +23832,16 @@ proc_148_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9a]
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	; BC_CONST [9b]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_148_continue_693
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_148_continue_693:
-	; BC_CONST [b0]
-	mov r0, #0x00150000			; r0=rConstants[48] (21.0000)
+	; BC_CONST [b3]
+	mov r0, #0x00150000			; r0=rConstants[51] (21.0000)
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_Y*4]		; r0=State[ST_Y]
@@ -23850,8 +23850,8 @@ proc_148_continue_693:
 	adds r0, r0, r1				; r0=r0 adds r1
 	; BC_WSTATE [52]
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [a1]
-	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
+	; BC_CONST [a3]
+	mov r0, #0x00060000			; r0=rConstants[35] (6.0000)
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
@@ -23863,16 +23863,16 @@ proc_148_continue_693:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9a]
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	; BC_CONST [9b]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_148_continue_694
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_148_continue_694:
-	; BC_CONST [b0]
-	mov r0, #0x00150000			; r0=rConstants[48] (21.0000)
+	; BC_CONST [b3]
+	mov r0, #0x00150000			; r0=rConstants[51] (21.0000)
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_Y*4]		; r0=State[ST_Y]
@@ -23881,8 +23881,8 @@ proc_148_continue_694:
 	adds r0, r0, r1				; r0=r0 adds r1
 	; BC_WSTATE [52]
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [a1]
-	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
+	; BC_CONST [a3]
+	mov r0, #0x00060000			; r0=rConstants[35] (6.0000)
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
@@ -23894,16 +23894,16 @@ proc_148_continue_694:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9a]
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	; BC_CONST [9b]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_148_continue_695
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_148_continue_695:
-	; BC_CONST [b0]
-	mov r0, #0x00150000			; r0=rConstants[48] (21.0000)
+	; BC_CONST [b3]
+	mov r0, #0x00150000			; r0=rConstants[51] (21.0000)
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_Y*4]		; r0=State[ST_Y]
@@ -23912,8 +23912,8 @@ proc_148_continue_695:
 	adds r0, r0, r1				; r0=r0 adds r1
 	; BC_WSTATE [52]
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [a1]
-	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
+	; BC_CONST [a3]
+	mov r0, #0x00060000			; r0=rConstants[35] (6.0000)
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
@@ -23925,16 +23925,16 @@ proc_148_continue_695:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9a]
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	; BC_CONST [9b]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_148_continue_696
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_148_continue_696:
-	; BC_CONST [b0]
-	mov r0, #0x00150000			; r0=rConstants[48] (21.0000)
+	; BC_CONST [b3]
+	mov r0, #0x00150000			; r0=rConstants[51] (21.0000)
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_Y*4]		; r0=State[ST_Y]
@@ -23943,8 +23943,8 @@ proc_148_continue_696:
 	adds r0, r0, r1				; r0=r0 adds r1
 	; BC_WSTATE [52]
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [a1]
-	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
+	; BC_CONST [a3]
+	mov r0, #0x00060000			; r0=rConstants[35] (6.0000)
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
@@ -23956,16 +23956,16 @@ proc_148_continue_696:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9a]
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	; BC_CONST [9b]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_148_continue_697
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_148_continue_697:
-	; BC_CONST [b0]
-	mov r0, #0x00150000			; r0=rConstants[48] (21.0000)
+	; BC_CONST [b3]
+	mov r0, #0x00150000			; r0=rConstants[51] (21.0000)
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_Y*4]		; r0=State[ST_Y]
@@ -23974,8 +23974,8 @@ proc_148_continue_697:
 	adds r0, r0, r1				; r0=r0 adds r1
 	; BC_WSTATE [52]
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [a1]
-	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
+	; BC_CONST [a3]
+	mov r0, #0x00060000			; r0=rConstants[35] (6.0000)
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
@@ -24041,8 +24041,8 @@ proc_151_start:
 proc_151_end:
 
 proc_152_start:
-	; BC_CONST [aa]
-	mov r0, #0x000f0000			; r0=rConstants[42] (15.0000)
+	; BC_CONST [ad]
+	mov r0, #0x000f0000			; r0=rConstants[45] (15.0000)
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
@@ -24097,8 +24097,8 @@ proc_152_target_698:
 proc_152_end:
 
 proc_153_start:
-	; BC_CONST [a5]
-	mov r0, #0x000a0000			; r0=rConstants[37] (10.0000)
+	; BC_CONST [a8]
+	mov r0, #0x000a0000			; r0=rConstants[40] (10.0000)
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
@@ -24165,8 +24165,8 @@ proc_154_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b0]
-	mov r0, #0x00150000			; r0=rConstants[48] (21.0000)
+	; BC_CONST [b3]
+	mov r0, #0x00150000			; r0=rConstants[51] (21.0000)
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
@@ -24212,12 +24212,12 @@ proc_155_start:
 	; BC_WHEN [17]
 	movs r0, r0					; update Status flags
 	beq proc_155_target_704
-	; BC_CONST [c9]
-	mov r0, #0x00460000			; r0=rConstants[73] (70.0000)
+	; BC_CONST [ce]
+	mov r0, #0x00460000			; r0=rConstants[78] (70.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_PLOT [06]
@@ -24270,8 +24270,8 @@ proc_156_start:
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [a5]
-	mov r0, #0x000a0000			; r0=rConstants[37] (10.0000)
+	; BC_CONST [a8]
+	mov r0, #0x000a0000			; r0=rConstants[40] (10.0000)
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_X*4]		; r0=State[ST_X]
@@ -24297,8 +24297,8 @@ proc_156_start:
 proc_156_end:
 
 proc_157_start:
-	; BC_CONST [a1]
-	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
+	; BC_CONST [a3]
+	mov r0, #0x00060000			; r0=rConstants[35] (6.0000)
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_Y*4]		; r0=State[ST_Y]
@@ -24309,9 +24309,9 @@ proc_157_start:
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
-	; BC_CONST [a5]
+	; BC_CONST [a8]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x000a0000			; r0=rConstants[37] (10.0000)
+	mov r0, #0x000a0000			; r0=rConstants[40] (10.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_159_start		; r0=r_Procedures[159]
@@ -24320,16 +24320,16 @@ proc_157_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_157_continue_706
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_157_continue_706:
-	; BC_CONST [a1]
-	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
+	; BC_CONST [a3]
+	mov r0, #0x00060000			; r0=rConstants[35] (6.0000)
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_Y*4]		; r0=State[ST_Y]
@@ -24340,9 +24340,9 @@ proc_157_continue_706:
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
-	; BC_CONST [9e]
+	; BC_CONST [9f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_160_start		; r0=r_Procedures[160]
@@ -24351,16 +24351,16 @@ proc_157_continue_706:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_157_continue_707
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_157_continue_707:
-	; BC_CONST [a1]
-	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
+	; BC_CONST [a3]
+	mov r0, #0x00060000			; r0=rConstants[35] (6.0000)
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_Y*4]		; r0=State[ST_Y]
@@ -24371,9 +24371,9 @@ proc_157_continue_707:
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
-	; BC_CONST [9b]
+	; BC_CONST [9c]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00028000			; r0=rConstants[27] (2.5000)
+	mov r0, #0x00028000			; r0=rConstants[28] (2.5000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_161_start		; r0=r_Procedures[161]
@@ -24382,16 +24382,16 @@ proc_157_continue_707:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_157_continue_708
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_157_continue_708:
-	; BC_CONST [a1]
-	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
+	; BC_CONST [a3]
+	mov r0, #0x00060000			; r0=rConstants[35] (6.0000)
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_Y*4]		; r0=State[ST_Y]
@@ -24402,9 +24402,9 @@ proc_157_continue_708:
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
-	; BC_CONST [98]
+	; BC_CONST [99]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #24*4]			; r0=rConstants[24]=0x0001c7ae (1.7800)
+	ldr r0, [r4, #25*4]			; r0=rConstants[25]=0x0001c7ae (1.7800)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_162_start		; r0=r_Procedures[162]
@@ -24413,16 +24413,16 @@ proc_157_continue_708:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_157_continue_709
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_157_continue_709:
-	; BC_CONST [a1]
-	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
+	; BC_CONST [a3]
+	mov r0, #0x00060000			; r0=rConstants[35] (6.0000)
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_Y*4]		; r0=State[ST_Y]
@@ -24433,9 +24433,9 @@ proc_157_continue_709:
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
-	; BC_CONST [94]
+	; BC_CONST [95]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #20*4]			; r0=rConstants[20]=0x00016666 (1.4000)
+	ldr r0, [r4, #21*4]			; r0=rConstants[21]=0x00016666 (1.4000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_163_start		; r0=r_Procedures[163]
@@ -24444,16 +24444,16 @@ proc_157_continue_709:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_157_continue_710
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_157_continue_710:
-	; BC_CONST [a1]
-	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
+	; BC_CONST [a3]
+	mov r0, #0x00060000			; r0=rConstants[35] (6.0000)
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_Y*4]		; r0=State[ST_Y]
@@ -24464,9 +24464,9 @@ proc_157_continue_710:
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
-	; BC_CONST [92]
+	; BC_CONST [93]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #18*4]			; r0=rConstants[18]=0x000128f5 (1.1600)
+	ldr r0, [r4, #19*4]			; r0=rConstants[19]=0x000128f5 (1.1600)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_164_start		; r0=r_Procedures[164]
@@ -24475,16 +24475,16 @@ proc_157_continue_710:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_157_continue_711
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_157_continue_711:
-	; BC_CONST [a1]
-	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
+	; BC_CONST [a3]
+	mov r0, #0x00060000			; r0=rConstants[35] (6.0000)
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_Y*4]		; r0=State[ST_Y]
@@ -24506,16 +24506,16 @@ proc_157_continue_711:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_157_continue_712
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_157_continue_712:
-	; BC_CONST [a1]
-	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
+	; BC_CONST [a3]
+	mov r0, #0x00060000			; r0=rConstants[35] (6.0000)
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_Y*4]		; r0=State[ST_Y]
@@ -24537,16 +24537,16 @@ proc_157_continue_712:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_157_continue_713
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_157_continue_713:
-	; BC_CONST [a1]
-	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
+	; BC_CONST [a3]
+	mov r0, #0x00060000			; r0=rConstants[35] (6.0000)
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_Y*4]		; r0=State[ST_Y]
@@ -24568,16 +24568,16 @@ proc_157_continue_713:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_157_continue_714
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_157_continue_714:
-	; BC_CONST [a1]
-	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
+	; BC_CONST [a3]
+	mov r0, #0x00060000			; r0=rConstants[35] (6.0000)
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_Y*4]		; r0=State[ST_Y]
@@ -24599,8 +24599,8 @@ proc_157_continue_714:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_157_continue_715
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -24614,8 +24614,8 @@ proc_157_continue_715:
 proc_157_end:
 
 proc_158_start:
-	; BC_CONST [c6]
-	mov r0, #0x00400000			; r0=rConstants[70] (64.0000)
+	; BC_CONST [ca]
+	mov r0, #0x00400000			; r0=rConstants[74] (64.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -24624,8 +24624,8 @@ proc_158_start:
 	adds r0, r0, r1				; r0=r0 adds r1
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_NEG [0d]
 	rsb r0, r0, #0				; r0=0-r0
 	; BC_MOVE [0e]
@@ -24759,8 +24759,8 @@ proc_158_start:
 proc_158_end:
 
 proc_159_start:
-	; BC_CONST [b3]
-	mov r0, #0x00190000			; r0=rConstants[51] (25.0000)
+	; BC_CONST [b6]
+	mov r0, #0x00190000			; r0=rConstants[54] (25.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -24819,8 +24819,8 @@ proc_159_target_716:
 proc_159_end:
 
 proc_160_start:
-	; BC_CONST [f2]
-	mov r0, #0x01000000			; r0=rConstants[114] (256.0000)
+	; BC_CONST [f8]
+	mov r0, #0x01000000			; r0=rConstants[120] (256.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -24879,8 +24879,8 @@ proc_160_target_718:
 proc_160_end:
 
 proc_161_start:
-	; BC_CONST [de]
-	mov r0, #0x00860000			; r0=rConstants[94] (134.0000)
+	; BC_CONST [e4]
+	mov r0, #0x00860000			; r0=rConstants[100] (134.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -24933,8 +24933,8 @@ proc_161_continue_721:
 	; BC_ELSE [01]
 	b proc_161_target_722
 proc_161_target_720:
-	; BC_CONST [e6]
-	mov r0, #0x00b00000			; r0=rConstants[102] (176.0000)
+	; BC_CONST [ec]
+	mov r0, #0x00b00000			; r0=rConstants[108] (176.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -24995,8 +24995,8 @@ proc_161_target_722:
 proc_161_end:
 
 proc_162_start:
-	; BC_CONST [9a]
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	; BC_CONST [9b]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -25049,8 +25049,8 @@ proc_162_continue_726:
 	; BC_ELSE [01]
 	b proc_162_target_727
 proc_162_target_725:
-	; BC_CONST [b7]
-	mov r0, #0x00200000			; r0=rConstants[55] (32.0000)
+	; BC_CONST [ba]
+	mov r0, #0x00200000			; r0=rConstants[58] (32.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -25103,8 +25103,8 @@ proc_162_continue_729:
 	; BC_ELSE [01]
 	b proc_162_target_730
 proc_162_target_728:
-	; BC_CONST [cd]
-	mov r0, #0x00520000			; r0=rConstants[77] (82.0000)
+	; BC_CONST [d3]
+	mov r0, #0x00520000			; r0=rConstants[83] (82.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -25157,8 +25157,8 @@ proc_162_continue_732:
 	; BC_ELSE [01]
 	b proc_162_target_733
 proc_162_target_731:
-	; BC_CONST [d6]
-	mov r0, #0x00700000			; r0=rConstants[86] (112.0000)
+	; BC_CONST [dc]
+	mov r0, #0x00700000			; r0=rConstants[92] (112.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -25211,8 +25211,8 @@ proc_162_continue_735:
 	; BC_ELSE [01]
 	b proc_162_target_736
 proc_162_target_734:
-	; BC_CONST [ea]
-	mov r0, #0x00c00000			; r0=rConstants[106] (192.0000)
+	; BC_CONST [f0]
+	mov r0, #0x00c00000			; r0=rConstants[112] (192.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -25265,8 +25265,8 @@ proc_162_continue_738:
 	; BC_ELSE [01]
 	b proc_162_target_739
 proc_162_target_737:
-	; BC_CONST [ec]
-	mov r0, #0x00cc0000			; r0=rConstants[108] (204.0000)
+	; BC_CONST [f2]
+	mov r0, #0x00cc0000			; r0=rConstants[114] (204.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -25335,8 +25335,8 @@ proc_162_target_727:
 proc_162_end:
 
 proc_163_start:
-	; BC_CONST [b9]
-	mov r0, #0x00230000			; r0=rConstants[57] (35.0000)
+	; BC_CONST [bc]
+	mov r0, #0x00230000			; r0=rConstants[60] (35.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -25389,8 +25389,8 @@ proc_163_continue_743:
 	; BC_ELSE [01]
 	b proc_163_target_744
 proc_163_target_742:
-	; BC_CONST [c2]
-	mov r0, #0x00340000			; r0=rConstants[66] (52.0000)
+	; BC_CONST [c6]
+	mov r0, #0x00340000			; r0=rConstants[70] (52.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -25443,8 +25443,8 @@ proc_163_continue_746:
 	; BC_ELSE [01]
 	b proc_163_target_747
 proc_163_target_745:
-	; BC_CONST [dc]
-	mov r0, #0x00800000			; r0=rConstants[92] (128.0000)
+	; BC_CONST [e2]
+	mov r0, #0x00800000			; r0=rConstants[98] (128.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -25497,8 +25497,8 @@ proc_163_continue_749:
 	; BC_ELSE [01]
 	b proc_163_target_750
 proc_163_target_748:
-	; BC_CONST [e8]
-	mov r0, #0x00b60000			; r0=rConstants[104] (182.0000)
+	; BC_CONST [ee]
+	mov r0, #0x00b60000			; r0=rConstants[110] (182.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -25551,8 +25551,8 @@ proc_163_continue_752:
 	; BC_ELSE [01]
 	b proc_163_target_753
 proc_163_target_751:
-	; BC_CONST [ee]
-	mov r0, #0x00e00000			; r0=rConstants[110] (224.0000)
+	; BC_CONST [f4]
+	mov r0, #0x00e00000			; r0=rConstants[116] (224.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -25605,8 +25605,8 @@ proc_163_continue_755:
 	; BC_ELSE [01]
 	b proc_163_target_756
 proc_163_target_754:
-	; BC_CONST [f0]
-	mov r0, #0x00f40000			; r0=rConstants[112] (244.0000)
+	; BC_CONST [f6]
+	mov r0, #0x00f40000			; r0=rConstants[118] (244.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -25659,8 +25659,8 @@ proc_163_continue_758:
 	; BC_ELSE [01]
 	b proc_163_target_759
 proc_163_target_757:
-	; BC_CONST [f2]
-	mov r0, #0x01000000			; r0=rConstants[114] (256.0000)
+	; BC_CONST [f8]
+	mov r0, #0x01000000			; r0=rConstants[120] (256.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -25731,8 +25731,8 @@ proc_163_target_744:
 proc_163_end:
 
 proc_164_start:
-	; BC_CONST [f2]
-	mov r0, #0x01000000			; r0=rConstants[114] (256.0000)
+	; BC_CONST [f8]
+	mov r0, #0x01000000			; r0=rConstants[120] (256.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -25791,8 +25791,8 @@ proc_164_target_762:
 proc_164_end:
 
 proc_165_start:
-	; BC_CONST [f2]
-	mov r0, #0x01000000			; r0=rConstants[114] (256.0000)
+	; BC_CONST [f8]
+	mov r0, #0x01000000			; r0=rConstants[120] (256.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -25851,8 +25851,8 @@ proc_165_target_764:
 proc_165_end:
 
 proc_166_start:
-	; BC_CONST [ab]
-	mov r0, #0x00100000			; r0=rConstants[43] (16.0000)
+	; BC_CONST [ae]
+	mov r0, #0x00100000			; r0=rConstants[46] (16.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -25905,8 +25905,8 @@ proc_166_continue_767:
 	; BC_ELSE [01]
 	b proc_166_target_768
 proc_166_target_766:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -25959,8 +25959,8 @@ proc_166_continue_770:
 	; BC_ELSE [01]
 	b proc_166_target_771
 proc_166_target_769:
-	; BC_CONST [c6]
-	mov r0, #0x00400000			; r0=rConstants[70] (64.0000)
+	; BC_CONST [ca]
+	mov r0, #0x00400000			; r0=rConstants[74] (64.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -26013,8 +26013,8 @@ proc_166_continue_773:
 	; BC_ELSE [01]
 	b proc_166_target_774
 proc_166_target_772:
-	; BC_CONST [cb]
-	mov r0, #0x004e0000			; r0=rConstants[75] (78.0000)
+	; BC_CONST [d1]
+	mov r0, #0x004e0000			; r0=rConstants[81] (78.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -26067,8 +26067,8 @@ proc_166_continue_776:
 	; BC_ELSE [01]
 	b proc_166_target_777
 proc_166_target_775:
-	; BC_CONST [cf]
-	mov r0, #0x00580000			; r0=rConstants[79] (88.0000)
+	; BC_CONST [d5]
+	mov r0, #0x00580000			; r0=rConstants[85] (88.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -26121,8 +26121,8 @@ proc_166_continue_779:
 	; BC_ELSE [01]
 	b proc_166_target_780
 proc_166_target_778:
-	; BC_CONST [d1]
-	mov r0, #0x00600000			; r0=rConstants[81] (96.0000)
+	; BC_CONST [d7]
+	mov r0, #0x00600000			; r0=rConstants[87] (96.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -26175,8 +26175,8 @@ proc_166_continue_782:
 	; BC_ELSE [01]
 	b proc_166_target_783
 proc_166_target_781:
-	; BC_CONST [d6]
-	mov r0, #0x00700000			; r0=rConstants[86] (112.0000)
+	; BC_CONST [dc]
+	mov r0, #0x00700000			; r0=rConstants[92] (112.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -26229,8 +26229,8 @@ proc_166_continue_785:
 	; BC_ELSE [01]
 	b proc_166_target_786
 proc_166_target_784:
-	; BC_CONST [de]
-	mov r0, #0x00860000			; r0=rConstants[94] (134.0000)
+	; BC_CONST [e4]
+	mov r0, #0x00860000			; r0=rConstants[100] (134.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -26283,8 +26283,8 @@ proc_166_continue_788:
 	; BC_ELSE [01]
 	b proc_166_target_789
 proc_166_target_787:
-	; BC_CONST [e3]
-	mov r0, #0x009c0000			; r0=rConstants[99] (156.0000)
+	; BC_CONST [e9]
+	mov r0, #0x009c0000			; r0=rConstants[105] (156.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -26337,8 +26337,8 @@ proc_166_continue_791:
 	; BC_ELSE [01]
 	b proc_166_target_792
 proc_166_target_790:
-	; BC_CONST [eb]
-	mov r0, #0x00c80000			; r0=rConstants[107] (200.0000)
+	; BC_CONST [f1]
+	mov r0, #0x00c80000			; r0=rConstants[113] (200.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -26391,8 +26391,8 @@ proc_166_continue_794:
 	; BC_ELSE [01]
 	b proc_166_target_795
 proc_166_target_793:
-	; BC_CONST [ef]
-	mov r0, #0x00f00000			; r0=rConstants[111] (240.0000)
+	; BC_CONST [f5]
+	mov r0, #0x00f00000			; r0=rConstants[117] (240.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -26445,8 +26445,8 @@ proc_166_continue_797:
 	; BC_ELSE [01]
 	b proc_166_target_798
 proc_166_target_796:
-	; BC_CONST [f2]
-	mov r0, #0x01000000			; r0=rConstants[114] (256.0000)
+	; BC_CONST [f8]
+	mov r0, #0x01000000			; r0=rConstants[120] (256.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -26527,8 +26527,8 @@ proc_166_target_768:
 proc_166_end:
 
 proc_167_start:
-	; BC_CONST [f2]
-	mov r0, #0x01000000			; r0=rConstants[114] (256.0000)
+	; BC_CONST [f8]
+	mov r0, #0x01000000			; r0=rConstants[120] (256.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -26587,8 +26587,8 @@ proc_167_target_801:
 proc_167_end:
 
 proc_168_start:
-	; BC_CONST [af]
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
+	; BC_CONST [b2]
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -26641,8 +26641,8 @@ proc_168_continue_804:
 	; BC_ELSE [01]
 	b proc_168_target_805
 proc_168_target_803:
-	; BC_CONST [c3]
-	mov r0, #0x003c0000			; r0=rConstants[67] (60.0000)
+	; BC_CONST [c7]
+	mov r0, #0x003c0000			; r0=rConstants[71] (60.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -26695,8 +26695,8 @@ proc_168_continue_807:
 	; BC_ELSE [01]
 	b proc_168_target_808
 proc_168_target_806:
-	; BC_CONST [e2]
-	mov r0, #0x009a0000			; r0=rConstants[98] (154.0000)
+	; BC_CONST [e8]
+	mov r0, #0x009a0000			; r0=rConstants[104] (154.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -26749,8 +26749,8 @@ proc_168_continue_810:
 	; BC_ELSE [01]
 	b proc_168_target_811
 proc_168_target_809:
-	; BC_CONST [e5]
-	mov r0, #0x00a20000			; r0=rConstants[101] (162.0000)
+	; BC_CONST [eb]
+	mov r0, #0x00a20000			; r0=rConstants[107] (162.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -26815,14 +26815,14 @@ proc_168_target_805:
 proc_168_end:
 
 proc_169_start:
-	; BC_CONST [bb]
-	mov r0, #0x00280000			; r0=rConstants[59] (40.0000)
-	; BC_CONST [af]
+	; BC_CONST [bf]
+	mov r0, #0x00280000			; r0=rConstants[63] (40.0000)
+	; BC_CONST [b2]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
-	; BC_CONST [9c]
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
+	; BC_CONST [9d]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_175_start		; r0=r_Procedures[175]
@@ -26831,14 +26831,14 @@ proc_169_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [ad]
-	mov r0, #0x00120000			; r0=rConstants[45] (18.0000)
-	; BC_CONST [b2]
+	; BC_CONST [b0]
+	mov r0, #0x00120000			; r0=rConstants[48] (18.0000)
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [9e]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [9f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -26855,8 +26855,8 @@ proc_169_start:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_169_continue_814:
-	; BC_CONST [c3]
-	mov r0, #0x003c0000			; r0=rConstants[67] (60.0000)
+	; BC_CONST [c7]
+	mov r0, #0x003c0000			; r0=rConstants[71] (60.0000)
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -26873,9 +26873,9 @@ proc_169_continue_814:
 	; BC_CONST [82]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #2*4]			; r0=rConstants[2]=0x00001999 (0.1000)
-	; BC_CONST [f5]
+	; BC_CONST [fb]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x01400000			; r0=rConstants[117] (320.0000)
+	mov r0, #0x01400000			; r0=rConstants[123] (320.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_181_start		; r0=r_Procedures[181]
@@ -26884,19 +26884,19 @@ proc_169_continue_814:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a7]
-	mov r0, #0x000c0000			; r0=rConstants[39] (12.0000)
+	; BC_CONST [aa]
+	mov r0, #0x000c0000			; r0=rConstants[42] (12.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_169_continue_815
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_169_continue_815:
-	; BC_CONST [d3]
-	mov r0, #0x00640000			; r0=rConstants[83] (100.0000)
-	; BC_CONST [f5]
+	; BC_CONST [d9]
+	mov r0, #0x00640000			; r0=rConstants[89] (100.0000)
+	; BC_CONST [fb]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x01400000			; r0=rConstants[117] (320.0000)
+	mov r0, #0x01400000			; r0=rConstants[123] (320.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
@@ -26912,9 +26912,9 @@ proc_169_continue_815:
 	; BC_CONST [82]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #2*4]			; r0=rConstants[2]=0x00001999 (0.1000)
-	; BC_CONST [f5]
+	; BC_CONST [fb]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x01400000			; r0=rConstants[117] (320.0000)
+	mov r0, #0x01400000			; r0=rConstants[123] (320.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_181_start		; r0=r_Procedures[181]
@@ -26923,11 +26923,11 @@ proc_169_continue_815:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [9e]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [9f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -26935,9 +26935,9 @@ proc_169_continue_815:
 	mov r1, r1, asl #8
 	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
-	; BC_CONST [a1]
+	; BC_CONST [a3]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
+	mov r0, #0x00060000			; r0=rConstants[35] (6.0000)
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	adds r0, r0, r1				; r0=r0 adds r1
@@ -26947,14 +26947,14 @@ proc_169_continue_815:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_169_continue_816:
-	; BC_CONST [cc]
-	mov r0, #0x00500000			; r0=rConstants[76] (80.0000)
-	; BC_CONST [bb]
+	; BC_CONST [d2]
+	mov r0, #0x00500000			; r0=rConstants[82] (80.0000)
+	; BC_CONST [bf]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00280000			; r0=rConstants[59] (40.0000)
-	; BC_CONST [96]
+	mov r0, #0x00280000			; r0=rConstants[63] (40.0000)
+	; BC_CONST [97]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00018000			; r0=rConstants[22] (1.5000)
+	mov r0, #0x00018000			; r0=rConstants[23] (1.5000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_175_start		; r0=r_Procedures[175]
@@ -26963,14 +26963,14 @@ proc_169_continue_816:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [ad]
-	mov r0, #0x00120000			; r0=rConstants[45] (18.0000)
-	; BC_CONST [b2]
+	; BC_CONST [b0]
+	mov r0, #0x00120000			; r0=rConstants[48] (18.0000)
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [9e]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [9f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -26987,11 +26987,11 @@ proc_169_continue_816:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_169_continue_817:
-	; BC_CONST [e0]
-	mov r0, #0x008c0000			; r0=rConstants[96] (140.0000)
-	; BC_CONST [f5]
+	; BC_CONST [e6]
+	mov r0, #0x008c0000			; r0=rConstants[102] (140.0000)
+	; BC_CONST [fb]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x01400000			; r0=rConstants[117] (320.0000)
+	mov r0, #0x01400000			; r0=rConstants[123] (320.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
@@ -27007,9 +27007,9 @@ proc_169_continue_817:
 	; BC_CONST [82]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #2*4]			; r0=rConstants[2]=0x00001999 (0.1000)
-	; BC_CONST [f5]
+	; BC_CONST [fb]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x01400000			; r0=rConstants[117] (320.0000)
+	mov r0, #0x01400000			; r0=rConstants[123] (320.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_181_start		; r0=r_Procedures[181]
@@ -27018,19 +27018,19 @@ proc_169_continue_817:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a7]
-	mov r0, #0x000c0000			; r0=rConstants[39] (12.0000)
+	; BC_CONST [aa]
+	mov r0, #0x000c0000			; r0=rConstants[42] (12.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_169_continue_818
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_169_continue_818:
-	; BC_CONST [d3]
-	mov r0, #0x00640000			; r0=rConstants[83] (100.0000)
-	; BC_CONST [f5]
+	; BC_CONST [d9]
+	mov r0, #0x00640000			; r0=rConstants[89] (100.0000)
+	; BC_CONST [fb]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x01400000			; r0=rConstants[117] (320.0000)
+	mov r0, #0x01400000			; r0=rConstants[123] (320.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
@@ -27046,9 +27046,9 @@ proc_169_continue_818:
 	; BC_CONST [82]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #2*4]			; r0=rConstants[2]=0x00001999 (0.1000)
-	; BC_CONST [f5]
+	; BC_CONST [fb]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x01400000			; r0=rConstants[117] (320.0000)
+	mov r0, #0x01400000			; r0=rConstants[123] (320.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_181_start		; r0=r_Procedures[181]
@@ -27057,11 +27057,11 @@ proc_169_continue_818:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [9e]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [9f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -27069,9 +27069,9 @@ proc_169_continue_818:
 	mov r1, r1, asl #8
 	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
-	; BC_CONST [a1]
+	; BC_CONST [a3]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
+	mov r0, #0x00060000			; r0=rConstants[35] (6.0000)
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	adds r0, r0, r1				; r0=r0 adds r1
@@ -27083,12 +27083,12 @@ proc_169_continue_818:
 proc_169_continue_819:
 	; BC_CONST [80]
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [bb]
+	; BC_CONST [bf]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00280000			; r0=rConstants[59] (40.0000)
-	; BC_CONST [96]
+	mov r0, #0x00280000			; r0=rConstants[63] (40.0000)
+	; BC_CONST [97]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00018000			; r0=rConstants[22] (1.5000)
+	mov r0, #0x00018000			; r0=rConstants[23] (1.5000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_175_start		; r0=r_Procedures[175]
@@ -27097,14 +27097,14 @@ proc_169_continue_819:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [ad]
-	mov r0, #0x00120000			; r0=rConstants[45] (18.0000)
-	; BC_CONST [b2]
+	; BC_CONST [b0]
+	mov r0, #0x00120000			; r0=rConstants[48] (18.0000)
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [9e]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [9f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -27121,11 +27121,11 @@ proc_169_continue_819:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_169_continue_820:
-	; BC_CONST [e7]
-	mov r0, #0x00b40000			; r0=rConstants[103] (180.0000)
-	; BC_CONST [d9]
+	; BC_CONST [ed]
+	mov r0, #0x00b40000			; r0=rConstants[109] (180.0000)
+	; BC_CONST [df]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00780000			; r0=rConstants[89] (120.0000)
+	mov r0, #0x00780000			; r0=rConstants[95] (120.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
@@ -27141,9 +27141,9 @@ proc_169_continue_820:
 	; BC_CONST [83]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00002000			; r0=rConstants[3] (0.1250)
-	; BC_CONST [e7]
+	; BC_CONST [ed]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00b40000			; r0=rConstants[103] (180.0000)
+	mov r0, #0x00b40000			; r0=rConstants[109] (180.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_181_start		; r0=r_Procedures[181]
@@ -27152,19 +27152,19 @@ proc_169_continue_820:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a7]
-	mov r0, #0x000c0000			; r0=rConstants[39] (12.0000)
+	; BC_CONST [aa]
+	mov r0, #0x000c0000			; r0=rConstants[42] (12.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_169_continue_821
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_169_continue_821:
-	; BC_CONST [e7]
-	mov r0, #0x00b40000			; r0=rConstants[103] (180.0000)
-	; BC_CONST [e4]
+	; BC_CONST [ed]
+	mov r0, #0x00b40000			; r0=rConstants[109] (180.0000)
+	; BC_CONST [ea]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00a00000			; r0=rConstants[100] (160.0000)
+	mov r0, #0x00a00000			; r0=rConstants[106] (160.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
@@ -27180,9 +27180,9 @@ proc_169_continue_821:
 	; BC_CONST [83]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00002000			; r0=rConstants[3] (0.1250)
-	; BC_CONST [e7]
+	; BC_CONST [ed]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00b40000			; r0=rConstants[103] (180.0000)
+	mov r0, #0x00b40000			; r0=rConstants[109] (180.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_181_start		; r0=r_Procedures[181]
@@ -27191,11 +27191,11 @@ proc_169_continue_821:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [9e]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [9f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -27203,9 +27203,9 @@ proc_169_continue_821:
 	mov r1, r1, asl #8
 	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
-	; BC_CONST [a1]
+	; BC_CONST [a3]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
+	mov r0, #0x00060000			; r0=rConstants[35] (6.0000)
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	adds r0, r0, r1				; r0=r0 adds r1
@@ -27215,14 +27215,14 @@ proc_169_continue_821:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_169_continue_822:
-	; BC_CONST [bb]
-	mov r0, #0x00280000			; r0=rConstants[59] (40.0000)
+	; BC_CONST [bf]
+	mov r0, #0x00280000			; r0=rConstants[63] (40.0000)
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [9b]
+	; BC_CONST [9c]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00028000			; r0=rConstants[27] (2.5000)
+	mov r0, #0x00028000			; r0=rConstants[28] (2.5000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_175_start		; r0=r_Procedures[175]
@@ -27231,14 +27231,14 @@ proc_169_continue_822:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [ad]
-	mov r0, #0x00120000			; r0=rConstants[45] (18.0000)
-	; BC_CONST [b2]
+	; BC_CONST [b0]
+	mov r0, #0x00120000			; r0=rConstants[48] (18.0000)
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [9e]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [9f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -27257,9 +27257,9 @@ proc_169_continue_822:
 proc_169_continue_823:
 	; BC_CONST [80]
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [e0]
+	; BC_CONST [e6]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x008c0000			; r0=rConstants[96] (140.0000)
+	mov r0, #0x008c0000			; r0=rConstants[102] (140.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
@@ -27273,9 +27273,9 @@ proc_169_continue_823:
 	; BC_CONST [84]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #4*4]			; r0=rConstants[4]=0x00002666 (0.1500)
-	; BC_CONST [e7]
+	; BC_CONST [ed]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00b40000			; r0=rConstants[103] (180.0000)
+	mov r0, #0x00b40000			; r0=rConstants[109] (180.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_181_start		; r0=r_Procedures[181]
@@ -27284,8 +27284,8 @@ proc_169_continue_823:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a7]
-	mov r0, #0x000c0000			; r0=rConstants[39] (12.0000)
+	; BC_CONST [aa]
+	mov r0, #0x000c0000			; r0=rConstants[42] (12.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_169_continue_824
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -27294,9 +27294,9 @@ proc_169_continue_823:
 proc_169_continue_824:
 	; BC_CONST [80]
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [e7]
+	; BC_CONST [ed]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00b40000			; r0=rConstants[103] (180.0000)
+	mov r0, #0x00b40000			; r0=rConstants[109] (180.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
@@ -27310,9 +27310,9 @@ proc_169_continue_824:
 	; BC_CONST [84]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r4, #4*4]			; r0=rConstants[4]=0x00002666 (0.1500)
-	; BC_CONST [e7]
+	; BC_CONST [ed]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00b40000			; r0=rConstants[103] (180.0000)
+	mov r0, #0x00b40000			; r0=rConstants[109] (180.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_181_start		; r0=r_Procedures[181]
@@ -27321,11 +27321,11 @@ proc_169_continue_824:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [9e]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [9f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -27333,9 +27333,9 @@ proc_169_continue_824:
 	mov r1, r1, asl #8
 	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
-	; BC_CONST [a1]
+	; BC_CONST [a3]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
+	mov r0, #0x00060000			; r0=rConstants[35] (6.0000)
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	adds r0, r0, r1				; r0=r0 adds r1
@@ -27366,33 +27366,33 @@ proc_169_continue_825:
 proc_169_end:
 
 proc_170_start:
-	; BC_CONST [af]
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
-	; BC_CONST [b5]
+	; BC_CONST [b2]
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
+	; BC_CONST [b8]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x001e0000			; r0=rConstants[53] (30.0000)
+	mov r0, #0x001e0000			; r0=rConstants[56] (30.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [fd]
-	ldr r0, [r4, #125*4]			; r0=rConstants[125]=0x14bc3c49 (5308.2355)
-	; BC_CONST [f9]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #121*4]			; r0=rConstants[121]=0x083f3082 (2111.1895)
+	; BC_CONST [fe]
+	ldr r0, [r4, #133*4]			; r0=rConstants[133]=0x14bc3c49 (5308.2355)
 	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #145*4]			; r0=rConstants[145]=0xf0410107 (61505.0040)
-	; BC_CONST [fd]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #125*4]			; r0=rConstants[125]=0x14bc3c49 (5308.2355)
+	ldr r0, [r4, #127*4]			; r0=rConstants[127]=0x083f3082 (2111.1895)
 	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #146*4]			; r0=rConstants[146]=0xf8602087 (63584.1271)
-	; BC_CONST [fb]
+	ldr r0, [r4, #167*4]			; r0=rConstants[167]=0xf0410107 (61505.0040)
+	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #123*4]			; r0=rConstants[123]=0x107f2c49 (4223.1730)
+	ldr r0, [r4, #133*4]			; r0=rConstants[133]=0x14bc3c49 (5308.2355)
+	; BC_CONST [fe]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r4, #168*4]			; r0=rConstants[168]=0xf8602087 (63584.1271)
+	; BC_CONST [fe]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r4, #131*4]			; r0=rConstants[131]=0x107f2c49 (4223.1730)
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -27413,11 +27413,11 @@ proc_170_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [9e]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [9f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -27431,105 +27431,105 @@ proc_170_start:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_170_continue_826:
-	; BC_CONST [cc]
-	mov r0, #0x00500000			; r0=rConstants[76] (80.0000)
-	; BC_CONST [af]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
-	; BC_WSTATE [51]
-	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
-	; BC_WSTATE [52]
-	ldr r0, [r3], #4			; Pop r0 off StateStack.
-	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [fd]
-	ldr r0, [r4, #125*4]			; r0=rConstants[125]=0x14bc3c49 (5308.2355)
-	; BC_CONST [fe]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #145*4]			; r0=rConstants[145]=0xf0410107 (61505.0040)
-	; BC_CONST [fe]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #145*4]			; r0=rConstants[145]=0xf0410107 (61505.0040)
-	; BC_CONST [fe]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #144*4]			; r0=rConstants[144]=0x9a7f2186 (39551.1310)
-	; BC_CONST [fa]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #122*4]			; r0=rConstants[122]=0x107e3c08 (4222.2345)
-	; BC_CONST [fe]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #145*4]			; r0=rConstants[145]=0xf0410107 (61505.0040)
-	; BC_CONST [fe]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #146*4]			; r0=rConstants[146]=0xf8602087 (63584.1271)
-	; BC_CONST [fe]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #126*4]			; r0=rConstants[126]=0x185e1e86 (6238.1192)
-	; BC_CONST [fa]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #122*4]			; r0=rConstants[122]=0x107e3c08 (4222.2345)
-	; BC_CONST [80]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_PROC [07]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	adr r0, proc_172_start		; r0=r_Procedures[172]
-	; BC_FORK [2a]
-	mov r1, #10
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl ForkState				; r0=proc address, r1=num_args
-	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [d9]
-	mov r0, #0x00780000			; r0=rConstants[89] (120.0000)
-	; BC_CONST [c1]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00320000			; r0=rConstants[65] (50.0000)
-	; BC_WSTATE [51]
-	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
-	; BC_WSTATE [52]
-	ldr r0, [r3], #4			; Pop r0 off StateStack.
-	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [fe]
-	ldr r0, [r4, #136*4]			; r0=rConstants[136]=0x881f1f81 (34847.1231)
-	; BC_CONST [fe]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #135*4]			; r0=rConstants[135]=0x823f3f20 (33343.2466)
-	; BC_CONST [fe]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #126*4]			; r0=rConstants[126]=0x185e1e86 (6238.1192)
-	; BC_CONST [fb]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #123*4]			; r0=rConstants[123]=0x107f2c49 (4223.1730)
-	; BC_CONST [fe]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #144*4]			; r0=rConstants[144]=0x9a7f2186 (39551.1310)
-	; BC_CONST [80]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [80]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [80]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [80]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [80]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_PROC [07]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	adr r0, proc_172_start		; r0=r_Procedures[172]
-	; BC_FORK [2a]
-	mov r1, #10
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl ForkState				; r0=proc address, r1=num_args
-	ldr lr, [sp], #4			; Pop lr off program stack.
+	; BC_CONST [d2]
+	mov r0, #0x00500000			; r0=rConstants[82] (80.0000)
 	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [9c]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
+	; BC_WSTATE [51]
+	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
+	; BC_WSTATE [52]
+	ldr r0, [r3], #4			; Pop r0 off StateStack.
+	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
+	; BC_CONST [fe]
+	ldr r0, [r4, #133*4]			; r0=rConstants[133]=0x14bc3c49 (5308.2355)
+	; BC_CONST [fe]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r4, #167*4]			; r0=rConstants[167]=0xf0410107 (61505.0040)
+	; BC_CONST [fe]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r4, #167*4]			; r0=rConstants[167]=0xf0410107 (61505.0040)
+	; BC_CONST [fe]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r4, #161*4]			; r0=rConstants[161]=0x9a7f2186 (39551.1310)
+	; BC_CONST [fe]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r4, #130*4]			; r0=rConstants[130]=0x107e3c08 (4222.2345)
+	; BC_CONST [fe]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r4, #167*4]			; r0=rConstants[167]=0xf0410107 (61505.0040)
+	; BC_CONST [fe]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r4, #168*4]			; r0=rConstants[168]=0xf8602087 (63584.1271)
+	; BC_CONST [fe]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r4, #134*4]			; r0=rConstants[134]=0x185e1e86 (6238.1192)
+	; BC_CONST [fe]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r4, #130*4]			; r0=rConstants[130]=0x107e3c08 (4222.2345)
+	; BC_CONST [80]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
+	; BC_PROC [07]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	adr r0, proc_172_start		; r0=r_Procedures[172]
+	; BC_FORK [2a]
+	mov r1, #10
+	str lr, [sp, #-4]!			; Push lr on program stack.
+	bl ForkState				; r0=proc address, r1=num_args
+	ldr lr, [sp], #4			; Pop lr off program stack.
+	; BC_CONST [df]
+	mov r0, #0x00780000			; r0=rConstants[95] (120.0000)
+	; BC_CONST [c5]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	mov r0, #0x00320000			; r0=rConstants[69] (50.0000)
+	; BC_WSTATE [51]
+	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
+	; BC_WSTATE [52]
+	ldr r0, [r3], #4			; Pop r0 off StateStack.
+	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
+	; BC_CONST [fe]
+	ldr r0, [r4, #153*4]			; r0=rConstants[153]=0x881f1f81 (34847.1231)
+	; BC_CONST [fe]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r4, #152*4]			; r0=rConstants[152]=0x823f3f20 (33343.2466)
+	; BC_CONST [fe]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r4, #134*4]			; r0=rConstants[134]=0x185e1e86 (6238.1192)
+	; BC_CONST [fe]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r4, #131*4]			; r0=rConstants[131]=0x107f2c49 (4223.1730)
+	; BC_CONST [fe]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r4, #161*4]			; r0=rConstants[161]=0x9a7f2186 (39551.1310)
+	; BC_CONST [80]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
+	; BC_CONST [80]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
+	; BC_CONST [80]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
+	; BC_CONST [80]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
+	; BC_CONST [80]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
+	; BC_PROC [07]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	adr r0, proc_172_start		; r0=r_Procedures[172]
+	; BC_FORK [2a]
+	mov r1, #10
+	str lr, [sp, #-4]!			; Push lr on program stack.
+	bl ForkState				; r0=proc address, r1=num_args
+	ldr lr, [sp], #4			; Pop lr off program stack.
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [9d]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -27543,45 +27543,45 @@ proc_170_continue_826:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_170_continue_827:
-	; BC_CONST [b3]
-	mov r0, #0x00190000			; r0=rConstants[51] (25.0000)
-	; BC_CONST [9e]
+	; BC_CONST [b6]
+	mov r0, #0x00190000			; r0=rConstants[54] (25.0000)
+	; BC_CONST [9f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
 	; BC_CONST [fe]
-	ldr r0, [r4, #129*4]			; r0=rConstants[129]=0x189c2186 (6300.1310)
+	ldr r0, [r4, #137*4]			; r0=rConstants[137]=0x189c2186 (6300.1310)
 	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #126*4]			; r0=rConstants[126]=0x185e1e86 (6238.1192)
-	; BC_CONST [fa]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #122*4]			; r0=rConstants[122]=0x107e3c08 (4222.2345)
+	ldr r0, [r4, #134*4]			; r0=rConstants[134]=0x185e1e86 (6238.1192)
 	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #142*4]			; r0=rConstants[142]=0x9a6e19a6 (39534.1002)
-	; BC_CONST [fc]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #124*4]			; r0=rConstants[124]=0x147f1c49 (5247.1105)
+	ldr r0, [r4, #130*4]			; r0=rConstants[130]=0x107e3c08 (4222.2345)
 	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #146*4]			; r0=rConstants[146]=0xf8602087 (63584.1271)
-	; BC_CONST [fb]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #123*4]			; r0=rConstants[123]=0x107f2c49 (4223.1730)
-	; BC_CONST [fd]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #125*4]			; r0=rConstants[125]=0x14bc3c49 (5308.2355)
+	ldr r0, [r4, #159*4]			; r0=rConstants[159]=0x9a6e19a6 (39534.1002)
 	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #129*4]			; r0=rConstants[129]=0x189c2186 (6300.1310)
+	ldr r0, [r4, #132*4]			; r0=rConstants[132]=0x147f1c49 (5247.1105)
 	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #132*4]			; r0=rConstants[132]=0x82071fa2 (33287.1236)
+	ldr r0, [r4, #168*4]			; r0=rConstants[168]=0xf8602087 (63584.1271)
+	; BC_CONST [fe]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r4, #131*4]			; r0=rConstants[131]=0x107f2c49 (4223.1730)
+	; BC_CONST [fe]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r4, #133*4]			; r0=rConstants[133]=0x14bc3c49 (5308.2355)
+	; BC_CONST [fe]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r4, #137*4]			; r0=rConstants[137]=0x189c2186 (6300.1310)
+	; BC_CONST [fe]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r4, #149*4]			; r0=rConstants[149]=0x82071fa2 (33287.1236)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_172_start		; r0=r_Procedures[172]
@@ -27590,8 +27590,8 @@ proc_170_continue_827:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_CONST [91]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00010000			; r0=rConstants[17] (1.0000)
@@ -27608,24 +27608,24 @@ proc_170_continue_827:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_170_continue_828:
-	; BC_CONST [d8]
-	mov r0, #0x00730000			; r0=rConstants[88] (115.0000)
-	; BC_CONST [d3]
+	; BC_CONST [de]
+	mov r0, #0x00730000			; r0=rConstants[94] (115.0000)
+	; BC_CONST [d9]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00640000			; r0=rConstants[83] (100.0000)
+	mov r0, #0x00640000			; r0=rConstants[89] (100.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
 	; BC_CONST [fe]
-	ldr r0, [r4, #128*4]			; r0=rConstants[128]=0x187f3c8a (6271.2365)
-	; BC_CONST [f8]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #120*4]			; r0=rConstants[120]=0x081f1f82 (2079.1231)
+	ldr r0, [r4, #136*4]			; r0=rConstants[136]=0x187f3c8a (6271.2365)
 	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #139*4]			; r0=rConstants[139]=0x987f14aa (39039.0807)
+	ldr r0, [r4, #126*4]			; r0=rConstants[126]=0x081f1f82 (2079.1231)
+	; BC_CONST [fe]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r4, #156*4]			; r0=rConstants[156]=0x987f14aa (39039.0807)
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -27655,11 +27655,11 @@ proc_170_continue_828:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [9e]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [9f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -27673,30 +27673,30 @@ proc_170_continue_828:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_170_continue_829:
-	; BC_CONST [d8]
-	mov r0, #0x00730000			; r0=rConstants[88] (115.0000)
-	; BC_CONST [d3]
+	; BC_CONST [de]
+	mov r0, #0x00730000			; r0=rConstants[94] (115.0000)
+	; BC_CONST [d9]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00640000			; r0=rConstants[83] (100.0000)
+	mov r0, #0x00640000			; r0=rConstants[89] (100.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
 	; BC_CONST [fe]
-	ldr r0, [r4, #144*4]			; r0=rConstants[144]=0x9a7f2186 (39551.1310)
-	; BC_CONST [f9]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #121*4]			; r0=rConstants[121]=0x083f3082 (2111.1895)
-	; BC_CONST [f8]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #120*4]			; r0=rConstants[120]=0x081f1f82 (2079.1231)
+	ldr r0, [r4, #161*4]			; r0=rConstants[161]=0x9a7f2186 (39551.1310)
 	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #128*4]			; r0=rConstants[128]=0x187f3c8a (6271.2365)
+	ldr r0, [r4, #127*4]			; r0=rConstants[127]=0x083f3082 (2111.1895)
 	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #144*4]			; r0=rConstants[144]=0x9a7f2186 (39551.1310)
+	ldr r0, [r4, #126*4]			; r0=rConstants[126]=0x081f1f82 (2079.1231)
+	; BC_CONST [fe]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r4, #136*4]			; r0=rConstants[136]=0x187f3c8a (6271.2365)
+	; BC_CONST [fe]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r4, #161*4]			; r0=rConstants[161]=0x9a7f2186 (39551.1310)
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -27720,11 +27720,11 @@ proc_170_continue_829:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [9c]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [9d]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -27738,42 +27738,42 @@ proc_170_continue_829:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_170_continue_830:
-	; BC_CONST [df]
-	mov r0, #0x00870000			; r0=rConstants[95] (135.0000)
-	; BC_CONST [a9]
+	; BC_CONST [e5]
+	mov r0, #0x00870000			; r0=rConstants[101] (135.0000)
+	; BC_CONST [ac]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x000e0000			; r0=rConstants[41] (14.0000)
+	mov r0, #0x000e0000			; r0=rConstants[44] (14.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
 	; BC_CONST [fe]
-	ldr r0, [r4, #144*4]			; r0=rConstants[144]=0x9a7f2186 (39551.1310)
-	; BC_CONST [fc]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #124*4]			; r0=rConstants[124]=0x147f1c49 (5247.1105)
+	ldr r0, [r4, #161*4]			; r0=rConstants[161]=0x9a7f2186 (39551.1310)
 	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #135*4]			; r0=rConstants[135]=0x823f3f20 (33343.2466)
+	ldr r0, [r4, #132*4]			; r0=rConstants[132]=0x147f1c49 (5247.1105)
 	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #146*4]			; r0=rConstants[146]=0xf8602087 (63584.1271)
+	ldr r0, [r4, #152*4]			; r0=rConstants[152]=0x823f3f20 (33343.2466)
 	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #128*4]			; r0=rConstants[128]=0x187f3c8a (6271.2365)
-	; BC_CONST [fb]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #123*4]			; r0=rConstants[123]=0x107f2c49 (4223.1730)
+	ldr r0, [r4, #168*4]			; r0=rConstants[168]=0xf8602087 (63584.1271)
 	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #144*4]			; r0=rConstants[144]=0x9a7f2186 (39551.1310)
-	; BC_CONST [fa]
+	ldr r0, [r4, #136*4]			; r0=rConstants[136]=0x187f3c8a (6271.2365)
+	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #122*4]			; r0=rConstants[122]=0x107e3c08 (4222.2345)
-	; BC_CONST [fd]
+	ldr r0, [r4, #131*4]			; r0=rConstants[131]=0x107f2c49 (4223.1730)
+	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #125*4]			; r0=rConstants[125]=0x14bc3c49 (5308.2355)
+	ldr r0, [r4, #161*4]			; r0=rConstants[161]=0x9a7f2186 (39551.1310)
+	; BC_CONST [fe]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r4, #130*4]			; r0=rConstants[130]=0x107e3c08 (4222.2345)
+	; BC_CONST [fe]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r4, #133*4]			; r0=rConstants[133]=0x14bc3c49 (5308.2355)
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -27785,8 +27785,8 @@ proc_170_continue_830:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_CONST [91]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00010000			; r0=rConstants[17] (1.0000)
@@ -27803,42 +27803,42 @@ proc_170_continue_830:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_170_continue_831:
-	; BC_CONST [b9]
-	mov r0, #0x00230000			; r0=rConstants[57] (35.0000)
-	; BC_CONST [a9]
+	; BC_CONST [bc]
+	mov r0, #0x00230000			; r0=rConstants[60] (35.0000)
+	; BC_CONST [ac]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x000e0000			; r0=rConstants[41] (14.0000)
+	mov r0, #0x000e0000			; r0=rConstants[44] (14.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
 	; BC_CONST [fe]
-	ldr r0, [r4, #137*4]			; r0=rConstants[137]=0x927f0104 (37503.0040)
-	; BC_CONST [fd]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #125*4]			; r0=rConstants[125]=0x14bc3c49 (5308.2355)
+	ldr r0, [r4, #154*4]			; r0=rConstants[154]=0x927f0104 (37503.0040)
 	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #146*4]			; r0=rConstants[146]=0xf8602087 (63584.1271)
-	; BC_CONST [fb]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #123*4]			; r0=rConstants[123]=0x107f2c49 (4223.1730)
-	; BC_CONST [f9]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #121*4]			; r0=rConstants[121]=0x083f3082 (2111.1895)
+	ldr r0, [r4, #133*4]			; r0=rConstants[133]=0x14bc3c49 (5308.2355)
 	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #146*4]			; r0=rConstants[146]=0xf8602087 (63584.1271)
+	ldr r0, [r4, #168*4]			; r0=rConstants[168]=0xf8602087 (63584.1271)
 	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #141*4]			; r0=rConstants[141]=0x98bc3ba6 (39100.2330)
+	ldr r0, [r4, #131*4]			; r0=rConstants[131]=0x107f2c49 (4223.1730)
 	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #135*4]			; r0=rConstants[135]=0x823f3f20 (33343.2466)
+	ldr r0, [r4, #127*4]			; r0=rConstants[127]=0x083f3082 (2111.1895)
 	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #145*4]			; r0=rConstants[145]=0xf0410107 (61505.0040)
+	ldr r0, [r4, #168*4]			; r0=rConstants[168]=0xf8602087 (63584.1271)
+	; BC_CONST [fe]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r4, #158*4]			; r0=rConstants[158]=0x98bc3ba6 (39100.2330)
+	; BC_CONST [fe]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r4, #152*4]			; r0=rConstants[152]=0x823f3f20 (33343.2466)
+	; BC_CONST [fe]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r4, #167*4]			; r0=rConstants[167]=0xf0410107 (61505.0040)
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -27850,11 +27850,11 @@ proc_170_continue_831:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [9e]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [9f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -27868,33 +27868,33 @@ proc_170_continue_831:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_170_continue_832:
-	; BC_CONST [ce]
-	mov r0, #0x00540000			; r0=rConstants[78] (84.0000)
-	; BC_CONST [bd]
+	; BC_CONST [d4]
+	mov r0, #0x00540000			; r0=rConstants[84] (84.0000)
+	; BC_CONST [c1]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x002a0000			; r0=rConstants[61] (42.0000)
+	mov r0, #0x002a0000			; r0=rConstants[65] (42.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
 	; BC_CONST [fe]
-	ldr r0, [r4, #137*4]			; r0=rConstants[137]=0x927f0104 (37503.0040)
-	; BC_CONST [fa]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #122*4]			; r0=rConstants[122]=0x107e3c08 (4222.2345)
-	; BC_CONST [f8]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #120*4]			; r0=rConstants[120]=0x081f1f82 (2079.1231)
+	ldr r0, [r4, #154*4]			; r0=rConstants[154]=0x927f0104 (37503.0040)
 	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #140*4]			; r0=rConstants[140]=0x989c2f46 (39068.1847)
-	; BC_CONST [f8]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #120*4]			; r0=rConstants[120]=0x081f1f82 (2079.1231)
+	ldr r0, [r4, #130*4]			; r0=rConstants[130]=0x107e3c08 (4222.2345)
 	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #144*4]			; r0=rConstants[144]=0x9a7f2186 (39551.1310)
+	ldr r0, [r4, #126*4]			; r0=rConstants[126]=0x081f1f82 (2079.1231)
+	; BC_CONST [fe]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r4, #157*4]			; r0=rConstants[157]=0x989c2f46 (39068.1847)
+	; BC_CONST [fe]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r4, #126*4]			; r0=rConstants[126]=0x081f1f82 (2079.1231)
+	; BC_CONST [fe]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r4, #161*4]			; r0=rConstants[161]=0x9a7f2186 (39551.1310)
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -27915,11 +27915,11 @@ proc_170_continue_832:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [9c]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [9d]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -27933,102 +27933,102 @@ proc_170_continue_832:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_170_continue_833:
-	; BC_CONST [af]
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
-	; BC_CONST [af]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
-	; BC_WSTATE [51]
-	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
-	; BC_WSTATE [52]
-	ldr r0, [r3], #4			; Pop r0 off StateStack.
-	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [fe]
-	ldr r0, [r4, #137*4]			; r0=rConstants[137]=0x927f0104 (37503.0040)
-	; BC_CONST [fe]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #126*4]			; r0=rConstants[126]=0x185e1e86 (6238.1192)
-	; BC_CONST [fe]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #129*4]			; r0=rConstants[129]=0x189c2186 (6300.1310)
-	; BC_CONST [f8]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #120*4]			; r0=rConstants[120]=0x081f1f82 (2079.1231)
-	; BC_CONST [fe]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #142*4]			; r0=rConstants[142]=0x9a6e19a6 (39534.1002)
-	; BC_CONST [80]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [80]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [80]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [80]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [80]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_PROC [07]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	adr r0, proc_172_start		; r0=r_Procedures[172]
-	; BC_FORK [2a]
-	mov r1, #10
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl ForkState				; r0=proc address, r1=num_args
-	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [c3]
-	mov r0, #0x003c0000			; r0=rConstants[67] (60.0000)
-	; BC_CONST [c1]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00320000			; r0=rConstants[65] (50.0000)
-	; BC_WSTATE [51]
-	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
-	; BC_WSTATE [52]
-	ldr r0, [r3], #4			; Pop r0 off StateStack.
-	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [fe]
-	ldr r0, [r4, #128*4]			; r0=rConstants[128]=0x187f3c8a (6271.2365)
-	; BC_CONST [fe]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #144*4]			; r0=rConstants[144]=0x9a7f2186 (39551.1310)
-	; BC_CONST [fe]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #142*4]			; r0=rConstants[142]=0x9a6e19a6 (39534.1002)
-	; BC_CONST [fe]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #146*4]			; r0=rConstants[146]=0xf8602087 (63584.1271)
-	; BC_CONST [fe]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #141*4]			; r0=rConstants[141]=0x98bc3ba6 (39100.2330)
-	; BC_CONST [fa]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #122*4]			; r0=rConstants[122]=0x107e3c08 (4222.2345)
-	; BC_CONST [80]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [80]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [80]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [80]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_PROC [07]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	adr r0, proc_172_start		; r0=r_Procedures[172]
-	; BC_FORK [2a]
-	mov r1, #10
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl ForkState				; r0=proc address, r1=num_args
-	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
+	; BC_CONST [b2]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
+	; BC_WSTATE [51]
+	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
+	; BC_WSTATE [52]
+	ldr r0, [r3], #4			; Pop r0 off StateStack.
+	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
+	; BC_CONST [fe]
+	ldr r0, [r4, #154*4]			; r0=rConstants[154]=0x927f0104 (37503.0040)
+	; BC_CONST [fe]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r4, #134*4]			; r0=rConstants[134]=0x185e1e86 (6238.1192)
+	; BC_CONST [fe]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r4, #137*4]			; r0=rConstants[137]=0x189c2186 (6300.1310)
+	; BC_CONST [fe]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r4, #126*4]			; r0=rConstants[126]=0x081f1f82 (2079.1231)
+	; BC_CONST [fe]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r4, #159*4]			; r0=rConstants[159]=0x9a6e19a6 (39534.1002)
+	; BC_CONST [80]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
+	; BC_CONST [80]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
+	; BC_CONST [80]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
+	; BC_CONST [80]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
+	; BC_CONST [80]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
+	; BC_PROC [07]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	adr r0, proc_172_start		; r0=r_Procedures[172]
+	; BC_FORK [2a]
+	mov r1, #10
+	str lr, [sp, #-4]!			; Push lr on program stack.
+	bl ForkState				; r0=proc address, r1=num_args
+	ldr lr, [sp], #4			; Pop lr off program stack.
+	; BC_CONST [c7]
+	mov r0, #0x003c0000			; r0=rConstants[71] (60.0000)
+	; BC_CONST [c5]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	mov r0, #0x00320000			; r0=rConstants[69] (50.0000)
+	; BC_WSTATE [51]
+	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
+	; BC_WSTATE [52]
+	ldr r0, [r3], #4			; Pop r0 off StateStack.
+	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
+	; BC_CONST [fe]
+	ldr r0, [r4, #136*4]			; r0=rConstants[136]=0x187f3c8a (6271.2365)
+	; BC_CONST [fe]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r4, #161*4]			; r0=rConstants[161]=0x9a7f2186 (39551.1310)
+	; BC_CONST [fe]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r4, #159*4]			; r0=rConstants[159]=0x9a6e19a6 (39534.1002)
+	; BC_CONST [fe]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r4, #168*4]			; r0=rConstants[168]=0xf8602087 (63584.1271)
+	; BC_CONST [fe]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r4, #158*4]			; r0=rConstants[158]=0x98bc3ba6 (39100.2330)
+	; BC_CONST [fe]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r4, #130*4]			; r0=rConstants[130]=0x107e3c08 (4222.2345)
+	; BC_CONST [80]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
+	; BC_CONST [80]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
+	; BC_CONST [80]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
+	; BC_CONST [80]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
+	; BC_PROC [07]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	adr r0, proc_172_start		; r0=r_Procedures[172]
+	; BC_FORK [2a]
+	mov r1, #10
+	str lr, [sp, #-4]!			; Push lr on program stack.
+	bl ForkState				; r0=proc address, r1=num_args
+	ldr lr, [sp], #4			; Pop lr off program stack.
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_CONST [91]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00010000			; r0=rConstants[17] (1.0000)
@@ -28045,36 +28045,36 @@ proc_170_continue_833:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_170_continue_834:
-	; BC_CONST [d9]
-	mov r0, #0x00780000			; r0=rConstants[89] (120.0000)
-	; BC_CONST [af]
+	; BC_CONST [df]
+	mov r0, #0x00780000			; r0=rConstants[95] (120.0000)
+	; BC_CONST [b2]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
 	; BC_CONST [fe]
-	ldr r0, [r4, #135*4]			; r0=rConstants[135]=0x823f3f20 (33343.2466)
-	; BC_CONST [fd]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #125*4]			; r0=rConstants[125]=0x14bc3c49 (5308.2355)
-	; BC_CONST [f8]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #120*4]			; r0=rConstants[120]=0x081f1f82 (2079.1231)
+	ldr r0, [r4, #152*4]			; r0=rConstants[152]=0x823f3f20 (33343.2466)
 	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #127*4]			; r0=rConstants[127]=0x18710f46 (6257.0597)
+	ldr r0, [r4, #133*4]			; r0=rConstants[133]=0x14bc3c49 (5308.2355)
 	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #126*4]			; r0=rConstants[126]=0x185e1e86 (6238.1192)
+	ldr r0, [r4, #126*4]			; r0=rConstants[126]=0x081f1f82 (2079.1231)
 	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #139*4]			; r0=rConstants[139]=0x987f14aa (39039.0807)
+	ldr r0, [r4, #135*4]			; r0=rConstants[135]=0x18710f46 (6257.0597)
 	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #139*4]			; r0=rConstants[139]=0x987f14aa (39039.0807)
+	ldr r0, [r4, #134*4]			; r0=rConstants[134]=0x185e1e86 (6238.1192)
+	; BC_CONST [fe]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r4, #156*4]			; r0=rConstants[156]=0x987f14aa (39039.0807)
+	; BC_CONST [fe]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r4, #156*4]			; r0=rConstants[156]=0x987f14aa (39039.0807)
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -28092,11 +28092,11 @@ proc_170_continue_834:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [9e]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [9f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -28110,33 +28110,33 @@ proc_170_continue_834:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_170_continue_835:
-	; BC_CONST [d9]
-	mov r0, #0x00780000			; r0=rConstants[89] (120.0000)
-	; BC_CONST [d9]
+	; BC_CONST [df]
+	mov r0, #0x00780000			; r0=rConstants[95] (120.0000)
+	; BC_CONST [df]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00780000			; r0=rConstants[89] (120.0000)
+	mov r0, #0x00780000			; r0=rConstants[95] (120.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [f9]
-	ldr r0, [r4, #121*4]			; r0=rConstants[121]=0x083f3082 (2111.1895)
+	; BC_CONST [fe]
+	ldr r0, [r4, #127*4]			; r0=rConstants[127]=0x083f3082 (2111.1895)
 	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #144*4]			; r0=rConstants[144]=0x9a7f2186 (39551.1310)
+	ldr r0, [r4, #161*4]			; r0=rConstants[161]=0x9a7f2186 (39551.1310)
 	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #130*4]			; r0=rConstants[130]=0x40bf3f08 (16575.2462)
+	ldr r0, [r4, #144*4]			; r0=rConstants[144]=0x40bf3f08 (16575.2462)
 	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #126*4]			; r0=rConstants[126]=0x185e1e86 (6238.1192)
-	; BC_CONST [fa]
+	ldr r0, [r4, #134*4]			; r0=rConstants[134]=0x185e1e86 (6238.1192)
+	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #122*4]			; r0=rConstants[122]=0x107e3c08 (4222.2345)
-	; BC_CONST [b7]
+	ldr r0, [r4, #130*4]			; r0=rConstants[130]=0x107e3c08 (4222.2345)
+	; BC_CONST [ba]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00200000			; r0=rConstants[55] (32.0000)
+	mov r0, #0x00200000			; r0=rConstants[58] (32.0000)
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -28157,11 +28157,11 @@ proc_170_continue_835:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [9c]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [9d]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -28175,36 +28175,36 @@ proc_170_continue_835:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_170_continue_836:
-	; BC_CONST [cc]
-	mov r0, #0x00500000			; r0=rConstants[76] (80.0000)
-	; BC_CONST [af]
+	; BC_CONST [d2]
+	mov r0, #0x00500000			; r0=rConstants[82] (80.0000)
+	; BC_CONST [b2]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
 	; BC_CONST [fe]
-	ldr r0, [r4, #130*4]			; r0=rConstants[130]=0x40bf3f08 (16575.2462)
+	ldr r0, [r4, #144*4]			; r0=rConstants[144]=0x40bf3f08 (16575.2462)
 	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #144*4]			; r0=rConstants[144]=0x9a7f2186 (39551.1310)
-	; BC_CONST [fb]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #123*4]			; r0=rConstants[123]=0x107f2c49 (4223.1730)
+	ldr r0, [r4, #161*4]			; r0=rConstants[161]=0x9a7f2186 (39551.1310)
 	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #129*4]			; r0=rConstants[129]=0x189c2186 (6300.1310)
-	; BC_CONST [f8]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #120*4]			; r0=rConstants[120]=0x081f1f82 (2079.1231)
-	; BC_CONST [fb]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #123*4]			; r0=rConstants[123]=0x107f2c49 (4223.1730)
+	ldr r0, [r4, #131*4]			; r0=rConstants[131]=0x107f2c49 (4223.1730)
 	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #132*4]			; r0=rConstants[132]=0x82071fa2 (33287.1236)
+	ldr r0, [r4, #137*4]			; r0=rConstants[137]=0x189c2186 (6300.1310)
+	; BC_CONST [fe]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r4, #126*4]			; r0=rConstants[126]=0x081f1f82 (2079.1231)
+	; BC_CONST [fe]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r4, #131*4]			; r0=rConstants[131]=0x107f2c49 (4223.1730)
+	; BC_CONST [fe]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r4, #149*4]			; r0=rConstants[149]=0x82071fa2 (33287.1236)
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -28222,8 +28222,8 @@ proc_170_continue_836:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_CONST [91]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00010000			; r0=rConstants[17] (1.0000)
@@ -28240,39 +28240,39 @@ proc_170_continue_836:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_170_continue_837:
-	; BC_CONST [af]
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
-	; BC_CONST [bb]
+	; BC_CONST [b2]
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
+	; BC_CONST [bf]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00280000			; r0=rConstants[59] (40.0000)
+	mov r0, #0x00280000			; r0=rConstants[63] (40.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [fa]
-	ldr r0, [r4, #122*4]			; r0=rConstants[122]=0x107e3c08 (4222.2345)
+	; BC_CONST [fe]
+	ldr r0, [r4, #130*4]			; r0=rConstants[130]=0x107e3c08 (4222.2345)
 	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #146*4]			; r0=rConstants[146]=0xf8602087 (63584.1271)
-	; BC_CONST [fa]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #122*4]			; r0=rConstants[122]=0x107e3c08 (4222.2345)
+	ldr r0, [r4, #168*4]			; r0=rConstants[168]=0xf8602087 (63584.1271)
 	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #127*4]			; r0=rConstants[127]=0x18710f46 (6257.0597)
+	ldr r0, [r4, #130*4]			; r0=rConstants[130]=0x107e3c08 (4222.2345)
+	; BC_CONST [fe]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r4, #135*4]			; r0=rConstants[135]=0x18710f46 (6257.0597)
+	; BC_CONST [fe]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r4, #133*4]			; r0=rConstants[133]=0x14bc3c49 (5308.2355)
+	; BC_CONST [fe]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r4, #136*4]			; r0=rConstants[136]=0x187f3c8a (6271.2365)
+	; BC_CONST [fe]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r4, #161*4]			; r0=rConstants[161]=0x9a7f2186 (39551.1310)
 	; BC_CONST [fd]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #125*4]			; r0=rConstants[125]=0x14bc3c49 (5308.2355)
-	; BC_CONST [fe]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #128*4]			; r0=rConstants[128]=0x187f3c8a (6271.2365)
-	; BC_CONST [fe]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #144*4]			; r0=rConstants[144]=0x9a7f2186 (39551.1310)
-	; BC_CONST [f7]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #119*4]			; r0=rConstants[119]=0x040f0f42 (1039.0596)
+	ldr r0, [r4, #125*4]			; r0=rConstants[125]=0x040f0f42 (1039.0596)
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -28287,11 +28287,11 @@ proc_170_continue_837:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [9e]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [9f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -28305,39 +28305,39 @@ proc_170_continue_837:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_170_continue_838:
-	; BC_CONST [c1]
-	mov r0, #0x00320000			; r0=rConstants[65] (50.0000)
-	; BC_CONST [bb]
+	; BC_CONST [c5]
+	mov r0, #0x00320000			; r0=rConstants[69] (50.0000)
+	; BC_CONST [bf]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00280000			; r0=rConstants[59] (40.0000)
+	mov r0, #0x00280000			; r0=rConstants[63] (40.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [fc]
-	ldr r0, [r4, #124*4]			; r0=rConstants[124]=0x147f1c49 (5247.1105)
+	; BC_CONST [fe]
+	ldr r0, [r4, #132*4]			; r0=rConstants[132]=0x147f1c49 (5247.1105)
 	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #126*4]			; r0=rConstants[126]=0x185e1e86 (6238.1192)
-	; BC_CONST [f9]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #121*4]			; r0=rConstants[121]=0x083f3082 (2111.1895)
-	; BC_CONST [fd]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #125*4]			; r0=rConstants[125]=0x14bc3c49 (5308.2355)
-	; BC_CONST [fb]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #123*4]			; r0=rConstants[123]=0x107f2c49 (4223.1730)
+	ldr r0, [r4, #134*4]			; r0=rConstants[134]=0x185e1e86 (6238.1192)
 	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #146*4]			; r0=rConstants[146]=0xf8602087 (63584.1271)
+	ldr r0, [r4, #127*4]			; r0=rConstants[127]=0x083f3082 (2111.1895)
 	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #145*4]			; r0=rConstants[145]=0xf0410107 (61505.0040)
+	ldr r0, [r4, #133*4]			; r0=rConstants[133]=0x14bc3c49 (5308.2355)
 	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #132*4]			; r0=rConstants[132]=0x82071fa2 (33287.1236)
+	ldr r0, [r4, #131*4]			; r0=rConstants[131]=0x107f2c49 (4223.1730)
+	; BC_CONST [fe]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r4, #168*4]			; r0=rConstants[168]=0xf8602087 (63584.1271)
+	; BC_CONST [fe]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r4, #167*4]			; r0=rConstants[167]=0xf0410107 (61505.0040)
+	; BC_CONST [fe]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r4, #149*4]			; r0=rConstants[149]=0x82071fa2 (33287.1236)
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -28352,11 +28352,11 @@ proc_170_continue_838:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [9c]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [9d]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -28370,42 +28370,42 @@ proc_170_continue_838:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_170_continue_839:
-	; BC_CONST [d9]
-	mov r0, #0x00780000			; r0=rConstants[89] (120.0000)
-	; BC_CONST [af]
+	; BC_CONST [df]
+	mov r0, #0x00780000			; r0=rConstants[95] (120.0000)
+	; BC_CONST [b2]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [fc]
-	ldr r0, [r4, #124*4]			; r0=rConstants[124]=0x147f1c49 (5247.1105)
+	; BC_CONST [fe]
+	ldr r0, [r4, #132*4]			; r0=rConstants[132]=0x147f1c49 (5247.1105)
 	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #126*4]			; r0=rConstants[126]=0x185e1e86 (6238.1192)
+	ldr r0, [r4, #134*4]			; r0=rConstants[134]=0x185e1e86 (6238.1192)
 	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #126*4]			; r0=rConstants[126]=0x185e1e86 (6238.1192)
+	ldr r0, [r4, #134*4]			; r0=rConstants[134]=0x185e1e86 (6238.1192)
 	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #133*4]			; r0=rConstants[133]=0x82080820 (33288.0317)
+	ldr r0, [r4, #150*4]			; r0=rConstants[150]=0x82080820 (33288.0317)
 	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #139*4]			; r0=rConstants[139]=0x987f14aa (39039.0807)
-	; BC_CONST [fb]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #123*4]			; r0=rConstants[123]=0x107f2c49 (4223.1730)
-	; BC_CONST [fd]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #125*4]			; r0=rConstants[125]=0x14bc3c49 (5308.2355)
+	ldr r0, [r4, #156*4]			; r0=rConstants[156]=0x987f14aa (39039.0807)
 	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #146*4]			; r0=rConstants[146]=0xf8602087 (63584.1271)
-	; BC_CONST [fa]
+	ldr r0, [r4, #131*4]			; r0=rConstants[131]=0x107f2c49 (4223.1730)
+	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #122*4]			; r0=rConstants[122]=0x107e3c08 (4222.2345)
+	ldr r0, [r4, #133*4]			; r0=rConstants[133]=0x14bc3c49 (5308.2355)
+	; BC_CONST [fe]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r4, #168*4]			; r0=rConstants[168]=0xf8602087 (63584.1271)
+	; BC_CONST [fe]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r4, #130*4]			; r0=rConstants[130]=0x107e3c08 (4222.2345)
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -28417,8 +28417,8 @@ proc_170_continue_839:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_CONST [91]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00010000			; r0=rConstants[17] (1.0000)
@@ -28435,27 +28435,27 @@ proc_170_continue_839:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_170_continue_840:
-	; BC_CONST [c3]
-	mov r0, #0x003c0000			; r0=rConstants[67] (60.0000)
-	; BC_CONST [d3]
+	; BC_CONST [c7]
+	mov r0, #0x003c0000			; r0=rConstants[71] (60.0000)
+	; BC_CONST [d9]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00640000			; r0=rConstants[83] (100.0000)
+	mov r0, #0x00640000			; r0=rConstants[89] (100.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [fb]
-	ldr r0, [r4, #123*4]			; r0=rConstants[123]=0x107f2c49 (4223.1730)
+	; BC_CONST [fe]
+	ldr r0, [r4, #131*4]			; r0=rConstants[131]=0x107f2c49 (4223.1730)
 	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #146*4]			; r0=rConstants[146]=0xf8602087 (63584.1271)
+	ldr r0, [r4, #168*4]			; r0=rConstants[168]=0xf8602087 (63584.1271)
 	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #137*4]			; r0=rConstants[137]=0x927f0104 (37503.0040)
+	ldr r0, [r4, #154*4]			; r0=rConstants[154]=0x927f0104 (37503.0040)
 	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #145*4]			; r0=rConstants[145]=0xf0410107 (61505.0040)
+	ldr r0, [r4, #167*4]			; r0=rConstants[167]=0xf0410107 (61505.0040)
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -28482,11 +28482,11 @@ proc_170_continue_840:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [9e]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [9f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -28500,105 +28500,105 @@ proc_170_continue_840:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_170_continue_841:
-	; BC_CONST [af]
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
-	; BC_CONST [af]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
-	; BC_WSTATE [51]
-	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
-	; BC_WSTATE [52]
-	ldr r0, [r3], #4			; Pop r0 off StateStack.
-	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [fe]
-	ldr r0, [r4, #142*4]			; r0=rConstants[142]=0x9a6e19a6 (39534.1002)
-	; BC_CONST [fe]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #126*4]			; r0=rConstants[126]=0x185e1e86 (6238.1192)
-	; BC_CONST [fe]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #137*4]			; r0=rConstants[137]=0x927f0104 (37503.0040)
-	; BC_CONST [fe]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #145*4]			; r0=rConstants[145]=0xf0410107 (61505.0040)
-	; BC_CONST [fe]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #136*4]			; r0=rConstants[136]=0x881f1f81 (34847.1231)
-	; BC_CONST [fd]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #125*4]			; r0=rConstants[125]=0x14bc3c49 (5308.2355)
-	; BC_CONST [fb]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #123*4]			; r0=rConstants[123]=0x107f2c49 (4223.1730)
-	; BC_CONST [fe]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #144*4]			; r0=rConstants[144]=0x9a7f2186 (39551.1310)
-	; BC_CONST [80]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [80]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_PROC [07]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	adr r0, proc_172_start		; r0=r_Procedures[172]
-	; BC_FORK [2a]
-	mov r1, #10
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl ForkState				; r0=proc address, r1=num_args
-	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [c3]
-	mov r0, #0x003c0000			; r0=rConstants[67] (60.0000)
-	; BC_CONST [c2]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00340000			; r0=rConstants[66] (52.0000)
-	; BC_WSTATE [51]
-	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
-	; BC_WSTATE [52]
-	ldr r0, [r3], #4			; Pop r0 off StateStack.
-	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [fe]
-	ldr r0, [r4, #137*4]			; r0=rConstants[137]=0x927f0104 (37503.0040)
-	; BC_CONST [fd]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #125*4]			; r0=rConstants[125]=0x14bc3c49 (5308.2355)
-	; BC_CONST [fe]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #146*4]			; r0=rConstants[146]=0xf8602087 (63584.1271)
-	; BC_CONST [f9]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #121*4]			; r0=rConstants[121]=0x083f3082 (2111.1895)
-	; BC_CONST [f8]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #120*4]			; r0=rConstants[120]=0x081f1f82 (2079.1231)
-	; BC_CONST [fb]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #123*4]			; r0=rConstants[123]=0x107f2c49 (4223.1730)
-	; BC_CONST [fe]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #144*4]			; r0=rConstants[144]=0x9a7f2186 (39551.1310)
-	; BC_CONST [80]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [80]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [80]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_PROC [07]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	adr r0, proc_172_start		; r0=r_Procedures[172]
-	; BC_FORK [2a]
-	mov r1, #10
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl ForkState				; r0=proc address, r1=num_args
-	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [9c]
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
+	; BC_CONST [b2]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
+	; BC_WSTATE [51]
+	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
+	; BC_WSTATE [52]
+	ldr r0, [r3], #4			; Pop r0 off StateStack.
+	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
+	; BC_CONST [fe]
+	ldr r0, [r4, #159*4]			; r0=rConstants[159]=0x9a6e19a6 (39534.1002)
+	; BC_CONST [fe]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r4, #134*4]			; r0=rConstants[134]=0x185e1e86 (6238.1192)
+	; BC_CONST [fe]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r4, #154*4]			; r0=rConstants[154]=0x927f0104 (37503.0040)
+	; BC_CONST [fe]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r4, #167*4]			; r0=rConstants[167]=0xf0410107 (61505.0040)
+	; BC_CONST [fe]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r4, #153*4]			; r0=rConstants[153]=0x881f1f81 (34847.1231)
+	; BC_CONST [fe]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r4, #133*4]			; r0=rConstants[133]=0x14bc3c49 (5308.2355)
+	; BC_CONST [fe]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r4, #131*4]			; r0=rConstants[131]=0x107f2c49 (4223.1730)
+	; BC_CONST [fe]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r4, #161*4]			; r0=rConstants[161]=0x9a7f2186 (39551.1310)
+	; BC_CONST [80]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
+	; BC_CONST [80]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
+	; BC_PROC [07]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	adr r0, proc_172_start		; r0=r_Procedures[172]
+	; BC_FORK [2a]
+	mov r1, #10
+	str lr, [sp, #-4]!			; Push lr on program stack.
+	bl ForkState				; r0=proc address, r1=num_args
+	ldr lr, [sp], #4			; Pop lr off program stack.
+	; BC_CONST [c7]
+	mov r0, #0x003c0000			; r0=rConstants[71] (60.0000)
+	; BC_CONST [c6]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	mov r0, #0x00340000			; r0=rConstants[70] (52.0000)
+	; BC_WSTATE [51]
+	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
+	; BC_WSTATE [52]
+	ldr r0, [r3], #4			; Pop r0 off StateStack.
+	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
+	; BC_CONST [fe]
+	ldr r0, [r4, #154*4]			; r0=rConstants[154]=0x927f0104 (37503.0040)
+	; BC_CONST [fe]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r4, #133*4]			; r0=rConstants[133]=0x14bc3c49 (5308.2355)
+	; BC_CONST [fe]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r4, #168*4]			; r0=rConstants[168]=0xf8602087 (63584.1271)
+	; BC_CONST [fe]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r4, #127*4]			; r0=rConstants[127]=0x083f3082 (2111.1895)
+	; BC_CONST [fe]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r4, #126*4]			; r0=rConstants[126]=0x081f1f82 (2079.1231)
+	; BC_CONST [fe]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r4, #131*4]			; r0=rConstants[131]=0x107f2c49 (4223.1730)
+	; BC_CONST [fe]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r4, #161*4]			; r0=rConstants[161]=0x9a7f2186 (39551.1310)
+	; BC_CONST [80]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
+	; BC_CONST [80]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
+	; BC_CONST [80]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
+	; BC_PROC [07]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	adr r0, proc_172_start		; r0=r_Procedures[172]
+	; BC_FORK [2a]
+	mov r1, #10
+	str lr, [sp, #-4]!			; Push lr on program stack.
+	bl ForkState				; r0=proc address, r1=num_args
+	ldr lr, [sp], #4			; Pop lr off program stack.
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [9d]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -28612,45 +28612,45 @@ proc_170_continue_841:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_170_continue_842:
-	; BC_CONST [cc]
-	mov r0, #0x00500000			; r0=rConstants[76] (80.0000)
-	; BC_CONST [9e]
+	; BC_CONST [d2]
+	mov r0, #0x00500000			; r0=rConstants[82] (80.0000)
+	; BC_CONST [9f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
 	; BC_CONST [fe]
-	ldr r0, [r4, #142*4]			; r0=rConstants[142]=0x9a6e19a6 (39534.1002)
-	; BC_CONST [fc]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #124*4]			; r0=rConstants[124]=0x147f1c49 (5247.1105)
-	; BC_CONST [fd]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #125*4]			; r0=rConstants[125]=0x14bc3c49 (5308.2355)
+	ldr r0, [r4, #159*4]			; r0=rConstants[159]=0x9a6e19a6 (39534.1002)
 	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #129*4]			; r0=rConstants[129]=0x189c2186 (6300.1310)
+	ldr r0, [r4, #132*4]			; r0=rConstants[132]=0x147f1c49 (5247.1105)
 	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #144*4]			; r0=rConstants[144]=0x9a7f2186 (39551.1310)
+	ldr r0, [r4, #133*4]			; r0=rConstants[133]=0x14bc3c49 (5308.2355)
 	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #139*4]			; r0=rConstants[139]=0x987f14aa (39039.0807)
-	; BC_CONST [fd]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #125*4]			; r0=rConstants[125]=0x14bc3c49 (5308.2355)
-	; BC_CONST [f9]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #121*4]			; r0=rConstants[121]=0x083f3082 (2111.1895)
-	; BC_CONST [f9]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #121*4]			; r0=rConstants[121]=0x083f3082 (2111.1895)
+	ldr r0, [r4, #137*4]			; r0=rConstants[137]=0x189c2186 (6300.1310)
 	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #142*4]			; r0=rConstants[142]=0x9a6e19a6 (39534.1002)
+	ldr r0, [r4, #161*4]			; r0=rConstants[161]=0x9a7f2186 (39551.1310)
+	; BC_CONST [fe]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r4, #156*4]			; r0=rConstants[156]=0x987f14aa (39039.0807)
+	; BC_CONST [fe]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r4, #133*4]			; r0=rConstants[133]=0x14bc3c49 (5308.2355)
+	; BC_CONST [fe]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r4, #127*4]			; r0=rConstants[127]=0x083f3082 (2111.1895)
+	; BC_CONST [fe]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r4, #127*4]			; r0=rConstants[127]=0x083f3082 (2111.1895)
+	; BC_CONST [fe]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r4, #159*4]			; r0=rConstants[159]=0x9a6e19a6 (39534.1002)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_172_start		; r0=r_Procedures[172]
@@ -28659,8 +28659,8 @@ proc_170_continue_842:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_CONST [91]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00010000			; r0=rConstants[17] (1.0000)
@@ -28677,30 +28677,30 @@ proc_170_continue_842:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_170_continue_843:
-	; BC_CONST [af]
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
-	; BC_CONST [d0]
+	; BC_CONST [b2]
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
+	; BC_CONST [d6]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x005a0000			; r0=rConstants[80] (90.0000)
+	mov r0, #0x005a0000			; r0=rConstants[86] (90.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
 	; BC_CONST [fe]
-	ldr r0, [r4, #142*4]			; r0=rConstants[142]=0x9a6e19a6 (39534.1002)
+	ldr r0, [r4, #159*4]			; r0=rConstants[159]=0x9a6e19a6 (39534.1002)
 	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #145*4]			; r0=rConstants[145]=0xf0410107 (61505.0040)
+	ldr r0, [r4, #167*4]			; r0=rConstants[167]=0xf0410107 (61505.0040)
 	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #146*4]			; r0=rConstants[146]=0xf8602087 (63584.1271)
-	; BC_CONST [f9]
+	ldr r0, [r4, #168*4]			; r0=rConstants[168]=0xf8602087 (63584.1271)
+	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #121*4]			; r0=rConstants[121]=0x083f3082 (2111.1895)
-	; BC_CONST [f9]
+	ldr r0, [r4, #127*4]			; r0=rConstants[127]=0x083f3082 (2111.1895)
+	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #121*4]			; r0=rConstants[121]=0x083f3082 (2111.1895)
+	ldr r0, [r4, #127*4]			; r0=rConstants[127]=0x083f3082 (2111.1895)
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -28724,11 +28724,11 @@ proc_170_continue_843:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [9e]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [9f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -28742,24 +28742,24 @@ proc_170_continue_843:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_170_continue_844:
-	; BC_CONST [c9]
-	mov r0, #0x00460000			; r0=rConstants[73] (70.0000)
-	; BC_CONST [d9]
+	; BC_CONST [ce]
+	mov r0, #0x00460000			; r0=rConstants[78] (70.0000)
+	; BC_CONST [df]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00780000			; r0=rConstants[89] (120.0000)
+	mov r0, #0x00780000			; r0=rConstants[95] (120.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
 	; BC_CONST [fe]
-	ldr r0, [r4, #145*4]			; r0=rConstants[145]=0xf0410107 (61505.0040)
+	ldr r0, [r4, #167*4]			; r0=rConstants[167]=0xf0410107 (61505.0040)
 	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #139*4]			; r0=rConstants[139]=0x987f14aa (39039.0807)
-	; BC_CONST [f9]
+	ldr r0, [r4, #156*4]			; r0=rConstants[156]=0x987f14aa (39039.0807)
+	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #121*4]			; r0=rConstants[121]=0x083f3082 (2111.1895)
+	ldr r0, [r4, #127*4]			; r0=rConstants[127]=0x083f3082 (2111.1895)
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -28789,11 +28789,11 @@ proc_170_continue_844:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [9c]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [9d]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -28807,33 +28807,33 @@ proc_170_continue_844:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_170_continue_845:
-	; BC_CONST [b5]
-	mov r0, #0x001e0000			; r0=rConstants[53] (30.0000)
-	; BC_CONST [c3]
+	; BC_CONST [b8]
+	mov r0, #0x001e0000			; r0=rConstants[56] (30.0000)
+	; BC_CONST [c7]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x003c0000			; r0=rConstants[67] (60.0000)
+	mov r0, #0x003c0000			; r0=rConstants[71] (60.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [f8]
-	ldr r0, [r4, #120*4]			; r0=rConstants[120]=0x081f1f82 (2079.1231)
-	; BC_CONST [fa]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #122*4]			; r0=rConstants[122]=0x107e3c08 (4222.2345)
+	; BC_CONST [fe]
+	ldr r0, [r4, #126*4]			; r0=rConstants[126]=0x081f1f82 (2079.1231)
 	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #146*4]			; r0=rConstants[146]=0xf8602087 (63584.1271)
+	ldr r0, [r4, #130*4]			; r0=rConstants[130]=0x107e3c08 (4222.2345)
 	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #140*4]			; r0=rConstants[140]=0x989c2f46 (39068.1847)
-	; BC_CONST [f8]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #120*4]			; r0=rConstants[120]=0x081f1f82 (2079.1231)
+	ldr r0, [r4, #168*4]			; r0=rConstants[168]=0xf8602087 (63584.1271)
 	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #144*4]			; r0=rConstants[144]=0x9a7f2186 (39551.1310)
+	ldr r0, [r4, #157*4]			; r0=rConstants[157]=0x989c2f46 (39068.1847)
+	; BC_CONST [fe]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r4, #126*4]			; r0=rConstants[126]=0x081f1f82 (2079.1231)
+	; BC_CONST [fe]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r4, #161*4]			; r0=rConstants[161]=0x9a7f2186 (39551.1310)
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -28854,8 +28854,8 @@ proc_170_continue_845:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_CONST [91]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00010000			; r0=rConstants[17] (1.0000)
@@ -28872,39 +28872,39 @@ proc_170_continue_845:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_170_continue_846:
-	; BC_CONST [d3]
-	mov r0, #0x00640000			; r0=rConstants[83] (100.0000)
-	; BC_CONST [bb]
+	; BC_CONST [d9]
+	mov r0, #0x00640000			; r0=rConstants[89] (100.0000)
+	; BC_CONST [bf]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00280000			; r0=rConstants[59] (40.0000)
+	mov r0, #0x00280000			; r0=rConstants[63] (40.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [f8]
-	ldr r0, [r4, #120*4]			; r0=rConstants[120]=0x081f1f82 (2079.1231)
-	; BC_CONST [fc]
+	; BC_CONST [fe]
+	ldr r0, [r4, #126*4]			; r0=rConstants[126]=0x081f1f82 (2079.1231)
+	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #124*4]			; r0=rConstants[124]=0x147f1c49 (5247.1105)
+	ldr r0, [r4, #132*4]			; r0=rConstants[132]=0x147f1c49 (5247.1105)
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [fb]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #123*4]			; r0=rConstants[123]=0x107f2c49 (4223.1730)
 	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #126*4]			; r0=rConstants[126]=0x185e1e86 (6238.1192)
-	; BC_CONST [f8]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #120*4]			; r0=rConstants[120]=0x081f1f82 (2079.1231)
+	ldr r0, [r4, #131*4]			; r0=rConstants[131]=0x107f2c49 (4223.1730)
 	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #141*4]			; r0=rConstants[141]=0x98bc3ba6 (39100.2330)
+	ldr r0, [r4, #134*4]			; r0=rConstants[134]=0x185e1e86 (6238.1192)
 	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #135*4]			; r0=rConstants[135]=0x823f3f20 (33343.2466)
+	ldr r0, [r4, #126*4]			; r0=rConstants[126]=0x081f1f82 (2079.1231)
+	; BC_CONST [fe]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r4, #158*4]			; r0=rConstants[158]=0x98bc3ba6 (39100.2330)
+	; BC_CONST [fe]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r4, #152*4]			; r0=rConstants[152]=0x823f3f20 (33343.2466)
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -28926,25 +28926,25 @@ proc_170_continue_846:
 proc_170_end:
 
 proc_171_start:
-	; BC_CONST [b5]
-	mov r0, #0x001e0000			; r0=rConstants[53] (30.0000)
-	; BC_CONST [ef]
+	; BC_CONST [b8]
+	mov r0, #0x001e0000			; r0=rConstants[56] (30.0000)
+	; BC_CONST [f5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00f00000			; r0=rConstants[111] (240.0000)
+	mov r0, #0x00f00000			; r0=rConstants[117] (240.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [af]
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
+	; BC_CONST [b2]
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
 	; BC_CONST [81]
 	ldr r0, [r4, #1*4]			; r0=rConstants[1]=0x00000bef (0.0466)
-	; BC_CONST [a5]
+	; BC_CONST [a8]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x000a0000			; r0=rConstants[37] (10.0000)
+	mov r0, #0x000a0000			; r0=rConstants[40] (10.0000)
 	; BC_NEG [0d]
 	rsb r0, r0, #0				; r0=0-r0
 	; BC_CONST [80]
@@ -28956,9 +28956,9 @@ proc_171_start:
 	; BC_CONST [87]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00008000			; r0=rConstants[7] (0.5000)
-	; BC_CONST [b3]
+	; BC_CONST [b6]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00190000			; r0=rConstants[51] (25.0000)
+	mov r0, #0x00190000			; r0=rConstants[54] (25.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_174_start		; r0=r_Procedures[174]
@@ -28967,11 +28967,11 @@ proc_171_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [9e]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [9f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -28985,8 +28985,8 @@ proc_171_start:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_171_continue_847:
-	; BC_CONST [d3]
-	mov r0, #0x00640000			; r0=rConstants[83] (100.0000)
+	; BC_CONST [d9]
+	mov r0, #0x00640000			; r0=rConstants[89] (100.0000)
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -28995,15 +28995,15 @@ proc_171_continue_847:
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [af]
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
+	; BC_CONST [b2]
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
 	; BC_CONST [81]
 	ldr r0, [r4, #1*4]			; r0=rConstants[1]=0x00000bef (0.0466)
-	; BC_CONST [af]
+	; BC_CONST [b2]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
 	; BC_CONST [91]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00010000			; r0=rConstants[17] (1.0000)
@@ -29015,9 +29015,9 @@ proc_171_continue_847:
 	ldr r0, [r4, #2*4]			; r0=rConstants[2]=0x00001999 (0.1000)
 	; BC_NEG [0d]
 	rsb r0, r0, #0				; r0=0-r0
-	; BC_CONST [b3]
+	; BC_CONST [b6]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00190000			; r0=rConstants[51] (25.0000)
+	mov r0, #0x00190000			; r0=rConstants[54] (25.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_174_start		; r0=r_Procedures[174]
@@ -29026,11 +29026,11 @@ proc_171_continue_847:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [9e]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [9f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -29044,25 +29044,25 @@ proc_171_continue_847:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_171_continue_848:
-	; BC_CONST [d9]
-	mov r0, #0x00780000			; r0=rConstants[89] (120.0000)
-	; BC_CONST [c3]
+	; BC_CONST [df]
+	mov r0, #0x00780000			; r0=rConstants[95] (120.0000)
+	; BC_CONST [c7]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x003c0000			; r0=rConstants[67] (60.0000)
+	mov r0, #0x003c0000			; r0=rConstants[71] (60.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [c9]
-	mov r0, #0x00460000			; r0=rConstants[73] (70.0000)
+	; BC_CONST [ce]
+	mov r0, #0x00460000			; r0=rConstants[78] (70.0000)
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
 	; BC_CONST [81]
 	ldr r0, [r4, #1*4]			; r0=rConstants[1]=0x00000bef (0.0466)
-	; BC_CONST [a5]
+	; BC_CONST [a8]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x000a0000			; r0=rConstants[37] (10.0000)
+	mov r0, #0x000a0000			; r0=rConstants[40] (10.0000)
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -29072,9 +29072,9 @@ proc_171_continue_848:
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [d2]
+	; BC_CONST [d8]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00630000			; r0=rConstants[82] (99.0000)
+	mov r0, #0x00630000			; r0=rConstants[88] (99.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_174_start		; r0=r_Procedures[174]
@@ -29083,11 +29083,11 @@ proc_171_continue_848:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [9e]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [9f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -29101,25 +29101,25 @@ proc_171_continue_848:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_171_continue_849:
-	; BC_CONST [e0]
-	mov r0, #0x008c0000			; r0=rConstants[96] (140.0000)
-	; BC_CONST [c3]
+	; BC_CONST [e6]
+	mov r0, #0x008c0000			; r0=rConstants[102] (140.0000)
+	; BC_CONST [c7]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x003c0000			; r0=rConstants[67] (60.0000)
+	mov r0, #0x003c0000			; r0=rConstants[71] (60.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [e1]
-	mov r0, #0x00960000			; r0=rConstants[97] (150.0000)
+	; BC_CONST [e7]
+	mov r0, #0x00960000			; r0=rConstants[103] (150.0000)
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
 	; BC_CONST [81]
 	ldr r0, [r4, #1*4]			; r0=rConstants[1]=0x00000bef (0.0466)
-	; BC_CONST [a5]
+	; BC_CONST [a8]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x000a0000			; r0=rConstants[37] (10.0000)
+	mov r0, #0x000a0000			; r0=rConstants[40] (10.0000)
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -29129,9 +29129,9 @@ proc_171_continue_849:
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [a5]
+	; BC_CONST [a8]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x000a0000			; r0=rConstants[37] (10.0000)
+	mov r0, #0x000a0000			; r0=rConstants[40] (10.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_174_start		; r0=r_Procedures[174]
@@ -29140,11 +29140,11 @@ proc_171_continue_849:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [9e]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [9f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -29158,25 +29158,25 @@ proc_171_continue_849:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_171_continue_850:
-	; BC_CONST [c3]
-	mov r0, #0x003c0000			; r0=rConstants[67] (60.0000)
-	; BC_CONST [af]
+	; BC_CONST [c7]
+	mov r0, #0x003c0000			; r0=rConstants[71] (60.0000)
+	; BC_CONST [b2]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [bb]
-	mov r0, #0x00280000			; r0=rConstants[59] (40.0000)
+	; BC_CONST [bf]
+	mov r0, #0x00280000			; r0=rConstants[63] (40.0000)
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
 	; BC_CONST [81]
 	ldr r0, [r4, #1*4]			; r0=rConstants[1]=0x00000bef (0.0466)
-	; BC_CONST [aa]
+	; BC_CONST [ad]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x000f0000			; r0=rConstants[42] (15.0000)
+	mov r0, #0x000f0000			; r0=rConstants[45] (15.0000)
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -29186,9 +29186,9 @@ proc_171_continue_850:
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [df]
+	; BC_CONST [e5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00870000			; r0=rConstants[95] (135.0000)
+	mov r0, #0x00870000			; r0=rConstants[101] (135.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_174_start		; r0=r_Procedures[174]
@@ -29197,11 +29197,11 @@ proc_171_continue_850:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [9e]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [9f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -29217,26 +29217,26 @@ proc_171_continue_850:
 proc_171_continue_851:
 	; BC_CONST [80]
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [f1]
+	; BC_CONST [f7]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00fa0000			; r0=rConstants[113] (250.0000)
+	mov r0, #0x00fa0000			; r0=rConstants[119] (250.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [d3]
-	mov r0, #0x00640000			; r0=rConstants[83] (100.0000)
+	; BC_CONST [d9]
+	mov r0, #0x00640000			; r0=rConstants[89] (100.0000)
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
 	; BC_CONST [81]
 	ldr r0, [r4, #1*4]			; r0=rConstants[1]=0x00000bef (0.0466)
-	; BC_CONST [a0]
+	; BC_CONST [a1]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00050000			; r0=rConstants[32] (5.0000)
-	; BC_CONST [aa]
+	mov r0, #0x00050000			; r0=rConstants[33] (5.0000)
+	; BC_CONST [ad]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x000f0000			; r0=rConstants[42] (15.0000)
+	mov r0, #0x000f0000			; r0=rConstants[45] (15.0000)
 	; BC_CONST [91]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00010000			; r0=rConstants[17] (1.0000)
@@ -29245,9 +29245,9 @@ proc_171_continue_851:
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [a5]
+	; BC_CONST [a8]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x000a0000			; r0=rConstants[37] (10.0000)
+	mov r0, #0x000a0000			; r0=rConstants[40] (10.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_174_start		; r0=r_Procedures[174]
@@ -29256,11 +29256,11 @@ proc_171_continue_851:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [9e]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [9f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -29274,11 +29274,11 @@ proc_171_continue_851:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_171_continue_852:
-	; BC_CONST [d9]
-	mov r0, #0x00780000			; r0=rConstants[89] (120.0000)
-	; BC_CONST [af]
+	; BC_CONST [df]
+	mov r0, #0x00780000			; r0=rConstants[95] (120.0000)
+	; BC_CONST [b2]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
@@ -29290,9 +29290,9 @@ proc_171_continue_852:
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
 	; BC_CONST [81]
 	ldr r0, [r4, #1*4]			; r0=rConstants[1]=0x00000bef (0.0466)
-	; BC_CONST [aa]
+	; BC_CONST [ad]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x000f0000			; r0=rConstants[42] (15.0000)
+	mov r0, #0x000f0000			; r0=rConstants[45] (15.0000)
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -29302,9 +29302,9 @@ proc_171_continue_852:
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [af]
+	; BC_CONST [b2]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
 	; BC_NEG [0d]
 	rsb r0, r0, #0				; r0=0-r0
 	; BC_PROC [07]
@@ -29315,11 +29315,11 @@ proc_171_continue_852:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [9e]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [9f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -29333,25 +29333,25 @@ proc_171_continue_852:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_171_continue_853:
-	; BC_CONST [e0]
-	mov r0, #0x008c0000			; r0=rConstants[96] (140.0000)
-	; BC_CONST [d3]
+	; BC_CONST [e6]
+	mov r0, #0x008c0000			; r0=rConstants[102] (140.0000)
+	; BC_CONST [d9]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00640000			; r0=rConstants[83] (100.0000)
+	mov r0, #0x00640000			; r0=rConstants[89] (100.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [e1]
-	mov r0, #0x00960000			; r0=rConstants[97] (150.0000)
+	; BC_CONST [e7]
+	mov r0, #0x00960000			; r0=rConstants[103] (150.0000)
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
 	; BC_CONST [81]
 	ldr r0, [r4, #1*4]			; r0=rConstants[1]=0x00000bef (0.0466)
-	; BC_CONST [a5]
+	; BC_CONST [a8]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x000a0000			; r0=rConstants[37] (10.0000)
+	mov r0, #0x000a0000			; r0=rConstants[40] (10.0000)
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -29361,9 +29361,9 @@ proc_171_continue_853:
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [a5]
+	; BC_CONST [a8]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x000a0000			; r0=rConstants[37] (10.0000)
+	mov r0, #0x000a0000			; r0=rConstants[40] (10.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_174_start		; r0=r_Procedures[174]
@@ -29372,11 +29372,11 @@ proc_171_continue_853:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [9e]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [9f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -29390,25 +29390,25 @@ proc_171_continue_853:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_171_continue_854:
-	; BC_CONST [af]
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
-	; BC_CONST [af]
+	; BC_CONST [b2]
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
+	; BC_CONST [b2]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [d9]
-	mov r0, #0x00780000			; r0=rConstants[89] (120.0000)
+	; BC_CONST [df]
+	mov r0, #0x00780000			; r0=rConstants[95] (120.0000)
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
 	; BC_CONST [81]
 	ldr r0, [r4, #1*4]			; r0=rConstants[1]=0x00000bef (0.0466)
-	; BC_CONST [aa]
+	; BC_CONST [ad]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x000f0000			; r0=rConstants[42] (15.0000)
+	mov r0, #0x000f0000			; r0=rConstants[45] (15.0000)
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -29418,9 +29418,9 @@ proc_171_continue_854:
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [a5]
+	; BC_CONST [a8]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x000a0000			; r0=rConstants[37] (10.0000)
+	mov r0, #0x000a0000			; r0=rConstants[40] (10.0000)
 	; BC_NEG [0d]
 	rsb r0, r0, #0				; r0=0-r0
 	; BC_PROC [07]
@@ -29431,11 +29431,11 @@ proc_171_continue_854:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [9e]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [9f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -29449,25 +29449,25 @@ proc_171_continue_854:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_171_continue_855:
-	; BC_CONST [c3]
-	mov r0, #0x003c0000			; r0=rConstants[67] (60.0000)
-	; BC_CONST [af]
+	; BC_CONST [c7]
+	mov r0, #0x003c0000			; r0=rConstants[71] (60.0000)
+	; BC_CONST [b2]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [cc]
-	mov r0, #0x00500000			; r0=rConstants[76] (80.0000)
+	; BC_CONST [d2]
+	mov r0, #0x00500000			; r0=rConstants[82] (80.0000)
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
 	; BC_CONST [81]
 	ldr r0, [r4, #1*4]			; r0=rConstants[1]=0x00000bef (0.0466)
-	; BC_CONST [aa]
+	; BC_CONST [ad]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x000f0000			; r0=rConstants[42] (15.0000)
+	mov r0, #0x000f0000			; r0=rConstants[45] (15.0000)
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -29477,9 +29477,9 @@ proc_171_continue_855:
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [af]
+	; BC_CONST [b2]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_174_start		; r0=r_Procedures[174]
@@ -29488,11 +29488,11 @@ proc_171_continue_855:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [9e]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [9f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -29506,25 +29506,25 @@ proc_171_continue_855:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_171_continue_856:
-	; BC_CONST [cc]
-	mov r0, #0x00500000			; r0=rConstants[76] (80.0000)
-	; BC_CONST [d9]
+	; BC_CONST [d2]
+	mov r0, #0x00500000			; r0=rConstants[82] (80.0000)
+	; BC_CONST [df]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00780000			; r0=rConstants[89] (120.0000)
+	mov r0, #0x00780000			; r0=rConstants[95] (120.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [c3]
-	mov r0, #0x003c0000			; r0=rConstants[67] (60.0000)
+	; BC_CONST [c7]
+	mov r0, #0x003c0000			; r0=rConstants[71] (60.0000)
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
 	; BC_CONST [81]
 	ldr r0, [r4, #1*4]			; r0=rConstants[1]=0x00000bef (0.0466)
-	; BC_CONST [a0]
+	; BC_CONST [a1]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00050000			; r0=rConstants[32] (5.0000)
+	mov r0, #0x00050000			; r0=rConstants[33] (5.0000)
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -29534,9 +29534,9 @@ proc_171_continue_856:
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [b3]
+	; BC_CONST [b6]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00190000			; r0=rConstants[51] (25.0000)
+	mov r0, #0x00190000			; r0=rConstants[54] (25.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_174_start		; r0=r_Procedures[174]
@@ -29545,11 +29545,11 @@ proc_171_continue_856:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [9e]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [9f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -29563,8 +29563,8 @@ proc_171_continue_856:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_171_continue_857:
-	; BC_CONST [b5]
-	mov r0, #0x001e0000			; r0=rConstants[53] (30.0000)
+	; BC_CONST [b8]
+	mov r0, #0x001e0000			; r0=rConstants[56] (30.0000)
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -29573,15 +29573,15 @@ proc_171_continue_857:
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [bb]
-	mov r0, #0x00280000			; r0=rConstants[59] (40.0000)
+	; BC_CONST [bf]
+	mov r0, #0x00280000			; r0=rConstants[63] (40.0000)
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
 	; BC_CONST [81]
 	ldr r0, [r4, #1*4]			; r0=rConstants[1]=0x00000bef (0.0466)
-	; BC_CONST [af]
+	; BC_CONST [b2]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -29591,9 +29591,9 @@ proc_171_continue_857:
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [a0]
+	; BC_CONST [a1]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00050000			; r0=rConstants[32] (5.0000)
+	mov r0, #0x00050000			; r0=rConstants[33] (5.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_174_start		; r0=r_Procedures[174]
@@ -29602,11 +29602,11 @@ proc_171_continue_857:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [9e]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [9f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -29620,8 +29620,8 @@ proc_171_continue_857:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_171_continue_858:
-	; BC_CONST [d3]
-	mov r0, #0x00640000			; r0=rConstants[83] (100.0000)
+	; BC_CONST [d9]
+	mov r0, #0x00640000			; r0=rConstants[89] (100.0000)
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -29630,15 +29630,15 @@ proc_171_continue_858:
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [bb]
-	mov r0, #0x00280000			; r0=rConstants[59] (40.0000)
+	; BC_CONST [bf]
+	mov r0, #0x00280000			; r0=rConstants[63] (40.0000)
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
 	; BC_CONST [81]
 	ldr r0, [r4, #1*4]			; r0=rConstants[1]=0x00000bef (0.0466)
-	; BC_CONST [af]
+	; BC_CONST [b2]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -29648,9 +29648,9 @@ proc_171_continue_858:
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [b3]
+	; BC_CONST [b6]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00190000			; r0=rConstants[51] (25.0000)
+	mov r0, #0x00190000			; r0=rConstants[54] (25.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_174_start		; r0=r_Procedures[174]
@@ -29659,11 +29659,11 @@ proc_171_continue_858:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [9e]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [9f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -29677,25 +29677,25 @@ proc_171_continue_858:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_171_continue_859:
-	; BC_CONST [d0]
-	mov r0, #0x005a0000			; r0=rConstants[80] (90.0000)
-	; BC_CONST [eb]
+	; BC_CONST [d6]
+	mov r0, #0x005a0000			; r0=rConstants[86] (90.0000)
+	; BC_CONST [f1]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00c80000			; r0=rConstants[107] (200.0000)
+	mov r0, #0x00c80000			; r0=rConstants[113] (200.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [bb]
-	mov r0, #0x00280000			; r0=rConstants[59] (40.0000)
+	; BC_CONST [bf]
+	mov r0, #0x00280000			; r0=rConstants[63] (40.0000)
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
 	; BC_CONST [81]
 	ldr r0, [r4, #1*4]			; r0=rConstants[1]=0x00000bef (0.0466)
-	; BC_CONST [a0]
+	; BC_CONST [a1]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00050000			; r0=rConstants[32] (5.0000)
+	mov r0, #0x00050000			; r0=rConstants[33] (5.0000)
 	; BC_NEG [0d]
 	rsb r0, r0, #0				; r0=0-r0
 	; BC_CONST [80]
@@ -29707,9 +29707,9 @@ proc_171_continue_859:
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [af]
+	; BC_CONST [b2]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
 	; BC_NEG [0d]
 	rsb r0, r0, #0				; r0=0-r0
 	; BC_PROC [07]
@@ -29720,11 +29720,11 @@ proc_171_continue_859:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [9e]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [9f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -29738,18 +29738,18 @@ proc_171_continue_859:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_171_continue_860:
-	; BC_CONST [eb]
-	mov r0, #0x00c80000			; r0=rConstants[107] (200.0000)
-	; BC_CONST [e4]
+	; BC_CONST [f1]
+	mov r0, #0x00c80000			; r0=rConstants[113] (200.0000)
+	; BC_CONST [ea]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00a00000			; r0=rConstants[100] (160.0000)
+	mov r0, #0x00a00000			; r0=rConstants[106] (160.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [e4]
-	mov r0, #0x00a00000			; r0=rConstants[100] (160.0000)
+	; BC_CONST [ea]
+	mov r0, #0x00a00000			; r0=rConstants[106] (160.0000)
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
 	; BC_CONST [81]
@@ -29757,9 +29757,9 @@ proc_171_continue_860:
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [a5]
+	; BC_CONST [a8]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x000a0000			; r0=rConstants[37] (10.0000)
+	mov r0, #0x000a0000			; r0=rConstants[40] (10.0000)
 	; BC_NEG [0d]
 	rsb r0, r0, #0				; r0=0-r0
 	; BC_CONST [80]
@@ -29768,9 +29768,9 @@ proc_171_continue_860:
 	; BC_CONST [87]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00008000			; r0=rConstants[7] (0.5000)
-	; BC_CONST [a5]
+	; BC_CONST [a8]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x000a0000			; r0=rConstants[37] (10.0000)
+	mov r0, #0x000a0000			; r0=rConstants[40] (10.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_174_start		; r0=r_Procedures[174]
@@ -29779,11 +29779,11 @@ proc_171_continue_860:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [9e]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [9f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -29797,18 +29797,18 @@ proc_171_continue_860:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_171_continue_861:
-	; BC_CONST [d3]
-	mov r0, #0x00640000			; r0=rConstants[83] (100.0000)
-	; BC_CONST [e4]
+	; BC_CONST [d9]
+	mov r0, #0x00640000			; r0=rConstants[89] (100.0000)
+	; BC_CONST [ea]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00a00000			; r0=rConstants[100] (160.0000)
+	mov r0, #0x00a00000			; r0=rConstants[106] (160.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [e4]
-	mov r0, #0x00a00000			; r0=rConstants[100] (160.0000)
+	; BC_CONST [ea]
+	mov r0, #0x00a00000			; r0=rConstants[106] (160.0000)
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
 	; BC_CONST [90]
@@ -29825,9 +29825,9 @@ proc_171_continue_861:
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [d5]
+	; BC_CONST [db]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x006e0000			; r0=rConstants[85] (110.0000)
+	mov r0, #0x006e0000			; r0=rConstants[91] (110.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_174_start		; r0=r_Procedures[174]
@@ -29843,10 +29843,10 @@ proc_171_continue_861:
 proc_171_end:
 
 proc_172_start:
-	; BC_CONST [a1]
-	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
-	; BC_WSTATE [58]
-	str r0, [r5, #ST_WIRE0*4]		; State[ST_WIRE0]=r0
+	; BC_CONST [a3]
+	mov r0, #0x00060000			; r0=rConstants[35] (6.0000)
+	; BC_WSTATE [59]
+	str r0, [r5, #ST_WIRE1*4]		; State[ST_WIRE1]=r0
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
 	; BC_PROC [07]
@@ -29866,8 +29866,8 @@ proc_172_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b7]
-	mov r0, #0x00200000			; r0=rConstants[55] (32.0000)
+	; BC_CONST [ba]
+	mov r0, #0x00200000			; r0=rConstants[58] (32.0000)
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_X*4]		; r0=State[ST_X]
@@ -29876,8 +29876,8 @@ proc_172_start:
 	adds r0, r0, r1				; r0=r0 adds r1
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_172_continue_862
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -29903,8 +29903,8 @@ proc_172_continue_862:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b7]
-	mov r0, #0x00200000			; r0=rConstants[55] (32.0000)
+	; BC_CONST [ba]
+	mov r0, #0x00200000			; r0=rConstants[58] (32.0000)
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_X*4]		; r0=State[ST_X]
@@ -29913,8 +29913,8 @@ proc_172_continue_862:
 	adds r0, r0, r1				; r0=r0 adds r1
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_172_continue_863
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -29940,8 +29940,8 @@ proc_172_continue_863:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b7]
-	mov r0, #0x00200000			; r0=rConstants[55] (32.0000)
+	; BC_CONST [ba]
+	mov r0, #0x00200000			; r0=rConstants[58] (32.0000)
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_X*4]		; r0=State[ST_X]
@@ -29950,8 +29950,8 @@ proc_172_continue_863:
 	adds r0, r0, r1				; r0=r0 adds r1
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_172_continue_864
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -29977,8 +29977,8 @@ proc_172_continue_864:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b7]
-	mov r0, #0x00200000			; r0=rConstants[55] (32.0000)
+	; BC_CONST [ba]
+	mov r0, #0x00200000			; r0=rConstants[58] (32.0000)
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_X*4]		; r0=State[ST_X]
@@ -29987,8 +29987,8 @@ proc_172_continue_864:
 	adds r0, r0, r1				; r0=r0 adds r1
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_172_continue_865
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -30014,8 +30014,8 @@ proc_172_continue_865:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b7]
-	mov r0, #0x00200000			; r0=rConstants[55] (32.0000)
+	; BC_CONST [ba]
+	mov r0, #0x00200000			; r0=rConstants[58] (32.0000)
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_X*4]		; r0=State[ST_X]
@@ -30024,8 +30024,8 @@ proc_172_continue_865:
 	adds r0, r0, r1				; r0=r0 adds r1
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_172_continue_866
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -30051,8 +30051,8 @@ proc_172_continue_866:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b7]
-	mov r0, #0x00200000			; r0=rConstants[55] (32.0000)
+	; BC_CONST [ba]
+	mov r0, #0x00200000			; r0=rConstants[58] (32.0000)
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_X*4]		; r0=State[ST_X]
@@ -30061,8 +30061,8 @@ proc_172_continue_866:
 	adds r0, r0, r1				; r0=r0 adds r1
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_172_continue_867
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -30088,8 +30088,8 @@ proc_172_continue_867:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b7]
-	mov r0, #0x00200000			; r0=rConstants[55] (32.0000)
+	; BC_CONST [ba]
+	mov r0, #0x00200000			; r0=rConstants[58] (32.0000)
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_X*4]		; r0=State[ST_X]
@@ -30098,8 +30098,8 @@ proc_172_continue_867:
 	adds r0, r0, r1				; r0=r0 adds r1
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_172_continue_868
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -30125,8 +30125,8 @@ proc_172_continue_868:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b7]
-	mov r0, #0x00200000			; r0=rConstants[55] (32.0000)
+	; BC_CONST [ba]
+	mov r0, #0x00200000			; r0=rConstants[58] (32.0000)
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_X*4]		; r0=State[ST_X]
@@ -30135,8 +30135,8 @@ proc_172_continue_868:
 	adds r0, r0, r1				; r0=r0 adds r1
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_172_continue_869
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -30162,8 +30162,8 @@ proc_172_continue_869:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b7]
-	mov r0, #0x00200000			; r0=rConstants[55] (32.0000)
+	; BC_CONST [ba]
+	mov r0, #0x00200000			; r0=rConstants[58] (32.0000)
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_X*4]		; r0=State[ST_X]
@@ -30172,8 +30172,8 @@ proc_172_continue_869:
 	adds r0, r0, r1				; r0=r0 adds r1
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_172_continue_870
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -30230,15 +30230,15 @@ proc_172_continue_870:
 proc_172_end:
 
 proc_173_start:
-	; BC_CONST [a0]
-	mov r0, #0x00050000			; r0=rConstants[32] (5.0000)
+	; BC_CONST [a1]
+	mov r0, #0x00050000			; r0=rConstants[33] (5.0000)
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_CONST [80]
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [9c]
+	; BC_CONST [9d]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_180_start		; r0=r_Procedures[180]
@@ -30247,20 +30247,20 @@ proc_173_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a5]
-	mov r0, #0x000a0000			; r0=rConstants[37] (10.0000)
+	; BC_CONST [a8]
+	mov r0, #0x000a0000			; r0=rConstants[40] (10.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_173_continue_871
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_173_continue_871:
-	; BC_CONST [a1]
-	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
+	; BC_CONST [a3]
+	mov r0, #0x00060000			; r0=rConstants[35] (6.0000)
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
-	; BC_CONST [9a]
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	; BC_CONST [9b]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_PLOT [06]
@@ -30269,16 +30269,16 @@ proc_173_continue_871:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutSquare
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a5]
-	mov r0, #0x000a0000			; r0=rConstants[37] (10.0000)
+	; BC_CONST [a8]
+	mov r0, #0x000a0000			; r0=rConstants[40] (10.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_173_continue_872
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_173_continue_872:
-	; BC_CONST [a2]
-	mov r0, #0x00070000			; r0=rConstants[34] (7.0000)
+	; BC_CONST [a5]
+	mov r0, #0x00070000			; r0=rConstants[37] (7.0000)
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_CONST [91]
@@ -30291,20 +30291,20 @@ proc_173_continue_872:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutSquare
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [bb]
-	mov r0, #0x00280000			; r0=rConstants[59] (40.0000)
+	; BC_CONST [bf]
+	mov r0, #0x00280000			; r0=rConstants[63] (40.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_173_continue_873
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_173_continue_873:
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_PLOT [06]
@@ -30376,8 +30376,8 @@ proc_174_target_875:
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [a1]
-	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
+	; BC_CONST [a3]
+	mov r0, #0x00060000			; r0=rConstants[35] (6.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_174_continue_876
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -30438,11 +30438,11 @@ proc_174_target_874:
 proc_174_end:
 
 proc_175_start:
-	; BC_CONST [a5]
-	mov r0, #0x000a0000			; r0=rConstants[37] (10.0000)
-	; BC_CONST [a5]
+	; BC_CONST [a8]
+	mov r0, #0x000a0000			; r0=rConstants[40] (10.0000)
+	; BC_CONST [a8]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x000a0000			; r0=rConstants[37] (10.0000)
+	mov r0, #0x000a0000			; r0=rConstants[40] (10.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
@@ -30465,12 +30465,12 @@ proc_175_start:
 	; BC_CONST [91]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00010000			; r0=rConstants[17] (1.0000)
-	; BC_CONST [9a]
+	; BC_CONST [9b]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
-	; BC_CONST [9c]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
+	; BC_CONST [9d]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_WLOCAL [42]
 	str r0, [r5, #-3*4]			; StateStack[-3]=r0
 	; BC_WLOCAL [41]
@@ -30492,8 +30492,8 @@ proc_175_start:
 proc_175_end:
 
 proc_176_start:
-	; BC_CONST [e7]
-	mov r0, #0x00b40000			; r0=rConstants[103] (180.0000)
+	; BC_CONST [ed]
+	mov r0, #0x00b40000			; r0=rConstants[109] (180.0000)
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_Y*4]		; r0=State[ST_Y]
@@ -30518,8 +30518,8 @@ proc_176_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [af]
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
+	; BC_CONST [b2]
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_Y*4]		; r0=State[ST_Y]
@@ -30562,8 +30562,8 @@ proc_176_target_877:
 proc_176_end:
 
 proc_177_start:
-	; BC_CONST [f5]
-	mov r0, #0x01400000			; r0=rConstants[117] (320.0000)
+	; BC_CONST [fb]
+	mov r0, #0x01400000			; r0=rConstants[123] (320.0000)
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_X*4]		; r0=State[ST_X]
@@ -30582,8 +30582,8 @@ proc_177_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [af]
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
+	; BC_CONST [b2]
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_X*4]		; r0=State[ST_X]
@@ -30628,9 +30628,9 @@ proc_177_end:
 proc_178_start:
 	; BC_RSTATE [7a]
 	ldr r0, [r5, #ST_WIRE2*4]		; r0=State[ST_WIRE2]
-	; BC_CONST [9a]
+	; BC_CONST [9b]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_X*4]		; r0=State[ST_X]
@@ -30645,9 +30645,9 @@ proc_178_start:
 	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
-	; BC_CONST [9a]
+	; BC_CONST [9b]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_Y*4]		; r0=State[ST_Y]
@@ -30691,9 +30691,9 @@ proc_178_start:
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_179_start		; r0=r_Procedures[179]
-	; BC_CONST [9e]
+	; BC_CONST [9f]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_RLOCAL [63]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-4*4]			; r0=StateStack[-4]
@@ -30789,9 +30789,9 @@ proc_179_continue_881:
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_CONST [80]
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [a3]
+	; BC_CONST [a6]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00080000			; r0=rConstants[35] (8.0000)
+	mov r0, #0x00080000			; r0=rConstants[38] (8.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_180_start		; r0=r_Procedures[180]
@@ -30800,8 +30800,8 @@ proc_179_continue_881:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [af]
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
+	; BC_CONST [b2]
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_179_continue_882
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -30817,9 +30817,9 @@ proc_179_continue_882:
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [a3]
+	; BC_CONST [a6]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00080000			; r0=rConstants[35] (8.0000)
+	mov r0, #0x00080000			; r0=rConstants[38] (8.0000)
 	; BC_WLOCAL [41]
 	str r0, [r5, #-2*4]			; StateStack[-2]=r0
 	; BC_WLOCAL [40]
@@ -30902,8 +30902,8 @@ proc_181_start:
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
-	; BC_CONST [a2]
-	mov r0, #0x00070000			; r0=rConstants[34] (7.0000)
+	; BC_CONST [a5]
+	mov r0, #0x00070000			; r0=rConstants[37] (7.0000)
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_RLOCAL [60]
@@ -30925,16 +30925,16 @@ proc_181_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_181_continue_885
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_181_continue_885:
-	; BC_CONST [a1]
-	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
+	; BC_CONST [a3]
+	mov r0, #0x00060000			; r0=rConstants[35] (6.0000)
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_RLOCAL [60]
@@ -30956,16 +30956,16 @@ proc_181_continue_885:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a3]
-	mov r0, #0x00080000			; r0=rConstants[35] (8.0000)
+	; BC_CONST [a6]
+	mov r0, #0x00080000			; r0=rConstants[38] (8.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_181_continue_886
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_181_continue_886:
-	; BC_CONST [a0]
-	mov r0, #0x00050000			; r0=rConstants[32] (5.0000)
+	; BC_CONST [a1]
+	mov r0, #0x00050000			; r0=rConstants[33] (5.0000)
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_RLOCAL [60]
@@ -30987,16 +30987,16 @@ proc_181_continue_886:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [ab]
-	mov r0, #0x00100000			; r0=rConstants[43] (16.0000)
+	; BC_CONST [ae]
+	mov r0, #0x00100000			; r0=rConstants[46] (16.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_181_continue_887
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_181_continue_887:
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_PROC [07]
@@ -31074,9 +31074,9 @@ proc_182_continue_889:
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
 	; BC_PROC [07]
 	adr r0, proc_182_start		; r0=r_Procedures[182]
-	; BC_CONST [9a]
+	; BC_CONST [9b]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_RLOCAL [63]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-4*4]			; r0=StateStack[-4]
@@ -31100,11 +31100,11 @@ proc_182_target_888:
 proc_182_end:
 
 proc_183_start:
-	; BC_CONST [f5]
-	mov r0, #0x01400000			; r0=rConstants[117] (320.0000)
+	; BC_CONST [fb]
+	mov r0, #0x01400000			; r0=rConstants[123] (320.0000)
 	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #131*4]			; r0=rConstants[131]=0x7fffffff (32768.0000)
+	ldr r0, [r4, #147*4]			; r0=rConstants[147]=0x7fffffff (32768.0000)
 	; BC_RSTATE [71]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_X*4]		; r0=State[ST_X]
@@ -31116,11 +31116,11 @@ proc_183_start:
 	cmp r0, r1					; r0 cmp r1
 	; BC_WHEN [1c]
 	bge proc_183_target_890
-	; BC_CONST [e7]
-	mov r0, #0x00b40000			; r0=rConstants[103] (180.0000)
+	; BC_CONST [ed]
+	mov r0, #0x00b40000			; r0=rConstants[109] (180.0000)
 	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r4, #131*4]			; r0=rConstants[131]=0x7fffffff (32768.0000)
+	ldr r0, [r4, #147*4]			; r0=rConstants[147]=0x7fffffff (32768.0000)
 	; BC_RSTATE [72]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_Y*4]		; r0=State[ST_Y]
@@ -31139,8 +31139,8 @@ proc_183_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
@@ -31175,8 +31175,8 @@ proc_184_start:
 	mov r0, #0x00010000			; r0=rConstants[17] (1.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_DRAW [04]
@@ -31193,8 +31193,8 @@ proc_184_start:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_184_continue_893:
-	; BC_CONST [9a]
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	; BC_CONST [9b]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_DRAW [04]
@@ -31203,8 +31203,8 @@ proc_184_continue_893:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutCircle
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a3]
-	mov r0, #0x00080000			; r0=rConstants[35] (8.0000)
+	; BC_CONST [a6]
+	mov r0, #0x00080000			; r0=rConstants[38] (8.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_184_continue_894
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -31221,16 +31221,16 @@ proc_184_continue_894:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutCircle
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [aa]
-	mov r0, #0x000f0000			; r0=rConstants[42] (15.0000)
+	; BC_CONST [ad]
+	mov r0, #0x000f0000			; r0=rConstants[45] (15.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_184_continue_895
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_184_continue_895:
-	; BC_CONST [9a]
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	; BC_CONST [9b]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_CONST [80]
@@ -31275,24 +31275,24 @@ proc_186_start:
 	mov r0, #0x00010000			; r0=rConstants[17] (1.0000)
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_186_continue_896
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_186_continue_896:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_186_continue_897
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_186_continue_897:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_186_continue_898
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -31306,8 +31306,8 @@ proc_186_continue_898:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_186_continue_899
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -31321,8 +31321,8 @@ proc_186_continue_899:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_186_continue_900
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -31336,8 +31336,8 @@ proc_186_continue_900:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_186_continue_901
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -31351,8 +31351,8 @@ proc_186_continue_901:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_186_continue_902
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -31373,8 +31373,8 @@ proc_186_continue_902:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_186_continue_903
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -31395,8 +31395,8 @@ proc_186_continue_903:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_186_continue_904
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -31417,8 +31417,8 @@ proc_186_continue_904:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_186_continue_905
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -31439,8 +31439,8 @@ proc_186_continue_905:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_186_continue_906
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -31461,8 +31461,8 @@ proc_186_continue_906:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_186_continue_907
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -31483,8 +31483,8 @@ proc_186_continue_907:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_186_continue_908
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -31505,8 +31505,8 @@ proc_186_continue_908:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_186_continue_909
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -31527,8 +31527,8 @@ proc_186_continue_909:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_186_continue_910
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -31549,8 +31549,8 @@ proc_186_continue_910:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_186_continue_911
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -31571,8 +31571,8 @@ proc_186_continue_911:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_186_continue_912
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -31593,8 +31593,8 @@ proc_186_continue_912:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_186_continue_913
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -31615,8 +31615,8 @@ proc_186_continue_913:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_186_continue_914
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -31637,8 +31637,8 @@ proc_186_continue_914:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_186_continue_915
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -31659,8 +31659,8 @@ proc_186_continue_915:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_186_continue_916
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -31681,8 +31681,8 @@ proc_186_continue_916:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_186_continue_917
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -31703,8 +31703,8 @@ proc_186_continue_917:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_186_continue_918
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -31725,8 +31725,8 @@ proc_186_continue_918:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_186_continue_919
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -31747,8 +31747,8 @@ proc_186_continue_919:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_186_continue_920
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -31769,8 +31769,8 @@ proc_186_continue_920:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_186_continue_921
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -31791,8 +31791,8 @@ proc_186_continue_921:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_186_continue_922
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -31813,8 +31813,8 @@ proc_186_continue_922:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_186_continue_923
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -31835,8 +31835,8 @@ proc_186_continue_923:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a7]
-	mov r0, #0x000c0000			; r0=rConstants[39] (12.0000)
+	; BC_CONST [aa]
+	mov r0, #0x000c0000			; r0=rConstants[42] (12.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_186_continue_924
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -31857,8 +31857,8 @@ proc_186_continue_924:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a7]
-	mov r0, #0x000c0000			; r0=rConstants[39] (12.0000)
+	; BC_CONST [aa]
+	mov r0, #0x000c0000			; r0=rConstants[42] (12.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_186_continue_925
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -31879,8 +31879,8 @@ proc_186_continue_925:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_186_continue_926
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -31901,16 +31901,16 @@ proc_186_continue_926:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_186_continue_927
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_186_continue_927:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_186_continue_928
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -31931,8 +31931,8 @@ proc_186_continue_928:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_186_continue_929
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -31953,8 +31953,8 @@ proc_186_continue_929:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_186_continue_930
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -31975,8 +31975,8 @@ proc_186_continue_930:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_186_continue_931
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -31997,8 +31997,8 @@ proc_186_continue_931:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_186_continue_932
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -32012,8 +32012,8 @@ proc_186_continue_932:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_186_continue_933
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -32027,8 +32027,8 @@ proc_186_continue_933:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_186_continue_934
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -32042,8 +32042,8 @@ proc_186_continue_934:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_186_continue_935
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -32064,8 +32064,8 @@ proc_186_continue_935:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_186_continue_936
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -32086,8 +32086,8 @@ proc_186_continue_936:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a7]
-	mov r0, #0x000c0000			; r0=rConstants[39] (12.0000)
+	; BC_CONST [aa]
+	mov r0, #0x000c0000			; r0=rConstants[42] (12.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_186_continue_937
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -32108,8 +32108,8 @@ proc_186_continue_937:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a7]
-	mov r0, #0x000c0000			; r0=rConstants[39] (12.0000)
+	; BC_CONST [aa]
+	mov r0, #0x000c0000			; r0=rConstants[42] (12.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_186_continue_938
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -32130,8 +32130,8 @@ proc_186_continue_938:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_186_continue_939
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -32152,8 +32152,8 @@ proc_186_continue_939:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_186_continue_940
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -32174,8 +32174,8 @@ proc_186_continue_940:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_186_continue_941
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -32196,8 +32196,8 @@ proc_186_continue_941:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_186_continue_942
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -32218,8 +32218,8 @@ proc_186_continue_942:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_186_continue_943
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -32240,16 +32240,16 @@ proc_186_continue_943:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_186_continue_944
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_186_continue_944:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_186_continue_945
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -32270,8 +32270,8 @@ proc_186_continue_945:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_186_continue_946
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -32292,8 +32292,8 @@ proc_186_continue_946:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_186_continue_947
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -32314,8 +32314,8 @@ proc_186_continue_947:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_186_continue_948
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -32336,8 +32336,8 @@ proc_186_continue_948:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_186_continue_949
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -32358,8 +32358,8 @@ proc_186_continue_949:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_186_continue_950
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -32380,8 +32380,8 @@ proc_186_continue_950:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_186_continue_951
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -32402,8 +32402,8 @@ proc_186_continue_951:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_186_continue_952
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -32424,8 +32424,8 @@ proc_186_continue_952:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_186_continue_953
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -32446,8 +32446,8 @@ proc_186_continue_953:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_186_continue_954
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -32468,8 +32468,8 @@ proc_186_continue_954:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_186_continue_955
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -32490,8 +32490,8 @@ proc_186_continue_955:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_186_continue_956
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -32512,8 +32512,8 @@ proc_186_continue_956:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_186_continue_957
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -32534,8 +32534,8 @@ proc_186_continue_957:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a7]
-	mov r0, #0x000c0000			; r0=rConstants[39] (12.0000)
+	; BC_CONST [aa]
+	mov r0, #0x000c0000			; r0=rConstants[42] (12.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_186_continue_958
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -32556,8 +32556,8 @@ proc_186_continue_958:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a7]
-	mov r0, #0x000c0000			; r0=rConstants[39] (12.0000)
+	; BC_CONST [aa]
+	mov r0, #0x000c0000			; r0=rConstants[42] (12.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_186_continue_959
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -32578,8 +32578,8 @@ proc_186_continue_959:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_186_continue_960
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -32600,8 +32600,8 @@ proc_186_continue_960:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a7]
-	mov r0, #0x000c0000			; r0=rConstants[39] (12.0000)
+	; BC_CONST [aa]
+	mov r0, #0x000c0000			; r0=rConstants[42] (12.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_186_continue_961
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -32615,25 +32615,25 @@ proc_186_continue_961:
 proc_186_end:
 
 proc_187_start:
-	; BC_CONST [cc]
-	mov r0, #0x00500000			; r0=rConstants[76] (80.0000)
+	; BC_CONST [d2]
+	mov r0, #0x00500000			; r0=rConstants[82] (80.0000)
 	; BC_WSTATE [59]
 	str r0, [r5, #ST_WIRE1*4]		; State[ST_WIRE1]=r0
-	; BC_CONST [a4]
-	mov r0, #0x00090000			; r0=rConstants[36] (9.0000)
+	; BC_CONST [a7]
+	mov r0, #0x00090000			; r0=rConstants[39] (9.0000)
 	; BC_WSTATE [58]
 	str r0, [r5, #ST_WIRE0*4]		; State[ST_WIRE0]=r0
-	; BC_CONST [c6]
-	mov r0, #0x00400000			; r0=rConstants[70] (64.0000)
+	; BC_CONST [ca]
+	mov r0, #0x00400000			; r0=rConstants[74] (64.0000)
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [a5]
-	mov r0, #0x000a0000			; r0=rConstants[37] (10.0000)
+	; BC_CONST [a8]
+	mov r0, #0x000a0000			; r0=rConstants[40] (10.0000)
 	; BC_NEG [0d]
 	rsb r0, r0, #0				; r0=0-r0
-	; BC_CONST [f4]
+	; BC_CONST [fa]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x012c0000			; r0=rConstants[116] (300.0000)
+	mov r0, #0x012c0000			; r0=rConstants[122] (300.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
@@ -32656,16 +32656,16 @@ proc_187_start:
 proc_187_end:
 
 proc_188_start:
-	; BC_CONST [cc]
-	mov r0, #0x00500000			; r0=rConstants[76] (80.0000)
+	; BC_CONST [d2]
+	mov r0, #0x00500000			; r0=rConstants[82] (80.0000)
 	; BC_WSTATE [59]
 	str r0, [r5, #ST_WIRE1*4]		; State[ST_WIRE1]=r0
-	; BC_CONST [a4]
-	mov r0, #0x00090000			; r0=rConstants[36] (9.0000)
+	; BC_CONST [a7]
+	mov r0, #0x00090000			; r0=rConstants[39] (9.0000)
 	; BC_WSTATE [58]
 	str r0, [r5, #ST_WIRE0*4]		; State[ST_WIRE0]=r0
-	; BC_CONST [ea]
-	mov r0, #0x00c00000			; r0=rConstants[106] (192.0000)
+	; BC_CONST [f0]
+	mov r0, #0x00c00000			; r0=rConstants[112] (192.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -32674,11 +32674,11 @@ proc_188_start:
 	adds r0, r0, r1				; r0=r0 adds r1
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [e9]
-	mov r0, #0x00be0000			; r0=rConstants[105] (190.0000)
-	; BC_CONST [af]
+	; BC_CONST [ef]
+	mov r0, #0x00be0000			; r0=rConstants[111] (190.0000)
+	; BC_CONST [b2]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
@@ -32701,23 +32701,23 @@ proc_188_start:
 proc_188_end:
 
 proc_189_start:
-	; BC_CONST [d0]
-	mov r0, #0x005a0000			; r0=rConstants[80] (90.0000)
+	; BC_CONST [d6]
+	mov r0, #0x005a0000			; r0=rConstants[86] (90.0000)
 	; BC_WSTATE [59]
 	str r0, [r5, #ST_WIRE1*4]		; State[ST_WIRE1]=r0
-	; BC_CONST [a0]
-	mov r0, #0x00050000			; r0=rConstants[32] (5.0000)
+	; BC_CONST [a1]
+	mov r0, #0x00050000			; r0=rConstants[33] (5.0000)
 	; BC_WSTATE [58]
 	str r0, [r5, #ST_WIRE0*4]		; State[ST_WIRE0]=r0
 	; BC_CONST [80]
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [af]
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
-	; BC_CONST [a5]
+	; BC_CONST [b2]
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
+	; BC_CONST [a8]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x000a0000			; r0=rConstants[37] (10.0000)
+	mov r0, #0x000a0000			; r0=rConstants[40] (10.0000)
 	; BC_NEG [0d]
 	rsb r0, r0, #0				; r0=0-r0
 	; BC_WSTATE [51]
@@ -32742,23 +32742,23 @@ proc_189_start:
 proc_189_end:
 
 proc_190_start:
-	; BC_CONST [d0]
-	mov r0, #0x005a0000			; r0=rConstants[80] (90.0000)
+	; BC_CONST [d6]
+	mov r0, #0x005a0000			; r0=rConstants[86] (90.0000)
 	; BC_WSTATE [59]
 	str r0, [r5, #ST_WIRE1*4]		; State[ST_WIRE1]=r0
-	; BC_CONST [a0]
-	mov r0, #0x00050000			; r0=rConstants[32] (5.0000)
+	; BC_CONST [a1]
+	mov r0, #0x00050000			; r0=rConstants[33] (5.0000)
 	; BC_WSTATE [58]
 	str r0, [r5, #ST_WIRE0*4]		; State[ST_WIRE0]=r0
-	; BC_CONST [dc]
-	mov r0, #0x00800000			; r0=rConstants[92] (128.0000)
+	; BC_CONST [e2]
+	mov r0, #0x00800000			; r0=rConstants[98] (128.0000)
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [e4]
-	mov r0, #0x00a00000			; r0=rConstants[100] (160.0000)
-	; BC_CONST [f6]
+	; BC_CONST [ea]
+	mov r0, #0x00a00000			; r0=rConstants[106] (160.0000)
+	; BC_CONST [fc]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x014a0000			; r0=rConstants[118] (330.0000)
+	mov r0, #0x014a0000			; r0=rConstants[124] (330.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
@@ -32781,21 +32781,21 @@ proc_190_start:
 proc_190_end:
 
 proc_191_start:
-	; BC_CONST [d0]
-	mov r0, #0x005a0000			; r0=rConstants[80] (90.0000)
-	; BC_CONST [e4]
+	; BC_CONST [d6]
+	mov r0, #0x005a0000			; r0=rConstants[86] (90.0000)
+	; BC_CONST [ea]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00a00000			; r0=rConstants[100] (160.0000)
+	mov r0, #0x00a00000			; r0=rConstants[106] (160.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [9a]
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
-	; BC_CONST [a4]
+	; BC_CONST [9b]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
+	; BC_CONST [a7]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00090000			; r0=rConstants[36] (9.0000)
+	mov r0, #0x00090000			; r0=rConstants[39] (9.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_87_start		; r0=r_Procedures[87]
@@ -32804,8 +32804,8 @@ proc_191_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_NEG [0d]
 	rsb r0, r0, #0				; r0=0-r0
 	; BC_WSTATE [5a]
@@ -32820,11 +32820,11 @@ proc_191_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
-	; BC_CONST [b2]
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -32845,8 +32845,8 @@ proc_191_continue_962:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_191_continue_963
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -32864,11 +32864,11 @@ proc_191_continue_963:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
-	; BC_CONST [b2]
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -32889,8 +32889,8 @@ proc_191_continue_964:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_191_continue_965
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -32907,11 +32907,11 @@ proc_191_continue_965:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
-	; BC_CONST [b2]
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -32932,8 +32932,8 @@ proc_191_continue_966:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_191_continue_967
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -32947,11 +32947,11 @@ proc_191_continue_967:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
-	; BC_CONST [b2]
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -32975,11 +32975,11 @@ proc_191_continue_968:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
-	; BC_CONST [b2]
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -33000,8 +33000,8 @@ proc_191_continue_969:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_191_continue_970
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -33015,11 +33015,11 @@ proc_191_continue_970:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
-	; BC_CONST [b2]
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -33040,8 +33040,8 @@ proc_191_continue_971:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_191_continue_972
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -33055,19 +33055,19 @@ proc_191_continue_972:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_191_continue_973
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_191_continue_973:
-	; BC_CONST [9a]
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
-	; BC_CONST [c0]
+	; BC_CONST [9b]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
+	; BC_CONST [c4]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00300000			; r0=rConstants[64] (48.0000)
+	mov r0, #0x00300000			; r0=rConstants[68] (48.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_88_start		; r0=r_Procedures[88]
@@ -33076,11 +33076,11 @@ proc_191_continue_973:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9a]
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
-	; BC_CONST [b2]
+	; BC_CONST [9b]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -33101,8 +33101,8 @@ proc_191_continue_974:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_191_continue_975
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -33116,11 +33116,11 @@ proc_191_continue_975:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9a]
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
-	; BC_CONST [b2]
+	; BC_CONST [9b]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -33134,8 +33134,8 @@ proc_191_continue_975:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_191_continue_976:
-	; BC_CONST [9a]
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	; BC_CONST [9b]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_53_start		; r0=r_Procedures[53]
@@ -33144,11 +33144,11 @@ proc_191_continue_976:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9a]
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
-	; BC_CONST [b2]
+	; BC_CONST [9b]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -33162,11 +33162,11 @@ proc_191_continue_976:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_191_continue_977:
-	; BC_CONST [d0]
-	mov r0, #0x005a0000			; r0=rConstants[80] (90.0000)
-	; BC_CONST [e4]
+	; BC_CONST [d6]
+	mov r0, #0x005a0000			; r0=rConstants[86] (90.0000)
+	; BC_CONST [ea]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00a00000			; r0=rConstants[100] (160.0000)
+	mov r0, #0x00a00000			; r0=rConstants[106] (160.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
@@ -33174,9 +33174,9 @@ proc_191_continue_977:
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
 	; BC_CONST [91]
 	mov r0, #0x00010000			; r0=rConstants[17] (1.0000)
-	; BC_CONST [a4]
+	; BC_CONST [a7]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00090000			; r0=rConstants[36] (9.0000)
+	mov r0, #0x00090000			; r0=rConstants[39] (9.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_87_start		; r0=r_Procedures[87]
@@ -33185,8 +33185,8 @@ proc_191_continue_977:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_NEG [0d]
 	rsb r0, r0, #0				; r0=0-r0
 	; BC_WSTATE [5a]
@@ -33201,11 +33201,11 @@ proc_191_continue_977:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
-	; BC_CONST [b2]
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -33226,8 +33226,8 @@ proc_191_continue_978:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_191_continue_979
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -33245,11 +33245,11 @@ proc_191_continue_979:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
-	; BC_CONST [b2]
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -33270,8 +33270,8 @@ proc_191_continue_980:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_191_continue_981
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -33288,11 +33288,11 @@ proc_191_continue_981:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
-	; BC_CONST [b2]
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -33313,8 +33313,8 @@ proc_191_continue_982:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_191_continue_983
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -33328,11 +33328,11 @@ proc_191_continue_983:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9a]
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
-	; BC_CONST [b2]
+	; BC_CONST [9b]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -33356,8 +33356,8 @@ proc_191_continue_984:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_191_continue_985
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -33371,8 +33371,8 @@ proc_191_continue_985:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_191_continue_986
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -33386,8 +33386,8 @@ proc_191_continue_986:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_191_continue_987
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -33396,9 +33396,9 @@ proc_191_continue_986:
 proc_191_continue_987:
 	; BC_CONST [91]
 	mov r0, #0x00010000			; r0=rConstants[17] (1.0000)
-	; BC_CONST [9c]
+	; BC_CONST [9d]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_87_start		; r0=r_Procedures[87]
@@ -33407,8 +33407,8 @@ proc_191_continue_987:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_NEG [0d]
 	rsb r0, r0, #0				; r0=0-r0
 	; BC_WSTATE [5a]
@@ -33423,11 +33423,11 @@ proc_191_continue_987:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9a]
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
-	; BC_CONST [b2]
+	; BC_CONST [9b]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -33448,8 +33448,8 @@ proc_191_continue_988:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_191_continue_989
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -33463,11 +33463,11 @@ proc_191_continue_989:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
-	; BC_CONST [b2]
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -33488,8 +33488,8 @@ proc_191_continue_990:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_191_continue_991
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -33503,19 +33503,19 @@ proc_191_continue_991:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_191_continue_992
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_191_continue_992:
-	; BC_CONST [9a]
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
-	; BC_CONST [c0]
+	; BC_CONST [9b]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
+	; BC_CONST [c4]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00300000			; r0=rConstants[64] (48.0000)
+	mov r0, #0x00300000			; r0=rConstants[68] (48.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_88_start		; r0=r_Procedures[88]
@@ -33524,11 +33524,11 @@ proc_191_continue_992:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9a]
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
-	; BC_CONST [b2]
+	; BC_CONST [9b]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -33549,8 +33549,8 @@ proc_191_continue_993:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_191_continue_994
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -33564,11 +33564,11 @@ proc_191_continue_994:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9a]
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
-	; BC_CONST [b2]
+	; BC_CONST [9b]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -33582,8 +33582,8 @@ proc_191_continue_994:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_191_continue_995:
-	; BC_CONST [9a]
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	; BC_CONST [9b]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_53_start		; r0=r_Procedures[53]
@@ -33592,11 +33592,11 @@ proc_191_continue_995:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9a]
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
-	; BC_CONST [b2]
+	; BC_CONST [9b]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -33617,8 +33617,8 @@ proc_191_continue_996:
 proc_191_end:
 
 proc_192_start:
-	; BC_CONST [9a]
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	; BC_CONST [9b]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_CONST [80]
@@ -33632,11 +33632,11 @@ proc_192_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [af]
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
-	; BC_CONST [af]
+	; BC_CONST [b2]
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
+	; BC_CONST [b2]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
@@ -33644,15 +33644,15 @@ proc_192_start:
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
 	; BC_CONST [80]
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [a7]
+	; BC_CONST [aa]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x000c0000			; r0=rConstants[39] (12.0000)
+	mov r0, #0x000c0000			; r0=rConstants[42] (12.0000)
 	; BC_CONST [91]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00010000			; r0=rConstants[17] (1.0000)
-	; BC_CONST [9a]
+	; BC_CONST [9b]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_199_start		; r0=r_Procedures[199]
@@ -33661,11 +33661,11 @@ proc_192_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [a3]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [a6]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00080000			; r0=rConstants[35] (8.0000)
+	mov r0, #0x00080000			; r0=rConstants[38] (8.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -33679,11 +33679,11 @@ proc_192_start:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_192_continue_997:
-	; BC_CONST [d0]
-	mov r0, #0x005a0000			; r0=rConstants[80] (90.0000)
-	; BC_CONST [e4]
+	; BC_CONST [d6]
+	mov r0, #0x005a0000			; r0=rConstants[86] (90.0000)
+	; BC_CONST [ea]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00a00000			; r0=rConstants[100] (160.0000)
+	mov r0, #0x00a00000			; r0=rConstants[106] (160.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
@@ -33694,18 +33694,18 @@ proc_192_continue_997:
 	; BC_CONST [91]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00010000			; r0=rConstants[17] (1.0000)
-	; BC_CONST [ad]
+	; BC_CONST [b0]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00120000			; r0=rConstants[45] (18.0000)
+	mov r0, #0x00120000			; r0=rConstants[48] (18.0000)
 	; BC_CONST [91]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00010000			; r0=rConstants[17] (1.0000)
-	; BC_CONST [9a]
+	; BC_CONST [9b]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
-	; BC_CONST [9c]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
+	; BC_CONST [9d]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_201_start		; r0=r_Procedures[201]
@@ -33714,11 +33714,11 @@ proc_192_continue_997:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [a3]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [a6]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00080000			; r0=rConstants[35] (8.0000)
+	mov r0, #0x00080000			; r0=rConstants[38] (8.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -33732,11 +33732,11 @@ proc_192_continue_997:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_192_continue_998:
-	; BC_CONST [af]
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
-	; BC_CONST [af]
+	; BC_CONST [b2]
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
+	; BC_CONST [b2]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
@@ -33744,15 +33744,15 @@ proc_192_continue_998:
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
 	; BC_CONST [80]
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [a7]
+	; BC_CONST [aa]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x000c0000			; r0=rConstants[39] (12.0000)
+	mov r0, #0x000c0000			; r0=rConstants[42] (12.0000)
 	; BC_CONST [91]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00010000			; r0=rConstants[17] (1.0000)
-	; BC_CONST [9a]
+	; BC_CONST [9b]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_199_start		; r0=r_Procedures[199]
@@ -33761,11 +33761,11 @@ proc_192_continue_998:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [a3]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [a6]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00080000			; r0=rConstants[35] (8.0000)
+	mov r0, #0x00080000			; r0=rConstants[38] (8.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -33779,11 +33779,11 @@ proc_192_continue_998:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_192_continue_999:
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
-	; BC_CONST [a3]
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
+	; BC_CONST [a6]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00080000			; r0=rConstants[35] (8.0000)
+	mov r0, #0x00080000			; r0=rConstants[38] (8.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -33797,8 +33797,8 @@ proc_192_continue_999:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_192_continue_1000:
-	; BC_CONST [c6]
-	mov r0, #0x00400000			; r0=rConstants[70] (64.0000)
+	; BC_CONST [ca]
+	mov r0, #0x00400000			; r0=rConstants[74] (64.0000)
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
 	; BC_CONST [80]
@@ -33811,19 +33811,19 @@ proc_192_continue_1000:
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [a5]
-	mov r0, #0x000a0000			; r0=rConstants[37] (10.0000)
+	; BC_CONST [a8]
+	mov r0, #0x000a0000			; r0=rConstants[40] (10.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
-	; BC_CONST [ac]
-	mov r0, #0x00110000			; r0=rConstants[44] (17.0000)
 	; BC_CONST [af]
+	mov r0, #0x00110000			; r0=rConstants[47] (17.0000)
+	; BC_CONST [b2]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_193_start		; r0=r_Procedures[193]
@@ -33844,8 +33844,8 @@ proc_193_start:
 	; BC_WHEN [17]
 	movs r0, r0					; update Status flags
 	beq proc_193_target_1001
-	; BC_CONST [a5]
-	mov r0, #0x000a0000			; r0=rConstants[37] (10.0000)
+	; BC_CONST [a8]
+	mov r0, #0x000a0000			; r0=rConstants[40] (10.0000)
 	; BC_RLOCAL [61]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
@@ -33978,12 +33978,12 @@ proc_195_start:
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
 	; BC_CONST [80]
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [a1]
+	; BC_CONST [a3]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
-	; BC_CONST [b7]
+	mov r0, #0x00060000			; r0=rConstants[35] (6.0000)
+	; BC_CONST [ba]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00200000			; r0=rConstants[55] (32.0000)
+	mov r0, #0x00200000			; r0=rConstants[58] (32.0000)
 	; BC_RLOCAL [65]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-6*4]			; r0=StateStack[-6]
@@ -34015,8 +34015,8 @@ proc_195_start:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_195_continue_1006:
-	; BC_CONST [9a]
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	; BC_CONST [9b]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_RLOCAL [65]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-6*4]			; r0=StateStack[-6]
@@ -34034,9 +34034,9 @@ proc_195_continue_1006:
 	; BC_OP [3d]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	adds r0, r0, r1				; r0=r0 adds r1
-	; BC_CONST [9a]
+	; BC_CONST [9b]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_RLOCAL [66]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-7*4]			; r0=StateStack[-7]
@@ -34061,21 +34061,21 @@ proc_195_continue_1006:
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
 	; BC_CONST [80]
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [a1]
+	; BC_CONST [a3]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
-	; BC_CONST [b7]
+	mov r0, #0x00060000			; r0=rConstants[35] (6.0000)
+	; BC_CONST [ba]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00200000			; r0=rConstants[55] (32.0000)
+	mov r0, #0x00200000			; r0=rConstants[58] (32.0000)
 	; BC_RLOCAL [65]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-6*4]			; r0=StateStack[-6]
 	; BC_CONST [91]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00010000			; r0=rConstants[17] (1.0000)
-	; BC_CONST [9a]
+	; BC_CONST [9b]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_RLOCAL [64]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-5*4]			; r0=StateStack[-5]
@@ -34090,8 +34090,8 @@ proc_195_continue_1006:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_195_continue_1007
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -34150,9 +34150,9 @@ proc_196_start:
 	bge proc_196_target_1008
 	; BC_CONST [80]
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [ba]
+	; BC_CONST [bd]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00260000			; r0=rConstants[58] (38.0000)
+	mov r0, #0x00260000			; r0=rConstants[61] (38.0000)
 	; BC_RLOCAL [64]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-5*4]			; r0=StateStack[-5]
@@ -34235,8 +34235,8 @@ proc_197_start:
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_DRAW [04]
@@ -34245,8 +34245,8 @@ proc_197_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutCircle
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
@@ -34265,8 +34265,8 @@ proc_197_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutCircle
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9a]
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	; BC_CONST [9b]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_197_continue_1011
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -34275,9 +34275,9 @@ proc_197_start:
 proc_197_continue_1011:
 	; BC_PROC [07]
 	adr r0, proc_197_start		; r0=r_Procedures[197]
-	; BC_CONST [a2]
+	; BC_CONST [a5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00070000			; r0=rConstants[34] (7.0000)
+	mov r0, #0x00070000			; r0=rConstants[37] (7.0000)
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
@@ -34315,8 +34315,8 @@ proc_198_start:
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_PLOT [06]
@@ -34325,8 +34325,8 @@ proc_198_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutSquare
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
@@ -34345,8 +34345,8 @@ proc_198_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutSquare
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9a]
-	mov r0, #0x00020000			; r0=rConstants[26] (2.0000)
+	; BC_CONST [9b]
+	mov r0, #0x00020000			; r0=rConstants[27] (2.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_198_continue_1013
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -34355,9 +34355,9 @@ proc_198_start:
 proc_198_continue_1013:
 	; BC_PROC [07]
 	adr r0, proc_198_start		; r0=r_Procedures[198]
-	; BC_CONST [a2]
+	; BC_CONST [a5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00070000			; r0=rConstants[34] (7.0000)
+	mov r0, #0x00070000			; r0=rConstants[37] (7.0000)
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
@@ -34381,8 +34381,8 @@ proc_198_target_1012:
 proc_198_end:
 
 proc_199_start:
-	; BC_CONST [ad]
-	mov r0, #0x00120000			; r0=rConstants[45] (18.0000)
+	; BC_CONST [b0]
+	mov r0, #0x00120000			; r0=rConstants[48] (18.0000)
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
@@ -34393,9 +34393,9 @@ proc_199_start:
 	mov r1, r1, asl #8
 	mov r1, r1, asr #16			; Implement muls.w (signed)
 	mul r0, r1, r0				; r0=r0*r1
-	; BC_CONST [c6]
+	; BC_CONST [ca]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00400000			; r0=rConstants[70] (64.0000)
+	mov r0, #0x00400000			; r0=rConstants[74] (64.0000)
 	; BC_RLOCAL [60]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
@@ -34429,12 +34429,12 @@ proc_199_start:
 	bge proc_199_target_1014
 	; BC_CONST [80]
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [dc]
+	; BC_CONST [e2]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00800000			; r0=rConstants[92] (128.0000)
-	; BC_CONST [a5]
+	mov r0, #0x00800000			; r0=rConstants[98] (128.0000)
+	; BC_CONST [a8]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x000a0000			; r0=rConstants[37] (10.0000)
+	mov r0, #0x000a0000			; r0=rConstants[40] (10.0000)
 	; BC_RLOCAL [62]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
@@ -34496,8 +34496,8 @@ proc_200_start:
 	cmp r0, r1					; r0 cmp r1
 	; BC_WHEN [1c]
 	bge proc_200_target_1015
-	; BC_CONST [a4]
-	mov r0, #0x00090000			; r0=rConstants[36] (9.0000)
+	; BC_CONST [a7]
+	mov r0, #0x00090000			; r0=rConstants[39] (9.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_RLOCAL [63]
@@ -34580,9 +34580,9 @@ proc_201_start:
 	bge proc_201_target_1018
 	; BC_CONST [80]
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [ab]
+	; BC_CONST [ae]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00100000			; r0=rConstants[43] (16.0000)
+	mov r0, #0x00100000			; r0=rConstants[46] (16.0000)
 	; BC_RLOCAL [63]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #-4*4]			; r0=StateStack[-4]
@@ -34594,8 +34594,8 @@ proc_201_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b4]
-	mov r0, #0x001c0000			; r0=rConstants[52] (28.0000)
+	; BC_CONST [b7]
+	mov r0, #0x001c0000			; r0=rConstants[55] (28.0000)
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
@@ -34630,8 +34630,8 @@ proc_201_continue_1019:
 	; BC_ELSE [01]
 	b proc_201_target_1020
 proc_201_target_1018:
-	; BC_CONST [80]
-	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
+	; BC_CONST [cb]
+	ldr r0, [r4, #75*4]			; r0=rConstants[75]=0x00403333 (64.2000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -34754,41 +34754,41 @@ proc_202_target_1021:
 proc_202_end:
 
 proc_203_start:
-	; BC_CONST [a0]
-	mov r0, #0x00050000			; r0=rConstants[32] (5.0000)
+	; BC_CONST [a1]
+	mov r0, #0x00050000			; r0=rConstants[33] (5.0000)
+	; BC_WSTATE [59]
+	str r0, [r5, #ST_WIRE1*4]		; State[ST_WIRE1]=r0
+	; BC_CONST [a4]
+	mov r0, #0x00068000			; r0=rConstants[36] (6.5000)
 	; BC_WSTATE [58]
 	str r0, [r5, #ST_WIRE0*4]		; State[ST_WIRE0]=r0
-	; BC_CONST [80]
-	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_WSTATE [58]
-	str r0, [r5, #ST_WIRE0*4]		; State[ST_WIRE0]=r0
-	; BC_CONST [d9]
-	mov r0, #0x00780000			; r0=rConstants[89] (120.0000)
-	; BC_CONST [d5]
+	; BC_CONST [df]
+	mov r0, #0x00780000			; r0=rConstants[95] (120.0000)
+	; BC_CONST [db]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x006e0000			; r0=rConstants[85] (110.0000)
+	mov r0, #0x006e0000			; r0=rConstants[91] (110.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [80]
-	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [80]
+	; BC_CONST [fe]
+	ldr r0, [r4, #165*4]			; r0=rConstants[165]=0xdfff0114 (57343.0042)
+	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [80]
+	ldr r0, [r4, #145*4]			; r0=rConstants[145]=0x42303ff8 (16944.2499)
+	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [80]
+	ldr r0, [r4, #163*4]			; r0=rConstants[163]=0x9fff3624 (40959.2115)
+	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [80]
+	ldr r0, [r4, #165*4]			; r0=rConstants[165]=0xdfff0114 (57343.0042)
+	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [80]
+	ldr r0, [r4, #145*4]			; r0=rConstants[145]=0x42303ff8 (16944.2499)
+	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
+	ldr r0, [r4, #163*4]			; r0=rConstants[163]=0x9fff3624 (40959.2115)
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -34806,11 +34806,11 @@ proc_203_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
-	; BC_CONST [b2]
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -34824,11 +34824,11 @@ proc_203_start:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_203_continue_1023:
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
-	; BC_CONST [b2]
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -34842,42 +34842,42 @@ proc_203_continue_1023:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_203_continue_1024:
-	; BC_CONST [af]
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
-	; BC_CONST [a5]
+	; BC_CONST [b2]
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
+	; BC_CONST [a8]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x000a0000			; r0=rConstants[37] (10.0000)
+	mov r0, #0x000a0000			; r0=rConstants[40] (10.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [80]
-	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [80]
+	; BC_CONST [fe]
+	ldr r0, [r4, #139*4]			; r0=rConstants[139]=0x1fff34aa (8191.2057)
+	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [80]
+	ldr r0, [r4, #129*4]			; r0=rConstants[129]=0x0fff3082 (4095.1895)
+	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [80]
+	ldr r0, [r4, #128*4]			; r0=rConstants[128]=0x0fdf1f82 (4063.1231)
+	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [80]
+	ldr r0, [r4, #166*4]			; r0=rConstants[166]=0xdfff2196 (57343.1312)
+	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [80]
+	ldr r0, [r4, #139*4]			; r0=rConstants[139]=0x1fff34aa (8191.2057)
+	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [80]
+	ldr r0, [r4, #166*4]			; r0=rConstants[166]=0xdfff2196 (57343.1312)
+	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [80]
+	ldr r0, [r4, #163*4]			; r0=rConstants[163]=0x9fff3624 (40959.2115)
+	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [80]
+	ldr r0, [r4, #163*4]			; r0=rConstants[163]=0x9fff3624 (40959.2115)
+	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
+	ldr r0, [r4, #148*4]			; r0=rConstants[148]=0x81c30313 (33219.0120)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_207_start		; r0=r_Procedures[207]
@@ -34886,11 +34886,11 @@ proc_203_continue_1024:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
-	; BC_CONST [b2]
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -34904,11 +34904,11 @@ proc_203_continue_1024:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_203_continue_1025:
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
-	; BC_CONST [b2]
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -34922,36 +34922,36 @@ proc_203_continue_1025:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_203_continue_1026:
-	; BC_CONST [d9]
-	mov r0, #0x00780000			; r0=rConstants[89] (120.0000)
-	; BC_CONST [c3]
+	; BC_CONST [df]
+	mov r0, #0x00780000			; r0=rConstants[95] (120.0000)
+	; BC_CONST [c7]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x003c0000			; r0=rConstants[67] (60.0000)
+	mov r0, #0x003c0000			; r0=rConstants[71] (60.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [80]
-	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [80]
+	; BC_CONST [fe]
+	ldr r0, [r4, #164*4]			; r0=rConstants[164]=0xcfff3f10 (53247.2463)
+	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [80]
+	ldr r0, [r4, #138*4]			; r0=rConstants[138]=0x1fde1e86 (8158.1192)
+	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [80]
+	ldr r0, [r4, #165*4]			; r0=rConstants[165]=0xdfff0114 (57343.0042)
+	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [80]
+	ldr r0, [r4, #165*4]			; r0=rConstants[165]=0xdfff0114 (57343.0042)
+	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [80]
+	ldr r0, [r4, #146*4]			; r0=rConstants[146]=0x4cbf3f0c (19647.2463)
+	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [80]
+	ldr r0, [r4, #145*4]			; r0=rConstants[145]=0x42303ff8 (16944.2499)
+	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
+	ldr r0, [r4, #141*4]			; r0=rConstants[141]=0x2fff3f10 (12287.2463)
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -34966,11 +34966,11 @@ proc_203_continue_1026:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
-	; BC_CONST [b2]
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -34984,11 +34984,11 @@ proc_203_continue_1026:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_203_continue_1027:
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
-	; BC_CONST [b2]
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -35002,39 +35002,39 @@ proc_203_continue_1027:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_203_continue_1028:
-	; BC_CONST [af]
-	mov r0, #0x00140000			; r0=rConstants[47] (20.0000)
-	; BC_CONST [a5]
+	; BC_CONST [b2]
+	mov r0, #0x00140000			; r0=rConstants[50] (20.0000)
+	; BC_CONST [a8]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x000a0000			; r0=rConstants[37] (10.0000)
+	mov r0, #0x000a0000			; r0=rConstants[40] (10.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [80]
-	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [80]
+	; BC_CONST [fe]
+	ldr r0, [r4, #129*4]			; r0=rConstants[129]=0x0fff3082 (4095.1895)
+	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [80]
+	ldr r0, [r4, #138*4]			; r0=rConstants[138]=0x1fde1e86 (8158.1192)
+	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [80]
+	ldr r0, [r4, #143*4]			; r0=rConstants[143]=0x3f9c19a6 (16284.1002)
+	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [80]
+	ldr r0, [r4, #170*4]			; r0=rConstants[170]=0xffe10087 (65505.0021)
+	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [80]
+	ldr r0, [r4, #142*4]			; r0=rConstants[142]=0x3f9c1186 (16284.0685)
+	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [80]
+	ldr r0, [r4, #138*4]			; r0=rConstants[138]=0x1fde1e86 (8158.1192)
+	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [80]
+	ldr r0, [r4, #146*4]			; r0=rConstants[146]=0x4cbf3f0c (19647.2463)
+	; BC_CONST [fe]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
+	ldr r0, [r4, #145*4]			; r0=rConstants[145]=0x42303ff8 (16944.2499)
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -35046,62 +35046,24 @@ proc_203_continue_1028:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [80]
-	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [d5]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x006e0000			; r0=rConstants[85] (110.0000)
-	; BC_WSTATE [51]
-	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
-	; BC_WSTATE [52]
-	ldr r0, [r3], #4			; Pop r0 off StateStack.
-	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [80]
-	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [80]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [80]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [80]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [80]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [80]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [80]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [80]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_CONST [80]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
-	; BC_PROC [07]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	adr r0, proc_207_start		; r0=r_Procedures[207]
-	; BC_FORK [29]
-	mov r1, #9
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl ForkState				; r0=proc address, r1=num_args
-	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [dd]
-	mov r0, #0x00820000			; r0=rConstants[93] (130.0000)
 	; BC_CONST [d0]
+	mov r0, #0x004b0000			; r0=rConstants[80] (75.0000)
+	; BC_CONST [db]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x005a0000			; r0=rConstants[80] (90.0000)
+	mov r0, #0x006e0000			; r0=rConstants[91] (110.0000)
 	; BC_WSTATE [51]
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_WSTATE [52]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
-	; BC_CONST [80]
-	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
+	; BC_CONST [fe]
+	ldr r0, [r4, #145*4]			; r0=rConstants[145]=0x42303ff8 (16944.2499)
+	; BC_CONST [fe]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r4, #141*4]			; r0=rConstants[141]=0x2fff3f10 (12287.2463)
+	; BC_CONST [fe]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r4, #140*4]			; r0=rConstants[140]=0x2fff3892 (12287.2210)
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -35120,6 +35082,44 @@ proc_203_continue_1028:
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
+	; BC_PROC [07]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	adr r0, proc_207_start		; r0=r_Procedures[207]
+	; BC_FORK [29]
+	mov r1, #9
+	str lr, [sp, #-4]!			; Push lr on program stack.
+	bl ForkState				; r0=proc address, r1=num_args
+	ldr lr, [sp], #4			; Pop lr off program stack.
+	; BC_CONST [e3]
+	mov r0, #0x00820000			; r0=rConstants[99] (130.0000)
+	; BC_CONST [d6]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	mov r0, #0x005a0000			; r0=rConstants[86] (90.0000)
+	; BC_WSTATE [51]
+	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
+	; BC_WSTATE [52]
+	ldr r0, [r3], #4			; Pop r0 off StateStack.
+	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
+	; BC_CONST [fe]
+	ldr r0, [r4, #129*4]			; r0=rConstants[129]=0x0fff3082 (4095.1895)
+	; BC_CONST [fe]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r4, #138*4]			; r0=rConstants[138]=0x1fde1e86 (8158.1192)
+	; BC_CONST [fe]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r4, #138*4]			; r0=rConstants[138]=0x1fde1e86 (8158.1192)
+	; BC_CONST [fe]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r4, #141*4]			; r0=rConstants[141]=0x2fff3f10 (12287.2463)
+	; BC_CONST [fe]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r4, #170*4]			; r0=rConstants[170]=0xffe10087 (65505.0021)
+	; BC_CONST [fe]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r4, #166*4]			; r0=rConstants[166]=0xdfff2196 (57343.1312)
+	; BC_CONST [fe]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
+	ldr r0, [r4, #162*4]			; r0=rConstants[162]=0x9be631e6 (39910.1949)
 	; BC_CONST [80]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -35141,8 +35141,8 @@ proc_203_continue_1028:
 proc_203_end:
 
 proc_204_start:
-	; BC_CONST [c6]
-	mov r0, #0x00400000			; r0=rConstants[70] (64.0000)
+	; BC_CONST [ca]
+	mov r0, #0x00400000			; r0=rConstants[74] (64.0000)
 	; BC_RSTATE [76]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	ldr r0, [r5, #ST_DIR*4]		; r0=State[ST_DIR]
@@ -35151,14 +35151,14 @@ proc_204_start:
 	adds r0, r0, r1				; r0=r0 adds r1
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [a5]
-	mov r0, #0x000a0000			; r0=rConstants[37] (10.0000)
+	; BC_CONST [a8]
+	mov r0, #0x000a0000			; r0=rConstants[40] (10.0000)
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [c6]
-	mov r0, #0x00400000			; r0=rConstants[70] (64.0000)
+	; BC_CONST [ca]
+	mov r0, #0x00400000			; r0=rConstants[74] (64.0000)
 	; BC_NEG [0d]
 	rsb r0, r0, #0				; r0=0-r0
 	; BC_RSTATE [76]
@@ -35169,24 +35169,24 @@ proc_204_start:
 	adds r0, r0, r1				; r0=r0 adds r1
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
-	; BC_CONST [b3]
-	mov r0, #0x00190000			; r0=rConstants[51] (25.0000)
+	; BC_CONST [b6]
+	mov r0, #0x00190000			; r0=rConstants[54] (25.0000)
 	; BC_NEG [0d]
 	rsb r0, r0, #0				; r0=0-r0
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
 	; BC_WSTATE [54]
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
-	; BC_CONST [b2]
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	; BC_CONST [b5]
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_PROC [07]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	adr r0, proc_205_start		; r0=r_Procedures[205]
@@ -35213,8 +35213,8 @@ proc_205_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutCircle
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [a9]
-	mov r0, #0x000e0000			; r0=rConstants[41] (14.0000)
+	; BC_CONST [ac]
+	mov r0, #0x000e0000			; r0=rConstants[44] (14.0000)
 	; BC_MOVE [0e]
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
@@ -35302,11 +35302,11 @@ proc_207_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_CONST [9e]
-	mov r0, #0x00040000			; r0=rConstants[30] (4.0000)
-	; BC_CONST [b2]
+	; BC_CONST [9f]
+	mov r0, #0x00040000			; r0=rConstants[31] (4.0000)
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -35320,11 +35320,11 @@ proc_207_start:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_207_continue_1031:
-	; BC_CONST [9c]
-	mov r0, #0x00030000			; r0=rConstants[28] (3.0000)
-	; BC_CONST [b2]
+	; BC_CONST [9d]
+	mov r0, #0x00030000			; r0=rConstants[29] (3.0000)
+	; BC_CONST [b5]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	mov r0, #0x00180000			; r0=rConstants[50] (24.0000)
+	mov r0, #0x00180000			; r0=rConstants[53] (24.0000)
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -35338,8 +35338,8 @@ proc_207_continue_1031:
 	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
 	ldr pc, [sp], #4			; Return
 proc_207_continue_1032:
-	; BC_CONST [a7]
-	mov r0, #0x000c0000			; r0=rConstants[39] (12.0000)
+	; BC_CONST [aa]
+	mov r0, #0x000c0000			; r0=rConstants[42] (12.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_207_continue_1033
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -35399,9 +35399,9 @@ proc_208_start:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RSTATE [78]
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
-	; BC_RSTATE [78]
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -35413,8 +35413,8 @@ proc_208_start:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_RSTATE [78]
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	; BC_RSTATE [79]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_WAIT [0a]
 	adr r1, proc_208_continue_1034
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -35442,9 +35442,9 @@ proc_208_continue_1034:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RSTATE [78]
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
-	; BC_RSTATE [78]
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -35456,8 +35456,8 @@ proc_208_continue_1034:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_RSTATE [78]
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	; BC_RSTATE [79]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_WAIT [0a]
 	adr r1, proc_208_continue_1035
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -35485,9 +35485,9 @@ proc_208_continue_1035:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RSTATE [78]
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
-	; BC_RSTATE [78]
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -35499,8 +35499,8 @@ proc_208_continue_1035:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_RSTATE [78]
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	; BC_RSTATE [79]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_WAIT [0a]
 	adr r1, proc_208_continue_1036
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -35528,9 +35528,9 @@ proc_208_continue_1036:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RSTATE [78]
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
-	; BC_RSTATE [78]
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -35542,8 +35542,8 @@ proc_208_continue_1036:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_RSTATE [78]
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	; BC_RSTATE [79]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_WAIT [0a]
 	adr r1, proc_208_continue_1037
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -35571,9 +35571,9 @@ proc_208_continue_1037:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RSTATE [78]
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
-	; BC_RSTATE [78]
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -35585,8 +35585,8 @@ proc_208_continue_1037:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_RSTATE [78]
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	; BC_RSTATE [79]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_WAIT [0a]
 	adr r1, proc_208_continue_1038
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -35614,9 +35614,9 @@ proc_208_continue_1038:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RSTATE [78]
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
-	; BC_RSTATE [78]
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -35628,8 +35628,8 @@ proc_208_continue_1038:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_RSTATE [78]
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	; BC_RSTATE [79]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_WAIT [0a]
 	adr r1, proc_208_continue_1039
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -35657,9 +35657,9 @@ proc_208_continue_1039:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RSTATE [78]
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
-	; BC_RSTATE [78]
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -35671,8 +35671,8 @@ proc_208_continue_1039:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_RSTATE [78]
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	; BC_RSTATE [79]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_WAIT [0a]
 	adr r1, proc_208_continue_1040
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -35700,9 +35700,9 @@ proc_208_continue_1040:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RSTATE [78]
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
-	; BC_RSTATE [78]
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -35714,8 +35714,8 @@ proc_208_continue_1040:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_RSTATE [78]
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	; BC_RSTATE [79]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_WAIT [0a]
 	adr r1, proc_208_continue_1041
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -35743,9 +35743,9 @@ proc_208_continue_1041:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RSTATE [78]
 	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
-	; BC_RSTATE [78]
+	; BC_RSTATE [79]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_MUL [0f]
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	mov r0, r0, asl #8
@@ -35757,8 +35757,8 @@ proc_208_continue_1041:
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
-	; BC_RSTATE [78]
-	ldr r0, [r5, #ST_WIRE0*4]		; r0=State[ST_WIRE0]
+	; BC_RSTATE [79]
+	ldr r0, [r5, #ST_WIRE1*4]		; r0=State[ST_WIRE1]
 	; BC_WAIT [0a]
 	adr r1, proc_208_continue_1042
 	str lr, [sp, #-4]!			; Push lr on program stack.
@@ -35795,137 +35795,160 @@ r_Constants:
 .long 0x0000fd70				; [15] = 0.9900
 .long 0x0000fff0				; [16] = 0.9998
 .long 0x00010000				; [17] = 1.0000
-.long 0x000128f5				; [18] = 1.1600
-.long 0x00012b85				; [19] = 1.1700
-.long 0x00016666				; [20] = 1.4000
-.long 0x00016a00				; [21] = 1.4141
-.long 0x00018000				; [22] = 1.5000
-.long 0x0001b333				; [23] = 1.7000
-.long 0x0001c7ae				; [24] = 1.7800
-.long 0x0001d999				; [25] = 1.8500
-.long 0x00020000				; [26] = 2.0000
-.long 0x00028000				; [27] = 2.5000
-.long 0x00030000				; [28] = 3.0000
-.long 0x00039999				; [29] = 3.6000
-.long 0x00040000				; [30] = 4.0000
-.long 0x00048000				; [31] = 4.5000
-.long 0x00050000				; [32] = 5.0000
-.long 0x00060000				; [33] = 6.0000
-.long 0x00070000				; [34] = 7.0000
-.long 0x00080000				; [35] = 8.0000
-.long 0x00090000				; [36] = 9.0000
-.long 0x000a0000				; [37] = 10.0000
-.long 0x000b0000				; [38] = 11.0000
-.long 0x000c0000				; [39] = 12.0000
-.long 0x000d5553				; [40] = 13.3333
-.long 0x000e0000				; [41] = 14.0000
-.long 0x000f0000				; [42] = 15.0000
-.long 0x00100000				; [43] = 16.0000
-.long 0x00110000				; [44] = 17.0000
-.long 0x00120000				; [45] = 18.0000
-.long 0x00130000				; [46] = 19.0000
-.long 0x00140000				; [47] = 20.0000
-.long 0x00150000				; [48] = 21.0000
-.long 0x00170000				; [49] = 23.0000
-.long 0x00180000				; [50] = 24.0000
-.long 0x00190000				; [51] = 25.0000
-.long 0x001c0000				; [52] = 28.0000
-.long 0x001e0000				; [53] = 30.0000
-.long 0x001f0000				; [54] = 31.0000
-.long 0x00200000				; [55] = 32.0000
-.long 0x00210000				; [56] = 33.0000
-.long 0x00230000				; [57] = 35.0000
-.long 0x00260000				; [58] = 38.0000
-.long 0x00280000				; [59] = 40.0000
-.long 0x00290000				; [60] = 41.0000
-.long 0x002a0000				; [61] = 42.0000
-.long 0x002c0000				; [62] = 44.0000
-.long 0x002d0000				; [63] = 45.0000
-.long 0x00300000				; [64] = 48.0000
-.long 0x00320000				; [65] = 50.0000
-.long 0x00340000				; [66] = 52.0000
-.long 0x003c0000				; [67] = 60.0000
-.long 0x003e0000				; [68] = 62.0000
-.long 0x003f0000				; [69] = 63.0000
-.long 0x00400000				; [70] = 64.0000
-.long 0x00410000				; [71] = 65.0000
-.long 0x00440000				; [72] = 68.0000
-.long 0x00460000				; [73] = 70.0000
-.long 0x004a0000				; [74] = 74.0000
-.long 0x004e0000				; [75] = 78.0000
-.long 0x00500000				; [76] = 80.0000
-.long 0x00520000				; [77] = 82.0000
-.long 0x00540000				; [78] = 84.0000
-.long 0x00580000				; [79] = 88.0000
-.long 0x005a0000				; [80] = 90.0000
-.long 0x00600000				; [81] = 96.0000
-.long 0x00630000				; [82] = 99.0000
-.long 0x00640000				; [83] = 100.0000
-.long 0x00670000				; [84] = 103.0000
-.long 0x006e0000				; [85] = 110.0000
-.long 0x00700000				; [86] = 112.0000
-.long 0x00720000				; [87] = 114.0000
-.long 0x00730000				; [88] = 115.0000
-.long 0x00780000				; [89] = 120.0000
-.long 0x007d0000				; [90] = 125.0000
-.long 0x007f0000				; [91] = 127.0000
-.long 0x00800000				; [92] = 128.0000
-.long 0x00820000				; [93] = 130.0000
-.long 0x00860000				; [94] = 134.0000
-.long 0x00870000				; [95] = 135.0000
-.long 0x008c0000				; [96] = 140.0000
-.long 0x00960000				; [97] = 150.0000
-.long 0x009a0000				; [98] = 154.0000
-.long 0x009c0000				; [99] = 156.0000
-.long 0x00a00000				; [100] = 160.0000
-.long 0x00a20000				; [101] = 162.0000
-.long 0x00b00000				; [102] = 176.0000
-.long 0x00b40000				; [103] = 180.0000
-.long 0x00b60000				; [104] = 182.0000
-.long 0x00be0000				; [105] = 190.0000
-.long 0x00c00000				; [106] = 192.0000
-.long 0x00c80000				; [107] = 200.0000
-.long 0x00cc0000				; [108] = 204.0000
-.long 0x00d20000				; [109] = 210.0000
-.long 0x00e00000				; [110] = 224.0000
-.long 0x00f00000				; [111] = 240.0000
-.long 0x00f40000				; [112] = 244.0000
-.long 0x00fa0000				; [113] = 250.0000
-.long 0x01000000				; [114] = 256.0000
-.long 0x01180000				; [115] = 280.0000
-.long 0x012c0000				; [116] = 300.0000
-.long 0x01400000				; [117] = 320.0000
-.long 0x014a0000				; [118] = 330.0000
-.long 0x040f0f42				; [119] = 1039.0596
-.long 0x081f1f82				; [120] = 2079.1231
-.long 0x083f3082				; [121] = 2111.1895
-.long 0x107e3c08				; [122] = 4222.2345
-.long 0x107f2c49				; [123] = 4223.1730
-.long 0x147f1c49				; [124] = 5247.1105
-.long 0x14bc3c49				; [125] = 5308.2355
-.long 0x185e1e86				; [126] = 6238.1192
-.long 0x18710f46				; [127] = 6257.0597
-.long 0x187f3c8a				; [128] = 6271.2365
-.long 0x189c2186				; [129] = 6300.1310
-.long 0x40bf3f08				; [130] = 16575.2462
-.long 0x7fffffff				; [131] = 32768.0000
-.long 0x82071fa2				; [132] = 33287.1236
-.long 0x82080820				; [133] = 33288.0317
-.long 0x820f08f0				; [134] = 33295.0349
-.long 0x823f3f20				; [135] = 33343.2466
-.long 0x881f1f81				; [136] = 34847.1231
-.long 0x927f0104				; [137] = 37503.0040
-.long 0x98611bb6				; [138] = 39009.1082
-.long 0x987f14aa				; [139] = 39039.0807
-.long 0x989c2f46				; [140] = 39068.1847
-.long 0x98bc3ba6				; [141] = 39100.2330
-.long 0x9a6e19a6				; [142] = 39534.1002
-.long 0x9a7226a6				; [143] = 39538.1510
-.long 0x9a7f2186				; [144] = 39551.1310
-.long 0xf0410107				; [145] = 61505.0040
-.long 0xf8602087				; [146] = 63584.1271
-.long 0xf8800083				; [147] = 63616.0020
-.long 0x00240000				; [148] = 36.0000
+.long 0x000107ae				; [18] = 1.0300
+.long 0x000128f5				; [19] = 1.1600
+.long 0x00012b85				; [20] = 1.1700
+.long 0x00016666				; [21] = 1.4000
+.long 0x00016a00				; [22] = 1.4141
+.long 0x00018000				; [23] = 1.5000
+.long 0x0001b333				; [24] = 1.7000
+.long 0x0001c7ae				; [25] = 1.7800
+.long 0x0001d999				; [26] = 1.8500
+.long 0x00020000				; [27] = 2.0000
+.long 0x00028000				; [28] = 2.5000
+.long 0x00030000				; [29] = 3.0000
+.long 0x00039999				; [30] = 3.6000
+.long 0x00040000				; [31] = 4.0000
+.long 0x00048000				; [32] = 4.5000
+.long 0x00050000				; [33] = 5.0000
+.long 0x00054ccc				; [34] = 5.3000
+.long 0x00060000				; [35] = 6.0000
+.long 0x00068000				; [36] = 6.5000
+.long 0x00070000				; [37] = 7.0000
+.long 0x00080000				; [38] = 8.0000
+.long 0x00090000				; [39] = 9.0000
+.long 0x000a0000				; [40] = 10.0000
+.long 0x000b0000				; [41] = 11.0000
+.long 0x000c0000				; [42] = 12.0000
+.long 0x000d5553				; [43] = 13.3333
+.long 0x000e0000				; [44] = 14.0000
+.long 0x000f0000				; [45] = 15.0000
+.long 0x00100000				; [46] = 16.0000
+.long 0x00110000				; [47] = 17.0000
+.long 0x00120000				; [48] = 18.0000
+.long 0x00130000				; [49] = 19.0000
+.long 0x00140000				; [50] = 20.0000
+.long 0x00150000				; [51] = 21.0000
+.long 0x00170000				; [52] = 23.0000
+.long 0x00180000				; [53] = 24.0000
+.long 0x00190000				; [54] = 25.0000
+.long 0x001c0000				; [55] = 28.0000
+.long 0x001e0000				; [56] = 30.0000
+.long 0x001f0000				; [57] = 31.0000
+.long 0x00200000				; [58] = 32.0000
+.long 0x00210000				; [59] = 33.0000
+.long 0x00230000				; [60] = 35.0000
+.long 0x00260000				; [61] = 38.0000
+.long 0x00270000				; [62] = 39.0000
+.long 0x00280000				; [63] = 40.0000
+.long 0x00290000				; [64] = 41.0000
+.long 0x002a0000				; [65] = 42.0000
+.long 0x002c0000				; [66] = 44.0000
+.long 0x002d0000				; [67] = 45.0000
+.long 0x00300000				; [68] = 48.0000
+.long 0x00320000				; [69] = 50.0000
+.long 0x00340000				; [70] = 52.0000
+.long 0x003c0000				; [71] = 60.0000
+.long 0x003e0000				; [72] = 62.0000
+.long 0x003f0000				; [73] = 63.0000
+.long 0x00400000				; [74] = 64.0000
+.long 0x00403333				; [75] = 64.2000
+.long 0x00410000				; [76] = 65.0000
+.long 0x00440000				; [77] = 68.0000
+.long 0x00460000				; [78] = 70.0000
+.long 0x004a0000				; [79] = 74.0000
+.long 0x004b0000				; [80] = 75.0000
+.long 0x004e0000				; [81] = 78.0000
+.long 0x00500000				; [82] = 80.0000
+.long 0x00520000				; [83] = 82.0000
+.long 0x00540000				; [84] = 84.0000
+.long 0x00580000				; [85] = 88.0000
+.long 0x005a0000				; [86] = 90.0000
+.long 0x00600000				; [87] = 96.0000
+.long 0x00630000				; [88] = 99.0000
+.long 0x00640000				; [89] = 100.0000
+.long 0x00670000				; [90] = 103.0000
+.long 0x006e0000				; [91] = 110.0000
+.long 0x00700000				; [92] = 112.0000
+.long 0x00720000				; [93] = 114.0000
+.long 0x00730000				; [94] = 115.0000
+.long 0x00780000				; [95] = 120.0000
+.long 0x007d0000				; [96] = 125.0000
+.long 0x007f0000				; [97] = 127.0000
+.long 0x00800000				; [98] = 128.0000
+.long 0x00820000				; [99] = 130.0000
+.long 0x00860000				; [100] = 134.0000
+.long 0x00870000				; [101] = 135.0000
+.long 0x008c0000				; [102] = 140.0000
+.long 0x00960000				; [103] = 150.0000
+.long 0x009a0000				; [104] = 154.0000
+.long 0x009c0000				; [105] = 156.0000
+.long 0x00a00000				; [106] = 160.0000
+.long 0x00a20000				; [107] = 162.0000
+.long 0x00b00000				; [108] = 176.0000
+.long 0x00b40000				; [109] = 180.0000
+.long 0x00b60000				; [110] = 182.0000
+.long 0x00be0000				; [111] = 190.0000
+.long 0x00c00000				; [112] = 192.0000
+.long 0x00c80000				; [113] = 200.0000
+.long 0x00cc0000				; [114] = 204.0000
+.long 0x00d20000				; [115] = 210.0000
+.long 0x00e00000				; [116] = 224.0000
+.long 0x00f00000				; [117] = 240.0000
+.long 0x00f40000				; [118] = 244.0000
+.long 0x00fa0000				; [119] = 250.0000
+.long 0x01000000				; [120] = 256.0000
+.long 0x01180000				; [121] = 280.0000
+.long 0x012c0000				; [122] = 300.0000
+.long 0x01400000				; [123] = 320.0000
+.long 0x014a0000				; [124] = 330.0000
+.long 0x040f0f42				; [125] = 1039.0596
+.long 0x081f1f82				; [126] = 2079.1231
+.long 0x083f3082				; [127] = 2111.1895
+.long 0x0fdf1f82				; [128] = 4063.1231
+.long 0x0fff3082				; [129] = 4095.1895
+.long 0x107e3c08				; [130] = 4222.2345
+.long 0x107f2c49				; [131] = 4223.1730
+.long 0x147f1c49				; [132] = 5247.1105
+.long 0x14bc3c49				; [133] = 5308.2355
+.long 0x185e1e86				; [134] = 6238.1192
+.long 0x18710f46				; [135] = 6257.0597
+.long 0x187f3c8a				; [136] = 6271.2365
+.long 0x189c2186				; [137] = 6300.1310
+.long 0x1fde1e86				; [138] = 8158.1192
+.long 0x1fff34aa				; [139] = 8191.2057
+.long 0x2fff3892				; [140] = 12287.2210
+.long 0x2fff3f10				; [141] = 12287.2463
+.long 0x3f9c1186				; [142] = 16284.0685
+.long 0x3f9c19a6				; [143] = 16284.1002
+.long 0x40bf3f08				; [144] = 16575.2462
+.long 0x42303ff8				; [145] = 16944.2499
+.long 0x4cbf3f0c				; [146] = 19647.2463
+.long 0x7fffffff				; [147] = 32768.0000
+.long 0x81c30313				; [148] = 33219.0120
+.long 0x82071fa2				; [149] = 33287.1236
+.long 0x82080820				; [150] = 33288.0317
+.long 0x820f08f0				; [151] = 33295.0349
+.long 0x823f3f20				; [152] = 33343.2466
+.long 0x881f1f81				; [153] = 34847.1231
+.long 0x927f0104				; [154] = 37503.0040
+.long 0x98611bb6				; [155] = 39009.1082
+.long 0x987f14aa				; [156] = 39039.0807
+.long 0x989c2f46				; [157] = 39068.1847
+.long 0x98bc3ba6				; [158] = 39100.2330
+.long 0x9a6e19a6				; [159] = 39534.1002
+.long 0x9a7226a6				; [160] = 39538.1510
+.long 0x9a7f2186				; [161] = 39551.1310
+.long 0x9be631e6				; [162] = 39910.1949
+.long 0x9fff3624				; [163] = 40959.2115
+.long 0xcfff3f10				; [164] = 53247.2463
+.long 0xdfff0114				; [165] = 57343.0042
+.long 0xdfff2196				; [166] = 57343.1312
+.long 0xf0410107				; [167] = 61505.0040
+.long 0xf8602087				; [168] = 63584.1271
+.long 0xf8800083				; [169] = 63616.0020
+.long 0xffe10087				; [170] = 65505.0021
+.long 0x00240000				; [171] = 36.0000
 
 ; ============================================================================
 ; Color Script.

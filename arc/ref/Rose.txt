@@ -152,8 +152,8 @@ TODO: Check unreachable code after fork? - DONE
     - jesuis - WORKS! ALTHOUGH CREDITS MISSING?
     - frustration - WORKS!
     - euphoria - WORKS! ALTHOUGH LAST BIT BLANK?
-    - waytoorude - WORKS MOSTLY - CREDITS ARE BUST
-    - logicos - WORKS?
+    - waytoorude - WORKS!
+    - logicos - WORKS!
     - technova - WORKS!
 
 TODO:

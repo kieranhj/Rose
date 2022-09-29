@@ -6,7 +6,9 @@
 .equ MAX_FRAMES, 10000	        ; Length of Rose animation
 .endif
 
+.ifndef MAX_TURTLES
 .equ MAX_TURTLES, 500           ; Max turtles alive at the same time (!)
+.endif
 
 .ifndef MAX_STACK
 .equ MAX_STACK, 20              ; Max depth of execution stack

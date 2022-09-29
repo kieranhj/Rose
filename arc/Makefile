@@ -10,8 +10,7 @@ VASM_OPTS:=-m250 -Fbin -opt-adr
 
 ENGINE_DEPS:=engine/rose.asm engine/circles.asm engine/circledat.asm engine/engine.asm
 COMMON_DEPS:=common/MemAlloc,ffa 
-NO_MUSIC_DEPS:=common/\!run_without_music.txt
-MUSIC_DEPS:=common/QTM147,ffa common/\!run_with_music.txt
+MUSIC_DEPS:=common/QTM147,ffa
 
 ARCULATOR_HOSTFS=../../../Arculator_V2.1_Windows/hostfs
 
@@ -52,7 +51,7 @@ $(CIRCLE_BLD)/circle.bin: $(CIRCLE_SRC)/instructions.asm $(ENGINE_DEPS)
 	$(MKDIR_P) $(CIRCLE_BLD)
 	$(VASM) -D_ENABLE_MUSIC=0 -D_FORM_WIDTH=352 -D_FORM_HEIGHT=280 -D_DUAL_PLAYFIELD=0 -I../$(CIRCLE_SRC) $(VASM_OPTS) -L $(CIRCLE_BLD)/compile.txt -o $(CIRCLE_BLD)/circle.bin engine/rose.asm
 
-$(CIRCLE_DST): $(CIRCLE_BLD)/circle.bin $(CIRCLE_BLD)/\!run.txt $(COMMON_DEPS) $(NO_MUSIC_DEPS)
+$(CIRCLE_DST): $(CIRCLE_BLD)/circle.bin $(CIRCLE_BLD)/\!run.txt $(COMMON_DEPS)
 	$(RM_RF) $(CIRCLE_DST)
 	$(MKDIR_P) $(CIRCLE_DST)
 	cp $(CIRCLE_BLD)/\!run.txt $(CIRCLE_DST)/\!Run,feb
@@ -161,8 +160,8 @@ $(LOGICOS_DST): $(LOGICOS_BLD)/logicos.bin $(LOGICOS_BLD)/\!run.txt $(LOGICOS_SR
 	cp $(LOGICOS_BLD)/logicos.bin $(LOGICOS_DST)/\!RunImage,ff8
 	cp $(LOGICOS_SRC)/logicos.mod $(LOGICOS_DST)/\Music,001
 
-$(LOGICOS_BLD)/\!run.txt: common/\!run_with_music.txt
-	$(DOS2UNIX) -n common/\!run_with_music.txt $(LOGICOS_BLD)/\!run.txt
+$(LOGICOS_BLD)/\!run.txt: common/\!run_with_large_ram.txt
+	$(DOS2UNIX) -n common/\!run_with_large_ram.txt $(LOGICOS_BLD)/\!run.txt
 
 $(ARCULATOR_HOSTFS)/$(LOGICOS_ARC): $(LOGICOS_DST)
 	$(RM_RF) $(ARCULATOR_HOSTFS)/$(LOGICOS_ARC)
