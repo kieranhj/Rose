@@ -9,7 +9,7 @@ VASM=./bin/vasmarm_std_win32.exe
 VASM_OPTS:=-m250 -Fbin -opt-adr
 
 ENGINE_DEPS:=engine/rose.asm engine/circles.asm engine/circledat.asm engine/engine.asm
-COMMON_DEPS:=common/MemAlloc,ffa common/MMode98,ffa
+COMMON_DEPS:=common/MemAlloc,ffa common/MMode98,ffa common/MMode97,ffa
 MUSIC_DEPS:=common/QTM147,ffa
 
 ARCULATOR_HOSTFS=../../../Arculator_V2.1_Windows/hostfs
@@ -117,7 +117,7 @@ $(WAYTOORUDE_SRC)/instructions.asm: $(WAYTOORUDE_SRC)/bytecodes.bin $(WAYTOORUDE
 
 $(WAYTOORUDE_BLD)/waytoorude.bin: $(WAYTOORUDE_SRC)/instructions.asm $(ENGINE_DEPS)
 	$(MKDIR_P) $(WAYTOORUDE_BLD)
-	$(VASM) -D_ENABLE_MUSIC=1 -D_FORM_WIDTH=320 -D_FORM_HEIGHT=180 -D_DUAL_PLAYFIELD=1 -DMAX_FRAMES=13000 -I../$(WAYTOORUDE_SRC) $(VASM_OPTS) -L $(WAYTOORUDE_BLD)/compile.txt -o $(WAYTOORUDE_BLD)/waytoorude.bin engine/rose.asm
+	$(VASM) -D_ENABLE_MUSIC=1 -D_FORM_WIDTH=320 -D_FORM_HEIGHT=180 -D_DUAL_PLAYFIELD=1 -DMAX_FRAMES=13000 -D_SCREEN_MODE=97 -I../$(WAYTOORUDE_SRC) $(VASM_OPTS) -L $(WAYTOORUDE_BLD)/compile.txt -o $(WAYTOORUDE_BLD)/waytoorude.bin engine/rose.asm
 
 $(WAYTOORUDE_DST): $(WAYTOORUDE_BLD)/waytoorude.bin $(WAYTOORUDE_BLD)/\!run.txt $(WAYTOORUDE_SRC)/way_too_rude.mod $(COMMON_DEPS) $(MUSIC_DEPS)
 	$(RM_RF) $(WAYTOORUDE_DST)
@@ -125,11 +125,12 @@ $(WAYTOORUDE_DST): $(WAYTOORUDE_BLD)/waytoorude.bin $(WAYTOORUDE_BLD)/\!run.txt 
 	cp $(WAYTOORUDE_BLD)/\!run.txt $(WAYTOORUDE_DST)/\!Run,feb
 	cp common/MemAlloc,ffa $(WAYTOORUDE_DST)
 	cp common/QTM147,ffa $(WAYTOORUDE_DST)
+	cp common/MMode97,ffa $(WAYTOORUDE_DST)
 	cp $(WAYTOORUDE_BLD)/waytoorude.bin $(WAYTOORUDE_DST)/\!RunImage,ff8
 	cp $(WAYTOORUDE_SRC)/way_too_rude.mod $(WAYTOORUDE_DST)/\Music,001
 
 $(WAYTOORUDE_BLD)/\!run.txt: common/\!run_with_music.txt
-	$(DOS2UNIX) -n common/\!run_with_music.txt $(WAYTOORUDE_BLD)/\!run.txt
+	$(DOS2UNIX) -n common/\!run_with_music_widescreen.txt $(WAYTOORUDE_BLD)/\!run.txt
 
 $(ARCULATOR_HOSTFS)/$(WAYTOORUDE_ARC): $(WAYTOORUDE_DST)
 	$(RM_RF) $(ARCULATOR_HOSTFS)/$(WAYTOORUDE_ARC)
@@ -151,7 +152,7 @@ $(LOGICOS_SRC)/instructions.asm: $(LOGICOS_SRC)/bytecodes.bin $(LOGICOS_SRC)/con
 
 $(LOGICOS_BLD)/logicos.bin: $(LOGICOS_SRC)/instructions.asm $(ENGINE_DEPS)
 	$(MKDIR_P) $(LOGICOS_BLD)
-	$(VASM) -D_ENABLE_MUSIC=1 -D_FORM_WIDTH=320 -D_FORM_HEIGHT=180 -D_DUAL_PLAYFIELD=1 -DMAX_FRAMES=14000 -DMAX_STACK=31 -I../$(LOGICOS_SRC) $(VASM_OPTS) -L $(LOGICOS_BLD)/compile.txt -o $(LOGICOS_BLD)/logicos.bin engine/rose.asm
+	$(VASM) -D_ENABLE_MUSIC=1 -D_FORM_WIDTH=320 -D_FORM_HEIGHT=180 -D_DUAL_PLAYFIELD=1 -DMAX_FRAMES=14000 -D_SCREEN_MODE=97 -DMAX_STACK=31 -I../$(LOGICOS_SRC) $(VASM_OPTS) -L $(LOGICOS_BLD)/compile.txt -o $(LOGICOS_BLD)/logicos.bin engine/rose.asm
 
 $(LOGICOS_DST): $(LOGICOS_BLD)/logicos.bin $(LOGICOS_BLD)/\!run.txt $(LOGICOS_SRC)/logicos.mod $(COMMON_DEPS) $(MUSIC_DEPS)
 	$(RM_RF) $(LOGICOS_DST)
@@ -159,6 +160,7 @@ $(LOGICOS_DST): $(LOGICOS_BLD)/logicos.bin $(LOGICOS_BLD)/\!run.txt $(LOGICOS_SR
 	cp $(LOGICOS_BLD)/\!run.txt $(LOGICOS_DST)/\!Run,feb
 	cp common/MemAlloc,ffa $(LOGICOS_DST)
 	cp common/QTM147,ffa $(LOGICOS_DST)
+	cp common/MMode97,ffa $(LOGICOS_DST)
 	cp $(LOGICOS_BLD)/logicos.bin $(LOGICOS_DST)/\!RunImage,ff8
 	cp $(LOGICOS_SRC)/logicos.mod $(LOGICOS_DST)/\Music,001
 
@@ -185,7 +187,7 @@ $(TECHNOVA_SRC)/instructions.asm: $(TECHNOVA_SRC)/bytecodes.bin $(TECHNOVA_SRC)/
 
 $(TECHNOVA_BLD)/technova.bin: $(TECHNOVA_SRC)/instructions.asm $(ENGINE_DEPS)
 	$(MKDIR_P) $(TECHNOVA_BLD)
-	$(VASM) -D_ENABLE_MUSIC=1 -D_FORM_WIDTH=320 -D_FORM_HEIGHT=180 -D_DUAL_PLAYFIELD=1 -DMAX_FRAMES=8000 -I../$(TECHNOVA_SRC) $(VASM_OPTS) -L $(TECHNOVA_BLD)/compile.txt -o $(TECHNOVA_BLD)/technova.bin engine/rose.asm
+	$(VASM) -D_ENABLE_MUSIC=1 -D_FORM_WIDTH=320 -D_FORM_HEIGHT=180 -D_DUAL_PLAYFIELD=1 -DMAX_FRAMES=8000 -D_SCREEN_MODE=97 -I../$(TECHNOVA_SRC) $(VASM_OPTS) -L $(TECHNOVA_BLD)/compile.txt -o $(TECHNOVA_BLD)/technova.bin engine/rose.asm
 
 $(TECHNOVA_DST): $(TECHNOVA_BLD)/technova.bin $(TECHNOVA_BLD)/\!run.txt $(TECHNOVA_SRC)/h0ffman_-_technova.mod $(COMMON_DEPS) $(MUSIC_DEPS)
 	$(RM_RF) $(TECHNOVA_DST)
@@ -193,10 +195,11 @@ $(TECHNOVA_DST): $(TECHNOVA_BLD)/technova.bin $(TECHNOVA_BLD)/\!run.txt $(TECHNO
 	cp $(TECHNOVA_BLD)/\!run.txt $(TECHNOVA_DST)/\!Run,feb
 	cp common/MemAlloc,ffa $(TECHNOVA_DST)
 	cp common/QTM147,ffa $(TECHNOVA_DST)
+	cp common/MMode97,ffa $(TECHNOVA_DST)
 	cp $(TECHNOVA_BLD)/technova.bin $(TECHNOVA_DST)/\!RunImage,ff8
 	cp $(TECHNOVA_SRC)/h0ffman_-_technova.mod $(TECHNOVA_DST)/\Music,001
 
-$(TECHNOVA_BLD)/\!run.txt: common/\!run_with_music.txt
+$(TECHNOVA_BLD)/\!run.txt: common/\!run_with_music_widescreen.txt
 	$(DOS2UNIX) -n common/\!run_with_music.txt $(TECHNOVA_BLD)/\!run.txt
 
 $(ARCULATOR_HOSTFS)/$(TECHNOVA_ARC): $(TECHNOVA_DST)

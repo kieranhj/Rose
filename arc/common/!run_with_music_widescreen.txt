@@ -8,7 +8,7 @@ RMKILL MemAlloc
 |
 RMLOAD <Demo$Dir>.QTM147 { > null: }
 RMLOAD <Demo$Dir>.MMode97
-wimpslot -min 1600k
+wimpslot -min 1296k
 <Demo$Dir>.!RunImage
 RMKILL QTMTracker
 RMKILL Mode97
