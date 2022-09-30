@@ -643,6 +643,6 @@ r_CircleBufPtrs:
 	.skip	(Screen_Height)*4
 
 gen_code_pointers:
-	.skip	4*8*Screen_Width
+	.skip	4*8*MAXSPAN
 
 gen_code_start:

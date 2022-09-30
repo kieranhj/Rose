@@ -210,6 +210,11 @@ https://pdjstone.github.io/arculator-wasm/arculator.html?disc=https://bitshifter
 - QTM sample offset bug - FIXED WITH NEW VERSION OF QTM v1.47a!
     - Way Too Rude 'Wuaaa, uh uh' vocal.
 - Make MOD playback Mono. - DONE
+- Nicer overscan MODE module, if cba. - GOT STEVE'S CODE.
+    - Use Steve's MODE98 module. - DONE
+- Accomodate underscanned modes 320x180 properly. - DONE
+    - Centre this and make equivalent to wait for vsync for max raster time.
+    - Added MODE97 made by Steve's MMode.
 
 30/9/22 TODO
 - Figure out vlink for different sections (jetison BSS segment)
@@ -218,11 +223,10 @@ https://pdjstone.github.io/arculator-wasm/arculator.html?disc=https://bitshifter
     - Way Too Rude requires 4mb! Everything else runs in 2Mb.
     - Should only need span routines up to ~140 pixels (MAX_RADIUS=70)
 - Add LZ4 or Shrinker compression to final exe.
-- Nicer overscan MODE module, if cba. - GOT STEVE'S CODE.
-    - Use Steve's MODE98 module. - DONE
-- Accomodate underscanned modes 320x180 properly. - DONE
-    - Centre this and make equivalent to wait for vsync for max raster time.
-    - Added MODE97 made by Steve's MMode.
+
+- Move MOD into the exe, rather than being a separate file?
+- Add ability to delay animation start by N frames for sync (IP says 2!)
+
 - Optimisations...
     - Look for optimisations, register use etc.
     - Dual Playfield demos drop frames on 8MHz machines. :(

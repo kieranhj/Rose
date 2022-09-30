@@ -10,6 +10,8 @@
 .equ CIRCLEDATA, 5				; centre_x, colour word, ptr to size table, line count
 .endif
 
+.equ MAXSPAN, (MAXRADIUS+1)*2
+
 circle_lookup_p:
 	.long circle_lookup
 
@@ -28,6 +30,12 @@ p_CircleBufPtrs:
 ;r4 = plot instruction
 ;r11 = tint
 link_circle:
+    .if _DEBUG
+    cmp r2, #MAXRADIUS
+    adrgt r0, circletoolarge
+    swigt OS_GenerateError
+    .endif
+
 	STR lr, [sp, #-4]!
 
 	LDR r12, circle_lookup_p
@@ -99,6 +107,13 @@ clip_circle_notbottom:
 	ldr r7, p_CircleBufPtrs
 	ldr r10, [r7, r1, lsl #2]			; get ptr to first circle for Y
 	ldr r8, r_FreeCircle				; get next free circle in buffer
+
+	.if _DEBUG
+	cmp r8, #0
+    adreq r0, outofcircles
+    swieq OS_GenerateError
+	.endif
+
 	.if _DUAL_PLAYFIELD
 	stmfd r8!, {r0, r4, r5, r9, r12, r14}		; push all vars needed to plot this circle.
 	.else
@@ -123,6 +138,27 @@ clip_circle_notbottom:
 layer_0_mask:
 	.long 0x33333333
 .endif
+
+.if _DEBUG
+circletoolarge: ;The error block
+    .long 18
+	.byte "Radius too large!"
+	.align 4
+	.long 0
+
+outofcircles:
+    .long 18
+	.byte "Out of circles!"
+	.align 4
+	.long 0
+
+spantoolong:
+    .long 18
+	.byte "Span too long!"
+	.align 4
+	.long 0
+.endif
+
 
 plot_all_circles:
 	STR lr, [sp, #-4]!
@@ -189,6 +225,13 @@ circle_loop:
 	ADD r10, r11, r3, LSL #2 ;Start word
 
 	SUB r3, r1, r2 ;length
+
+	.if _DEBUG
+	cmp r3, #MAXSPAN
+    adrgt r0, spantoolong
+    swigt OS_GenerateError
+	.endif
+
 	;MOV r3, #1
 	AND r4, r2, #7 ;start offset
 	LDR r6, gen_code_pointers_p
@@ -755,7 +798,7 @@ gen_code_end_copy:
 	ANDS r0, r0, #7
 	BNE gen_code_main_loop
 	ADD r1, r1, #1
-	CMP r1, #Screen_Width
+	CMP r1, #MAXSPAN
 	BNE gen_code_main_loop
 
 ;gen_code_ended:

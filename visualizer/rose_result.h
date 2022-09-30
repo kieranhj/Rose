@@ -50,6 +50,7 @@ struct RoseStatistics {
 	int wire_capacity = 0;
 	int number_of_procedures = 0;
 	int number_of_constants = 0;
+	int max_radius = 0;
 	std::vector<FrameStatistics> frame;
 
 	RoseStatistics(int frames, int width, int height, int layer_count, int layer_depth)
@@ -85,6 +86,10 @@ struct RoseStatistics {
 		}
 		frame[f].cpu_draw_cycles += 320 + 606;
 
+		if (size > max_radius) {
+			max_radius = size;
+		}
+
 		int hwords = (size >> 3) + 2;
 		frame[f].circles += 1;
 		frame[f].copper_cycles += 17 * 8;
@@ -103,6 +108,7 @@ struct RoseStatistics {
 		fprintf(out, "Number of frames:     %5d\n", frames);
 		fprintf(out, "Max extra wait:       %5d\n", max_overwait);
 		fprintf(out, "Max circles in frame: %5d\n", max_circles);
+		fprintf(out, "Max circle radius:    %5d\n", max_radius);
 		fprintf(out, "Max turtles alive:    %5d\n", max_turtles);
 		fprintf(out, "Max stack height:     %5d\n", max_stack_height);
 		fprintf(out, "Wire capacity:        %5d\n", wire_capacity);

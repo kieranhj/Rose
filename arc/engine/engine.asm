@@ -342,11 +342,13 @@ ForkState:
     .endif
     mov pc, lr
 
+.if _DEBUG
 outofturtles: ;The error block
     .long 18
 	.byte "Out of turtles!"
 	.align 4
 	.long 0
+.endif
 
 ; r0 = units.
 ; r5 = p_State.

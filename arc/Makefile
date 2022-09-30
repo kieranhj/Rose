@@ -200,7 +200,7 @@ $(TECHNOVA_DST): $(TECHNOVA_BLD)/technova.bin $(TECHNOVA_BLD)/\!run.txt $(TECHNO
 	cp $(TECHNOVA_SRC)/h0ffman_-_technova.mod $(TECHNOVA_DST)/\Music,001
 
 $(TECHNOVA_BLD)/\!run.txt: common/\!run_with_music_widescreen.txt
-	$(DOS2UNIX) -n common/\!run_with_music.txt $(TECHNOVA_BLD)/\!run.txt
+	$(DOS2UNIX) -n common/\!run_with_music_widescreen.txt $(TECHNOVA_BLD)/\!run.txt
 
 $(ARCULATOR_HOSTFS)/$(TECHNOVA_ARC): $(TECHNOVA_DST)
 	$(RM_RF) $(ARCULATOR_HOSTFS)/$(TECHNOVA_ARC)
@@ -234,8 +234,8 @@ $(EUPHORIA_DST): $(EUPHORIA_BLD)/euphoria.bin $(EUPHORIA_BLD)/\!run.txt $(EUPHOR
 	cp $(EUPHORIA_BLD)/euphoria.bin $(EUPHORIA_DST)/\!RunImage,ff8
 	cp $(EUPHORIA_SRC)/painters\ euphoria.mod $(EUPHORIA_DST)/\Music,001
 
-$(EUPHORIA_BLD)/\!run.txt: common/\!run_with_music.txt
-	$(DOS2UNIX) -n common/\!run_with_music.txt $(EUPHORIA_BLD)/\!run.txt
+$(EUPHORIA_BLD)/\!run.txt: common/\!run_with_music_overscan.txt
+	$(DOS2UNIX) -n common/\!run_with_music_overscan.txt $(EUPHORIA_BLD)/\!run.txt
 
 $(ARCULATOR_HOSTFS)/$(EUPHORIA_ARC): $(EUPHORIA_DST)
 	$(RM_RF) $(ARCULATOR_HOSTFS)/$(EUPHORIA_ARC)
