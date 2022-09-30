@@ -9,7 +9,7 @@ VASM=./bin/vasmarm_std_win32.exe
 VASM_OPTS:=-m250 -Fbin -opt-adr
 
 ENGINE_DEPS:=engine/rose.asm engine/circles.asm engine/circledat.asm engine/engine.asm
-COMMON_DEPS:=common/MemAlloc,ffa 
+COMMON_DEPS:=common/MemAlloc,ffa common/MMode98,ffa
 MUSIC_DEPS:=common/QTM147,ffa
 
 ARCULATOR_HOSTFS=../../../Arculator_V2.1_Windows/hostfs
@@ -49,13 +49,14 @@ $(CIRCLE_SRC)/instructions.asm: $(CIRCLE_SRC)/bytecodes.bin $(CIRCLE_SRC)/consta
 
 $(CIRCLE_BLD)/circle.bin: $(CIRCLE_SRC)/instructions.asm $(ENGINE_DEPS)
 	$(MKDIR_P) $(CIRCLE_BLD)
-	$(VASM) -D_ENABLE_MUSIC=0 -D_FORM_WIDTH=352 -D_FORM_HEIGHT=280 -D_DUAL_PLAYFIELD=0 -I../$(CIRCLE_SRC) $(VASM_OPTS) -L $(CIRCLE_BLD)/compile.txt -o $(CIRCLE_BLD)/circle.bin engine/rose.asm
+	$(VASM) -D_ENABLE_MUSIC=0 -D_FORM_WIDTH=352 -D_FORM_HEIGHT=280 -D_DUAL_PLAYFIELD=0 -D_SCREEN_MODE=98 -I../$(CIRCLE_SRC) $(VASM_OPTS) -L $(CIRCLE_BLD)/compile.txt -o $(CIRCLE_BLD)/circle.bin engine/rose.asm
 
 $(CIRCLE_DST): $(CIRCLE_BLD)/circle.bin $(CIRCLE_BLD)/\!run.txt $(COMMON_DEPS)
 	$(RM_RF) $(CIRCLE_DST)
 	$(MKDIR_P) $(CIRCLE_DST)
 	cp $(CIRCLE_BLD)/\!run.txt $(CIRCLE_DST)/\!Run,feb
 	cp common/MemAlloc,ffa $(CIRCLE_DST)
+	cp common/MMode98,ffa $(CIRCLE_DST)
 	cp $(CIRCLE_BLD)/circle.bin $(CIRCLE_DST)/\!RunImage,ff8
 
 $(CIRCLE_BLD)/\!run.txt: common/\!run_without_music.txt
@@ -81,7 +82,7 @@ $(EVERYWAY_SRC)/instructions.asm: $(EVERYWAY_SRC)/bytecodes.bin $(EVERYWAY_SRC)/
 
 $(EVERYWAY_BLD)/everyway.bin: $(EVERYWAY_SRC)/instructions.asm $(ENGINE_DEPS)
 	$(MKDIR_P) $(EVERYWAY_BLD)
-	$(VASM) -D_ENABLE_MUSIC=1 -D_FORM_WIDTH=352 -D_FORM_HEIGHT=280 -D_DUAL_PLAYFIELD=0 -DMAX_FRAMES=9000 -I../$(EVERYWAY_SRC) $(VASM_OPTS) -L $(EVERYWAY_BLD)/compile.txt -o $(EVERYWAY_BLD)/everyway.bin engine/rose.asm
+	$(VASM) -D_ENABLE_MUSIC=1 -D_FORM_WIDTH=352 -D_FORM_HEIGHT=280 -D_DUAL_PLAYFIELD=0 -DMAX_FRAMES=9000 -D_SCREEN_MODE=98 -I../$(EVERYWAY_SRC) $(VASM_OPTS) -L $(EVERYWAY_BLD)/compile.txt -o $(EVERYWAY_BLD)/everyway.bin engine/rose.asm
 
 $(EVERYWAY_DST): $(EVERYWAY_BLD)/everyway.bin $(EVERYWAY_BLD)/\!run.txt $(EVERYWAY_SRC)/h0ffman_-_everyway.mod $(COMMON_DEPS) $(MUSIC_DEPS)
 	$(RM_RF) $(EVERYWAY_DST)
@@ -89,11 +90,12 @@ $(EVERYWAY_DST): $(EVERYWAY_BLD)/everyway.bin $(EVERYWAY_BLD)/\!run.txt $(EVERYW
 	cp $(EVERYWAY_BLD)/\!run.txt $(EVERYWAY_DST)/\!Run,feb
 	cp common/MemAlloc,ffa $(EVERYWAY_DST)
 	cp common/QTM147,ffa $(EVERYWAY_DST)
+	cp common/MMode98,ffa $(EVERYWAY_DST)
 	cp $(EVERYWAY_BLD)/everyway.bin $(EVERYWAY_DST)/\!RunImage,ff8
 	cp $(EVERYWAY_SRC)/h0ffman_-_everyway.mod $(EVERYWAY_DST)/\Music,001
 
-$(EVERYWAY_BLD)/\!run.txt: common/\!run_with_music.txt
-	$(DOS2UNIX) -n common/\!run_with_music.txt $(EVERYWAY_BLD)/\!run.txt
+$(EVERYWAY_BLD)/\!run.txt: common/\!run_with_music_overscan.txt
+	$(DOS2UNIX) -n common/\!run_with_music_overscan.txt $(EVERYWAY_BLD)/\!run.txt
 
 $(ARCULATOR_HOSTFS)/$(EVERYWAY_ARC): $(EVERYWAY_DST)
 	$(RM_RF) $(ARCULATOR_HOSTFS)/$(EVERYWAY_ARC)
@@ -217,13 +219,14 @@ $(EUPHORIA_SRC)/instructions.asm: $(EUPHORIA_SRC)/bytecodes.bin $(EUPHORIA_SRC)/
 
 $(EUPHORIA_BLD)/euphoria.bin: $(EUPHORIA_SRC)/instructions.asm $(ENGINE_DEPS)
 	$(MKDIR_P) $(EUPHORIA_BLD)
-	$(VASM) -D_ENABLE_MUSIC=1 -D_FORM_WIDTH=352 -D_FORM_HEIGHT=280 -D_DUAL_PLAYFIELD=0 -DMAX_FRAMES=7400 -I../$(EUPHORIA_SRC) $(VASM_OPTS) -L $(EUPHORIA_BLD)/compile.txt -o $(EUPHORIA_BLD)/euphoria.bin engine/rose.asm
+	$(VASM) -D_ENABLE_MUSIC=1 -D_FORM_WIDTH=352 -D_FORM_HEIGHT=280 -D_DUAL_PLAYFIELD=0 -DMAX_FRAMES=7400 -D_SCREEN_MODE=98 -I../$(EUPHORIA_SRC) $(VASM_OPTS) -L $(EUPHORIA_BLD)/compile.txt -o $(EUPHORIA_BLD)/euphoria.bin engine/rose.asm
 
 $(EUPHORIA_DST): $(EUPHORIA_BLD)/euphoria.bin $(EUPHORIA_BLD)/\!run.txt $(EUPHORIA_SRC)/painters\ euphoria.mod $(COMMON_DEPS) $(MUSIC_DEPS)
 	$(RM_RF) $(EUPHORIA_DST)
 	$(MKDIR_P) $(EUPHORIA_DST)
 	cp $(EUPHORIA_BLD)/\!run.txt $(EUPHORIA_DST)/\!Run,feb
 	cp common/MemAlloc,ffa $(EUPHORIA_DST)
+	cp common/MMode98,ffa $(EUPHORIA_DST)
 	cp common/QTM147,ffa $(EUPHORIA_DST)
 	cp $(EUPHORIA_BLD)/euphoria.bin $(EUPHORIA_DST)/\!RunImage,ff8
 	cp $(EUPHORIA_SRC)/painters\ euphoria.mod $(EUPHORIA_DST)/\Music,001

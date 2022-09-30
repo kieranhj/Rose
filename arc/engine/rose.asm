@@ -21,7 +21,12 @@
 .equ _DEBUG_DEFAULT_SHOW_INFO, 0		; slow
 
 .equ Screen_Banks, 1
+
+.ifndef _SCREEN_MODE
 .equ Screen_Mode, 9
+.else
+.equ Screen_Mode, _SCREEN_MODE
+.endif
 
 .equ Screen_Width, _FORM_WIDTH
 .equ Screen_Height, _FORM_HEIGHT
@@ -106,9 +111,6 @@ main:
 
 	bl get_screen_addr			; single buffer so only needed once.
 	bl cls
-
-	; Extend screen size.
-	bl set_vidc_regs
 
 	; EARLY INITIALISATION HERE!
 
@@ -569,16 +571,6 @@ d_StopOnFrame:
 ; Additional code.
 ; ============================================================================
 
-set_vidc_regs:
-	adr r1, vidc_regs
-	ldr r2, vidc_write
-.1:
-	ldr r0, [r1], #4
-	cmp r0, #-1
-	moveq pc, lr
-	str r0, [r2]
-	b .1
-
 cls:
 	mov r0, #0
 	mov r1, r0
@@ -595,16 +587,6 @@ cls:
 	subs r8, r8, #1
 	bne .1
 	mov pc, lr
-
-vidc_write:
-	.long VIDC_Write
-
-vidc_regs:
-	.long VIDC_HDisplayStart | ((((MODE9_HCentrePixels - Screen_Width/2))-7)/2)<<14
-	.long VIDC_HDisplayEnd   | ((((MODE9_HCentrePixels + Screen_Width/2))-7)/2)<<14
-	.long VIDC_VDisplayStart | (MODE9_VCentreRasters - Mode_Height/2)<<14
-	.long VIDC_VDisplayEnd   | (MODE9_VCentreRasters + Mode_Height/2)<<14
-	.long -1
 
 p_CircleBufEnd:
 	.long r_circleBufEnd

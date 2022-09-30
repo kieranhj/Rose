@@ -6,7 +6,9 @@ FONTSIZE 0
 SPRITESIZE 0
 RMKILL MemAlloc 
 |
+RMLOAD <Demo$Dir>.QTM147 { > null: }
 RMLOAD <Demo$Dir>.MMode98
 wimpslot -min 1296k
 <Demo$Dir>.!RunImage
+RMKILL QTMTracker
 RMKILL Mode98
