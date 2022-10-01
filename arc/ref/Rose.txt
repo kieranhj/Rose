@@ -222,7 +222,7 @@ https://pdjstone.github.io/arculator-wasm/arculator.html?disc=https://bitshifter
 - Remove all redundant code & data to reduce exe sizes.
     - Way Too Rude requires 4mb! Everything else runs in 2Mb.- DONE
     - Should only need span routines up to ~140 pixels (MAX_RADIUS=70)
-- Add LZ4 or Shrinker compression to final exe.
+- Add LZ4 or Shrinker compression to final exe. - DONE`
 
 - Move MOD into the exe, rather than being a separate file? - DONE
 - Add ability to delay animation start by N frames for sync (IP says 2!)
@@ -242,10 +242,17 @@ https://pdjstone.github.io/arculator-wasm/arculator.html?disc=https://bitshifter
         - I guess this is getting into the realms of language register allocation...
     - Could generate a reciprocal table at init if divide is expensive (and could inline).
 
+- Get correct frame lengths so demos all finish as expected.
+- Clock speed check at runtime to set Sample Quality appropriately?
+
+NICE TO HAVE:
 - General circledat table?
-- Very lastly, write an ARM JIT implementation..?
+- Write an ARM JIT implementation..?
+
+SUPER UNLIKELY BUT WOULD BE AWESOME:
 - Potentially look at soft synths for sample generation?
     => Ask Steve or Sarah to do this!
+
 
 MODE 9 VIDC defaults:
  Horizontal cycle        = 512   Vertical cycle        = 312

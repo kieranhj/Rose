@@ -6,7 +6,7 @@
 ; QTM Module Player by Phoenix of Quantum (steve3000).
 ; ============================================================================
 
-.equ _DEBUG, 1
+.equ _DEBUG, 0
 
 ; Symbols now defined when involking the assembler.
 ;.equ _ENABLE_MUSIC, 1
@@ -593,21 +593,13 @@ cls:
 	mov pc, lr
 .endif
 
-p_CircleBufEnd:
-	.long r_circleBufEnd
-
-p_StateSpace:
-	.long r_StateSpace
-
-p_StateLists:
-	.long r_StateLists
-
 ; ============================================================================
 ; Additional code modules.
 ; ============================================================================
 
 .include "engine.asm"
 .include "circles.asm"
+.include "spans.asm"
 
 r_Instructions:
 .include "instructions.asm"			; Include folder specified at assemble involkation.
@@ -615,6 +607,8 @@ r_Instructions:
 ; ============================================================================
 ; Data Segment
 ; ============================================================================
+
+.include "circledat.asm"
 
 .if _ENABLE_MUSIC
 module_data:

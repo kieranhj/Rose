@@ -68,6 +68,12 @@ p_ColorScript:
 p_Sinus:
     .long r_Sinus
 
+p_StateSpace:
+	.long r_StateSpace
+
+p_StateLists:
+	.long r_StateLists
+
 ; ============================================================================
 ; ColorScript / Palette.
 ; ============================================================================

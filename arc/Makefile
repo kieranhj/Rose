@@ -9,7 +9,7 @@ VASM=./bin/vasmarm_std_win32.exe
 VASM_OPTS:=-m250 -Fbin -opt-adr
 LZ4=./bin/lz4.exe -f --best
 
-ENGINE_DEPS:=engine/rose.asm engine/circles.asm engine/circledat.asm engine/engine.asm
+ENGINE_DEPS:=engine/rose.asm engine/circles.asm engine/circledat.asm engine/engine.asm engine/spans.asm
 COMMON_DEPS:=common/MemAlloc,ffa common/MMode98,ffa common/MMode97,ffa
 MUSIC_DEPS:=common/QTM147,ffa
 
