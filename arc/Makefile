@@ -6,7 +6,7 @@ DOS2UNIX?=dos2unix
 
 ROSE2ARC=./bin/rose2arc.py
 VASM=./bin/vasmarm_std_win32.exe
-VASM_OPTS:=-m250 -Fbin -opt-adr
+VASM_OPTS:=-m250 -Fvobj -opt-adr
 
 ENGINE_DEPS:=engine/rose.asm engine/circles.asm engine/circledat.asm engine/engine.asm
 COMMON_DEPS:=common/MemAlloc,ffa common/MMode98,ffa common/MMode97,ffa
@@ -40,6 +40,7 @@ CIRCLE_ARC=\!Circle
 CIRCLE_SRC=examples/circle
 CIRCLE_BLD=$(CIRCLE_SRC)/build
 CIRCLE_DST=$(CIRCLE_BLD)/$(CIRCLE_ARC)
+CIRCLE_OPTS=-D_ENABLE_MUSIC=0 -D_FORM_WIDTH=352 -D_FORM_HEIGHT=280 -D_DUAL_PLAYFIELD=0 -D_SCREEN_MODE=98
 
 .PHONY:circle
 circle: $(ARCULATOR_HOSTFS)/$(CIRCLE_ARC)
@@ -49,7 +50,8 @@ $(CIRCLE_SRC)/instructions.asm: $(CIRCLE_SRC)/bytecodes.bin $(CIRCLE_SRC)/consta
 
 $(CIRCLE_BLD)/circle.bin: $(CIRCLE_SRC)/instructions.asm $(ENGINE_DEPS)
 	$(MKDIR_P) $(CIRCLE_BLD)
-	$(VASM) -D_ENABLE_MUSIC=0 -D_FORM_WIDTH=352 -D_FORM_HEIGHT=280 -D_DUAL_PLAYFIELD=0 -D_SCREEN_MODE=98 -I../$(CIRCLE_SRC) $(VASM_OPTS) -L $(CIRCLE_BLD)/compile.txt -o $(CIRCLE_BLD)/circle.bin engine/rose.asm
+	$(VASM) $(CIRCLE_OPTS) $(VASM_OPTS) -I../$(CIRCLE_SRC) -L $(CIRCLE_BLD)/compile.txt -o $(CIRCLE_BLD)/circle.o engine/rose.asm
+	$(VASM) $(CIRCLE_OPTS) $(VASM_OPTS) -I../$(CIRCLE_SRC) -L $(CIRCLE_BLD)/compile.txt -o $(CIRCLE_BLD)/bss.o engine/bss.asm
 
 $(CIRCLE_DST): $(CIRCLE_BLD)/circle.bin $(CIRCLE_BLD)/\!run.txt $(COMMON_DEPS)
 	$(RM_RF) $(CIRCLE_DST)

@@ -6,36 +6,18 @@
 ; QTM Module Player by Phoenix of Quantum (steve3000).
 ; ============================================================================
 
+.include "roseconfig.asm"
+
 .equ _DEBUG, 1
-
-; Symbols now defined when involking the assembler.
-;.equ _ENABLE_MUSIC, 1
-;.equ _DUAL_PLAYFIELD, 1
-
-.equ _ENABLE_CATCH_UP, 0				; looks awful usually (tearing).
-
 .equ _DEBUG_RASTERS, (_DEBUG && 1)		; removes code
 .equ _DEBUG_STOP_ON_FRAME, -1
 .equ _DEBUG_DEFAULT_PLAY_PAUSE, 1		; play
 .equ _DEBUG_DEFAULT_SHOW_RASTERS, 0
 .equ _DEBUG_DEFAULT_SHOW_INFO, 0		; slow
 
+.equ _ENABLE_CATCH_UP, 0				; looks awful usually (tearing).
+
 .equ Screen_Banks, 1
-
-.ifndef _SCREEN_MODE
-.equ Screen_Mode, 9
-.else
-.equ Screen_Mode, _SCREEN_MODE
-.endif
-
-.equ Screen_Width, _FORM_WIDTH
-.equ Screen_Height, _FORM_HEIGHT
-
-.if _FORM_HEIGHT < 256					; TODO: Shrink MODE!
-.equ Mode_Height, 256
-.else
-.equ Mode_Height, _FORM_HEIGHT
-.endif
 
 .equ Screen_PixelsPerByte, 2
 .equ Screen_Stride, Screen_Width/Screen_PixelsPerByte
@@ -60,7 +42,8 @@
 	.endif
 .endm
 
-.org 0x8000
+;.org 0x8000
+.text
 
 ; ============================================================================
 ; Stack
@@ -613,36 +596,3 @@ module_filename:
 	.byte "<Demo$Dir>.Music",0
 	.align 4
 .endif
-
-; ============================================================================
-; BSS Segment
-; TODO: Figure out vlink so can hack off BSS segment from binary!!
-; ============================================================================
-
-.p2align 12
-
-r_StateLists:
-    .skip	(MAX_FRAMES+MAX_WAIT)*4
-
-.p2align 12
-
-r_StateSpace:
-    .skip	(MAX_TURTLES+1)*STATE_SIZE
-r_StateSpaceEnd:
-
-.p2align 12
-
-r_Sinus:
-    .skip	(DEGREES)*4
-
-r_CircleBuffer:
-	.skip	(MAX_CIRCLES)*(CIRCLEDATA+1)*4
-r_circleBufEnd:
-
-r_CircleBufPtrs:
-	.skip	(Screen_Height)*4
-
-gen_code_pointers:
-	.skip	4*8*MAXSPAN
-
-gen_code_start:

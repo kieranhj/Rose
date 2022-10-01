@@ -3,15 +3,6 @@
 ; Kindly provided by Progen (Sarah Walker).
 ; ============================================================================
 
-.equ MAX_CIRCLES, 200           ; Max circles drawn in a frame (!)
-.if _DUAL_PLAYFIELD
-.equ CIRCLEDATA, 6				; centre_x, colour word, ptr to size table, line count
-.else
-.equ CIRCLEDATA, 5				; centre_x, colour word, ptr to size table, line count
-.endif
-
-.equ MAXSPAN, (MAXRADIUS+1)*2
-
 circle_lookup_p:
 	.long circle_lookup
 

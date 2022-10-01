@@ -357,3 +357,19 @@ Other Rose notes:
 - All numbers are considered fixed point.
     - E.g. number/4 will be treated as number/4.0, so use << >> if possible.
 - Don't forget numbers are fixed point, so ~1 (-1) is 0xffff0000 not 0xffffffff!
+
+BSS Sizes:
+CircleBuffer: 5600 bytes = MAXCIRCLES * 7 * 4 = 200 * 28
+CircleBufPtrs: 720 bytes = Screen_Height * 4 = 180 * 4
+StateSpace: 76152 bytes = MAX_TURTLES * STATE_SIZE
+= 500 * (VARS + WIRES + STACK + 2) * 4
+= 500 * (8 + 8 + 20 + 2) * 4 = 500 * 38 * 4 = 500 * 152 = 74K
+StateLists: 56000 bytes = MAX_FRAMES * 4 = 13000 * 4
+Sinus: DEGREES * 4 = 16384 * 4 = 64k
+Code gen size?
+Total nearly 200K
+
+Engine code: 10364 bytes inc 1024 bytes stack.
+Circle data nearly 5K. <= could be generated.
+So actual code size is nearer 4K.
+Way Too Rude, code size: 109236 bytes ~= 107K!
