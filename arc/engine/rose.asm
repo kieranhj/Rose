@@ -574,7 +574,7 @@ d_StopOnFrame:
 ; Additional code.
 ; ============================================================================
 
-.if 0
+.if Screen_Banks > 1
 cls:
 	mov r0, #0
 	mov r1, r0

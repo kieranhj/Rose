@@ -7,6 +7,7 @@ DOS2UNIX?=dos2unix
 ROSE2ARC=./bin/rose2arc.py
 VASM=./bin/vasmarm_std_win32.exe
 VASM_OPTS:=-m250 -Fbin -opt-adr
+LZ4=./bin/lz4.exe -f --best
 
 ENGINE_DEPS:=engine/rose.asm engine/circles.asm engine/circledat.asm engine/engine.asm
 COMMON_DEPS:=common/MemAlloc,ffa common/MMode98,ffa common/MMode97,ffa
@@ -80,18 +81,22 @@ everyway: $(ARCULATOR_HOSTFS)/$(EVERYWAY_ARC)
 $(EVERYWAY_SRC)/instructions.asm: $(EVERYWAY_SRC)/bytecodes.bin $(EVERYWAY_SRC)/constants.bin $(EVERYWAY_SRC)/colorscript.bin $(ROSE2ARC)
 	$(PYTHON3) $(ROSE2ARC) $(EVERYWAY_SRC)/bytecodes.bin -c $(EVERYWAY_SRC)/constants.bin -s $(EVERYWAY_SRC)/colorscript.bin -o $(EVERYWAY_SRC)/instructions.asm
 
+$(EVERYWAY_BLD)/loader.bin: engine/loader.asm
+	$(VASM) $(VASM_OPTS) -o $(EVERYWAY_BLD)/loader.bin engine/loader.asm
+
 $(EVERYWAY_BLD)/everyway.bin: $(EVERYWAY_SRC)/instructions.asm $(ENGINE_DEPS) $(EVERYWAY_SRC)/music.mod
 	$(MKDIR_P) $(EVERYWAY_BLD)
 	$(VASM) -D_ENABLE_MUSIC=1 -D_FORM_WIDTH=352 -D_FORM_HEIGHT=280 -D_DUAL_PLAYFIELD=0 -DMAX_FRAMES=9000 -D_SCREEN_MODE=98 -I../$(EVERYWAY_SRC) $(VASM_OPTS) -L $(EVERYWAY_BLD)/compile.txt -o $(EVERYWAY_BLD)/everyway.bin engine/rose.asm
 
-$(EVERYWAY_DST): $(EVERYWAY_BLD)/everyway.bin $(EVERYWAY_BLD)/\!run.txt $(COMMON_DEPS) $(MUSIC_DEPS)
+$(EVERYWAY_DST): $(EVERYWAY_BLD)/everyway.lz4 $(EVERYWAY_BLD)/loader.bin $(EVERYWAY_BLD)/\!run.txt $(COMMON_DEPS) $(MUSIC_DEPS)
 	$(RM_RF) $(EVERYWAY_DST)
 	$(MKDIR_P) $(EVERYWAY_DST)
 	cp $(EVERYWAY_BLD)/\!run.txt $(EVERYWAY_DST)/\!Run,feb
 	cp common/MemAlloc,ffa $(EVERYWAY_DST)
 	cp common/QTM147,ffa $(EVERYWAY_DST)
 	cp common/MMode98,ffa $(EVERYWAY_DST)
-	cp $(EVERYWAY_BLD)/everyway.bin $(EVERYWAY_DST)/\!RunImage,ff8
+	cp $(EVERYWAY_BLD)/loader.bin $(EVERYWAY_DST)/\!RunImage,ff8
+	cp $(EVERYWAY_BLD)/everyway.lz4 $(EVERYWAY_DST)/\Demo,ffd
 
 $(EVERYWAY_BLD)/\!run.txt: common/\!run_with_music_overscan.txt
 	$(DOS2UNIX) -n common/\!run_with_music_overscan.txt $(EVERYWAY_BLD)/\!run.txt
@@ -99,6 +104,10 @@ $(EVERYWAY_BLD)/\!run.txt: common/\!run_with_music_overscan.txt
 $(ARCULATOR_HOSTFS)/$(EVERYWAY_ARC): $(EVERYWAY_DST)
 	$(RM_RF) $(ARCULATOR_HOSTFS)/$(EVERYWAY_ARC)
 	cp -r $(EVERYWAY_DST) $(ARCULATOR_HOSTFS)/
+
+$(EVERYWAY_BLD)/everyway.lz4: $(EVERYWAY_BLD)/everyway.bin
+	$(LZ4) $< $@
+	touch $@
 
 ##########################################################################
 ##########################################################################
@@ -114,18 +123,22 @@ waytoorude: $(ARCULATOR_HOSTFS)/$(WAYTOORUDE_ARC)
 $(WAYTOORUDE_SRC)/instructions.asm: $(WAYTOORUDE_SRC)/bytecodes.bin $(WAYTOORUDE_SRC)/constants.bin $(WAYTOORUDE_SRC)/colorscript.bin $(ROSE2ARC)
 	$(PYTHON3) $(ROSE2ARC) $(WAYTOORUDE_SRC)/bytecodes.bin -c $(WAYTOORUDE_SRC)/constants.bin -s $(WAYTOORUDE_SRC)/colorscript.bin -o $(WAYTOORUDE_SRC)/instructions.asm
 
+$(WAYTOORUDE_BLD)/loader.bin: engine/loader.asm
+	$(VASM) -D_WIMPSLOT=1126400 $(VASM_OPTS) -o $(WAYTOORUDE_BLD)/loader.bin engine/loader.asm
+
 $(WAYTOORUDE_BLD)/waytoorude.bin: $(WAYTOORUDE_SRC)/instructions.asm $(ENGINE_DEPS) $(WAYTOORUDE_SRC)/music.mod
 	$(MKDIR_P) $(WAYTOORUDE_BLD)
 	$(VASM) -D_ENABLE_MUSIC=1 -D_FORM_WIDTH=320 -D_FORM_HEIGHT=180 -D_DUAL_PLAYFIELD=1 -DMAX_FRAMES=13000 -D_SCREEN_MODE=97 -I../$(WAYTOORUDE_SRC) $(VASM_OPTS) -L $(WAYTOORUDE_BLD)/compile.txt -o $(WAYTOORUDE_BLD)/waytoorude.bin engine/rose.asm
 
-$(WAYTOORUDE_DST): $(WAYTOORUDE_BLD)/waytoorude.bin $(WAYTOORUDE_BLD)/\!run.txt $(COMMON_DEPS) $(MUSIC_DEPS)
+$(WAYTOORUDE_DST): $(WAYTOORUDE_BLD)/waytoorude.lz4 $(WAYTOORUDE_BLD)/loader.bin $(WAYTOORUDE_BLD)/\!run.txt $(COMMON_DEPS) $(MUSIC_DEPS)
 	$(RM_RF) $(WAYTOORUDE_DST)
 	$(MKDIR_P) $(WAYTOORUDE_DST)
 	cp $(WAYTOORUDE_BLD)/\!run.txt $(WAYTOORUDE_DST)/\!Run,feb
 	cp common/MemAlloc,ffa $(WAYTOORUDE_DST)
 	cp common/QTM147,ffa $(WAYTOORUDE_DST)
 	cp common/MMode97,ffa $(WAYTOORUDE_DST)
-	cp $(WAYTOORUDE_BLD)/waytoorude.bin $(WAYTOORUDE_DST)/\!RunImage,ff8
+	cp $(WAYTOORUDE_BLD)/loader.bin $(WAYTOORUDE_DST)/\!RunImage,ff8
+	cp $(WAYTOORUDE_BLD)/waytoorude.lz4 $(WAYTOORUDE_DST)/Demo,ffd
 
 $(WAYTOORUDE_BLD)/\!run.txt: common/\!run_with_large_ram.txt
 	$(DOS2UNIX) -n common/\!run_with_large_ram.txt $(WAYTOORUDE_BLD)/\!run.txt
@@ -133,6 +146,10 @@ $(WAYTOORUDE_BLD)/\!run.txt: common/\!run_with_large_ram.txt
 $(ARCULATOR_HOSTFS)/$(WAYTOORUDE_ARC): $(WAYTOORUDE_DST)
 	$(RM_RF) $(ARCULATOR_HOSTFS)/$(WAYTOORUDE_ARC)
 	cp -r $(WAYTOORUDE_DST) $(ARCULATOR_HOSTFS)/
+
+$(WAYTOORUDE_BLD)/waytoorude.lz4: $(WAYTOORUDE_BLD)/waytoorude.bin
+	$(LZ4) $< $@
+	touch $@
 
 ##########################################################################
 ##########################################################################
@@ -148,18 +165,22 @@ logicos: $(ARCULATOR_HOSTFS)/$(LOGICOS_ARC)
 $(LOGICOS_SRC)/instructions.asm: $(LOGICOS_SRC)/bytecodes.bin $(LOGICOS_SRC)/constants.bin $(LOGICOS_SRC)/colorscript.bin $(ROSE2ARC)
 	$(PYTHON3) $(ROSE2ARC) $(LOGICOS_SRC)/bytecodes.bin -c $(LOGICOS_SRC)/constants.bin -s $(LOGICOS_SRC)/colorscript.bin -o $(LOGICOS_SRC)/instructions.asm
 
+$(LOGICOS_BLD)/loader.bin: engine/loader.asm
+	$(VASM) $(VASM_OPTS) -o $(LOGICOS_BLD)/loader.bin engine/loader.asm
+
 $(LOGICOS_BLD)/logicos.bin: $(LOGICOS_SRC)/instructions.asm $(ENGINE_DEPS) $(LOGICOS_SRC)/music.mod
 	$(MKDIR_P) $(LOGICOS_BLD)
 	$(VASM) -D_ENABLE_MUSIC=1 -D_FORM_WIDTH=320 -D_FORM_HEIGHT=180 -D_DUAL_PLAYFIELD=1 -DMAX_FRAMES=14000 -D_SCREEN_MODE=97 -DMAX_STACK=31 -I../$(LOGICOS_SRC) $(VASM_OPTS) -L $(LOGICOS_BLD)/compile.txt -o $(LOGICOS_BLD)/logicos.bin engine/rose.asm
 
-$(LOGICOS_DST): $(LOGICOS_BLD)/logicos.bin $(LOGICOS_BLD)/\!run.txt $(COMMON_DEPS) $(MUSIC_DEPS)
+$(LOGICOS_DST): $(LOGICOS_BLD)/logicos.lz4 $(LOGICOS_BLD)/loader.bin $(LOGICOS_BLD)/\!run.txt $(COMMON_DEPS) $(MUSIC_DEPS)
 	$(RM_RF) $(LOGICOS_DST)
 	$(MKDIR_P) $(LOGICOS_DST)
 	cp $(LOGICOS_BLD)/\!run.txt $(LOGICOS_DST)/\!Run,feb
 	cp common/MemAlloc,ffa $(LOGICOS_DST)
 	cp common/QTM147,ffa $(LOGICOS_DST)
 	cp common/MMode97,ffa $(LOGICOS_DST)
-	cp $(LOGICOS_BLD)/logicos.bin $(LOGICOS_DST)/\!RunImage,ff8
+	cp $(LOGICOS_BLD)/loader.bin $(LOGICOS_DST)/\!RunImage,ff8
+	cp $(LOGICOS_BLD)/logicos.lz4 $(LOGICOS_DST)/Demo,ffd
 
 $(LOGICOS_BLD)/\!run.txt: common/\!run_with_music_widescreen.txt
 	$(DOS2UNIX) -n common/\!run_with_music_widescreen.txt $(LOGICOS_BLD)/\!run.txt
@@ -167,6 +188,10 @@ $(LOGICOS_BLD)/\!run.txt: common/\!run_with_music_widescreen.txt
 $(ARCULATOR_HOSTFS)/$(LOGICOS_ARC): $(LOGICOS_DST)
 	$(RM_RF) $(ARCULATOR_HOSTFS)/$(LOGICOS_ARC)
 	cp -r $(LOGICOS_DST) $(ARCULATOR_HOSTFS)/
+
+$(LOGICOS_BLD)/logicos.lz4: $(LOGICOS_BLD)/logicos.bin
+	$(LZ4) $< $@
+	touch $@
 
 ##########################################################################
 ##########################################################################
@@ -182,18 +207,22 @@ technova: $(ARCULATOR_HOSTFS)/$(TECHNOVA_ARC)
 $(TECHNOVA_SRC)/instructions.asm: $(TECHNOVA_SRC)/bytecodes.bin $(TECHNOVA_SRC)/constants.bin $(TECHNOVA_SRC)/colorscript.bin $(ROSE2ARC)
 	$(PYTHON3) $(ROSE2ARC) $(TECHNOVA_SRC)/bytecodes.bin -c $(TECHNOVA_SRC)/constants.bin -s $(TECHNOVA_SRC)/colorscript.bin -o $(TECHNOVA_SRC)/instructions.asm
 
+$(TECHNOVA_BLD)/loader.bin: engine/loader.asm
+	$(VASM) $(VASM_OPTS) -o $(TECHNOVA_BLD)/loader.bin engine/loader.asm
+
 $(TECHNOVA_BLD)/technova.bin: $(TECHNOVA_SRC)/instructions.asm $(ENGINE_DEPS) $(TECHNOVA_SRC)/music.mod
 	$(MKDIR_P) $(TECHNOVA_BLD)
 	$(VASM) -D_ENABLE_MUSIC=1 -D_FORM_WIDTH=320 -D_FORM_HEIGHT=180 -D_DUAL_PLAYFIELD=1 -DMAX_FRAMES=8000 -D_SCREEN_MODE=97 -I../$(TECHNOVA_SRC) $(VASM_OPTS) -L $(TECHNOVA_BLD)/compile.txt -o $(TECHNOVA_BLD)/technova.bin engine/rose.asm
 
-$(TECHNOVA_DST): $(TECHNOVA_BLD)/technova.bin $(TECHNOVA_BLD)/\!run.txt $(COMMON_DEPS) $(MUSIC_DEPS)
+$(TECHNOVA_DST): $(TECHNOVA_BLD)/technova.lz4 $(TECHNOVA_BLD)/loader.bin $(TECHNOVA_BLD)/\!run.txt $(COMMON_DEPS) $(MUSIC_DEPS)
 	$(RM_RF) $(TECHNOVA_DST)
 	$(MKDIR_P) $(TECHNOVA_DST)
 	cp $(TECHNOVA_BLD)/\!run.txt $(TECHNOVA_DST)/\!Run,feb
 	cp common/MemAlloc,ffa $(TECHNOVA_DST)
 	cp common/QTM147,ffa $(TECHNOVA_DST)
 	cp common/MMode97,ffa $(TECHNOVA_DST)
-	cp $(TECHNOVA_BLD)/technova.bin $(TECHNOVA_DST)/\!RunImage,ff8
+	cp $(TECHNOVA_BLD)/loader.bin $(TECHNOVA_DST)/\!RunImage,ff8
+	cp $(TECHNOVA_BLD)/technova.lz4 $(TECHNOVA_DST)/Demo,ffd
 
 $(TECHNOVA_BLD)/\!run.txt: common/\!run_with_music_widescreen.txt
 	$(DOS2UNIX) -n common/\!run_with_music_widescreen.txt $(TECHNOVA_BLD)/\!run.txt
@@ -201,6 +230,10 @@ $(TECHNOVA_BLD)/\!run.txt: common/\!run_with_music_widescreen.txt
 $(ARCULATOR_HOSTFS)/$(TECHNOVA_ARC): $(TECHNOVA_DST)
 	$(RM_RF) $(ARCULATOR_HOSTFS)/$(TECHNOVA_ARC)
 	cp -r $(TECHNOVA_DST) $(ARCULATOR_HOSTFS)/
+
+$(TECHNOVA_BLD)/technova.lz4: $(TECHNOVA_BLD)/technova.bin
+	$(LZ4) $< $@
+	touch $@
 
 ##########################################################################
 ##########################################################################
@@ -216,18 +249,22 @@ euphoria: $(ARCULATOR_HOSTFS)/$(EUPHORIA_ARC)
 $(EUPHORIA_SRC)/instructions.asm: $(EUPHORIA_SRC)/bytecodes.bin $(EUPHORIA_SRC)/constants.bin $(EUPHORIA_SRC)/colorscript.bin $(ROSE2ARC)
 	$(PYTHON3) $(ROSE2ARC) $(EUPHORIA_SRC)/bytecodes.bin -c $(EUPHORIA_SRC)/constants.bin -s $(EUPHORIA_SRC)/colorscript.bin -o $(EUPHORIA_SRC)/instructions.asm
 
+$(EUPHORIA_BLD)/loader.bin: engine/loader.asm
+	$(VASM) $(VASM_OPTS) -o $(EUPHORIA_BLD)/loader.bin engine/loader.asm
+
 $(EUPHORIA_BLD)/euphoria.bin: $(EUPHORIA_SRC)/instructions.asm $(ENGINE_DEPS) $(EUPHORIA_SRC)/music.mod
 	$(MKDIR_P) $(EUPHORIA_BLD)
 	$(VASM) -D_ENABLE_MUSIC=1 -D_FORM_WIDTH=352 -D_FORM_HEIGHT=280 -D_DUAL_PLAYFIELD=0 -DMAX_FRAMES=7400 -D_SCREEN_MODE=98 -I../$(EUPHORIA_SRC) $(VASM_OPTS) -L $(EUPHORIA_BLD)/compile.txt -o $(EUPHORIA_BLD)/euphoria.bin engine/rose.asm
 
-$(EUPHORIA_DST): $(EUPHORIA_BLD)/euphoria.bin $(EUPHORIA_BLD)/\!run.txt $(COMMON_DEPS) $(MUSIC_DEPS)
+$(EUPHORIA_DST): $(EUPHORIA_BLD)/euphoria.lz4 $(EUPHORIA_BLD)/loader.bin $(EUPHORIA_BLD)/\!run.txt $(COMMON_DEPS) $(MUSIC_DEPS)
 	$(RM_RF) $(EUPHORIA_DST)
 	$(MKDIR_P) $(EUPHORIA_DST)
 	cp $(EUPHORIA_BLD)/\!run.txt $(EUPHORIA_DST)/\!Run,feb
 	cp common/MemAlloc,ffa $(EUPHORIA_DST)
 	cp common/MMode98,ffa $(EUPHORIA_DST)
 	cp common/QTM147,ffa $(EUPHORIA_DST)
-	cp $(EUPHORIA_BLD)/euphoria.bin $(EUPHORIA_DST)/\!RunImage,ff8
+	cp $(EUPHORIA_BLD)/loader.bin $(EUPHORIA_DST)/\!RunImage,ff8
+	cp $(EUPHORIA_BLD)/euphoria.lz4 $(EUPHORIA_DST)/Demo,ffd
 
 $(EUPHORIA_BLD)/\!run.txt: common/\!run_with_music_overscan.txt
 	$(DOS2UNIX) -n common/\!run_with_music_overscan.txt $(EUPHORIA_BLD)/\!run.txt
@@ -235,6 +272,10 @@ $(EUPHORIA_BLD)/\!run.txt: common/\!run_with_music_overscan.txt
 $(ARCULATOR_HOSTFS)/$(EUPHORIA_ARC): $(EUPHORIA_DST)
 	$(RM_RF) $(ARCULATOR_HOSTFS)/$(EUPHORIA_ARC)
 	cp -r $(EUPHORIA_DST) $(ARCULATOR_HOSTFS)/
+
+$(EUPHORIA_BLD)/euphoria.lz4: $(EUPHORIA_BLD)/euphoria.bin
+	$(LZ4) $< $@
+	touch $@
 
 ##########################################################################
 ##########################################################################

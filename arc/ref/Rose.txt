@@ -380,3 +380,9 @@ Generated span plot fns. with MAXSPAN=142: 94760 bytes ~= 93K
 (MAXSPAN=320 balloons to 332828 bytes ~= 325K)
 
 E.g. waytoorude: 340144 (exe+bss) + 94760 (gen code) + 548170 (mod) = 983074 +QTM etc.
+
+Generic loader:
+- Relocate decompression routine to top of RAM.
+- Load compressed exe below this.
+- Decompress to 0x8000.
+- Run from 0x8000.
