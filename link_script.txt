@@ -1,6 +1,0 @@
-SECTIONS
-{
-. = 0x8000;
-seg8000 : { *(seg8000) }
-.bss (NOLOAD) : { *(.bss) }
-}
