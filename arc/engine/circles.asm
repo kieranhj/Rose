@@ -21,11 +21,14 @@ p_CircleBufPtrs:
 p_CircleBufEnd:
 	.long r_circleBufEnd
 
+; ============================================================================
+
 ;r0 = X centre
 ;r1 = Y centre
 ;r2 = radius of circle
-;r4 = plot instruction
-;r11 = tint
+;r3-r7 = preserve
+;r9 = tint
+;r10 = plot instruction
 link_circle:
     .if _DEBUG
     cmp r2, #MAXRADIUS
@@ -58,51 +61,53 @@ clip_isnt_off_top:
 	MOV r1, #0
 
 clip_circle_nottop:
-	ADD r3, r1, r14
-	CMP r3, #Screen_Height
+	ADD r2, r1, r14
+	CMP r2, #Screen_Height
 	BCC clip_circle_notbottom
-	SUB r3, r3, #Screen_Height
-	SUB r14, r14, r3
+	SUB r2, r2, #Screen_Height
+	SUB r14, r14, r2
 
 clip_circle_notbottom:
-	and r11, r11, #0x07
-
 	.if _DUAL_PLAYFIELD
+	and r9, r9, #0x07					; limit to 8 (2x4) colours for DPF.
+
 	; Compute layer.
-	mov r6, r11, lsr #2					; layer = tint >> 2 (0 or 1)
+	mov r2, r9, lsr #2					; layer = tint >> 2 (0 or 1)
 
 	; Compute layer mask.
-	ldr r5, layer_0_mask
-	mov r5, r5, lsl r6
-	mov r5, r5, lsl r6					; shift mask to correct layer.
+	ldr r11, layer_0_mask
+	mov r11, r11, lsl r2
+	mov r11, r11, lsl r2				; shift mask to correct layer.
 
 	; Hoffman says tint 0 erases both layers, but I don't think this is true!
-	; cmp r11, #0
-	; moveq r5, #0xffffffff				; except tint 0 affects both layers.
+	; cmp r9, #0
+	; moveq r11, #0xffffffff			; except tint 0 affects both layers.
 	
 	; Compute pixel bits for layer.
-	and r11, r11, #3					; pixel = tint & 3
-	mov r11, r11, lsl r6 
-	mov r11, r11, lsl r6 				; shift pixel bits to correct layer.
+	and r9, r9, #3					; pixel = tint & 3
+	mov r9, r9, lsl r2 
+	mov r9, r9, lsl r2 				; shift pixel bits to correct layer.
 	.endif
 
 	; Dupe pixel bits to colour word.
-	ORR r9, r11, r11, LSL #4
+	ORR r9, r9, r9, LSL #4
 	ORR r9, r9, r9, LSL #8
 	ORR r9, r9, r9, LSL #16
 
-	; r1 = Y start
-
 	; Circle data to save:
-	;  r14 = line count (clipped)
-	;  r12 = ptr to circle size table (clipped) OR square size const!
-	;  r9 = colour (expanded)
-	;  r4 = plot instruction (circle or square)
 	;  r0 = X centre
-	;  r8 = ptr to next circle.
+	;  r1 = Y start (not saved - used to index Circle Buffer)
+	;  r8 = ptr to next circle (pushed separately).
+	;  r9 = colour (expanded)
+	;  r10 = plot instruction (circle or square)
+	;  r11 = layer mask (DPF only)
+	;  r12 = ptr to circle size table (clipped to top)
+	;  r14 = line count (clipped)
 
-	ldr r7, p_CircleBufPtrs
-	ldr r10, [r7, r1, lsl #2]			; get ptr to first circle for Y
+	ldr r2, p_CircleBufPtrs
+	add r1, r2, r1, lsl #2				; p_CircleBufPtrs[Y]
+
+	ldr r2, [r1]						; get ptr to first circle for Y
 	ldr r8, r_FreeCircle				; get next free circle in buffer
 
 	.if _DEBUG
@@ -112,12 +117,12 @@ clip_circle_notbottom:
 	.endif
 
 	.if _DUAL_PLAYFIELD
-	stmfd r8!, {r0, r4, r5, r9, r12, r14}		; push all vars needed to plot this circle.
+	stmfd r8!, {r0, r9, r10, r11, r12, r14}	; push all vars needed to plot this circle.
 	.else
-	stmfd r8!, {r0, r4, r9, r12, r14}		; push all vars needed to plot this circle.
+	stmfd r8!, {r0, r9, r10, r12, r14}		; push all vars needed to plot this circle.
 	.endif
-	str r10, [r8, #-4]!					; push ptr to next circle for Y
-	str r8, [r7, r1, lsl #2]			; this becomes first circle for Y
+	str r2, [r8, #-4]!					; push ptr to next circle for Y
+	str r8, [r1]						; this becomes first circle for Y
 	str r8, r_FreeCircle
 
     .if _DEBUG
@@ -177,20 +182,23 @@ circles_per_Y_loop:
 	beq no_circles_on_this_Y
 
 	; Circle data to load:
-	; r14 = line count (clipped)
-	; r12 = ptr to circle size table (clipped) OR square size const!
-	; r9 = colour (expanded)
-	; r0 = X centre
-	; r8 = Y start
+	;  r0 = X centre
+	;  r8 = ptr to next circle (pushed separately).
+	;  r9 = colour (expanded)
+	;  r10 = plot instruction (circle or square)
+	;  r11 = layer mask (DPF only)
+	;  r12 = ptr to circle size table (clipped to top)
+	;  r14 = line count (clipped)
 
-	ldr r10, [r7], #4					; ptr to next circle.
+	ldr r4, [r7], #4					; ptr to next circle.
 	.if _DUAL_PLAYFIELD
-	ldmia r7!, {r0, r4, r5, r9, r12, r14}		; pop all vars needed to plot this circle.
+	ldmia r7!, {r0, r9, r10, r11, r12, r14}	; pop all vars needed to plot this circle.
+	mov r5, r11
 	.else
-	ldmia r7!, {r0, r4, r9, r12, r14}		; pop all vars needed to plot this circle.
+	ldmia r7!, {r0, r9, r10, r12, r14}		; pop all vars needed to plot this circle.
 	.endif
-	str r4, circle_loop					; self-mod plot command!
-	mov r7, r10
+	str r10, circle_loop					; self-mod plot command!
+	mov r7, r4
 
 	LDR r11, screen_addr
 	ADD r11, r11, r8, LSL #7

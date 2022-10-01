@@ -141,11 +141,14 @@ palette_osword_block:
     .skip 8
 
 ; ============================================================================
-; r3 = p_StateStack.
-; r4 = r_Constants.
-; r5 = p_State.
-; r6 = r_StateSpace.            ; Don't think we need this on Archie?
-; r7 = r_Sinus.
+; r0 - r1 = local vars
+; r2 = temp.
+; r3 = p_StateStack.(preserve)
+; r4 = r_Constants. (preserve)
+; r5 = p_State.     (preserve)
+; r6 = UNUSED (was r_StateSpace.) (PRESERVE AS MIGHT NEED THIS?)
+; r7 = r_Sinus.     (preserve)
+; r8 - r12 = free
 ; ============================================================================
 
 RunFrame:
@@ -170,7 +173,6 @@ RunFrame:
     ldr r5, [r3], #4            ; pop state ptr
     ldr r1, [r5, #ST_PROC*4]    ; load st_proc
     adr lr, .3
-    ; TODO: Think about stashing registers?
 	mov pc, r1                  ; jsr st_proc
     .3:
 
@@ -215,11 +217,10 @@ InitMainTurtle:
 ; Code Snippets.
 ; ============================================================================
 
-; r5 = p_State
-; r6 = <temp>
+; r5 = p_State.
 FreeState:
-    ldr r6, r_FreeState
-    str r6, [r5]                ; first word of state block points to prev free state.
+    ldr r2, r_FreeState
+    str r2, [r5]                ; first word of state block points to prev free state.
     str r5, r_FreeState         ; this state becomes the next free state.
 
     .if _DEBUG
@@ -354,7 +355,6 @@ DoMove:
     mov r0, r0, asr #6          ; keep 10 bits of fractional part [6.10]
     mul r8, r0, r8              ; r8 = units * sine(dir) [6.10] * [1.14] = [6.24]
     mul r9, r0, r9              ; r9 = units * cosine(dir) [6.10] * [1.14] = [6.24]
-    ; TODO: Check fp position here!
     mov r8, r8, asr #8         ; [6.16] 
     mov r9, r9, asr #8         ; [6.16]
 
@@ -388,24 +388,21 @@ PutCircle:
     mov r2, r2, asr #14         ; Y [16.16] -> [16.2]
     rsb r2, r2, #1024           ; flip for Archie!
     swi OS_Plot
+    mov pc, lr
 .else
-    stmfd sp!, {r0-r7, lr}
-
-    mov r0, r8, asr #16
-    mov r1, r9, asr #16
-    mov r2, r10, asr #16
+    str lr, [sp, #-4]!
+    mov r0, r8, asr #16         ; X
+    mov r1, r9, asr #16         ; Y
+    mov r2, r10, asr #16        ; RADIUS
     ; Guard against negative radius from dodgy Rose maths...
     cmp r2, #0
     blt .1
-    mov r11, r11, lsr #16
-    ; bl plot_circle
-	ldr r4, plot_circle_instruction
+    mov r9, r11, lsr #16        ; TINT
+	ldr r10, plot_circle_instruction
     bl link_circle
     .1:
-    ldmfd sp!, {r0-r7, lr}
+    ldr pc, [sp], #4
 .endif
-
-    mov pc, lr
 
 ; r8=st_x, r9=st_y, r10=st_size, r11=st_tint.
 PutSquare:
@@ -430,25 +427,22 @@ PutSquare:
     mov r2, r2, asr #14         ; Y [16.16] -> [16.2]
     rsb r2, r2, #1024           ; flip for Archie!
     swi OS_Plot
+    mov pc, lr
 .else
-    stmfd sp!, {r0-r7, lr}
-
-    mov r0, r8, asr #16
-    mov r1, r9, asr #16
-    mov r2, r10, asr #16
+    str lr, [sp, #-4]!
+    mov r0, r8, asr #16         ; X
+    mov r1, r9, asr #16         ; Y
+    mov r2, r10, asr #16        ; RADIUS
     ; Guard against negative radius from dodgy Rose maths...
     cmp r2, #0
     blt .1
-	ldr r4, plot_square_instruction
-    orr r4, r4, r2            	; mov r1, #st_size
-
-    mov r11, r11, lsr #16
+	ldr r10, plot_square_instruction
+    orr r10, r10, r2            ; mov r1, #st_size
+    mov r9, r11, lsr #16        ; TINT
     bl link_circle
     .1:
-    ldmfd sp!, {r0-r7, lr}
+	ldr pc, [sp], #4
 .endif
-
-    mov pc, lr
 
 plot_square_instruction:
     .long 0xe3a01000            ; mov r1, #0
