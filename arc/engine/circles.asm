@@ -193,7 +193,7 @@ circles_per_Y_loop:
 	;  r12 = ptr to circle size table (clipped to top)
 	;  r14 = line count (clipped)
 
-	ldr r4, [r7], #4					; ptr to next circle.
+	ldr r4, [r7], #4						; ptr to next circle.
 	.if _DUAL_PLAYFIELD
 	ldmia r7!, {r0, r9, r10, r11, r12, r14}	; pop all vars needed to plot this circle.
 	mov r5, r11

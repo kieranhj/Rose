@@ -2,6 +2,7 @@
 ; sinus.asm - ARM port of Sinus.S
 ; ============================================================================
 
+.equ UseReciprocalTable, 1
 
 ; Makes sine values [0-0x4000]
 MakeSinus:
@@ -59,16 +60,21 @@ divide:
     cmp r0, #0                  ; Test if result is zero
     moveq pc, lr
 
-;    CMP R0,R1                   ; Test if result is zero
-;    MOVMI R0, #0                ; If it is, give result *
-;    MOVMI PC,R14                ; and return
-
     ; Signed division - any better way to do this?
     eor r10, r0, r1             ; R0 eor R1 indicates sign of result
     cmp r0, #0
     rsbmi r0, r0, #0            ; make positive
     cmp r1, #0
     rsbmi r1, r1, #0            ; make positive  
+
+    .if UseReciprocalTable
+    ldr r12, [r6, #-16]         ; reciprocal_table
+    bic r11, r1, #0xff0000      ; lowest 16-bits only.
+    ldr r11, [r12, r11, lsl #2]
+    mov r12, r0, asr #8
+    mul r9, r12, r11            ; let's see!
+    mov r9, r9, asr #16
+    .else
 
     MOV R8, #1
     MOV R9, #0
@@ -88,6 +94,8 @@ divide:
     MOV R1,R1,LSR #1
     MOVS R8,R8,LSR #1
     BCC .3
+
+    .endif
 
     movs r10, r10               ; get sign back
     movpl r0, r9                ; Move positive result into R0*

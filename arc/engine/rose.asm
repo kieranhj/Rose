@@ -625,6 +625,9 @@ module_data:
 ; TODO: Figure out vlink so can hack off BSS segment from binary!!
 ; ============================================================================
 
+p_reciprocal_table:
+	.long reciprocal_table
+
 plot_circle_instruction:
     .long 0xe4dc1001            	; LDRB r1, [r12], #1
 
@@ -643,6 +646,14 @@ r_StateSpaceEnd:
 
 r_Sinus:
     .skip	(DEGREES)*4
+
+.set divisor, 1
+reciprocal_table:
+.long 0
+.rept 65535
+    .long (1<<24)/divisor
+    .set divisor, divisor+1
+.endr
 
 r_CircleBuffer:
 	.skip	(MAX_CIRCLES)*(CIRCLEDATA+1)*4

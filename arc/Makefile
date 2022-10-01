@@ -9,7 +9,7 @@ VASM=./bin/vasmarm_std_win32.exe
 VASM_OPTS:=-m250 -Fbin -opt-adr
 LZ4=./bin/lz4.exe -f --best
 
-ENGINE_DEPS:=engine/rose.asm engine/circles.asm engine/circledat.asm engine/engine.asm engine/spans.asm
+ENGINE_DEPS:=engine/rose.asm engine/circles.asm engine/circledat.asm engine/engine.asm engine/spans.asm engine/sinus.asm engine/roseconfig.h.asm
 COMMON_DEPS:=common/MemAlloc,ffa common/MMode98,ffa common/MMode97,ffa
 MUSIC_DEPS:=common/QTM147,ffa
 
@@ -124,7 +124,7 @@ $(WAYTOORUDE_SRC)/instructions.asm: $(WAYTOORUDE_SRC)/bytecodes.bin $(WAYTOORUDE
 	$(PYTHON3) $(ROSE2ARC) $(WAYTOORUDE_SRC)/bytecodes.bin -c $(WAYTOORUDE_SRC)/constants.bin -s $(WAYTOORUDE_SRC)/colorscript.bin -o $(WAYTOORUDE_SRC)/instructions.asm
 
 $(WAYTOORUDE_BLD)/loader.bin: engine/loader.asm
-	$(VASM) -D_WIMPSLOT=1126400 $(VASM_OPTS) -o $(WAYTOORUDE_BLD)/loader.bin engine/loader.asm
+	$(VASM) -D_WIMPSLOT=1433600 $(VASM_OPTS) -o $(WAYTOORUDE_BLD)/loader.bin engine/loader.asm
 
 $(WAYTOORUDE_BLD)/waytoorude.bin: $(WAYTOORUDE_SRC)/instructions.asm $(ENGINE_DEPS) $(WAYTOORUDE_SRC)/music.mod
 	$(MKDIR_P) $(WAYTOORUDE_BLD)
