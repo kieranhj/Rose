@@ -6,7 +6,7 @@
 ; QTM Module Player by Phoenix of Quantum (steve3000).
 ; ============================================================================
 
-.equ _DEBUG, 0
+.equ _DEBUG, 1
 .equ _DEBUG_RASTERS, (_DEBUG && 1)		; removes code
 .equ _DEBUG_STOP_ON_FRAME, -1
 .equ _DEBUG_DEFAULT_PLAY_PAUSE, 1		; play
@@ -624,6 +624,9 @@ module_data:
 ; BSS Segment
 ; TODO: Figure out vlink so can hack off BSS segment from binary!!
 ; ============================================================================
+
+r_FreeState:
+    .long 0                  		; Last longword of first free state.
 
 r_StateLists:
     .skip	(MAX_FRAMES+MAX_WAIT)*4

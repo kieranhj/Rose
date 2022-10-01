@@ -159,9 +159,15 @@ class RoseParser:
 
     def write_end(self, c):
         self._asm_file.write(f'\t; BC_END [{c:02x}]\n')
-        self._asm_file.write(f'\tstr lr, [sp, #-4]!\t\t\t; Push lr on program stack.\n')
-        self._asm_file.write(f'\tbl FreeState\t\t\t\t; Add r5 to r_FreeState list.\n')
-        self._asm_file.write(f'\tldr pc, [sp], #4\t\t\t; Return.\n')
+        #self._asm_file.write(f'\tstr lr, [sp, #-4]!\t\t\t; Push lr on program stack.\n')
+        #self._asm_file.write(f'\tbl FreeState\t\t\t\t; Add r5 to r_FreeState list.\n')
+        #self._asm_file.write(f'\tldr pc, [sp], #4\t\t\t; Return.\n')
+
+        self._asm_file.write(f'\tldr r2, [r6, #-4]\t\t\t; (r_FreeState)\n')
+        self._asm_file.write(f'\tstr r2, [r5]\t\t\t\t; first word of state block points to prev free state.\n')
+        self._asm_file.write(f'\tstr r5, [r6, #-4]\t\t\t; (r_FreeState) this state becomes the next free state.\n')
+        self._asm_file.write(f'\tmov pc, lr\t\t\t\t\t; Return.\n')
+
         self._asm_file.write(f'proc_{self._proc_no}_end:\n\n')
         self._proc_no += 1
 

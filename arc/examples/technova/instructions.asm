@@ -581,9 +581,10 @@ proc_0_continue_17:
 	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
 	mov pc, r1
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_0_end:
 
 proc_1_start:
@@ -942,9 +943,10 @@ proc_1_continue_24:
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_1_end:
 
 proc_2_start:
@@ -1447,9 +1449,10 @@ proc_2_target_40:
 	; BC_DONE [00]
 proc_2_target_37:
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_2_end:
 
 proc_3_start:
@@ -1478,9 +1481,10 @@ proc_3_start:
 	bl PutSquare
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_3_end:
 
 proc_4_start:
@@ -1600,9 +1604,10 @@ proc_4_continue_42:
 	; BC_DONE [00]
 proc_4_target_41:
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_4_end:
 
 proc_5_start:
@@ -1673,9 +1678,10 @@ proc_5_start:
 	bl PutCircle
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_5_end:
 
 proc_6_start:
@@ -1742,9 +1748,10 @@ proc_6_continue_43:
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_6_end:
 
 proc_7_start:
@@ -1811,9 +1818,10 @@ proc_7_continue_44:
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_7_end:
 
 proc_8_start:
@@ -1872,9 +1880,10 @@ proc_8_continue_46:
 	; BC_DONE [00]
 proc_8_target_45:
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_8_end:
 
 proc_9_start:
@@ -1941,9 +1950,10 @@ proc_9_continue_48:
 	; BC_DONE [00]
 proc_9_target_47:
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_9_end:
 
 proc_10_start:
@@ -2103,9 +2113,10 @@ proc_10_continue_57:
 	; BC_DONE [00]
 proc_10_target_49:
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_10_end:
 
 proc_11_start:
@@ -2265,9 +2276,10 @@ proc_11_continue_66:
 	; BC_DONE [00]
 proc_11_target_58:
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_11_end:
 
 proc_12_start:
@@ -2314,9 +2326,10 @@ proc_12_continue_67:
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_12_end:
 
 proc_13_start:
@@ -2371,9 +2384,10 @@ proc_13_continue_68:
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_13_end:
 
 proc_14_start:
@@ -2630,9 +2644,10 @@ proc_14_continue_71:
 	; BC_DONE [00]
 proc_14_target_69:
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_14_end:
 
 proc_15_start:
@@ -2797,9 +2812,10 @@ proc_15_continue_73:
 	; BC_DONE [00]
 proc_15_target_72:
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_15_end:
 
 proc_16_start:
@@ -2838,9 +2854,10 @@ proc_16_start:
 	bl PutSquare
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_16_end:
 
 proc_17_start:
@@ -2967,9 +2984,10 @@ proc_17_target_75:
 	; BC_DONE [00]
 proc_17_target_76:
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_17_end:
 
 proc_18_start:
@@ -2984,9 +3002,10 @@ proc_18_start:
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_18_end:
 
 proc_19_start:
@@ -3001,9 +3020,10 @@ proc_19_start:
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_19_end:
 
 proc_20_start:
@@ -3290,9 +3310,10 @@ proc_20_target_83:
 	; BC_DONE [00]
 proc_20_target_77:
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_20_end:
 
 proc_21_start:
@@ -3463,9 +3484,10 @@ proc_21_continue_93:
 	; BC_DONE [00]
 proc_21_target_89:
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_21_end:
 
 proc_22_start:
@@ -3629,9 +3651,10 @@ proc_22_continue_101:
 	bl PutSquare
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_22_end:
 
 proc_23_start:
@@ -3696,9 +3719,10 @@ proc_23_continue_103:
 	; BC_DONE [00]
 proc_23_target_102:
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_23_end:
 
 proc_24_start:
@@ -3763,9 +3787,10 @@ proc_24_continue_105:
 	; BC_DONE [00]
 proc_24_target_104:
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_24_end:
 
 proc_25_start:
@@ -3876,9 +3901,10 @@ proc_25_start:
 	bl PutCircle
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_25_end:
 
 proc_26_start:
@@ -3989,9 +4015,10 @@ proc_26_start:
 	bl PutSquare
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_26_end:
 
 proc_27_start:
@@ -4569,9 +4596,10 @@ proc_27_continue_121:
 	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
 	mov pc, r1
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_27_end:
 
 proc_28_start:
@@ -5184,9 +5212,10 @@ proc_28_target_125:
 	; BC_DONE [00]
 proc_28_target_122:
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_28_end:
 
 proc_29_start:
@@ -5596,9 +5625,10 @@ proc_29_target_129:
 	; BC_DONE [00]
 proc_29_target_126:
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_29_end:
 
 proc_30_start:
@@ -5995,9 +6025,10 @@ proc_30_target_133:
 	; BC_DONE [00]
 proc_30_target_130:
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_30_end:
 
 proc_31_start:
@@ -6026,9 +6057,10 @@ proc_31_start:
 	bl PutSquare
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_31_end:
 
 proc_32_start:
@@ -6140,9 +6172,10 @@ proc_32_start:
 	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
 	mov pc, r1
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_32_end:
 
 proc_33_start:
@@ -6260,9 +6293,10 @@ proc_33_start:
 	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
 	mov pc, r1
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_33_end:
 
 proc_34_start:
@@ -6354,9 +6388,10 @@ proc_34_start:
 	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
 	mov pc, r1
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_34_end:
 
 proc_35_start:
@@ -6432,9 +6467,10 @@ proc_35_target_135:
 	bl PutSquare
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_35_end:
 
 proc_36_start:
@@ -6478,9 +6514,10 @@ proc_36_continue_136:
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_36_end:
 
 proc_37_start:
@@ -6600,9 +6637,10 @@ proc_37_continue_138:
 	; BC_DONE [00]
 proc_37_target_137:
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_37_end:
 
 proc_38_start:
@@ -6723,9 +6761,10 @@ proc_38_continue_141:
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_38_end:
 
 proc_39_start:
@@ -6911,9 +6950,10 @@ proc_39_target_147:
 	; BC_DONE [00]
 proc_39_target_142:
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_39_end:
 
 proc_40_start:
@@ -7061,9 +7101,10 @@ proc_40_continue_149:
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_40_end:
 
 proc_41_start:
@@ -7124,9 +7165,10 @@ proc_41_continue_151:
 	; BC_DONE [00]
 proc_41_target_150:
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_41_end:
 
 proc_42_start:
@@ -7145,9 +7187,10 @@ proc_42_start:
 	bl PutSquare
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_42_end:
 
 proc_43_start:
@@ -7430,9 +7473,10 @@ proc_43_continue_158:
 	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
 	mov pc, r1
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_43_end:
 
 proc_44_start:
@@ -7549,9 +7593,10 @@ proc_44_continue_162:
 	; BC_DONE [00]
 proc_44_target_160:
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_44_end:
 
 proc_45_start:
@@ -7654,9 +7699,10 @@ proc_45_continue_166:
 	; BC_DONE [00]
 proc_45_target_164:
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_45_end:
 
 proc_46_start:
@@ -8091,9 +8137,10 @@ proc_46_target_175:
 	; BC_DONE [00]
 proc_46_target_176:
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_46_end:
 
 proc_47_start:
@@ -8304,9 +8351,10 @@ proc_47_continue_181:
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_47_end:
 
 proc_48_start:
@@ -8409,9 +8457,10 @@ proc_48_continue_183:
 	; BC_DONE [00]
 proc_48_target_182:
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_48_end:
 
 proc_49_start:
@@ -8455,9 +8504,10 @@ proc_49_continue_185:
 	; BC_DONE [00]
 proc_49_target_184:
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_49_end:
 
 proc_50_start:
@@ -8555,9 +8605,10 @@ proc_50_continue_186:
 	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
 	mov pc, r1
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_50_end:
 
 proc_51_start:
@@ -8662,9 +8713,10 @@ proc_51_continue_188:
 	; BC_DONE [00]
 proc_51_target_187:
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_51_end:
 
 proc_52_start:
@@ -8958,9 +9010,10 @@ proc_52_continue_196:
 	bl DoMove
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_52_end:
 
 proc_53_start:
@@ -9050,9 +9103,10 @@ proc_53_continue_199:
 	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
 	mov pc, r1
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_53_end:
 
 proc_54_start:
@@ -9130,9 +9184,10 @@ proc_54_continue_201:
 	; BC_DONE [00]
 proc_54_target_200:
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_54_end:
 
 proc_55_start:
@@ -9210,9 +9265,10 @@ proc_55_continue_204:
 	; BC_DONE [00]
 proc_55_target_202:
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_55_end:
 
 proc_56_start:
@@ -9234,9 +9290,10 @@ proc_56_start:
 	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
 	mov pc, r1
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_56_end:
 
 proc_57_start:
@@ -9263,9 +9320,10 @@ proc_57_start:
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_57_end:
 
 proc_58_start:
@@ -9288,9 +9346,10 @@ proc_58_start:
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_58_end:
 
 proc_59_start:
@@ -9393,9 +9452,10 @@ proc_59_continue_206:
 	; BC_DONE [00]
 proc_59_target_205:
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_59_end:
 
 proc_60_start:
@@ -9462,9 +9522,10 @@ proc_60_start:
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_60_end:
 
 proc_61_start:
@@ -9669,9 +9730,10 @@ proc_61_target_210:
 	; BC_DONE [00]
 proc_61_target_207:
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_61_end:
 
 proc_62_start:
@@ -9771,9 +9833,10 @@ proc_62_continue_213:
 	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
 	mov pc, r1
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_62_end:
 
 proc_63_start:
@@ -9817,9 +9880,10 @@ proc_63_continue_215:
 	; BC_DONE [00]
 proc_63_target_214:
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_63_end:
 
 proc_64_start:
@@ -9852,9 +9916,10 @@ proc_64_start:
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_64_end:
 
 proc_65_start:
@@ -10087,9 +10152,10 @@ proc_65_continue_224:
 	; BC_DONE [00]
 proc_65_target_216:
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_65_end:
 
 proc_66_start:
@@ -10316,9 +10382,10 @@ proc_66_continue_225:
 	bl PutSquare
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_66_end:
 
 proc_67_start:
@@ -10431,9 +10498,10 @@ proc_67_continue_228:
 	bl PutSquare
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_67_end:
 
 proc_68_start:
@@ -10478,9 +10546,10 @@ proc_68_continue_229:
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_68_end:
 
 proc_69_start:
@@ -10569,9 +10638,10 @@ proc_69_continue_233:
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_69_end:
 
 proc_70_start:
@@ -10687,9 +10757,10 @@ proc_70_continue_235:
 	; BC_DONE [00]
 proc_70_target_234:
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_70_end:
 
 proc_71_start:
@@ -10805,9 +10876,10 @@ proc_71_continue_237:
 	; BC_DONE [00]
 proc_71_target_236:
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_71_end:
 
 proc_72_start:
@@ -10860,9 +10932,10 @@ proc_72_continue_238:
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_72_end:
 
 proc_73_start:
@@ -10917,9 +10990,10 @@ proc_73_continue_240:
 	; BC_DONE [00]
 proc_73_target_239:
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_73_end:
 
 proc_74_start:
@@ -11047,9 +11121,10 @@ proc_74_start:
 	bl PutCircle
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_74_end:
 
 proc_75_start:
@@ -11301,9 +11376,10 @@ proc_75_continue_250:
 	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
 	mov pc, r1
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_75_end:
 
 proc_76_start:
@@ -11384,9 +11460,10 @@ proc_76_continue_253:
 	; BC_DONE [00]
 proc_76_target_251:
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_76_end:
 
 proc_77_start:
@@ -11487,9 +11564,10 @@ proc_77_continue_256:
 	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
 	mov pc, r1
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_77_end:
 
 proc_78_start:
@@ -11607,9 +11685,10 @@ proc_78_continue_259:
 	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
 	mov pc, r1
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_78_end:
 
 proc_79_start:
@@ -11737,9 +11816,10 @@ proc_79_target_260:
 	; BC_DONE [00]
 proc_79_target_262:
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_79_end:
 
 proc_80_start:
@@ -11802,9 +11882,10 @@ proc_80_start:
 	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
 	mov pc, r1
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_80_end:
 
 proc_81_start:
@@ -11853,9 +11934,10 @@ proc_81_start:
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_81_end:
 
 proc_82_start:
@@ -11927,9 +12009,10 @@ proc_82_continue_264:
 	; BC_DONE [00]
 proc_82_target_263:
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_82_end:
 
 proc_83_start:
@@ -11992,9 +12075,10 @@ proc_83_start:
 	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
 	mov pc, r1
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_83_end:
 
 proc_84_start:
@@ -12043,9 +12127,10 @@ proc_84_start:
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_84_end:
 
 proc_85_start:
@@ -12122,9 +12207,10 @@ proc_85_continue_267:
 	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
 	mov pc, r1
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_85_end:
 
 proc_86_start:
@@ -12187,9 +12273,10 @@ proc_86_start:
 	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
 	mov pc, r1
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_86_end:
 
 proc_87_start:
@@ -12230,9 +12317,10 @@ proc_87_start:
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_87_end:
 
 proc_88_start:
@@ -12283,9 +12371,10 @@ proc_88_continue_269:
 	; BC_DONE [00]
 proc_88_target_268:
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_88_end:
 
 proc_89_start:
@@ -12439,9 +12528,10 @@ proc_89_continue_273:
 	; BC_DONE [00]
 proc_89_target_270:
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_89_end:
 
 proc_90_start:
@@ -12518,9 +12608,10 @@ proc_90_start:
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_90_end:
 
 proc_91_start:
@@ -12547,9 +12638,10 @@ proc_91_start:
 	bl PutSquare
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_91_end:
 
 proc_92_start:
@@ -12652,9 +12744,10 @@ proc_92_continue_275:
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_92_end:
 
 proc_93_start:
@@ -12757,9 +12850,10 @@ proc_93_continue_277:
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_93_end:
 
 proc_94_start:
@@ -12844,9 +12938,10 @@ proc_94_start:
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_94_end:
 
 proc_95_start:
@@ -12931,9 +13026,10 @@ proc_95_start:
 	; BC_WSTATE [56]
 	str r0, [r5, #ST_DIR*4]		; State[ST_DIR]=r0
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_95_end:
 
 proc_96_start:
@@ -12993,9 +13089,10 @@ proc_96_start:
 	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
 	mov pc, r1
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_96_end:
 
 proc_97_start:
@@ -13029,9 +13126,10 @@ proc_97_start:
 	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
 	mov pc, r1
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_97_end:
 
 proc_98_start:
@@ -13082,9 +13180,10 @@ proc_98_continue_279:
 	; BC_DONE [00]
 proc_98_target_278:
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_98_end:
 
 proc_99_start:
@@ -13147,9 +13246,10 @@ proc_99_continue_281:
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_99_end:
 
 proc_100_start:
@@ -13223,9 +13323,10 @@ proc_100_target_282:
 	; BC_DONE [00]
 proc_100_target_284:
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_100_end:
 
 proc_101_start:
@@ -13260,9 +13361,10 @@ proc_101_start:
 	bl PutSquare
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_101_end:
 
 proc_102_start:
@@ -13313,9 +13415,10 @@ proc_102_continue_285:
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_102_end:
 
 proc_103_start:
@@ -13438,9 +13541,10 @@ proc_103_continue_288:
 	; BC_DONE [00]
 proc_103_target_286:
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_103_end:
 
 proc_104_start:
@@ -13525,9 +13629,10 @@ proc_104_continue_291:
 	bl ForkState				; r0=proc address, r1=num_args
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_104_end:
 
 proc_105_start:
@@ -13589,9 +13694,10 @@ proc_105_continue_293:
 	; BC_DONE [00]
 proc_105_target_292:
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_105_end:
 
 proc_106_start:
@@ -13696,9 +13802,10 @@ proc_106_start:
 	bl PutSquare
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_END [02]
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl FreeState				; Add r5 to r_FreeState list.
-	ldr pc, [sp], #4			; Return.
+	ldr r2, [r6, #-4]			; (r_FreeState)
+	str r2, [r5]				; first word of state block points to prev free state.
+	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
+	mov pc, lr					; Return.
 proc_106_end:
 
 
