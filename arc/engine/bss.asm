@@ -1,12 +1,9 @@
 ; ============================================================================
 ; BSS Segment
-; TODO: Figure out vlink so can hack off BSS segment from binary!!
 ; ============================================================================
 
-.include "roseconfig.h.asm"
-
 .bss
-
+.global bss_start, bss_end
 .global r_StateLists
 .global r_StateSpace
 .global r_StateSpaceEnd
@@ -18,12 +15,25 @@
 .global gen_code_pointers
 .global gen_code_start
 
+; ============================================================================
+.include "roseconfig.h.asm"
+; ============================================================================
+
+bss_start:
 r_StateLists:
     .skip	(MAX_FRAMES+MAX_WAIT)*4
 
 r_StateSpace:
     .skip	(MAX_TURTLES+1)*STATE_SIZE
 r_StateSpaceEnd:
+
+r_CircleBuffer:
+	.skip	(MAX_CIRCLES)*(CIRCLEDATA+1)*4
+r_circleBufEnd:
+
+r_CircleBufPtrs:
+	.skip	(Screen_Height)*4
+bss_end:
 
 r_Sinus:
     .skip	(DEGREES)*4
@@ -39,13 +49,6 @@ reciprocal_table:
     .set divisor, divisor+1
 .endr
 .endif
-
-r_CircleBuffer:
-	.skip	(MAX_CIRCLES)*(CIRCLEDATA+1)*4
-r_circleBufEnd:
-
-r_CircleBufPtrs:
-	.skip	(Screen_Height)*4
 
 gen_code_pointers:
 	.skip	4*8*MAXSPAN

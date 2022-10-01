@@ -44,7 +44,6 @@
 
 .include "roseconfig.h.asm"
 
-.text
 .org 0x8000
 
 ; ============================================================================
@@ -63,6 +62,8 @@ stack_base:
 ; ============================================================================
 
 main:
+	bl WipeBss
+
 	SWI OS_WriteI + 22		; Set base MODE
 	SWI OS_WriteI + Screen_Mode
 
@@ -117,14 +118,16 @@ main:
 	swi QTM_MusicOptions
 .endif
 
+	; Make tables etc.
+    bl MakeSinus
+	.if MakeReciprocalTable
+	bl MakeReciprocal
+	.endif
+	bl gen_code
+    bl InitStates
+
 	; Single screen buffer so only need to do this once.
 	bl get_screen_addr
-
-	; Make tables etc.
-	bl gen_code
-    bl MakeSinus
-	bl MakeReciprocal
-    bl InitStates
 
 	; Claim the Error vector
 	MOV r0, #ErrorV
@@ -580,6 +583,26 @@ cls:
 	bne .1
 	mov pc, lr
 .endif
+
+WipeBss:
+	mov r0, #0
+	mov r1, r0
+	mov r2, r0
+	mov r3, r0
+	mov r4, r0
+	mov r5, r0
+	mov r6, r0
+	mov r7, r0
+	ldr r8, p_bss_start
+	ldr r9, p_bss_end
+.1:
+	stmia r8!, {r0-r7}
+	cmp r8, r9
+	blt .1
+	mov pc, lr
+
+p_bss_start: .long bss_start
+p_bss_end: .long bss_end
 
 ; ============================================================================
 ; Additional code modules.

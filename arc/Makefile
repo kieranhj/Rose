@@ -8,6 +8,7 @@ ROSE2ARC=./bin/rose2arc.py
 VASM=./bin/vasmarm_std_win32.exe
 VASM_OPTS:=-m250 -Fvobj -opt-adr
 LZ4=./bin/lz4.exe -f --best
+VLINK=./bin/vlink.exe -T link_script.txt -b rawbin1
 
 ENGINE_DEPS:=engine/rose.asm engine/circles.asm engine/circledat.asm engine/engine.asm engine/spans.asm engine/sinus.asm engine/roseconfig.h.asm
 COMMON_DEPS:=common/MemAlloc,ffa common/MMode98,ffa common/MMode97,ffa
@@ -52,6 +53,7 @@ $(CIRCLE_BLD)/circle.bin: $(CIRCLE_SRC)/instructions.asm $(ENGINE_DEPS) engine/b
 	$(MKDIR_P) $(CIRCLE_BLD)
 	$(VASM) -D_ENABLE_MUSIC=0 -D_FORM_WIDTH=352 -D_FORM_HEIGHT=280 -D_DUAL_PLAYFIELD=0 -D_SCREEN_MODE=98 -I../$(CIRCLE_SRC) $(VASM_OPTS) -L $(CIRCLE_BLD)/compile.txt -o $(CIRCLE_BLD)/circle.o engine/rose.asm
 	$(VASM) -D_ENABLE_MUSIC=0 -D_FORM_WIDTH=352 -D_FORM_HEIGHT=280 -D_DUAL_PLAYFIELD=0 -D_SCREEN_MODE=98 -I../$(CIRCLE_SRC) $(VASM_OPTS) -L $(CIRCLE_BLD)/bss.txt -o $(CIRCLE_BLD)/bss.o engine/bss.asm
+	$(VLINK) -o $(CIRCLE_BLD)/circle.bin $(CIRCLE_BLD)/*.o
 
 $(CIRCLE_DST): $(CIRCLE_BLD)/circle.bin $(CIRCLE_BLD)/\!run.txt $(COMMON_DEPS)
 	$(RM_RF) $(CIRCLE_DST)
@@ -83,11 +85,13 @@ $(EVERYWAY_SRC)/instructions.asm: $(EVERYWAY_SRC)/bytecodes.bin $(EVERYWAY_SRC)/
 	$(PYTHON3) $(ROSE2ARC) $(EVERYWAY_SRC)/bytecodes.bin -c $(EVERYWAY_SRC)/constants.bin -s $(EVERYWAY_SRC)/colorscript.bin -o $(EVERYWAY_SRC)/instructions.asm
 
 $(EVERYWAY_BLD)/loader.bin: engine/loader.asm
-	$(VASM) $(VASM_OPTS) -o $(EVERYWAY_BLD)/loader.bin engine/loader.asm
+	$(VASM) -m250 -Fbin -L $(EVERYWAY_BLD)/loader.txt -o $(EVERYWAY_BLD)/loader.bin engine/loader.asm
 
 $(EVERYWAY_BLD)/everyway.bin: $(EVERYWAY_SRC)/instructions.asm $(ENGINE_DEPS) $(EVERYWAY_SRC)/music.mod
 	$(MKDIR_P) $(EVERYWAY_BLD)
-	$(VASM) -D_ENABLE_MUSIC=1 -D_FORM_WIDTH=352 -D_FORM_HEIGHT=280 -D_DUAL_PLAYFIELD=0 -DMAX_FRAMES=9000 -D_SCREEN_MODE=98 -I../$(EVERYWAY_SRC) $(VASM_OPTS) -L $(EVERYWAY_BLD)/compile.txt -o $(EVERYWAY_BLD)/everyway.bin engine/rose.asm
+	$(VASM) -D_ENABLE_MUSIC=1 -D_FORM_WIDTH=352 -D_FORM_HEIGHT=280 -D_DUAL_PLAYFIELD=0 -DMAX_FRAMES=9000 -D_SCREEN_MODE=98 -I../$(EVERYWAY_SRC) $(VASM_OPTS) -L $(EVERYWAY_BLD)/compile.txt -o $(EVERYWAY_BLD)/everyway.o engine/rose.asm
+	$(VASM) -D_ENABLE_MUSIC=0 -D_FORM_WIDTH=352 -D_FORM_HEIGHT=280 -D_DUAL_PLAYFIELD=0 -D_SCREEN_MODE=98 -I../$(CIRCLE_SRC) $(VASM_OPTS) -L $(EVERYWAY_BLD)/bss.txt -o $(EVERYWAY_BLD)/bss.o engine/bss.asm
+	$(VLINK) -o $(EVERYWAY_BLD)/everyway.bin $(EVERYWAY_BLD)/everyway.o $(EVERYWAY_BLD)/bss.o
 
 $(EVERYWAY_DST): $(EVERYWAY_BLD)/everyway.lz4 $(EVERYWAY_BLD)/loader.bin $(EVERYWAY_BLD)/\!run.txt $(COMMON_DEPS) $(MUSIC_DEPS)
 	$(RM_RF) $(EVERYWAY_DST)
