@@ -3,6 +3,7 @@
 ; ============================================================================
 
 .equ _Inline_FreeState, 1
+.equ _Inline_WaitState, 1
 
 r_FrameCounter:
     .long 0
@@ -240,6 +241,7 @@ FreeState:
 ; r3 = StateStack.
 ; r5 = p_State.
 ; r6 = StateList.
+.if _Inline_WaitState == 0
 WaitState:
     str r1, [r5, #ST_PROC*4]    ; *pState.st_proc = &continue
     str r5, [r3, #-4]!          ; push p_State on StateStack.
@@ -253,6 +255,7 @@ WaitState:
     str r1, [r3, #-4]!          ; push previous entry from StateList at that frame.
     str r3, [r6, r2, lsr #14]   ; store new p_StateStack for this frame.
     mov pc, lr
+.endif
 
 ; r0 = address of procedure.
 ; r1 = number of arguments.
@@ -313,8 +316,7 @@ ForkState:
     str r2, [r8, #-4]!          ; push p_NewState onto NewStateStack.
 
     ldr r0, [r5, #ST_TIME*4]    ; *p_CurrentState.st_time
-    bic r0, r0, #0xff00         ; remove time fractional part.
-    bic r0, r0, #0x00ff         ; remove time fractional part.
+    bic r0, r0, #0xc000         ; remove time fractional part.
 ;   ldr r6, p_StateLists
     ldr r9, [r6, r0, lsr #14]   ; r_StateLists[current_time]
     str r9, [r8, #-4]!          ; push existing StateStackPtr onto NewStateStack.

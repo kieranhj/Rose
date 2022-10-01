@@ -8,6 +8,9 @@ import struct
 from enum import Enum
 from unittest.mock import NonCallableMagicMock
 
+INLINE_FREESTATE=1
+INLINE_WAITSTATE=1
+
 BC_DONE=0x00
 BC_ELSE=0x01
 BC_END=0x02
@@ -159,14 +162,16 @@ class RoseParser:
 
     def write_end(self, c):
         self._asm_file.write(f'\t; BC_END [{c:02x}]\n')
-        #self._asm_file.write(f'\tstr lr, [sp, #-4]!\t\t\t; Push lr on program stack.\n')
-        #self._asm_file.write(f'\tbl FreeState\t\t\t\t; Add r5 to r_FreeState list.\n')
-        #self._asm_file.write(f'\tldr pc, [sp], #4\t\t\t; Return.\n')
 
-        self._asm_file.write(f'\tldr r2, [r6, #-4]\t\t\t; (r_FreeState)\n')
-        self._asm_file.write(f'\tstr r2, [r5]\t\t\t\t; first word of state block points to prev free state.\n')
-        self._asm_file.write(f'\tstr r5, [r6, #-4]\t\t\t; (r_FreeState) this state becomes the next free state.\n')
-        self._asm_file.write(f'\tmov pc, lr\t\t\t\t\t; Return.\n')
+        if INLINE_FREESTATE:
+            self._asm_file.write(f'\tldr r2, [r6, #-4]\t\t\t; (r_FreeState)\n')
+            self._asm_file.write(f'\tstr r2, [r5]\t\t\t\t; first word of state block points to prev free state.\n')
+            self._asm_file.write(f'\tstr r5, [r6, #-4]\t\t\t; (r_FreeState) this state becomes the next free state.\n')
+            self._asm_file.write(f'\tmov pc, lr\t\t\t\t\t; Return.\n')
+        else:
+            self._asm_file.write(f'\tstr lr, [sp, #-4]!\t\t\t; Push lr on program stack.\n')
+            self._asm_file.write(f'\tbl FreeState\t\t\t\t; Add r5 to r_FreeState list.\n')
+            self._asm_file.write(f'\tldr pc, [sp], #4\t\t\t; Return.\n')
 
         self._asm_file.write(f'proc_{self._proc_no}_end:\n\n')
         self._proc_no += 1
@@ -202,8 +207,8 @@ class RoseParser:
 
     def write_tail(self, c):
         self._asm_file.write(f'\t; BC_TAIL [{c:02x}]\n')
-        self._asm_file.write(f'\tldr r1, [r5, #ST_PROC*4]\t; Jump to State.st_proc\n')
-        self._asm_file.write(f'\tmov pc, r1\n')
+        self._asm_file.write(f'\tldr r2, [r5, #ST_PROC*4]\t; Jump to State.st_proc\n')
+        self._asm_file.write(f'\tmov pc, r2\n')
 
     def write_plot(self, c):
         self._asm_file.write(f'\t; BC_PLOT [{c:02x}]\n')
@@ -240,9 +245,23 @@ class RoseParser:
         self._asm_file.write(f'\t; BC_WAIT [{c:02x}]\n')
         self.pop_var(0)
         self._asm_file.write(f'\tadr r1, proc_{self._proc_no}_continue_{self._label_no}\n')
-        self._asm_file.write(f'\tstr lr, [sp, #-4]!\t\t\t; Push lr on program stack.\n')
-        self._asm_file.write(f'\tbl WaitState\t\t\t\t; Add r5 to StateList, r0=wait_frames, r1=&continue.\n')
-        self._asm_file.write(f'\tldr pc, [sp], #4\t\t\t; Return\n')
+
+        if INLINE_WAITSTATE:
+            self._asm_file.write(f'\tstr r1, [r5, #ST_PROC*4]\t; *pState.st_proc = &continue\n')
+            self._asm_file.write(f'\tstr r5, [r3, #-4]!\t\t\t; push p_State on StateStack.\n')
+            self._asm_file.write(f'\tldr r2, [r5, #ST_TIME*4]\n')
+            self._asm_file.write(f'\tadd r2, r2, r0\n')
+            self._asm_file.write(f'\tstr r2, [r5, #ST_TIME*4]\t; *pState.st_time += wait_frames\n')
+            self._asm_file.write(f'\tbic r2, r2, #0xc000\t\t\t; remove time fractional part.\n')
+            self._asm_file.write(f'\tldr r1, [r6, r2, lsr #14]\t; r_StateList[time >> 16 << 2]\n')
+            self._asm_file.write(f'\tstr r1, [r3, #-4]!\t\t\t; push previous entry from StateList at that frame.\n')
+            self._asm_file.write(f'\tstr r3, [r6, r2, lsr #14]\t; store new p_StateStack for this frame.\n')
+            self._asm_file.write(f'\tmov pc, lr\t\t\t\t\t; Return.\n')
+        else:
+            self._asm_file.write(f'\tstr lr, [sp, #-4]!\t\t\t; Push lr on program stack.\n')
+            self._asm_file.write(f'\tbl WaitState\t\t\t\t; Add r5 to StateList, r0=wait_frames, r1=&continue.\n')
+            self._asm_file.write(f'\tldr pc, [sp], #4\t\t\t; Return\n')
+
         self._asm_file.write(f'proc_{self._proc_no}_continue_{self._label_no}:\n')
         self._label_no += 1
 

@@ -60,9 +60,16 @@ proc_0_start:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_0_continue_0
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_0_continue_0:
 	; BC_PROC [07]
 	adr r0, proc_15_start		; r0=r_Procedures[15]
@@ -85,9 +92,16 @@ proc_0_continue_0:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_0_continue_1
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_0_continue_1:
 	; BC_PROC [07]
 	adr r0, proc_24_start		; r0=r_Procedures[24]
@@ -110,9 +124,16 @@ proc_0_continue_1:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_0_continue_2
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_0_continue_2:
 	; BC_PROC [07]
 	adr r0, proc_54_start		; r0=r_Procedures[54]
@@ -135,9 +156,16 @@ proc_0_continue_2:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_0_continue_3
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_0_continue_3:
 	; BC_PROC [07]
 	adr r0, proc_74_start		; r0=r_Procedures[74]
@@ -160,9 +188,16 @@ proc_0_continue_3:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_0_continue_4
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_0_continue_4:
 	; BC_PROC [07]
 	adr r0, proc_88_start		; r0=r_Procedures[88]
@@ -185,9 +220,16 @@ proc_0_continue_4:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_0_continue_5
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_0_continue_5:
 	; BC_PROC [07]
 	adr r0, proc_101_start		; r0=r_Procedures[101]
@@ -210,9 +252,16 @@ proc_0_continue_5:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_0_continue_6
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_0_continue_6:
 	; BC_PROC [07]
 	adr r0, proc_146_start		; r0=r_Procedures[146]
@@ -235,9 +284,16 @@ proc_0_continue_6:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_0_continue_7
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_0_continue_7:
 	; BC_PROC [07]
 	adr r0, proc_4_start		; r0=r_Procedures[4]
@@ -266,9 +322,16 @@ proc_0_continue_7:
 	subs r0, r0, r1				; r0=r0 subs r1
 	; BC_WAIT [0a]
 	adr r1, proc_0_continue_8
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_0_continue_8:
 	; BC_PROC [07]
 	adr r0, proc_1_start		; r0=r_Procedures[1]
@@ -281,17 +344,24 @@ proc_0_continue_8:
 	mov r0, #0x00160000			; r0=rConstants[50] (22.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_0_continue_9
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_0_continue_9:
 	; BC_PROC [07]
 	adr r0, proc_191_start		; r0=r_Procedures[191]
 	; BC_WSTATE [50]
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_END [02]
 	ldr r2, [r6, #-4]			; (r_FreeState)
 	str r2, [r5]				; first word of state block points to prev free state.
@@ -355,9 +425,16 @@ proc_1_start:
 	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_1_continue_10
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_1_continue_10:
 	; BC_CONST [95]
 	mov r0, #0x00020000			; r0=rConstants[21] (2.0000)
@@ -398,9 +475,16 @@ proc_1_continue_10:
 	mov r0, #0x00050000			; r0=rConstants[30] (5.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_1_continue_11
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_1_continue_11:
 	; BC_CONST [95]
 	mov r0, #0x00020000			; r0=rConstants[21] (2.0000)
@@ -441,9 +525,16 @@ proc_1_continue_11:
 	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_1_continue_12
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_1_continue_12:
 	; BC_CONST [95]
 	mov r0, #0x00020000			; r0=rConstants[21] (2.0000)
@@ -500,9 +591,16 @@ proc_2_start:
 	mov r0, #0x00050000			; r0=rConstants[30] (5.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_2_continue_13
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_2_continue_13:
 	; BC_CONST [80]
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -519,8 +617,8 @@ proc_2_continue_13:
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_END [02]
 	ldr r2, [r6, #-4]			; (r_FreeState)
 	str r2, [r5]				; first word of state block points to prev free state.
@@ -566,9 +664,16 @@ proc_3_start:
 	mov r0, #0x00010000			; r0=rConstants[15] (1.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_3_continue_15
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_3_continue_15:
 	; BC_PROC [07]
 	adr r0, proc_3_start		; r0=r_Procedures[3]
@@ -603,8 +708,8 @@ proc_3_continue_15:
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_ELSE [01]
 	b proc_3_target_16
 proc_3_target_14:
@@ -657,9 +762,16 @@ proc_4_start:
 	mov r0, #0x00160000			; r0=rConstants[50] (22.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_4_continue_17
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_4_continue_17:
 	; BC_CONST [95]
 	mov r0, #0x00020000			; r0=rConstants[21] (2.0000)
@@ -675,9 +787,16 @@ proc_4_continue_17:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_4_continue_18
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_4_continue_18:
 	; BC_CONST [cd]
 	mov r0, #0x00500000			; r0=rConstants[77] (80.0000)
@@ -735,9 +854,16 @@ proc_4_continue_18:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_4_continue_19
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_4_continue_19:
 	; BC_CONST [e0]
 	mov r0, #0x00be0000			; r0=rConstants[96] (190.0000)
@@ -769,9 +895,16 @@ proc_4_continue_19:
 	mov r0, #0x00580000			; r0=rConstants[79] (88.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_4_continue_20
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_4_continue_20:
 	; BC_CONST [d6]
 	mov r0, #0x00820000			; r0=rConstants[86] (130.0000)
@@ -810,9 +943,16 @@ proc_4_continue_20:
 	adds r0, r0, r1				; r0=r0 adds r1
 	; BC_WAIT [0a]
 	adr r1, proc_4_continue_21
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_4_continue_21:
 	; BC_CONST [cd]
 	mov r0, #0x00500000			; r0=rConstants[77] (80.0000)
@@ -868,9 +1008,16 @@ proc_4_continue_21:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_4_continue_22
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_4_continue_22:
 	; BC_CONST [e0]
 	mov r0, #0x00be0000			; r0=rConstants[96] (190.0000)
@@ -951,9 +1098,16 @@ proc_5_start:
 	mov r0, #0x000a0000			; r0=rConstants[39] (10.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_5_continue_23
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_5_continue_23:
 	; BC_CONST [80]
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -1026,9 +1180,16 @@ proc_6_start:
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
 	; BC_WAIT [0a]
 	adr r1, proc_6_continue_25
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_6_continue_25:
 	; BC_RLOCAL [66]
 	ldr r0, [r5, #-7*4]			; r0=StateStack[-7]
@@ -1079,8 +1240,8 @@ proc_6_continue_25:
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_DONE [00]
 proc_6_target_24:
 	; BC_END [02]
@@ -1232,8 +1393,8 @@ proc_7_start:
 	; BC_POP [08]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_END [02]
 	ldr r2, [r6, #-4]			; (r_FreeState)
 	str r2, [r5]				; first word of state block points to prev free state.
@@ -1277,9 +1438,16 @@ proc_8_start:
 	mov r0, #0x00008000			; r0=rConstants[7] (0.5000)
 	; BC_WAIT [0a]
 	adr r1, proc_8_continue_27
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_8_continue_27:
 	; BC_RLOCAL [62]
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
@@ -1320,8 +1488,8 @@ proc_8_continue_27:
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_DONE [00]
 proc_8_target_26:
 	; BC_END [02]
@@ -1356,9 +1524,16 @@ proc_9_start:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_9_continue_28
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_9_continue_28:
 	; BC_CONST [e3]
 	mov r0, #0x00e10000			; r0=rConstants[99] (225.0000)
@@ -1384,9 +1559,16 @@ proc_9_continue_28:
 	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_9_continue_29
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_9_continue_29:
 	; BC_CONST [c6]
 	mov r0, #0x00370000			; r0=rConstants[70] (55.0000)
@@ -1492,9 +1674,16 @@ proc_10_start:
 	mov r0, #0x00050000			; r0=rConstants[30] (5.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_10_continue_31
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_10_continue_31:
 	; BC_CONST [80]
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -1510,9 +1699,16 @@ proc_10_continue_31:
 	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_10_continue_32
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_10_continue_32:
 	; BC_CONST [b9]
 	mov r0, #0x00200000			; r0=rConstants[57] (32.0000)
@@ -1537,8 +1733,8 @@ proc_10_continue_32:
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_DONE [00]
 proc_10_target_30:
 	; BC_END [02]
@@ -1578,9 +1774,16 @@ proc_11_start:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_11_continue_34
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_11_continue_34:
 	; BC_PROC [07]
 	adr r0, proc_11_start		; r0=r_Procedures[11]
@@ -1599,8 +1802,8 @@ proc_11_continue_34:
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_DONE [00]
 proc_11_target_33:
 	; BC_END [02]
@@ -1635,9 +1838,16 @@ proc_12_start:
 	mov r0, #0x000b0000			; r0=rConstants[40] (11.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_12_continue_35
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_12_continue_35:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
@@ -1673,9 +1883,16 @@ proc_12_continue_35:
 	mov r0, #0x000b0000			; r0=rConstants[40] (11.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_12_continue_36
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_12_continue_36:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
@@ -1707,9 +1924,16 @@ proc_12_continue_36:
 	mov r0, #0x000b0000			; r0=rConstants[40] (11.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_12_continue_37
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_12_continue_37:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
@@ -1745,9 +1969,16 @@ proc_12_continue_37:
 	mov r0, #0x000b0000			; r0=rConstants[40] (11.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_12_continue_38
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_12_continue_38:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
@@ -1783,9 +2014,16 @@ proc_12_continue_38:
 	mov r0, #0x000b0000			; r0=rConstants[40] (11.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_12_continue_39
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_12_continue_39:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
@@ -1817,9 +2055,16 @@ proc_12_continue_39:
 	mov r0, #0x000b0000			; r0=rConstants[40] (11.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_12_continue_40
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_12_continue_40:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
@@ -1855,9 +2100,16 @@ proc_12_continue_40:
 	mov r0, #0x000b0000			; r0=rConstants[40] (11.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_12_continue_41
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_12_continue_41:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
@@ -2017,9 +2269,16 @@ proc_13_start:
 	mov r0, #0x00010000			; r0=rConstants[15] (1.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_13_continue_43
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_13_continue_43:
 	; BC_RLOCAL [62]
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
@@ -2062,8 +2321,8 @@ proc_13_continue_43:
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_DONE [00]
 proc_13_target_42:
 	; BC_END [02]
@@ -2133,8 +2392,8 @@ proc_14_start:
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_DONE [00]
 proc_14_target_44:
 	; BC_END [02]
@@ -2182,9 +2441,16 @@ proc_15_start:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_15_continue_45
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_15_continue_45:
 	; BC_CONST [ae]
 	mov r0, #0x00120000			; r0=rConstants[46] (18.0000)
@@ -2213,9 +2479,16 @@ proc_15_continue_45:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_15_continue_46
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_15_continue_46:
 	; BC_CONST [ae]
 	mov r0, #0x00120000			; r0=rConstants[46] (18.0000)
@@ -2244,9 +2517,16 @@ proc_15_continue_46:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_15_continue_47
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_15_continue_47:
 	; BC_CONST [ae]
 	mov r0, #0x00120000			; r0=rConstants[46] (18.0000)
@@ -2265,9 +2545,16 @@ proc_15_continue_47:
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_15_continue_48
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_15_continue_48:
 	; BC_END [02]
 	ldr r2, [r6, #-4]			; (r_FreeState)
@@ -2304,9 +2591,16 @@ proc_16_start:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_16_continue_49
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_16_continue_49:
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
@@ -2325,9 +2619,16 @@ proc_16_continue_49:
 	mov r0, #0x000b0000			; r0=rConstants[40] (11.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_16_continue_50
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_16_continue_50:
 	; BC_CONST [9c]
 	mov r0, #0x00040000			; r0=rConstants[28] (4.0000)
@@ -2353,9 +2654,16 @@ proc_16_continue_50:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_16_continue_51
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_16_continue_51:
 	; BC_CONST [a5]
 	mov r0, #0x00080000			; r0=rConstants[37] (8.0000)
@@ -2388,9 +2696,16 @@ proc_16_continue_51:
 	mov r0, #0x000b0000			; r0=rConstants[40] (11.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_16_continue_52
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_16_continue_52:
 	; BC_CONST [a7]
 	mov r0, #0x000a0000			; r0=rConstants[39] (10.0000)
@@ -2423,9 +2738,16 @@ proc_16_continue_52:
 	mov r0, #0x000b0000			; r0=rConstants[40] (11.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_16_continue_53
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_16_continue_53:
 	; BC_CONST [95]
 	mov r0, #0x00020000			; r0=rConstants[21] (2.0000)
@@ -2441,9 +2763,16 @@ proc_16_continue_53:
 	mov r0, #0x000b0000			; r0=rConstants[40] (11.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_16_continue_54
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_16_continue_54:
 	; BC_CONST [a5]
 	mov r0, #0x00080000			; r0=rConstants[37] (8.0000)
@@ -2476,9 +2805,16 @@ proc_16_continue_54:
 	mov r0, #0x000b0000			; r0=rConstants[40] (11.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_16_continue_55
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_16_continue_55:
 	; BC_CONST [a7]
 	mov r0, #0x000a0000			; r0=rConstants[39] (10.0000)
@@ -2511,9 +2847,16 @@ proc_16_continue_55:
 	mov r0, #0x000b0000			; r0=rConstants[40] (11.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_16_continue_56
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_16_continue_56:
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
@@ -2532,9 +2875,16 @@ proc_16_continue_56:
 	mov r0, #0x000b0000			; r0=rConstants[40] (11.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_16_continue_57
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_16_continue_57:
 	; BC_CONST [9c]
 	mov r0, #0x00040000			; r0=rConstants[28] (4.0000)
@@ -2560,9 +2910,16 @@ proc_16_continue_57:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_16_continue_58
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_16_continue_58:
 	; BC_CONST [a7]
 	mov r0, #0x000a0000			; r0=rConstants[39] (10.0000)
@@ -2595,9 +2952,16 @@ proc_16_continue_58:
 	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_16_continue_59
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_16_continue_59:
 	; BC_CONST [8f]
 	mov r0, #0x00010000			; r0=rConstants[15] (1.0000)
@@ -2613,9 +2977,16 @@ proc_16_continue_59:
 	mov r0, #0x00050000			; r0=rConstants[30] (5.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_16_continue_60
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_16_continue_60:
 	; BC_CONST [a5]
 	mov r0, #0x00080000			; r0=rConstants[37] (8.0000)
@@ -2648,9 +3019,16 @@ proc_16_continue_60:
 	mov r0, #0x000b0000			; r0=rConstants[40] (11.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_16_continue_61
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_16_continue_61:
 	; BC_CONST [95]
 	mov r0, #0x00020000			; r0=rConstants[21] (2.0000)
@@ -2666,9 +3044,16 @@ proc_16_continue_61:
 	mov r0, #0x00090000			; r0=rConstants[38] (9.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_16_continue_62
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_16_continue_62:
 	; BC_CONST [a7]
 	mov r0, #0x000a0000			; r0=rConstants[39] (10.0000)
@@ -2687,8 +3072,8 @@ proc_16_continue_62:
 	; BC_POP [08]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_END [02]
 	ldr r2, [r6, #-4]			; (r_FreeState)
 	str r2, [r5]				; first word of state block points to prev free state.
@@ -2714,9 +3099,16 @@ proc_17_start:
 	mov r0, #0x000b0000			; r0=rConstants[40] (11.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_17_continue_63
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_17_continue_63:
 	; BC_CONST [a7]
 	mov r0, #0x000a0000			; r0=rConstants[39] (10.0000)
@@ -2735,9 +3127,16 @@ proc_17_continue_63:
 	mov r0, #0x000b0000			; r0=rConstants[40] (11.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_17_continue_64
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_17_continue_64:
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
@@ -2756,9 +3155,16 @@ proc_17_continue_64:
 	mov r0, #0x000b0000			; r0=rConstants[40] (11.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_17_continue_65
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_17_continue_65:
 	; BC_CONST [9c]
 	mov r0, #0x00040000			; r0=rConstants[28] (4.0000)
@@ -2784,9 +3190,16 @@ proc_17_continue_65:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_17_continue_66
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_17_continue_66:
 	; BC_CONST [a5]
 	mov r0, #0x00080000			; r0=rConstants[37] (8.0000)
@@ -2819,9 +3232,16 @@ proc_17_continue_66:
 	mov r0, #0x000b0000			; r0=rConstants[40] (11.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_17_continue_67
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_17_continue_67:
 	; BC_CONST [9c]
 	mov r0, #0x00040000			; r0=rConstants[28] (4.0000)
@@ -2847,9 +3267,16 @@ proc_17_continue_67:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_17_continue_68
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_17_continue_68:
 	; BC_CONST [a7]
 	mov r0, #0x000a0000			; r0=rConstants[39] (10.0000)
@@ -2882,9 +3309,16 @@ proc_17_continue_68:
 	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_17_continue_69
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_17_continue_69:
 	; BC_CONST [8f]
 	mov r0, #0x00010000			; r0=rConstants[15] (1.0000)
@@ -2900,9 +3334,16 @@ proc_17_continue_69:
 	mov r0, #0x00050000			; r0=rConstants[30] (5.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_17_continue_70
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_17_continue_70:
 	; BC_CONST [a7]
 	mov r0, #0x000a0000			; r0=rConstants[39] (10.0000)
@@ -2935,9 +3376,16 @@ proc_17_continue_70:
 	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_17_continue_71
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_17_continue_71:
 	; BC_CONST [8f]
 	mov r0, #0x00010000			; r0=rConstants[15] (1.0000)
@@ -2953,9 +3401,16 @@ proc_17_continue_71:
 	mov r0, #0x00050000			; r0=rConstants[30] (5.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_17_continue_72
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_17_continue_72:
 	; BC_CONST [a7]
 	mov r0, #0x000a0000			; r0=rConstants[39] (10.0000)
@@ -2988,9 +3443,16 @@ proc_17_continue_72:
 	mov r0, #0x000b0000			; r0=rConstants[40] (11.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_17_continue_73
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_17_continue_73:
 	; BC_CONST [9c]
 	mov r0, #0x00040000			; r0=rConstants[28] (4.0000)
@@ -3016,9 +3478,16 @@ proc_17_continue_73:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_17_continue_74
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_17_continue_74:
 	; BC_CONST [a7]
 	mov r0, #0x000a0000			; r0=rConstants[39] (10.0000)
@@ -3051,9 +3520,16 @@ proc_17_continue_74:
 	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_17_continue_75
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_17_continue_75:
 	; BC_CONST [8f]
 	mov r0, #0x00010000			; r0=rConstants[15] (1.0000)
@@ -3069,9 +3545,16 @@ proc_17_continue_75:
 	mov r0, #0x00050000			; r0=rConstants[30] (5.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_17_continue_76
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_17_continue_76:
 	; BC_CONST [a5]
 	mov r0, #0x00080000			; r0=rConstants[37] (8.0000)
@@ -3118,9 +3601,16 @@ proc_17_continue_76:
 	mov r0, #0x000b0000			; r0=rConstants[40] (11.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_17_continue_77
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_17_continue_77:
 	; BC_PROC [07]
 	adr r0, proc_19_start		; r0=r_Procedures[19]
@@ -3139,8 +3629,8 @@ proc_17_continue_77:
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_END [02]
 	ldr r2, [r6, #-4]			; (r_FreeState)
 	str r2, [r5]				; first word of state block points to prev free state.
@@ -3254,9 +3744,16 @@ proc_18_start:
 	mov r0, #0x00010000			; r0=rConstants[15] (1.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_18_continue_80
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_18_continue_80:
 	; BC_CONST [80]
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -3301,8 +3798,8 @@ proc_18_continue_80:
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_DONE [00]
 proc_18_target_79:
 	; BC_DONE [00]
@@ -3420,9 +3917,16 @@ proc_19_start:
 	mov r0, #0x00010000			; r0=rConstants[15] (1.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_19_continue_83
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_19_continue_83:
 	; BC_CONST [80]
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -3467,8 +3971,8 @@ proc_19_continue_83:
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_DONE [00]
 proc_19_target_82:
 	; BC_DONE [00]
@@ -3586,9 +4090,16 @@ proc_20_start:
 	mov r0, #0x00010000			; r0=rConstants[15] (1.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_20_continue_86
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_20_continue_86:
 	; BC_PROC [07]
 	adr r0, proc_20_start		; r0=r_Procedures[20]
@@ -3619,8 +4130,8 @@ proc_20_continue_86:
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_DONE [00]
 proc_20_target_85:
 	; BC_DONE [00]
@@ -3735,9 +4246,16 @@ proc_21_start:
 	mov r0, #0x00010000			; r0=rConstants[15] (1.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_21_continue_87
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_21_continue_87:
 	; BC_END [02]
 	ldr r2, [r6, #-4]			; (r_FreeState)
@@ -3845,9 +4363,16 @@ proc_22_start:
 	mov r0, #0x00010000			; r0=rConstants[15] (1.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_22_continue_88
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_22_continue_88:
 	; BC_END [02]
 	ldr r2, [r6, #-4]			; (r_FreeState)
@@ -3877,9 +4402,16 @@ proc_23_start:
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
 	; BC_WAIT [0a]
 	adr r1, proc_23_continue_90
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_23_continue_90:
 	; BC_CONST [bf]
 	mov r0, #0x00280000			; r0=rConstants[63] (40.0000)
@@ -3909,9 +4441,16 @@ proc_23_target_89:
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
 	; BC_WAIT [0a]
 	adr r1, proc_23_continue_92
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_23_continue_92:
 	; BC_CONST [bf]
 	mov r0, #0x00280000			; r0=rConstants[63] (40.0000)
@@ -3941,9 +4480,16 @@ proc_23_target_91:
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
 	; BC_WAIT [0a]
 	adr r1, proc_23_continue_94
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_23_continue_94:
 	; BC_CONST [bf]
 	mov r0, #0x00280000			; r0=rConstants[63] (40.0000)
@@ -3991,8 +4537,8 @@ proc_24_start:
 	; BC_WSTATE [50]
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_END [02]
 	ldr r2, [r6, #-4]			; (r_FreeState)
 	str r2, [r5]				; first word of state block points to prev free state.
@@ -4026,9 +4572,16 @@ proc_25_start:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_25_continue_96
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_25_continue_96:
 	; BC_CONST [95]
 	mov r0, #0x00020000			; r0=rConstants[21] (2.0000)
@@ -4055,9 +4608,16 @@ proc_25_continue_96:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_25_continue_97
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_25_continue_97:
 	; BC_CONST [99]
 	mov r0, #0x00030000			; r0=rConstants[25] (3.0000)
@@ -4084,9 +4644,16 @@ proc_25_continue_97:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_25_continue_98
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_25_continue_98:
 	; BC_CONST [8f]
 	mov r0, #0x00010000			; r0=rConstants[15] (1.0000)
@@ -4113,9 +4680,16 @@ proc_25_continue_98:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_25_continue_99
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_25_continue_99:
 	; BC_CONST [95]
 	mov r0, #0x00020000			; r0=rConstants[21] (2.0000)
@@ -4142,9 +4716,16 @@ proc_25_continue_99:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_25_continue_100
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_25_continue_100:
 	; BC_CONST [8f]
 	mov r0, #0x00010000			; r0=rConstants[15] (1.0000)
@@ -4171,9 +4752,16 @@ proc_25_continue_100:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_25_continue_101
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_25_continue_101:
 	; BC_CONST [99]
 	mov r0, #0x00030000			; r0=rConstants[25] (3.0000)
@@ -4200,9 +4788,16 @@ proc_25_continue_101:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_25_continue_102
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_25_continue_102:
 	; BC_CONST [8f]
 	mov r0, #0x00010000			; r0=rConstants[15] (1.0000)
@@ -4229,9 +4824,16 @@ proc_25_continue_102:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_25_continue_103
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_25_continue_103:
 	; BC_END [02]
 	ldr r2, [r6, #-4]			; (r_FreeState)
@@ -4255,9 +4857,16 @@ proc_26_start:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_26_continue_104
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_26_continue_104:
 	; BC_CONST [99]
 	mov r0, #0x00030000			; r0=rConstants[25] (3.0000)
@@ -4333,8 +4942,8 @@ proc_26_continue_104:
 	; BC_WSTATE [50]
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_END [02]
 	ldr r2, [r6, #-4]			; (r_FreeState)
 	str r2, [r5]				; first word of state block points to prev free state.
@@ -4358,9 +4967,16 @@ proc_27_start:
 	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_27_continue_105
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_27_continue_105:
 	; BC_CONST [cb]
 	mov r0, #0x00420000			; r0=rConstants[75] (66.0000)
@@ -4383,9 +4999,16 @@ proc_27_continue_105:
 	mov r0, #0x00050000			; r0=rConstants[30] (5.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_27_continue_106
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_27_continue_106:
 	; BC_CONST [cb]
 	mov r0, #0x00420000			; r0=rConstants[75] (66.0000)
@@ -4408,9 +5031,16 @@ proc_27_continue_106:
 	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_27_continue_107
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_27_continue_107:
 	; BC_CONST [cb]
 	mov r0, #0x00420000			; r0=rConstants[75] (66.0000)
@@ -4433,9 +5063,16 @@ proc_27_continue_107:
 	mov r0, #0x00050000			; r0=rConstants[30] (5.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_27_continue_108
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_27_continue_108:
 	; BC_CONST [c9]
 	mov r0, #0x00400000			; r0=rConstants[73] (64.0000)
@@ -4470,9 +5107,16 @@ proc_27_continue_108:
 	mov r0, #0x00050000			; r0=rConstants[30] (5.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_27_continue_109
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_27_continue_109:
 	; BC_CONST [cb]
 	mov r0, #0x00420000			; r0=rConstants[75] (66.0000)
@@ -4495,9 +5139,16 @@ proc_27_continue_109:
 	mov r0, #0x00050000			; r0=rConstants[30] (5.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_27_continue_110
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_27_continue_110:
 	; BC_CONST [cb]
 	mov r0, #0x00420000			; r0=rConstants[75] (66.0000)
@@ -4551,9 +5202,16 @@ proc_28_start:
 	mov r0, #0x00010000			; r0=rConstants[15] (1.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_28_continue_112
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_28_continue_112:
 	; BC_PROC [07]
 	adr r0, proc_28_start		; r0=r_Procedures[28]
@@ -4584,8 +5242,8 @@ proc_28_continue_112:
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_DONE [00]
 proc_28_target_111:
 	; BC_END [02]
@@ -4610,9 +5268,16 @@ proc_29_start:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_29_continue_113
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_29_continue_113:
 	; BC_CONST [ac]
 	mov r0, #0x00100000			; r0=rConstants[44] (16.0000)
@@ -4744,8 +5409,8 @@ proc_29_continue_113:
 	; BC_WSTATE [50]
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_END [02]
 	ldr r2, [r6, #-4]			; (r_FreeState)
 	str r2, [r5]				; first word of state block points to prev free state.
@@ -4772,9 +5437,16 @@ proc_30_start:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_30_continue_114
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_30_continue_114:
 	; BC_CONST [be]
 	mov r0, #0x00270000			; r0=rConstants[62] (39.0000)
@@ -4850,8 +5522,8 @@ proc_30_continue_114:
 	; BC_WSTATE [50]
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_END [02]
 	ldr r2, [r6, #-4]			; (r_FreeState)
 	str r2, [r5]				; first word of state block points to prev free state.
@@ -4871,9 +5543,16 @@ proc_31_start:
 	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_31_continue_115
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_31_continue_115:
 	; BC_CONST [cb]
 	mov r0, #0x00420000			; r0=rConstants[75] (66.0000)
@@ -4892,9 +5571,16 @@ proc_31_continue_115:
 	mov r0, #0x00050000			; r0=rConstants[30] (5.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_31_continue_116
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_31_continue_116:
 	; BC_CONST [cb]
 	mov r0, #0x00420000			; r0=rConstants[75] (66.0000)
@@ -4913,9 +5599,16 @@ proc_31_continue_116:
 	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_31_continue_117
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_31_continue_117:
 	; BC_CONST [cb]
 	mov r0, #0x00420000			; r0=rConstants[75] (66.0000)
@@ -4934,9 +5627,16 @@ proc_31_continue_117:
 	mov r0, #0x00050000			; r0=rConstants[30] (5.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_31_continue_118
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_31_continue_118:
 	; BC_CONST [c9]
 	mov r0, #0x00400000			; r0=rConstants[73] (64.0000)
@@ -4967,9 +5667,16 @@ proc_31_continue_118:
 	mov r0, #0x00050000			; r0=rConstants[30] (5.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_31_continue_119
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_31_continue_119:
 	; BC_CONST [cb]
 	mov r0, #0x00420000			; r0=rConstants[75] (66.0000)
@@ -4988,9 +5695,16 @@ proc_31_continue_119:
 	mov r0, #0x00050000			; r0=rConstants[30] (5.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_31_continue_120
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_31_continue_120:
 	; BC_CONST [cb]
 	mov r0, #0x00420000			; r0=rConstants[75] (66.0000)
@@ -5025,9 +5739,16 @@ proc_31_continue_120:
 	mov r0, #0x000b0000			; r0=rConstants[40] (11.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_31_continue_121
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_31_continue_121:
 	; BC_CONST [c9]
 	mov r0, #0x00400000			; r0=rConstants[73] (64.0000)
@@ -5058,9 +5779,16 @@ proc_31_continue_121:
 	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_31_continue_122
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_31_continue_122:
 	; BC_CONST [cb]
 	mov r0, #0x00420000			; r0=rConstants[75] (66.0000)
@@ -5073,8 +5801,8 @@ proc_31_continue_122:
 	; BC_WSTATE [50]
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_END [02]
 	ldr r2, [r6, #-4]			; (r_FreeState)
 	str r2, [r5]				; first word of state block points to prev free state.
@@ -5097,9 +5825,16 @@ proc_32_start:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_32_continue_123
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_32_continue_123:
 	; BC_CONST [ac]
 	mov r0, #0x00100000			; r0=rConstants[44] (16.0000)
@@ -5189,8 +5924,8 @@ proc_32_continue_123:
 	; BC_WSTATE [50]
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_END [02]
 	ldr r2, [r6, #-4]			; (r_FreeState)
 	str r2, [r5]				; first word of state block points to prev free state.
@@ -5210,9 +5945,16 @@ proc_33_start:
 	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_33_continue_124
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_33_continue_124:
 	; BC_CONST [cb]
 	mov r0, #0x00420000			; r0=rConstants[75] (66.0000)
@@ -5231,9 +5973,16 @@ proc_33_continue_124:
 	mov r0, #0x00050000			; r0=rConstants[30] (5.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_33_continue_125
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_33_continue_125:
 	; BC_CONST [cb]
 	mov r0, #0x00420000			; r0=rConstants[75] (66.0000)
@@ -5292,9 +6041,16 @@ proc_33_continue_125:
 	mov r0, #0x000b0000			; r0=rConstants[40] (11.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_33_continue_126
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_33_continue_126:
 	; BC_CONST [cb]
 	mov r0, #0x00420000			; r0=rConstants[75] (66.0000)
@@ -5323,17 +6079,24 @@ proc_33_continue_126:
 	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_33_continue_127
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_33_continue_127:
 	; BC_PROC [07]
 	adr r0, proc_42_start		; r0=r_Procedures[42]
 	; BC_WSTATE [50]
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_END [02]
 	ldr r2, [r6, #-4]			; (r_FreeState)
 	str r2, [r5]				; first word of state block points to prev free state.
@@ -5360,9 +6123,16 @@ proc_34_start:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_34_continue_128
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_34_continue_128:
 	; BC_CONST [cb]
 	mov r0, #0x00420000			; r0=rConstants[75] (66.0000)
@@ -5460,9 +6230,16 @@ proc_35_start:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_35_continue_129
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_35_continue_129:
 	; BC_CONST [ac]
 	mov r0, #0x00100000			; r0=rConstants[44] (16.0000)
@@ -5558,8 +6335,8 @@ proc_35_continue_129:
 	; BC_WSTATE [50]
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_END [02]
 	ldr r2, [r6, #-4]			; (r_FreeState)
 	str r2, [r5]				; first word of state block points to prev free state.
@@ -5618,8 +6395,8 @@ proc_36_start:
 	; BC_WSTATE [50]
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_END [02]
 	ldr r2, [r6, #-4]			; (r_FreeState)
 	str r2, [r5]				; first word of state block points to prev free state.
@@ -5639,9 +6416,16 @@ proc_37_start:
 	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_37_continue_130
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_37_continue_130:
 	; BC_CONST [cb]
 	mov r0, #0x00420000			; r0=rConstants[75] (66.0000)
@@ -5660,9 +6444,16 @@ proc_37_continue_130:
 	mov r0, #0x00050000			; r0=rConstants[30] (5.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_37_continue_131
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_37_continue_131:
 	; BC_CONST [cb]
 	mov r0, #0x00420000			; r0=rConstants[75] (66.0000)
@@ -5693,9 +6484,16 @@ proc_37_continue_131:
 	mov r0, #0x000b0000			; r0=rConstants[40] (11.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_37_continue_132
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_37_continue_132:
 	; BC_CONST [cb]
 	mov r0, #0x00420000			; r0=rConstants[75] (66.0000)
@@ -5724,17 +6522,24 @@ proc_37_continue_132:
 	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_37_continue_133
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_37_continue_133:
 	; BC_PROC [07]
 	adr r0, proc_42_start		; r0=r_Procedures[42]
 	; BC_WSTATE [50]
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_END [02]
 	ldr r2, [r6, #-4]			; (r_FreeState)
 	str r2, [r5]				; first word of state block points to prev free state.
@@ -5757,9 +6562,16 @@ proc_38_start:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_38_continue_134
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_38_continue_134:
 	; BC_CONST [ac]
 	mov r0, #0x00100000			; r0=rConstants[44] (16.0000)
@@ -5895,8 +6707,8 @@ proc_38_continue_134:
 	; BC_WSTATE [50]
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_END [02]
 	ldr r2, [r6, #-4]			; (r_FreeState)
 	str r2, [r5]				; first word of state block points to prev free state.
@@ -5923,9 +6735,16 @@ proc_39_start:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_39_continue_135
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_39_continue_135:
 	; BC_CONST [be]
 	mov r0, #0x00270000			; r0=rConstants[62] (39.0000)
@@ -6004,9 +6823,16 @@ proc_40_start:
 	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_40_continue_136
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_40_continue_136:
 	; BC_CONST [cb]
 	mov r0, #0x00420000			; r0=rConstants[75] (66.0000)
@@ -6035,9 +6861,16 @@ proc_40_continue_136:
 	mov r0, #0x00050000			; r0=rConstants[30] (5.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_40_continue_137
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_40_continue_137:
 	; BC_CONST [cb]
 	mov r0, #0x00420000			; r0=rConstants[75] (66.0000)
@@ -6056,9 +6889,16 @@ proc_40_continue_137:
 	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_40_continue_138
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_40_continue_138:
 	; BC_CONST [cb]
 	mov r0, #0x00420000			; r0=rConstants[75] (66.0000)
@@ -6077,9 +6917,16 @@ proc_40_continue_138:
 	mov r0, #0x00050000			; r0=rConstants[30] (5.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_40_continue_139
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_40_continue_139:
 	; BC_CONST [cb]
 	mov r0, #0x00420000			; r0=rConstants[75] (66.0000)
@@ -6098,9 +6945,16 @@ proc_40_continue_139:
 	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_40_continue_140
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_40_continue_140:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
@@ -6129,9 +6983,16 @@ proc_40_continue_140:
 	mov r0, #0x00050000			; r0=rConstants[30] (5.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_40_continue_141
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_40_continue_141:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
@@ -6182,9 +7043,16 @@ proc_40_continue_141:
 	mov r0, #0x000b0000			; r0=rConstants[40] (11.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_40_continue_142
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_40_continue_142:
 	; BC_PROC [07]
 	adr r0, proc_42_start		; r0=r_Procedures[42]
@@ -6197,9 +7065,16 @@ proc_40_continue_142:
 	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_40_continue_143
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_40_continue_143:
 	; BC_CONST [cb]
 	mov r0, #0x00420000			; r0=rConstants[75] (66.0000)
@@ -6214,8 +7089,8 @@ proc_40_continue_143:
 	; BC_POP [08]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_END [02]
 	ldr r2, [r6, #-4]			; (r_FreeState)
 	str r2, [r5]				; first word of state block points to prev free state.
@@ -6235,9 +7110,16 @@ proc_41_start:
 	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_41_continue_144
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_41_continue_144:
 	; BC_CONST [cb]
 	mov r0, #0x00420000			; r0=rConstants[75] (66.0000)
@@ -6256,9 +7138,16 @@ proc_41_continue_144:
 	mov r0, #0x00050000			; r0=rConstants[30] (5.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_41_continue_145
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_41_continue_145:
 	; BC_CONST [c9]
 	mov r0, #0x00400000			; r0=rConstants[73] (64.0000)
@@ -6301,9 +7190,16 @@ proc_41_continue_145:
 	mov r0, #0x000b0000			; r0=rConstants[40] (11.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_41_continue_146
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_41_continue_146:
 	; BC_CONST [cb]
 	mov r0, #0x00420000			; r0=rConstants[75] (66.0000)
@@ -6332,9 +7228,16 @@ proc_41_continue_146:
 	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_41_continue_147
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_41_continue_147:
 	; BC_CONST [c9]
 	mov r0, #0x00400000			; r0=rConstants[73] (64.0000)
@@ -6351,8 +7254,8 @@ proc_41_continue_147:
 	; BC_WSTATE [50]
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_END [02]
 	ldr r2, [r6, #-4]			; (r_FreeState)
 	str r2, [r5]				; first word of state block points to prev free state.
@@ -6371,9 +7274,16 @@ proc_42_start:
 	mov r0, #0x00030000			; r0=rConstants[25] (3.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_42_continue_148
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_42_continue_148:
 	; BC_CONST [80]
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -6412,9 +7322,16 @@ proc_43_start:
 	mov r0, #0x00010000			; r0=rConstants[15] (1.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_43_continue_150
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_43_continue_150:
 	; BC_PROC [07]
 	adr r0, proc_44_start		; r0=r_Procedures[44]
@@ -6452,8 +7369,8 @@ proc_43_continue_150:
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_ELSE [01]
 	b proc_43_target_151
 proc_43_target_149:
@@ -6518,9 +7435,16 @@ proc_45_start:
 	mov r0, #0x00010000			; r0=rConstants[15] (1.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_45_continue_153
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_45_continue_153:
 	; BC_PROC [07]
 	adr r0, proc_45_start		; r0=r_Procedures[45]
@@ -6551,8 +7475,8 @@ proc_45_continue_153:
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_ELSE [01]
 	b proc_45_target_154
 proc_45_target_152:
@@ -6597,9 +7521,16 @@ proc_46_start:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_46_continue_155
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_46_continue_155:
 	; BC_PROC [07]
 	adr r0, proc_48_start		; r0=r_Procedures[48]
@@ -6622,9 +7553,16 @@ proc_46_continue_155:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_46_continue_156
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_46_continue_156:
 	; BC_PROC [07]
 	adr r0, proc_49_start		; r0=r_Procedures[49]
@@ -6647,9 +7585,16 @@ proc_46_continue_156:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_46_continue_157
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_46_continue_157:
 	; BC_PROC [07]
 	adr r0, proc_50_start		; r0=r_Procedures[50]
@@ -6672,9 +7617,16 @@ proc_46_continue_157:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_46_continue_158
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_46_continue_158:
 	; BC_END [02]
 	ldr r2, [r6, #-4]			; (r_FreeState)
@@ -6698,9 +7650,16 @@ proc_47_start:
 	mov r0, #0x002c0000			; r0=rConstants[65] (44.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_47_continue_159
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_47_continue_159:
 	; BC_CONST [99]
 	mov r0, #0x00030000			; r0=rConstants[25] (3.0000)
@@ -6716,9 +7675,16 @@ proc_47_continue_159:
 	mov r0, #0x00160000			; r0=rConstants[50] (22.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_47_continue_160
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_47_continue_160:
 	; BC_CONST [95]
 	mov r0, #0x00020000			; r0=rConstants[21] (2.0000)
@@ -6734,9 +7700,16 @@ proc_47_continue_160:
 	mov r0, #0x00160000			; r0=rConstants[50] (22.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_47_continue_161
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_47_continue_161:
 	; BC_CONST [8f]
 	mov r0, #0x00010000			; r0=rConstants[15] (1.0000)
@@ -6752,9 +7725,16 @@ proc_47_continue_161:
 	mov r0, #0x002c0000			; r0=rConstants[65] (44.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_47_continue_162
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_47_continue_162:
 	; BC_CONST [99]
 	mov r0, #0x00030000			; r0=rConstants[25] (3.0000)
@@ -6788,9 +7768,16 @@ proc_48_start:
 	mov r0, #0x002c0000			; r0=rConstants[65] (44.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_48_continue_163
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_48_continue_163:
 	; BC_CONST [8f]
 	mov r0, #0x00010000			; r0=rConstants[15] (1.0000)
@@ -6806,9 +7793,16 @@ proc_48_continue_163:
 	mov r0, #0x00160000			; r0=rConstants[50] (22.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_48_continue_164
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_48_continue_164:
 	; BC_CONST [80]
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -6824,9 +7818,16 @@ proc_48_continue_164:
 	mov r0, #0x00160000			; r0=rConstants[50] (22.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_48_continue_165
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_48_continue_165:
 	; BC_CONST [95]
 	mov r0, #0x00020000			; r0=rConstants[21] (2.0000)
@@ -6842,9 +7843,16 @@ proc_48_continue_165:
 	mov r0, #0x002c0000			; r0=rConstants[65] (44.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_48_continue_166
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_48_continue_166:
 	; BC_CONST [99]
 	mov r0, #0x00030000			; r0=rConstants[25] (3.0000)
@@ -6878,9 +7886,16 @@ proc_49_start:
 	mov r0, #0x002c0000			; r0=rConstants[65] (44.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_49_continue_167
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_49_continue_167:
 	; BC_CONST [99]
 	mov r0, #0x00030000			; r0=rConstants[25] (3.0000)
@@ -6896,9 +7911,16 @@ proc_49_continue_167:
 	mov r0, #0x00160000			; r0=rConstants[50] (22.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_49_continue_168
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_49_continue_168:
 	; BC_CONST [80]
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -6914,9 +7936,16 @@ proc_49_continue_168:
 	mov r0, #0x00160000			; r0=rConstants[50] (22.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_49_continue_169
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_49_continue_169:
 	; BC_CONST [8f]
 	mov r0, #0x00010000			; r0=rConstants[15] (1.0000)
@@ -6932,9 +7961,16 @@ proc_49_continue_169:
 	mov r0, #0x002c0000			; r0=rConstants[65] (44.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_49_continue_170
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_49_continue_170:
 	; BC_CONST [95]
 	mov r0, #0x00020000			; r0=rConstants[21] (2.0000)
@@ -6968,9 +8004,16 @@ proc_50_start:
 	mov r0, #0x00160000			; r0=rConstants[50] (22.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_50_continue_171
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_50_continue_171:
 	; BC_CONST [99]
 	mov r0, #0x00030000			; r0=rConstants[25] (3.0000)
@@ -6986,9 +8029,16 @@ proc_50_continue_171:
 	mov r0, #0x002c0000			; r0=rConstants[65] (44.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_50_continue_172
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_50_continue_172:
 	; BC_CONST [8f]
 	mov r0, #0x00010000			; r0=rConstants[15] (1.0000)
@@ -7004,9 +8054,16 @@ proc_50_continue_172:
 	mov r0, #0x00160000			; r0=rConstants[50] (22.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_50_continue_173
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_50_continue_173:
 	; BC_CONST [80]
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -7304,8 +8361,8 @@ proc_52_start:
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_DONE [00]
 proc_52_target_174:
 	; BC_END [02]
@@ -7347,9 +8404,16 @@ proc_53_target_176:
 	mov r0, #0x00010000			; r0=rConstants[15] (1.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_53_continue_177
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_53_continue_177:
 	; BC_RLOCAL [62]
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
@@ -7391,8 +8455,8 @@ proc_53_continue_177:
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_ELSE [01]
 	b proc_53_target_179
 proc_53_target_178:
@@ -7447,8 +8511,8 @@ proc_53_target_178:
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_DONE [00]
 proc_53_target_179:
 	; BC_DONE [00]
@@ -7496,9 +8560,16 @@ proc_54_start:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_54_continue_180
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_54_continue_180:
 	; BC_PROC [07]
 	adr r0, proc_56_start		; r0=r_Procedures[56]
@@ -7512,8 +8583,8 @@ proc_54_continue_180:
 	; BC_WSTATE [50]
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_END [02]
 	ldr r2, [r6, #-4]			; (r_FreeState)
 	str r2, [r5]				; first word of state block points to prev free state.
@@ -7771,9 +8842,16 @@ proc_57_start:
 	mov r0, #0x00160000			; r0=rConstants[50] (22.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_57_continue_183
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_57_continue_183:
 	; BC_CONST [c9]
 	mov r0, #0x00400000			; r0=rConstants[73] (64.0000)
@@ -7832,9 +8910,16 @@ proc_57_continue_183:
 	mov r0, #0x00010000			; r0=rConstants[15] (1.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_57_continue_184
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_57_continue_184:
 	; BC_CONST [8f]
 	mov r0, #0x00010000			; r0=rConstants[15] (1.0000)
@@ -7878,9 +8963,16 @@ proc_57_continue_184:
 	mov r0, #0x00150000			; r0=rConstants[49] (21.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_57_continue_185
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_57_continue_185:
 	; BC_ELSE [01]
 	b proc_57_target_186
@@ -7921,9 +9013,16 @@ proc_57_target_182:
 	mov r0, #0x00160000			; r0=rConstants[50] (22.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_57_continue_187
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_57_continue_187:
 	; BC_CONST [c9]
 	mov r0, #0x00400000			; r0=rConstants[73] (64.0000)
@@ -7998,8 +9097,8 @@ proc_57_target_186:
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_DONE [00]
 proc_57_target_181:
 	; BC_END [02]
@@ -8059,9 +9158,16 @@ proc_58_start:
 	mov r0, #0x00160000			; r0=rConstants[50] (22.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_58_continue_190
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_58_continue_190:
 	; BC_CONST [c9]
 	mov r0, #0x00400000			; r0=rConstants[73] (64.0000)
@@ -8118,9 +9224,16 @@ proc_58_continue_190:
 	mov r0, #0x00010000			; r0=rConstants[15] (1.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_58_continue_191
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_58_continue_191:
 	; BC_CONST [8f]
 	mov r0, #0x00010000			; r0=rConstants[15] (1.0000)
@@ -8164,9 +9277,16 @@ proc_58_continue_191:
 	mov r0, #0x00150000			; r0=rConstants[49] (21.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_58_continue_192
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_58_continue_192:
 	; BC_ELSE [01]
 	b proc_58_target_193
@@ -8205,9 +9325,16 @@ proc_58_target_189:
 	mov r0, #0x00160000			; r0=rConstants[50] (22.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_58_continue_194
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_58_continue_194:
 	; BC_CONST [c9]
 	mov r0, #0x00400000			; r0=rConstants[73] (64.0000)
@@ -8280,8 +9407,8 @@ proc_58_target_193:
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_DONE [00]
 proc_58_target_188:
 	; BC_END [02]
@@ -8501,9 +9628,16 @@ proc_61_start:
 	mov r0, #0x00160000			; r0=rConstants[50] (22.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_61_continue_196
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_61_continue_196:
 	; BC_CONST [8f]
 	mov r0, #0x00010000			; r0=rConstants[15] (1.0000)
@@ -8612,9 +9746,16 @@ proc_61_target_198:
 	mov r0, #0x00160000			; r0=rConstants[50] (22.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_61_continue_199
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_61_continue_199:
 	; BC_CONST [c9]
 	mov r0, #0x00400000			; r0=rConstants[73] (64.0000)
@@ -8645,8 +9786,8 @@ proc_61_continue_199:
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_DONE [00]
 proc_61_target_195:
 	; BC_END [02]
@@ -8670,9 +9811,16 @@ proc_62_start:
 	mov r0, #0x00160000			; r0=rConstants[50] (22.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_62_continue_201
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_62_continue_201:
 	; BC_CONST [8f]
 	mov r0, #0x00010000			; r0=rConstants[15] (1.0000)
@@ -8781,9 +9929,16 @@ proc_62_target_203:
 	mov r0, #0x00160000			; r0=rConstants[50] (22.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_62_continue_204
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_62_continue_204:
 	; BC_CONST [c9]
 	mov r0, #0x00400000			; r0=rConstants[73] (64.0000)
@@ -8812,8 +9967,8 @@ proc_62_continue_204:
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_DONE [00]
 proc_62_target_200:
 	; BC_END [02]
@@ -8845,9 +10000,16 @@ proc_63_start:
 	mov r0, #0x00010000			; r0=rConstants[15] (1.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_63_continue_206
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_63_continue_206:
 	; BC_PROC [07]
 	adr r0, proc_63_start		; r0=r_Procedures[63]
@@ -8866,8 +10028,8 @@ proc_63_continue_206:
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_DONE [00]
 proc_63_target_205:
 	; BC_END [02]
@@ -8899,9 +10061,16 @@ proc_64_start:
 	mov r0, #0x00010000			; r0=rConstants[15] (1.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_64_continue_208
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_64_continue_208:
 	; BC_PROC [07]
 	adr r0, proc_64_start		; r0=r_Procedures[64]
@@ -8920,8 +10089,8 @@ proc_64_continue_208:
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_DONE [00]
 proc_64_target_207:
 	; BC_END [02]
@@ -8964,9 +10133,16 @@ proc_65_start:
 	mov r0, #0x00010000			; r0=rConstants[15] (1.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_65_continue_210
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_65_continue_210:
 	; BC_PROC [07]
 	adr r0, proc_66_start		; r0=r_Procedures[66]
@@ -8992,8 +10168,8 @@ proc_65_continue_210:
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_DONE [00]
 proc_65_target_209:
 	; BC_END [02]
@@ -9148,8 +10324,8 @@ proc_68_start:
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_DONE [00]
 proc_68_target_211:
 	; BC_END [02]
@@ -9222,8 +10398,8 @@ proc_69_start:
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_DONE [00]
 proc_69_target_212:
 	; BC_END [02]
@@ -9396,9 +10572,16 @@ proc_70_start:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_70_continue_213
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_70_continue_213:
 	; BC_CONST [95]
 	mov r0, #0x00020000			; r0=rConstants[21] (2.0000)
@@ -9567,9 +10750,16 @@ proc_71_start:
 	mov r0, #0x00010000			; r0=rConstants[15] (1.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_71_continue_215
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_71_continue_215:
 	; BC_CONST [92]
 	ldr r0, [r4, #18*4]			; r0=rConstants[18]=0x0001745d (1.4545)
@@ -9598,8 +10788,8 @@ proc_71_continue_215:
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_DONE [00]
 proc_71_target_214:
 	; BC_END [02]
@@ -9635,9 +10825,16 @@ proc_72_start:
 	mov r0, #0x00010000			; r0=rConstants[15] (1.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_72_continue_217
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_72_continue_217:
 	; BC_CONST [92]
 	ldr r0, [r4, #18*4]			; r0=rConstants[18]=0x0001745d (1.4545)
@@ -9668,8 +10865,8 @@ proc_72_continue_217:
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_DONE [00]
 proc_72_target_216:
 	; BC_END [02]
@@ -9772,8 +10969,8 @@ proc_73_start:
 	; BC_POP [08]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_DONE [00]
 proc_73_target_218:
 	; BC_END [02]
@@ -9840,9 +11037,16 @@ proc_74_start:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_74_continue_219
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_74_continue_219:
 	; BC_CONST [d0]
 	mov r0, #0x00600000			; r0=rConstants[80] (96.0000)
@@ -9906,9 +11110,16 @@ proc_74_continue_219:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_74_continue_220
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_74_continue_220:
 	; BC_CONST [80]
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -9970,9 +11181,16 @@ proc_74_continue_220:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_74_continue_221
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_74_continue_221:
 	; BC_CONST [d0]
 	mov r0, #0x00600000			; r0=rConstants[80] (96.0000)
@@ -10000,9 +11218,16 @@ proc_74_continue_221:
 	mov r0, #0x00580000			; r0=rConstants[79] (88.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_74_continue_222
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_74_continue_222:
 	; BC_CONST [80]
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -10029,9 +11254,16 @@ proc_74_continue_222:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_74_continue_223
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_74_continue_223:
 	; BC_CONST [99]
 	mov r0, #0x00030000			; r0=rConstants[25] (3.0000)
@@ -10093,8 +11325,8 @@ proc_74_continue_223:
 	; BC_WSTATE [50]
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_END [02]
 	ldr r2, [r6, #-4]			; (r_FreeState)
 	str r2, [r5]				; first word of state block points to prev free state.
@@ -10117,9 +11349,16 @@ proc_75_start:
 	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_75_continue_224
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_75_continue_224:
 	; BC_CONST [bc]
 	mov r0, #0x00240000			; r0=rConstants[60] (36.0000)
@@ -10141,9 +11380,16 @@ proc_75_continue_224:
 	mov r0, #0x00050000			; r0=rConstants[30] (5.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_75_continue_225
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_75_continue_225:
 	; BC_CONST [bc]
 	mov r0, #0x00240000			; r0=rConstants[60] (36.0000)
@@ -10165,9 +11411,16 @@ proc_75_continue_225:
 	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_75_continue_226
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_75_continue_226:
 	; BC_CONST [bc]
 	mov r0, #0x00240000			; r0=rConstants[60] (36.0000)
@@ -10299,8 +11552,8 @@ proc_77_target_229:
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_DONE [00]
 proc_77_target_227:
 	; BC_END [02]
@@ -10348,9 +11601,16 @@ proc_78_start:
 	mov r0, #0x00010000			; r0=rConstants[15] (1.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_78_continue_231
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_78_continue_231:
 	; BC_PROC [07]
 	adr r0, proc_78_start		; r0=r_Procedures[78]
@@ -10385,8 +11645,8 @@ proc_78_continue_231:
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_ELSE [01]
 	b proc_78_target_232
 proc_78_target_230:
@@ -10433,9 +11693,16 @@ proc_79_start:
 	mov r0, #0x00010000			; r0=rConstants[15] (1.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_79_continue_234
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_79_continue_234:
 	; BC_PROC [07]
 	adr r0, proc_79_start		; r0=r_Procedures[79]
@@ -10470,8 +11737,8 @@ proc_79_continue_234:
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_ELSE [01]
 	b proc_79_target_235
 proc_79_target_233:
@@ -10533,9 +11800,16 @@ proc_80_start:
 	mov r0, #0x00100000			; r0=rConstants[44] (16.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_80_continue_236
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_80_continue_236:
 	; BC_CONST [c9]
 	mov r0, #0x00400000			; r0=rConstants[73] (64.0000)
@@ -10577,9 +11851,16 @@ proc_80_continue_236:
 	mov r0, #0x000f0000			; r0=rConstants[43] (15.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_80_continue_237
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_80_continue_237:
 	; BC_CONST [c9]
 	mov r0, #0x00400000			; r0=rConstants[73] (64.0000)
@@ -10619,9 +11900,16 @@ proc_80_continue_237:
 	mov r0, #0x000f0000			; r0=rConstants[43] (15.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_80_continue_238
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_80_continue_238:
 	; BC_CONST [c9]
 	mov r0, #0x00400000			; r0=rConstants[73] (64.0000)
@@ -10680,9 +11968,16 @@ proc_81_start:
 	mov r0, #0x00010000			; r0=rConstants[15] (1.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_81_continue_240
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_81_continue_240:
 	; BC_CONST [b0]
 	mov r0, #0x00140000			; r0=rConstants[48] (20.0000)
@@ -10707,8 +12002,8 @@ proc_81_continue_240:
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_DONE [00]
 proc_81_target_239:
 	; BC_END [02]
@@ -10915,8 +12210,8 @@ proc_82_start:
 	; BC_POP [08]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_END [02]
 	ldr r2, [r6, #-4]			; (r_FreeState)
 	str r2, [r5]				; first word of state block points to prev free state.
@@ -11121,8 +12416,8 @@ proc_83_start:
 	; BC_POP [08]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_END [02]
 	ldr r2, [r6, #-4]			; (r_FreeState)
 	str r2, [r5]				; first word of state block points to prev free state.
@@ -11156,9 +12451,16 @@ proc_84_start:
 	mov r0, #0x00010000			; r0=rConstants[15] (1.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_84_continue_242
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_84_continue_242:
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
@@ -11187,8 +12489,8 @@ proc_84_continue_242:
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_DONE [00]
 proc_84_target_241:
 	; BC_END [02]
@@ -11290,8 +12592,8 @@ proc_85_start:
 	; BC_POP [08]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_DONE [00]
 proc_85_target_243:
 	; BC_END [02]
@@ -11327,9 +12629,16 @@ proc_86_start:
 	mov r0, #0x00010000			; r0=rConstants[15] (1.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_86_continue_245
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_86_continue_245:
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
@@ -11358,8 +12667,8 @@ proc_86_continue_245:
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_DONE [00]
 proc_86_target_244:
 	; BC_END [02]
@@ -11457,8 +12766,8 @@ proc_87_start:
 	; BC_POP [08]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_DONE [00]
 proc_87_target_246:
 	; BC_END [02]
@@ -11490,9 +12799,16 @@ proc_88_start:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_88_continue_247
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_88_continue_247:
 	; BC_PROC [07]
 	adr r0, proc_95_start		; r0=r_Procedures[95]
@@ -11515,17 +12831,24 @@ proc_88_continue_247:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_88_continue_248
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_88_continue_248:
 	; BC_PROC [07]
 	adr r0, proc_93_start		; r0=r_Procedures[93]
 	; BC_WSTATE [50]
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_END [02]
 	ldr r2, [r6, #-4]			; (r_FreeState)
 	str r2, [r5]				; first word of state block points to prev free state.
@@ -11568,9 +12891,16 @@ proc_89_start:
 	mov r0, #0x00580000			; r0=rConstants[79] (88.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_89_continue_249
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_89_continue_249:
 	; BC_CONST [95]
 	mov r0, #0x00020000			; r0=rConstants[21] (2.0000)
@@ -11596,9 +12926,16 @@ proc_89_continue_249:
 	mov r0, #0x00580000			; r0=rConstants[79] (88.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_89_continue_250
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_89_continue_250:
 	; BC_CONST [99]
 	mov r0, #0x00030000			; r0=rConstants[25] (3.0000)
@@ -11624,9 +12961,16 @@ proc_89_continue_250:
 	mov r0, #0x00580000			; r0=rConstants[79] (88.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_89_continue_251
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_89_continue_251:
 	; BC_CONST [8f]
 	mov r0, #0x00010000			; r0=rConstants[15] (1.0000)
@@ -11652,9 +12996,16 @@ proc_89_continue_251:
 	mov r0, #0x00580000			; r0=rConstants[79] (88.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_89_continue_252
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_89_continue_252:
 	; BC_CONST [95]
 	mov r0, #0x00020000			; r0=rConstants[21] (2.0000)
@@ -11680,9 +13031,16 @@ proc_89_continue_252:
 	mov r0, #0x00580000			; r0=rConstants[79] (88.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_89_continue_253
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_89_continue_253:
 	; BC_CONST [99]
 	mov r0, #0x00030000			; r0=rConstants[25] (3.0000)
@@ -11708,9 +13066,16 @@ proc_89_continue_253:
 	mov r0, #0x00580000			; r0=rConstants[79] (88.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_89_continue_254
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_89_continue_254:
 	; BC_CONST [80]
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -11796,9 +13161,16 @@ proc_90_start:
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
 	; BC_WAIT [0a]
 	adr r1, proc_90_continue_256
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_90_continue_256:
 	; BC_PROC [07]
 	adr r0, proc_90_start		; r0=r_Procedures[90]
@@ -11817,8 +13189,8 @@ proc_90_continue_256:
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_ELSE [01]
 	b proc_90_target_257
 proc_90_target_255:
@@ -11899,9 +13271,16 @@ proc_91_start:
 	mov r0, #0x00010000			; r0=rConstants[15] (1.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_91_continue_259
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_91_continue_259:
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
@@ -11926,8 +13305,8 @@ proc_91_continue_259:
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_DONE [00]
 proc_91_target_258:
 	; BC_END [02]
@@ -11962,9 +13341,16 @@ proc_92_start:
 	mov r0, #0x00020000			; r0=rConstants[21] (2.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_92_continue_261
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_92_continue_261:
 	; BC_PROC [07]
 	adr r0, proc_92_start		; r0=r_Procedures[92]
@@ -11983,8 +13369,8 @@ proc_92_continue_261:
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_DONE [00]
 proc_92_target_260:
 	; BC_END [02]
@@ -12024,9 +13410,16 @@ proc_93_start:
 	mov r0, #0x00580000			; r0=rConstants[79] (88.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_93_continue_262
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_93_continue_262:
 	; BC_CONST [c1]
 	mov r0, #0x002c0000			; r0=rConstants[65] (44.0000)
@@ -12095,9 +13488,16 @@ proc_93_continue_262:
 	mov r0, #0x00580000			; r0=rConstants[79] (88.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_93_continue_263
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_93_continue_263:
 	; BC_CONST [8f]
 	mov r0, #0x00010000			; r0=rConstants[15] (1.0000)
@@ -12128,9 +13528,16 @@ proc_93_continue_263:
 	mov r0, #0x002c0000			; r0=rConstants[65] (44.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_93_continue_264
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_93_continue_264:
 	; BC_CONST [99]
 	mov r0, #0x00030000			; r0=rConstants[25] (3.0000)
@@ -12141,8 +13548,8 @@ proc_93_continue_264:
 	; BC_WSTATE [50]
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_END [02]
 	ldr r2, [r6, #-4]			; (r_FreeState)
 	str r2, [r5]				; first word of state block points to prev free state.
@@ -12270,9 +13677,16 @@ proc_94_start:
 	mov r0, #0x000b0000			; r0=rConstants[40] (11.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_94_continue_265
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_94_continue_265:
 	; BC_CONST [9e]
 	mov r0, #0x00050000			; r0=rConstants[30] (5.0000)
@@ -12427,9 +13841,16 @@ proc_95_start:
 	mov r0, #0x00580000			; r0=rConstants[79] (88.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_95_continue_266
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_95_continue_266:
 	; BC_CONST [95]
 	mov r0, #0x00020000			; r0=rConstants[21] (2.0000)
@@ -12452,9 +13873,16 @@ proc_95_continue_266:
 	mov r0, #0x00580000			; r0=rConstants[79] (88.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_95_continue_267
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_95_continue_267:
 	; BC_CONST [99]
 	mov r0, #0x00030000			; r0=rConstants[25] (3.0000)
@@ -12525,9 +13953,16 @@ proc_95_continue_267:
 	mov r0, #0x002c0000			; r0=rConstants[65] (44.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_95_continue_268
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_95_continue_268:
 	; BC_CONST [95]
 	mov r0, #0x00020000			; r0=rConstants[21] (2.0000)
@@ -12550,9 +13985,16 @@ proc_95_continue_268:
 	mov r0, #0x002c0000			; r0=rConstants[65] (44.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_95_continue_269
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_95_continue_269:
 	; BC_END [02]
 	ldr r2, [r6, #-4]			; (r_FreeState)
@@ -12587,9 +14029,16 @@ proc_96_start:
 	mov r0, #0x00080000			; r0=rConstants[37] (8.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_96_continue_271
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_96_continue_271:
 	; BC_PROC [07]
 	adr r0, proc_96_start		; r0=r_Procedures[96]
@@ -12608,8 +14057,8 @@ proc_96_continue_271:
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_DONE [00]
 proc_96_target_270:
 	; BC_END [02]
@@ -12635,8 +14084,8 @@ proc_97_start:
 	; BC_WSTATE [50]
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_END [02]
 	ldr r2, [r6, #-4]			; (r_FreeState)
 	str r2, [r5]				; first word of state block points to prev free state.
@@ -12661,9 +14110,16 @@ proc_98_start:
 	mov r0, #0x00010000			; r0=rConstants[15] (1.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_98_continue_273
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_98_continue_273:
 	; BC_CONST [c1]
 	mov r0, #0x002c0000			; r0=rConstants[65] (44.0000)
@@ -12688,8 +14144,8 @@ proc_98_continue_273:
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_DONE [00]
 proc_98_target_272:
 	; BC_END [02]
@@ -12714,9 +14170,16 @@ proc_99_start:
 	mov r0, #0x00160000			; r0=rConstants[50] (22.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_99_continue_274
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_99_continue_274:
 	; BC_CONST [80]
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -12812,9 +14275,16 @@ proc_100_target_277:
 	mov r0, #0x00020000			; r0=rConstants[21] (2.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_100_continue_278
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_100_continue_278:
 	; BC_PROC [07]
 	adr r0, proc_100_start		; r0=r_Procedures[100]
@@ -12833,8 +14303,8 @@ proc_100_continue_278:
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_DONE [00]
 proc_100_target_275:
 	; BC_END [02]
@@ -12905,9 +14375,16 @@ proc_101_start:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_101_continue_279
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_101_continue_279:
 	; BC_CONST [c9]
 	mov r0, #0x00400000			; r0=rConstants[73] (64.0000)
@@ -12933,9 +14410,16 @@ proc_101_continue_279:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_101_continue_280
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_101_continue_280:
 	; BC_CONST [a5]
 	mov r0, #0x00080000			; r0=rConstants[37] (8.0000)
@@ -12951,9 +14435,16 @@ proc_101_continue_280:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_101_continue_281
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_101_continue_281:
 	; BC_CONST [c9]
 	mov r0, #0x00400000			; r0=rConstants[73] (64.0000)
@@ -12979,9 +14470,16 @@ proc_101_continue_281:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_101_continue_282
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_101_continue_282:
 	; BC_PROC [07]
 	adr r0, proc_102_start		; r0=r_Procedures[102]
@@ -13052,9 +14550,16 @@ proc_101_continue_282:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_101_continue_283
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_101_continue_283:
 	; BC_CONST [c9]
 	mov r0, #0x00400000			; r0=rConstants[73] (64.0000)
@@ -13090,9 +14595,16 @@ proc_101_continue_283:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_101_continue_284
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_101_continue_284:
 	; BC_CONST [92]
 	ldr r0, [r4, #18*4]			; r0=rConstants[18]=0x0001745d (1.4545)
@@ -13120,9 +14632,16 @@ proc_101_continue_284:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_101_continue_285
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_101_continue_285:
 	; BC_CONST [c3]
 	mov r0, #0x00300000			; r0=rConstants[67] (48.0000)
@@ -13164,9 +14683,16 @@ proc_101_continue_285:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_101_continue_286
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_101_continue_286:
 	; BC_CONST [c3]
 	mov r0, #0x00300000			; r0=rConstants[67] (48.0000)
@@ -13238,9 +14764,16 @@ proc_102_start:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_102_continue_287
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_102_continue_287:
 	; BC_CONST [c9]
 	mov r0, #0x00400000			; r0=rConstants[73] (64.0000)
@@ -13282,9 +14815,16 @@ proc_102_continue_287:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_102_continue_288
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_102_continue_288:
 	; BC_CONST [b9]
 	mov r0, #0x00200000			; r0=rConstants[57] (32.0000)
@@ -13336,9 +14876,16 @@ proc_102_continue_288:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_102_continue_289
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_102_continue_289:
 	; BC_CONST [9c]
 	mov r0, #0x00040000			; r0=rConstants[28] (4.0000)
@@ -13385,9 +14932,16 @@ proc_103_start:
 	mov r0, #0x00160000			; r0=rConstants[50] (22.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_103_continue_291
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_103_continue_291:
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
@@ -13416,8 +14970,8 @@ proc_103_continue_291:
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_DONE [00]
 proc_103_target_290:
 	; BC_END [02]
@@ -13490,9 +15044,16 @@ proc_105_start:
 	mov r0, #0x00020000			; r0=rConstants[21] (2.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_105_continue_293
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_105_continue_293:
 	; BC_PROC [07]
 	adr r0, proc_105_start		; r0=r_Procedures[105]
@@ -13511,8 +15072,8 @@ proc_105_continue_293:
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_DONE [00]
 proc_105_target_292:
 	; BC_END [02]
@@ -13547,9 +15108,16 @@ proc_106_start:
 	mov r0, #0x00018000			; r0=rConstants[19] (1.5000)
 	; BC_WAIT [0a]
 	adr r1, proc_106_continue_295
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_106_continue_295:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
@@ -13578,8 +15146,8 @@ proc_106_continue_295:
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_DONE [00]
 proc_106_target_294:
 	; BC_END [02]
@@ -13640,9 +15208,16 @@ proc_108_start:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_108_continue_296
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_108_continue_296:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
@@ -13678,9 +15253,16 @@ proc_108_continue_296:
 	mov r0, #0x00160000			; r0=rConstants[50] (22.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_108_continue_297
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_108_continue_297:
 	; BC_CONST [c9]
 	mov r0, #0x00400000			; r0=rConstants[73] (64.0000)
@@ -13716,8 +15298,8 @@ proc_108_continue_297:
 	; BC_POP [08]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_END [02]
 	ldr r2, [r6, #-4]			; (r_FreeState)
 	str r2, [r5]				; first word of state block points to prev free state.
@@ -13748,9 +15330,16 @@ proc_109_start:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_109_continue_298
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_109_continue_298:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
@@ -13786,9 +15375,16 @@ proc_109_continue_298:
 	mov r0, #0x00160000			; r0=rConstants[50] (22.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_109_continue_299
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_109_continue_299:
 	; BC_CONST [c9]
 	mov r0, #0x00400000			; r0=rConstants[73] (64.0000)
@@ -13824,8 +15420,8 @@ proc_109_continue_299:
 	; BC_POP [08]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_END [02]
 	ldr r2, [r6, #-4]			; (r_FreeState)
 	str r2, [r5]				; first word of state block points to prev free state.
@@ -13866,9 +15462,16 @@ proc_110_start:
 	mov r0, #0x000b0000			; r0=rConstants[40] (11.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_110_continue_300
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_110_continue_300:
 	; BC_CONST [80]
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -13926,9 +15529,16 @@ proc_111_start:
 	mov r0, #0x000b0000			; r0=rConstants[40] (11.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_111_continue_301
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_111_continue_301:
 	; BC_CONST [80]
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -14011,9 +15621,16 @@ proc_112_start:
 	mov r0, #0x00010000			; r0=rConstants[15] (1.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_112_continue_303
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_112_continue_303:
 	; BC_PROC [07]
 	adr r0, proc_112_start		; r0=r_Procedures[112]
@@ -14032,8 +15649,8 @@ proc_112_continue_303:
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_DONE [00]
 proc_112_target_302:
 	; BC_END [02]
@@ -14099,9 +15716,16 @@ proc_113_start:
 	mov r0, #0x00010000			; r0=rConstants[15] (1.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_113_continue_305
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_113_continue_305:
 	; BC_PROC [07]
 	adr r0, proc_113_start		; r0=r_Procedures[113]
@@ -14120,8 +15744,8 @@ proc_113_continue_305:
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_DONE [00]
 proc_113_target_304:
 	; BC_END [02]
@@ -14149,9 +15773,16 @@ proc_114_start:
 	mov r0, #0x000b0000			; r0=rConstants[40] (11.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_114_continue_306
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_114_continue_306:
 	; BC_CONST [80]
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -14221,9 +15852,16 @@ proc_115_start:
 	mov r0, #0x00010000			; r0=rConstants[15] (1.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_115_continue_308
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_115_continue_308:
 	; BC_PROC [07]
 	adr r0, proc_115_start		; r0=r_Procedures[115]
@@ -14242,8 +15880,8 @@ proc_115_continue_308:
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_DONE [00]
 proc_115_target_307:
 	; BC_END [02]
@@ -14296,25 +15934,46 @@ proc_117_start:
 	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_117_continue_309
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_117_continue_309:
 	; BC_CONST [9e]
 	mov r0, #0x00050000			; r0=rConstants[30] (5.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_117_continue_310
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_117_continue_310:
 	; BC_CONST [a1]
 	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_117_continue_311
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_117_continue_311:
 	; BC_PLOT [06]
 	add r2, r5, #4
@@ -14336,9 +15995,16 @@ proc_117_continue_311:
 	mov r0, #0x00050000			; r0=rConstants[30] (5.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_117_continue_312
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_117_continue_312:
 	; BC_PLOT [06]
 	add r2, r5, #4
@@ -14360,9 +16026,16 @@ proc_117_continue_312:
 	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_117_continue_313
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_117_continue_313:
 	; BC_PLOT [06]
 	add r2, r5, #4
@@ -14384,9 +16057,16 @@ proc_117_continue_313:
 	mov r0, #0x00050000			; r0=rConstants[30] (5.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_117_continue_314
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_117_continue_314:
 	; BC_PLOT [06]
 	add r2, r5, #4
@@ -14408,9 +16088,16 @@ proc_117_continue_314:
 	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_117_continue_315
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_117_continue_315:
 	; BC_PLOT [06]
 	add r2, r5, #4
@@ -14432,9 +16119,16 @@ proc_117_continue_315:
 	mov r0, #0x00050000			; r0=rConstants[30] (5.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_117_continue_316
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_117_continue_316:
 	; BC_CONST [b1]
 	mov r0, #0x00150000			; r0=rConstants[49] (21.0000)
@@ -14456,9 +16150,16 @@ proc_117_continue_316:
 	mov r0, #0x00160000			; r0=rConstants[50] (22.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_117_continue_317
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_117_continue_317:
 	; BC_CONST [b0]
 	mov r0, #0x00140000			; r0=rConstants[48] (20.0000)
@@ -14480,9 +16181,16 @@ proc_117_continue_317:
 	mov r0, #0x00150000			; r0=rConstants[49] (21.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_117_continue_318
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_117_continue_318:
 	; BC_CONST [80]
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -14527,9 +16235,16 @@ proc_118_start:
 	mov r0, #0x00110000			; r0=rConstants[45] (17.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_118_continue_320
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_118_continue_320:
 	; BC_CONST [ab]
 	mov r0, #0x000f0000			; r0=rConstants[43] (15.0000)
@@ -14551,9 +16266,16 @@ proc_118_continue_320:
 	mov r0, #0x00100000			; r0=rConstants[44] (16.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_118_continue_321
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_118_continue_321:
 	; BC_CONST [a7]
 	mov r0, #0x000a0000			; r0=rConstants[39] (10.0000)
@@ -14575,9 +16297,16 @@ proc_118_continue_321:
 	mov r0, #0x000b0000			; r0=rConstants[40] (11.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_118_continue_322
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_118_continue_322:
 	; BC_CONST [8f]
 	mov r0, #0x00010000			; r0=rConstants[15] (1.0000)
@@ -14625,9 +16354,16 @@ proc_118_continue_322:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_118_continue_323
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_118_continue_323:
 	; BC_CONST [a7]
 	mov r0, #0x000a0000			; r0=rConstants[39] (10.0000)
@@ -14659,9 +16395,16 @@ proc_118_continue_323:
 	mov r0, #0x000b0000			; r0=rConstants[40] (11.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_118_continue_325
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_118_continue_325:
 	; BC_CONST [ac]
 	mov r0, #0x00100000			; r0=rConstants[44] (16.0000)
@@ -14683,9 +16426,16 @@ proc_118_continue_325:
 	mov r0, #0x00110000			; r0=rConstants[45] (17.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_118_continue_326
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_118_continue_326:
 	; BC_CONST [ab]
 	mov r0, #0x000f0000			; r0=rConstants[43] (15.0000)
@@ -14707,9 +16457,16 @@ proc_118_continue_326:
 	mov r0, #0x00100000			; r0=rConstants[44] (16.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_118_continue_327
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_118_continue_327:
 	; BC_CONST [a7]
 	mov r0, #0x000a0000			; r0=rConstants[39] (10.0000)
@@ -14741,9 +16498,16 @@ proc_118_continue_327:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_118_continue_328
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_118_continue_328:
 	; BC_DONE [00]
 proc_118_target_324:
@@ -14764,8 +16528,8 @@ proc_118_target_324:
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_DONE [00]
 proc_118_target_319:
 	; BC_END [02]
@@ -14803,9 +16567,16 @@ proc_119_start:
 	mov r0, #0x00010000			; r0=rConstants[15] (1.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_119_continue_330
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_119_continue_330:
 	; BC_CONST [80]
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -14872,8 +16643,8 @@ proc_119_target_331:
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_DONE [00]
 proc_119_target_329:
 	; BC_END [02]
@@ -14911,9 +16682,16 @@ proc_120_start:
 	mov r0, #0x00010000			; r0=rConstants[15] (1.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_120_continue_333
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_120_continue_333:
 	; BC_PROC [07]
 	adr r0, proc_120_start		; r0=r_Procedures[120]
@@ -14948,8 +16726,8 @@ proc_120_continue_333:
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_DONE [00]
 proc_120_target_332:
 	; BC_END [02]
@@ -15159,8 +16937,8 @@ proc_121_target_341:
 	; BC_POP [08]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_DONE [00]
 proc_121_target_342:
 	; BC_END [02]
@@ -15234,8 +17012,8 @@ proc_122_start:
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_END [02]
 	ldr r2, [r6, #-4]			; (r_FreeState)
 	str r2, [r5]				; first word of state block points to prev free state.
@@ -15307,8 +17085,8 @@ proc_123_start:
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_END [02]
 	ldr r2, [r6, #-4]			; (r_FreeState)
 	str r2, [r5]				; first word of state block points to prev free state.
@@ -15380,8 +17158,8 @@ proc_124_start:
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_END [02]
 	ldr r2, [r6, #-4]			; (r_FreeState)
 	str r2, [r5]				; first word of state block points to prev free state.
@@ -15453,8 +17231,8 @@ proc_125_start:
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_END [02]
 	ldr r2, [r6, #-4]			; (r_FreeState)
 	str r2, [r5]				; first word of state block points to prev free state.
@@ -15526,8 +17304,8 @@ proc_126_start:
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_END [02]
 	ldr r2, [r6, #-4]			; (r_FreeState)
 	str r2, [r5]				; first word of state block points to prev free state.
@@ -15599,8 +17377,8 @@ proc_127_start:
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_END [02]
 	ldr r2, [r6, #-4]			; (r_FreeState)
 	str r2, [r5]				; first word of state block points to prev free state.
@@ -15672,8 +17450,8 @@ proc_128_start:
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_END [02]
 	ldr r2, [r6, #-4]			; (r_FreeState)
 	str r2, [r5]				; first word of state block points to prev free state.
@@ -15745,8 +17523,8 @@ proc_129_start:
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_END [02]
 	ldr r2, [r6, #-4]			; (r_FreeState)
 	str r2, [r5]				; first word of state block points to prev free state.
@@ -15818,8 +17596,8 @@ proc_130_start:
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_END [02]
 	ldr r2, [r6, #-4]			; (r_FreeState)
 	str r2, [r5]				; first word of state block points to prev free state.
@@ -16010,9 +17788,16 @@ proc_135_start:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_135_continue_343
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_135_continue_343:
 	; BC_CONST [92]
 	ldr r0, [r4, #18*4]			; r0=rConstants[18]=0x0001745d (1.4545)
@@ -16040,9 +17825,16 @@ proc_135_continue_343:
 	mov r0, #0x00160000			; r0=rConstants[50] (22.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_135_continue_344
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_135_continue_344:
 	; BC_CONST [99]
 	mov r0, #0x00030000			; r0=rConstants[25] (3.0000)
@@ -16068,9 +17860,16 @@ proc_135_continue_344:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_135_continue_345
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_135_continue_345:
 	; BC_CONST [d5]
 	mov r0, #0x00800000			; r0=rConstants[85] (128.0000)
@@ -16108,9 +17907,16 @@ proc_135_continue_345:
 	mov r0, #0x00160000			; r0=rConstants[50] (22.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_135_continue_346
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_135_continue_346:
 	; BC_CONST [99]
 	mov r0, #0x00030000			; r0=rConstants[25] (3.0000)
@@ -16136,9 +17942,16 @@ proc_135_continue_346:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_135_continue_347
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_135_continue_347:
 	; BC_CONST [c9]
 	mov r0, #0x00400000			; r0=rConstants[73] (64.0000)
@@ -16178,9 +17991,16 @@ proc_135_continue_347:
 	mov r0, #0x00160000			; r0=rConstants[50] (22.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_135_continue_348
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_135_continue_348:
 	; BC_CONST [99]
 	mov r0, #0x00030000			; r0=rConstants[25] (3.0000)
@@ -16206,9 +18026,16 @@ proc_135_continue_348:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_135_continue_349
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_135_continue_349:
 	; BC_CONST [80]
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -16251,9 +18078,16 @@ proc_135_continue_349:
 	mov r0, #0x00160000			; r0=rConstants[50] (22.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_135_continue_351
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_135_continue_351:
 	; BC_CONST [e1]
 	mov r0, #0x00c00000			; r0=rConstants[97] (192.0000)
@@ -16313,9 +18147,16 @@ proc_135_continue_351:
 	mov r0, #0x000b0000			; r0=rConstants[40] (11.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_135_continue_352
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_135_continue_352:
 	; BC_CONST [80]
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -16375,9 +18216,16 @@ proc_135_continue_352:
 	mov r0, #0x000b0000			; r0=rConstants[40] (11.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_135_continue_353
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_135_continue_353:
 	; BC_DONE [00]
 proc_135_target_350:
@@ -16413,9 +18261,16 @@ proc_136_start:
 	mov r0, #0x00050000			; r0=rConstants[30] (5.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_136_continue_354
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_136_continue_354:
 	; BC_CONST [80]
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -16432,8 +18287,8 @@ proc_136_continue_354:
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_END [02]
 	ldr r2, [r6, #-4]			; (r_FreeState)
 	str r2, [r5]				; first word of state block points to prev free state.
@@ -16474,9 +18329,16 @@ proc_137_start:
 	mov r0, #0x00010000			; r0=rConstants[15] (1.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_137_continue_356
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_137_continue_356:
 	; BC_PROC [07]
 	adr r0, proc_137_start		; r0=r_Procedures[137]
@@ -16495,8 +18357,8 @@ proc_137_continue_356:
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_DONE [00]
 proc_137_target_355:
 	; BC_END [02]
@@ -16633,8 +18495,8 @@ proc_139_start:
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_DONE [00]
 proc_139_target_357:
 	; BC_END [02]
@@ -16680,9 +18542,16 @@ proc_140_start:
 	mov r0, #0x00160000			; r0=rConstants[50] (22.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_140_continue_358
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_140_continue_358:
 	; BC_CONST [af]
 	mov r0, #0x00130000			; r0=rConstants[47] (19.0000)
@@ -16727,9 +18596,16 @@ proc_141_start:
 	mov r0, #0x00010000			; r0=rConstants[15] (1.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_141_continue_360
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_141_continue_360:
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
@@ -16774,8 +18650,8 @@ proc_141_continue_360:
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_DONE [00]
 proc_141_target_359:
 	; BC_END [02]
@@ -16825,9 +18701,16 @@ proc_142_start:
 	mov r0, #0x00010000			; r0=rConstants[15] (1.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_142_continue_362
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_142_continue_362:
 	; BC_PROC [07]
 	adr r0, proc_142_start		; r0=r_Procedures[142]
@@ -16846,8 +18729,8 @@ proc_142_continue_362:
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_DONE [00]
 proc_142_target_361:
 	; BC_END [02]
@@ -17037,8 +18920,8 @@ proc_144_start:
 	; BC_WSTATE [50]
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_END [02]
 	ldr r2, [r6, #-4]			; (r_FreeState)
 	str r2, [r5]				; first word of state block points to prev free state.
@@ -17121,8 +19004,8 @@ proc_145_start:
 	; BC_POP [08]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_DONE [00]
 proc_145_target_365:
 	; BC_END [02]
@@ -17164,9 +19047,16 @@ proc_146_start:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_146_continue_366
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_146_continue_366:
 	; BC_CONST [8f]
 	mov r0, #0x00010000			; r0=rConstants[15] (1.0000)
@@ -17263,9 +19153,16 @@ proc_146_continue_366:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_146_continue_367
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_146_continue_367:
 	; BC_PROC [07]
 	adr r0, proc_147_start		; r0=r_Procedures[147]
@@ -17288,9 +19185,16 @@ proc_146_continue_367:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_146_continue_368
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_146_continue_368:
 	; BC_CONST [99]
 	mov r0, #0x00030000			; r0=rConstants[25] (3.0000)
@@ -17381,9 +19285,16 @@ proc_146_continue_368:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_146_continue_369
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_146_continue_369:
 	; BC_PROC [07]
 	adr r0, proc_148_start		; r0=r_Procedures[148]
@@ -17406,9 +19317,16 @@ proc_146_continue_369:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_146_continue_370
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_146_continue_370:
 	; BC_END [02]
 	ldr r2, [r6, #-4]			; (r_FreeState)
@@ -17469,9 +19387,16 @@ proc_147_start:
 	mov r0, #0x00160000			; r0=rConstants[50] (22.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_147_continue_371
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_147_continue_371:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
@@ -17493,9 +19418,16 @@ proc_147_continue_371:
 	mov r0, #0x000b0000			; r0=rConstants[40] (11.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_147_continue_372
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_147_continue_372:
 	; BC_CONST [df]
 	mov r0, #0x00b40000			; r0=rConstants[95] (180.0000)
@@ -17534,9 +19466,16 @@ proc_147_continue_372:
 	mov r0, #0x00160000			; r0=rConstants[50] (22.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_147_continue_373
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_147_continue_373:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
@@ -17558,9 +19497,16 @@ proc_147_continue_373:
 	mov r0, #0x000b0000			; r0=rConstants[40] (11.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_147_continue_374
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_147_continue_374:
 	; BC_CONST [80]
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -17599,9 +19545,16 @@ proc_147_continue_374:
 	mov r0, #0x00160000			; r0=rConstants[50] (22.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_147_continue_375
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_147_continue_375:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
@@ -17633,9 +19586,16 @@ proc_147_continue_375:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_147_continue_376
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_147_continue_376:
 	; BC_CONST [80]
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -17652,8 +19612,8 @@ proc_147_continue_376:
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_END [02]
 	ldr r2, [r6, #-4]			; (r_FreeState)
 	str r2, [r5]				; first word of state block points to prev free state.
@@ -17719,9 +19679,16 @@ proc_148_start:
 	mov r0, #0x00160000			; r0=rConstants[50] (22.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_148_continue_377
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_148_continue_377:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
@@ -17743,9 +19710,16 @@ proc_148_continue_377:
 	mov r0, #0x000b0000			; r0=rConstants[40] (11.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_148_continue_378
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_148_continue_378:
 	; BC_CONST [e4]
 	mov r0, #0x00f00000			; r0=rConstants[100] (240.0000)
@@ -17790,9 +19764,16 @@ proc_148_continue_378:
 	mov r0, #0x00160000			; r0=rConstants[50] (22.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_148_continue_379
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_148_continue_379:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
@@ -17814,9 +19795,16 @@ proc_148_continue_379:
 	mov r0, #0x000b0000			; r0=rConstants[40] (11.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_148_continue_380
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_148_continue_380:
 	; BC_CONST [80]
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -17855,9 +19843,16 @@ proc_148_continue_380:
 	mov r0, #0x00160000			; r0=rConstants[50] (22.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_148_continue_381
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_148_continue_381:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
@@ -17889,9 +19884,16 @@ proc_148_continue_381:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_148_continue_382
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_148_continue_382:
 	; BC_CONST [80]
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -17908,8 +19910,8 @@ proc_148_continue_382:
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_END [02]
 	ldr r2, [r6, #-4]			; (r_FreeState)
 	str r2, [r5]				; first word of state block points to prev free state.
@@ -17939,9 +19941,16 @@ proc_149_start:
 	mov r0, #0x00020000			; r0=rConstants[21] (2.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_149_continue_383
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_149_continue_383:
 	; BC_CONST [80]
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -17973,9 +19982,16 @@ proc_149_continue_383:
 	subs r0, r0, r1				; r0=r0 subs r1
 	; BC_WAIT [0a]
 	adr r1, proc_149_continue_384
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_149_continue_384:
 	; BC_CONST [95]
 	mov r0, #0x00020000			; r0=rConstants[21] (2.0000)
@@ -17998,9 +20014,16 @@ proc_149_continue_384:
 	mov r0, #0x00020000			; r0=rConstants[21] (2.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_149_continue_385
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_149_continue_385:
 	; BC_CONST [80]
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -18032,9 +20055,16 @@ proc_149_continue_385:
 	subs r0, r0, r1				; r0=r0 subs r1
 	; BC_WAIT [0a]
 	adr r1, proc_149_continue_386
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_149_continue_386:
 	; BC_CONST [99]
 	mov r0, #0x00030000			; r0=rConstants[25] (3.0000)
@@ -18057,9 +20087,16 @@ proc_149_continue_386:
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
 	; BC_WAIT [0a]
 	adr r1, proc_149_continue_387
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_149_continue_387:
 	; BC_CONST [80]
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -18078,8 +20115,8 @@ proc_149_continue_387:
 	; BC_POP [08]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_END [02]
 	ldr r2, [r6, #-4]			; (r_FreeState)
 	str r2, [r5]				; first word of state block points to prev free state.
@@ -18109,9 +20146,16 @@ proc_150_start:
 	mov r0, #0x00020000			; r0=rConstants[21] (2.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_150_continue_388
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_150_continue_388:
 	; BC_CONST [80]
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -18143,9 +20187,16 @@ proc_150_continue_388:
 	subs r0, r0, r1				; r0=r0 subs r1
 	; BC_WAIT [0a]
 	adr r1, proc_150_continue_389
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_150_continue_389:
 	; BC_CONST [95]
 	mov r0, #0x00020000			; r0=rConstants[21] (2.0000)
@@ -18168,9 +20219,16 @@ proc_150_continue_389:
 	mov r0, #0x00020000			; r0=rConstants[21] (2.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_150_continue_390
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_150_continue_390:
 	; BC_CONST [80]
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -18202,9 +20260,16 @@ proc_150_continue_390:
 	subs r0, r0, r1				; r0=r0 subs r1
 	; BC_WAIT [0a]
 	adr r1, proc_150_continue_391
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_150_continue_391:
 	; BC_CONST [99]
 	mov r0, #0x00030000			; r0=rConstants[25] (3.0000)
@@ -18227,9 +20292,16 @@ proc_150_continue_391:
 	mov r0, #0x00020000			; r0=rConstants[21] (2.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_150_continue_392
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_150_continue_392:
 	; BC_CONST [80]
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -18245,9 +20317,16 @@ proc_150_continue_392:
 	subs r0, r0, r1				; r0=r0 subs r1
 	; BC_WAIT [0a]
 	adr r1, proc_150_continue_393
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_150_continue_393:
 	; BC_CONST [80]
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -18270,9 +20349,16 @@ proc_150_continue_393:
 	mov r0, #0x00020000			; r0=rConstants[21] (2.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_150_continue_394
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_150_continue_394:
 	; BC_CONST [8f]
 	mov r0, #0x00010000			; r0=rConstants[15] (1.0000)
@@ -18298,9 +20384,16 @@ proc_150_continue_394:
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
 	; BC_WAIT [0a]
 	adr r1, proc_150_continue_395
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_150_continue_395:
 	; BC_CONST [8f]
 	mov r0, #0x00010000			; r0=rConstants[15] (1.0000)
@@ -18336,9 +20429,16 @@ proc_150_continue_395:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_150_continue_396
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_150_continue_396:
 	; BC_CONST [95]
 	mov r0, #0x00020000			; r0=rConstants[21] (2.0000)
@@ -18374,9 +20474,16 @@ proc_150_continue_396:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_150_continue_397
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_150_continue_397:
 	; BC_CONST [99]
 	mov r0, #0x00030000			; r0=rConstants[25] (3.0000)
@@ -18393,8 +20500,8 @@ proc_150_continue_397:
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_END [02]
 	ldr r2, [r6, #-4]			; (r_FreeState)
 	str r2, [r5]				; first word of state block points to prev free state.
@@ -18424,9 +20531,16 @@ proc_151_start:
 	mov r0, #0x00020000			; r0=rConstants[21] (2.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_151_continue_398
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_151_continue_398:
 	; BC_CONST [80]
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -18458,9 +20572,16 @@ proc_151_continue_398:
 	subs r0, r0, r1				; r0=r0 subs r1
 	; BC_WAIT [0a]
 	adr r1, proc_151_continue_399
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_151_continue_399:
 	; BC_CONST [95]
 	mov r0, #0x00020000			; r0=rConstants[21] (2.0000)
@@ -18483,9 +20604,16 @@ proc_151_continue_399:
 	mov r0, #0x00020000			; r0=rConstants[21] (2.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_151_continue_400
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_151_continue_400:
 	; BC_CONST [80]
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -18517,9 +20645,16 @@ proc_151_continue_400:
 	subs r0, r0, r1				; r0=r0 subs r1
 	; BC_WAIT [0a]
 	adr r1, proc_151_continue_401
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_151_continue_401:
 	; BC_CONST [99]
 	mov r0, #0x00030000			; r0=rConstants[25] (3.0000)
@@ -18542,9 +20677,16 @@ proc_151_continue_401:
 	mov r0, #0x00020000			; r0=rConstants[21] (2.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_151_continue_402
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_151_continue_402:
 	; BC_CONST [80]
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -18576,9 +20718,16 @@ proc_151_continue_402:
 	subs r0, r0, r1				; r0=r0 subs r1
 	; BC_WAIT [0a]
 	adr r1, proc_151_continue_403
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_151_continue_403:
 	; BC_CONST [80]
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -18601,9 +20750,16 @@ proc_151_continue_403:
 	mov r0, #0x00020000			; r0=rConstants[21] (2.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_151_continue_404
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_151_continue_404:
 	; BC_CONST [8f]
 	mov r0, #0x00010000			; r0=rConstants[15] (1.0000)
@@ -18629,9 +20785,16 @@ proc_151_continue_404:
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
 	; BC_WAIT [0a]
 	adr r1, proc_151_continue_405
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_151_continue_405:
 	; BC_CONST [8f]
 	mov r0, #0x00010000			; r0=rConstants[15] (1.0000)
@@ -18667,9 +20830,16 @@ proc_151_continue_405:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_151_continue_406
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_151_continue_406:
 	; BC_CONST [95]
 	mov r0, #0x00020000			; r0=rConstants[21] (2.0000)
@@ -18705,9 +20875,16 @@ proc_151_continue_406:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_151_continue_407
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_151_continue_407:
 	; BC_CONST [99]
 	mov r0, #0x00030000			; r0=rConstants[25] (3.0000)
@@ -18724,8 +20901,8 @@ proc_151_continue_407:
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_END [02]
 	ldr r2, [r6, #-4]			; (r_FreeState)
 	str r2, [r5]				; first word of state block points to prev free state.
@@ -18760,9 +20937,16 @@ proc_152_start:
 	mov r0, #0x00010000			; r0=rConstants[15] (1.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_152_continue_409
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_152_continue_409:
 	; BC_CONST [95]
 	mov r0, #0x00020000			; r0=rConstants[21] (2.0000)
@@ -18822,8 +21006,8 @@ proc_152_continue_409:
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_DONE [00]
 proc_152_target_408:
 	; BC_END [02]
@@ -18884,9 +21068,16 @@ proc_153_start:
 	mov r0, #0x00008000			; r0=rConstants[7] (0.5000)
 	; BC_WAIT [0a]
 	adr r1, proc_153_continue_411
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_153_continue_411:
 	; BC_PROC [07]
 	adr r0, proc_153_start		; r0=r_Procedures[153]
@@ -18905,8 +21096,8 @@ proc_153_continue_411:
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_DONE [00]
 proc_153_target_410:
 	; BC_END [02]
@@ -18951,8 +21142,8 @@ proc_154_start:
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_DONE [00]
 proc_154_target_412:
 	; BC_END [02]
@@ -19071,9 +21262,16 @@ proc_156_start:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_156_continue_413
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_156_continue_413:
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
@@ -19118,9 +21316,16 @@ proc_156_continue_413:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_156_continue_414
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_156_continue_414:
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
@@ -19165,9 +21370,16 @@ proc_156_continue_414:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_156_continue_415
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_156_continue_415:
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
@@ -19212,9 +21424,16 @@ proc_156_continue_415:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_156_continue_416
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_156_continue_416:
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
@@ -19259,9 +21478,16 @@ proc_156_continue_416:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_156_continue_417
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_156_continue_417:
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
@@ -19306,9 +21532,16 @@ proc_156_continue_417:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_156_continue_418
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_156_continue_418:
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
@@ -19353,9 +21586,16 @@ proc_156_continue_418:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_156_continue_419
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_156_continue_419:
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
@@ -19400,9 +21640,16 @@ proc_156_continue_419:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_156_continue_420
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_156_continue_420:
 	; BC_END [02]
 	ldr r2, [r6, #-4]			; (r_FreeState)
@@ -19429,8 +21676,8 @@ proc_157_start:
 	; BC_WSTATE [50]
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_END [02]
 	ldr r2, [r6, #-4]			; (r_FreeState)
 	str r2, [r5]				; first word of state block points to prev free state.
@@ -19519,8 +21766,8 @@ proc_158_target_424:
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_DONE [00]
 proc_158_target_421:
 	; BC_END [02]
@@ -19611,8 +21858,8 @@ proc_159_target_428:
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_DONE [00]
 proc_159_target_425:
 	; BC_END [02]
@@ -19647,9 +21894,16 @@ proc_160_start:
 	mov r0, #0x00010000			; r0=rConstants[15] (1.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_160_continue_430
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_160_continue_430:
 	; BC_PROC [07]
 	adr r0, proc_160_start		; r0=r_Procedures[160]
@@ -19668,8 +21922,8 @@ proc_160_continue_430:
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_DONE [00]
 proc_160_target_429:
 	; BC_END [02]
@@ -19717,9 +21971,16 @@ proc_161_start:
 	mov r0, #0x00160000			; r0=rConstants[50] (22.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_161_continue_432
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_161_continue_432:
 	; BC_CONST [c1]
 	mov r0, #0x002c0000			; r0=rConstants[65] (44.0000)
@@ -19748,9 +22009,16 @@ proc_161_continue_432:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_161_continue_433
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_161_continue_433:
 	; BC_CONST [95]
 	mov r0, #0x00020000			; r0=rConstants[21] (2.0000)
@@ -19792,9 +22060,16 @@ proc_161_continue_433:
 	mov r0, #0x00160000			; r0=rConstants[50] (22.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_161_continue_434
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_161_continue_434:
 	; BC_CONST [95]
 	mov r0, #0x00020000			; r0=rConstants[21] (2.0000)
@@ -19867,8 +22142,8 @@ proc_161_continue_434:
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_DONE [00]
 proc_161_target_431:
 	; BC_END [02]
@@ -19917,9 +22192,16 @@ proc_162_start:
 	mov r0, #0x000b0000			; r0=rConstants[40] (11.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_162_continue_435
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_162_continue_435:
 	; BC_CONST [80]
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -19959,9 +22241,16 @@ proc_162_continue_435:
 	mov r0, #0x000b0000			; r0=rConstants[40] (11.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_162_continue_436
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_162_continue_436:
 	; BC_PROC [07]
 	adr r0, proc_163_start		; r0=r_Procedures[163]
@@ -19978,9 +22267,16 @@ proc_162_continue_436:
 	mov r0, #0x000b0000			; r0=rConstants[40] (11.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_162_continue_437
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_162_continue_437:
 	; BC_PROC [07]
 	adr r0, proc_163_start		; r0=r_Procedures[163]
@@ -19993,17 +22289,31 @@ proc_162_continue_437:
 	mov r0, #0x00160000			; r0=rConstants[50] (22.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_162_continue_438
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_162_continue_438:
 	; BC_CONST [a8]
 	mov r0, #0x000b0000			; r0=rConstants[40] (11.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_162_continue_439
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_162_continue_439:
 	; BC_CONST [8f]
 	mov r0, #0x00010000			; r0=rConstants[15] (1.0000)
@@ -20071,9 +22381,16 @@ proc_162_target_440:
 	mov r0, #0x000b0000			; r0=rConstants[40] (11.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_162_continue_441
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_162_continue_441:
 	; BC_CONST [80]
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -20136,8 +22453,8 @@ proc_162_continue_441:
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_DONE [00]
 proc_162_target_442:
 	; BC_END [02]
@@ -20327,9 +22644,16 @@ proc_164_start:
 	mov r0, #0x00010000			; r0=rConstants[15] (1.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_164_continue_444
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_164_continue_444:
 	; BC_PROC [07]
 	adr r0, proc_164_start		; r0=r_Procedures[164]
@@ -20348,8 +22672,8 @@ proc_164_continue_444:
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_DONE [00]
 proc_164_target_443:
 	; BC_END [02]
@@ -20709,9 +23033,16 @@ proc_169_start:
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
 	; BC_WAIT [0a]
 	adr r1, proc_169_continue_446
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_169_continue_446:
 	; BC_PROC [07]
 	adr r0, proc_170_start		; r0=r_Procedures[170]
@@ -20730,8 +23061,8 @@ proc_169_continue_446:
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_DONE [00]
 proc_169_target_445:
 	; BC_END [02]
@@ -20763,9 +23094,16 @@ proc_170_start:
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
 	; BC_WAIT [0a]
 	adr r1, proc_170_continue_448
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_170_continue_448:
 	; BC_PROC [07]
 	adr r0, proc_170_start		; r0=r_Procedures[170]
@@ -20784,8 +23122,8 @@ proc_170_continue_448:
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_DONE [00]
 proc_170_target_447:
 	; BC_END [02]
@@ -20815,9 +23153,16 @@ proc_171_start:
 	mov r0, #0x00010000			; r0=rConstants[15] (1.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_171_continue_450
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_171_continue_450:
 	; BC_PROC [07]
 	adr r0, proc_172_start		; r0=r_Procedures[172]
@@ -20855,8 +23200,8 @@ proc_171_continue_450:
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_DONE [00]
 proc_171_target_449:
 	; BC_END [02]
@@ -20935,8 +23280,8 @@ proc_172_start:
 	; BC_WSTATE [50]
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_END [02]
 	ldr r2, [r6, #-4]			; (r_FreeState)
 	str r2, [r5]				; first word of state block points to prev free state.
@@ -20994,9 +23339,16 @@ proc_174_start:
 	mov r0, #0x00010000			; r0=rConstants[15] (1.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_174_continue_452
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_174_continue_452:
 	; BC_CONST [9f]
 	mov r0, #0x00058000			; r0=rConstants[31] (5.5000)
@@ -21025,8 +23377,8 @@ proc_174_continue_452:
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_DONE [00]
 proc_174_target_451:
 	; BC_END [02]
@@ -21066,9 +23418,16 @@ proc_175_start:
 	mov r0, #0x00010000			; r0=rConstants[15] (1.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_175_continue_454
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_175_continue_454:
 	; BC_PROC [07]
 	adr r0, proc_175_start		; r0=r_Procedures[175]
@@ -21087,8 +23446,8 @@ proc_175_continue_454:
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_DONE [00]
 proc_175_target_453:
 	; BC_END [02]
@@ -21226,8 +23585,8 @@ proc_177_start:
 	; BC_WSTATE [50]
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_END [02]
 	ldr r2, [r6, #-4]			; (r_FreeState)
 	str r2, [r5]				; first word of state block points to prev free state.
@@ -21337,8 +23696,8 @@ proc_178_target_456:
 	; BC_POP [08]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_DONE [00]
 proc_178_target_455:
 	; BC_END [02]
@@ -21456,8 +23815,8 @@ proc_179_target_458:
 	; BC_POP [08]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_DONE [00]
 proc_179_target_457:
 	; BC_END [02]
@@ -21493,9 +23852,16 @@ proc_180_start:
 	mov r0, #0x00160000			; r0=rConstants[50] (22.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_180_continue_459
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_180_continue_459:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
@@ -21514,9 +23880,16 @@ proc_180_continue_459:
 	mov r0, #0x00160000			; r0=rConstants[50] (22.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_180_continue_460
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_180_continue_460:
 	; BC_CONST [b9]
 	mov r0, #0x00200000			; r0=rConstants[57] (32.0000)
@@ -21542,9 +23915,16 @@ proc_180_continue_460:
 	mov r0, #0x00160000			; r0=rConstants[50] (22.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_180_continue_461
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_180_continue_461:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
@@ -21563,9 +23943,16 @@ proc_180_continue_461:
 	mov r0, #0x00160000			; r0=rConstants[50] (22.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_180_continue_462
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_180_continue_462:
 	; BC_CONST [b9]
 	mov r0, #0x00200000			; r0=rConstants[57] (32.0000)
@@ -21591,9 +23978,16 @@ proc_180_continue_462:
 	mov r0, #0x00160000			; r0=rConstants[50] (22.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_180_continue_463
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_180_continue_463:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
@@ -21612,9 +24006,16 @@ proc_180_continue_463:
 	mov r0, #0x00160000			; r0=rConstants[50] (22.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_180_continue_464
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_180_continue_464:
 	; BC_CONST [b9]
 	mov r0, #0x00200000			; r0=rConstants[57] (32.0000)
@@ -21640,9 +24041,16 @@ proc_180_continue_464:
 	mov r0, #0x00160000			; r0=rConstants[50] (22.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_180_continue_465
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_180_continue_465:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
@@ -21661,9 +24069,16 @@ proc_180_continue_465:
 	mov r0, #0x00160000			; r0=rConstants[50] (22.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_180_continue_466
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_180_continue_466:
 	; BC_CONST [b9]
 	mov r0, #0x00200000			; r0=rConstants[57] (32.0000)
@@ -21702,9 +24117,16 @@ proc_181_start:
 	mov r0, #0x00010000			; r0=rConstants[15] (1.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_181_continue_468
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_181_continue_468:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
@@ -21743,8 +24165,8 @@ proc_181_continue_468:
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_DONE [00]
 proc_181_target_467:
 	; BC_END [02]
@@ -21768,8 +24190,8 @@ proc_182_start:
 	; BC_WSTATE [50]
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_END [02]
 	ldr r2, [r6, #-4]			; (r_FreeState)
 	str r2, [r5]				; first word of state block points to prev free state.
@@ -21859,8 +24281,8 @@ proc_183_start:
 	; BC_WSTATE [50]
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_END [02]
 	ldr r2, [r6, #-4]			; (r_FreeState)
 	str r2, [r5]				; first word of state block points to prev free state.
@@ -21924,8 +24346,8 @@ proc_185_start:
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_DONE [00]
 proc_185_target_469:
 	; BC_END [02]
@@ -21944,9 +24366,16 @@ proc_186_start:
 	mov r0, #0x00160000			; r0=rConstants[50] (22.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_186_continue_470
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_186_continue_470:
 	; BC_CONST [80]
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -21975,9 +24404,16 @@ proc_186_continue_470:
 	mov r0, #0x00110000			; r0=rConstants[45] (17.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_186_continue_471
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_186_continue_471:
 	; BC_CONST [95]
 	mov r0, #0x00020000			; r0=rConstants[21] (2.0000)
@@ -22002,9 +24438,16 @@ proc_186_continue_471:
 	mov r0, #0x00100000			; r0=rConstants[44] (16.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_186_continue_472
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_186_continue_472:
 	; BC_CONST [8f]
 	mov r0, #0x00010000			; r0=rConstants[15] (1.0000)
@@ -22029,9 +24472,16 @@ proc_186_continue_472:
 	mov r0, #0x00110000			; r0=rConstants[45] (17.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_186_continue_473
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_186_continue_473:
 	; BC_CONST [95]
 	mov r0, #0x00020000			; r0=rConstants[21] (2.0000)
@@ -22056,9 +24506,16 @@ proc_186_continue_473:
 	mov r0, #0x00100000			; r0=rConstants[44] (16.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_186_continue_474
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_186_continue_474:
 	; BC_CONST [8f]
 	mov r0, #0x00010000			; r0=rConstants[15] (1.0000)
@@ -22083,9 +24540,16 @@ proc_186_continue_474:
 	mov r0, #0x00110000			; r0=rConstants[45] (17.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_186_continue_475
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_186_continue_475:
 	; BC_CONST [95]
 	mov r0, #0x00020000			; r0=rConstants[21] (2.0000)
@@ -22110,9 +24574,16 @@ proc_186_continue_475:
 	mov r0, #0x00100000			; r0=rConstants[44] (16.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_186_continue_476
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_186_continue_476:
 	; BC_CONST [8f]
 	mov r0, #0x00010000			; r0=rConstants[15] (1.0000)
@@ -22137,9 +24608,16 @@ proc_186_continue_476:
 	mov r0, #0x00110000			; r0=rConstants[45] (17.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_186_continue_477
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_186_continue_477:
 	; BC_CONST [95]
 	mov r0, #0x00020000			; r0=rConstants[21] (2.0000)
@@ -22164,9 +24642,16 @@ proc_186_continue_477:
 	mov r0, #0x00100000			; r0=rConstants[44] (16.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_186_continue_478
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_186_continue_478:
 	; BC_CONST [8f]
 	mov r0, #0x00010000			; r0=rConstants[15] (1.0000)
@@ -22212,9 +24697,16 @@ proc_187_start:
 	mov r0, #0x00080000			; r0=rConstants[37] (8.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_187_continue_479
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_187_continue_479:
 	; BC_CONST [80]
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -22225,8 +24717,8 @@ proc_187_continue_479:
 	; BC_WSTATE [50]
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_END [02]
 	ldr r2, [r6, #-4]			; (r_FreeState)
 	str r2, [r5]				; first word of state block points to prev free state.
@@ -22376,9 +24868,16 @@ proc_189_target_482:
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
 	; BC_WAIT [0a]
 	adr r1, proc_189_continue_484
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_189_continue_484:
 	; BC_ELSE [01]
 	b proc_189_target_485
@@ -22387,9 +24886,16 @@ proc_189_target_483:
 	ldr r0, [r5, #-3*4]			; r0=StateStack[-3]
 	; BC_WAIT [0a]
 	adr r1, proc_189_continue_486
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_189_continue_486:
 	; BC_DONE [00]
 proc_189_target_485:
@@ -22410,8 +24916,8 @@ proc_189_target_485:
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_DONE [00]
 proc_189_target_480:
 	; BC_END [02]
@@ -22452,9 +24958,16 @@ proc_190_start:
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
 	; BC_WAIT [0a]
 	adr r1, proc_190_continue_488
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_190_continue_488:
 	; BC_PROC [07]
 	adr r0, proc_190_start		; r0=r_Procedures[190]
@@ -22473,8 +24986,8 @@ proc_190_continue_488:
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_DONE [00]
 proc_190_target_487:
 	; BC_END [02]
@@ -22500,9 +25013,16 @@ proc_191_start:
 	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_191_continue_489
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_191_continue_489:
 	; BC_CONST [95]
 	mov r0, #0x00020000			; r0=rConstants[21] (2.0000)
@@ -22519,9 +25039,16 @@ proc_191_continue_489:
 	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_191_continue_490
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_191_continue_490:
 	; BC_CONST [8f]
 	mov r0, #0x00010000			; r0=rConstants[15] (1.0000)
@@ -22548,9 +25075,16 @@ proc_191_continue_490:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_191_continue_491
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_191_continue_491:
 	; BC_CONST [95]
 	mov r0, #0x00020000			; r0=rConstants[21] (2.0000)
@@ -22567,9 +25101,16 @@ proc_191_continue_491:
 	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_191_continue_492
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_191_continue_492:
 	; BC_CONST [99]
 	mov r0, #0x00030000			; r0=rConstants[25] (3.0000)
@@ -22586,9 +25127,16 @@ proc_191_continue_492:
 	mov r0, #0x00060000			; r0=rConstants[33] (6.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_191_continue_493
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_191_continue_493:
 	; BC_CONST [80]
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -22599,8 +25147,8 @@ proc_191_continue_493:
 	; BC_WSTATE [50]
 	str r0, [r5, #ST_PROC*4]		; State[ST_PROC]=r0
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_END [02]
 	ldr r2, [r6, #-4]			; (r_FreeState)
 	str r2, [r5]				; first word of state block points to prev free state.
@@ -22656,9 +25204,16 @@ proc_192_start:
 	mov r0, #0x00160000			; r0=rConstants[50] (22.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_192_continue_494
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_192_continue_494:
 	; BC_CONST [a4]
 	mov r0, #0x00070000			; r0=rConstants[36] (7.0000)
@@ -22703,9 +25258,16 @@ proc_192_continue_494:
 	mov r0, #0x00160000			; r0=rConstants[50] (22.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_192_continue_495
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_192_continue_495:
 	; BC_CONST [97]
 	ldr r0, [r4, #23*4]			; r0=rConstants[23]=0x00024ccc (2.3000)
@@ -22776,9 +25338,16 @@ proc_192_continue_495:
 	mov r0, #0x00160000			; r0=rConstants[50] (22.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_192_continue_496
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_192_continue_496:
 	; BC_CONST [9b]
 	ldr r0, [r4, #27*4]			; r0=rConstants[27]=0x00034ccc (3.3000)
@@ -22833,9 +25402,16 @@ proc_192_continue_496:
 	mov r0, #0x00160000			; r0=rConstants[50] (22.0000)
 	; BC_WAIT [0a]
 	adr r1, proc_192_continue_497
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_192_continue_497:
 	; BC_CONST [9d]
 	ldr r0, [r4, #29*4]			; r0=rConstants[29]=0x00046666 (4.4000)
@@ -22910,8 +25486,8 @@ proc_192_continue_497:
 	; BC_POP [08]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_END [02]
 	ldr r2, [r6, #-4]			; (r_FreeState)
 	str r2, [r5]				; first word of state block points to prev free state.
@@ -23000,9 +25576,16 @@ proc_193_start:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_193_continue_498
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_193_continue_498:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
@@ -23047,9 +25630,16 @@ proc_193_continue_498:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_193_continue_499
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_193_continue_499:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
@@ -23094,9 +25684,16 @@ proc_193_continue_499:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_193_continue_500
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_193_continue_500:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
@@ -23141,9 +25738,16 @@ proc_193_continue_500:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_193_continue_501
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_193_continue_501:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
@@ -23188,9 +25792,16 @@ proc_193_continue_501:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_193_continue_502
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_193_continue_502:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
@@ -23235,9 +25846,16 @@ proc_193_continue_502:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_193_continue_503
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_193_continue_503:
 	; BC_PROC [07]
 	adr r0, proc_208_start		; r0=r_Procedures[208]
@@ -23250,8 +25868,8 @@ proc_193_continue_503:
 	; BC_POP [08]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_END [02]
 	ldr r2, [r6, #-4]			; (r_FreeState)
 	str r2, [r5]				; first word of state block points to prev free state.
@@ -23340,9 +25958,16 @@ proc_194_start:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_194_continue_504
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_194_continue_504:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
@@ -23387,9 +26012,16 @@ proc_194_continue_504:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_194_continue_505
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_194_continue_505:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
@@ -23434,9 +26066,16 @@ proc_194_continue_505:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_194_continue_506
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_194_continue_506:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
@@ -23481,9 +26120,16 @@ proc_194_continue_506:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_194_continue_507
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_194_continue_507:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
@@ -23528,9 +26174,16 @@ proc_194_continue_507:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_194_continue_508
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_194_continue_508:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
@@ -23575,9 +26228,16 @@ proc_194_continue_508:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_194_continue_509
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_194_continue_509:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
@@ -23622,9 +26282,16 @@ proc_194_continue_509:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_194_continue_510
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_194_continue_510:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
@@ -23669,9 +26336,16 @@ proc_194_continue_510:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_194_continue_511
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_194_continue_511:
 	; BC_PROC [07]
 	adr r0, proc_201_start		; r0=r_Procedures[201]
@@ -23684,8 +26358,8 @@ proc_194_continue_511:
 	; BC_POP [08]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_END [02]
 	ldr r2, [r6, #-4]			; (r_FreeState)
 	str r2, [r5]				; first word of state block points to prev free state.
@@ -23774,9 +26448,16 @@ proc_195_start:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_195_continue_512
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_195_continue_512:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
@@ -23821,9 +26502,16 @@ proc_195_continue_512:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_195_continue_513
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_195_continue_513:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
@@ -23868,9 +26556,16 @@ proc_195_continue_513:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_195_continue_514
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_195_continue_514:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
@@ -23915,9 +26610,16 @@ proc_195_continue_514:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_195_continue_515
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_195_continue_515:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
@@ -23962,9 +26664,16 @@ proc_195_continue_515:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_195_continue_516
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_195_continue_516:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
@@ -24009,9 +26718,16 @@ proc_195_continue_516:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_195_continue_517
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_195_continue_517:
 	; BC_PROC [07]
 	adr r0, proc_213_start		; r0=r_Procedures[213]
@@ -24024,8 +26740,8 @@ proc_195_continue_517:
 	; BC_POP [08]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_END [02]
 	ldr r2, [r6, #-4]			; (r_FreeState)
 	str r2, [r5]				; first word of state block points to prev free state.
@@ -24114,9 +26830,16 @@ proc_196_start:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_196_continue_518
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_196_continue_518:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
@@ -24161,9 +26884,16 @@ proc_196_continue_518:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_196_continue_519
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_196_continue_519:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
@@ -24208,9 +26938,16 @@ proc_196_continue_519:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_196_continue_520
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_196_continue_520:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
@@ -24255,9 +26992,16 @@ proc_196_continue_520:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_196_continue_521
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_196_continue_521:
 	; BC_PROC [07]
 	adr r0, proc_214_start		; r0=r_Procedures[214]
@@ -24270,8 +27014,8 @@ proc_196_continue_521:
 	; BC_POP [08]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_END [02]
 	ldr r2, [r6, #-4]			; (r_FreeState)
 	str r2, [r5]				; first word of state block points to prev free state.
@@ -24360,9 +27104,16 @@ proc_197_start:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_197_continue_522
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_197_continue_522:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
@@ -24407,9 +27158,16 @@ proc_197_continue_522:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_197_continue_523
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_197_continue_523:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
@@ -24454,9 +27212,16 @@ proc_197_continue_523:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_197_continue_524
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_197_continue_524:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
@@ -24501,9 +27266,16 @@ proc_197_continue_524:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_197_continue_525
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_197_continue_525:
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
@@ -24548,9 +27320,16 @@ proc_197_continue_525:
 	mul r0, r1, r0				; r0=r0*r1
 	; BC_WAIT [0a]
 	adr r1, proc_197_continue_526
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_197_continue_526:
 	; BC_PROC [07]
 	adr r0, proc_198_start		; r0=r_Procedures[198]
@@ -24563,8 +27342,8 @@ proc_197_continue_526:
 	; BC_POP [08]
 	ldr r0, [r3], #4			; Pop r0 off StateStack.
 	; BC_TAIL [05]
-	ldr r1, [r5, #ST_PROC*4]	; Jump to State.st_proc
-	mov pc, r1
+	ldr r2, [r5, #ST_PROC*4]	; Jump to State.st_proc
+	mov pc, r2
 	; BC_END [02]
 	ldr r2, [r6, #-4]			; (r_FreeState)
 	str r2, [r5]				; first word of state block points to prev free state.
@@ -24599,9 +27378,16 @@ proc_198_start:
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
 	; BC_WAIT [0a]
 	adr r1, proc_198_continue_527
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_198_continue_527:
 	; BC_CONST [9e]
 	mov r0, #0x00050000			; r0=rConstants[30] (5.0000)
@@ -24629,9 +27415,16 @@ proc_198_continue_527:
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
 	; BC_WAIT [0a]
 	adr r1, proc_198_continue_528
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_198_continue_528:
 	; BC_CONST [9e]
 	mov r0, #0x00050000			; r0=rConstants[30] (5.0000)
@@ -24659,9 +27452,16 @@ proc_198_continue_528:
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
 	; BC_WAIT [0a]
 	adr r1, proc_198_continue_529
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_198_continue_529:
 	; BC_CONST [9e]
 	mov r0, #0x00050000			; r0=rConstants[30] (5.0000)
@@ -24713,9 +27513,16 @@ proc_199_start:
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
 	; BC_WAIT [0a]
 	adr r1, proc_199_continue_530
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_199_continue_530:
 	; BC_CONST [9e]
 	mov r0, #0x00050000			; r0=rConstants[30] (5.0000)
@@ -24754,9 +27561,16 @@ proc_199_continue_530:
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
 	; BC_WAIT [0a]
 	adr r1, proc_199_continue_531
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_199_continue_531:
 	; BC_CONST [9e]
 	mov r0, #0x00050000			; r0=rConstants[30] (5.0000)
@@ -24784,9 +27598,16 @@ proc_199_continue_531:
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
 	; BC_WAIT [0a]
 	adr r1, proc_199_continue_532
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_199_continue_532:
 	; BC_CONST [9e]
 	mov r0, #0x00050000			; r0=rConstants[30] (5.0000)
@@ -24825,9 +27646,16 @@ proc_199_continue_532:
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
 	; BC_WAIT [0a]
 	adr r1, proc_199_continue_533
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_199_continue_533:
 	; BC_CONST [9e]
 	mov r0, #0x00050000			; r0=rConstants[30] (5.0000)
@@ -24879,9 +27707,16 @@ proc_200_start:
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
 	; BC_WAIT [0a]
 	adr r1, proc_200_continue_534
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_200_continue_534:
 	; BC_CONST [9e]
 	mov r0, #0x00050000			; r0=rConstants[30] (5.0000)
@@ -24909,9 +27744,16 @@ proc_200_continue_534:
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
 	; BC_WAIT [0a]
 	adr r1, proc_200_continue_535
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_200_continue_535:
 	; BC_CONST [9e]
 	mov r0, #0x00050000			; r0=rConstants[30] (5.0000)
@@ -24939,9 +27781,16 @@ proc_200_continue_535:
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
 	; BC_WAIT [0a]
 	adr r1, proc_200_continue_536
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_200_continue_536:
 	; BC_CONST [9e]
 	mov r0, #0x00050000			; r0=rConstants[30] (5.0000)
@@ -24993,9 +27842,16 @@ proc_201_start:
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
 	; BC_WAIT [0a]
 	adr r1, proc_201_continue_537
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_201_continue_537:
 	; BC_CONST [9e]
 	mov r0, #0x00050000			; r0=rConstants[30] (5.0000)
@@ -25023,9 +27879,16 @@ proc_201_continue_537:
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
 	; BC_WAIT [0a]
 	adr r1, proc_201_continue_538
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_201_continue_538:
 	; BC_CONST [9e]
 	mov r0, #0x00050000			; r0=rConstants[30] (5.0000)
@@ -25053,9 +27916,16 @@ proc_201_continue_538:
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
 	; BC_WAIT [0a]
 	adr r1, proc_201_continue_539
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_201_continue_539:
 	; BC_CONST [9e]
 	mov r0, #0x00050000			; r0=rConstants[30] (5.0000)
@@ -25083,9 +27953,16 @@ proc_201_continue_539:
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
 	; BC_WAIT [0a]
 	adr r1, proc_201_continue_540
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_201_continue_540:
 	; BC_CONST [9e]
 	mov r0, #0x00050000			; r0=rConstants[30] (5.0000)
@@ -25137,9 +28014,16 @@ proc_202_start:
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
 	; BC_WAIT [0a]
 	adr r1, proc_202_continue_541
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_202_continue_541:
 	; BC_CONST [9e]
 	mov r0, #0x00050000			; r0=rConstants[30] (5.0000)
@@ -25167,9 +28051,16 @@ proc_202_continue_541:
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
 	; BC_WAIT [0a]
 	adr r1, proc_202_continue_542
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_202_continue_542:
 	; BC_CONST [9e]
 	mov r0, #0x00050000			; r0=rConstants[30] (5.0000)
@@ -25197,9 +28088,16 @@ proc_202_continue_542:
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
 	; BC_WAIT [0a]
 	adr r1, proc_202_continue_543
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_202_continue_543:
 	; BC_CONST [9e]
 	mov r0, #0x00050000			; r0=rConstants[30] (5.0000)
@@ -25227,9 +28125,16 @@ proc_202_continue_543:
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
 	; BC_WAIT [0a]
 	adr r1, proc_202_continue_544
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_202_continue_544:
 	; BC_CONST [9e]
 	mov r0, #0x00050000			; r0=rConstants[30] (5.0000)
@@ -25281,9 +28186,16 @@ proc_203_start:
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
 	; BC_WAIT [0a]
 	adr r1, proc_203_continue_545
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_203_continue_545:
 	; BC_CONST [9e]
 	mov r0, #0x00050000			; r0=rConstants[30] (5.0000)
@@ -25311,9 +28223,16 @@ proc_203_continue_545:
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
 	; BC_WAIT [0a]
 	adr r1, proc_203_continue_546
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_203_continue_546:
 	; BC_CONST [9e]
 	mov r0, #0x00050000			; r0=rConstants[30] (5.0000)
@@ -25341,9 +28260,16 @@ proc_203_continue_546:
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
 	; BC_WAIT [0a]
 	adr r1, proc_203_continue_547
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_203_continue_547:
 	; BC_CONST [9e]
 	mov r0, #0x00050000			; r0=rConstants[30] (5.0000)
@@ -25395,9 +28321,16 @@ proc_204_start:
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
 	; BC_WAIT [0a]
 	adr r1, proc_204_continue_548
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_204_continue_548:
 	; BC_CONST [9e]
 	mov r0, #0x00050000			; r0=rConstants[30] (5.0000)
@@ -25425,9 +28358,16 @@ proc_204_continue_548:
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
 	; BC_WAIT [0a]
 	adr r1, proc_204_continue_549
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_204_continue_549:
 	; BC_CONST [9e]
 	mov r0, #0x00050000			; r0=rConstants[30] (5.0000)
@@ -25455,9 +28395,16 @@ proc_204_continue_549:
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
 	; BC_WAIT [0a]
 	adr r1, proc_204_continue_550
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_204_continue_550:
 	; BC_CONST [9e]
 	mov r0, #0x00050000			; r0=rConstants[30] (5.0000)
@@ -25485,9 +28432,16 @@ proc_204_continue_550:
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
 	; BC_WAIT [0a]
 	adr r1, proc_204_continue_551
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_204_continue_551:
 	; BC_CONST [9e]
 	mov r0, #0x00050000			; r0=rConstants[30] (5.0000)
@@ -25539,9 +28493,16 @@ proc_205_start:
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
 	; BC_WAIT [0a]
 	adr r1, proc_205_continue_552
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_205_continue_552:
 	; BC_CONST [9e]
 	mov r0, #0x00050000			; r0=rConstants[30] (5.0000)
@@ -25569,9 +28530,16 @@ proc_205_continue_552:
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
 	; BC_WAIT [0a]
 	adr r1, proc_205_continue_553
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_205_continue_553:
 	; BC_CONST [9e]
 	mov r0, #0x00050000			; r0=rConstants[30] (5.0000)
@@ -25599,9 +28567,16 @@ proc_205_continue_553:
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
 	; BC_WAIT [0a]
 	adr r1, proc_205_continue_554
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_205_continue_554:
 	; BC_CONST [9e]
 	mov r0, #0x00050000			; r0=rConstants[30] (5.0000)
@@ -25629,9 +28604,16 @@ proc_205_continue_554:
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
 	; BC_WAIT [0a]
 	adr r1, proc_205_continue_555
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_205_continue_555:
 	; BC_CONST [9e]
 	mov r0, #0x00050000			; r0=rConstants[30] (5.0000)
@@ -25683,9 +28665,16 @@ proc_206_start:
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
 	; BC_WAIT [0a]
 	adr r1, proc_206_continue_556
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_206_continue_556:
 	; BC_CONST [9e]
 	mov r0, #0x00050000			; r0=rConstants[30] (5.0000)
@@ -25713,9 +28702,16 @@ proc_206_continue_556:
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
 	; BC_WAIT [0a]
 	adr r1, proc_206_continue_557
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_206_continue_557:
 	; BC_CONST [9e]
 	mov r0, #0x00050000			; r0=rConstants[30] (5.0000)
@@ -25743,9 +28739,16 @@ proc_206_continue_557:
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
 	; BC_WAIT [0a]
 	adr r1, proc_206_continue_558
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_206_continue_558:
 	; BC_CONST [9e]
 	mov r0, #0x00050000			; r0=rConstants[30] (5.0000)
@@ -25797,9 +28800,16 @@ proc_207_start:
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
 	; BC_WAIT [0a]
 	adr r1, proc_207_continue_559
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_207_continue_559:
 	; BC_CONST [9e]
 	mov r0, #0x00050000			; r0=rConstants[30] (5.0000)
@@ -25827,9 +28837,16 @@ proc_207_continue_559:
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
 	; BC_WAIT [0a]
 	adr r1, proc_207_continue_560
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_207_continue_560:
 	; BC_CONST [9e]
 	mov r0, #0x00050000			; r0=rConstants[30] (5.0000)
@@ -25857,9 +28874,16 @@ proc_207_continue_560:
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
 	; BC_WAIT [0a]
 	adr r1, proc_207_continue_561
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_207_continue_561:
 	; BC_CONST [9e]
 	mov r0, #0x00050000			; r0=rConstants[30] (5.0000)
@@ -25887,9 +28911,16 @@ proc_207_continue_561:
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
 	; BC_WAIT [0a]
 	adr r1, proc_207_continue_562
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_207_continue_562:
 	; BC_CONST [9e]
 	mov r0, #0x00050000			; r0=rConstants[30] (5.0000)
@@ -25941,9 +28972,16 @@ proc_208_start:
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
 	; BC_WAIT [0a]
 	adr r1, proc_208_continue_563
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_208_continue_563:
 	; BC_CONST [9e]
 	mov r0, #0x00050000			; r0=rConstants[30] (5.0000)
@@ -25971,9 +29009,16 @@ proc_208_continue_563:
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
 	; BC_WAIT [0a]
 	adr r1, proc_208_continue_564
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_208_continue_564:
 	; BC_CONST [9e]
 	mov r0, #0x00050000			; r0=rConstants[30] (5.0000)
@@ -26001,9 +29046,16 @@ proc_208_continue_564:
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
 	; BC_WAIT [0a]
 	adr r1, proc_208_continue_565
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_208_continue_565:
 	; BC_CONST [9e]
 	mov r0, #0x00050000			; r0=rConstants[30] (5.0000)
@@ -26031,9 +29083,16 @@ proc_208_continue_565:
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
 	; BC_WAIT [0a]
 	adr r1, proc_208_continue_566
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_208_continue_566:
 	; BC_CONST [9e]
 	mov r0, #0x00050000			; r0=rConstants[30] (5.0000)
@@ -26085,9 +29144,16 @@ proc_209_start:
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
 	; BC_WAIT [0a]
 	adr r1, proc_209_continue_567
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_209_continue_567:
 	; BC_CONST [9e]
 	mov r0, #0x00050000			; r0=rConstants[30] (5.0000)
@@ -26115,9 +29181,16 @@ proc_209_continue_567:
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
 	; BC_WAIT [0a]
 	adr r1, proc_209_continue_568
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_209_continue_568:
 	; BC_CONST [9e]
 	mov r0, #0x00050000			; r0=rConstants[30] (5.0000)
@@ -26145,9 +29218,16 @@ proc_209_continue_568:
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
 	; BC_WAIT [0a]
 	adr r1, proc_209_continue_569
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_209_continue_569:
 	; BC_CONST [9e]
 	mov r0, #0x00050000			; r0=rConstants[30] (5.0000)
@@ -26199,9 +29279,16 @@ proc_210_start:
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
 	; BC_WAIT [0a]
 	adr r1, proc_210_continue_570
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_210_continue_570:
 	; BC_CONST [9e]
 	mov r0, #0x00050000			; r0=rConstants[30] (5.0000)
@@ -26229,9 +29316,16 @@ proc_210_continue_570:
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
 	; BC_WAIT [0a]
 	adr r1, proc_210_continue_571
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_210_continue_571:
 	; BC_CONST [9e]
 	mov r0, #0x00050000			; r0=rConstants[30] (5.0000)
@@ -26259,9 +29353,16 @@ proc_210_continue_571:
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
 	; BC_WAIT [0a]
 	adr r1, proc_210_continue_572
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_210_continue_572:
 	; BC_CONST [9e]
 	mov r0, #0x00050000			; r0=rConstants[30] (5.0000)
@@ -26313,9 +29414,16 @@ proc_211_start:
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
 	; BC_WAIT [0a]
 	adr r1, proc_211_continue_573
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_211_continue_573:
 	; BC_CONST [9e]
 	mov r0, #0x00050000			; r0=rConstants[30] (5.0000)
@@ -26343,9 +29451,16 @@ proc_211_continue_573:
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
 	; BC_WAIT [0a]
 	adr r1, proc_211_continue_574
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_211_continue_574:
 	; BC_CONST [9e]
 	mov r0, #0x00050000			; r0=rConstants[30] (5.0000)
@@ -26373,9 +29488,16 @@ proc_211_continue_574:
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
 	; BC_WAIT [0a]
 	adr r1, proc_211_continue_575
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_211_continue_575:
 	; BC_CONST [9e]
 	mov r0, #0x00050000			; r0=rConstants[30] (5.0000)
@@ -26403,9 +29525,16 @@ proc_211_continue_575:
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
 	; BC_WAIT [0a]
 	adr r1, proc_211_continue_576
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_211_continue_576:
 	; BC_CONST [9e]
 	mov r0, #0x00050000			; r0=rConstants[30] (5.0000)
@@ -26457,9 +29586,16 @@ proc_212_start:
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
 	; BC_WAIT [0a]
 	adr r1, proc_212_continue_577
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_212_continue_577:
 	; BC_CONST [9e]
 	mov r0, #0x00050000			; r0=rConstants[30] (5.0000)
@@ -26487,9 +29623,16 @@ proc_212_continue_577:
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
 	; BC_WAIT [0a]
 	adr r1, proc_212_continue_578
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_212_continue_578:
 	; BC_CONST [9e]
 	mov r0, #0x00050000			; r0=rConstants[30] (5.0000)
@@ -26541,9 +29684,16 @@ proc_213_start:
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
 	; BC_WAIT [0a]
 	adr r1, proc_213_continue_579
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_213_continue_579:
 	; BC_CONST [9e]
 	mov r0, #0x00050000			; r0=rConstants[30] (5.0000)
@@ -26571,9 +29721,16 @@ proc_213_continue_579:
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
 	; BC_WAIT [0a]
 	adr r1, proc_213_continue_580
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_213_continue_580:
 	; BC_CONST [9e]
 	mov r0, #0x00050000			; r0=rConstants[30] (5.0000)
@@ -26601,9 +29758,16 @@ proc_213_continue_580:
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
 	; BC_WAIT [0a]
 	adr r1, proc_213_continue_581
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_213_continue_581:
 	; BC_CONST [9e]
 	mov r0, #0x00050000			; r0=rConstants[30] (5.0000)
@@ -26631,9 +29795,16 @@ proc_213_continue_581:
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
 	; BC_WAIT [0a]
 	adr r1, proc_213_continue_582
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_213_continue_582:
 	; BC_CONST [9e]
 	mov r0, #0x00050000			; r0=rConstants[30] (5.0000)
@@ -26685,9 +29856,16 @@ proc_214_start:
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
 	; BC_WAIT [0a]
 	adr r1, proc_214_continue_583
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_214_continue_583:
 	; BC_CONST [9e]
 	mov r0, #0x00050000			; r0=rConstants[30] (5.0000)
@@ -26715,9 +29893,16 @@ proc_214_continue_583:
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
 	; BC_WAIT [0a]
 	adr r1, proc_214_continue_584
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_214_continue_584:
 	; BC_CONST [9e]
 	mov r0, #0x00050000			; r0=rConstants[30] (5.0000)
@@ -26745,9 +29930,16 @@ proc_214_continue_584:
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
 	; BC_WAIT [0a]
 	adr r1, proc_214_continue_585
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_214_continue_585:
 	; BC_CONST [9e]
 	mov r0, #0x00050000			; r0=rConstants[30] (5.0000)
@@ -26799,9 +29991,16 @@ proc_215_start:
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
 	; BC_WAIT [0a]
 	adr r1, proc_215_continue_586
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_215_continue_586:
 	; BC_CONST [9e]
 	mov r0, #0x00050000			; r0=rConstants[30] (5.0000)
@@ -26829,9 +30028,16 @@ proc_215_continue_586:
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
 	; BC_WAIT [0a]
 	adr r1, proc_215_continue_587
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_215_continue_587:
 	; BC_CONST [9e]
 	mov r0, #0x00050000			; r0=rConstants[30] (5.0000)
@@ -26859,9 +30065,16 @@ proc_215_continue_587:
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
 	; BC_WAIT [0a]
 	adr r1, proc_215_continue_588
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_215_continue_588:
 	; BC_CONST [9e]
 	mov r0, #0x00050000			; r0=rConstants[30] (5.0000)
@@ -26889,9 +30102,16 @@ proc_215_continue_588:
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
 	; BC_WAIT [0a]
 	adr r1, proc_215_continue_589
-	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl WaitState				; Add r5 to StateList, r0=wait_frames, r1=&continue.
-	ldr pc, [sp], #4			; Return
+	str r1, [r5, #ST_PROC*4]	; *pState.st_proc = &continue
+	str r5, [r3, #-4]!			; push p_State on StateStack.
+	ldr r2, [r5, #ST_TIME*4]
+	add r2, r2, r0
+	str r2, [r5, #ST_TIME*4]	; *pState.st_time += wait_frames
+	bic r2, r2, #0xc000			; remove time fractional part.
+	ldr r1, [r6, r2, lsr #14]	; r_StateList[time >> 16 << 2]
+	str r1, [r3, #-4]!			; push previous entry from StateList at that frame.
+	str r3, [r6, r2, lsr #14]	; store new p_StateStack for this frame.
+	mov pc, lr					; Return.
 proc_215_continue_589:
 	; BC_CONST [9e]
 	mov r0, #0x00050000			; r0=rConstants[30] (5.0000)
