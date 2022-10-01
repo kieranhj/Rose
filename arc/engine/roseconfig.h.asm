@@ -24,6 +24,31 @@
 .equ MAXRADIUS, 70              ; Max radius size of a circle.
 .equ DEGREES, 16384             ; Sinus table accuracy.
 
+.if _DUAL_PLAYFIELD
+.equ CIRCLEDATA, 6				; centre_x, colour word, ptr to size table, line count
+.else
+.equ CIRCLEDATA, 5				; centre_x, colour word, ptr to size table, line count
+.endif
+
+.equ MAXSPAN, (MAXRADIUS+1)*2   ; otherwise Screen_Width
+
+; ============================================================================
+
+.ifndef _SCREEN_MODE
+.equ Screen_Mode, 9
+.else
+.equ Screen_Mode, _SCREEN_MODE
+.endif
+
+.equ Screen_Width, _FORM_WIDTH
+.equ Screen_Height, _FORM_HEIGHT
+
+.if _FORM_HEIGHT < 256
+.equ Mode_Height, 256
+.else
+.equ Mode_Height, _FORM_HEIGHT
+.endif
+
 ; ============================================================================
 
 .equ ST_PROC, 0
@@ -37,5 +62,10 @@
 
 .equ ST_MAX, 8
 .equ STATE_SIZE, (ST_MAX+WIRE_CAPACITY+MAX_STACK+2)*4
+
+; ============================================================================
+
+.equ UseReciprocalTable, 1
+.equ MakeReciprocalTable, (1 && UseReciprocalTable)
 
 ; ============================================================================

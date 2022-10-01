@@ -2,11 +2,13 @@
 ; Rose Arc Port.
 ; Original Amiga engine and language code by Blueberry of Loonies.
 ; Archimedes version by Kieran of Bitshifters.
-; Additional code by Progen (Sarah Walker).
+; Circle plotting code by Progen (Sarah Walker).
+; Fast span fill code by Progen (Sarah Walker).
 ; QTM Module Player by Phoenix of Quantum (steve3000).
+; Mode Maker by Phoenix of Quantum (steve3000).
 ; ============================================================================
 
-.equ _DEBUG, 1
+.equ _DEBUG, 0
 .equ _DEBUG_RASTERS, (_DEBUG && 1)		; removes code
 .equ _DEBUG_STOP_ON_FRAME, -1
 .equ _DEBUG_DEFAULT_PLAY_PAUSE, 1		; play
@@ -17,32 +19,17 @@
 
 .equ Screen_Banks, 1					; TODO: Remove.
 
-.ifndef _SCREEN_MODE
-.equ Screen_Mode, 9
-.else
-.equ Screen_Mode, _SCREEN_MODE
-.endif
-
-.equ Screen_Width, _FORM_WIDTH
-.equ Screen_Height, _FORM_HEIGHT
-
-.if _FORM_HEIGHT < 256
-.equ Mode_Height, 256
-.else
-.equ Mode_Height, _FORM_HEIGHT
-.endif
-
 .equ Screen_PixelsPerByte, 2
 .equ Screen_Stride, Screen_Width/Screen_PixelsPerByte
 .equ Screen_Bytes, Screen_Stride*Screen_Height
 .equ Mode_Bytes, Screen_Stride*Mode_Height
 
-; TODO: Revisit audio quality but assume DPF is expensive so need the CPU time!
-.if _DUAL_PLAYFIELD
-.equ Music_SampleQuality, 48
-.else
-.equ Music_SampleQuality, 24
-.endif
+; TODO: Revisit audio quality.
+; Steve3000 suggests:
+;   48us as last resort for 8MHz machines.
+;   32us ideally for 12MHz machines.
+;   24us or 16us for ARM3 and faster where possible.
+.equ Music_SampleQuality, 32
 
 .include "lib/swis.h.asm"
 
@@ -57,6 +44,7 @@
 
 .include "roseconfig.h.asm"
 
+.text
 .org 0x8000
 
 ; ============================================================================
@@ -114,11 +102,7 @@ main:
 	adrl r1, module_data
 	swi QTM_Load
 
-	; TODO: Can we afford higher quality audio?
-	; Steve3000 suggests:
-	;   48us as last resort for 8MHz machines.
-	;   32us ideally for 12MHz machines.
-	;   24us for ARM3 and faster where possible.
+	; TODO: Auto configure audio quality.
 	mov r0, #Music_SampleQuality
 	swi QTM_SetSampleSpeed
 
@@ -621,11 +605,6 @@ module_data:
 	.align 4
 .endif
 
-; ============================================================================
-; BSS Segment
-; TODO: Figure out vlink so can hack off BSS segment from binary!!
-; ============================================================================
-
 p_reciprocal_table:					; [r6, #-16]
 	.long reciprocal_table
 
@@ -637,39 +616,7 @@ plot_square_instruction:			; [r6, #-8]
 
 r_FreeState:						; [r6, #-4]
     .long 0                  		; Last longword of first free state.
-
-r_StateLists:
-    .skip	(MAX_FRAMES+MAX_WAIT)*4
-
-r_StateSpace:
-    .skip	(MAX_TURTLES+1)*STATE_SIZE
-r_StateSpaceEnd:
-
-r_Sinus:
-    .skip	(DEGREES)*4
-
-reciprocal_table:
-.if MakeReciprocalTable
-	.skip	(1<<16)*4
-.else
-.long 0
-.set divisor, 1
-.rept 65535
-    .long (1<<24)/divisor
-    .set divisor, divisor+1
-.endr
-.endif
-
-r_CircleBuffer:
-	.skip	(MAX_CIRCLES)*(CIRCLEDATA+1)*4
-r_circleBufEnd:
-
-r_CircleBufPtrs:
-	.skip	(Screen_Height)*4
-
-gen_code_pointers:
-	.skip	4*8*MAXSPAN
-
-gen_code_start:
-
+; ^
+; +----- THESE MUST BE LAST AND IMMEDIATELY BEFORE r_StateLists!!
+;        WHICH SHOULD FOLLOW IN THE .BSS SECTION.
 ; ============================================================================

@@ -2,9 +2,6 @@
 ; sinus.asm - ARM port of Sinus.S
 ; ============================================================================
 
-.equ MakeReciprocalTable, 1
-.equ UseReciprocalTable, 1
-
 ; Makes sine values [0-0x4000]
 MakeSinus:
     ; adrl r8, r_Sinus
@@ -103,12 +100,9 @@ divide:
     rsbmi r0, r9, #0            ; Neative result into R0*
     MOV PC,R14                  ; and return
 
-    ; * Remove the lines marked with asterisks to
-    ; return R0 MOD R1 instead of R0 DIV R1
-
     divbyzero: ;The error block
     .long 18
-	.byte "Divide by Zero"
+	.byte "Divide by zero"
 	.align 4
 	.long 0
 

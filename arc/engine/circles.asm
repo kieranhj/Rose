@@ -3,12 +3,6 @@
 ; Kindly provided by Progen (Sarah Walker).
 ; ============================================================================
 
-.if _DUAL_PLAYFIELD
-.equ CIRCLEDATA, 6				; centre_x, colour word, ptr to size table, line count
-.else
-.equ CIRCLEDATA, 5				; centre_x, colour word, ptr to size table, line count
-.endif
-
 circle_lookup_p:
 	.long circle_lookup
 

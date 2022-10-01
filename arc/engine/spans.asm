@@ -4,8 +4,6 @@
 ; Kindly provided by Progen (Sarah Walker).
 ; ============================================================================
 
-.equ MAXSPAN, (MAXRADIUS+1)*2       ; otherwise Screen_Width
-
 gen_code_pointers_p:
 	.long gen_code_pointers
 
