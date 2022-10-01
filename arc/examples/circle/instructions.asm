@@ -83,8 +83,13 @@ proc_1_start:
 	; BC_DRAW [04]
 	add r2, r5, #4
 	ldmia r2, {r8-r11}			; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	mov r0, r8, asr #16			; X
+	mov r1, r9, asr #16			; Y
+	mov r2, r10, asr #16		; RADIUS
+	mov r9, r11, lsr #16		; TINT
+	ldr r10, [r6, #-12]			; (plot_circle_instruction)
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl PutCircle
+	bl link_circle
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_CONST [83]
 	mov r0, #0x00020000			; r0=rConstants[3] (2.0000)

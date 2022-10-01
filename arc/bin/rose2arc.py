@@ -10,6 +10,7 @@ from unittest.mock import NonCallableMagicMock
 
 INLINE_FREESTATE=1
 INLINE_WAITSTATE=1
+INLINE_PLOTDRAW=1
 
 BC_DONE=0x00
 BC_ELSE=0x01
@@ -201,9 +202,21 @@ class RoseParser:
         self._asm_file.write(f'\t; BC_DRAW [{c:02x}]\n')
         self._asm_file.write(f'\tadd r2, r5, #4\n')
         self._asm_file.write(f'\tldmia r2, {{r8-r11}}\t\t\t; r8=st_x, r9=st_y, r10=st_size, r11=st_tint\n')
-        self._asm_file.write(f'\tstr lr, [sp, #-4]!\t\t\t; Push lr on program stack.\n')
-        self._asm_file.write(f'\tbl PutCircle\n')
-        self._asm_file.write(f'\tldr lr, [sp], #4\t\t\t; Pop lr off program stack.\n')
+
+        if INLINE_PLOTDRAW:
+            self._asm_file.write(f'\tmov r0, r8, asr #16\t\t\t; X\n')
+            self._asm_file.write(f'\tmov r1, r9, asr #16\t\t\t; Y\n')
+            self._asm_file.write(f'\tmov r2, r10, asr #16\t\t; RADIUS\n')
+            self._asm_file.write(f'\tmov r9, r11, lsr #16\t\t; TINT\n')
+            self._asm_file.write(f'\tldr r10, [r6, #-12]\t\t\t; (plot_circle_instruction)\n')
+            self._asm_file.write(f'\tstr lr, [sp, #-4]!\t\t\t; Push lr on program stack.\n')
+            self._asm_file.write(f'\tbl link_circle\n')
+            self._asm_file.write(f'\tldr lr, [sp], #4\t\t\t; Pop lr off program stack.\n')
+        else:
+            self._asm_file.write(f'\tstr lr, [sp, #-4]!\t\t\t; Push lr on program stack.\n')
+            self._asm_file.write(f'\tbl PutCircle\n')
+            self._asm_file.write(f'\tldr lr, [sp], #4\t\t\t; Pop lr off program stack.\n')
+
 
     def write_tail(self, c):
         self._asm_file.write(f'\t; BC_TAIL [{c:02x}]\n')
@@ -213,10 +226,22 @@ class RoseParser:
     def write_plot(self, c):
         self._asm_file.write(f'\t; BC_PLOT [{c:02x}]\n')
         self._asm_file.write(f'\tadd r2, r5, #4\n')
-        self._asm_file.write(f'\tldmia r2, {{r8-r11}}\t\t; r8=st_x, r9=st_y, r10=st_size, r11=st_tint\n')
-        self._asm_file.write(f'\tstr lr, [sp, #-4]!\t\t\t; Push lr on program stack.\n')
-        self._asm_file.write(f'\tbl PutSquare\n')
-        self._asm_file.write(f'\tldr lr, [sp], #4\t\t\t; Pop lr off program stack.\n')
+        self._asm_file.write(f'\tldmia r2, {{r8-r11}}\t\t\t; r8=st_x, r9=st_y, r10=st_size, r11=st_tint\n')
+
+        if INLINE_PLOTDRAW:
+            self._asm_file.write(f'\tmov r0, r8, asr #16\t\t\t; X\n')
+            self._asm_file.write(f'\tmov r1, r9, asr #16\t\t\t; Y\n')
+            self._asm_file.write(f'\tmov r2, r10, asr #16\t\t; RADIUS\n')
+            self._asm_file.write(f'\tmov r9, r11, lsr #16\t\t; TINT\n')
+            self._asm_file.write(f'\tldr r10, [r6, #-8]\t\t\t; (plot_square_instruction)\n')
+            self._asm_file.write(f'\torr r10, r10, r2\t\t\t; mov r1, #st_size\n')
+            self._asm_file.write(f'\tstr lr, [sp, #-4]!\t\t\t; Push lr on program stack.\n')
+            self._asm_file.write(f'\tbl link_circle\n')
+            self._asm_file.write(f'\tldr lr, [sp], #4\t\t\t; Pop lr off program stack.\n')
+        else:
+            self._asm_file.write(f'\tstr lr, [sp, #-4]!\t\t\t; Push lr on program stack.\n')
+            self._asm_file.write(f'\tbl PutSquare\n')
+            self._asm_file.write(f'\tldr lr, [sp], #4\t\t\t; Pop lr off program stack.\n')
 
     def write_proc(self, c):
         self._asm_file.write(f'\t; BC_PROC [{c:02x}]\n')

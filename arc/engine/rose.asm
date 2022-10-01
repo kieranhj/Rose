@@ -625,6 +625,12 @@ module_data:
 ; TODO: Figure out vlink so can hack off BSS segment from binary!!
 ; ============================================================================
 
+plot_circle_instruction:
+    .long 0xe4dc1001            	; LDRB r1, [r12], #1
+
+plot_square_instruction:
+    .long 0xe3a01000           		; mov r1, #0
+
 r_FreeState:
     .long 0                  		; Last longword of first free state.
 

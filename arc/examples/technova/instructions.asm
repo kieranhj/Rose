@@ -1679,9 +1679,15 @@ proc_3_start:
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
 	; BC_PLOT [06]
 	add r2, r5, #4
-	ldmia r2, {r8-r11}		; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	ldmia r2, {r8-r11}			; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	mov r0, r8, asr #16			; X
+	mov r1, r9, asr #16			; Y
+	mov r2, r10, asr #16		; RADIUS
+	mov r9, r11, lsr #16		; TINT
+	ldr r10, [r6, #-8]			; (plot_square_instruction)
+	orr r10, r10, r2			; mov r1, #st_size
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl PutSquare
+	bl link_circle
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_END [02]
 	ldr r2, [r6, #-4]			; (r_FreeState)
@@ -1884,8 +1890,13 @@ proc_5_start:
 	; BC_DRAW [04]
 	add r2, r5, #4
 	ldmia r2, {r8-r11}			; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	mov r0, r8, asr #16			; X
+	mov r1, r9, asr #16			; Y
+	mov r2, r10, asr #16		; RADIUS
+	mov r9, r11, lsr #16		; TINT
+	ldr r10, [r6, #-12]			; (plot_circle_instruction)
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl PutCircle
+	bl link_circle
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_END [02]
 	ldr r2, [r6, #-4]			; (r_FreeState)
@@ -2125,9 +2136,15 @@ proc_9_start:
 	beq proc_9_target_47
 	; BC_PLOT [06]
 	add r2, r5, #4
-	ldmia r2, {r8-r11}		; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	ldmia r2, {r8-r11}			; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	mov r0, r8, asr #16			; X
+	mov r1, r9, asr #16			; Y
+	mov r2, r10, asr #16		; RADIUS
+	mov r9, r11, lsr #16		; TINT
+	ldr r10, [r6, #-8]			; (plot_square_instruction)
+	orr r10, r10, r2			; mov r1, #st_size
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl PutSquare
+	bl link_circle
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_CONST [9e]
 	mov r0, #0x00010000			; r0=rConstants[30] (1.0000)
@@ -2852,9 +2869,15 @@ proc_14_start:
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_PLOT [06]
 	add r2, r5, #4
-	ldmia r2, {r8-r11}		; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	ldmia r2, {r8-r11}			; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	mov r0, r8, asr #16			; X
+	mov r1, r9, asr #16			; Y
+	mov r2, r10, asr #16		; RADIUS
+	mov r9, r11, lsr #16		; TINT
+	ldr r10, [r6, #-8]			; (plot_square_instruction)
+	orr r10, r10, r2			; mov r1, #st_size
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl PutSquare
+	bl link_circle
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_CONST [80]
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -2872,9 +2895,15 @@ proc_14_start:
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_PLOT [06]
 	add r2, r5, #4
-	ldmia r2, {r8-r11}		; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	ldmia r2, {r8-r11}			; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	mov r0, r8, asr #16			; X
+	mov r1, r9, asr #16			; Y
+	mov r2, r10, asr #16		; RADIUS
+	mov r9, r11, lsr #16		; TINT
+	ldr r10, [r6, #-8]			; (plot_square_instruction)
+	orr r10, r10, r2			; mov r1, #st_size
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl PutSquare
+	bl link_circle
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_CONST [9e]
 	mov r0, #0x00010000			; r0=rConstants[30] (1.0000)
@@ -2902,9 +2931,15 @@ proc_14_start:
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_PLOT [06]
 	add r2, r5, #4
-	ldmia r2, {r8-r11}		; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	ldmia r2, {r8-r11}			; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	mov r0, r8, asr #16			; X
+	mov r1, r9, asr #16			; Y
+	mov r2, r10, asr #16		; RADIUS
+	mov r9, r11, lsr #16		; TINT
+	ldr r10, [r6, #-8]			; (plot_square_instruction)
+	orr r10, r10, r2			; mov r1, #st_size
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl PutSquare
+	bl link_circle
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_CONST [80]
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -2922,9 +2957,15 @@ proc_14_start:
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_PLOT [06]
 	add r2, r5, #4
-	ldmia r2, {r8-r11}		; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	ldmia r2, {r8-r11}			; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	mov r0, r8, asr #16			; X
+	mov r1, r9, asr #16			; Y
+	mov r2, r10, asr #16		; RADIUS
+	mov r9, r11, lsr #16		; TINT
+	ldr r10, [r6, #-8]			; (plot_square_instruction)
+	orr r10, r10, r2			; mov r1, #st_size
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl PutSquare
+	bl link_circle
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_CONST [80]
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
@@ -2942,9 +2983,15 @@ proc_14_start:
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_PLOT [06]
 	add r2, r5, #4
-	ldmia r2, {r8-r11}		; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	ldmia r2, {r8-r11}			; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	mov r0, r8, asr #16			; X
+	mov r1, r9, asr #16			; Y
+	mov r2, r10, asr #16		; RADIUS
+	mov r9, r11, lsr #16		; TINT
+	ldr r10, [r6, #-8]			; (plot_square_instruction)
+	orr r10, r10, r2			; mov r1, #st_size
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl PutSquare
+	bl link_circle
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_DONE [00]
 proc_14_target_70:
@@ -3119,9 +3166,15 @@ proc_15_start:
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_PLOT [06]
 	add r2, r5, #4
-	ldmia r2, {r8-r11}		; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	ldmia r2, {r8-r11}			; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	mov r0, r8, asr #16			; X
+	mov r1, r9, asr #16			; Y
+	mov r2, r10, asr #16		; RADIUS
+	mov r9, r11, lsr #16		; TINT
+	ldr r10, [r6, #-8]			; (plot_square_instruction)
+	orr r10, r10, r2			; mov r1, #st_size
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl PutSquare
+	bl link_circle
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_CONST [ac]
 	mov r0, #0x000a0000			; r0=rConstants[44] (10.0000)
@@ -3227,9 +3280,15 @@ proc_16_start:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_PLOT [06]
 	add r2, r5, #4
-	ldmia r2, {r8-r11}		; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	ldmia r2, {r8-r11}			; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	mov r0, r8, asr #16			; X
+	mov r1, r9, asr #16			; Y
+	mov r2, r10, asr #16		; RADIUS
+	mov r9, r11, lsr #16		; TINT
+	ldr r10, [r6, #-8]			; (plot_square_instruction)
+	orr r10, r10, r2			; mov r1, #st_size
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl PutSquare
+	bl link_circle
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_END [02]
 	ldr r2, [r6, #-4]			; (r_FreeState)
@@ -3291,9 +3350,15 @@ proc_17_start:
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_PLOT [06]
 	add r2, r5, #4
-	ldmia r2, {r8-r11}		; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	ldmia r2, {r8-r11}			; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	mov r0, r8, asr #16			; X
+	mov r1, r9, asr #16			; Y
+	mov r2, r10, asr #16		; RADIUS
+	mov r9, r11, lsr #16		; TINT
+	ldr r10, [r6, #-8]			; (plot_square_instruction)
+	orr r10, r10, r2			; mov r1, #st_size
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl PutSquare
+	bl link_circle
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_DONE [00]
 proc_17_target_74:
@@ -3323,9 +3388,15 @@ proc_17_target_74:
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_PLOT [06]
 	add r2, r5, #4
-	ldmia r2, {r8-r11}		; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	ldmia r2, {r8-r11}			; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	mov r0, r8, asr #16			; X
+	mov r1, r9, asr #16			; Y
+	mov r2, r10, asr #16		; RADIUS
+	mov r9, r11, lsr #16		; TINT
+	ldr r10, [r6, #-8]			; (plot_square_instruction)
+	orr r10, r10, r2			; mov r1, #st_size
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl PutSquare
+	bl link_circle
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_DONE [00]
 proc_17_target_75:
@@ -3355,9 +3426,15 @@ proc_17_target_75:
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_PLOT [06]
 	add r2, r5, #4
-	ldmia r2, {r8-r11}		; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	ldmia r2, {r8-r11}			; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	mov r0, r8, asr #16			; X
+	mov r1, r9, asr #16			; Y
+	mov r2, r10, asr #16		; RADIUS
+	mov r9, r11, lsr #16		; TINT
+	ldr r10, [r6, #-8]			; (plot_square_instruction)
+	orr r10, r10, r2			; mov r1, #st_size
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl PutSquare
+	bl link_circle
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_DONE [00]
 proc_17_target_76:
@@ -3723,9 +3800,15 @@ proc_20_continue_88:
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_PLOT [06]
 	add r2, r5, #4
-	ldmia r2, {r8-r11}		; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	ldmia r2, {r8-r11}			; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	mov r0, r8, asr #16			; X
+	mov r1, r9, asr #16			; Y
+	mov r2, r10, asr #16		; RADIUS
+	mov r9, r11, lsr #16		; TINT
+	ldr r10, [r6, #-8]			; (plot_square_instruction)
+	orr r10, r10, r2			; mov r1, #st_size
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl PutSquare
+	bl link_circle
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_DONE [00]
 proc_20_target_83:
@@ -4171,9 +4254,15 @@ proc_22_continue_101:
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_PLOT [06]
 	add r2, r5, #4
-	ldmia r2, {r8-r11}		; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	ldmia r2, {r8-r11}			; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	mov r0, r8, asr #16			; X
+	mov r1, r9, asr #16			; Y
+	mov r2, r10, asr #16		; RADIUS
+	mov r9, r11, lsr #16		; TINT
+	ldr r10, [r6, #-8]			; (plot_square_instruction)
+	orr r10, r10, r2			; mov r1, #st_size
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl PutSquare
+	bl link_circle
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_END [02]
 	ldr r2, [r6, #-4]			; (r_FreeState)
@@ -4356,8 +4445,13 @@ proc_25_start:
 	; BC_DRAW [04]
 	add r2, r5, #4
 	ldmia r2, {r8-r11}			; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	mov r0, r8, asr #16			; X
+	mov r1, r9, asr #16			; Y
+	mov r2, r10, asr #16		; RADIUS
+	mov r9, r11, lsr #16		; TINT
+	ldr r10, [r6, #-12]			; (plot_circle_instruction)
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl PutCircle
+	bl link_circle
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_CONST [a4]
 	mov r0, #0x00030000			; r0=rConstants[36] (3.0000)
@@ -4376,8 +4470,13 @@ proc_25_start:
 	; BC_DRAW [04]
 	add r2, r5, #4
 	ldmia r2, {r8-r11}			; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	mov r0, r8, asr #16			; X
+	mov r1, r9, asr #16			; Y
+	mov r2, r10, asr #16		; RADIUS
+	mov r9, r11, lsr #16		; TINT
+	ldr r10, [r6, #-12]			; (plot_circle_instruction)
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl PutCircle
+	bl link_circle
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_CONST [a2]
 	mov r0, #0x00020000			; r0=rConstants[34] (2.0000)
@@ -4406,8 +4505,13 @@ proc_25_start:
 	; BC_DRAW [04]
 	add r2, r5, #4
 	ldmia r2, {r8-r11}			; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	mov r0, r8, asr #16			; X
+	mov r1, r9, asr #16			; Y
+	mov r2, r10, asr #16		; RADIUS
+	mov r9, r11, lsr #16		; TINT
+	ldr r10, [r6, #-12]			; (plot_circle_instruction)
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl PutCircle
+	bl link_circle
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_CONST [9e]
 	mov r0, #0x00010000			; r0=rConstants[30] (1.0000)
@@ -4436,8 +4540,13 @@ proc_25_start:
 	; BC_DRAW [04]
 	add r2, r5, #4
 	ldmia r2, {r8-r11}			; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	mov r0, r8, asr #16			; X
+	mov r1, r9, asr #16			; Y
+	mov r2, r10, asr #16		; RADIUS
+	mov r9, r11, lsr #16		; TINT
+	ldr r10, [r6, #-12]			; (plot_circle_instruction)
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl PutCircle
+	bl link_circle
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_END [02]
 	ldr r2, [r6, #-4]			; (r_FreeState)
@@ -4469,9 +4578,15 @@ proc_26_start:
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_PLOT [06]
 	add r2, r5, #4
-	ldmia r2, {r8-r11}		; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	ldmia r2, {r8-r11}			; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	mov r0, r8, asr #16			; X
+	mov r1, r9, asr #16			; Y
+	mov r2, r10, asr #16		; RADIUS
+	mov r9, r11, lsr #16		; TINT
+	ldr r10, [r6, #-8]			; (plot_square_instruction)
+	orr r10, r10, r2			; mov r1, #st_size
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl PutSquare
+	bl link_circle
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_CONST [a4]
 	mov r0, #0x00030000			; r0=rConstants[36] (3.0000)
@@ -4489,9 +4604,15 @@ proc_26_start:
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_PLOT [06]
 	add r2, r5, #4
-	ldmia r2, {r8-r11}		; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	ldmia r2, {r8-r11}			; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	mov r0, r8, asr #16			; X
+	mov r1, r9, asr #16			; Y
+	mov r2, r10, asr #16		; RADIUS
+	mov r9, r11, lsr #16		; TINT
+	ldr r10, [r6, #-8]			; (plot_square_instruction)
+	orr r10, r10, r2			; mov r1, #st_size
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl PutSquare
+	bl link_circle
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_CONST [a2]
 	mov r0, #0x00020000			; r0=rConstants[34] (2.0000)
@@ -4519,9 +4640,15 @@ proc_26_start:
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_PLOT [06]
 	add r2, r5, #4
-	ldmia r2, {r8-r11}		; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	ldmia r2, {r8-r11}			; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	mov r0, r8, asr #16			; X
+	mov r1, r9, asr #16			; Y
+	mov r2, r10, asr #16		; RADIUS
+	mov r9, r11, lsr #16		; TINT
+	ldr r10, [r6, #-8]			; (plot_square_instruction)
+	orr r10, r10, r2			; mov r1, #st_size
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl PutSquare
+	bl link_circle
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_CONST [9e]
 	mov r0, #0x00010000			; r0=rConstants[30] (1.0000)
@@ -4549,9 +4676,15 @@ proc_26_start:
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_PLOT [06]
 	add r2, r5, #4
-	ldmia r2, {r8-r11}		; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	ldmia r2, {r8-r11}			; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	mov r0, r8, asr #16			; X
+	mov r1, r9, asr #16			; Y
+	mov r2, r10, asr #16		; RADIUS
+	mov r9, r11, lsr #16		; TINT
+	ldr r10, [r6, #-8]			; (plot_square_instruction)
+	orr r10, r10, r2			; mov r1, #st_size
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl PutSquare
+	bl link_circle
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_END [02]
 	ldr r2, [r6, #-4]			; (r_FreeState)
@@ -6724,9 +6857,15 @@ proc_31_start:
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_PLOT [06]
 	add r2, r5, #4
-	ldmia r2, {r8-r11}		; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	ldmia r2, {r8-r11}			; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	mov r0, r8, asr #16			; X
+	mov r1, r9, asr #16			; Y
+	mov r2, r10, asr #16		; RADIUS
+	mov r9, r11, lsr #16		; TINT
+	ldr r10, [r6, #-8]			; (plot_square_instruction)
+	orr r10, r10, r2			; mov r1, #st_size
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl PutSquare
+	bl link_circle
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_END [02]
 	ldr r2, [r6, #-4]			; (r_FreeState)
@@ -7134,9 +7273,15 @@ proc_35_target_135:
 	str r0, [r5, #ST_Y*4]		; State[ST_Y]=r0
 	; BC_PLOT [06]
 	add r2, r5, #4
-	ldmia r2, {r8-r11}		; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	ldmia r2, {r8-r11}			; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	mov r0, r8, asr #16			; X
+	mov r1, r9, asr #16			; Y
+	mov r2, r10, asr #16		; RADIUS
+	mov r9, r11, lsr #16		; TINT
+	ldr r10, [r6, #-8]			; (plot_square_instruction)
+	orr r10, r10, r2			; mov r1, #st_size
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl PutSquare
+	bl link_circle
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_END [02]
 	ldr r2, [r6, #-4]			; (r_FreeState)
@@ -7570,8 +7715,13 @@ proc_39_target_144:
 	; BC_DRAW [04]
 	add r2, r5, #4
 	ldmia r2, {r8-r11}			; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	mov r0, r8, asr #16			; X
+	mov r1, r9, asr #16			; Y
+	mov r2, r10, asr #16		; RADIUS
+	mov r9, r11, lsr #16		; TINT
+	ldr r10, [r6, #-12]			; (plot_circle_instruction)
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl PutCircle
+	bl link_circle
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_CONST [a0]
 	ldr r0, [r4, #32*4]			; r0=rConstants[32]=0x00013333 (1.2000)
@@ -7917,9 +8067,15 @@ proc_42_start:
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_PLOT [06]
 	add r2, r5, #4
-	ldmia r2, {r8-r11}		; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	ldmia r2, {r8-r11}			; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	mov r0, r8, asr #16			; X
+	mov r1, r9, asr #16			; Y
+	mov r2, r10, asr #16		; RADIUS
+	mov r9, r11, lsr #16		; TINT
+	ldr r10, [r6, #-8]			; (plot_square_instruction)
+	orr r10, r10, r2			; mov r1, #st_size
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl PutSquare
+	bl link_circle
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_END [02]
 	ldr r2, [r6, #-4]			; (r_FreeState)
@@ -8401,9 +8557,15 @@ proc_45_start:
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_PLOT [06]
 	add r2, r5, #4
-	ldmia r2, {r8-r11}		; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	ldmia r2, {r8-r11}			; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	mov r0, r8, asr #16			; X
+	mov r1, r9, asr #16			; Y
+	mov r2, r10, asr #16		; RADIUS
+	mov r9, r11, lsr #16		; TINT
+	ldr r10, [r6, #-8]			; (plot_square_instruction)
+	orr r10, r10, r2			; mov r1, #st_size
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl PutSquare
+	bl link_circle
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_CONST [9e]
 	mov r0, #0x00010000			; r0=rConstants[30] (1.0000)
@@ -8415,9 +8577,15 @@ proc_45_start:
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_PLOT [06]
 	add r2, r5, #4
-	ldmia r2, {r8-r11}		; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	ldmia r2, {r8-r11}			; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	mov r0, r8, asr #16			; X
+	mov r1, r9, asr #16			; Y
+	mov r2, r10, asr #16		; RADIUS
+	mov r9, r11, lsr #16		; TINT
+	ldr r10, [r6, #-8]			; (plot_square_instruction)
+	orr r10, r10, r2			; mov r1, #st_size
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl PutSquare
+	bl link_circle
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_CONST [b9]
 	mov r0, #0x001e0000			; r0=rConstants[57] (30.0000)
@@ -8454,9 +8622,15 @@ proc_45_continue_163:
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_PLOT [06]
 	add r2, r5, #4
-	ldmia r2, {r8-r11}		; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	ldmia r2, {r8-r11}			; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	mov r0, r8, asr #16			; X
+	mov r1, r9, asr #16			; Y
+	mov r2, r10, asr #16		; RADIUS
+	mov r9, r11, lsr #16		; TINT
+	ldr r10, [r6, #-8]			; (plot_square_instruction)
+	orr r10, r10, r2			; mov r1, #st_size
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl PutSquare
+	bl link_circle
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_CONST [9e]
 	mov r0, #0x00010000			; r0=rConstants[30] (1.0000)
@@ -8479,9 +8653,15 @@ proc_45_continue_165:
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_PLOT [06]
 	add r2, r5, #4
-	ldmia r2, {r8-r11}		; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	ldmia r2, {r8-r11}			; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	mov r0, r8, asr #16			; X
+	mov r1, r9, asr #16			; Y
+	mov r2, r10, asr #16		; RADIUS
+	mov r9, r11, lsr #16		; TINT
+	ldr r10, [r6, #-8]			; (plot_square_instruction)
+	orr r10, r10, r2			; mov r1, #st_size
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl PutSquare
+	bl link_circle
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_CONST [9e]
 	mov r0, #0x00010000			; r0=rConstants[30] (1.0000)
@@ -8504,9 +8684,15 @@ proc_45_continue_166:
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_PLOT [06]
 	add r2, r5, #4
-	ldmia r2, {r8-r11}		; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	ldmia r2, {r8-r11}			; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	mov r0, r8, asr #16			; X
+	mov r1, r9, asr #16			; Y
+	mov r2, r10, asr #16		; RADIUS
+	mov r9, r11, lsr #16		; TINT
+	ldr r10, [r6, #-8]			; (plot_square_instruction)
+	orr r10, r10, r2			; mov r1, #st_size
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl PutSquare
+	bl link_circle
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_DONE [00]
 proc_45_target_164:
@@ -9330,9 +9516,15 @@ proc_49_start:
 	bge proc_49_target_184
 	; BC_PLOT [06]
 	add r2, r5, #4
-	ldmia r2, {r8-r11}		; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	ldmia r2, {r8-r11}			; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	mov r0, r8, asr #16			; X
+	mov r1, r9, asr #16			; Y
+	mov r2, r10, asr #16		; RADIUS
+	mov r9, r11, lsr #16		; TINT
+	ldr r10, [r6, #-8]			; (plot_square_instruction)
+	orr r10, r10, r2			; mov r1, #st_size
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl PutSquare
+	bl link_circle
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_CONST [9e]
 	mov r0, #0x00010000			; r0=rConstants[30] (1.0000)
@@ -9495,9 +9687,15 @@ proc_51_start:
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_PLOT [06]
 	add r2, r5, #4
-	ldmia r2, {r8-r11}		; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	ldmia r2, {r8-r11}			; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	mov r0, r8, asr #16			; X
+	mov r1, r9, asr #16			; Y
+	mov r2, r10, asr #16		; RADIUS
+	mov r9, r11, lsr #16		; TINT
+	ldr r10, [r6, #-8]			; (plot_square_instruction)
+	orr r10, r10, r2			; mov r1, #st_size
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl PutSquare
+	bl link_circle
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_CONST [c5]
 	mov r0, #0x00500000			; r0=rConstants[69] (80.0000)
@@ -9511,9 +9709,15 @@ proc_51_start:
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_PLOT [06]
 	add r2, r5, #4
-	ldmia r2, {r8-r11}		; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	ldmia r2, {r8-r11}			; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	mov r0, r8, asr #16			; X
+	mov r1, r9, asr #16			; Y
+	mov r2, r10, asr #16		; RADIUS
+	mov r9, r11, lsr #16		; TINT
+	ldr r10, [r6, #-8]			; (plot_square_instruction)
+	orr r10, r10, r2			; mov r1, #st_size
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl PutSquare
+	bl link_circle
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_CONST [c5]
 	mov r0, #0x00500000			; r0=rConstants[69] (80.0000)
@@ -9527,9 +9731,15 @@ proc_51_start:
 	str r0, [r5, #ST_X*4]		; State[ST_X]=r0
 	; BC_PLOT [06]
 	add r2, r5, #4
-	ldmia r2, {r8-r11}		; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	ldmia r2, {r8-r11}			; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	mov r0, r8, asr #16			; X
+	mov r1, r9, asr #16			; Y
+	mov r2, r10, asr #16		; RADIUS
+	mov r9, r11, lsr #16		; TINT
+	ldr r10, [r6, #-8]			; (plot_square_instruction)
+	orr r10, r10, r2			; mov r1, #st_size
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl PutSquare
+	bl link_circle
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_CONST [c5]
 	mov r0, #0x00500000			; r0=rConstants[69] (80.0000)
@@ -9958,9 +10168,15 @@ proc_53_start:
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_PLOT [06]
 	add r2, r5, #4
-	ldmia r2, {r8-r11}		; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	ldmia r2, {r8-r11}			; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	mov r0, r8, asr #16			; X
+	mov r1, r9, asr #16			; Y
+	mov r2, r10, asr #16		; RADIUS
+	mov r9, r11, lsr #16		; TINT
+	ldr r10, [r6, #-8]			; (plot_square_instruction)
+	orr r10, r10, r2			; mov r1, #st_size
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl PutSquare
+	bl link_circle
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_CONST [a2]
 	mov r0, #0x00020000			; r0=rConstants[34] (2.0000)
@@ -9983,9 +10199,15 @@ proc_53_continue_197:
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_PLOT [06]
 	add r2, r5, #4
-	ldmia r2, {r8-r11}		; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	ldmia r2, {r8-r11}			; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	mov r0, r8, asr #16			; X
+	mov r1, r9, asr #16			; Y
+	mov r2, r10, asr #16		; RADIUS
+	mov r9, r11, lsr #16		; TINT
+	ldr r10, [r6, #-8]			; (plot_square_instruction)
+	orr r10, r10, r2			; mov r1, #st_size
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl PutSquare
+	bl link_circle
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_CONST [a2]
 	mov r0, #0x00020000			; r0=rConstants[34] (2.0000)
@@ -10008,9 +10230,15 @@ proc_53_continue_198:
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_PLOT [06]
 	add r2, r5, #4
-	ldmia r2, {r8-r11}		; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	ldmia r2, {r8-r11}			; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	mov r0, r8, asr #16			; X
+	mov r1, r9, asr #16			; Y
+	mov r2, r10, asr #16		; RADIUS
+	mov r9, r11, lsr #16		; TINT
+	ldr r10, [r6, #-8]			; (plot_square_instruction)
+	orr r10, r10, r2			; mov r1, #st_size
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl PutSquare
+	bl link_circle
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_CONST [a8]
 	mov r0, #0x00060000			; r0=rConstants[40] (6.0000)
@@ -10043,9 +10271,15 @@ proc_53_continue_199:
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_PLOT [06]
 	add r2, r5, #4
-	ldmia r2, {r8-r11}		; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	ldmia r2, {r8-r11}			; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	mov r0, r8, asr #16			; X
+	mov r1, r9, asr #16			; Y
+	mov r2, r10, asr #16		; RADIUS
+	mov r9, r11, lsr #16		; TINT
+	ldr r10, [r6, #-8]			; (plot_square_instruction)
+	orr r10, r10, r2			; mov r1, #st_size
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl PutSquare
+	bl link_circle
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_PROC [07]
 	adr r0, proc_58_start		; r0=r_Procedures[58]
@@ -10362,9 +10596,15 @@ proc_59_start:
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_PLOT [06]
 	add r2, r5, #4
-	ldmia r2, {r8-r11}		; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	ldmia r2, {r8-r11}			; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	mov r0, r8, asr #16			; X
+	mov r1, r9, asr #16			; Y
+	mov r2, r10, asr #16		; RADIUS
+	mov r9, r11, lsr #16		; TINT
+	ldr r10, [r6, #-8]			; (plot_square_instruction)
+	orr r10, r10, r2			; mov r1, #st_size
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl PutSquare
+	bl link_circle
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [60]
 	ldr r0, [r5, #-1*4]			; r0=StateStack[-1]
@@ -10853,9 +11093,15 @@ proc_63_start:
 	bge proc_63_target_214
 	; BC_PLOT [06]
 	add r2, r5, #4
-	ldmia r2, {r8-r11}		; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	ldmia r2, {r8-r11}			; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	mov r0, r8, asr #16			; X
+	mov r1, r9, asr #16			; Y
+	mov r2, r10, asr #16		; RADIUS
+	mov r9, r11, lsr #16		; TINT
+	ldr r10, [r6, #-8]			; (plot_square_instruction)
+	orr r10, r10, r2			; mov r1, #st_size
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl PutSquare
+	bl link_circle
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_CONST [a4]
 	mov r0, #0x00030000			; r0=rConstants[36] (3.0000)
@@ -11265,9 +11511,15 @@ proc_66_start:
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_PLOT [06]
 	add r2, r5, #4
-	ldmia r2, {r8-r11}		; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	ldmia r2, {r8-r11}			; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	mov r0, r8, asr #16			; X
+	mov r1, r9, asr #16			; Y
+	mov r2, r10, asr #16		; RADIUS
+	mov r9, r11, lsr #16		; TINT
+	ldr r10, [r6, #-8]			; (plot_square_instruction)
+	orr r10, r10, r2			; mov r1, #st_size
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl PutSquare
+	bl link_circle
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_CONST [a9]
 	mov r0, #0x00070000			; r0=rConstants[41] (7.0000)
@@ -11311,9 +11563,15 @@ proc_66_start:
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_PLOT [06]
 	add r2, r5, #4
-	ldmia r2, {r8-r11}		; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	ldmia r2, {r8-r11}			; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	mov r0, r8, asr #16			; X
+	mov r1, r9, asr #16			; Y
+	mov r2, r10, asr #16		; RADIUS
+	mov r9, r11, lsr #16		; TINT
+	ldr r10, [r6, #-8]			; (plot_square_instruction)
+	orr r10, r10, r2			; mov r1, #st_size
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl PutSquare
+	bl link_circle
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_CONST [a9]
 	mov r0, #0x00070000			; r0=rConstants[41] (7.0000)
@@ -11357,9 +11615,15 @@ proc_66_start:
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_PLOT [06]
 	add r2, r5, #4
-	ldmia r2, {r8-r11}		; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	ldmia r2, {r8-r11}			; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	mov r0, r8, asr #16			; X
+	mov r1, r9, asr #16			; Y
+	mov r2, r10, asr #16		; RADIUS
+	mov r9, r11, lsr #16		; TINT
+	ldr r10, [r6, #-8]			; (plot_square_instruction)
+	orr r10, r10, r2			; mov r1, #st_size
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl PutSquare
+	bl link_circle
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_CONST [a9]
 	mov r0, #0x00070000			; r0=rConstants[41] (7.0000)
@@ -11397,9 +11661,15 @@ proc_66_start:
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_PLOT [06]
 	add r2, r5, #4
-	ldmia r2, {r8-r11}		; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	ldmia r2, {r8-r11}			; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	mov r0, r8, asr #16			; X
+	mov r1, r9, asr #16			; Y
+	mov r2, r10, asr #16		; RADIUS
+	mov r9, r11, lsr #16		; TINT
+	ldr r10, [r6, #-8]			; (plot_square_instruction)
+	orr r10, r10, r2			; mov r1, #st_size
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl PutSquare
+	bl link_circle
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_CONST [a9]
 	mov r0, #0x00070000			; r0=rConstants[41] (7.0000)
@@ -11448,9 +11718,15 @@ proc_66_continue_225:
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_PLOT [06]
 	add r2, r5, #4
-	ldmia r2, {r8-r11}		; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	ldmia r2, {r8-r11}			; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	mov r0, r8, asr #16			; X
+	mov r1, r9, asr #16			; Y
+	mov r2, r10, asr #16		; RADIUS
+	mov r9, r11, lsr #16		; TINT
+	ldr r10, [r6, #-8]			; (plot_square_instruction)
+	orr r10, r10, r2			; mov r1, #st_size
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl PutSquare
+	bl link_circle
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_END [02]
 	ldr r2, [r6, #-4]			; (r_FreeState)
@@ -11492,9 +11768,15 @@ proc_67_start:
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_PLOT [06]
 	add r2, r5, #4
-	ldmia r2, {r8-r11}		; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	ldmia r2, {r8-r11}			; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	mov r0, r8, asr #16			; X
+	mov r1, r9, asr #16			; Y
+	mov r2, r10, asr #16		; RADIUS
+	mov r9, r11, lsr #16		; TINT
+	ldr r10, [r6, #-8]			; (plot_square_instruction)
+	orr r10, r10, r2			; mov r1, #st_size
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl PutSquare
+	bl link_circle
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_CONST [9e]
 	mov r0, #0x00010000			; r0=rConstants[30] (1.0000)
@@ -11523,9 +11805,15 @@ proc_67_continue_226:
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_PLOT [06]
 	add r2, r5, #4
-	ldmia r2, {r8-r11}		; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	ldmia r2, {r8-r11}			; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	mov r0, r8, asr #16			; X
+	mov r1, r9, asr #16			; Y
+	mov r2, r10, asr #16		; RADIUS
+	mov r9, r11, lsr #16		; TINT
+	ldr r10, [r6, #-8]			; (plot_square_instruction)
+	orr r10, r10, r2			; mov r1, #st_size
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl PutSquare
+	bl link_circle
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_CONST [9e]
 	mov r0, #0x00010000			; r0=rConstants[30] (1.0000)
@@ -11554,9 +11842,15 @@ proc_67_continue_227:
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_PLOT [06]
 	add r2, r5, #4
-	ldmia r2, {r8-r11}		; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	ldmia r2, {r8-r11}			; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	mov r0, r8, asr #16			; X
+	mov r1, r9, asr #16			; Y
+	mov r2, r10, asr #16		; RADIUS
+	mov r9, r11, lsr #16		; TINT
+	ldr r10, [r6, #-8]			; (plot_square_instruction)
+	orr r10, r10, r2			; mov r1, #st_size
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl PutSquare
+	bl link_circle
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_CONST [9e]
 	mov r0, #0x00010000			; r0=rConstants[30] (1.0000)
@@ -11585,9 +11879,15 @@ proc_67_continue_228:
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_PLOT [06]
 	add r2, r5, #4
-	ldmia r2, {r8-r11}		; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	ldmia r2, {r8-r11}			; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	mov r0, r8, asr #16			; X
+	mov r1, r9, asr #16			; Y
+	mov r2, r10, asr #16		; RADIUS
+	mov r9, r11, lsr #16		; TINT
+	ldr r10, [r6, #-8]			; (plot_square_instruction)
+	orr r10, r10, r2			; mov r1, #st_size
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl PutSquare
+	bl link_circle
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_END [02]
 	ldr r2, [r6, #-4]			; (r_FreeState)
@@ -12233,8 +12533,13 @@ proc_74_start:
 	; BC_DRAW [04]
 	add r2, r5, #4
 	ldmia r2, {r8-r11}			; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	mov r0, r8, asr #16			; X
+	mov r1, r9, asr #16			; Y
+	mov r2, r10, asr #16		; RADIUS
+	mov r9, r11, lsr #16		; TINT
+	ldr r10, [r6, #-12]			; (plot_circle_instruction)
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl PutCircle
+	bl link_circle
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_RLOCAL [61]
 	ldr r0, [r5, #-2*4]			; r0=StateStack[-2]
@@ -12272,8 +12577,13 @@ proc_74_start:
 	; BC_DRAW [04]
 	add r2, r5, #4
 	ldmia r2, {r8-r11}			; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	mov r0, r8, asr #16			; X
+	mov r1, r9, asr #16			; Y
+	mov r2, r10, asr #16		; RADIUS
+	mov r9, r11, lsr #16		; TINT
+	ldr r10, [r6, #-12]			; (plot_circle_instruction)
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl PutCircle
+	bl link_circle
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_END [02]
 	ldr r2, [r6, #-4]			; (r_FreeState)
@@ -12993,9 +13303,15 @@ proc_79_start:
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_PLOT [06]
 	add r2, r5, #4
-	ldmia r2, {r8-r11}		; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	ldmia r2, {r8-r11}			; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	mov r0, r8, asr #16			; X
+	mov r1, r9, asr #16			; Y
+	mov r2, r10, asr #16		; RADIUS
+	mov r9, r11, lsr #16		; TINT
+	ldr r10, [r6, #-8]			; (plot_square_instruction)
+	orr r10, r10, r2			; mov r1, #st_size
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl PutSquare
+	bl link_circle
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_CONST [a9]
 	mov r0, #0x00070000			; r0=rConstants[41] (7.0000)
@@ -13082,9 +13398,15 @@ proc_79_target_260:
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_PLOT [06]
 	add r2, r5, #4
-	ldmia r2, {r8-r11}		; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	ldmia r2, {r8-r11}			; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	mov r0, r8, asr #16			; X
+	mov r1, r9, asr #16			; Y
+	mov r2, r10, asr #16		; RADIUS
+	mov r9, r11, lsr #16		; TINT
+	ldr r10, [r6, #-8]			; (plot_square_instruction)
+	orr r10, r10, r2			; mov r1, #st_size
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl PutSquare
+	bl link_circle
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_CONST [a9]
 	mov r0, #0x00070000			; r0=rConstants[41] (7.0000)
@@ -13236,9 +13558,15 @@ proc_82_start:
 	beq proc_82_target_263
 	; BC_PLOT [06]
 	add r2, r5, #4
-	ldmia r2, {r8-r11}		; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	ldmia r2, {r8-r11}			; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	mov r0, r8, asr #16			; X
+	mov r1, r9, asr #16			; Y
+	mov r2, r10, asr #16		; RADIUS
+	mov r9, r11, lsr #16		; TINT
+	ldr r10, [r6, #-8]			; (plot_square_instruction)
+	orr r10, r10, r2			; mov r1, #st_size
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl PutSquare
+	bl link_circle
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_CONST [a8]
 	mov r0, #0x00060000			; r0=rConstants[40] (6.0000)
@@ -13647,9 +13975,15 @@ proc_88_start:
 	beq proc_88_target_268
 	; BC_PLOT [06]
 	add r2, r5, #4
-	ldmia r2, {r8-r11}		; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	ldmia r2, {r8-r11}			; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	mov r0, r8, asr #16			; X
+	mov r1, r9, asr #16			; Y
+	mov r2, r10, asr #16		; RADIUS
+	mov r9, r11, lsr #16		; TINT
+	ldr r10, [r6, #-8]			; (plot_square_instruction)
+	orr r10, r10, r2			; mov r1, #st_size
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl PutSquare
+	bl link_circle
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_CONST [9e]
 	mov r0, #0x00010000			; r0=rConstants[30] (1.0000)
@@ -13721,9 +14055,15 @@ proc_89_start:
 	str r0, [r5, #ST_TINT*4]		; State[ST_TINT]=r0
 	; BC_PLOT [06]
 	add r2, r5, #4
-	ldmia r2, {r8-r11}		; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	ldmia r2, {r8-r11}			; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	mov r0, r8, asr #16			; X
+	mov r1, r9, asr #16			; Y
+	mov r2, r10, asr #16		; RADIUS
+	mov r9, r11, lsr #16		; TINT
+	ldr r10, [r6, #-8]			; (plot_square_instruction)
+	orr r10, r10, r2			; mov r1, #st_size
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl PutSquare
+	bl link_circle
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_CONST [a2]
 	mov r0, #0x00020000			; r0=rConstants[34] (2.0000)
@@ -13963,9 +14303,15 @@ proc_91_start:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_PLOT [06]
 	add r2, r5, #4
-	ldmia r2, {r8-r11}		; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	ldmia r2, {r8-r11}			; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	mov r0, r8, asr #16			; X
+	mov r1, r9, asr #16			; Y
+	mov r2, r10, asr #16		; RADIUS
+	mov r9, r11, lsr #16		; TINT
+	ldr r10, [r6, #-8]			; (plot_square_instruction)
+	orr r10, r10, r2			; mov r1, #st_size
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl PutSquare
+	bl link_circle
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_END [02]
 	ldr r2, [r6, #-4]			; (r_FreeState)
@@ -14498,9 +14844,15 @@ proc_98_start:
 	beq proc_98_target_278
 	; BC_PLOT [06]
 	add r2, r5, #4
-	ldmia r2, {r8-r11}		; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	ldmia r2, {r8-r11}			; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	mov r0, r8, asr #16			; X
+	mov r1, r9, asr #16			; Y
+	mov r2, r10, asr #16		; RADIUS
+	mov r9, r11, lsr #16		; TINT
+	ldr r10, [r6, #-8]			; (plot_square_instruction)
+	orr r10, r10, r2			; mov r1, #st_size
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl PutSquare
+	bl link_circle
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_CONST [9e]
 	mov r0, #0x00010000			; r0=rConstants[30] (1.0000)
@@ -14722,9 +15074,15 @@ proc_101_start:
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_PLOT [06]
 	add r2, r5, #4
-	ldmia r2, {r8-r11}		; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	ldmia r2, {r8-r11}			; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	mov r0, r8, asr #16			; X
+	mov r1, r9, asr #16			; Y
+	mov r2, r10, asr #16		; RADIUS
+	mov r9, r11, lsr #16		; TINT
+	ldr r10, [r6, #-8]			; (plot_square_instruction)
+	orr r10, r10, r2			; mov r1, #st_size
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl PutSquare
+	bl link_circle
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_CONST [a6]
 	mov r0, #0x00040000			; r0=rConstants[38] (4.0000)
@@ -14742,9 +15100,15 @@ proc_101_start:
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_PLOT [06]
 	add r2, r5, #4
-	ldmia r2, {r8-r11}		; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	ldmia r2, {r8-r11}			; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	mov r0, r8, asr #16			; X
+	mov r1, r9, asr #16			; Y
+	mov r2, r10, asr #16		; RADIUS
+	mov r9, r11, lsr #16		; TINT
+	ldr r10, [r6, #-8]			; (plot_square_instruction)
+	orr r10, r10, r2			; mov r1, #st_size
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl PutSquare
+	bl link_circle
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_END [02]
 	ldr r2, [r6, #-4]			; (r_FreeState)
@@ -15154,9 +15518,15 @@ proc_106_start:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_PLOT [06]
 	add r2, r5, #4
-	ldmia r2, {r8-r11}		; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	ldmia r2, {r8-r11}			; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	mov r0, r8, asr #16			; X
+	mov r1, r9, asr #16			; Y
+	mov r2, r10, asr #16		; RADIUS
+	mov r9, r11, lsr #16		; TINT
+	ldr r10, [r6, #-8]			; (plot_square_instruction)
+	orr r10, r10, r2			; mov r1, #st_size
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl PutSquare
+	bl link_circle
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_CONST [ca]
 	mov r0, #0x00800000			; r0=rConstants[74] (128.0000)
@@ -15192,9 +15562,15 @@ proc_106_start:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_PLOT [06]
 	add r2, r5, #4
-	ldmia r2, {r8-r11}		; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	ldmia r2, {r8-r11}			; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	mov r0, r8, asr #16			; X
+	mov r1, r9, asr #16			; Y
+	mov r2, r10, asr #16		; RADIUS
+	mov r9, r11, lsr #16		; TINT
+	ldr r10, [r6, #-8]			; (plot_square_instruction)
+	orr r10, r10, r2			; mov r1, #st_size
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl PutSquare
+	bl link_circle
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_CONST [c3]
 	mov r0, #0x00400000			; r0=rConstants[67] (64.0000)
@@ -15232,9 +15608,15 @@ proc_106_start:
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_PLOT [06]
 	add r2, r5, #4
-	ldmia r2, {r8-r11}		; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	ldmia r2, {r8-r11}			; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	mov r0, r8, asr #16			; X
+	mov r1, r9, asr #16			; Y
+	mov r2, r10, asr #16		; RADIUS
+	mov r9, r11, lsr #16		; TINT
+	ldr r10, [r6, #-8]			; (plot_square_instruction)
+	orr r10, r10, r2			; mov r1, #st_size
 	str lr, [sp, #-4]!			; Push lr on program stack.
-	bl PutSquare
+	bl link_circle
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_END [02]
 	ldr r2, [r6, #-4]			; (r_FreeState)

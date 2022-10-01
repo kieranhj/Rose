@@ -30,6 +30,9 @@ p_CircleBufEnd:
 ;r9 = tint
 ;r10 = plot instruction
 link_circle:
+	cmp r2, #0
+	movmi pc, lr			; in case Rose sends a bad radius!
+
     .if _DEBUG
     cmp r2, #MAXRADIUS
     adrgt r0, circletoolarge

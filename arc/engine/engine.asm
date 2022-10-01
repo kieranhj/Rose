@@ -4,6 +4,7 @@
 
 .equ _Inline_FreeState, 1
 .equ _Inline_WaitState, 1
+.equ _Inline_PlotDraw, 1
 
 r_FrameCounter:
     .long 0
@@ -382,6 +383,7 @@ DoMove:
     mov pc, lr
 
 ; r8=st_x, r9=st_y, r10=st_size, r11=st_tint.
+.if _Inline_PlotDraw == 0
 PutCircle:
 .if 0
     swi OS_WriteI + 18          ; GCOL
@@ -415,9 +417,14 @@ PutCircle:
     bl link_circle
     .1:
     ldr pc, [sp], #4
+
+plot_circle_instruction:
+    .long 0xe4dc1001            ; LDRB r1, [r12], #1
+.endif
 .endif
 
 ; r8=st_x, r9=st_y, r10=st_size, r11=st_tint.
+.if _Inline_PlotDraw == 0
 PutSquare:
 .if 0
     swi OS_WriteI + 18          ; GCOL
@@ -455,12 +462,10 @@ PutSquare:
     bl link_circle
     .1:
 	ldr pc, [sp], #4
-.endif
 
 plot_square_instruction:
     .long 0xe3a01000            ; mov r1, #0
-
-plot_circle_instruction:
-    .long 0xe4dc1001            ; LDRB r1, [r12], #1
+.endif
+.endif
 
 ; ============================================================================
