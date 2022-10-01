@@ -188,8 +188,8 @@ class RoseParser:
 
     def write_draw(self, c):
         self._asm_file.write(f'\t; BC_DRAW [{c:02x}]\n')
-        self._asm_file.write(f'\tadd r6, r5, #4\n')
-        self._asm_file.write(f'\tldmia r6, {{r8-r11}}\t\t\t; r8=st_x, r9=st_y, r10=st_size, r11=st_tint\n')
+        self._asm_file.write(f'\tadd r2, r5, #4\n')
+        self._asm_file.write(f'\tldmia r2, {{r8-r11}}\t\t\t; r8=st_x, r9=st_y, r10=st_size, r11=st_tint\n')
         self._asm_file.write(f'\tstr lr, [sp, #-4]!\t\t\t; Push lr on program stack.\n')
         self._asm_file.write(f'\tbl PutCircle\n')
         self._asm_file.write(f'\tldr lr, [sp], #4\t\t\t; Pop lr off program stack.\n')
@@ -201,8 +201,8 @@ class RoseParser:
 
     def write_plot(self, c):
         self._asm_file.write(f'\t; BC_PLOT [{c:02x}]\n')
-        self._asm_file.write(f'\tadd r6, r5, #4\n')
-        self._asm_file.write(f'\tldmia r6, {{r8-r11}}\t\t; r8=st_x, r9=st_y, r10=st_size, r11=st_tint\n')
+        self._asm_file.write(f'\tadd r2, r5, #4\n')
+        self._asm_file.write(f'\tldmia r2, {{r8-r11}}\t\t; r8=st_x, r9=st_y, r10=st_size, r11=st_tint\n')
         self._asm_file.write(f'\tstr lr, [sp, #-4]!\t\t\t; Push lr on program stack.\n')
         self._asm_file.write(f'\tbl PutSquare\n')
         self._asm_file.write(f'\tldr lr, [sp], #4\t\t\t; Pop lr off program stack.\n')
@@ -211,7 +211,6 @@ class RoseParser:
         self._asm_file.write(f'\t; BC_PROC [{c:02x}]\n')
         self.load_var(0)
         index = int.from_bytes(self._byte_file.read(1), "big")
-        # self._asm_file.write(f'\tldr r0, [r6, #{index}*4]\t\t\t; r0=r_Procedures[{index}]\n')
         self._asm_file.write(f'\tadr r0, proc_{index}_start\t\t; r0=r_Procedures[{index}]\n')
         self.push_var(0)
 

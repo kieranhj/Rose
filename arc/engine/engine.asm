@@ -224,9 +224,9 @@ FreeState:
     str r5, r_FreeState         ; this state becomes the next free state.
 
     .if _DEBUG
-    ldr r6, r_NumTurtles
-    sub r6, r6, #1
-    str r6, r_NumTurtles
+    ldr r1, r_NumTurtles
+    sub r1, r1, #1
+    str r1, r_NumTurtles
     .endif
     mov pc, lr
 
@@ -242,8 +242,7 @@ WaitState:
     ldr r2, [r5, #ST_TIME*4]
     add r2, r2, r0
     str r2, [r5, #ST_TIME*4]    ; *pState.st_time += wait_frames
-    bic r2, r2, #0xff00         ; remove time fractional part.
-    bic r2, r2, #0x00ff         ; remove time fractional part.
+    bic r2, r2, #0xc000         ; remove time fractional part.
     ldr r6, p_StateLists
     ldr r1, [r6, r2, lsr #14]   ; time >> 16 << 2
     str r1, [r3, #-4]!          ; push previous entry from StateList at that frame.
@@ -252,33 +251,33 @@ WaitState:
 
 ; r0 = address of procedure.
 ; r1 = number of arguments.
-; r2 = p_NewState.
 ; r5 = p_CurrentState.
-; r6 = <temp>
-; r8-r11 = <temp>
+; r6 = StateList.
+; r8-r11 = temp.
+; r12 = p_NewState.
 ForkState:
     ldr r2, r_FreeState         ; p_NewState.
-    ldr r6, [r2]                ; first word of state block is ptr to next state.
+    ldr r12, [r2]               ; first word of state block is ptr to next state.
 
     .if _DEBUG
-    cmp r6, #0
+    cmp r12, #0
     adreq r0, outofturtles
     swieq OS_GenerateError
     .endif
 
-    str r6, r_FreeState         ; this becomes the next free state.
+    str r12, r_FreeState        ; this becomes the next free state.
     str r0, [r2, #ST_PROC*4]    ; *p_NewState.st_proc = procedure address.
 
-    add r6, r5, #4              ; source: p_CurrentState.st_x
+    add r12, r5, #4             ; source: p_CurrentState.st_x
     add r0, r2, #4              ; destination: p_NewState.st_x
 
-    ldmia r6!, {r8-r11}         ; st_x, st_y, st_size, st_tint
+    ldmia r12!, {r8-r11}        ; st_x, st_y, st_size, st_tint
     stmia r0!, {r8-r11}         ; copy 4 words
-    ldmia r6!, {r8-r11}         ; st_rand, st_dir, st_time, st_wire0
+    ldmia r12!, {r8-r11}        ; st_rand, st_dir, st_time, st_wire0
     stmia r0!, {r8-r11}         ; copy 4 words
-    ldmia r6!, {r8-r11}         ; st_wire1, st_wire2, st_wire3, st_wire4
+    ldmia r12!, {r8-r11}        ; st_wire1, st_wire2, st_wire3, st_wire4
     stmia r0!, {r8-r11}         ; copy 4 words
-    ldmia r6!, {r8-r10}         ; st_wire5, st_wire6, st_wire7
+    ldmia r12!, {r8-r10}        ; st_wire5, st_wire6, st_wire7
     stmia r0!, {r8-r10}         ; copy 3 words
 
     .if WIRE_CAPACITY != 8
@@ -309,9 +308,9 @@ ForkState:
     str r8, [r6, r0, lsr #14]   ; make NewStateStackPtr the new entry in the state list for this frame.
 
     .if _DEBUG
-    ldr r6, r_NumTurtles
-    add r6, r6, #1
-    str r6, r_NumTurtles
+    ldr r1, r_NumTurtles
+    add r1, r1, #1
+    str r1, r_NumTurtles
     .endif
     mov pc, lr
 
@@ -325,9 +324,8 @@ outofturtles: ;The error block
 
 ; r0 = units.
 ; r5 = p_State.
-; r6 = <temp>
-; r8 = <temp>
-; r9 = <temp>
+; r7 = r_Sinus
+; r8-r10 = temp.
 DoMove:
     ldr r1, [r5, #ST_DIR*4]     ; get p_State.st_dir
     bic r1, r1, #0xff000000     ; clear top byte.

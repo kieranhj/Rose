@@ -3828,8 +3828,8 @@ proc_7_continue_91:
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_DRAW [04]
-	add r6, r5, #4
-	ldmia r6, {r8-r11}			; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	add r2, r5, #4
+	ldmia r2, {r8-r11}			; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutCircle
 	ldr lr, [sp], #4			; Pop lr off program stack.
@@ -3859,8 +3859,8 @@ proc_8_start:
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_DRAW [04]
-	add r6, r5, #4
-	ldmia r6, {r8-r11}			; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	add r2, r5, #4
+	ldmia r2, {r8-r11}			; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutCircle
 	ldr lr, [sp], #4			; Pop lr off program stack.
@@ -4492,8 +4492,8 @@ proc_13_start:
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_DRAW [04]
-	add r6, r5, #4
-	ldmia r6, {r8-r11}			; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	add r2, r5, #4
+	ldmia r2, {r8-r11}			; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutCircle
 	ldr lr, [sp], #4			; Pop lr off program stack.
@@ -5152,8 +5152,8 @@ proc_17_start:
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_DRAW [04]
-	add r6, r5, #4
-	ldmia r6, {r8-r11}			; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	add r2, r5, #4
+	ldmia r2, {r8-r11}			; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutCircle
 	ldr lr, [sp], #4			; Pop lr off program stack.
@@ -5182,8 +5182,8 @@ proc_17_start:
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_DRAW [04]
-	add r6, r5, #4
-	ldmia r6, {r8-r11}			; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	add r2, r5, #4
+	ldmia r2, {r8-r11}			; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutCircle
 	ldr lr, [sp], #4			; Pop lr off program stack.
@@ -5411,8 +5411,8 @@ proc_18_start:
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_PLOT [06]
-	add r6, r5, #4
-	ldmia r6, {r8-r11}		; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	add r2, r5, #4
+	ldmia r2, {r8-r11}		; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutSquare
 	ldr lr, [sp], #4			; Pop lr off program stack.
@@ -5559,8 +5559,8 @@ proc_20_start:
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_PLOT [06]
-	add r6, r5, #4
-	ldmia r6, {r8-r11}		; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	add r2, r5, #4
+	ldmia r2, {r8-r11}		; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutSquare
 	ldr lr, [sp], #4			; Pop lr off program stack.
@@ -5717,8 +5717,8 @@ proc_22_start:
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_PLOT [06]
-	add r6, r5, #4
-	ldmia r6, {r8-r11}		; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	add r2, r5, #4
+	ldmia r2, {r8-r11}		; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutSquare
 	ldr lr, [sp], #4			; Pop lr off program stack.
@@ -5791,8 +5791,8 @@ proc_23_start:
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_DRAW [04]
-	add r6, r5, #4
-	ldmia r6, {r8-r11}			; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	add r2, r5, #4
+	ldmia r2, {r8-r11}			; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutCircle
 	ldr lr, [sp], #4			; Pop lr off program stack.
@@ -5936,8 +5936,8 @@ proc_24_start:
 	; BC_WSTATE [53]
 	str r0, [r5, #ST_SIZE*4]		; State[ST_SIZE]=r0
 	; BC_DRAW [04]
-	add r6, r5, #4
-	ldmia r6, {r8-r11}			; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
+	add r2, r5, #4
+	ldmia r2, {r8-r11}			; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
 	str lr, [sp, #-4]!			; Push lr on program stack.
 	bl PutCircle
 	ldr lr, [sp], #4			; Pop lr off program stack.
