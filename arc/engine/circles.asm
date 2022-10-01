@@ -3,8 +3,6 @@
 ; Kindly provided by Progen (Sarah Walker).
 ; ============================================================================
 
-.equ MAX_CIRCLES, 200           ; Max circles drawn in a frame (!)
-
 .if _DUAL_PLAYFIELD
 .equ CIRCLEDATA, 6				; centre_x, colour word, ptr to size table, line count
 .else
@@ -255,3 +253,5 @@ no_circles_on_this_Y:
 	blt plot_Y_loop
 
 	LDR pc, [sp], #4
+
+; ============================================================================

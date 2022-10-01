@@ -511,3 +511,5 @@ gen_code_same_word_copy:
 	BNE gen_code_same_word_copy
 
 	B gen_code_complete
+
+; ============================================================================

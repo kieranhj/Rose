@@ -7,20 +7,15 @@
 ; ============================================================================
 
 .equ _DEBUG, 0
-
-; Symbols now defined when involking the assembler.
-;.equ _ENABLE_MUSIC, 1
-;.equ _DUAL_PLAYFIELD, 1
-
-.equ _ENABLE_CATCH_UP, 0				; looks awful usually (tearing).
-
 .equ _DEBUG_RASTERS, (_DEBUG && 1)		; removes code
 .equ _DEBUG_STOP_ON_FRAME, -1
 .equ _DEBUG_DEFAULT_PLAY_PAUSE, 1		; play
 .equ _DEBUG_DEFAULT_SHOW_RASTERS, 0
 .equ _DEBUG_DEFAULT_SHOW_INFO, 0		; slow
 
-.equ Screen_Banks, 1
+.equ _ENABLE_CATCH_UP, 0				; looks awful usually (tearing).
+
+.equ Screen_Banks, 1					; TODO: Remove.
 
 .ifndef _SCREEN_MODE
 .equ Screen_Mode, 9
@@ -31,7 +26,7 @@
 .equ Screen_Width, _FORM_WIDTH
 .equ Screen_Height, _FORM_HEIGHT
 
-.if _FORM_HEIGHT < 256					; TODO: Shrink MODE!
+.if _FORM_HEIGHT < 256
 .equ Mode_Height, 256
 .else
 .equ Mode_Height, _FORM_HEIGHT
@@ -59,6 +54,8 @@
 	blne palette_set_border
 	.endif
 .endm
+
+.include "roseconfig.h.asm"
 
 .org 0x8000
 
@@ -165,7 +162,13 @@ main:
 
 	.if _ENABLE_MUSIC
 	SWI QTM_Start
+
+	mov r0, #19
+	swi OS_Byte				; wait one vsync to trigger music.
 	.endif
+
+	ldr r0, vsync_count
+	str r0, last_vsync
 
 main_loop:
 
@@ -598,6 +601,7 @@ cls:
 ; ============================================================================
 
 .include "engine.asm"
+.include "sinus.asm"
 .include "circles.asm"
 .include "spans.asm"
 
@@ -642,3 +646,5 @@ gen_code_pointers:
 	.skip	4*8*MAXSPAN
 
 gen_code_start:
+
+; ============================================================================
