@@ -139,6 +139,7 @@ main:
 	; Make tables etc.
 	bl gen_code
     bl MakeSinus
+	bl MakeReciprocal
     bl InitStates
 
 	; Claim the Error vector
@@ -625,16 +626,16 @@ module_data:
 ; TODO: Figure out vlink so can hack off BSS segment from binary!!
 ; ============================================================================
 
-p_reciprocal_table:
+p_reciprocal_table:					; [r6, #-16]
 	.long reciprocal_table
 
-plot_circle_instruction:
+plot_circle_instruction:			; [r6, #-12]
     .long 0xe4dc1001            	; LDRB r1, [r12], #1
 
-plot_square_instruction:
+plot_square_instruction:			; [r6, #-8]
     .long 0xe3a01000           		; mov r1, #0
 
-r_FreeState:
+r_FreeState:						; [r6, #-4]
     .long 0                  		; Last longword of first free state.
 
 r_StateLists:
@@ -647,13 +648,17 @@ r_StateSpaceEnd:
 r_Sinus:
     .skip	(DEGREES)*4
 
-.set divisor, 1
 reciprocal_table:
+.if MakeReciprocalTable
+	.skip	(1<<16)*4
+.else
 .long 0
+.set divisor, 1
 .rept 65535
     .long (1<<24)/divisor
     .set divisor, divisor+1
 .endr
+.endif
 
 r_CircleBuffer:
 	.skip	(MAX_CIRCLES)*(CIRCLEDATA+1)*4

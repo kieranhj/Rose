@@ -229,9 +229,9 @@ https://pdjstone.github.io/arculator-wasm/arculator.html?disc=https://bitshifter
     - Added one frame for music to start before animation commences.
 
 - Optimisations...
-    - Look for optimisations, register use etc.
+    - Look for optimisations, register use etc. - DONE
     - Dual Playfield demos drop frames on 8MHz machines. :(
-    - Look for potential optimisations on circle drawing generally.
+    - Look for potential optimisations on circle drawing generally. - ONLY IN PREAMBLE.
     - Are there any optimisations for the DPF implementation?
         - Potential option for writing to each PF as separate buffers then doing
           an unrolled merge to a final screen? Presume the cost of all the extra
@@ -242,12 +242,13 @@ https://pdjstone.github.io/arculator-wasm/arculator.html?disc=https://bitshifter
         - (Most of it is just load value, push/pop to stack.)
         - I guess this is getting into the realms of language register allocation...
     - Could generate a reciprocal table at init if divide is expensive (and could inline).
+        - DONE (but not inline)
 
 - Get correct frame lengths so demos all finish as expected.
 - Clock speed check at runtime to set Sample Quality appropriately?
 
 NICE TO HAVE:
-- General circledat table?
+- Generate circledat table?
 - Write an ARM JIT implementation..?
 
 SUPER UNLIKELY BUT WOULD BE AWESOME:
