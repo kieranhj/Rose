@@ -93,6 +93,7 @@ main:
 	SWI OS_WriteC
 	SWI OS_WriteC
 
+.if Screen_Banks > 1
 	; Set RAM size for screen size * number of buffers.
 	MOV r0, #DynArea_Screen
 	SWI OS_ReadDynamicArea
@@ -106,22 +107,21 @@ main:
 	CMP r1, r3
 	ADRCC r0, error_noscreenmem
 	SWICC OS_GenerateError
-
-	; Clear screen (extended).
-
-	bl get_screen_addr			; single buffer so only needed once.
-	bl cls
+.endif
 
 	; EARLY INITIALISATION HERE!
 
 .if _ENABLE_MUSIC
 	; Load module
-	; TODO: Embed module in exe.
-	adrl r0, module_filename
-	mov r1, #0
+	mov r0, #0
+	adrl r1, module_data
 	swi QTM_Load
 
 	; TODO: Can we afford higher quality audio?
+	; Steve3000 suggests:
+	;   48us as last resort for 8MHz machines.
+	;   32us ideally for 12MHz machines.
+	;   24us for ARM3 and faster where possible.
 	mov r0, #Music_SampleQuality
 	swi QTM_SetSampleSpeed
 
@@ -135,6 +135,9 @@ main:
 	mov r1, #0b010
 	swi QTM_MusicOptions
 .endif
+
+	; Single screen buffer so only need to do this once.
+	bl get_screen_addr
 
 	; Make tables etc.
 	bl gen_code
@@ -571,6 +574,7 @@ d_StopOnFrame:
 ; Additional code.
 ; ============================================================================
 
+.if 0
 cls:
 	mov r0, #0
 	mov r1, r0
@@ -587,12 +591,16 @@ cls:
 	subs r8, r8, #1
 	bne .1
 	mov pc, lr
+.endif
 
 p_CircleBufEnd:
 	.long r_circleBufEnd
 
 p_StateSpace:
 	.long r_StateSpace
+
+p_StateLists:
+	.long r_StateLists
 
 ; ============================================================================
 ; Additional code modules.
@@ -609,8 +617,8 @@ r_Instructions:
 ; ============================================================================
 
 .if _ENABLE_MUSIC
-module_filename:
-	.byte "<Demo$Dir>.Music",0
+module_data:
+	.incbin "music.mod"
 	.align 4
 .endif
 
@@ -619,18 +627,12 @@ module_filename:
 ; TODO: Figure out vlink so can hack off BSS segment from binary!!
 ; ============================================================================
 
-.p2align 12
-
 r_StateLists:
     .skip	(MAX_FRAMES+MAX_WAIT)*4
-
-.p2align 12
 
 r_StateSpace:
     .skip	(MAX_TURTLES+1)*STATE_SIZE
 r_StateSpaceEnd:
-
-.p2align 12
 
 r_Sinus:
     .skip	(DEGREES)*4

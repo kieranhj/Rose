@@ -188,7 +188,7 @@ RunFrame:
     ldr r7, p_Sinus
     adr r4, r_Constants
 .1:
-    adr r6, r_StateLists
+    ldr r6, p_StateLists
     ldr r2, r_FrameCounter
     ldr r3, [r6, r2, lsl #2]    ; p_StateStack
     cmp r3, #0
@@ -233,7 +233,7 @@ InitMainTurtle:
     str r0, [r5, #ST_RAND*4]    ; st_rand = $BABEFEED
     mov r3, r5                  ; r3 = p_StateStack (grows downwards)
     str r5, [r3, #-4]!          ; push p_State on StateStack.
-    adr r6, r_StateLists
+    ldr r6, p_StateLists
     ldr r1, [r6, #0]            ; StateLists[0]
     str r1, [r3, #-4]!          ; push ptr to prev StateStack on StateStack!
     str r3, [r6, #0]            ; store StackStack ptr in StateList.
@@ -271,7 +271,7 @@ WaitState:
     str r2, [r5, #ST_TIME*4]    ; *pState.st_time += wait_frames
     bic r2, r2, #0xff00         ; remove time fractional part.
     bic r2, r2, #0x00ff         ; remove time fractional part.
-    adr r6, r_StateLists
+    ldr r6, p_StateLists
     ldr r1, [r6, r2, lsr #14]   ; time >> 16 << 2
     str r1, [r3, #-4]!          ; push previous entry from StateList at that frame.
     str r3, [r6, r2, lsr #14]   ; store new p_StateStack for this frame.
@@ -330,7 +330,7 @@ ForkState:
     ldr r0, [r5, #ST_TIME*4]    ; *p_CurrentState.st_time
     bic r0, r0, #0xff00         ; remove time fractional part.
     bic r0, r0, #0x00ff         ; remove time fractional part.
-    adr r6, r_StateLists
+    ldr r6, p_StateLists
     ldr r9, [r6, r0, lsr #14]   ; r_StateLists[current_time]
     str r9, [r8, #-4]!          ; push existing StateStackPtr onto NewStateStack.
     str r8, [r6, r0, lsr #14]   ; make NewStateStackPtr the new entry in the state list for this frame.

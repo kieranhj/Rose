@@ -220,11 +220,11 @@ https://pdjstone.github.io/arculator-wasm/arculator.html?disc=https://bitshifter
 - Figure out vlink for different sections (jetison BSS segment)
 - Tidy up code generally, esp. engine.asm e.g. split out span plot code gen into lib.
 - Remove all redundant code & data to reduce exe sizes.
-    - Way Too Rude requires 4mb! Everything else runs in 2Mb.
+    - Way Too Rude requires 4mb! Everything else runs in 2Mb.- DONE
     - Should only need span routines up to ~140 pixels (MAX_RADIUS=70)
 - Add LZ4 or Shrinker compression to final exe.
 
-- Move MOD into the exe, rather than being a separate file?
+- Move MOD into the exe, rather than being a separate file? - DONE
 - Add ability to delay animation start by N frames for sync (IP says 2!)
 
 - Optimisations...
@@ -240,7 +240,9 @@ https://pdjstone.github.io/arculator-wasm/arculator.html?disc=https://bitshifter
         - Directly embed some functions rather than bl? (Check code size).
         - (Most of it is just load value, push/pop to stack.)
         - I guess this is getting into the realms of language register allocation...
+    - Could generate a reciprocal table at init if divide is expensive (and could inline).
 
+- General circledat table?
 - Very lastly, write an ARM JIT implementation..?
 - Potentially look at soft synths for sample generation?
     => Ask Steve or Sarah to do this!
@@ -357,3 +359,24 @@ Other Rose notes:
 - All numbers are considered fixed point.
     - E.g. number/4 will be treated as number/4.0, so use << >> if possible.
 - Don't forget numbers are fixed point, so ~1 (-1) is 0xffff0000 not 0xffffffff!
+
+BSS Sizes:
+CircleBuffer: 5600 bytes = MAXCIRCLES * 7 * 4 = 200 * 28
+CircleBufPtrs: 720 bytes = Screen_Height * 4 = 180 * 4
+StateSpace: 76152 bytes = MAX_TURTLES * STATE_SIZE
+= 500 * (VARS + WIRES + STACK + 2) * 4
+= 500 * (8 + 8 + 20 + 2) * 4 = 500 * 38 * 4 = 500 * 152 = 74K
+StateLists: 56000 bytes = MAX_FRAMES * 4 = 13000 * 4
+Sinus: DEGREES * 4 = 16384 * 4 = 64k
+Code gen size?
+Total nearly 200K
+
+Code Sizes:
+Engine code: 10364 bytes inc 1024 bytes stack.
+Circle data nearly 5K. <= could be generated.
+So actual code size is nearer 4K.
+Way Too Rude, code size: 109236 bytes ~= 107K!
+Generated span plot fns. with MAXSPAN=142: 94760 bytes ~= 93K
+(MAXSPAN=320 balloons to 332828 bytes ~= 325K)
+
+E.g. waytoorude: 340144 (exe+bss) + 94760 (gen code) + 548170 (mod) = 983074 +QTM etc.

@@ -7,6 +7,6 @@ SPRITESIZE 0
 RMKILL MemAlloc 
 |
 RMLOAD <Demo$Dir>.MMode98
-wimpslot -min 1296k
+wimpslot -min 900k
 <Demo$Dir>.!RunImage
 RMKILL Mode98
