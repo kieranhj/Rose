@@ -21,11 +21,11 @@
 .equ ST_WIRE7, 15
 
 ; ============================================================================
-; r3 = p_StateStack.
-; r4 = r_Constants.
-; r5 = p_State.
-; r6 = <temp>           ; r_StateSpace.
-; r7 = r_Sinus.
+; r3 = p_StateStack.	(preserve)
+; r4 = r_Constants.	(preserve)
+; r5 = p_State.		(preserve)
+; r6 = r_Statelists	(preserve).
+; r7 = r_Sinus.		(preserve)
 ; ============================================================================
 
 proc_0_start:

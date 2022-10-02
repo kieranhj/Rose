@@ -217,8 +217,9 @@ https://pdjstone.github.io/arculator-wasm/arculator.html?disc=https://bitshifter
     - Added MODE97 made by Steve's MMode.
 
 30/9/22 TODO
-- Figure out vlink for different sections (jetison BSS segment)
-- Tidy up code generally, esp. engine.asm e.g. split out span plot code gen into lib.
+- Figure out vlink for different sections (jetison BSS segment) - NOT THERE YET!
+    - Sort of figured it out but seem to have an uninitialised data issue?!?!
+- Tidy up code generally, esp. engine.asm e.g. split out span plot code gen into lib. - DONE
 - Remove all redundant code & data to reduce exe sizes.
     - Way Too Rude requires 4mb! Everything else runs in 2Mb.- DONE
     - Should only need span routines up to ~140 pixels (MAX_RADIUS=70)
@@ -250,6 +251,7 @@ https://pdjstone.github.io/arculator-wasm/arculator.html?disc=https://bitshifter
 NICE TO HAVE:
 - Generate circledat table?
 - Write an ARM JIT implementation..?
+=> MOD dominates the file size at the moment so...
 
 SUPER UNLIKELY BUT WOULD BE AWESOME:
 - Potentially look at soft synths for sample generation?

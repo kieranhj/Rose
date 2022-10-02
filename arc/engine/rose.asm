@@ -14,6 +14,8 @@
 .equ _DEBUG_DEFAULT_SHOW_INFO, 0		; slow
 
 .equ _ENABLE_CATCH_UP, 0				; looks awful usually (tearing).
+.equ _ENABLE_RECIPROCAL_TABLE, 1		; rather than do a divide loop.
+.equ _MAKE_RECIPROCAL_TABLE, 1			; rather than store in the binary.
 
 .equ Screen_Banks, 1					; TODO: Remove.
 
@@ -139,7 +141,9 @@ main:
 	; Make tables etc.
 	bl gen_code
     bl MakeSinus
+	.if _MAKE_RECIPROCAL_TABLE
 	bl MakeReciprocal
+	.endif
     bl InitStates
 
 	; Claim the Error vector
@@ -649,7 +653,7 @@ r_Sinus:
     .skip	(DEGREES)*4
 
 reciprocal_table:
-.if MakeReciprocalTable
+.if _MAKE_RECIPROCAL_TABLE
 	.skip	(1<<16)*4
 .else
 .long 0

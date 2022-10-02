@@ -2,9 +2,6 @@
 ; sinus.asm - ARM port of Sinus.S
 ; ============================================================================
 
-.equ MakeReciprocalTable, 1
-.equ UseReciprocalTable, 1
-
 ; Makes sine values [0-0x4000]
 MakeSinus:
     ; adrl r8, r_Sinus
@@ -68,7 +65,7 @@ divide:
     cmp r1, #0
     rsbmi r1, r1, #0            ; make positive  
 
-    .if UseReciprocalTable
+    .if _ENABLE_RECIPROCAL_TABLE
     ldr r12, [r6, #-16]         ; reciprocal_table
     bic r11, r1, #0xff0000      ; lowest 16-bits only.
     ldr r11, [r12, r11, lsl #2]
@@ -112,7 +109,7 @@ divide:
 	.align 4
 	.long 0
 
-.if MakeReciprocalTable
+.if _MAKE_RECIPROCAL_TABLE
 MakeReciprocal:
     ldr r6, p_StateLists
     ldr r12, [r6, #-16]         ; reciprocal_table

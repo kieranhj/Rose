@@ -203,11 +203,7 @@ InitMainTurtle:
     ldr r6, p_StateLists
 
     ldr r0, [r5]                ; ptr to prev state.
-    .if _Inline_FreeState
-    str r0, [r6, #-4]           ; (r_FreeState)
-    .else
-    str r0, r_FreeState         ; becomes the first free state.
-    .endif
+    str r0, [r6, #-4]           ; (r_FreeState) becomes the first free state.
     str r1, [r5, #ST_PROC*4]    ; st_proc = r_Instructions (first procedure).
     ldr r0, r_BabeFeed
     str r0, [r5, #ST_RAND*4]    ; st_rand = $BABEFEED
@@ -225,9 +221,9 @@ InitMainTurtle:
 ; r5 = p_State.
 .if _Inline_FreeState == 0
 FreeState:
-    ldr r2, r_FreeState
+    ldr r2, [r6, #-4]               ; (r_FreeState)
     str r2, [r5]                ; first word of state block points to prev free state.
-    str r5, r_FreeState         ; this state becomes the next free state.
+    str r5, [r6, #-4]               ; (r_FreeState) this state becomes the next free state.
 
     .if _DEBUG
     ldr r1, r_NumTurtles
@@ -265,11 +261,7 @@ WaitState:
 ; r8-r11 = temp.
 ; r12 = p_NewState.
 ForkState:
-    .if _Inline_FreeState
-    ldr r2, [r6, #-4]           ; (r_FreeState)
-    .else
-    ldr r2, r_FreeState         ; p_NewState.
-    .endif
+    ldr r2, [r6, #-4]           ; (r_FreeState) p_NewState.
     ldr r12, [r2]               ; first word of state block is ptr to next state.
 
     .if _DEBUG
@@ -278,11 +270,7 @@ ForkState:
     swieq OS_GenerateError
     .endif
 
-    .if _Inline_FreeState
-    str r12, [r6, #-4]          ; (r_FreeState)
-    .else
-    str r12, r_FreeState        ; this becomes the next free state.
-    .endif
+    str r12, [r6, #-4]          ; (r_FreeState) this becomes the next free state.
     str r0, [r2, #ST_PROC*4]    ; *p_NewState.st_proc = procedure address.
 
     add r12, r5, #4             ; source: p_CurrentState.st_x
@@ -413,13 +401,10 @@ PutCircle:
     cmp r2, #0
     blt .1
     mov r9, r11, lsr #16        ; TINT
-	ldr r10, plot_circle_instruction
+	ldr r10, [r6, #-12]         ; (plot_circle_instruction)
     bl link_circle
     .1:
     ldr pc, [sp], #4
-
-plot_circle_instruction:
-    .long 0xe4dc1001            ; LDRB r1, [r12], #1
 .endif
 .endif
 
@@ -456,15 +441,12 @@ PutSquare:
     ; Guard against negative radius from dodgy Rose maths...
     cmp r2, #0
     blt .1
-	ldr r10, plot_square_instruction
+	ldr r10, [r6, #-8]          ; (plot_square_instruction)
     orr r10, r10, r2            ; mov r1, #st_size
     mov r9, r11, lsr #16        ; TINT
     bl link_circle
     .1:
 	ldr pc, [sp], #4
-
-plot_square_instruction:
-    .long 0xe3a01000            ; mov r1, #0
 .endif
 .endif
 

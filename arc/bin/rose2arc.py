@@ -200,6 +200,7 @@ class RoseParser:
 
     def write_draw(self, c):
         self._asm_file.write(f'\t; BC_DRAW [{c:02x}]\n')
+        self.load_var(0)    # this operation will trash r0
         self._asm_file.write(f'\tadd r2, r5, #4\n')
         self._asm_file.write(f'\tldmia r2, {{r8-r11}}\t\t\t; r8=st_x, r9=st_y, r10=st_size, r11=st_tint\n')
 
@@ -225,6 +226,7 @@ class RoseParser:
 
     def write_plot(self, c):
         self._asm_file.write(f'\t; BC_PLOT [{c:02x}]\n')
+        self.load_var(0)    # this operation will trash r0
         self._asm_file.write(f'\tadd r2, r5, #4\n')
         self._asm_file.write(f'\tldmia r2, {{r8-r11}}\t\t\t; r8=st_x, r9=st_y, r10=st_size, r11=st_tint\n')
 
@@ -637,11 +639,11 @@ if __name__ == '__main__':
         asm_file.write(f'.equ {s}, {STATE_NAMES.index(s)}\n')
 
     asm_file.write('\n; ============================================================================\n')
-    asm_file.write('; r3 = p_StateStack.\n')
-    asm_file.write('; r4 = r_Constants.\n')
-    asm_file.write('; r5 = p_State.\n')
-    asm_file.write('; r6 = <temp>           ; r_StateSpace.\n')
-    asm_file.write('; r7 = r_Sinus.\n')
+    asm_file.write('; r3 = p_StateStack.\t(preserve)\n')
+    asm_file.write('; r4 = r_Constants.\t(preserve)\n')
+    asm_file.write('; r5 = p_State.\t\t(preserve)\n')
+    asm_file.write('; r6 = r_Statelists\t(preserve).\n')
+    asm_file.write('; r7 = r_Sinus.\t\t(preserve)\n')
     asm_file.write('; ============================================================================\n\n')
 
     if args.constants is not None:

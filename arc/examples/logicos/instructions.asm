@@ -21,11 +21,11 @@
 .equ ST_WIRE7, 15
 
 ; ============================================================================
-; r3 = p_StateStack.
-; r4 = r_Constants.
-; r5 = p_State.
-; r6 = <temp>           ; r_StateSpace.
-; r7 = r_Sinus.
+; r3 = p_StateStack.	(preserve)
+; r4 = r_Constants.	(preserve)
+; r5 = p_State.		(preserve)
+; r6 = r_Statelists	(preserve).
+; r7 = r_Sinus.		(preserve)
 ; ============================================================================
 
 proc_0_start:
@@ -31684,6 +31684,7 @@ proc_137_start:
 	ldr r1, [r3], #4			; Pop r1 off StateStack.
 	adds r0, r0, r1				; r0=r0 adds r1
 	; BC_PLOT [06]
+	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	add r2, r5, #4
 	ldmia r2, {r8-r11}			; r8=st_x, r9=st_y, r10=st_size, r11=st_tint
 	mov r0, r8, asr #16			; X
@@ -31696,7 +31697,6 @@ proc_137_start:
 	bl link_circle
 	ldr lr, [sp], #4			; Pop lr off program stack.
 	; BC_CONST [80]
-	str r0, [r3, #-4]!			; Push r0 on StateStack.
 	mov r0, #0x00000000			; r0=rConstants[0] (0.0000)
 	; BC_RLOCAL [64]
 	str r0, [r3, #-4]!			; Push r0 on StateStack.
