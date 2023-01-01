@@ -1,0 +1,47 @@
+Rose Thoughts
+~~~
+
+Very parallel - this is not BASIC or Python!
+- Hard to do things without spawning a new turtle.
+- Have to think about how to do things sequentially.
+- Don't seem to be able to do a loop without forking?
+
+Common patterns:
+- Inner loop procs:
+
+    proc some_function param1 param2 loop_counter
+        # Set up code to precompute some inner loop params.
+        fork _some_function_loop var1 var2 loop_counter
+
+        proc _some_function_loop var1 var2 loop_counter
+            when loop_counter > 0
+                # Make use of var1, var2 etc.
+                draw
+                wait
+                # Potentially fiddle with var1, var2 etc.
+                fork some_function_loop var1 var2 loop_counter-1
+            done
+
+- Sequence procs:
+
+    proc sequence param
+        fork effect_proc param 123
+        wait
+        fork effect_proc param 456
+        wait
+        fork effect_proc param 789
+        wait
+        fork effect_proc param abc
+        # etc.
+
+
+Proposed coding conventions:
+- Functions that aren't intended to be called directly should start with _
+- Functions that exist purely for looped forks should end with _loop
+    E.g. _some_function_loop
+- Use 'n' for loop counter for readability.
+- Place private loop functions immediately after public functions if possible.
+- Indent private functions one tab.
+
+
+Ideas for effect prototypes:

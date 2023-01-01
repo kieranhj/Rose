@@ -1,0 +1,139 @@
+
+plan
+	0:234 1:53C
+
+fact ppl = 20		# points per line
+fact sw = 352		# screen width
+fact sh = 280		# screen height
+
+proc main
+	wire delay = 1
+	tint 1
+	size 3
+	jump sw/2 sh/2
+	turn ~64
+	tint 2
+	# fork segment_circle 100 ppl*4
+	tint 1
+	# fork poly_in_circle 100 3
+	# tint 2
+	# fork spoke_circle 100 ppl
+	# fork spiral 2 1 0.9999 256
+	# fork many_polys_in_circle 100 3 3
+	fork screen_fill
+
+proc screen_fill
+	temp rows = 25
+	temp cols = 20
+	jump sw/(2*cols) sh/(2*rows)
+	fork _screen_fill_loop cols rows rows
+
+	proc _screen_fill_loop nx ny n
+		temp sx = sw/nx
+		temp sy = sh/ny
+		when n > 0
+			# Draw line left-to-right.
+			face 0
+			tint 1
+			size 6*sine((n/ny))
+			fork dotted_line sx nx
+
+			# Move to rhs and down a row.
+			move sw-sx/2
+			face 64
+			move sy
+
+			# Draw line right-to-left.
+			face 128
+			tint 2
+			fork dotted_line sx nx
+
+			# Move to lhs and down a row.
+			move sw-sx/2
+			face 64
+			move sy
+
+			# Next row.
+			wait delay
+			fork _screen_fill_loop nx ny n-2
+		done
+
+proc spoke_circle radius segments
+	fork _spoke_circle_loop radius/ppl ppl 256/segments segments
+
+	proc _spoke_circle_loop l s angle n
+		when n > 0
+			fork dotted_line l s
+			turn angle
+			wait delay * s
+			fork _spoke_circle_loop l s angle n-1
+		done
+
+proc segment_circle radius segments
+	fork _segment_circle_loop radius 256/segments segments
+
+	proc _segment_circle_loop radius angle n
+		when n > 0
+			move radius
+			draw
+			move ~radius
+			turn angle
+			wait delay
+			fork _segment_circle_loop radius angle n-1
+		done
+
+proc spiral a b c n
+	draw
+	move a
+	turn b
+	wait 0.5
+	when n > 0
+		fork spiral a*c b c n-1
+	done
+
+proc circle b n
+	draw
+	move 2
+	turn b
+	wait 0.5
+	when n > 0
+		fork circle b n-1
+	done
+
+proc many_polys_in_circle radius sides n
+	fork _many_polys_in_circle_loop radius sides 256/(sides*n) n
+
+	proc _many_polys_in_circle_loop radius sides angle n
+		when n > 0
+			fork poly_in_circle radius sides
+			wait delay
+			turn angle
+			fork _many_polys_in_circle_loop radius sides angle n-1
+		done
+
+proc regular_polygon length sides
+	fork _regular_polygon_loop length/ppl ppl 256/sides sides
+
+	proc _regular_polygon_loop l s corner edges
+		when edges > 0
+			fork dotted_line l s
+			wait delay * s
+			move s * l
+			turn corner
+			fork _regular_polygon_loop l s corner edges-1
+		done
+
+proc poly_in_circle radius sides
+	move radius
+	turn 64 + 128/sides
+	# Apparently a = 2r * sine(PI/n) 
+	temp a = 2 * sine(0.5 / sides)
+	fork regular_polygon radius*a sides
+
+proc dotted_line l n	# doesn't plot end point
+	when n > 0
+		draw
+		move l
+		wait delay
+		fork dotted_line l n-1
+	done

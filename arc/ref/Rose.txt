@@ -219,6 +219,8 @@ https://pdjstone.github.io/arculator-wasm/arculator.html?disc=https://bitshifter
 30/9/22 TODO
 - Figure out vlink for different sections (jetison BSS segment) - NOT THERE YET!
     - Sort of figured it out but seem to have an uninitialised data issue?!?!
+    - Perhaps try just putting BSS in the main file (rather than separate) and use linker script?
+    - Then wipe BSS as part of the loader.asm?
 - Tidy up code generally, esp. engine.asm e.g. split out span plot code gen into lib. - DONE
 - Remove all redundant code & data to reduce exe sizes.
     - Way Too Rude requires 4mb! Everything else runs in 2Mb.- DONE
@@ -249,7 +251,7 @@ https://pdjstone.github.io/arculator-wasm/arculator.html?disc=https://bitshifter
 - Clock speed check at runtime to set Sample Quality appropriately?
 
 NICE TO HAVE:
-- Generate circledat table?
+- Generate circledat table? (Would probably fix the one pixel left over issue in Way Too Rude.)
 - Write an ARM JIT implementation..?
 => MOD dominates the file size at the moment so...
 
@@ -397,3 +399,11 @@ Generic loader:
 - Load compressed exe below this.
 - Decompress to 0x8000.
 - Run from 0x8000.
+- TOOD: Wipe BSS?
+
+22/12/22
+~~~
+Sometimes the A3020 ended up playing music waaaay too fast, so it was finished 30s early!
+I wonder if this is the bug that some people reported about the sync?
+Went back to normal after a CTRL-BREAK.
+Note this was under SCART>HDMI>PVR and with audio going through the USB capture device.
