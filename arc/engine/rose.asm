@@ -6,12 +6,12 @@
 ; QTM Module Player by Phoenix of Quantum (steve3000).
 ; ============================================================================
 
-.equ _DEBUG, 0
+.equ _DEBUG, 1
 .equ _DEBUG_RASTERS, (_DEBUG && 1)		; removes code
 .equ _DEBUG_STOP_ON_FRAME, -1
 .equ _DEBUG_DEFAULT_PLAY_PAUSE, 1		; play
 .equ _DEBUG_DEFAULT_SHOW_RASTERS, 0
-.equ _DEBUG_DEFAULT_SHOW_INFO, 0		; slow
+.equ _DEBUG_DEFAULT_SHOW_INFO, 1		; slow
 
 .equ _ENABLE_CATCH_UP, 0				; looks awful usually (tearing).
 .equ _ENABLE_RECIPROCAL_TABLE, 1		; rather than do a divide loop.
@@ -420,25 +420,50 @@ debug_info:
 	adr r0, debug_string
 	swi OS_WriteO
 
-	swi OS_WriteI + 32			; Space.
+.if _ENABLE_MUSIC
+	swi OS_WriteI+32			; ' '
 
+    ; read current tracker position
+    mov r0, #-1
+    mov r1, #-1
+    swi QTM_Pos
+
+	mov r3, r1
+
+	adr r1, debug_string
+	mov r2, #8
+	swi OS_ConvertHex2
+	adr r0, debug_string
+	swi OS_WriteO
+
+	swi OS_WriteI+58			; ':'
+
+	mov r0, r3
+	adr r1, debug_string
+	mov r2, #8
+	swi OS_ConvertHex2
+	adr r0, debug_string
+	swi OS_WriteO
+.endif
+
+	swi OS_WriteI + 32			; Space.
 	ldr r0, vsync_delta
 	adr r1, debug_string
 	mov r2, #8
 	swi OS_ConvertCardinal4
 	adr r0, debug_string
 	swi OS_WriteO
-	swi OS_WriteI + 32			; Space.
 
+.if 0
+	swi OS_WriteI + 32			; Space.
 	ldr r0, dropped_frames
 	adr r1, debug_string
 	mov r2, #8
 	swi OS_ConvertCardinal4
 	adr r0, debug_string
 	swi OS_WriteO
-	swi OS_WriteI + 32			; Space.
 
-.if 0
+	swi OS_WriteI + 32			; Space.
 	ldr r0, r_NumTurtles
 	adr r1, debug_string
 	mov r2, #8
@@ -447,7 +472,6 @@ debug_info:
 	swi OS_WriteO
 
 	swi OS_WriteI + 32			; Space.
-
 	ldr r0, r_MaxTurtles
 	adr r1, debug_string
 	mov r2, #8
@@ -456,7 +480,6 @@ debug_info:
 	swi OS_WriteO
 
 	swi OS_WriteI + 32			; Space.
-
 	ldr r0, r_NumCircles
 	adr r1, debug_string
 	mov r2, #8
@@ -465,7 +488,6 @@ debug_info:
 	swi OS_WriteO
 
 	swi OS_WriteI + 32			; Space.
-
 	ldr r0, r_MaxCircles
 	adr r1, debug_string
 	mov r2, #8

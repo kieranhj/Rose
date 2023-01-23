@@ -3,14 +3,22 @@ plan
 	0:234 1:53C
 
 proc main
-	turn 64
-	move 140
-	turn ~64
-	fork ball
+	fork metronome 22 108 0.5
 
-proc ball
+proc metronome f y g
+	temp drop = f*(f+1)/2	# total drop height
+	 temp gravity = 0.5 	# gravity = 228/drop
+	fork ball 160 y 0 g f-1 f-1
+
+proc ball xpos ypos vel acc num max
+	jump xpos ypos
+	tint 0 size 35 + (vel<0?~vel:vel) draw
 	tint 1 size 30 draw
-	tint 0 size 35 draw
-	move 5
+
 	wait 1
-	fork ball
+
+	when num > 0
+		fork ball xpos ypos+vel vel+acc acc num-1 max
+	else
+		fork ball xpos ypos+vel ~vel acc max max
+	done

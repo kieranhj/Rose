@@ -26,16 +26,55 @@ ARCULATOR_HOSTFS=../../../Arculator_V2.1_Windows/hostfs
 # make cirlce => build circle demo folder
 
 .PHONY:all
-all: circle everyway waytoorude logicos technova euphoria
+all: ball circle everyway waytoorude logicos technova euphoria
 
 .PHONY:clean
 clean:
+	$(RM_RF) $(BALL_BLD)
 	$(RM_RF) $(CIRCLE_BLD)
 	$(RM_RF) $(EVERYWAY_BLD)
 	$(RM_RF) $(WAYTOORUDE_BLD)
 	$(RM_RF) $(LOGICOS_BLD)
 	$(RM_RF) $(TECHNOVA_BLD)
 	$(RM_RF) $(EUPHORIA_BLD)
+
+##########################################################################
+##########################################################################
+
+BALL_ARC=\!Ball
+BALL_SRC=examples/ball
+BALL_BLD=$(BALL_SRC)/build
+BALL_DST=$(BALL_BLD)/$(BALL_ARC)
+
+.PHONY:ball
+ball: $(ARCULATOR_HOSTFS)/$(BALL_ARC)
+
+$(BALL_SRC)/instructions.asm: $(BALL_SRC)/bytecodes.bin $(BALL_SRC)/constants.bin $(BALL_SRC)/colorscript.bin $(ROSE2ARC)
+	$(PYTHON3) $(ROSE2ARC) $(BALL_SRC)/bytecodes.bin -c $(BALL_SRC)/constants.bin -s $(BALL_SRC)/colorscript.bin -o $(BALL_SRC)/instructions.asm
+
+$(BALL_BLD)/ball.o: $(BALL_SRC)/instructions.asm $(ENGINE_DEPS)
+	$(MKDIR_P) $(BALL_BLD)
+	$(VASM) -D_ENABLE_MUSIC=1 -D_FORM_WIDTH=352 -D_FORM_HEIGHT=280 -D_DUAL_PLAYFIELD=0 -D_SCREEN_MODE=98 -I../$(BALL_SRC) $(VOBJ_OPTS) -L $(BALL_BLD)/compile.txt -o $(BALL_BLD)/ball.o engine/rose.asm
+
+$(BALL_BLD)/ball.bin: $(BALL_BLD)/ball.o
+	$(MKDIR_P) $(BALL_BLD)
+	$(VLINK) $(VLINK_OPTS) -M$(BALL_BLD)/linker.txt -o $(BALL_BLD)/ball.bin $(BALL_BLD)/ball.o 
+
+$(BALL_DST): $(BALL_BLD)/ball.bin $(BALL_BLD)/\!run.txt $(COMMON_DEPS)
+	$(RM_RF) $(BALL_DST)
+	$(MKDIR_P) $(BALL_DST)
+	cp common/MemAlloc,ffa $(BALL_DST)
+	cp common/QTM147,ffa $(BALL_DST)
+	cp common/MMode98,ffa $(BALL_DST)
+	cp $(BALL_BLD)/ball.bin $(BALL_DST)/\!RunImage,ff8
+	cp $(BALL_BLD)/\!run.txt $(BALL_DST)/\!Run,feb
+
+$(BALL_BLD)/\!run.txt: common/\!run_with_music_overscan.txt
+	$(DOS2UNIX) -n common/\!run_with_music_overscan.txt $(BALL_BLD)/\!run.txt
+
+$(ARCULATOR_HOSTFS)/$(BALL_ARC): $(BALL_DST)
+	$(RM_RF) $(ARCULATOR_HOSTFS)/$(BALL_ARC)
+	cp -r $(BALL_DST) $(ARCULATOR_HOSTFS)/
 
 ##########################################################################
 ##########################################################################
