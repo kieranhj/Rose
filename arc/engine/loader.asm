@@ -8,6 +8,8 @@
 .equ _WIMPSLOT, 1100*1024            ; Assumed RAM.
 .endif
 
+.equ STACK_SIZE, 1024
+
 .org 0x8000
 
 main:
@@ -24,6 +26,7 @@ main:
     add r4, r4, #3
     bic r4, r4, #0b11               ; round up to 4 bytes
     sub r2, r2, r4                  ; subtract file size
+    sub r2, r2, #STACK_SIZE         ; reserve some stack space
     mov r9, r2                      ; remember load address
 
 	; Load compressed file.
