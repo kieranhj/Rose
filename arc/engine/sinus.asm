@@ -106,7 +106,7 @@ divide:
     divbyzero: ;The error block
     .long 18
 	.byte "Divide by Zero"
-	.align 4
+	.p2align 2
 	.long 0
 
 .if _MAKE_RECIPROCAL_TABLE

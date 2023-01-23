@@ -305,7 +305,7 @@ main_loop:
 error_noscreenmem:
 	.long 0
 	.byte "Cannot allocate screen memory!"
-	.align 4
+	.p2align 2
 	.long 0
 
 get_screen_addr:
@@ -640,7 +640,7 @@ r_Instructions:
 .if _ENABLE_MUSIC
 module_data:
 	.incbin "music.mod"
-	.align 4
+	.p2align 2
 .endif
 
 ; ============================================================================

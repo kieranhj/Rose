@@ -4741,7 +4741,7 @@ circle_255:
 	.byte 84,81,78,75,72,68,65,61,57,52,47,42,35,27,15
 .endif
 
-	.align 4
+	.p2align 2
 
 circle_lookup:
 	.long circle_0

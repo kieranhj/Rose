@@ -148,19 +148,19 @@ layer_0_mask:
 circletoolarge: ;The error block
     .long 18
 	.byte "Radius too large!"
-	.align 4
+	.p2align 2
 	.long 0
 
 outofcircles:
     .long 18
 	.byte "Out of circles!"
-	.align 4
+	.p2align 2
 	.long 0
 
 spantoolong:
     .long 18
 	.byte "Span too long!"
-	.align 4
+	.p2align 2
 	.long 0
 .endif
 

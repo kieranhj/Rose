@@ -225,7 +225,7 @@ unit_test_error:
 error_vector_unit_test:
 	.long 0
 	.byte "Vector failed unit test!"
-	.align 4
+	.p2align 2
 	.long 0
 
 ; R0=vector ptr.

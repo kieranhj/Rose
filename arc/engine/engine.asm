@@ -322,7 +322,7 @@ ForkState:
 outofturtles: ;The error block
     .long 18
 	.byte "Out of turtles!"
-	.align 4
+	.p2align 2
 	.long 0
 .endif
 
