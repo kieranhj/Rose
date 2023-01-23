@@ -33,13 +33,13 @@ p_ColorScript:
     .long r_ColorScript
 
 p_Sinus:
-    .long r_Sinus
+    .long r_Sinus_no_adr
 
 p_StateSpace:
-	.long r_StateSpace
+	.long r_StateSpace_no_adr
 
 p_StateLists:
-	.long r_StateLists
+	.long r_StateLists_no_adr
 
 ; ============================================================================
 ; ColorScript / Palette.

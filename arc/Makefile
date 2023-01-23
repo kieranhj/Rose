@@ -6,7 +6,10 @@ DOS2UNIX?=dos2unix
 
 ROSE2ARC=./bin/rose2arc.py
 VASM=./bin/vasmarm_std_win32.exe
-VASM_OPTS:=-m250 -Fbin -opt-adr
+VOBJ_OPTS:=-m250 -Fvobj -opt-adr
+VBIN_OPTS:=-m250 -Fbin -opt-adr
+VLINK=./bin/vlink.exe
+VLINK_OPTS:=-T link_script.txt -b rawbin1
 LZ4=./bin/lz4.exe -f --best
 
 ENGINE_DEPS:=engine/rose.asm engine/circles.asm engine/circledat.asm engine/engine.asm engine/spans.asm engine/sinus.asm engine/roseconfig.h.asm
@@ -48,17 +51,21 @@ circle: $(ARCULATOR_HOSTFS)/$(CIRCLE_ARC)
 $(CIRCLE_SRC)/instructions.asm: $(CIRCLE_SRC)/bytecodes.bin $(CIRCLE_SRC)/constants.bin $(CIRCLE_SRC)/colorscript.bin $(ROSE2ARC)
 	$(PYTHON3) $(ROSE2ARC) $(CIRCLE_SRC)/bytecodes.bin -c $(CIRCLE_SRC)/constants.bin -s $(CIRCLE_SRC)/colorscript.bin -o $(CIRCLE_SRC)/instructions.asm
 
-$(CIRCLE_BLD)/circle.bin: $(CIRCLE_SRC)/instructions.asm $(ENGINE_DEPS)
+$(CIRCLE_BLD)/circle.o: $(CIRCLE_SRC)/instructions.asm $(ENGINE_DEPS)
 	$(MKDIR_P) $(CIRCLE_BLD)
-	$(VASM) -D_ENABLE_MUSIC=0 -D_FORM_WIDTH=352 -D_FORM_HEIGHT=280 -D_DUAL_PLAYFIELD=0 -D_SCREEN_MODE=98 -I../$(CIRCLE_SRC) $(VASM_OPTS) -L $(CIRCLE_BLD)/compile.txt -o $(CIRCLE_BLD)/circle.bin engine/rose.asm
+	$(VASM) -D_ENABLE_MUSIC=0 -D_FORM_WIDTH=352 -D_FORM_HEIGHT=280 -D_DUAL_PLAYFIELD=0 -D_SCREEN_MODE=98 -I../$(CIRCLE_SRC) $(VOBJ_OPTS) -L $(CIRCLE_BLD)/compile.txt -o $(CIRCLE_BLD)/circle.o engine/rose.asm
+
+$(CIRCLE_BLD)/circle.bin: $(CIRCLE_BLD)/circle.o
+	$(MKDIR_P) $(CIRCLE_BLD)
+	$(VLINK) $(VLINK_OPTS) -M$(CIRCLE_BLD)/linker.txt -o $(CIRCLE_BLD)/circle.bin $(CIRCLE_BLD)/circle.o 
 
 $(CIRCLE_DST): $(CIRCLE_BLD)/circle.bin $(CIRCLE_BLD)/\!run.txt $(COMMON_DEPS)
 	$(RM_RF) $(CIRCLE_DST)
 	$(MKDIR_P) $(CIRCLE_DST)
-	cp $(CIRCLE_BLD)/\!run.txt $(CIRCLE_DST)/\!Run,feb
 	cp common/MemAlloc,ffa $(CIRCLE_DST)
 	cp common/MMode98,ffa $(CIRCLE_DST)
 	cp $(CIRCLE_BLD)/circle.bin $(CIRCLE_DST)/\!RunImage,ff8
+	cp $(CIRCLE_BLD)/\!run.txt $(CIRCLE_DST)/\!Run,feb
 
 $(CIRCLE_BLD)/\!run.txt: common/\!run_without_music.txt
 	$(DOS2UNIX) -n common/\!run_without_music.txt $(CIRCLE_BLD)/\!run.txt
@@ -82,21 +89,25 @@ $(EVERYWAY_SRC)/instructions.asm: $(EVERYWAY_SRC)/bytecodes.bin $(EVERYWAY_SRC)/
 	$(PYTHON3) $(ROSE2ARC) $(EVERYWAY_SRC)/bytecodes.bin -c $(EVERYWAY_SRC)/constants.bin -s $(EVERYWAY_SRC)/colorscript.bin -o $(EVERYWAY_SRC)/instructions.asm
 
 $(EVERYWAY_BLD)/loader.bin: engine/loader.asm
-	$(VASM) $(VASM_OPTS) -o $(EVERYWAY_BLD)/loader.bin engine/loader.asm
+	$(VASM) $(VBIN_OPTS) -o $(EVERYWAY_BLD)/loader.bin engine/loader.asm
 
-$(EVERYWAY_BLD)/everyway.bin: $(EVERYWAY_SRC)/instructions.asm $(ENGINE_DEPS) $(EVERYWAY_SRC)/music.mod
+$(EVERYWAY_BLD)/everyway.o: $(EVERYWAY_SRC)/instructions.asm $(ENGINE_DEPS) $(EVERYWAY_SRC)/music.mod
 	$(MKDIR_P) $(EVERYWAY_BLD)
-	$(VASM) -D_ENABLE_MUSIC=1 -D_FORM_WIDTH=352 -D_FORM_HEIGHT=280 -D_DUAL_PLAYFIELD=0 -DMAX_FRAMES=9000 -D_SCREEN_MODE=98 -I../$(EVERYWAY_SRC) $(VASM_OPTS) -L $(EVERYWAY_BLD)/compile.txt -o $(EVERYWAY_BLD)/everyway.bin engine/rose.asm
+	$(VASM) -D_ENABLE_MUSIC=1 -D_FORM_WIDTH=352 -D_FORM_HEIGHT=280 -D_DUAL_PLAYFIELD=0 -DMAX_FRAMES=9000 -D_SCREEN_MODE=98 -I../$(EVERYWAY_SRC) $(VOBJ_OPTS) -L $(EVERYWAY_BLD)/compile.txt -o $(EVERYWAY_BLD)/everyway.o engine/rose.asm
+
+$(EVERYWAY_BLD)/everyway.bin: $(EVERYWAY_BLD)/everyway.o
+	$(MKDIR_P) $(EVERYWAY_BLD)
+	$(VLINK) $(VLINK_OPTS) -M$(EVERYWAY_BLD)/linker.txt -o $(EVERYWAY_BLD)/everyway.bin $(EVERYWAY_BLD)/everyway.o 
 
 $(EVERYWAY_DST): $(EVERYWAY_BLD)/everyway.lz4 $(EVERYWAY_BLD)/loader.bin $(EVERYWAY_BLD)/\!run.txt $(COMMON_DEPS) $(MUSIC_DEPS)
 	$(RM_RF) $(EVERYWAY_DST)
 	$(MKDIR_P) $(EVERYWAY_DST)
-	cp $(EVERYWAY_BLD)/\!run.txt $(EVERYWAY_DST)/\!Run,feb
 	cp common/MemAlloc,ffa $(EVERYWAY_DST)
 	cp common/QTM147,ffa $(EVERYWAY_DST)
 	cp common/MMode98,ffa $(EVERYWAY_DST)
 	cp $(EVERYWAY_BLD)/loader.bin $(EVERYWAY_DST)/\!RunImage,ff8
 	cp $(EVERYWAY_BLD)/everyway.lz4 $(EVERYWAY_DST)/\Demo,ffd
+	cp $(EVERYWAY_BLD)/\!run.txt $(EVERYWAY_DST)/\!Run,feb
 
 $(EVERYWAY_BLD)/\!run.txt: common/\!run_with_music_overscan.txt
 	$(DOS2UNIX) -n common/\!run_with_music_overscan.txt $(EVERYWAY_BLD)/\!run.txt
@@ -124,11 +135,15 @@ $(WAYTOORUDE_SRC)/instructions.asm: $(WAYTOORUDE_SRC)/bytecodes.bin $(WAYTOORUDE
 	$(PYTHON3) $(ROSE2ARC) $(WAYTOORUDE_SRC)/bytecodes.bin -c $(WAYTOORUDE_SRC)/constants.bin -s $(WAYTOORUDE_SRC)/colorscript.bin -o $(WAYTOORUDE_SRC)/instructions.asm
 
 $(WAYTOORUDE_BLD)/loader.bin: engine/loader.asm
-	$(VASM) -D_WIMPSLOT=1433600 $(VASM_OPTS) -o $(WAYTOORUDE_BLD)/loader.bin engine/loader.asm
+	$(VASM) -D_WIMPSLOT=1433600 $(VBIN_OPTS) -o $(WAYTOORUDE_BLD)/loader.bin engine/loader.asm
 
-$(WAYTOORUDE_BLD)/waytoorude.bin: $(WAYTOORUDE_SRC)/instructions.asm $(ENGINE_DEPS) $(WAYTOORUDE_SRC)/music.mod
+$(WAYTOORUDE_BLD)/waytoorude.o: $(WAYTOORUDE_SRC)/instructions.asm $(ENGINE_DEPS) $(WAYTOORUDE_SRC)/music.mod
 	$(MKDIR_P) $(WAYTOORUDE_BLD)
-	$(VASM) -D_ENABLE_MUSIC=1 -D_FORM_WIDTH=320 -D_FORM_HEIGHT=180 -D_DUAL_PLAYFIELD=1 -DMAX_FRAMES=13000 -D_SCREEN_MODE=97 -I../$(WAYTOORUDE_SRC) $(VASM_OPTS) -L $(WAYTOORUDE_BLD)/compile.txt -o $(WAYTOORUDE_BLD)/waytoorude.bin engine/rose.asm
+	$(VASM) -D_ENABLE_MUSIC=1 -D_FORM_WIDTH=320 -D_FORM_HEIGHT=180 -D_DUAL_PLAYFIELD=1 -DMAX_FRAMES=13000 -D_SCREEN_MODE=97 -I../$(WAYTOORUDE_SRC) $(VOBJ_OPTS) -L $(WAYTOORUDE_BLD)/compile.txt -o $(WAYTOORUDE_BLD)/waytoorude.o engine/rose.asm
+
+$(WAYTOORUDE_BLD)/waytoorude.bin: $(WAYTOORUDE_BLD)/waytoorude.o
+	$(MKDIR_P) $(WAYTOORUDE_BLD)
+	$(VLINK) $(VLINK_OPTS) -M$(WAYTOORUDE_BLD)/linker.txt -o $(WAYTOORUDE_BLD)/waytoorude.bin $(WAYTOORUDE_BLD)/waytoorude.o 
 
 $(WAYTOORUDE_DST): $(WAYTOORUDE_BLD)/waytoorude.lz4 $(WAYTOORUDE_BLD)/loader.bin $(WAYTOORUDE_BLD)/\!run.txt $(COMMON_DEPS) $(MUSIC_DEPS)
 	$(RM_RF) $(WAYTOORUDE_DST)
@@ -166,11 +181,15 @@ $(LOGICOS_SRC)/instructions.asm: $(LOGICOS_SRC)/bytecodes.bin $(LOGICOS_SRC)/con
 	$(PYTHON3) $(ROSE2ARC) $(LOGICOS_SRC)/bytecodes.bin -c $(LOGICOS_SRC)/constants.bin -s $(LOGICOS_SRC)/colorscript.bin -o $(LOGICOS_SRC)/instructions.asm
 
 $(LOGICOS_BLD)/loader.bin: engine/loader.asm
-	$(VASM) $(VASM_OPTS) -o $(LOGICOS_BLD)/loader.bin engine/loader.asm
+	$(VASM) $(VBIN_OPTS) -o $(LOGICOS_BLD)/loader.bin engine/loader.asm
 
-$(LOGICOS_BLD)/logicos.bin: $(LOGICOS_SRC)/instructions.asm $(ENGINE_DEPS) $(LOGICOS_SRC)/music.mod
+$(LOGICOS_BLD)/logicos.o: $(LOGICOS_SRC)/instructions.asm $(ENGINE_DEPS) $(LOGICOS_SRC)/music.mod
 	$(MKDIR_P) $(LOGICOS_BLD)
-	$(VASM) -D_ENABLE_MUSIC=1 -D_FORM_WIDTH=320 -D_FORM_HEIGHT=180 -D_DUAL_PLAYFIELD=1 -DMAX_FRAMES=14000 -D_SCREEN_MODE=97 -DMAX_STACK=31 -I../$(LOGICOS_SRC) $(VASM_OPTS) -L $(LOGICOS_BLD)/compile.txt -o $(LOGICOS_BLD)/logicos.bin engine/rose.asm
+	$(VASM) -D_ENABLE_MUSIC=1 -D_FORM_WIDTH=320 -D_FORM_HEIGHT=180 -D_DUAL_PLAYFIELD=1 -DMAX_FRAMES=14000 -D_SCREEN_MODE=97 -DMAX_STACK=31 -I../$(LOGICOS_SRC) $(VOBJ_OPTS) -L $(LOGICOS_BLD)/compile.txt -o $(LOGICOS_BLD)/logicos.o engine/rose.asm
+
+$(LOGICOS_BLD)/logicos.bin: $(LOGICOS_BLD)/logicos.o
+	$(MKDIR_P) $(LOGICOS_BLD)
+	$(VLINK) $(VLINK_OPTS) -M$(LOGICOS_BLD)/linker.txt -o $(LOGICOS_BLD)/logicos.bin $(LOGICOS_BLD)/logicos.o 
 
 $(LOGICOS_DST): $(LOGICOS_BLD)/logicos.lz4 $(LOGICOS_BLD)/loader.bin $(LOGICOS_BLD)/\!run.txt $(COMMON_DEPS) $(MUSIC_DEPS)
 	$(RM_RF) $(LOGICOS_DST)
@@ -208,11 +227,15 @@ $(TECHNOVA_SRC)/instructions.asm: $(TECHNOVA_SRC)/bytecodes.bin $(TECHNOVA_SRC)/
 	$(PYTHON3) $(ROSE2ARC) $(TECHNOVA_SRC)/bytecodes.bin -c $(TECHNOVA_SRC)/constants.bin -s $(TECHNOVA_SRC)/colorscript.bin -o $(TECHNOVA_SRC)/instructions.asm
 
 $(TECHNOVA_BLD)/loader.bin: engine/loader.asm
-	$(VASM) $(VASM_OPTS) -o $(TECHNOVA_BLD)/loader.bin engine/loader.asm
+	$(VASM) $(VBIN_OPTS) -o $(TECHNOVA_BLD)/loader.bin engine/loader.asm
 
-$(TECHNOVA_BLD)/technova.bin: $(TECHNOVA_SRC)/instructions.asm $(ENGINE_DEPS) $(TECHNOVA_SRC)/music.mod
+$(TECHNOVA_BLD)/technova.o: $(TECHNOVA_SRC)/instructions.asm $(ENGINE_DEPS) $(TECHNOVA_SRC)/music.mod
 	$(MKDIR_P) $(TECHNOVA_BLD)
-	$(VASM) -D_ENABLE_MUSIC=1 -D_FORM_WIDTH=320 -D_FORM_HEIGHT=180 -D_DUAL_PLAYFIELD=1 -DMAX_FRAMES=7600 -D_SCREEN_MODE=97 -I../$(TECHNOVA_SRC) $(VASM_OPTS) -L $(TECHNOVA_BLD)/compile.txt -o $(TECHNOVA_BLD)/technova.bin engine/rose.asm
+	$(VASM) -D_ENABLE_MUSIC=1 -D_FORM_WIDTH=320 -D_FORM_HEIGHT=180 -D_DUAL_PLAYFIELD=1 -DMAX_FRAMES=7600 -D_SCREEN_MODE=97 -I../$(TECHNOVA_SRC) $(VOBJ_OPTS) -L $(TECHNOVA_BLD)/compile.txt -o $(TECHNOVA_BLD)/technova.o engine/rose.asm
+
+$(TECHNOVA_BLD)/technova.bin: $(TECHNOVA_BLD)/technova.o
+	$(MKDIR_P) $(TECHNOVA_BLD)
+	$(VLINK) $(VLINK_OPTS) -M$(TECHNOVA_BLD)/linker.txt -o $(TECHNOVA_BLD)/technova.bin $(TECHNOVA_BLD)/technova.o 
 
 $(TECHNOVA_DST): $(TECHNOVA_BLD)/technova.lz4 $(TECHNOVA_BLD)/loader.bin $(TECHNOVA_BLD)/\!run.txt $(COMMON_DEPS) $(MUSIC_DEPS)
 	$(RM_RF) $(TECHNOVA_DST)
@@ -250,11 +273,15 @@ $(EUPHORIA_SRC)/instructions.asm: $(EUPHORIA_SRC)/bytecodes.bin $(EUPHORIA_SRC)/
 	$(PYTHON3) $(ROSE2ARC) $(EUPHORIA_SRC)/bytecodes.bin -c $(EUPHORIA_SRC)/constants.bin -s $(EUPHORIA_SRC)/colorscript.bin -o $(EUPHORIA_SRC)/instructions.asm
 
 $(EUPHORIA_BLD)/loader.bin: engine/loader.asm
-	$(VASM) $(VASM_OPTS) -o $(EUPHORIA_BLD)/loader.bin engine/loader.asm
+	$(VASM) $(VBIN_OPTS) -o $(EUPHORIA_BLD)/loader.bin engine/loader.asm
 
-$(EUPHORIA_BLD)/euphoria.bin: $(EUPHORIA_SRC)/instructions.asm $(ENGINE_DEPS) $(EUPHORIA_SRC)/music.mod
+$(EUPHORIA_BLD)/euphoria.o: $(EUPHORIA_SRC)/instructions.asm $(ENGINE_DEPS) $(EUPHORIA_SRC)/music.mod
 	$(MKDIR_P) $(EUPHORIA_BLD)
-	$(VASM) -D_ENABLE_MUSIC=1 -D_FORM_WIDTH=352 -D_FORM_HEIGHT=280 -D_DUAL_PLAYFIELD=0 -DMAX_FRAMES=7400 -D_SCREEN_MODE=98 -I../$(EUPHORIA_SRC) $(VASM_OPTS) -L $(EUPHORIA_BLD)/compile.txt -o $(EUPHORIA_BLD)/euphoria.bin engine/rose.asm
+	$(VASM) -D_ENABLE_MUSIC=1 -D_FORM_WIDTH=352 -D_FORM_HEIGHT=280 -D_DUAL_PLAYFIELD=0 -DMAX_FRAMES=7400 -D_SCREEN_MODE=98 -I../$(EUPHORIA_SRC) $(VOBJ_OPTS) -L $(EUPHORIA_BLD)/compile.txt -o $(EUPHORIA_BLD)/euphoria.o engine/rose.asm
+
+$(EUPHORIA_BLD)/euphoria.bin: $(EUPHORIA_BLD)/euphoria.o
+	$(MKDIR_P) $(EUPHORIA_BLD)
+	$(VLINK) $(VLINK_OPTS) -M$(EUPHORIA_BLD)/linker.txt -o $(EUPHORIA_BLD)/euphoria.bin $(EUPHORIA_BLD)/euphoria.o 
 
 $(EUPHORIA_DST): $(EUPHORIA_BLD)/euphoria.lz4 $(EUPHORIA_BLD)/loader.bin $(EUPHORIA_BLD)/\!run.txt $(COMMON_DEPS) $(MUSIC_DEPS)
 	$(RM_RF) $(EUPHORIA_DST)

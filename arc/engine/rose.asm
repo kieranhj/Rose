@@ -72,11 +72,29 @@ Start:
 .skip 1024
 stack_base:
 
+bss_start_p:
+	.long bss_start_no_adr
+
+bss_end_p:
+	.long bss_end_no_adr
+
 ; ============================================================================
 ; Main
 ; ============================================================================
 
 main:
+	; Zero bss - prefer this in loader?
+	ldr r8, bss_start_p
+	ldr r9, bss_end_p
+	mov r0, #0
+	mov r1, r0
+	mov r2, r0
+	mov r3, r0
+.1:
+	stmia r8!, {r0-r3}
+	cmp r8, r9
+	blt .1
+
 	SWI OS_WriteI + 22		; Set base MODE
 	SWI OS_WriteI + Screen_Mode
 
@@ -631,7 +649,7 @@ module_data:
 ; ============================================================================
 
 p_reciprocal_table:					; [r6, #-16]
-	.long reciprocal_table
+	.long reciprocal_table_no_adr
 
 plot_circle_instruction:			; [r6, #-12]
     .long 0xe4dc1001            	; LDRB r1, [r12], #1
@@ -642,17 +660,26 @@ plot_square_instruction:			; [r6, #-8]
 r_FreeState:						; [r6, #-4]
     .long 0                  		; Last longword of first free state.
 
-r_StateLists:
+; ============================================================================
+; BSS Segment
+; TODO: Figure out vlink so can hack off BSS segment from binary!!
+; ============================================================================
+
+.bss
+
+bss_start_no_adr:
+
+r_StateLists_no_adr:
     .skip	(MAX_FRAMES+MAX_WAIT)*4
 
-r_StateSpace:
+r_StateSpace_no_adr:
     .skip	(MAX_TURTLES+1)*STATE_SIZE
-r_StateSpaceEnd:
+r_StateSpaceEnd_no_adr:
 
-r_Sinus:
+r_Sinus_no_adr:
     .skip	(DEGREES)*4
 
-reciprocal_table:
+reciprocal_table_no_adr:
 .if _MAKE_RECIPROCAL_TABLE
 	.skip	(1<<16)*4
 .else
@@ -664,16 +691,18 @@ reciprocal_table:
 .endr
 .endif
 
-r_CircleBuffer:
+r_CircleBuffer_no_adr:
 	.skip	(MAX_CIRCLES)*(CIRCLEDATA+1)*4
-r_circleBufEnd:
+r_circleBufEnd_no_adr:
 
-r_CircleBufPtrs:
+r_CircleBufPtrs_no_adr:
 	.skip	(Screen_Height)*4
 
-gen_code_pointers:
+gen_code_pointers_no_adr:
 	.skip	4*8*MAXSPAN
 
-gen_code_start:
+gen_code_start_no_adr:
+
+bss_end_no_adr:
 
 ; ============================================================================

@@ -13,13 +13,13 @@ circle_lookup_p:
 	.long circle_lookup
 
 r_FreeCircle:
-	.long r_circleBufEnd
+	.long r_circleBufEnd_no_adr
 
 p_CircleBufPtrs:
-	.long r_CircleBufPtrs
+	.long r_CircleBufPtrs_no_adr
 
 p_CircleBufEnd:
-	.long r_circleBufEnd
+	.long r_circleBufEnd_no_adr
 
 ; ============================================================================
 

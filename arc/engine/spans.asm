@@ -7,7 +7,7 @@
 .equ MAXSPAN, (MAXRADIUS+1)*2       ; otherwise Screen_Width
 
 gen_code_pointers_p:
-	.long gen_code_pointers
+	.long gen_code_pointers_no_adr
 
 ; Registers used during span plotting.
 ; r0 = X centre [preserve]
@@ -366,9 +366,9 @@ gen_end_code_end:
 	.long circle_end
 
 gen_code_pointers_p2:
-	.long gen_code_pointers
+	.long gen_code_pointers_no_adr
 gen_code_start_p:
-	.long gen_code_start
+	.long gen_code_start_no_adr
 
 gen_code:
 	STR lr, [sp, #-4]!
