@@ -16,7 +16,7 @@ ENGINE_DEPS:=engine/rose.asm engine/circles.asm engine/circledat.asm engine/engi
 COMMON_DEPS:=common/MemAlloc,ffa common/MMode98,ffa common/MMode97,ffa
 MUSIC_DEPS:=common/QTM147,ffa
 
-ARCULATOR_HOSTFS=../../../Arculator_V2.1_Windows/hostfs
+ARCULATOR_HOSTFS=../../arculator/hostfs
 
 ##########################################################################
 ##########################################################################
@@ -26,7 +26,7 @@ ARCULATOR_HOSTFS=../../../Arculator_V2.1_Windows/hostfs
 # make cirlce => build circle demo folder
 
 .PHONY:all
-all: ball circle everyway waytoorude logicos technova euphoria
+all: ball circle everyway waytoorude logicos technova euphoria rageos
 
 .PHONY:clean
 clean:
@@ -37,6 +37,7 @@ clean:
 	$(RM_RF) $(LOGICOS_BLD)
 	$(RM_RF) $(TECHNOVA_BLD)
 	$(RM_RF) $(EUPHORIA_BLD)
+	$(RM_RF) $(RAGEOS_BLD)
 
 ##########################################################################
 ##########################################################################
@@ -340,6 +341,52 @@ $(ARCULATOR_HOSTFS)/$(EUPHORIA_ARC): $(EUPHORIA_DST)
 	cp -r $(EUPHORIA_DST) $(ARCULATOR_HOSTFS)/
 
 $(EUPHORIA_BLD)/euphoria.lz4: $(EUPHORIA_BLD)/euphoria.bin
+	$(LZ4) $< $@
+	touch $@
+
+##########################################################################
+##########################################################################
+
+RAGEOS_ARC=\!RageOS
+RAGEOS_SRC=examples/rageos
+RAGEOS_BLD=$(RAGEOS_SRC)/build
+RAGEOS_DST=$(RAGEOS_BLD)/$(RAGEOS_ARC)
+
+.PHONY:rageos
+rageos: $(ARCULATOR_HOSTFS)/$(RAGEOS_ARC)
+
+$(RAGEOS_SRC)/instructions.asm: $(RAGEOS_SRC)/bytecodes.bin $(RAGEOS_SRC)/constants.bin $(RAGEOS_SRC)/colorscript.bin $(ROSE2ARC)
+	$(PYTHON3) $(ROSE2ARC) $(RAGEOS_SRC)/bytecodes.bin -c $(RAGEOS_SRC)/constants.bin -s $(RAGEOS_SRC)/colorscript.bin -o $(RAGEOS_SRC)/instructions.asm
+
+$(RAGEOS_BLD)/loader.bin: engine/loader.asm
+	$(VASM) $(VBIN_OPTS) -o $(RAGEOS_BLD)/loader.bin engine/loader.asm
+
+$(RAGEOS_BLD)/rageos.o: $(RAGEOS_SRC)/instructions.asm $(ENGINE_DEPS) $(RAGEOS_SRC)/music.mod
+	$(MKDIR_P) $(RAGEOS_BLD)
+	$(VASM) -D_ENABLE_MUSIC=1 -D_FORM_WIDTH=320 -D_FORM_HEIGHT=180 -D_DUAL_PLAYFIELD=1 -DMAX_FRAMES=14000 -D_SCREEN_MODE=97 -DMAX_STACK=31 -I../$(RAGEOS_SRC) $(VOBJ_OPTS) -L $(RAGEOS_BLD)/compile.txt -o $(RAGEOS_BLD)/rageos.o engine/rose.asm
+
+$(RAGEOS_BLD)/rageos.bin: $(RAGEOS_BLD)/rageos.o
+	$(MKDIR_P) $(RAGEOS_BLD)
+	$(VLINK) $(VLINK_OPTS) -M$(RAGEOS_BLD)/linker.txt -o $(RAGEOS_BLD)/rageos.bin $(RAGEOS_BLD)/rageos.o 
+
+$(RAGEOS_DST): $(RAGEOS_BLD)/rageos.lz4 $(RAGEOS_BLD)/loader.bin $(RAGEOS_BLD)/\!run.txt $(COMMON_DEPS) $(MUSIC_DEPS)
+	$(RM_RF) $(RAGEOS_DST)
+	$(MKDIR_P) $(RAGEOS_DST)
+	cp $(RAGEOS_BLD)/\!run.txt $(RAGEOS_DST)/\!Run,feb
+	cp common/MemAlloc,ffa $(RAGEOS_DST)
+	cp common/QTM147,ffa $(RAGEOS_DST)
+	cp common/MMode97,ffa $(RAGEOS_DST)
+	cp $(RAGEOS_BLD)/loader.bin $(RAGEOS_DST)/\!RunImage,ff8
+	cp $(RAGEOS_BLD)/rageos.lz4 $(RAGEOS_DST)/Demo,ffd
+
+$(RAGEOS_BLD)/\!run.txt: common/\!run_with_music_widescreen.txt
+	$(DOS2UNIX) -n common/\!run_with_music_widescreen.txt $(RAGEOS_BLD)/\!run.txt
+
+$(ARCULATOR_HOSTFS)/$(RAGEOS_ARC): $(RAGEOS_DST)
+	$(RM_RF) $(ARCULATOR_HOSTFS)/$(RAGEOS_ARC)
+	cp -r $(RAGEOS_DST) $(ARCULATOR_HOSTFS)/
+
+$(RAGEOS_BLD)/rageos.lz4: $(RAGEOS_BLD)/rageos.bin
 	$(LZ4) $< $@
 	touch $@
 
