@@ -25,8 +25,11 @@ ARCULATOR_HOSTFS=../../arculator/hostfs
 # make all => build all Archie demo folders
 # make cirlce => build circle demo folder
 
+.PHONY:hoff
+hoff: amigarchie
+
 .PHONY:all
-all: ball circle everyway waytoorude logicos technova euphoria rageos
+all: ball circle everyway waytoorude logicos technova euphoria rageos amigarchie
 
 .PHONY:clean
 clean:
@@ -38,6 +41,7 @@ clean:
 	$(RM_RF) $(TECHNOVA_BLD)
 	$(RM_RF) $(EUPHORIA_BLD)
 	$(RM_RF) $(RAGEOS_BLD)
+	$(RM_RF) $(AMIGARCHIE_BLD)
 
 ##########################################################################
 ##########################################################################
@@ -389,6 +393,44 @@ $(ARCULATOR_HOSTFS)/$(RAGEOS_ARC): $(RAGEOS_DST)
 $(RAGEOS_BLD)/rageos.lz4: $(RAGEOS_BLD)/rageos.bin
 	$(LZ4) $< $@
 	touch $@
+
+##########################################################################
+##########################################################################
+
+AMIGARCHIE_ARC=\!AmigArchie
+AMIGARCHIE_SRC=examples/amigarchie
+AMIGARCHIE_BLD=$(AMIGARCHIE_SRC)/build
+AMIGARCHIE_DST=$(AMIGARCHIE_BLD)/$(AMIGARCHIE_ARC)
+
+.PHONY:amigarchie
+amigarchie: $(ARCULATOR_HOSTFS)/$(AMIGARCHIE_ARC)
+
+$(AMIGARCHIE_SRC)/instructions.asm: $(AMIGARCHIE_SRC)/bytecodes.bin $(AMIGARCHIE_SRC)/constants.bin $(AMIGARCHIE_SRC)/colorscript.bin $(ROSE2ARC)
+	$(PYTHON3) $(ROSE2ARC) $(AMIGARCHIE_SRC)/bytecodes.bin -c $(AMIGARCHIE_SRC)/constants.bin -s $(AMIGARCHIE_SRC)/colorscript.bin -o $(AMIGARCHIE_SRC)/instructions.asm
+
+$(AMIGARCHIE_BLD)/amigarchie.o: $(AMIGARCHIE_SRC)/instructions.asm $(ENGINE_DEPS) $(AMIGARCHIE_SRC)/music.mod
+	$(MKDIR_P) $(AMIGARCHIE_BLD)
+	$(VASM) -D_ENABLE_MUSIC=1 -D_FORM_WIDTH=320 -D_FORM_HEIGHT=180 -D_DUAL_PLAYFIELD=0 -DMAX_FRAMES=14000 -D_SCREEN_MODE=97 -DMAX_STACK=31 -I../$(AMIGARCHIE_SRC) $(VOBJ_OPTS) -L $(AMIGARCHIE_BLD)/compile.txt -o $(AMIGARCHIE_BLD)/amigarchie.o engine/rose.asm
+
+$(AMIGARCHIE_BLD)/amigarchie.bin: $(AMIGARCHIE_BLD)/amigarchie.o
+	$(MKDIR_P) $(AMIGARCHIE_BLD)
+	$(VLINK) $(VLINK_OPTS) -M$(AMIGARCHIE_BLD)/linker.txt -o $(AMIGARCHIE_BLD)/amigarchie.bin $(AMIGARCHIE_BLD)/amigarchie.o 
+
+$(AMIGARCHIE_DST): $(AMIGARCHIE_BLD)/amigarchie.bin $(AMIGARCHIE_BLD)/\!run.txt $(COMMON_DEPS) $(MUSIC_DEPS)
+	$(RM_RF) $(AMIGARCHIE_DST)
+	$(MKDIR_P) $(AMIGARCHIE_DST)
+	cp $(AMIGARCHIE_BLD)/\!run.txt $(AMIGARCHIE_DST)/\!Run,feb
+	cp common/MemAlloc,ffa $(AMIGARCHIE_DST)
+	cp common/QTM147,ffa $(AMIGARCHIE_DST)
+	cp common/MMode97,ffa $(AMIGARCHIE_DST)
+	cp $(AMIGARCHIE_BLD)/amigarchie.bin $(AMIGARCHIE_DST)/\!RunImage,ff8
+
+$(AMIGARCHIE_BLD)/\!run.txt: common/\!run_with_music_widescreen.txt
+	$(DOS2UNIX) -n common/\!run_with_music_widescreen.txt $(AMIGARCHIE_BLD)/\!run.txt
+
+$(ARCULATOR_HOSTFS)/$(AMIGARCHIE_ARC): $(AMIGARCHIE_DST)
+	$(RM_RF) $(ARCULATOR_HOSTFS)/$(AMIGARCHIE_ARC)
+	cp -r $(AMIGARCHIE_DST) $(ARCULATOR_HOSTFS)/
 
 ##########################################################################
 ##########################################################################
