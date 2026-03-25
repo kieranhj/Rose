@@ -1,0 +1,36 @@
+form 352 280 1 4
+
+plan
+  0:000
+  1:531
+  2:362
+  3:5b2
+
+fact spread = 18
+
+proc main
+  jump 176 268
+  face 192
+  tint 1
+  fork branch 72
+
+proc branch len
+  when len > 3
+    tint len > 32 ? 1 : len > 14 ? 2 : 3
+    size len / 20 + 1
+    fork stem len
+    move len
+    wait len / 2
+    turn spread
+    fork branch len * 2 / 3
+    turn ~(spread + spread)
+    fork branch len * 2 / 3
+  done
+
+proc stem dist
+  when dist > 1
+    draw
+    move 2
+    wait 1
+    fork stem dist - 2
+  done

@@ -6,6 +6,7 @@
 
 #include <functional>
 #include <cstring>
+#include <cstdint>
 #include <queue>
 #include <unordered_set>
 #include <utility>
