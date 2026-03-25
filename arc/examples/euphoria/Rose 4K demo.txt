@@ -1,0 +1,51 @@
+Archie Rose 4K Demo?
+~~~
+
+Euphoria demo as Amiga 4K demo example.
+Bytecodes.bin = 1908 bytes
+Bytecodes.shri = 908 bytes
+
+Euphoria.bin = 6354 bytes
+Euphoria.shri = 2748 bytes (comrpess as words)
+Remove ARM assembler instructions; add bytescodes.bin
+Remove colourscript and constants long tables; add colorscript.bin + constants.bin
+Remove circledat table
+
+= 1348 bytes
+
+Still need Shrinkler decompressor code to boot.
+Code to generate circledat table (trivial).
+Rose bytecode JIT code (non-trivial).
+Say 1K of ARM code? Crunches to 512 bytes?
+
+No music!
+Assume another 1K of ARM code to generate AmigaKlang samples.
+Maybe crunches to ~512 bytes.
+
+Still need MOD pattern data...
+
+Add MOD track data:
+music.mod.trk = 21564 bytes => 1613 bytes
+Euphoria.shriW = 4456 bytes
+Over by 360 bytes
+
+Add missing code ~= +512
+Add music player...
+
+.code = 3940 bytes
+.data = 24056
+mod.trk = 21564
+bytecodes.bin = 1908
+colorscript.bin = 274
+constants = 292
+
+Shrinkler decompression code = 428 bytes...
+LZ4 decompression loader = 336 bytes...
+Use RISCOS inbuilt compression SWI for Shrinkler header...?
+Can jetison some startup code...
+
+Side thought: one day is there a pseudo-Thumb bytecode that we could come up with?
+Something that can be relatively easily converted from<>to 32-bit ARM?
+Assume some subset of things? E.g. remove conditionals on non-branches.
+=> Take inspiration from Thumb itself.
+Write an ARM code static analysis script in Python or such?

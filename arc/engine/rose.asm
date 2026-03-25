@@ -6,7 +6,7 @@
 ; QTM Module Player by Phoenix of Quantum (steve3000).
 ; ============================================================================
 
-.equ _DEBUG, 1
+.equ _DEBUG, 0
 .equ _DEBUG_RASTERS, (_DEBUG && 1)		; removes code
 .equ _DEBUG_STOP_ON_FRAME, -1
 .equ _DEBUG_DEFAULT_PLAY_PAUSE, 1		; play
@@ -650,6 +650,8 @@ cls:
 .include "circles.asm"
 .include "spans.asm"
 
+;.data
+
 r_Instructions:
 .include "instructions.asm"			; Include folder specified at assemble involkation.
 
@@ -661,7 +663,8 @@ r_Instructions:
 
 .if _ENABLE_MUSIC
 module_data:
-	.incbin "music.mod"
+;	.incbin "music.mod"
+    .incbin "music.mod.trk"
 	.p2align 2
 .endif
 

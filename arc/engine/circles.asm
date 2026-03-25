@@ -114,7 +114,8 @@ clip_circle_notbottom:
 	ldr r8, r_FreeCircle				; get next free circle in buffer
 
 	.if _DEBUG
-	cmp r8, #0
+    ; TODO: This doesn't actually detect if we're out of circles as it's not a linked list!	cmp r8, #0
+    ;       Need to check against r_CircleBuffer_no_adr (base of the array) instead.
     adreq r0, outofcircles
     swieq OS_GenerateError
 	.endif

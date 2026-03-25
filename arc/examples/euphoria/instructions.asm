@@ -28,6 +28,9 @@
 ; r7 = r_Sinus.		(preserve)
 ; ============================================================================
 
+.if 1
+.incbin "bytecodes.bin"
+.else
 proc_0_start:
 	; BC_CONST [97]
 	mov r0, #0x00140000			; r0=rConstants[23] (20.0000)
@@ -6805,13 +6808,16 @@ proc_25_start:
 	str r5, [r6, #-4]			; (r_FreeState) this state becomes the next free state.
 	mov pc, lr					; Return.
 proc_25_end:
-
+.endif
 
 ; ============================================================================
 ; Constants.
 ; ============================================================================
 
 r_Constants:
+.if 1
+.incbin "constants.bin"
+.else
 .long 0x00000000				; [0] = 0.0000
 .long 0x00001000				; [1] = 0.0625
 .long 0x00002000				; [2] = 0.1250
@@ -6885,12 +6891,16 @@ r_Constants:
 .long 0x00370000				; [70] = 55.0000
 .long 0x005f0000				; [71] = 95.0000
 .long 0x00750000				; [72] = 117.0000
+.endif
 
 ; ============================================================================
 ; Color Script.
 ; ============================================================================
 
 r_ColorScript:
+.if 1
+.incbin "colorscript.bin"
+.else
 .long -1, 0x00334488, 0x013355cc, 0x022288ff, 0x03444433			; delta_frames=1 [0]
 .long -308, 0x02ccccff			; delta_frames=308 [308]
 .long -2, 0x022288ff			; delta_frames=2 [310]
@@ -6948,3 +6958,4 @@ r_ColorScript:
 .long -710, 0x00ffffff, 0x03000000			; delta_frames=710 [6336]
 .long -15, 0x00000000			; delta_frames=15 [6351]
 .long 0x80000000	; END_SCRIPT.
+.endif

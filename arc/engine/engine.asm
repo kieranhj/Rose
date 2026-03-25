@@ -398,7 +398,7 @@ PutCircle:
     mov r1, r9, asr #16         ; Y
     mov r2, r10, asr #16        ; RADIUS
     ; Guard against negative radius from dodgy Rose maths...
-    cmp r2, #0
+    cmp r2, #0                  ; TODO: Check inside or outside link_circle call? _DEBUG only?
     blt .1
     mov r9, r11, lsr #16        ; TINT
 	ldr r10, [r6, #-12]         ; (plot_circle_instruction)

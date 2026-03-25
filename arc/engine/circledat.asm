@@ -3,6 +3,7 @@
 ; Kindly provided by Progen (Sarah Walker).
 ; ============================================================================
 
+.if 0
 circle_0:
 	.byte 0
 
@@ -4742,8 +4743,10 @@ circle_255:
 .endif
 
 	.p2align 2
+.endif
 
 circle_lookup:
+.if 0
 	.long circle_0
 	.long circle_1
 	.long circle_2
@@ -5001,6 +5004,8 @@ circle_lookup:
 	.long circle_253
 	.long circle_254
 	.long circle_255
+.endif
+
 .endif
 
 ; ============================================================================
