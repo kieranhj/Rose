@@ -533,6 +533,211 @@ class RoseParser:
         #    self._asm_file.write(f'\t.long proc_{x}_start\n')
 
 
+def calculate_jit_size(byte_file):
+    """Calculate the exact number of ARM words jit.asm will emit for this bytecode stream.
+    Tracks push_pending and load_without_op state exactly as jit.asm does."""
+    push_pending = False
+    load_without_op = False
+    words = 0
+
+    def load_var():
+        """jit_do_load_var: flush pending push (1 word), set load_without_op."""
+        nonlocal push_pending, load_without_op, words
+        if push_pending:
+            words += 1      # STR r0, [r3, #-4]!
+            push_pending = False
+        load_without_op = True
+
+    def pop_r0():
+        """jit_do_pop_r0: consume pending or emit LDR r0."""
+        nonlocal push_pending, words
+        if push_pending:
+            push_pending = False
+        else:
+            words += 1      # LDR r0, [r3], #4
+
+    RAND_ITER_WORDS = 9  # bic,bic,mov,orr, ldr+b+.long, mul,add
+
+    while True:
+        b = byte_file.read(1)
+        if not b:
+            break
+        bc = b[0]
+
+        if bc == 0xFF:              # END_OF_SCRIPT
+            break
+        elif bc >= 0x80:            # BC_CONST
+            index = bc & 0x7F
+            if index == 126:        # BIG_CONSTANT_BASE: read extra byte
+                extra = byte_file.read(1)
+                if extra:
+                    index += extra[0]
+            load_var()              # flush push, set load_without_op
+            words += 1              # MOV r0,#imm  or  LDR r0,[r4,#offset]
+            push_pending = True
+        elif bc >= 0x70:            # BC_RSTATE
+            load_var()
+            words += 1              # LDR r0, [r5, #field*4]
+            push_pending = True
+        elif bc >= 0x60:            # BC_RLOCAL
+            load_var()
+            words += 1              # LDR r0, [r5, #-(index+1)*4]
+            push_pending = True
+        elif bc >= 0x50:            # BC_WSTATE
+            pop_r0()
+            words += 1              # STR r0, [r5, #field*4]
+            push_pending = False
+            # load_without_op unchanged (jit_wstate doesn't touch r12)
+        elif bc >= 0x40:            # BC_WLOCAL
+            pop_r0()
+            words += 1              # STR r0, [r5, #-(index+1)*4]
+            push_pending = False
+            # load_without_op unchanged
+        elif bc >= 0x30:            # BC_OP
+            nibble = bc & 0x0F
+            load_without_op = False # jit_op clears r12 explicitly
+            pop_r0()
+            words += 1              # pop_r1 (always emits LDR r1)
+            if nibble <= 7:         # shift ops
+                words += 3          # MOV_R1_LSR16 + AND_R1_63 + shift_insn
+            else:                   # arithmetic/logic
+                words += 1          # the op instruction
+            push_pending = (nibble != 11)  # CMP doesn't push result
+        elif bc >= 0x20:            # BC_FORK
+            pop_r0()                # consume proc address
+            words += 4              # MOV_R1_IMM, STR_LR_SP, BL ForkState, LDR_LR_SP
+            push_pending = False
+            # load_without_op unchanged (jit_fork doesn't touch r12)
+        elif bc >= 0x10:            # BC_WHEN
+            if load_without_op:
+                words += 1          # MOVS r0, r0 (update flags)
+            words += 1              # b<cond> placeholder
+            push_pending = False
+            load_without_op = False
+        elif bc == 0x00:            # BC_DONE
+            pass                    # 0 words (only patches branch offset)
+            # push_pending, load_without_op unchanged
+        elif bc == 0x01:            # BC_ELSE
+            words += 1              # unconditional B placeholder
+            push_pending = False
+            load_without_op = False
+        elif bc == 0x02:            # BC_END (inline FreeState + return)
+            words += 4              # LDR_R2_R6_M4, STR_R2_R5_0, STR_R5_R6_M4, MOV_PC_LR
+            push_pending = False
+            load_without_op = False
+        elif bc == 0x03:            # BC_RAND
+            load_var()
+            words += 1              # LDR r0, [r5, #ST_RAND*4]
+            words += RAND_ITER_WORDS
+            words += 1              # STR r0, [r5, #ST_RAND*4]
+            words += 1              # MOV r0, r0, lsr #16
+            push_pending = True
+            # load_without_op=True from load_var
+        elif bc == 0x04:            # BC_DRAW (inline link_circle)
+            load_var()              # flush push, set load_without_op
+            words += 10             # ADD,LDMIA,MOVx4,LDR_R10,STR_LR,BL,LDR_LR
+            push_pending = False
+            # load_without_op=True (from load_var; jit_draw doesn't clear r12)
+        elif bc == 0x05:            # BC_TAIL
+            words += 2              # LDR_R2_R5_0, MOV_PC_R2
+            # push_pending, load_without_op unchanged
+        elif bc == 0x06:            # BC_PLOT (inline link_circle, square variant)
+            load_var()
+            words += 11             # ADD,LDMIA,MOVx4,LDR_R10,ORR,STR_LR,BL,LDR_LR
+            push_pending = False
+            # load_without_op=True (from load_var)
+        elif bc == 0x07:            # BC_PROC (push proc address via literal)
+            byte_file.read(1)       # consume proc_index byte
+            load_var()
+            words += 3              # LDR_R0_LIT, B_SKIP1, .long placeholder
+            push_pending = True
+            # load_without_op=True from load_var
+        elif bc == 0x08:            # BC_POP
+            pop_r0()
+            push_pending = False
+            # load_without_op unchanged
+        elif bc == 0x09:            # BC_DIV
+            pop_r0()
+            words += 1              # pop_r1 (always emits LDR r1)
+            words += 6              # MOV_R1_ASL8, MOV_R1_ASR16, STR_LR, BL divide, LDR_LR, MOV_R0_ASL8
+            push_pending = True
+            # load_without_op unchanged (jit_div doesn't touch r12)
+        elif bc == 0x0A:            # BC_WAIT (inline WaitState)
+            pop_r0()
+            load_without_op = False # jit_wait clears r12 explicitly
+            words += 13             # LDR_LIT, B_SKIP1, .long, STR_R1_R5_0, STR_R5_R3_M4W,
+                                    # LDR_R2_R5_28, ADD, STR_R2_R5_28, BIC, LDR_R1_R6_R2,
+                                    # STR_R1_R3_M4W, STR_R3_R6_R2, MOV_PC_LR
+            push_pending = False
+        elif bc == 0x0B:            # BC_SINE
+            pop_r0()
+            words += 5              # MOV_R1_0x10000, SUB_R1_4, AND, LDR_R0_R7_R0, MOV_R0_ASL2
+            push_pending = True
+            # load_without_op unchanged (jit_sine doesn't touch r12)
+        elif bc == 0x0C:            # BC_SEED
+            pop_r0()
+            words += RAND_ITER_WORDS * 2    # two random iterations
+            words += 1              # STR r0, [r5, #ST_RAND*4]
+            push_pending = False
+            # load_without_op unchanged (jit_seed doesn't touch r12)
+        elif bc == 0x0D:            # BC_NEG
+            pop_r0()
+            words += 1              # RSB r0, r0, #0
+            push_pending = True
+            # load_without_op unchanged
+        elif bc == 0x0E:            # BC_MOVE
+            pop_r0()
+            words += 3              # STR_LR_SP, BL DoMove, LDR_LR_SP
+            push_pending = False
+            # load_without_op unchanged
+        elif bc == 0x0F:            # BC_MUL
+            pop_r0()
+            words += 1              # pop_r1 (always emits LDR r1)
+            words += 5              # MOV_R0_ASL8, MOV_R0_ASR16, MOV_R1_ASL8, MOV_R1_ASR16, MUL
+            push_pending = True
+            # load_without_op unchanged
+
+    return words
+
+
+def calculate_jit_limits(byte_file):
+    """Calculate the minimum table sizes jit.asm requires:
+      num_procs  — proc table entries (one per BC_END + 1 for proc 0)
+      num_fixups — fixup table entries (one per BC_PROC)
+      max_labels — label stack depth (max concurrent WHEN nesting)
+    """
+    num_procs = 1       # proc 0 always exists; each BC_END starts another
+    num_fixups = 0      # each BC_PROC emits a fixup entry
+    label_depth = 0
+    max_label_depth = 0
+
+    while True:
+        b = byte_file.read(1)
+        if not b:
+            break
+        bc = b[0]
+
+        if bc == 0xFF:              # END_OF_SCRIPT
+            break
+        elif bc >= 0x80:            # BC_CONST
+            if (bc & 0x7F) == 126:  # BIG_CONSTANT_BASE: extra byte
+                byte_file.read(1)
+        elif bc == 0x02:            # BC_END — procedure boundary
+            num_procs += 1
+        elif bc == 0x07:            # BC_PROC — emits a fixup entry
+            byte_file.read(1)       # consume proc_index
+            num_fixups += 1
+        elif 0x10 <= bc <= 0x1F:   # BC_WHEN — pushes label stack
+            label_depth += 1
+            if label_depth > max_label_depth:
+                max_label_depth = label_depth
+        elif bc == 0x00:            # BC_DONE — pops label stack
+            label_depth -= 1
+        # BC_ELSE: pops then pushes — net zero depth change
+
+    return num_procs, num_fixups, max(max_label_depth, 1)
+
+
 def TranslateConstants(const_file):
     constants = []
     while True:
@@ -612,6 +817,7 @@ if __name__ == '__main__':
     parser.add_argument("-o", "--output", metavar="<output>", help="Write ARM asm file to <output> (default is 'bytecodes.asm')")
     parser.add_argument("-s", "--script", metavar="<script>", help="Read colorscript.bin file and add to asm file.")
     parser.add_argument("-v", "--verbose", action="store_true", help="Print all the debugs")
+    parser.add_argument("--jit", action="store_true", help="JIT mode: omit proc code; output only constants/colorscript/bytecodes incbin")
     args = parser.parse_args()
 
     global g_verbose
@@ -652,8 +858,9 @@ if __name__ == '__main__':
         const_file.close()
 
     # Output Archie ARM asm.
-    parser = RoseParser(byte_file, constants)
-    parser.TranslateByteCode(asm_file)
+    if not args.jit:
+        parser = RoseParser(byte_file, constants)
+        parser.TranslateByteCode(asm_file)
 
     if constants is not None:
         WriteConstants(constants, asm_file)
@@ -662,6 +869,32 @@ if __name__ == '__main__':
         color_file = open(args.script, 'rb')
         TranslateColorScript(color_file, asm_file)
         color_file.close()
+
+    if args.jit:
+        # Calculate exact JIT output size and table limits for BSS reservation.
+        jit_byte_file = open(src, 'rb')
+        jit_words = calculate_jit_size(jit_byte_file)
+        jit_byte_file.close()
+
+        jit_byte_file = open(src, 'rb')
+        num_procs, num_fixups, max_labels = calculate_jit_limits(jit_byte_file)
+        jit_byte_file.close()
+
+        asm_file.write(f'\n; JIT buffer and table sizes (calculated from bytecode by rose2arc.py).\n')
+        asm_file.write(f'.equ _JIT_CODE_WORDS,  {jit_words}\n')
+        asm_file.write(f'.equ _JIT_MAX_PROCS,   {num_procs}\n')
+        asm_file.write(f'.equ _JIT_MAX_FIXUPS,  {num_fixups}\n')
+        asm_file.write(f'.equ _JIT_MAX_LABELS,  {max_labels}\n')
+
+        print(f'JIT: {jit_words} words, {num_procs} procs, {num_fixups} fixups, {max_labels} label depth.')
+
+        bytecodes_basename = os.path.basename(src)
+        asm_file.write(f'\n; ============================================================================\n')
+        asm_file.write(f'; Bytecodes (for JIT compilation at startup).\n')
+        asm_file.write(f'; ============================================================================\n')
+        asm_file.write(f'\nr_Bytecodes:\n')
+        asm_file.write(f'.incbin "{bytecodes_basename}"\n')
+        asm_file.write(f'.p2align 2\n')
 
     print(f'Wrote {asm_file.tell()} bytes.\n')
 

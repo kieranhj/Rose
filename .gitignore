@@ -5,3 +5,5 @@ music
 scripts
 .vscode/settings.json
 build
+.claude/settings.local.json
+.vscode/tasks.json

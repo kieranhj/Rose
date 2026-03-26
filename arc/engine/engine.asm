@@ -15,6 +15,11 @@ r_MaxFrames:
 r_BabeFeed:
     .long 0xbabefeed
 
+.ifdef _JIT
+p_jit_code_buf:
+    .long jit_code_buffer_no_adr    ; resolved at link time; loaded to get JIT buffer addr
+.endif
+
 .if _DEBUG
 r_NumTurtles:
     .long 1
@@ -31,6 +36,9 @@ r_MaxCircles:
 
 p_ColorScript:
     .long r_ColorScript
+
+p_Constants:
+    .long r_Constants
 
 p_Sinus:
     .long r_Sinus_no_adr
@@ -160,7 +168,7 @@ RunFrame:
     str r0, r_NumCircles
     .endif
 
-    adr r4, r_Constants
+    ldr r4, p_Constants
     ldr r7, p_Sinus
     ldr r6, p_StateLists
 .1:
@@ -199,7 +207,11 @@ InitStates:
 ; r5 = p_State (last state in state space)
 ; r6 = StateList
 InitMainTurtle:
+.ifdef _JIT
+    ldr r1, p_jit_code_buf          ; JIT buffer start in BSS = address of proc 0
+.else
     adr r1, r_Instructions
+.endif
     ldr r6, p_StateLists
 
     ldr r0, [r5]                ; ptr to prev state.

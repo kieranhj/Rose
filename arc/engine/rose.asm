@@ -162,6 +162,9 @@ main:
 	.if _MAKE_RECIPROCAL_TABLE
 	bl MakeReciprocal
 	.endif
+	.ifdef _JIT
+    bl jit_compile
+	.endif
     bl InitStates
 
 	; Claim the Error vector
@@ -649,9 +652,15 @@ cls:
 .include "sinus.asm"
 .include "circles.asm"
 .include "spans.asm"
+.ifdef _JIT
+.include "jit.asm"
+.endif
 
 r_Instructions:
-.include "instructions.asm"			; Include folder specified at assemble involkation.
+.ifdef _JIT
+    .long jit_code_buffer_no_adr                ; pointer to JIT output buffer in BSS
+.endif
+.include "instructions.asm"			; JIT mode: r_Constants, r_ColorScript, r_Bytecodes.
 
 ; ============================================================================
 ; Data Segment
@@ -723,7 +732,21 @@ r_CircleBufPtrs_no_adr:
 gen_code_pointers_no_adr:
 	.skip	4*8*MAXSPAN
 
-gen_code_start_no_adr:
+.ifdef _JIT
+jit_code_buffer_no_adr:
+	.skip	_JIT_CODE_WORDS * 4                 ; exact JIT output buffer (sized by rose2arc.py)
+
+jit_proc_table_no_adr:
+	.skip	JIT_MAX_PROCS * 4
+
+jit_fixup_table_no_adr:
+	.skip	JIT_MAX_FIXUPS * 8
+
+jit_label_stack_no_adr:
+	.skip	JIT_MAX_LABELS * 8
+.endif
+
+gen_code_start_no_adr:                         ; must be last: gen_code writes upward from here
 
 bss_end_no_adr:
 
