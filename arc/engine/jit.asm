@@ -48,7 +48,7 @@ ji_MOV_R1_R9_ASR16: .long 0xE1A01849   ; mov  r1, r9, asr #16
 ji_MOV_R2_R10_A16:  .long 0xE1A0284A   ; mov  r2, r10, asr #16
 ji_MOV_R9_R11_L16:  .long 0xE1A0982B   ; mov  r9, r11, lsr #16
 ji_LDR_R10_R6_M12:  .long 0xE516A00C   ; ldr  r10, [r6, #-12] (circle)
-ji_LDR_R10_R6_M8:   .long 0xE5168008   ; ldr  r10, [r6, #-8]  (square)
+ji_LDR_R10_R6_M8:   .long 0xE516A008   ; ldr  r10, [r6, #-8]  (square)
 ji_ORR_R10_R10_R2:  .long 0xE18AA002   ; orr  r10, r10, r2
 ji_LDR_R2_R6_M4:    .long 0xE5162004   ; ldr  r2, [r6, #-4]   (r_FreeState)
 ji_STR_R2_R5_0:     .long 0xE5852000   ; str  r2, [r5]
@@ -82,7 +82,7 @@ ji_ORR_R0_R2_R0R16: .long 0xE1820820   ; orr  r0, r2, r0, lsr #16
 ji_LDR_R0_R5_20:    .long 0xE5950014   ; ldr  r0, [r5, #20]   (st_rand)
 ji_STR_R0_R5_20:    .long 0xE5850014   ; str  r0, [r5, #20]
 ji_MOV_R0_LSR16:    .long 0xE1A00820   ; mov  r0, r0, lsr #16
-ji_MUL_R1_R2_R1:    .long 0xE0011292   ; mul  r1, r2, r1
+ji_MUL_R1_R2_R1:    .long 0xE0010192   ; mul  r1, r2, r1
 ji_ADD_R0_R0_R1:    .long 0xE0800001   ; add  r0, r0, r1
 ; Shift ops
 ji_MOV_R1_R1_LSR16: .long 0xE1A01821   ; mov  r1, r1, lsr #16
