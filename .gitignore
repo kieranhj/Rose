@@ -7,3 +7,4 @@ scripts
 build
 .claude/settings.local.json
 .vscode/tasks.json
+instructions.asm
