@@ -267,15 +267,22 @@ cycle windows, vsync-paced):
 | PaintersTeaser (dense) | **~11fps** | ~36 small blobs/frame |
 | PaintersTeaser (idle) | 50fps | |
 
-The generic renderer's per-scanline cost measures ~390 cycles (clip + span
+The generic renderer's per-scanline cost measured ~390 cycles (clip + span
 setup + 2 masked edges + chain dispatch), not the ~60 the §3 model assumed;
-middle bytes hit ~8 cycles/byte (vs 5.4 ideal). The §3 model's line-cost
-assumption therefore requires the spans.asm approach: per-(offset,length)
-fill routines with baked edge masks, generated offline, resident in
-**sideways RAM** (executable while ACCCON pages the shadow screen into
-&3000-&7FFF; ~13KB of generated code + dispatch). Until then, blob-heavy
-frames run at 1/2 to 1/5 speed, exactly the failure mode §3 predicted for
-overruns (global slowdown, never dropped plots).
+middle bytes hit ~8 cycles/byte (vs 5.4 ideal).
+
+**Update (same date): SWRAM span fillers implemented.** rose2bbc.py now
+generates one fill routine per (left offset 0-3, pixel length 1-125) with
+edge masks baked in — ~8KB per bank, *SRLOAD*ed into sideways banks 4/5 by
+!BOOT and executable while ACCCON pages the shadow screen in. Middles jump
+into a shared descending store chain fixed at &0E00. The engine is also
+OS-free at runtime: vsync by polling System VIA IFR CA1, palette via direct
+ULA writes (MODE 1 registers base+{0,1,4,5}), interrupts masked throughout.
+Results: **ball 25fps locked** (from 17), circle 50fps, teaser dense
+sections ~12-14 slots/frame — now interpreter+render bound (~36 blobs AND
+heavy per-frame script work). Next levers: per-line fast path for unclipped
+blobs (phase arithmetic instead of 16-bit x0/x1 + clip), interpreter
+dispatch cost, cheaper draw hashing.
 
 ## 9. Risks
 

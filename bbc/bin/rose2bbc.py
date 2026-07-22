@@ -94,6 +94,80 @@ def make_colorscript(data):
     return "\n".join(lines) + "\n"
 
 
+# --- SWRAM span filler generation -------------------------------------------
+# One routine per (left pixel offset o 0-3, span pixel length L 1-125), with
+# edge masks baked in. Two 16KB bank images: bank 4 holds o=0,1; bank 5 o=2,3.
+# Bank layout: vec lo[125] at +0, vec hi at +128, second o at +256/+384,
+# code from +512. Routines end by jumping into the shared middle-store chain
+# in main RAM (fixed at CHAIN_RTS - 4k, chain at &0E00) or rts.
+# These addresses must match interp.asm:
+SPAN_SCR = 0x8D             # zp screen pointer
+SPAN_RFILL = 0x0CB5         # SCRATCH+53
+SPAN_TMPB = 0x0CC3          # SCRATCH+67
+CHAIN_RTS = 0x0E7C          # &0E00 chain: 31 units of 4 bytes, rts at +124
+MASK_L = [0xFF, 0x77, 0x33, 0x11]
+MASK_R = [0x88, 0xCC, 0xEE, 0xFF]
+SPAN_MAXL = 125
+
+
+def _masked_write(mask, indexed):
+    """new = old ^ ((old ^ fill) & mask) at (scr) or (scr),y."""
+    lda = 0xB1 if indexed else 0xB2
+    sta = 0x91 if indexed else 0x92
+    return bytes([lda, SPAN_SCR,
+                  0x8D, SPAN_TMPB & 0xFF, SPAN_TMPB >> 8,
+                  0x4D, SPAN_RFILL & 0xFF, SPAN_RFILL >> 8,
+                  0x29, mask,
+                  0x4D, SPAN_TMPB & 0xFF, SPAN_TMPB >> 8,
+                  sta, SPAN_SCR])
+
+
+def _span_routine(o, L):
+    n = (o + L - 1) // 4 + 1            # bytes touched
+    o1 = (o + L - 1) & 3
+    ml = MASK_L[o]
+    mr = MASK_R[o1]
+    lda_rfill = bytes([0xAD, SPAN_RFILL & 0xFF, SPAN_RFILL >> 8])
+    if n == 1:
+        m = ml & mr
+        if m == 0xFF:
+            return lda_rfill + bytes([0x92, SPAN_SCR, 0x60])
+        return _masked_write(m, False) + bytes([0x60])
+    code = b""
+    if ml != 0xFF:
+        code += _masked_write(ml, False)
+    else:
+        code += lda_rfill + bytes([0x92, SPAN_SCR])
+    if mr != 0xFF:
+        code += bytes([0xA0, (n - 1) * 8]) + _masked_write(mr, True)
+        k = n - 2
+    else:
+        k = n - 1                        # solid right byte joins the chain
+    if k == 0:
+        return code + bytes([0x60])
+    entry = CHAIN_RTS - 4 * k
+    return code + lda_rfill + bytes([0x4C, entry & 0xFF, entry >> 8])
+
+
+def make_span_banks():
+    banks = []
+    for b in range(2):
+        img = bytearray(512)
+        code = bytearray()
+        for half, o in enumerate((2 * b, 2 * b + 1)):
+            base = half * 256
+            for L in range(1, SPAN_MAXL + 1):
+                addr = 0x8000 + 512 + len(code)
+                r = _span_routine(o, L)
+                code += r
+                img[base + (L - 1)] = addr & 0xFF
+                img[base + 128 + (L - 1)] = addr >> 8
+        img += code
+        assert len(img) <= 0x4000, f"span bank {b} overflows: {len(img)}"
+        banks.append(bytes(img))
+    return banks
+
+
 def make_circle_tables(maxr):
     """Per-radius scanline half-widths (floor(sqrt(r^2-dy^2))), BeebAsm."""
     lines = []
@@ -186,9 +260,13 @@ def main():
     q = make_sine_quarter()
     (out / "sine_quarter.bin").write_bytes(b"".join(struct.pack("<H", v) for v in q))
     (out / "circle_tables.asm").write_text(make_circle_tables(maxr))
+    banks = make_span_banks()
+    (out / "spans4.bin").write_bytes(banks[0])
+    (out / "spans5.bin").write_bytes(banks[1])
 
     print(f"rose2bbc: {len(constants)} constants, {len(ins)} instructions, "
-          f"{n} procs, sine table {2 * len(q)} bytes, circle tables r<={maxr}")
+          f"{n} procs, sine table {2 * len(q)} bytes, circle tables r<={maxr}, "
+          f"span banks {len(banks[0])}+{len(banks[1])} bytes")
 
 
 if __name__ == "__main__":

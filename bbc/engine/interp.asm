@@ -22,7 +22,7 @@ STATE_SIZE  = 128           ; bytes per turtle state block
 ; --- Memory map -------------------------------------------------------------
 EVSTACK     = &0900         ; evaluation stack (64 x 32-bit)
 BHEAD       = &0A00         ; per-bucket FIFO head (turtle idx, &FF = empty)
-BTAIL       = &0B00         ; per-bucket FIFO tail
+BTAIL       = &0D00         ; per-bucket FIFO tail (&0B00/&0C00 hold scratch)
 TNEXT       = &0C00         ; per-turtle next link (MAXT entries)
 SCRATCH     = &0C80         ; MOVE/mul scratch (see below)
 STATES      = &5900         ; MAXT x 128-byte state blocks
@@ -106,13 +106,31 @@ TMPB        = SCRATCH+67    ; masked-write temp
 CSPTR       = SCRATCH+68    ; colorscript event pointer (2 bytes)
 CSVAL       = SCRATCH+70    ; current event value byte
 
-OSWRCH      = &FFEE
-OSBYTE      = &FFF4
+OSWRCH      = &FFEE         ; init only — the runtime is OS-free
+SYSVIA_IFR  = &FE4D         ; bit 1 = CA1 = vsync
+ULACOL      = &FE21         ; Video ULA palette register
 ACCCON      = &FE34         ; Master: bit 2 (X) maps &3000-&7FFF to LYNNE
 SCREEN      = &3000
 DONEFLAG    = &7006         ; set to &FF when the run completes
 
-ORG &1000
+ORG &E00
+
+; ============================================================================
+; Shared middle-store chain — at a FIXED address: rose2bbc.py's generated
+; SWRAM span routines bake `jmp chain_rts - 4k` entries into their code.
+; Entering k units early stores A at offsets 8k, 8(k-1), ..., 8 from scr.
+; ============================================================================
+.chain_top
+FOR n, 31, 1, -1
+    ldy #n*8
+    sta (scr),y
+NEXT
+.chain_rts
+    rts
+chain30 = chain_rts - 120
+ASSERT chain_rts = &0E7C            ; must match rose2bbc.py CHAIN_RTS
+ASSERT RFILL = &0CB5                ; must match rose2bbc.py SPAN_RFILL
+ASSERT TMPB = &0CC3                 ; must match rose2bbc.py SPAN_TMPB
 
 ; ============================================================================
 ; Entry
@@ -130,6 +148,7 @@ ORG &1000
     cpx #10
     bne vduloop
     stz DONEFLAG
+    sei                             ; OS not needed from here on
     ; buckets all empty
     lda #&FF
     ldx #0
@@ -817,15 +836,13 @@ ORG &1000
     bcc rec_done
     inc lptr+1
 .rec_done
-    sei                             ; page in shadow screen and draw
-    lda ACCCON
+    lda ACCCON                      ; page in shadow screen and draw
     ora #4
     sta ACCCON
     jsr render_blob
     lda ACCCON
     and #&FB
     sta ACCCON
-    cli
     jmp next_op
 
 .build_rec                          ; REC = t,x,y,r,c (int16 LE each)
@@ -1531,10 +1548,12 @@ ORG &1000
 ; Per-frame tick: wait for vsync, apply due colorscript events (VDU 19)
 ; ============================================================================
 .frame_tick
-    lda #19                         ; OSBYTE 19: wait for vertical sync
-    ldx #0
-    ldy #0
-    jsr OSBYTE
+    lda #&02                        ; clear CA1 (vsync) flag, wait for next
+    sta SYSVIA_IFR
+.vsync_wait
+    lda SYSVIA_IFR
+    and #&02
+    beq vsync_wait
 .cs_loop
     lda CSPTR
     sta ptr
@@ -1550,23 +1569,24 @@ ORG &1000
     ldy #2
     lda (ptr),y
     sta CSVAL
-    lda #19                         ; VDU 19, logical, physical, 0, 0, 0
-    jsr OSWRCH
-    lda CSVAL
+    lsr a                           ; logical colour 0-3
     lsr a
     lsr a
     lsr a
-    lsr a
-    jsr OSWRCH
-    lda CSVAL
-    and #15
-    jsr OSWRCH
-    lda #0
-    jsr OSWRCH
-    lda #0
-    jsr OSWRCH
-    lda #0
-    jsr OSWRCH
+    and #3
+    tax
+    lda CSVAL                       ; ULA value = index<<4 | (phys EOR 7)
+    and #7
+    eor #7
+    ora ulabase,x
+    sta ULACOL                      ; MODE 1: registers base+{0,1,4,5}
+    clc
+    adc #&10
+    sta ULACOL
+    adc #&30
+    sta ULACOL
+    adc #&10
+    sta ULACOL
     clc                             ; next event
     lda CSPTR
     adc #3
@@ -1576,6 +1596,8 @@ ORG &1000
     bra cs_loop
 .cs_done
     rts
+.ulabase                            ; MODE 1 ULA index base per logical colour
+    EQUB &00, &20, &80, &A0
 
 ; ============================================================================
 ; Errors (BRK returns to BASIC with visible message)
@@ -1768,6 +1790,65 @@ NEXT
     ora #64
     sta C1
 .fs_c1ok
+    ldx C0                          ; scr += C0 * 8 (table)
+    clc
+    lda scr
+    adc col8_lo,x
+    sta scr
+    lda scr+1
+    adc col8_hi,x
+    sta scr+1
+    sec                             ; L-1 = x1 - x0 (fits a byte, <= 140)
+    lda RX1
+    sbc RX0
+    cmp #125                        ; L >= 126: generic fallback
+    bcs fill_generic
+    tay                             ; Y = L-1 indexes the SWRAM vectors
+    lda RX0
+    and #3                          ; left offset selects bank + table
+    cmp #2
+    bcs sp_o23
+    lsr a
+    bne sp_o1
+    lda #4                          ; o=0: bank 4, first table
+    sta &F4
+    sta &FE30
+    lda &8000,y
+    sta CHV
+    lda &8080,y
+    sta CHV+1
+    jmp (CHV)
+.sp_o1
+    lda #4                          ; o=1: bank 4, second table
+    sta &F4
+    sta &FE30
+    lda &8100,y
+    sta CHV
+    lda &8180,y
+    sta CHV+1
+    jmp (CHV)
+.sp_o23
+    lsr a
+    bcs sp_o3
+    lda #5                          ; o=2: bank 5, first table
+    sta &F4
+    sta &FE30
+    lda &8000,y
+    sta CHV
+    lda &8080,y
+    sta CHV+1
+    jmp (CHV)
+.sp_o3
+    lda #5                          ; o=3: bank 5, second table
+    sta &F4
+    sta &FE30
+    lda &8100,y
+    sta CHV
+    lda &8180,y
+    sta CHV+1
+    jmp (CHV)
+
+.fill_generic                       ; L > 125 (rare: r > 62 unclipped)
     lda RX0                         ; edge masks
     and #3
     tax
@@ -1778,14 +1859,6 @@ NEXT
     tax
     lda maskR,x
     sta MR
-    ldx C0                          ; scr += C0 * 8 (table)
-    clc
-    lda scr
-    adc col8_lo,x
-    sta scr
-    lda scr+1
-    adc col8_hi,x
-    sta scr+1
     lda C1                          ; C1 = byte count - 1
     sec
     sbc C0
@@ -1853,16 +1926,6 @@ NEXT
 .chain_call
     jmp (CHV)
 
-; Unrolled middle-byte chain: jumping in k units before chain_rts stores
-; RFILL (in A) at offsets 8k, 8(k-1), ..., 8 from scr. 8 cycles/byte.
-.chain30
-FOR n, 30, 1, -1
-    ldy #n*8
-    sta (scr),y
-NEXT
-.chain_rts
-    rts
-
 ; ============================================================================
 ; Renderer tables (must stay below &3000)
 ; ============================================================================
@@ -1899,4 +1962,7 @@ INCBIN "sine_quarter.bin"
 .rose_data_start
 INCLUDE "rose_data.asm"
 
-SAVE "CODE", &1000, rose_data_end
+PUTFILE "spans4.bin", "SPANS4", 0
+PUTFILE "spans5.bin", "SPANS5", 0
+PUTTEXT "boot.txt", "!BOOT", 0
+SAVE "CODE", &E00, rose_data_end, entry
