@@ -15,9 +15,10 @@
 CPU 1                       ; 65C12
 
 ; --- Configuration ----------------------------------------------------------
-MAXT        = 32            ; max live turtles
+MAXT        = 128           ; max live turtles (16KB of states = bank 7)
 FRAMES      = 10000         ; frame cap (matches visualizer)
 STATE_SIZE  = 128           ; bytes per turtle state block
+MAXRADIUS   = 70            ; circle tables in bank 6 cover 0..70
 
 ; --- Memory map -------------------------------------------------------------
 EVSTACK     = &0900         ; evaluation stack (64 x 32-bit)
@@ -25,11 +26,13 @@ BHEAD       = &0A00         ; per-bucket FIFO head (turtle idx, &FF = empty)
 BTAIL       = &0D00         ; per-bucket FIFO tail (&0B00/&0C00 hold scratch)
 TNEXT       = &0C00         ; per-turtle next link (MAXT entries)
 SCRATCH     = &0C80         ; MOVE/mul scratch (see below)
-STATES      = &5900         ; MAXT x 128-byte state blocks
-LOGCNT      = &7000         ; 16-bit plot count
-LOGCHK      = &7002         ; 32-bit order-independent checksum
-LOGBUF      = &7008         ; plot record prefix, 10 bytes each
-LOGLIMIT    = &7C           ; stop logging when lptr hi reaches this
+STATES      = &8000         ; MAXT x 128-byte state blocks, in SWRAM bank 7
+LOGCNT      = &0B80         ; 16-bit plot count
+LOGCHK      = &0B82         ; 32-bit order-independent checksum
+LOGLIMIT    = &7C           ; plot prefix (from rose_data_end) stops here
+; Sideways banks: 4/5 = span fillers, 6 = circle tables, 7 = turtle states.
+; Bank 7 stays paged during interpretation; the renderer switches 6 (half-
+; widths) and 4/5 (fills) per line and rec_done restores 7.
 
 ; State block layout (byte offsets; all fields 32-bit 16.16 except pc):
 ;   0  pc/proc (bytes 0,1) + saved stack height in bytes (byte 2)
@@ -105,13 +108,18 @@ MR          = SCRATCH+66    ; right edge mask
 TMPB        = SCRATCH+67    ; masked-write temp
 CSPTR       = SCRATCH+68    ; colorscript event pointer (2 bytes)
 CSVAL       = SCRATCH+70    ; current event value byte
+PHASE       = SCRATCH+72    ; fast path: cx & 3
+CCX         = SCRATCH+73    ; fast path: cx >> 2 (byte column of centre)
+Y8          = SCRATCH+74    ; fast path: current scanline (8-bit)
+OO          = SCRATCH+75    ; fast path: span left offset
+C0F         = SCRATCH+76    ; fast path: span left byte column
 
 OSWRCH      = &FFEE         ; init only — the runtime is OS-free
 SYSVIA_IFR  = &FE4D         ; bit 1 = CA1 = vsync
 ULACOL      = &FE21         ; Video ULA palette register
 ACCCON      = &FE34         ; Master: bit 2 (X) maps &3000-&7FFF to LYNNE
 SCREEN      = &3000
-DONEFLAG    = &7006         ; set to &FF when the run completes
+DONEFLAG    = &0B86         ; set to &FF when the run completes
 
 ORG &E00
 
@@ -149,6 +157,9 @@ ASSERT TMPB = &0CC3                 ; must match rose2bbc.py SPAN_TMPB
     bne vduloop
     stz DONEFLAG
     sei                             ; OS not needed from here on
+    lda #7                          ; turtle states live in bank 7
+    sta &F4
+    sta &FE30
     ; buckets all empty
     lda #&FF
     ldx #0
@@ -180,9 +191,9 @@ ASSERT TMPB = &0CC3                 ; must match rose2bbc.py SPAN_TMPB
     stz LOGCHK+1
     stz LOGCHK+2
     stz LOGCHK+3
-    lda #<LOGBUF
+    lda #<rose_data_end
     sta lptr
-    lda #>LOGBUF
+    lda #>rose_data_end
     sta lptr+1
     lda #&FF
     sta defh
@@ -328,36 +339,19 @@ ASSERT TMPB = &0CC3                 ; must match rose2bbc.py SPAN_TMPB
 ; ============================================================================
 ; Dispatcher
 ; ============================================================================
-.next_op
-    jsr fetch
-    cmp #&80                        ; &80+ = CONST (fetch's INC trashes N)
-    bcc not_const
-    jmp op_const
-.not_const
+.next_op                            ; direct 256-entry dispatch
+    lda (ip)
+    inc ip
+    bne next_go
+    inc ip+1
+.next_go
     sta opsave
-    lsr a
-    lsr a
-    lsr a
-    and #&1E
     tax
-    jmp (classtab,x)
-
-.classtab
-    EQUW cls0, op_when, op_fork, op_op
-    EQUW op_wlocal, op_wstate, op_rlocal, op_rstate
-
-.cls0
-    lda opsave
-    asl a
-    and #&1E
-    tax
-    jmp (op0tab,x)
-
-.op0tab
-    EQUW err_unimpl, op_else, op_end, op_rand       ; DONE ELSE END RAND
-    EQUW op_draw, op_tail, op_plot, op_proc         ; DRAW TAIL PLOT PROC
-    EQUW op_pop, op_div, op_wait, op_sine           ; POP DIV WAIT SINE
-    EQUW op_seed, op_neg, op_move, op_mul           ; SEED NEG MOVE MUL
+    lda dtab_lo,x
+    sta CHV
+    lda dtab_hi,x
+    sta CHV+1
+    jmp (CHV)
 
 .fetch
     lda (ip)
@@ -436,7 +430,8 @@ ASSERT TMPB = &0CC3                 ; must match rose2bbc.py SPAN_TMPB
 ; ============================================================================
 ; Opcodes
 ; ============================================================================
-.op_const                           ; A = &80 + index (bit 7 set)
+.op_const
+    lda opsave                      ; &80 + index
     and #&7F
     stz ptr+1
     cmp #126                        ; big-constant escape
@@ -785,36 +780,37 @@ ASSERT TMPB = &0CC3                 ; must match rose2bbc.py SPAN_TMPB
 .op_draw                            ; circle: c = tint
     jsr build_rec
 .emit_rec
-    ; per-record hash: h = rol32(h,1) ^ byte, over the 10 bytes
-    stz RH
-    stz RH+1
-    stz RH+2
-    stz RH+3
+    ; per-record hash: h = rol32(h,1) ^ byte over the 10 bytes.
+    ; RB (free during DRAW) holds h in zero page; unrolled via X countdown.
+    stz RB
+    stz RB+1
+    stz RB+2
+    stz RB+3
     ldx #0
 .hash_loop
-    asl RH
-    rol RH+1
-    rol RH+2
-    rol RH+3
-    lda RH
+    asl RB
+    rol RB+1
+    rol RB+2
+    rol RB+3
+    lda RB
     adc #0                          ; carry (old bit 31) into bit 0
     eor REC,x
-    sta RH
+    sta RB
     inx
     cpx #10
     bne hash_loop
     clc                             ; checksum += hash (order-independent)
     lda LOGCHK
-    adc RH
+    adc RB
     sta LOGCHK
     lda LOGCHK+1
-    adc RH+1
+    adc RB+1
     sta LOGCHK+1
     lda LOGCHK+2
-    adc RH+2
+    adc RB+2
     sta LOGCHK+2
     lda LOGCHK+3
-    adc RH+3
+    adc RB+3
     sta LOGCHK+3
     inc LOGCNT
     bne rec_log
@@ -843,6 +839,9 @@ ASSERT TMPB = &0CC3                 ; must match rose2bbc.py SPAN_TMPB
     lda ACCCON
     and #&FB
     sta ACCCON
+    lda #7                          ; back to the state bank
+    sta &F4
+    sta &FE30
     jmp next_op
 
 .build_rec                          ; REC = t,x,y,r,c (int16 LE each)
@@ -1663,10 +1662,13 @@ NEXT
     tax
     lda ctab,x
     sta RFILL
+    lda #6                          ; circle tables live in bank 6
+    sta &F4
+    sta &FE30
     ldx RRAD                        ; half-width row for this radius
-    lda circ_lo,x
+    lda &8000,x
     sta ptr
-    lda circ_hi,x
+    lda &8080,x
     sta ptr+1
     sec                             ; cx = x - 16
     lda REC+2
@@ -1693,9 +1695,58 @@ NEXT
     asl a
     adc #1                          ; carry clear (r <= 70)
     sta RCNT
+    ; ---- fast path eligibility: blob fully on screen and r <= 62 ----
+    lda RRAD
+    cmp #63
+    bcs rb_line                     ; big radius: generic per-line path
+    lda RY+1                        ; top on screen? (cy-r >= 0)
+    bne rb_line
+    clc                             ; bottom: cy+r <= 255
+    lda RCY
+    adc RRAD
+    lda RCY+1
+    adc #0
+    bne rb_line
+    sec                             ; left: cx-r >= 0
+    lda RCX
+    sbc RRAD
+    lda RCX+1
+    sbc #0
+    bmi rb_line
+    clc                             ; right: cx+r <= 319
+    lda RCX
+    adc RRAD
+    tax
+    lda RCX+1
+    adc #0
+    beq rb_fast_setup               ; < 256: fine
+    cmp #1
+    bne rb_line
+    cpx #&40
+    bcs rb_line                     ; >= 320
+.rb_fast_setup
+    lda RCX
+    and #3
+    sta PHASE
+    lda RCX                         ; CCX = cx >> 2 (0-79)
+    lsr a
+    lsr a
+    sta CCX
+    lda RCX+1
+    beq rb_fs1
+    lda CCX
+    ora #64
+    sta CCX
+.rb_fs1
+    lda RY
+    sta Y8
+    jmp rb_fast
 .rb_line
     lda SQF
     bne rb_hwsq
+    lda #6                          ; half-width read needs bank 6
+    sta &F4
+    sta &FE30
     lda (ptr)
     bra rb_hw
 .rb_hwsq
@@ -1763,6 +1814,65 @@ NEXT
 .rb_done
     rts
 
+; ---- fast path: blob fully on screen, r <= 62 — no clipping, 8-bit y,
+; span geometry from per-blob phase arithmetic ----
+.rb_fast
+    lda SQF
+    bne rbf_sq
+    lda #6                          ; half-width from bank 6
+    sta &F4
+    sta &FE30
+    lda (ptr)
+    bra rbf_hw
+.rbf_sq
+    lda RRAD
+.rbf_hw
+    sta RHW
+    lda PHASE                       ; t = phase - hw
+    sec
+    sbc RHW
+    tax
+    and #3
+    sta OO                          ; left offset = t & 3
+    txa
+    cmp #&80                        ; c0 = CCX + (t >> 2, arithmetic)
+    ror a
+    cmp #&80
+    ror a
+    clc
+    adc CCX
+    sta C0F
+    ldx Y8                          ; scr = row[y] + col8[c0]
+    lda row_lo,x
+    sta scr
+    lda row_hi,x
+    sta scr+1
+    ldx C0F
+    clc
+    lda scr
+    adc col8_lo,x
+    sta scr
+    lda scr+1
+    adc col8_hi,x
+    sta scr+1
+    lda RHW                         ; Y = L-1 = 2*hw
+    asl a
+    tay
+    lda OO
+    jsr span_go
+    lda SQF                         ; next line
+    bne rbf_ny
+    inc ptr
+    bne rbf_ny
+    inc ptr+1
+.rbf_ny
+    inc Y8
+    dec RCNT
+    beq rbf_done
+    jmp rb_fast
+.rbf_done
+    rts
+
 ; fill scanline RY, pixels RX0..RX1 (both on-screen), colour byte RFILL
 .fill_span
     ldx RY
@@ -1806,6 +1916,7 @@ NEXT
     tay                             ; Y = L-1 indexes the SWRAM vectors
     lda RX0
     and #3                          ; left offset selects bank + table
+.span_go                            ; entry: A = offset 0-3, Y = L-1, scr set
     cmp #2
     bcs sp_o23
     lsr a
@@ -1951,18 +2062,77 @@ NEXT
 FOR y, 0, 255
     EQUB >(SCREEN + (y DIV 8)*640 + (y MOD 8))
 NEXT
-INCLUDE "circle_tables.asm"
-
 ASSERT P% <= &3000                  ; render path must not cross into shadow
 
 ALIGN &100
 .sine_quarter
 INCBIN "sine_quarter.bin"
 
+; Dispatch tables (interpreter runs with main RAM paged, so above &3000 is fine)
+.dtab_lo
+    EQUB <err_unimpl, <op_else, <op_end, <op_rand
+    EQUB <op_draw, <op_tail, <op_plot, <op_proc
+    EQUB <op_pop, <op_div, <op_wait, <op_sine
+    EQUB <op_seed, <op_neg, <op_move, <op_mul
+FOR n, 0, 15
+    EQUB <op_when
+NEXT
+FOR n, 0, 15
+    EQUB <op_fork
+NEXT
+FOR n, 0, 15
+    EQUB <op_op
+NEXT
+FOR n, 0, 15
+    EQUB <op_wlocal
+NEXT
+FOR n, 0, 15
+    EQUB <op_wstate
+NEXT
+FOR n, 0, 15
+    EQUB <op_rlocal
+NEXT
+FOR n, 0, 15
+    EQUB <op_rstate
+NEXT
+FOR n, 0, 127
+    EQUB <op_const
+NEXT
+.dtab_hi
+    EQUB >err_unimpl, >op_else, >op_end, >op_rand
+    EQUB >op_draw, >op_tail, >op_plot, >op_proc
+    EQUB >op_pop, >op_div, >op_wait, >op_sine
+    EQUB >op_seed, >op_neg, >op_move, >op_mul
+FOR n, 0, 15
+    EQUB >op_when
+NEXT
+FOR n, 0, 15
+    EQUB >op_fork
+NEXT
+FOR n, 0, 15
+    EQUB >op_op
+NEXT
+FOR n, 0, 15
+    EQUB >op_wlocal
+NEXT
+FOR n, 0, 15
+    EQUB >op_wstate
+NEXT
+FOR n, 0, 15
+    EQUB >op_rlocal
+NEXT
+FOR n, 0, 15
+    EQUB >op_rstate
+NEXT
+FOR n, 0, 127
+    EQUB >op_const
+NEXT
+
 .rose_data_start
 INCLUDE "rose_data.asm"
 
 PUTFILE "spans4.bin", "SPANS4", 0
 PUTFILE "spans5.bin", "SPANS5", 0
+PUTFILE "circles.bin", "CIRCS", 0
 PUTTEXT "boot.txt", "!BOOT", 0
 SAVE "CODE", &E00, rose_data_end, entry
