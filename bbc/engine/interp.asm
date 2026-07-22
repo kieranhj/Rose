@@ -14,6 +14,24 @@
 
 CPU 1                       ; 65C12
 
+; WIDE=1 (beebasm -D): 352x232 overscan MODE 1 variant (R1=88, R6=29).
+; Full form width displayed; vertical crop 280->232. WIDE=0: 320x256 crop.
+IF WIDE
+XOFF = 0                    ; form x - XOFF = screen x
+YOFF = 24
+SCRH = 232
+ROWB = 704                  ; 88 chars * 8 bytes
+XCMP = &60                  ; x >= 352 is off-screen (hi byte 1)
+XCLAMP = &5F                ; x1 clamps to 351
+ELSE
+XOFF = 16
+YOFF = 12
+SCRH = 256
+ROWB = 640
+XCMP = &40                  ; x >= 320 is off-screen (hi byte 1)
+XCLAMP = &3F                ; x1 clamps to 319
+ENDIF
+
 ; --- Configuration ----------------------------------------------------------
 MAXT        = 128           ; max live turtles (16KB of states = bank 7)
 FRAMES      = 10000         ; frame cap (matches visualizer)
@@ -156,6 +174,18 @@ ASSERT TMPB = &0CC3                 ; must match rose2bbc.py SPAN_TMPB
     cpx #10
     bne vduloop
     stz DONEFLAG
+IF WIDE
+    ldx #0                          ; 6845: R1=88 R2=102 R6=29 R7=33
+.crtcloop
+    lda crtctab,x
+    sta &FE00
+    lda crtctab+1,x
+    sta &FE01
+    inx
+    inx
+    cpx #8
+    bne crtcloop
+ENDIF
     sei                             ; OS not needed from here on
     lda #7                          ; turtle states live in bank 7
     sta &F4
@@ -285,6 +315,10 @@ ASSERT TMPB = &0CC3                 ; must match rose2bbc.py SPAN_TMPB
 
 .vdutab
     EQUB 23,1,0,0,0,0,0,0,0,0
+IF WIDE
+.crtctab
+    EQUB 1,88, 2,102, 6,29, 7,33
+ENDIF
 
 .run_turtle
     sta cur
@@ -1670,16 +1704,16 @@ NEXT
     sta ptr
     lda &8080,x
     sta ptr+1
-    sec                             ; cx = x - 16
+    sec                             ; cx = x - XOFF
     lda REC+2
-    sbc #16
+    sbc #XOFF
     sta RCX
     lda REC+3
     sbc #0
     sta RCX+1
-    sec                             ; cy = y - 12
+    sec                             ; cy = y - YOFF
     lda REC+4
-    sbc #12
+    sbc #YOFF
     sta RCY
     lda REC+5
     sbc #0
@@ -1701,12 +1735,17 @@ NEXT
     bcs rb_line                     ; big radius: generic per-line path
     lda RY+1                        ; top on screen? (cy-r >= 0)
     bne rb_line
-    clc                             ; bottom: cy+r <= 255
+    clc                             ; bottom: cy+r < SCRH
     lda RCY
     adc RRAD
+    tax
     lda RCY+1
     adc #0
     bne rb_line
+IF WIDE
+    cpx #SCRH
+    bcs rb_line
+ENDIF
     sec                             ; left: cx-r >= 0
     lda RCX
     sbc RRAD
@@ -1722,8 +1761,8 @@ NEXT
     beq rb_fast_setup               ; < 256: fine
     cmp #1
     bne rb_line
-    cpx #&40
-    bcs rb_line                     ; >= 320
+    cpx #XCMP
+    bcs rb_line                     ; off right
 .rb_fast_setup
     lda RCX
     and #3
@@ -1753,8 +1792,13 @@ NEXT
     lda RRAD
 .rb_hw
     sta RHW
-    lda RY+1                        ; line on screen? (0 <= y < 256)
+    lda RY+1                        ; line on screen?
     bne rb_next
+IF WIDE
+    lda RY
+    cmp #SCRH
+    bcs rb_next
+ENDIF
     sec                             ; x0 = cx - hw
     lda RCX
     sbc RHW
@@ -1776,8 +1820,8 @@ NEXT
     cmp #1
     bne rb_next                     ; x0 >= 512: off right
     lda RX0
-    cmp #&40
-    bcs rb_next                     ; x0 >= 320: off right
+    cmp #XCMP
+    bcs rb_next                     ; x0 off right
     bra rb_x0ok
 .rb_x0neg
     stz RX0
@@ -1788,10 +1832,10 @@ NEXT
     cmp #1
     bne rb_x1clamp
     lda RX1
-    cmp #&40
+    cmp #XCMP
     bcc rb_x1ok
 .rb_x1clamp
-    lda #&3F
+    lda #XCLAMP
     sta RX1
     lda #1
     sta RX1+1
@@ -2047,20 +2091,20 @@ NEXT
 .maskR                              ; pixels <= x&3 within byte
     EQUB &88, &CC, &EE, &FF
 .col8_lo
-FOR c, 0, 79
+FOR c, 0, 87
     EQUB <(c*8)
 NEXT
 .col8_hi
-FOR c, 0, 79
+FOR c, 0, 87
     EQUB >(c*8)
 NEXT
 .row_lo
 FOR y, 0, 255
-    EQUB <(SCREEN + (y DIV 8)*640 + (y MOD 8))
+    EQUB <(SCREEN + (y DIV 8)*ROWB + (y MOD 8))
 NEXT
 .row_hi
 FOR y, 0, 255
-    EQUB >(SCREEN + (y DIV 8)*640 + (y MOD 8))
+    EQUB >(SCREEN + (y DIV 8)*ROWB + (y MOD 8))
 NEXT
 ASSERT P% <= &3000                  ; render path must not cross into shadow
 

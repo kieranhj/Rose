@@ -13,6 +13,7 @@ set -e
 cd "$(dirname "$0")/.."
 NAME="$1"
 ROSE="${2:-$NAME}"
+WIDE="${3:-0}"
 BEEBASM="${BEEBASM:-/c/Users/khcon/OneDrive/BEEB/Repos/beebasm/beebasm.exe}"
 mkdir -p "build/$NAME"
 cd "build/$NAME"
@@ -22,5 +23,5 @@ MAXR=$(grep MAXRADIUS stats.txt | cut -d' ' -f2)
 python ../../bin/rose2bbc.py . . "${MAXR:-45}"
 cp ../../engine/interp.asm .
 printf '*SRLOAD SPANS4 8000 4 Q\r*SRLOAD SPANS5 8000 5 Q\r*SRLOAD CIRCS 8000 6 Q\r*RUN CODE\r' > boot.txt
-"$BEEBASM" -i interp.asm -do rose.ssd -opt 3
+"$BEEBASM" -i interp.asm -do rose.ssd -opt 3 -D WIDE="$WIDE"
 echo "OK: build/$NAME/rose.ssd"
