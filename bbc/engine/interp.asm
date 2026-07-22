@@ -15,7 +15,7 @@
 CPU 1                       ; 65C12
 
 ; --- Configuration ----------------------------------------------------------
-MAXT        = 16            ; max live turtles
+MAXT        = 32            ; max live turtles
 FRAMES      = 10000         ; frame cap (matches visualizer)
 STATE_SIZE  = 128           ; bytes per turtle state block
 
@@ -27,13 +27,17 @@ TNEXT       = &0C00         ; per-turtle next link (MAXT entries)
 SCRATCH     = &0C80         ; MOVE/mul scratch (see below)
 STATES      = &5900         ; MAXT x 128-byte state blocks
 LOGCNT      = &7000         ; 16-bit plot count
-LOGBUF      = &7002         ; plot records, 10 bytes each
+LOGCHK      = &7002         ; 32-bit order-independent checksum
+LOGBUF      = &7008         ; plot record prefix, 10 bytes each
 LOGLIMIT    = &7C           ; stop logging when lptr hi reaches this
 
 ; State block layout (byte offsets; all fields 32-bit 16.16 except pc):
-;   0  pc/proc (2 bytes used; RSTATE/WSTATE 0 uses full 4-byte slot)
+;   0  pc/proc (bytes 0,1) + saved stack height in bytes (byte 2)
 ;   4  x    8  y    12 size   16 tint   20 rand   24 dir   28 time
-;   32 wires (8 x 4)   64 locals (16 x 4)
+;   32 wires (8 x 4)
+;   64 unified stack (16 x 4): locals are the bottom slots, expression
+;      temporaries above them — one stack, persists across WAIT (as on ARM,
+;      where r3 points into the state block).
 ST_PC       = 0
 ST_X        = 4
 ST_SIZE     = 12
@@ -41,12 +45,13 @@ ST_TINT     = 16
 ST_RAND     = 20
 ST_DIR      = 24
 ST_TIME     = 28
-ST_LOCALS   = 64
+ST_LOCALS   = 64            ; base of the unified per-turtle stack
+ST_HEIGHT   = 2             ; saved stack height byte (inside pc slot)
 
 ; --- Zero page (&70-&8F user area) ------------------------------------------
 ip          = &70           ; bytecode instruction pointer
 st          = &72           ; current turtle state base
-evx         = &74           ; eval stack index (x4)
+evx         = &74           ; turtle stack height in bytes (0..60)
 RA          = &75           ; 32-bit accumulator A (top of stack pops here)
 RB          = &79           ; 32-bit accumulator B
 opsave      = &7D           ; current opcode
@@ -60,6 +65,8 @@ zres        = &86           ; scratch: zero-test result
 lptr        = &87           ; 16-bit log write pointer
 cnt         = &89           ; loop counter (fork args)
 tmpidx      = &8A           ; scratch turtle index
+defh        = &8B           ; deferred list head (wait >= 256 frames)
+deft        = &8C           ; deferred list tail
 
 ; --- Scratch block (abs) -----------------------------------------------------
 IDX14       = SCRATCH+0     ; 14-bit sine index
@@ -73,6 +80,10 @@ M2          = SCRATCH+16    ; multiplicand (preserved)
 XM1         = SCRATCH+18    ; original M1 for sign correction
 PR          = SCRATCH+20    ; 32-bit product
 HPFLAG      = SCRATCH+24    ; 1 = high-precision move (>>8)
+REC         = SCRATCH+26    ; 10-byte plot record being built
+RH          = SCRATCH+36    ; 32-bit per-record hash
+DVS         = SCRATCH+40    ; divisor (u16) + remainder (3 bytes at +2)
+QSIGN       = SCRATCH+45    ; division result sign
 
 ORG &2000
 
@@ -107,10 +118,17 @@ ORG &2000
     ; log
     stz LOGCNT
     stz LOGCNT+1
+    stz LOGCHK
+    stz LOGCHK+1
+    stz LOGCHK+2
+    stz LOGCHK+3
     lda #<LOGBUF
     sta lptr
     lda #>LOGBUF
     sta lptr+1
+    lda #&FF
+    sta defh
+    sta deft
 
     ; ---- create turtle 0 running proc 0 (main) ----
     jsr alloc                       ; A = idx (0), ptr = state base
@@ -158,7 +176,17 @@ ORG &2000
     lda BHEAD,y
     cmp #&FF
     bne run_turtle
-    ; bucket empty -> next frame
+    lda defh                        ; re-attach deferred (future-lap) turtles
+    cmp #&FF
+    beq bucket_done
+    sta BHEAD,y
+    lda deft
+    sta BTAIL,y
+    lda #&FF
+    sta defh
+    sta deft
+.bucket_done
+    ; next frame
     lda tcount
     beq exit
     inc frame
@@ -191,20 +219,37 @@ ORG &2000
     ldy #ST_TIME+2                  ; turtle due this frame?
     lda (st),y
     cmp frame
-    bne frame_bad
+    bne frame_defer
     iny
     lda (st),y
     cmp frame+1
     beq frame_ok
-.frame_bad
-    jmp err_frame
+.frame_defer                        ; due on a later lap of this bucket
+    ldx cur
+    lda #&FF
+    sta TNEXT,x
+    lda defh
+    cmp #&FF
+    bne defer_tail
+    lda cur                         ; deferred list empty
+    sta defh
+    sta deft
+    jmp sched
+.defer_tail
+    ldx deft
+    lda cur
+    sta TNEXT,x
+    sta deft
+    jmp sched
 .frame_ok
     lda (st)                        ; ip = state pc
     sta ip
     ldy #1
     lda (st),y
     sta ip+1
-    stz evx
+    ldy #ST_HEIGHT                  ; restore stack height
+    lda (st),y
+    sta evx
     ; fall through to dispatcher
 
 ; ============================================================================
@@ -236,10 +281,10 @@ ORG &2000
     jmp (op0tab,x)
 
 .op0tab
-    EQUW err_unimpl, op_else, op_end, err_unimpl    ; DONE ELSE END RAND
-    EQUW op_draw, op_tail, err_unimpl, op_proc      ; DRAW TAIL PLOT PROC
-    EQUW op_pop, err_unimpl, op_wait, err_unimpl    ; POP DIV WAIT SINE
-    EQUW err_unimpl, op_neg, op_move, err_unimpl    ; SEED NEG MOVE MUL
+    EQUW err_unimpl, op_else, op_end, op_rand       ; DONE ELSE END RAND
+    EQUW op_draw, op_tail, op_plot, op_proc         ; DRAW TAIL PLOT PROC
+    EQUW op_pop, op_div, op_wait, op_sine           ; POP DIV WAIT SINE
+    EQUW op_seed, op_neg, op_move, op_mul           ; SEED NEG MOVE MUL
 
 .fetch
     lda (ip)
@@ -252,54 +297,66 @@ ORG &2000
 ; ============================================================================
 ; Eval stack
 ; ============================================================================
-.push_RA
-    ldx evx
+.push_RA                            ; turtle stack lives in the state block
+    lda evx
+    clc
+    adc #ST_LOCALS
+    tay
     lda RA
-    sta EVSTACK,x
+    sta (st),y
+    iny
     lda RA+1
-    sta EVSTACK+1,x
+    sta (st),y
+    iny
     lda RA+2
-    sta EVSTACK+2,x
+    sta (st),y
+    iny
     lda RA+3
-    sta EVSTACK+3,x
-    inx
-    inx
-    inx
-    inx
-    stx evx
+    sta (st),y
+    lda evx
+    adc #4                          ; carry clear (64+60+3 < 256)
+    sta evx
     rts
 
 .pop_RA
-    ldx evx
-    dex
-    dex
-    dex
-    dex
-    stx evx
-    lda EVSTACK,x
+    lda evx
+    sec
+    sbc #4
+    sta evx
+    clc
+    adc #ST_LOCALS
+    tay
+    lda (st),y
     sta RA
-    lda EVSTACK+1,x
+    iny
+    lda (st),y
     sta RA+1
-    lda EVSTACK+2,x
+    iny
+    lda (st),y
     sta RA+2
-    lda EVSTACK+3,x
+    iny
+    lda (st),y
     sta RA+3
     rts
 
 .pop_RB
-    ldx evx
-    dex
-    dex
-    dex
-    dex
-    stx evx
-    lda EVSTACK,x
+    lda evx
+    sec
+    sbc #4
+    sta evx
+    clc
+    adc #ST_LOCALS
+    tay
+    lda (st),y
     sta RB
-    lda EVSTACK+1,x
+    iny
+    lda (st),y
     sta RB+1
-    lda EVSTACK+2,x
+    iny
+    lda (st),y
     sta RB+2
-    lda EVSTACK+3,x
+    iny
+    lda (st),y
     sta RB+3
     rts
 
@@ -346,6 +403,7 @@ ORG &2000
 .op_rstate                          ; push state[field]
     lda opsave
     and #15
+    beq rstate_proc
     asl a
     asl a
     tay
@@ -362,11 +420,22 @@ ORG &2000
     sta RA+3
     jsr push_RA
     jmp next_op
+.rstate_proc                        ; field 0: pc only (byte 2 = height)
+    lda (st)
+    sta RA
+    ldy #1
+    lda (st),y
+    sta RA+1
+    stz RA+2
+    stz RA+3
+    jsr push_RA
+    jmp next_op
 
 .op_wstate                          ; pop -> state[field]
     jsr pop_RA
     lda opsave
     and #15
+    beq wstate_proc
     asl a
     asl a
     tay
@@ -380,6 +449,13 @@ ORG &2000
     sta (st),y
     iny
     lda RA+3
+    sta (st),y
+    jmp next_op
+.wstate_proc                        ; field 0: don't clobber height byte
+    lda RA
+    sta (st)
+    ldy #1
+    lda RA+1
     sta (st),y
     jmp next_op
 
@@ -508,6 +584,11 @@ ORG &2000
 
 .op_neg
     jsr pop_RA
+    jsr neg32RA
+    jsr push_RA
+    jmp next_op
+
+.neg32RA
     sec
     lda #0
     sbc RA
@@ -521,8 +602,7 @@ ORG &2000
     lda #0
     sbc RA+3
     sta RA+3
-    jsr push_RA
-    jmp next_op
+    rts
 
 .op_pop
     jsr pop_RA
@@ -620,69 +700,103 @@ ORG &2000
     sta ip+1
     jmp next_op
 
-.op_draw
-    lda lptr+1                      ; log overflow guard
+.op_plot                            ; square: c = ~tint
+    jsr build_rec
+    lda REC+8
+    eor #&FF
+    sta REC+8
+    lda REC+9
+    eor #&FF
+    sta REC+9
+    bra emit_rec
+.op_draw                            ; circle: c = tint
+    jsr build_rec
+.emit_rec
+    ; per-record hash: h = rol32(h,1) ^ byte, over the 10 bytes
+    stz RH
+    stz RH+1
+    stz RH+2
+    stz RH+3
+    ldx #0
+.hash_loop
+    asl RH
+    rol RH+1
+    rol RH+2
+    rol RH+3
+    lda RH
+    adc #0                          ; carry (old bit 31) into bit 0
+    eor REC,x
+    sta RH
+    inx
+    cpx #10
+    bne hash_loop
+    clc                             ; checksum += hash (order-independent)
+    lda LOGCHK
+    adc RH
+    sta LOGCHK
+    lda LOGCHK+1
+    adc RH+1
+    sta LOGCHK+1
+    lda LOGCHK+2
+    adc RH+2
+    sta LOGCHK+2
+    lda LOGCHK+3
+    adc RH+3
+    sta LOGCHK+3
+    inc LOGCNT
+    bne rec_log
+    inc LOGCNT+1
+.rec_log
+    lda lptr+1                      ; prefix log until full
     cmp #LOGLIMIT
-    bcs draw_skip
-    ldy #ST_TIME+2                  ; t
-    lda (st),y
-    sta (lptr)
-    iny
-    lda (st),y
-    ldy #1
-    sta (lptr),y
-    ldy #ST_X+2                     ; x
-    lda (st),y
-    tax
-    iny
-    lda (st),y
-    ldy #3
-    sta (lptr),y
-    dey
-    txa
-    sta (lptr),y
-    ldy #ST_X+4+2                   ; y
-    lda (st),y
-    tax
-    iny
-    lda (st),y
-    ldy #5
-    sta (lptr),y
-    dey
-    txa
-    sta (lptr),y
-    ldy #ST_SIZE+2                  ; r
-    lda (st),y
-    tax
-    iny
-    lda (st),y
-    ldy #7
-    sta (lptr),y
-    dey
-    txa
-    sta (lptr),y
-    ldy #ST_TINT+2                  ; c
-    lda (st),y
-    tax
-    iny
-    lda (st),y
+    bcs rec_done
     ldy #9
+.rec_copy
+    lda REC,y
     sta (lptr),y
     dey
-    txa
-    sta (lptr),y
-    clc                             ; lptr += 10
+    bpl rec_copy
+    clc
     lda lptr
     adc #10
     sta lptr
-    bcc drawcnt
+    bcc rec_done
     inc lptr+1
-.drawcnt
-    inc LOGCNT
-    bne draw_skip
-    inc LOGCNT+1
-.draw_skip
+.rec_done
     jmp next_op
+
+.build_rec                          ; REC = t,x,y,r,c (int16 LE each)
+    ldy #ST_TIME+2
+    lda (st),y
+    sta REC
+    iny
+    lda (st),y
+    sta REC+1
+    ldy #ST_X+2
+    lda (st),y
+    sta REC+2
+    iny
+    lda (st),y
+    sta REC+3
+    ldy #ST_X+4+2
+    lda (st),y
+    sta REC+4
+    iny
+    lda (st),y
+    sta REC+5
+    ldy #ST_SIZE+2
+    lda (st),y
+    sta REC+6
+    iny
+    lda (st),y
+    sta REC+7
+    ldy #ST_TINT+2
+    lda (st),y
+    sta REC+8
+    iny
+    lda (st),y
+    sta REC+9
+    rts
 
 .op_wait
     jsr pop_RA                      ; wait amount
@@ -718,10 +832,13 @@ ORG &2000
     jsr free_cur
     jmp sched
 .wait_sched
-    lda ip                          ; save continue address
+    lda ip                          ; save continue address + stack height
     sta (st)
     ldy #1
     lda ip+1
+    sta (st),y
+    ldy #ST_HEIGHT
+    lda evx
     sta (st),y
     ldy #ST_TIME+2                  ; bucket = frame low byte
     lda (st),y
@@ -779,6 +896,12 @@ ORG &2000
     sta (ptr),y
     bra fork_args
 .fork_link
+    lda opsave                      ; child stack height = nargs * 4
+    and #15
+    asl a
+    asl a
+    ldy #ST_HEIGHT
+    sta (ptr),y
     ldy #ST_TIME+2                  ; child runs in its (== parent's) frame
     lda (ptr),y
     tay
@@ -1023,6 +1146,31 @@ ORG &2000
     sta XM1
     lda M1+1
     sta XM1+1
+    jsr umul16
+    ; sign corrections
+    lda XM1+1
+    bpl mul_m2sign
+    sec
+    lda PR+2
+    sbc M2
+    sta PR+2
+    lda PR+3
+    sbc M2+1
+    sta PR+3
+.mul_m2sign
+    lda M2+1
+    bpl mul_sdone
+    sec
+    lda PR+2
+    sbc XM1
+    sta PR+2
+    lda PR+3
+    sbc XM1+1
+    sta PR+3
+.mul_sdone
+    rts
+
+.umul16                             ; PR = M1 * M2 unsigned (destroys M1)
     lda #0
     sta PR+2
     sta PR+3
@@ -1045,28 +1193,229 @@ ORG &2000
     ror PR
     dex
     bne mul_loop
-    ; sign corrections
-    lda XM1+1
-    bpl mul_m2sign
-    sec
-    lda PR+2
-    sbc M2
-    sta PR+2
-    lda PR+3
-    sbc M2+1
-    sta PR+3
-.mul_m2sign
-    lda M2+1
-    bpl mul_done
-    sec
-    lda PR+2
-    sbc XM1
-    sta PR+2
-    lda PR+3
-    sbc XM1+1
-    sta PR+3
-.mul_done
     rts
+
+; ============================================================================
+; MUL / DIV / RAND / SEED / SINE
+; ============================================================================
+.op_mul                             ; (a<<8>>16) * (b<<8>>16), 16.16 result
+    jsr pop_RA
+    jsr pop_RB
+    lda RA+1
+    sta M1
+    lda RA+2
+    sta M1+1
+    lda RB+1
+    sta M2
+    lda RB+2
+    sta M2+1
+    jsr smul16
+    lda PR
+    sta RA
+    lda PR+1
+    sta RA+1
+    lda PR+2
+    sta RA+2
+    lda PR+3
+    sta RA+3
+    jsr push_RA
+    jmp next_op
+
+.op_div                             ; a / (b<<8>>16), result << 8
+    jsr pop_RA                      ; dividend (left, top of stack)
+    jsr pop_RB
+    lda RB+1                        ; divisor = b<<8>>16
+    sta DVS
+    lda RB+2
+    sta DVS+1
+    lda RA+3                        ; quotient sign
+    eor DVS+1
+    and #&80
+    sta QSIGN
+    lda RA+3                        ; |dividend|
+    bpl div_absd
+    jsr neg32RA
+.div_absd
+    lda DVS+1                       ; |divisor|
+    bpl div_go
+    sec
+    lda #0
+    sbc DVS
+    sta DVS
+    lda #0
+    sbc DVS+1
+    sta DVS+1
+.div_go
+    stz DVS+2                       ; remainder = 0 (17 bits used)
+    stz DVS+3
+    stz DVS+4
+    ldx #32
+.div_loop
+    asl RA
+    rol RA+1
+    rol RA+2
+    rol RA+3
+    rol DVS+2
+    rol DVS+3
+    rol DVS+4
+    lda DVS+4                       ; rem >= divisor?
+    bne div_sub
+    lda DVS+3
+    cmp DVS+1
+    bcc div_next
+    bne div_sub
+    lda DVS+2
+    cmp DVS
+    bcc div_next
+.div_sub
+    sec
+    lda DVS+2
+    sbc DVS
+    sta DVS+2
+    lda DVS+3
+    sbc DVS+1
+    sta DVS+3
+    lda DVS+4
+    sbc #0
+    sta DVS+4
+    inc RA                          ; quotient bit (bit 0 is clear)
+.div_next
+    dex
+    bne div_loop
+    lda QSIGN
+    beq div_shift
+    jsr neg32RA
+.div_shift                          ; result = quotient << 8
+    lda RA+2
+    sta RA+3
+    lda RA+1
+    sta RA+2
+    lda RA
+    sta RA+1
+    stz RA
+    jsr push_RA
+    jmp next_op
+
+.op_rand                            ; iterate seed, push (seed>>16)&FFFF raw
+    ldy #ST_RAND
+    lda (st),y
+    sta RA
+    iny
+    lda (st),y
+    sta RA+1
+    iny
+    lda (st),y
+    sta RA+2
+    iny
+    lda (st),y
+    sta RA+3
+    jsr rand_iter
+    ldy #ST_RAND
+    lda RA
+    sta (st),y
+    iny
+    lda RA+1
+    sta (st),y
+    iny
+    lda RA+2
+    sta (st),y
+    iny
+    lda RA+3
+    sta (st),y
+    lda RA+2
+    sta RA
+    lda RA+3
+    sta RA+1
+    stz RA+2
+    stz RA+3
+    jsr push_RA
+    jmp next_op
+
+.op_seed                            ; seed = iter(iter(v))
+    jsr pop_RA
+    jsr rand_iter
+    jsr rand_iter
+    ldy #ST_RAND
+    lda RA
+    sta (st),y
+    iny
+    lda RA+1
+    sta (st),y
+    iny
+    lda RA+2
+    sta (st),y
+    iny
+    lda RA+3
+    sta (st),y
+    jmp next_op
+
+.rand_iter                          ; RA = (RA&FFFF)*&9D3D + wordswap(RA)
+    lda RA
+    sta M1
+    lda RA+1
+    sta M1+1
+    lda #&3D
+    sta M2
+    lda #&9D
+    sta M2+1
+    jsr umul16
+    lda RA+2                        ; RB = wordswap(RA)
+    sta RB
+    lda RA+3
+    sta RB+1
+    lda RA
+    sta RB+2
+    lda RA+1
+    sta RB+3
+    clc                             ; RA = PR + RB
+    lda PR
+    adc RB
+    sta RA
+    lda PR+1
+    adc RB+1
+    sta RA+1
+    lda PR+2
+    adc RB+2
+    sta RA+2
+    lda PR+3
+    adc RB+3
+    sta RA+3
+    rts
+
+.op_sine                            ; sin((x&FFFF)>>2) << 2
+    jsr pop_RA
+    lda RA
+    sta IDX14
+    lda RA+1
+    sta IDX14+1
+    lsr IDX14+1
+    ror IDX14
+    lsr IDX14+1
+    ror IDX14
+    jsr sinlook
+    lda TSIN
+    sta RA
+    lda TSIN+1
+    sta RA+1
+    and #&80                        ; sign extend to 32 bits
+    beq sine_pos
+    lda #&FF
+    bne sine_ext
+.sine_pos
+    lda #0
+.sine_ext
+    sta RA+2
+    sta RA+3
+    asl RA                          ; << 2
+    rol RA+1
+    rol RA+2
+    rol RA+3
+    asl RA
+    rol RA+1
+    rol RA+2
+    rol RA+3
+    jsr push_RA
+    jmp next_op
 
 ; ============================================================================
 ; Turtle alloc/free, bucket append

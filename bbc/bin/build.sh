@@ -11,11 +11,12 @@
 set -e
 cd "$(dirname "$0")/.."
 NAME="$1"
+ROSE="${2:-$NAME}"
 BEEBASM="${BEEBASM:-/c/Users/khcon/OneDrive/BEEB/Repos/beebasm/beebasm.exe}"
 mkdir -p "build/$NAME"
 cd "build/$NAME"
 export PATH=/mingw64/bin:$PATH   # libwinpthread for the visualizer objects
-../../tools/roseplots.exe "../../../examples/$NAME.rose" expected_plots.bin
+../../tools/roseplots.exe "../../../examples/$ROSE.rose" expected_plots.bin
 python ../../bin/rose2bbc.py . .
 cp ../../engine/interp.asm .
 "$BEEBASM" -i interp.asm -do rose.ssd
