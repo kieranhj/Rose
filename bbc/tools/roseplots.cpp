@@ -15,6 +15,9 @@ int main(int argc, char *argv[]) {
 		fwrite(v, 2, 5, f);
 	}
 	fclose(f);
+	int maxr = 0;
+	for (auto &p : r.plots) if (p.r > maxr) maxr = p.r;
 	printf("PLOTS %d\n", (int)r.plots.size());
+	printf("MAXRADIUS %d\n", maxr);
 	return 0;
 }

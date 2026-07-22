@@ -5,8 +5,9 @@
 # Pipeline: visualizer compile (via roseplots, which also dumps the ground
 # truth plot list and the .bin triple) -> rose2bbc.py -> beebasm -> rose.ssd
 #
-# Verify by running in jsbeeb: *LOAD CODE 2000 / CALL &2000, then dump
-# &7002 (LOGCNT at &7000) and compare with bin/verify_plots.py against
+# Run in jsbeeb: *LOAD CODE / CALL &1000 (renders in shadow MODE 1 and spins
+# when done — poll DONEFLAG &7006). Verify: LOGCNT &7000, LOGCHK &7002,
+# prefix records &7008; compare with bin/verify_plots.py against
 # build/<name>/expected_plots.bin.
 set -e
 cd "$(dirname "$0")/.."
@@ -16,8 +17,9 @@ BEEBASM="${BEEBASM:-/c/Users/khcon/OneDrive/BEEB/Repos/beebasm/beebasm.exe}"
 mkdir -p "build/$NAME"
 cd "build/$NAME"
 export PATH=/mingw64/bin:$PATH   # libwinpthread for the visualizer objects
-../../tools/roseplots.exe "../../../examples/$ROSE.rose" expected_plots.bin
-python ../../bin/rose2bbc.py . .
+../../tools/roseplots.exe "../../../examples/$ROSE.rose" expected_plots.bin | tee stats.txt
+MAXR=$(grep MAXRADIUS stats.txt | cut -d' ' -f2)
+python ../../bin/rose2bbc.py . . "${MAXR:-45}"
 cp ../../engine/interp.asm .
 "$BEEBASM" -i interp.asm -do rose.ssd
 echo "OK: build/$NAME/rose.ssd"

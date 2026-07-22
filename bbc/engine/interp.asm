@@ -67,6 +67,7 @@ cnt         = &89           ; loop counter (fork args)
 tmpidx      = &8A           ; scratch turtle index
 defh        = &8B           ; deferred list head (wait >= 256 frames)
 deft        = &8C           ; deferred list tail
+scr         = &8D           ; screen write pointer (renderer)
 
 ; --- Scratch block (abs) -----------------------------------------------------
 IDX14       = SCRATCH+0     ; 14-bit sine index
@@ -84,13 +85,46 @@ REC         = SCRATCH+26    ; 10-byte plot record being built
 RH          = SCRATCH+36    ; 32-bit per-record hash
 DVS         = SCRATCH+40    ; divisor (u16) + remainder (3 bytes at +2)
 QSIGN       = SCRATCH+45    ; division result sign
+; renderer scratch
+RCX         = SCRATCH+48    ; blob centre x (cropped to screen), s16
+RCY         = SCRATCH+50    ; blob centre y, s16
+RRAD        = SCRATCH+52    ; radius (clamped to MAXRADIUS)
+RFILL       = SCRATCH+53    ; 4-pixel fill byte for the tint
+RY          = SCRATCH+54    ; current scanline, s16
+RX0         = SCRATCH+56    ; span left, s16 (reused as *8 temp)
+RX1         = SCRATCH+58    ; span right, s16
+RCNT        = SCRATCH+60    ; scanlines remaining
+RHW         = SCRATCH+61    ; current half-width
+SQF         = SCRATCH+62    ; 1 = square (PLOT)
+C0          = SCRATCH+63    ; left byte column (0-79)
+C1          = SCRATCH+64    ; right byte column, then span byte count
+ML          = SCRATCH+65    ; left/combined edge mask
+MR          = SCRATCH+66    ; right edge mask
+TMPB        = SCRATCH+67    ; masked-write temp
 
-ORG &2000
+OSWRCH      = &FFEE
+ACCCON      = &FE34         ; Master: bit 2 (X) maps &3000-&7FFF to LYNNE
+SCREEN      = &3000
+DONEFLAG    = &7006         ; set to &FF when the run completes
+
+ORG &1000
 
 ; ============================================================================
 ; Entry
 ; ============================================================================
 .entry
+    lda #22                         ; MODE 129 (shadow MODE 1)
+    jsr OSWRCH
+    lda #129
+    jsr OSWRCH
+    ldx #0                          ; cursor off
+.vduloop
+    lda vdutab,x
+    jsr OSWRCH
+    inx
+    cpx #10
+    bne vduloop
+    stz DONEFLAG
     ; buckets all empty
     lda #&FF
     ldx #0
@@ -200,7 +234,13 @@ ORG &2000
     cmp #<FRAMES
     bne sched
 .exit
-    rts
+    lda #&FF                        ; signal completion, keep screen up
+    sta DONEFLAG
+.spin
+    jmp spin
+
+.vdutab
+    EQUB 23,1,0,0,0,0,0,0,0,0
 
 .run_turtle
     sta cur
@@ -763,6 +803,15 @@ ORG &2000
     bcc rec_done
     inc lptr+1
 .rec_done
+    sei                             ; page in shadow screen and draw
+    lda ACCCON
+    ora #4
+    sta ACCCON
+    jsr render_blob
+    lda ACCCON
+    and #&FB
+    sta ACCCON
+    cli
     jmp next_op
 
 .build_rec                          ; REC = t,x,y,r,c (int16 LE each)
@@ -1493,6 +1542,255 @@ FOR n, 0, MAXT-1
     EQUB >(STATES + n*STATE_SIZE)
 NEXT
 
+; ============================================================================
+; MODE 1 renderer. Runs with the shadow screen paged in (ACCCON X set), so
+; everything it touches — code, tables, REC, scratch — must live below &3000.
+; Coordinates: form 352x280 cropped to 320x256 (offset -16,-12).
+; ============================================================================
+.render_blob
+    lda REC+7                       ; negative radius: ignore
+    bpl rb_go
+    rts
+.rb_go
+    bne rb_clamp                    ; >255: clamp
+    lda REC+6
+    cmp #MAXRADIUS+1
+    bcc rb_rok
+.rb_clamp
+    lda #MAXRADIUS
+.rb_rok
+    sta RRAD
+    stz SQF
+    lda REC+9                       ; c < 0 -> square, tint = ~c
+    bpl rb_circle
+    lda #1
+    sta SQF
+    lda REC+8
+    eor #&FF
+    bra rb_col
+.rb_circle
+    lda REC+8
+.rb_col
+    and #3
+    tax
+    lda ctab,x
+    sta RFILL
+    ldx RRAD                        ; half-width row for this radius
+    lda circ_lo,x
+    sta ptr
+    lda circ_hi,x
+    sta ptr+1
+    sec                             ; cx = x - 16
+    lda REC+2
+    sbc #16
+    sta RCX
+    lda REC+3
+    sbc #0
+    sta RCX+1
+    sec                             ; cy = y - 12
+    lda REC+4
+    sbc #12
+    sta RCY
+    lda REC+5
+    sbc #0
+    sta RCY+1
+    sec                             ; first scanline = cy - r
+    lda RCY
+    sbc RRAD
+    sta RY
+    lda RCY+1
+    sbc #0
+    sta RY+1
+    lda RRAD                        ; 2r+1 scanlines
+    asl a
+    adc #1                          ; carry clear (r <= 70)
+    sta RCNT
+.rb_line
+    lda SQF
+    bne rb_hwsq
+    lda (ptr)
+    bra rb_hw
+.rb_hwsq
+    lda RRAD
+.rb_hw
+    sta RHW
+    lda RY+1                        ; line on screen? (0 <= y < 256)
+    bne rb_next
+    sec                             ; x0 = cx - hw
+    lda RCX
+    sbc RHW
+    sta RX0
+    lda RCX+1
+    sbc #0
+    sta RX0+1
+    clc                             ; x1 = cx + hw
+    lda RCX
+    adc RHW
+    sta RX1
+    lda RCX+1
+    adc #0
+    sta RX1+1
+    bmi rb_next                     ; x1 < 0: fully off left
+    lda RX0+1                       ; x0 clip
+    bmi rb_x0neg
+    beq rb_x0ok
+    cmp #1
+    bne rb_next                     ; x0 >= 512: off right
+    lda RX0
+    cmp #&40
+    bcs rb_next                     ; x0 >= 320: off right
+    bra rb_x0ok
+.rb_x0neg
+    stz RX0
+    stz RX0+1
+.rb_x0ok
+    lda RX1+1                       ; x1 clamp to 319
+    beq rb_x1ok
+    cmp #1
+    bne rb_x1clamp
+    lda RX1
+    cmp #&40
+    bcc rb_x1ok
+.rb_x1clamp
+    lda #&3F
+    sta RX1
+    lda #1
+    sta RX1+1
+.rb_x1ok
+    jsr fill_span
+.rb_next
+    lda SQF
+    bne rb_noadv
+    inc ptr
+    bne rb_noadv
+    inc ptr+1
+.rb_noadv
+    inc RY
+    bne rb_ynext
+    inc RY+1
+.rb_ynext
+    dec RCNT
+    beq rb_done
+    jmp rb_line
+.rb_done
+    rts
+
+; fill scanline RY, pixels RX0..RX1 (both on-screen), colour byte RFILL
+.fill_span
+    ldx RY
+    lda row_lo,x
+    sta scr
+    lda row_hi,x
+    sta scr+1
+    lda RX0                         ; C0 = x0 >> 2 (0-79)
+    lsr a
+    lsr a
+    sta C0
+    lda RX0+1
+    beq fs_c0ok
+    lda C0
+    ora #64
+    sta C0
+.fs_c0ok
+    lda RX1                         ; C1 = x1 >> 2
+    lsr a
+    lsr a
+    sta C1
+    lda RX1+1
+    beq fs_c1ok
+    lda C1
+    ora #64
+    sta C1
+.fs_c1ok
+    lda RX0                         ; edge masks
+    and #3
+    tax
+    lda maskL,x
+    sta ML
+    lda RX1
+    and #3
+    tax
+    lda maskR,x
+    sta MR
+    lda C0                          ; scr += C0 * 8
+    sta RX0
+    stz RX0+1
+    asl RX0
+    rol RX0+1
+    asl RX0
+    rol RX0+1
+    asl RX0
+    rol RX0+1
+    clc
+    lda scr
+    adc RX0
+    sta scr
+    lda scr+1
+    adc RX0+1
+    sta scr+1
+    lda C1                          ; C1 = byte count - 1
+    sec
+    sbc C0
+    sta C1
+    bne fs_multi
+    lda ML                          ; single byte: combined mask
+    and MR
+    sta ML
+    jmp fs_masked
+.fs_multi
+    jsr fs_masked                   ; left edge
+    jsr fs_adv
+    dec C1
+    beq fs_last
+.fs_mid
+    lda RFILL                       ; solid middle bytes
+    sta (scr)
+    jsr fs_adv
+    dec C1
+    bne fs_mid
+.fs_last
+    lda MR
+    sta ML
+    ; fall through
+.fs_masked                          ; new = old ^ ((old ^ fill) & mask)
+    lda (scr)
+    sta TMPB
+    eor RFILL
+    and ML
+    eor TMPB
+    sta (scr)
+    rts
+.fs_adv
+    clc
+    lda scr
+    adc #8
+    sta scr
+    bcc fs_advok
+    inc scr+1
+.fs_advok
+    rts
+
+; ============================================================================
+; Renderer tables (must stay below &3000)
+; ============================================================================
+.ctab                               ; 4 pixels of colour c (MODE 1)
+    EQUB &00, &0F, &F0, &FF
+.maskL                              ; pixels >= x&3 within byte
+    EQUB &FF, &77, &33, &11
+.maskR                              ; pixels <= x&3 within byte
+    EQUB &88, &CC, &EE, &FF
+.row_lo
+FOR y, 0, 255
+    EQUB <(SCREEN + (y DIV 8)*640 + (y MOD 8))
+NEXT
+.row_hi
+FOR y, 0, 255
+    EQUB >(SCREEN + (y DIV 8)*640 + (y MOD 8))
+NEXT
+INCLUDE "circle_tables.asm"
+
+ASSERT P% <= &3000                  ; render path must not cross into shadow
+
 ALIGN &100
 .sine_quarter
 INCBIN "sine_quarter.bin"
@@ -1500,4 +1798,4 @@ INCBIN "sine_quarter.bin"
 .rose_data_start
 INCLUDE "rose_data.asm"
 
-SAVE "CODE", &2000, rose_data_end
+SAVE "CODE", &1000, rose_data_end
