@@ -280,9 +280,21 @@ OS-free at runtime: vsync by polling System VIA IFR CA1, palette via direct
 ULA writes (MODE 1 registers base+{0,1,4,5}), interrupts masked throughout.
 Results: **ball 25fps locked** (from 17), circle 50fps, teaser dense
 sections ~12-14 slots/frame — now interpreter+render bound (~36 blobs AND
-heavy per-frame script work). Next levers: per-line fast path for unclipped
-blobs (phase arithmetic instead of 16-bit x0/x1 + clip), interpreter
-dispatch cost, cheaper draw hashing.
+heavy per-frame script work).
+
+**Big-demo update (same date):** with turtle states in SWRAM bank 7
+(MAXT=128), circle tables (full r<=70) in bank 6, a 256-entry dispatch
+jump table, and an unclipped-blob fast path (per-blob phase arithmetic,
+r<=62), the engine now runs and verifies **JeSuisRose** (17,374 plots) and
+**Everyway** (186,679 plots, 8,838 frames, 101 concurrent turtles) —
+bit-exact. Everyway paces at ~2.9 vsync slots/frame in the intro and 6-12.5
+in the heaviest stretches (~12fps average vs the authored 50): playable,
+correct, and the remaining gap is split between interpreter cost and
+per-line render overhead, as §8b predicted. A 6845 overscan variant
+(WIDE=1: R1=88, R6=29 -> 352x232, 20,416 bytes in shadow RAM) displays
+Everyway's full form width. Still capacity-blocked at >128 turtles:
+tree (262), Chiperia (273), Euphoria (200), Frustration (211) need wider
+turtle handles plus a second state bank.
 
 ## 9. Risks
 
