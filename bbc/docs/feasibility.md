@@ -255,6 +255,28 @@ Verification strategy (the `jit_verify.py` philosophy, upgraded):
    up in profiles (~1.5–2× on the compute term); self-modifying fillers; sideways
    turtle-state banks to lift MAX_TURTLES.
 
+## 8b. Measured engine performance (2026-07-22, phases 1-4 + fast filler)
+
+Measured in jsbeeb on the working engine (frame counter sampled over exact
+cycle windows, vsync-paced):
+
+| Demo | Measured rate | Notes |
+|---|---|---|
+| circle | 50fps | trivial load |
+| ball | **~17fps** (345 frames / 1000 slots) | 2 big blobs/frame ≈ 116K cycles |
+| PaintersTeaser (dense) | **~11fps** | ~36 small blobs/frame |
+| PaintersTeaser (idle) | 50fps | |
+
+The generic renderer's per-scanline cost measures ~390 cycles (clip + span
+setup + 2 masked edges + chain dispatch), not the ~60 the §3 model assumed;
+middle bytes hit ~8 cycles/byte (vs 5.4 ideal). The §3 model's line-cost
+assumption therefore requires the spans.asm approach: per-(offset,length)
+fill routines with baked edge masks, generated offline, resident in
+**sideways RAM** (executable while ACCCON pages the shadow screen into
+&3000-&7FFF; ~13KB of generated code + dispatch). Until then, blob-heavy
+frames run at 1/2 to 1/5 speed, exactly the failure mode §3 predicted for
+overruns (global slowdown, never dropped plots).
+
 ## 9. Risks
 
 - **k-factor uncertainty** (±40% on the compute term). Mitigation: phase 2 measures

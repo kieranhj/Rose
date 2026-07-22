@@ -21,5 +21,5 @@ export PATH=/mingw64/bin:$PATH   # libwinpthread for the visualizer objects
 MAXR=$(grep MAXRADIUS stats.txt | cut -d' ' -f2)
 python ../../bin/rose2bbc.py . . "${MAXR:-45}"
 cp ../../engine/interp.asm .
-"$BEEBASM" -i interp.asm -do rose.ssd
+"$BEEBASM" -i interp.asm -do rose.ssd -boot CODE
 echo "OK: build/$NAME/rose.ssd"

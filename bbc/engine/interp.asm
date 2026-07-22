@@ -65,6 +65,8 @@ zres        = &86           ; scratch: zero-test result
 lptr        = &87           ; 16-bit log write pointer
 cnt         = &89           ; loop counter (fork args)
 tmpidx      = &8A           ; scratch turtle index
+CHV         = &89           ; span-chain jump vector (aliases cnt/tmpidx:
+                            ;   both are free while rendering)
 defh        = &8B           ; deferred list head (wait >= 256 frames)
 deft        = &8C           ; deferred list tail
 scr         = &8D           ; screen write pointer (renderer)
@@ -1776,21 +1778,13 @@ NEXT
     tax
     lda maskR,x
     sta MR
-    lda C0                          ; scr += C0 * 8
-    sta RX0
-    stz RX0+1
-    asl RX0
-    rol RX0+1
-    asl RX0
-    rol RX0+1
-    asl RX0
-    rol RX0+1
+    ldx C0                          ; scr += C0 * 8 (table)
     clc
     lda scr
-    adc RX0
+    adc col8_lo,x
     sta scr
     lda scr+1
-    adc RX0+1
+    adc col8_hi,x
     sta scr+1
     lda C1                          ; C1 = byte count - 1
     sec
@@ -1800,38 +1794,73 @@ NEXT
     lda ML                          ; single byte: combined mask
     and MR
     sta ML
+    ldy #0
     jmp fs_masked
 .fs_multi
-    jsr fs_masked                   ; left edge
-    jsr fs_adv
-    dec C1
+    ldy #0                          ; left edge
+    jsr fs_masked
+.fs_chunk
+    lda C1                          ; bytes remaining after current scr
+    cmp #32
+    bcc fs_tail
+    lda RFILL                       ; full 30-store chunk
+    jsr chain30
+    clc                             ; scr += 240
+    lda scr
+    adc #240
+    sta scr
+    bcc fs_ch1
+    inc scr+1
+.fs_ch1
+    lda C1
+    sec
+    sbc #30
+    sta C1
+    bra fs_chunk
+.fs_tail                            ; 1..31 bytes left: A = n
+    sec
+    sbc #1                          ; k = n-1 middle stores
     beq fs_last
-.fs_mid
-    lda RFILL                       ; solid middle bytes
-    sta (scr)
-    jsr fs_adv
-    dec C1
-    bne fs_mid
+    asl a                           ; CHV = chain_rts - 4k
+    asl a
+    sta TMPB
+    sec
+    lda #<chain_rts
+    sbc TMPB
+    sta CHV
+    lda #>chain_rts
+    sbc #0
+    sta CHV+1
+    lda RFILL
+    jsr chain_call
 .fs_last
+    lda C1                          ; last byte at offset n*8 (<= 248)
+    asl a
+    asl a
+    asl a
+    tay
     lda MR
     sta ML
     ; fall through
 .fs_masked                          ; new = old ^ ((old ^ fill) & mask)
-    lda (scr)
+    lda (scr),y
     sta TMPB
     eor RFILL
     and ML
     eor TMPB
-    sta (scr)
+    sta (scr),y
     rts
-.fs_adv
-    clc
-    lda scr
-    adc #8
-    sta scr
-    bcc fs_advok
-    inc scr+1
-.fs_advok
+.chain_call
+    jmp (CHV)
+
+; Unrolled middle-byte chain: jumping in k units before chain_rts stores
+; RFILL (in A) at offsets 8k, 8(k-1), ..., 8 from scr. 8 cycles/byte.
+.chain30
+FOR n, 30, 1, -1
+    ldy #n*8
+    sta (scr),y
+NEXT
+.chain_rts
     rts
 
 ; ============================================================================
@@ -1843,6 +1872,14 @@ NEXT
     EQUB &FF, &77, &33, &11
 .maskR                              ; pixels <= x&3 within byte
     EQUB &88, &CC, &EE, &FF
+.col8_lo
+FOR c, 0, 79
+    EQUB <(c*8)
+NEXT
+.col8_hi
+FOR c, 0, 79
+    EQUB >(c*8)
+NEXT
 .row_lo
 FOR y, 0, 255
     EQUB <(SCREEN + (y DIV 8)*640 + (y MOD 8))
