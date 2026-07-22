@@ -70,6 +70,30 @@ def scan(bc):
     return ins
 
 
+def make_colorscript(data):
+    """Decode colorscript.bin and quantise 12-bit RGB to the 8 TTL colours.
+
+    Emits 3-byte records: frame lo, frame hi, (logical<<4)|physical,
+    terminated by frame &FFFF. Physical bit = channel >= 8.
+    """
+    words = struct.unpack(f">{len(data) // 2}H", data)
+    t = -1
+    lines = [".rose_colorscript"]
+    for w in words:
+        if w == 0x8000:
+            break
+        if w & 0x8000:
+            t += 0x10000 - w            # negative word = frame delta
+        else:
+            tint = w >> 12
+            r, g, b = (w >> 8) & 15, (w >> 4) & 15, w & 15
+            phys = (1 if r >= 8 else 0) | (2 if g >= 8 else 0) | (4 if b >= 8 else 0)
+            lines.append(f"    EQUB &{t & 0xFF:02X}, &{(t >> 8) & 0xFF:02X}, "
+                         f"&{(tint << 4) | phys:02X}  ; frame {t}: tint {tint} -> {phys}")
+    lines.append("    EQUB &FF, &FF, &00")
+    return "\n".join(lines) + "\n"
+
+
 def make_circle_tables(maxr):
     """Per-radius scanline half-widths (floor(sqrt(r^2-dy^2))), BeebAsm."""
     lines = []
@@ -153,6 +177,7 @@ def main():
             w(f"    EQUB &{op:02X}, &{extra[0]:02X}")
         else:
             w(f"    EQUB &{op:02X}")
+    w(make_colorscript((build / "colorscript.bin").read_bytes()))
     w(".rose_data_end")
     w("")
 

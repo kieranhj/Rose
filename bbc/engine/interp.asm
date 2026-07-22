@@ -101,8 +101,11 @@ C1          = SCRATCH+64    ; right byte column, then span byte count
 ML          = SCRATCH+65    ; left/combined edge mask
 MR          = SCRATCH+66    ; right edge mask
 TMPB        = SCRATCH+67    ; masked-write temp
+CSPTR       = SCRATCH+68    ; colorscript event pointer (2 bytes)
+CSVAL       = SCRATCH+70    ; current event value byte
 
 OSWRCH      = &FFEE
+OSBYTE      = &FFF4
 ACCCON      = &FE34         ; Master: bit 2 (X) maps &3000-&7FFF to LYNNE
 SCREEN      = &3000
 DONEFLAG    = &7006         ; set to &FF when the run completes
@@ -200,6 +203,11 @@ ORG &1000
     lda #0                          ; turtle 0 -> bucket 0
     ldy #0
     jsr append
+    lda #<rose_colorscript
+    sta CSPTR
+    lda #>rose_colorscript
+    sta CSPTR+1
+    jsr frame_tick                  ; frame 0: vsync + initial palette
     ; fall through to scheduler
 
 ; ============================================================================
@@ -229,10 +237,14 @@ ORG &1000
 .nowrap
     lda frame+1                     ; frame == FRAMES -> exit
     cmp #>FRAMES
-    bne sched
+    bne do_tick
     lda frame
     cmp #<FRAMES
-    bne sched
+    bne do_tick
+    bra exit
+.do_tick
+    jsr frame_tick
+    jmp sched
 .exit
     lda #&FF                        ; signal completion, keep screen up
     sta DONEFLAG
@@ -1472,7 +1484,9 @@ ORG &1000
 .alloc                              ; -> A = idx, ptr = state base
     lda freeh
     cmp #&FF
-    beq err_nofree
+    bne alloc_ok
+    jmp err_nofree
+.alloc_ok
     tax
     lda TNEXT,x
     sta freeh
@@ -1509,6 +1523,56 @@ ORG &1000
     lda tmpidx
     sta TNEXT,x
     sta BTAIL,y
+    rts
+
+; ============================================================================
+; Per-frame tick: wait for vsync, apply due colorscript events (VDU 19)
+; ============================================================================
+.frame_tick
+    lda #19                         ; OSBYTE 19: wait for vertical sync
+    ldx #0
+    ldy #0
+    jsr OSBYTE
+.cs_loop
+    lda CSPTR
+    sta ptr
+    lda CSPTR+1
+    sta ptr+1
+    lda (ptr)                       ; event frame == current frame?
+    cmp frame
+    bne cs_done
+    ldy #1
+    lda (ptr),y
+    cmp frame+1
+    bne cs_done
+    ldy #2
+    lda (ptr),y
+    sta CSVAL
+    lda #19                         ; VDU 19, logical, physical, 0, 0, 0
+    jsr OSWRCH
+    lda CSVAL
+    lsr a
+    lsr a
+    lsr a
+    lsr a
+    jsr OSWRCH
+    lda CSVAL
+    and #15
+    jsr OSWRCH
+    lda #0
+    jsr OSWRCH
+    lda #0
+    jsr OSWRCH
+    lda #0
+    jsr OSWRCH
+    clc                             ; next event
+    lda CSPTR
+    adc #3
+    sta CSPTR
+    bcc cs_loop
+    inc CSPTR+1
+    bra cs_loop
+.cs_done
     rts
 
 ; ============================================================================
