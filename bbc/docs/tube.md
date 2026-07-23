@@ -310,6 +310,47 @@ emission order, which a frame-based engine cannot cheaply reproduce — but
 with the above fixes no demo shows a visible tie difference (0-pixel deltas
 across the board), so frame-FIFO tie order stands.
 
+## 7c. Render speed pass (post-exactness)
+
+Four optimizations attacked the T1 finding that per-line setup (~165
+cycles/line) was 56–65% of render time. All 14 builds re-verified bit-exact
+and all nine tube builds pixel-perfect afterwards.
+
+1. **No ROMSEL shadow, no live interrupts** — init masks every VIA IRQ
+   source (`&7F → &FE4E/&FE6E`; vsync is polled via IFR, which latches
+   regardless of IER), so no handler can ever run and the `&F4` ROMSEL
+   shadow became dead weight: banks switch with a bare `STA &FE30`.
+2. **Phase arithmetic → bank 6 tables** — the per-line `t = phase−hw`,
+   `offset = t&3`, `c0 = CCX + (t>>2)` sequence is folded into per-phase
+   64-entry tables indexed by half-width (`OFFTAB/D8LTAB/D8HTAB` at
+   &8100/&8200/&8300, `make_circle_bank`; hw data moved to &8400, single-CPU
+   SORTBASE up to &9900). D8 is the signed byte shift 8·((phase−hw)>>2), so
+   span addr = centre-column base + D8 — the col8 add went away too.
+3. **Incremental row addressing** — the fast path tracks the centre-column
+   screen address across lines (+1, or +ROWB−7 every 8th line) instead of
+   row-table + col8 lookups per line.
+4. **Mirror-line pairs + square loop** — circle rows dy and −dy share
+   half-width, so span length, left offset, filler vector and D8 shift are
+   computed once per pair and painted twice (fillers load RFILL and set Y
+   themselves and never touch `scr`); BASE walks down while BAS2 walks up,
+   meeting at the centre line. Squares resolve their one filler once and
+   walk `scr` itself down 2r+1 lines.
+
+Measured (single-CPU profile, render regions only):
+- **ball**: host render+tick 51.4K → **38.9K cycles/frame** — under the 40K
+  50fps slot on average; total tube run 816M → **560M cycles** (−31%),
+  i.e. a mix of 50fps and 25fps frames instead of a solid 25fps.
+- **Everyway**: worst storm chunk ~315K → **~170K render cycles/frame**
+  (~1.85×); full-run render total 903M (rblob 522M, stores 381M). Tube run
+  2064M → **1776M cycles** (−14%; the demo is parasite-bound outside the
+  storms, so the render win shows there and nowhere else). Note the honest
+  baseline: the 1640M in §9/T3 predates the (t,y−r) frame-stage sorter,
+  which cost Everyway ~26% — sorting + this speed pass nets out at +8%
+  over the unsorted build, with exact rendering.
+- Remaining hot spots: pair-loop setup is now ~60-90 cycles/line amortized;
+  the store chains (~128 cycles/line) are the next ceiling, then the
+  clipped/r>62 slow path which kept the old per-line shape.
+
 ## 8. Risks and unknowns
 
 - **Emulator vs real ULA fidelity** — the mandated inter-byte delays in the App

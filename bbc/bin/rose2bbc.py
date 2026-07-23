@@ -171,24 +171,42 @@ def make_span_banks():
 
 def make_circle_bank(maxr=70):
     """Bank 6 image: half-width row pointers lo[128]/hi[128] at +0/+128,
-    row data from +256.
+    fast-path tables at +256, row data from +1024.
 
     Coverage matches the visualizer's plot shader exactly: the blob sits at
     the pixel centre with radius r+0.5, so pixel (dx,dy) is covered iff
     dx^2 + dy^2 < (r+0.5)^2. With integer dx that gives half-width
     isqrt(r^2 + r - dy^2) — never more than r, rows still -r..r.
     (floor(sqrt(r^2-dy^2)) undersizes: spiky tips, and black eraser blobs
-    miss the fringe the visualizer's discs cover.)"""
+    miss the fringe the visualizer's discs cover.)
+
+    Fast-path tables (render.inc.asm OFFTAB/D8LTAB/D8HTAB at &8100/&8200/
+    &8300): four 64-entry rows each, one per x-phase, indexed by half-width.
+    With t = phase - hw: OFF = t & 3 (span left offset), D8 = 8 * (t >> 2)
+    signed 16-bit (byte shift from the centre column to the span's first
+    byte, so screen addr = base(centre column) + D8 with no per-line phase
+    arithmetic)."""
     lo = bytearray(128)
     hi = bytearray(128)
+    off = bytearray(256)
+    d8l = bytearray(256)
+    d8h = bytearray(256)
+    for p in range(4):
+        for h in range(64):
+            t = p - h
+            o = t & 3
+            d8 = ((t - o) >> 2) * 8
+            off[p * 64 + h] = o
+            d8l[p * 64 + h] = d8 & 0xFF
+            d8h[p * 64 + h] = (d8 >> 8) & 0xFF
     data = bytearray()
     for r in range(maxr + 1):
-        addr = 0x8100 + len(data)
+        addr = 0x8400 + len(data)
         lo[r] = addr & 0xFF
         hi[r] = addr >> 8
         data += bytes(math.isqrt(r * r + r - dy * dy) for dy in range(-r, r + 1))
-    img = bytes(lo) + bytes(hi) + bytes(data)
-    assert len(img) <= 0x4000
+    img = bytes(lo) + bytes(hi) + bytes(off) + bytes(d8l) + bytes(d8h) + bytes(data)
+    assert len(img) <= 0x1900, "circle bank reaches SORTBASE (&9900)"
     return img
 
 

@@ -96,6 +96,18 @@ CHV         = &89           ;   free by append time) and the span-chain
                             ;   vector CHV (never rendering while appending)
 scr         = &8D           ; screen write pointer (renderer)
 
+; --- Renderer fast-path zero page (&60-&6F) ----------------------------------
+; The machine is OS-free once running (all IRQ sources masked, OS abandoned),
+; so the renderer claims a block outside the official user slice.
+OFFP        = &60           ; -> bank 6 OFF[phase][hw]: span left offset
+D8LP        = &62           ; -> bank 6 D8 lo[phase][hw]: 8*((phase-hw)>>2)
+D8HP        = &64           ; -> bank 6 D8 hi (signed 16-bit extension)
+BASE        = &66           ; screen addr of centre byte column, walking down
+BAS2        = &68           ; same for the mirror line, walking up
+SC2         = &6A           ; resolved span address for the mirror line
+TM          = &6C           ; lines until BASE crosses a character row
+TM2         = &6D           ; lines until BAS2 crosses a character row
+
 ; Turtle list heads/counters (word each; cold paths, so absolute is fine)
 FREEH       = SCRATCH+80    ; free-list head
 DEFH        = SCRATCH+82    ; deferred list head (wait >= 256 frames)
@@ -142,11 +154,7 @@ MR          = SCRATCH+66    ; right edge mask
 TMPB        = SCRATCH+67    ; masked-write temp
 CSPTR       = SCRATCH+68    ; colorscript event pointer (2 bytes)
 CSVAL       = SCRATCH+70    ; current event value byte
-PHASE       = SCRATCH+72    ; fast path: cx & 3
 CCX         = SCRATCH+73    ; fast path: cx >> 2 (byte column of centre)
-Y8          = SCRATCH+74    ; fast path: current scanline (8-bit)
-OO          = SCRATCH+75    ; fast path: span left offset
-C0F         = SCRATCH+76    ; fast path: span left byte column
 QTAG        = SCRATCH+77    ; record queue: tag byte in flight
 QW          = SCRATCH+78    ; record queue: write index (16-bit)
 PBW         = SCRATCH+88    ; frame stage: write pointer (word)
@@ -165,7 +173,9 @@ KHI         = SCRATCH+93    ; frame stage: bucket key hi / chain temp
 IF TUBE
 SORTBASE    = STATES - &0C00 ; parasite: just below the state blocks
 ELSE
-SORTBASE    = &9600         ; single CPU: SWRAM bank 6, above circle tables
+SORTBASE    = &9900         ; single CPU: SWRAM bank 6, above circle tables
+                            ; (hw data ends &97B1 at maxr 70; asserted in
+                            ; rose2bbc.py make_circle_bank)
 ENDIF
 PBUF        = SORTBASE      ; 250 entries x 8 bytes
 PBMAX       = 250
@@ -295,8 +305,11 @@ IF WIDE
     bne crtcloop
 ENDIF
     sei                             ; OS not needed from here on
+    lda #&7F                        ; and no VIA IRQ sources either: no handler
+    sta &FE4E                       ; can ever run, so the &F4 ROMSEL shadow is
+    sta &FE6E                       ; dead weight — banks switch with a bare
+                                    ; STA &FE30 from here on
     lda #7                          ; turtle states live in bank 7
-    sta &F4
     sta &FE30
 ENDIF
     ; buckets all empty (hi byte 0 = null)
@@ -1854,7 +1867,6 @@ ENDIF
     bmi sa_rts
 IF TUBE = 0
     lda #6                          ; stage lives in bank 6
-    sta &F4
     sta &FE30
 ENDIF
     lda NREC                        ; stage full? flush mid-frame (never in
@@ -1863,7 +1875,6 @@ ENDIF
     jsr flush_sorted
 IF TUBE = 0
     lda #6
-    sta &F4
     sta &FE30
 ENDIF
 .sa_room
@@ -1911,7 +1922,6 @@ ENDIF
     inc NREC
 IF TUBE = 0
     lda #7                          ; interpreter bank back
-    sta &F4
     sta &FE30
 ENDIF
 .sa_rts
@@ -1928,7 +1938,6 @@ ENDIF
     pha
 IF TUBE = 0
     lda #6
-    sta &F4
     sta &FE30
 ENDIF
     stz PPASS
@@ -2053,7 +2062,6 @@ IF TUBE = 0
     pla
     sta RB
     lda #6
-    sta &F4
     sta &FE30
 .so_nodrain
 ENDIF
@@ -2082,7 +2090,6 @@ ENDIF
     stz NREC
 IF TUBE = 0
     lda #7                          ; interpreter bank back
-    sta &F4
     sta &FE30
 ENDIF
     pla
@@ -2230,7 +2237,6 @@ IF TUBE = 0
     and #&FB
     sta ACCCON
     lda #7                          ; state bank back for the interpreter
-    sta &F4
     sta &FE30
     rts
 ENDIF

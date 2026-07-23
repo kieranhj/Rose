@@ -30,6 +30,10 @@ INCLUDE "chain.inc.asm"             ; span middle chain, fixed at &0E00
     sei
     ldx #&FF
     txs
+    lda #&7F                        ; kill all VIA IRQ sources: no handler can
+    sta &FE4E                       ; ever run, so bank switches need no &F4
+    sta &FE6E                       ; ROMSEL shadow (vsync is polled via IFR,
+                                    ; which latches regardless of IER)
     lda #&0F                        ; clear Q/I/J/M: no Tube IRQs or NMIs
     sta HTUBE_S1
 .hd1                                ; drain stale bytes from R1-R3
