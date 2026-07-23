@@ -143,11 +143,23 @@ frame-granular sync may already keep both CPUs busy.
 | `&6000-&EFFF` | **turtle states: 36K = 288 turtles**, buckets/free list |
 | `&F000-&F7FF` | log scratch; `&FF00+` vectors (RAM — we own NMI/IRQ/RESET) |
 
-**This unlocks the capacity-blocked demos.** tree (262), Chiperia (273),
-Euphoria (200), Frustration (211) all fit in 288 states. It needs the 16-bit
-turtle handle rework (bucket/next arrays become word arrays) — but on a flat
-64K with no bank paging that's straightforward, and it was required for these
-demos on any target.
+**This unlocks the capacity-blocked demos — DONE (T4).** The handle rework
+went further than planned: handles are now the state base *addresses*
+themselves (null = hi byte 0), with the list links intrusive in each state
+block (bytes 32/33 = wire slot 0, unused by every example). That removes the
+index→address tables entirely, makes `MAXT`/`STATE_SIZE` free per-build
+parameters (`buildtube.sh <name> <rose> <wide> <maxt> <statesz>`, states
+growing down from `&F800`), and drops a table lookup from the scheduler hot
+path. STATE_SIZE 144 gives 20 stack slots (Chiperia needs 18). Verified
+bit-exact over the Tube: **tree (262 turtles, 48M cycles), Chiperia5intro
+(273, 120M), PaintersEuphoria (200, 504M, 77,169 plots), PaintersFrustration
+(211, 408M, 39,614 plots)** — every Rose example now runs on the BBC.
+
+Two traps found on the way: the plot-prefix log's limit check tests only the
+record's start page, so its last 10-byte record can straddle the boundary —
+on the parasite that boundary was exactly `STATES`, corrupting the first
+state block (LOGLIMIT now stops a page early); and the single-CPU build's
+cold exit/vdutab code had to move out of the sched→run_turtle branch window.
 
 **Host:** bank 7 (states) is freed — spare SWRAM for whatever comes next (music
 data is the obvious tenant). Main RAM below the render code is largely empty
@@ -287,5 +299,5 @@ actual Tube glue (FIFO pump + boot handshake) need the Tube-enabled harness.
 | T1 | ~~Profile current engine → I/R split per demo; finalize record format~~ **DONE** | split table in §5; record format in §3 |
 | T2 | ~~Split the engine at the record seam, joined by a RAM queue on a plain Master~~ **DONE** | circle, ball, teaser, jesuisrose, Everyway all bit-exact through the wire protocol |
 | T3 | ~~Tube glue: R1 pump both sides, boot handshake; tube-capable verify harness~~ **DONE** | all five demos bit-exact over the real emulated Tube; Everyway 1640M vs 3160M cycles (1.93×) |
-| T4 | Measure framerates; 16-bit handles + 288-turtle states on the parasite | tree + Chiperia running; Everyway rate report |
+| T4 | ~~Address-handles + per-demo state capacity on the parasite~~ **DONE** | tree, Chiperia, Euphoria, Frustration all bit-exact over the Tube; Everyway ~10.8fps avg (1640M/8838 frames) |
 | T5 | If stalls: protocol v2 (R3 block pulls). Music on the freed host | — |

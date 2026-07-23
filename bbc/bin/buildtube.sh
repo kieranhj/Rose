@@ -9,6 +9,9 @@ cd "$(dirname "$0")/.."
 NAME="$1"
 ROSE="${2:-$NAME}"
 WIDE="${3:-0}"
+MAXT="${4:-128}"
+STATESZ="${5:-128}"
+STATEBASE=$(( 0xF800 - MAXT * STATESZ ))
 BEEBASM="${BEEBASM:-/c/Users/khcon/OneDrive/BEEB/Repos/beebasm/beebasm.exe}"
 mkdir -p "build/$NAME-tube"
 cd "build/$NAME-tube"
@@ -18,6 +21,7 @@ MAXR=$(grep MAXRADIUS stats.txt | cut -d' ' -f2)
 python ../../bin/rose2bbc.py . . "${MAXR:-45}"
 cp ../../engine/interp.asm ../../engine/tube.asm ../../engine/*.inc.asm .
 printf '*SRLOAD SPANS4 8000 4 Q\r*SRLOAD SPANS5 8000 5 Q\r*SRLOAD CIRCS 8000 6 Q\r*RUN PARA\r' > boot.txt
-"$BEEBASM" -i tube.asm -do rose.ssd -opt 3 -D WIDE="$WIDE" -D TUBE=1 > beebasm.log 2>&1 || { cat beebasm.log; exit 1; }
+"$BEEBASM" -i tube.asm -do rose.ssd -opt 3 -D WIDE="$WIDE" -D TUBE=1 \
+    -D TMAXT="$MAXT" -D STATESZ="$STATESZ" -D STATEBASE="$STATEBASE" > beebasm.log 2>&1 || { cat beebasm.log; exit 1; }
 cat beebasm.log
 echo "OK: build/$NAME-tube/rose.ssd"

@@ -33,25 +33,30 @@ XCLAMP = &3F                ; x1 clamps to 319
 ENDIF
 
 ; --- Configuration ----------------------------------------------------------
-MAXT        = 128           ; max live turtles (16KB of states = bank 7)
+; MAXT, STATE_SIZE (STATESZ) and STATES (STATEBASE) come from -D on the
+; beebasm command line — per-demo capacity. Handles are state base ADDRESSES
+; (null = hi byte 0), so neither table sizes nor alignment constrain them.
+MAXT        = TMAXT         ; max live turtles
 FRAMES      = 10000         ; frame cap (matches visualizer)
-STATE_SIZE  = 128           ; bytes per turtle state block
+STATE_SIZE  = STATESZ       ; bytes per turtle state block (64 + stack bytes)
 MAXRADIUS   = 70            ; circle tables in bank 6 cover 0..70
 
 ; --- Memory map -------------------------------------------------------------
-EVSTACK     = &0900         ; evaluation stack (64 x 32-bit)
-BHEAD       = &0A00         ; per-bucket FIFO head (turtle idx, &FF = empty)
-BTAIL       = &0D00         ; per-bucket FIFO tail (&0B00/&0C00 hold scratch)
-TNEXT       = &0C00         ; per-turtle next link (MAXT entries)
+BHEADL      = &0900         ; per-bucket FIFO head/tail, 16-bit state addrs
+BHEADH      = &0A00         ;   (hi byte 0 = empty)
+BTAILL      = &0300
+BTAILH      = &0400
 SCRATCH     = &0C80         ; MOVE/mul scratch (see below)
-IF TUBE
-STATES      = &B800         ; parasite: flat RAM, 16K up to the client OS
-ELSE
-STATES      = &8000         ; MAXT x 128-byte state blocks, in SWRAM bank 7
-ENDIF
+STATES      = STATEBASE     ; MAXT x STATE_SIZE state blocks
 LOGCNT      = &0B80         ; 16-bit plot count
 LOGCHK      = &0B82         ; 32-bit order-independent checksum
+IF TUBE
+; Stop a full page below the states: the limit check is on the record START,
+; so a record beginning at LOGLIMIT-1:F8 may run 9 bytes past the page.
+LOGLIMIT    = (STATES DIV 256) - 1
+ELSE
 LOGLIMIT    = &7C           ; plot prefix (from rose_data_end) stops here
+ENDIF
 ; Sideways banks: 4/5 = span fillers, 6 = circle tables, 7 = turtle states.
 ; Bank 7 stays paged during interpretation; the renderer switches 6 (half-
 ; widths) and 4/5 (fills) per line and rec_done restores 7.
@@ -80,21 +85,28 @@ evx         = &74           ; turtle stack height in bytes (0..60)
 RA          = &75           ; 32-bit accumulator A (top of stack pops here)
 RB          = &79           ; 32-bit accumulator B
 opsave      = &7D           ; current opcode
-cur         = &7E           ; current turtle index
 frame       = &7F           ; 16-bit current frame
-tcount      = &81           ; live turtle count
-freeh       = &82           ; free-list head
 ptr         = &83           ; 16-bit scratch pointer
 sgn         = &85           ; scratch: sign flag
 zres        = &86           ; scratch: zero-test result
 lptr        = &87           ; 16-bit log write pointer
 cnt         = &89           ; loop counter (fork args)
-tmpidx      = &8A           ; scratch turtle index
-CHV         = &89           ; span-chain jump vector (aliases cnt/tmpidx:
-                            ;   both are free while rendering)
-defh        = &8B           ; deferred list head (wait >= 256 frames)
-deft        = &8C           ; deferred list tail
+APTR        = &89           ; append arg: handle to enqueue (aliases cnt —
+CHV         = &89           ;   free by append time) and the span-chain
+                            ;   vector CHV (never rendering while appending)
 scr         = &8D           ; screen write pointer (renderer)
+
+; Turtle list heads/counters (word each; cold paths, so absolute is fine)
+FREEH       = SCRATCH+80    ; free-list head
+DEFH        = SCRATCH+82    ; deferred list head (wait >= 256 frames)
+DEFT        = SCRATCH+84    ; deferred list tail
+TCNT        = SCRATCH+86    ; live turtle count (16-bit: up to 288 turtles)
+
+; Intrusive list link inside each state block: bytes 32/33 = wire slot 0.
+; No example uses wires (measured), so the slot doubles as the next pointer
+; for bucket/free/deferred lists. Revisit if a demo ever writes wire 0.
+TL_LO       = 32
+TL_HI       = 33
 
 ; --- Scratch block (abs) -----------------------------------------------------
 IDX14       = SCRATCH+0     ; 14-bit sine index
@@ -144,8 +156,8 @@ QW          = SCRATCH+78    ; record queue: write index (16-bit)
 ;   draw:   tag (bits 0-3 tint, bit 4 square), x lo, x hi, y lo, y hi, r
 ;   &80+n:  end of frame, advancing n frames
 ;   &FF:    done — followed by count16 + chk32 for the log header
-QBASE       = &0300         ; queue buffer (&0300-&08FF: free once OS-free)
-QHIGH       = &0500         ; drain past this index (ample slack to &0600)
+QBASE       = &0500         ; queue buffer (&0500-&08FF: free once OS-free)
+QHIGH       = &0280         ; drain past this index (ample slack to &0900)
 
 OSWRCH      = &FFEE         ; init only — the runtime is OS-free
 OSWORD      = &FFF1
@@ -263,28 +275,60 @@ ENDIF
     sta &F4
     sta &FE30
 ENDIF
-    ; buckets all empty
-    lda #&FF
-    ldx #0
+    ; buckets all empty (hi byte 0 = null)
+    lda #0
+    tax
 .initb
-    sta BHEAD,x
-    sta BTAIL,x
+    sta BHEADL,x
+    sta BHEADH,x
+    sta BTAILL,x
+    sta BTAILH,x
     inx
     bne initb
-    ; free list: 0 -> 1 -> ... -> MAXT-1 -> &FF
-    ldx #0
+    ; free list: chain all states through their link bytes, last -> null
+    lda #<STATES
+    sta FREEH
+    sta ptr
+    lda #>STATES
+    sta FREEH+1
+    sta ptr+1
+    lda #<(MAXT-1)
+    sta M1
+    lda #>(MAXT-1)
+    sta M1+1
 .initn
-    txa
-    clc
-    adc #1
-    sta TNEXT,x
-    inx
-    cpx #MAXT
+    clc                             ; RA = ptr + STATE_SIZE = next state
+    lda ptr
+    adc #<STATE_SIZE
+    sta RA
+    lda ptr+1
+    adc #>STATE_SIZE
+    sta RA+1
+    ldy #TL_LO
+    lda RA
+    sta (ptr),y
+    iny
+    lda RA+1
+    sta (ptr),y
+    lda RA
+    sta ptr
+    lda RA+1
+    sta ptr+1
+    lda M1
+    bne initn1
+    dec M1+1
+.initn1
+    dec M1
+    lda M1
+    ora M1+1
     bne initn
-    lda #&FF
-    sta TNEXT+MAXT-1
-    stz freeh
-    stz tcount
+    ldy #TL_LO                      ; last state: null link
+    lda #0
+    sta (ptr),y
+    iny
+    sta (ptr),y
+    stz TCNT
+    stz TCNT+1
     stz frame
     stz frame+1
     ; log
@@ -302,18 +346,18 @@ IF TUBE = 0
     stz QW
     stz QW+1
 ENDIF
-    lda #&FF
-    sta defh
-    sta deft
+    stz DEFH+1                      ; deferred list empty (hi 0 = null)
+    stz DEFT+1
 
     ; ---- create turtle 0 running proc 0 (main) ----
-    jsr alloc                       ; A = idx (0), ptr = state base
+    jsr alloc                       ; ptr = state base (the handle)
     ldy #0
     lda #0
 .zeroloop
     sta (ptr),y
     iny
-    bpl zeroloop                    ; zero all 128 bytes
+    cpy #STATE_SIZE
+    bne zeroloop
     lda #<rose_p0
     sta (ptr)
     ldy #1
@@ -338,9 +382,12 @@ ENDIF
     lda #&BA
     sta (ptr),y
     lda #1
-    sta tcount
-    lda #0                          ; turtle 0 -> bucket 0
-    ldy #0
+    sta TCNT
+    lda ptr                         ; turtle 0 -> bucket 0
+    sta APTR
+    lda ptr+1
+    sta APTR+1
+    ldx #0
     jsr append
 IF TUBE = 0
     lda #<rose_colorscript
@@ -355,22 +402,25 @@ ENDIF
 ; Scheduler: FIFO bucket per (frame & 255)
 ; ============================================================================
 .sched
-    ldy frame                       ; bucket = frame low byte
-    lda BHEAD,y
-    cmp #&FF
+    ldx frame                       ; bucket = frame low byte
+    lda BHEADH,x
     bne run_turtle
-    lda defh                        ; re-attach deferred (future-lap) turtles
-    cmp #&FF
+    lda DEFH+1                      ; re-attach deferred (future-lap) turtles
     beq bucket_done
-    sta BHEAD,y
-    lda deft
-    sta BTAIL,y
-    lda #&FF
-    sta defh
-    sta deft
+    sta BHEADH,x
+    lda DEFH
+    sta BHEADL,x
+    lda DEFT
+    sta BTAILL,x
+    lda DEFT+1
+    sta BTAILH,x
+    lda #0
+    sta DEFH+1
+    sta DEFT+1
 .bucket_done
     ; next frame
-    lda tcount
+    lda TCNT
+    ora TCNT+1
     beq exit
     inc frame
     bne nowrap
@@ -392,48 +442,21 @@ IF TUBE = 0
 ENDIF
     jmp sched
 .exit
-    lda #&FF                        ; DONE record: &FF + count16 + chk32.
-    jsr q_push_a                    ; the drain sets DONEFLAG when it sees it
-    lda LOGCNT
-    jsr q_push_a
-    lda LOGCNT+1
-    jsr q_push_a
-    lda LOGCHK
-    jsr q_push_a
-    lda LOGCHK+1
-    jsr q_push_a
-    lda LOGCHK+2
-    jsr q_push_a
-    lda LOGCHK+3
-    jsr q_push_a
-IF TUBE = 0
-    jsr q_drain
-ENDIF
-.spin
-    jmp spin
-
-
-.vdutab
-    EQUB 23,1,0,0,0,0,0,0,0,0
-IF WIDE
-.crtctab
-    EQUB 1,88, 2,102, 6,29, 7,33
-ENDIF
+    jmp exit_body                   ; cold: lives past the dispatcher
 
 .run_turtle
-    sta cur
-    tax
-    lda TNEXT,x                     ; pop head
-    sta BHEAD,y
-    cmp #&FF
-    bne headok
-    sta BTAIL,y
-.headok
-    ldx cur
-    lda stbase_lo,x
+    sta st+1                        ; head handle = state address
+    lda BHEADL,x
     sta st
-    lda stbase_hi,x
-    sta st+1
+    ldy #TL_LO                      ; pop: head = head.next
+    lda (st),y
+    sta BHEADL,x
+    iny
+    lda (st),y
+    sta BHEADH,x
+    bne headok
+    sta BTAILH,x                    ; bucket now empty
+.headok
     ldy #ST_TIME+2                  ; turtle due this frame?
     lda (st),y
     cmp frame
@@ -443,21 +466,33 @@ ENDIF
     cmp frame+1
     beq frame_ok
 .frame_defer                        ; due on a later lap of this bucket
-    ldx cur
-    lda #&FF
-    sta TNEXT,x
-    lda defh
-    cmp #&FF
+    ldy #TL_LO                      ; our link = null
+    lda #0
+    sta (st),y
+    iny
+    sta (st),y
+    lda DEFH+1
     bne defer_tail
-    lda cur                         ; deferred list empty
-    sta defh
-    sta deft
+    lda st                          ; deferred list empty
+    sta DEFH
+    sta DEFT
+    lda st+1
+    sta DEFH+1
+    sta DEFT+1
     jmp sched
 .defer_tail
-    ldx deft
-    lda cur
-    sta TNEXT,x
-    sta deft
+    lda DEFT                        ; old tail -> us
+    sta RA
+    lda DEFT+1
+    sta RA+1
+    ldy #TL_LO
+    lda st
+    sta (RA),y
+    sta DEFT
+    iny
+    lda st+1
+    sta (RA),y
+    sta DEFT+1
     jmp sched
 .frame_ok
     lda (st)                        ; ip = state pc
@@ -1046,8 +1081,11 @@ ENDIF
     sta (st),y
     ldy #ST_TIME+2                  ; bucket = frame low byte
     lda (st),y
-    tay
-    lda cur
+    tax
+    lda st
+    sta APTR
+    lda st+1
+    sta APTR+1
     jsr append
     jmp sched
 .wait_done
@@ -1059,8 +1097,7 @@ ENDIF
 
 .op_fork                            ; stack: [args..., proc] (proc on top)
     jsr pop_RA                      ; proc address
-    jsr alloc                       ; ptr = child state
-    sta tmpidx
+    jsr alloc                       ; ptr = child state (the handle)
     lda RA                          ; child pc = proc
     sta (ptr)
     ldy #1
@@ -1108,10 +1145,16 @@ ENDIF
     sta (ptr),y
     ldy #ST_TIME+2                  ; child runs in its (== parent's) frame
     lda (ptr),y
-    tay
-    lda tmpidx
+    tax
+    lda ptr
+    sta APTR
+    lda ptr+1
+    sta APTR+1
     jsr append
-    inc tcount
+    inc TCNT
+    bne fork_done
+    inc TCNT+1
+.fork_done
     jmp next_op
 
 ; ============================================================================
@@ -1624,49 +1667,96 @@ ENDIF
 ; ============================================================================
 ; Turtle alloc/free, bucket append
 ; ============================================================================
-.alloc                              ; -> A = idx, ptr = state base
-    lda freeh
-    cmp #&FF
+.alloc                              ; -> ptr = state base (the handle)
+    lda FREEH+1
     bne alloc_ok
     jmp err_nofree
 .alloc_ok
-    tax
-    lda TNEXT,x
-    sta freeh
-    lda stbase_lo,x
-    sta ptr
-    lda stbase_hi,x
     sta ptr+1
-    txa
+    lda FREEH
+    sta ptr
+    ldy #TL_LO                      ; freeh = freeh.next
+    lda (ptr),y
+    sta FREEH
+    iny
+    lda (ptr),y
+    sta FREEH+1
     rts
 
-.free_cur
-    ldx cur
-    lda freeh
-    sta TNEXT,x
-    lda cur
-    sta freeh
-    dec tcount
+.free_cur                           ; free the current turtle (st)
+    ldy #TL_LO
+    lda FREEH
+    sta (st),y
+    iny
+    lda FREEH+1
+    sta (st),y
+    lda st
+    sta FREEH
+    lda st+1
+    sta FREEH+1
+    lda TCNT
+    bne free_dec
+    dec TCNT+1
+.free_dec
+    dec TCNT
     rts
 
-.append                             ; A = idx, Y = bucket
-    sta tmpidx
-    tax
-    lda #&FF
-    sta TNEXT,x
-    lda BTAIL,y
-    cmp #&FF
-    bne app_tail
-    lda tmpidx                      ; empty bucket
-    sta BHEAD,y
-    sta BTAIL,y
+.append                             ; APTR = handle, X = bucket
+    ldy #TL_LO                      ; new tail's link = null
+    lda #0
+    sta (APTR),y
+    iny
+    sta (APTR),y
+    lda BTAILH,x
+    beq app_empty
+    sta RA+1                        ; old tail -> new
+    lda BTAILL,x
+    sta RA
+    ldy #TL_LO
+    lda APTR
+    sta (RA),y
+    sta BTAILL,x
+    iny
+    lda APTR+1
+    sta (RA),y
+    sta BTAILH,x
     rts
-.app_tail
-    tax
-    lda tmpidx
-    sta TNEXT,x
-    sta BTAIL,y
+.app_empty
+    lda APTR
+    sta BHEADL,x
+    sta BTAILL,x
+    lda APTR+1
+    sta BHEADH,x
+    sta BTAILH,x
     rts
+
+.exit_body
+    lda #&FF                        ; DONE record: &FF + count16 + chk32.
+    jsr q_push_a                    ; the drain sets DONEFLAG when it sees it
+    lda LOGCNT
+    jsr q_push_a
+    lda LOGCNT+1
+    jsr q_push_a
+    lda LOGCHK
+    jsr q_push_a
+    lda LOGCHK+1
+    jsr q_push_a
+    lda LOGCHK+2
+    jsr q_push_a
+    lda LOGCHK+3
+    jsr q_push_a
+IF TUBE = 0
+    jsr q_drain
+ENDIF
+.spin
+    jmp spin
+
+.vdutab
+    EQUB 23,1,0,0,0,0,0,0,0,0
+IF WIDE
+.crtctab
+    EQUB 1,88, 2,102, 6,29, 7,33
+ENDIF
 
 
 IF TUBE
@@ -1839,14 +1929,6 @@ ENDIF
 ; ============================================================================
 ; Tables
 ; ============================================================================
-.stbase_lo
-FOR n, 0, MAXT-1
-    EQUB <(STATES + n*STATE_SIZE)
-NEXT
-.stbase_hi
-FOR n, 0, MAXT-1
-    EQUB >(STATES + n*STATE_SIZE)
-NEXT
 
 ; ============================================================================
 ; Record queue, consumer side — the future HOST render loop. Pages LYNNE in
@@ -2032,6 +2114,7 @@ ENDIF
 .rose_data_end                      ; plot prefix log grows from here
 
 IF TUBE
+ASSERT rose_data_end <= STATES      ; code+data must fit below the states
 SAVE "PARA", &E00, rose_data_end, entry
 ELSE
 PUTFILE "spans4.bin", "SPANS4", 0
