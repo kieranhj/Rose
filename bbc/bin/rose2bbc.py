@@ -247,11 +247,11 @@ def main():
             w(f"    EQUB &{op:02X}, &{extra[0]:02X}")
         else:
             w(f"    EQUB &{op:02X}")
-    w(make_colorscript((build / "colorscript.bin").read_bytes()))
-    w(".rose_data_end")
-    w("")
-
     (out / "rose_data.asm").write_text("\n".join(lines) + "\n")
+    # Colorscript in its own file: the single-CPU build includes it with CODE
+    # (before .rose_data_end); the Tube build includes it in HOST only.
+    (out / "colorscript.asm").write_text(
+        make_colorscript((build / "colorscript.bin").read_bytes()) + "\n")
 
     q = make_sine_quarter()
     (out / "sine_quarter.bin").write_bytes(b"".join(struct.pack("<H", v) for v in q))

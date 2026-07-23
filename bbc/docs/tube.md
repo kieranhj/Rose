@@ -204,6 +204,23 @@ version makes host render work *easier* to fund (the host has no other job).
 Reproduce: `node bbc/tools/profile.mjs bbc/build/<name> [maxMcyc] [chunkMcyc]
 [startFrame]` after a `build.sh` run (which now writes `beebasm.log`).
 
+**T3 status: implemented and verified.** `beebasm -D TUBE=1` builds the
+parasite from the same `interp.asm` (states flat at `&B800`, `q_push_*`
+replaced by R1 FIFO writes); `tube.asm` assembles it as `PARA` plus the host
+render server (`HOST`: R1 pump, vsync, colorscript) onto one autoboot disc
+(`bin/buildtube.sh`). All five demos verify bit-exact over the emulated Tube
+(`JSBEEB_TUBE=1 node tools/runverify.mjs build/<name>-tube`). Measured:
+**Everyway completes in 1640M cycles vs 3160M single-CPU — 1.93×** (T1's
+per-chunk model predicted 2.15× before vsync quantization); jesuisrose 296M
+vs 392M; ball unchanged (render-bound, as measured in T1).
+
+One hard-won handshake lesson: the parasite must NOT write R4 while the host
+OS still owns the Tube — the write raises a host-side Tube IRQ and the MOS
+consumes it as a system-control byte, wedging the boot (the trigger char
+never gets read). The working order, now in §6: the *host* speaks first,
+after it has been entered via the WRCHV trigger and has disabled all Tube
+ULA interrupt enables; the parasite waits for that hello before its ack.
+
 ## 6. Boot sequence (the Toob recipe, adapted)
 
 Only the loader phase uses the OS; after handshake both sides are bare metal.
@@ -269,6 +286,6 @@ actual Tube glue (FIFO pump + boot handshake) need the Tube-enabled harness.
 |---|---|---|
 | T1 | ~~Profile current engine → I/R split per demo; finalize record format~~ **DONE** | split table in §5; record format in §3 |
 | T2 | ~~Split the engine at the record seam, joined by a RAM queue on a plain Master~~ **DONE** | circle, ball, teaser, jesuisrose, Everyway all bit-exact through the wire protocol |
-| T3 | Tube glue: R1 pump both sides, boot handshake; `tubebeeb.mjs` harness (or jsbeeb-mcp patch) | same demos bit-exact over the real emulated Tube |
+| T3 | ~~Tube glue: R1 pump both sides, boot handshake; tube-capable verify harness~~ **DONE** | all five demos bit-exact over the real emulated Tube; Everyway 1640M vs 3160M cycles (1.93×) |
 | T4 | Measure framerates; 16-bit handles + 288-turtle states on the parasite | tree + Chiperia running; Everyway rate report |
 | T5 | If stalls: protocol v2 (R3 block pulls). Music on the freed host | — |

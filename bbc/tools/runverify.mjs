@@ -5,12 +5,18 @@
 // order-independent rol32-xor-sum checksum). Much faster than the MCP loop.
 //
 // Usage: node runverify.mjs <buildDir> [maxMcycles]   (default 4000)
+//   JSBEEB_TUBE=1  — attach the 65C02 co-processor (Master Turbo timing);
+//                    uses the patched jsbeeb clone until PR #706 ships.
+//   JSBEEB_PATH    — override the jsbeeb package location.
 // ============================================================================
 
 import { readFileSync } from "fs";
 import path from "path";
 
-const JSBEEB = "C:/Users/khcon/AppData/Local/npm-cache/_npx/e76f2a7d329553db/node_modules/jsbeeb";
+const TUBE = process.env.JSBEEB_TUBE === "1";
+const PATCHED = "C:/Users/khcon/AppData/Local/Temp/claude/C--Users-khcon-OneDrive-Archie-Repos-Rose/32f2e656-c2a1-404f-925e-471ee4c2fc4c/scratchpad/jsbeeb";
+const CACHED = "C:/Users/khcon/AppData/Local/npm-cache/_npx/e76f2a7d329553db/node_modules/jsbeeb";
+const JSBEEB = process.env.JSBEEB_PATH || (TUBE ? PATCHED : CACHED);
 const { MachineSession } = await import("file:///" + JSBEEB + "/src/machine-session.js");
 
 const buildDir = process.argv[2];
@@ -32,7 +38,7 @@ for (let r = 0; r < nrec; r++) {
 }
 const expCount = nrec & 0xffff;
 
-const session = new MachineSession("Master", {});
+const session = new MachineSession("Master", TUBE ? { tube: true } : {});
 await session.initialise();
 session.loadDisc(path.resolve(buildDir, "rose.ssd"));
 session.keyDown(16);

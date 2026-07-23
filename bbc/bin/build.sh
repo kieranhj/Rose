@@ -21,8 +21,8 @@ export PATH=/mingw64/bin:$PATH   # libwinpthread for the visualizer objects
 ../../tools/roseplots.exe "../../../examples/$ROSE.rose" expected_plots.bin | tee stats.txt
 MAXR=$(grep MAXRADIUS stats.txt | cut -d' ' -f2)
 python ../../bin/rose2bbc.py . . "${MAXR:-45}"
-cp ../../engine/interp.asm .
+cp ../../engine/interp.asm ../../engine/*.inc.asm .
 printf '*SRLOAD SPANS4 8000 4 Q\r*SRLOAD SPANS5 8000 5 Q\r*SRLOAD CIRCS 8000 6 Q\r*RUN CODE\r' > boot.txt
-"$BEEBASM" -i interp.asm -do rose.ssd -opt 3 -D WIDE="$WIDE" > beebasm.log 2>&1 || { cat beebasm.log; exit 1; }
+"$BEEBASM" -i interp.asm -do rose.ssd -opt 3 -D WIDE="$WIDE" -D TUBE=0 > beebasm.log 2>&1 || { cat beebasm.log; exit 1; }
 cat beebasm.log
 echo "OK: build/$NAME/rose.ssd"
