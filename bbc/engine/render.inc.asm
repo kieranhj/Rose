@@ -300,7 +300,7 @@ ENDIF
     cmp #2
     bcs sp_o23
     lsr a
-    bne sp_o1
+    bcs sp_o1                       ; low bit is in C after LSR, not in A
     lda #4                          ; o=0: bank 4, first table
     sta &F4
     sta &FE30

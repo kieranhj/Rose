@@ -182,3 +182,7 @@ PUTFILE "spans4.bin", "SPANS4", 0
 PUTFILE "spans5.bin", "SPANS5", 0
 PUTFILE "circles.bin", "CIRCS", 0
 PUTTEXT "boot.txt", "!BOOT", 0
+
+PRINT "HSYM render_blob", ~render_blob
+PRINT "HSYM pump", ~pump
+PRINT "HSYM hspin", ~hspin

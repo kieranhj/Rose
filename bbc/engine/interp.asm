@@ -51,9 +51,9 @@ STATES      = STATEBASE     ; MAXT x STATE_SIZE state blocks
 LOGCNT      = &0B80         ; 16-bit plot count
 LOGCHK      = &0B82         ; 32-bit order-independent checksum
 IF TUBE
-; Stop a full page below the states: the limit check is on the record START,
-; so a record beginning at LOGLIMIT-1:F8 may run 9 bytes past the page.
-LOGLIMIT    = (STATES DIV 256) - 1
+; Stop a full page below the sort stage: the limit check is on the record
+; START, so a record beginning at LOGLIMIT-1:F8 may run 9 bytes past it.
+LOGLIMIT    = ((STATES - &0C00) DIV 256) - 1
 ELSE
 LOGLIMIT    = &7C           ; plot prefix (from rose_data_end) stops here
 ENDIF
@@ -149,6 +149,30 @@ OO          = SCRATCH+75    ; fast path: span left offset
 C0F         = SCRATCH+76    ; fast path: span left byte column
 QTAG        = SCRATCH+77    ; record queue: tag byte in flight
 QW          = SCRATCH+78    ; record queue: write index (16-bit)
+PBW         = SCRATCH+88    ; frame stage: write pointer (word)
+NREC        = SCRATCH+90    ; frame stage: records staged this frame
+PPASS       = SCRATCH+91    ; frame stage: flush pass (0/1)
+KLO         = SCRATCH+92    ; frame stage: bucket key lo
+KHI         = SCRATCH+93    ; frame stage: bucket key hi / chain temp
+
+; --- Frame stage: stable (y - r) render order --------------------------------
+; The visualizer stable-sorts each frame's plots by (t, y-r) before drawing
+; (renderer.cpp), as did the Archimedes engine via per-line circle buffers.
+; Records are staged here during the frame and flushed to the byte sink in
+; bucket order at the frame boundary. 8-byte entries: next(2), then the
+; 6-byte wire record (tag, x lo/hi, y lo/hi, r). Key = y - r + 140, two
+; 256-bucket passes cover keys 0..511 (visible blobs land in -140..279).
+IF TUBE
+SORTBASE    = STATES - &0C00 ; parasite: just below the state blocks
+ELSE
+SORTBASE    = &9600         ; single CPU: SWRAM bank 6, above circle tables
+ENDIF
+PBUF        = SORTBASE      ; 250 entries x 8 bytes
+PBMAX       = 250
+BKHL        = SORTBASE + &800
+BKHH        = SORTBASE + &900
+BKTL        = SORTBASE + &A00
+BKTH        = SORTBASE + &B00
 
 ; --- Record queue: the Tube seam ---------------------------------------------
 ; The interpreter (future parasite) pushes wire records here; q_drain (the
@@ -157,7 +181,7 @@ QW          = SCRATCH+78    ; record queue: write index (16-bit)
 ;   &80+n:  end of frame, advancing n frames
 ;   &FF:    done — followed by count16 + chk32 for the log header
 QBASE       = &0500         ; queue buffer (&0500-&08FF: free once OS-free)
-QHIGH       = &0280         ; drain past this index (ample slack to &0900)
+QHIGH       = &03C0         ; drain past this index (queue is 1K to &0900)
 
 OSWRCH      = &FFEE         ; init only — the runtime is OS-free
 OSWORD      = &FFF1
@@ -346,6 +370,11 @@ IF TUBE = 0
     stz QW
     stz QW+1
 ENDIF
+    lda #<PBUF                      ; frame stage empty
+    sta PBW
+    lda #>PBUF
+    sta PBW+1
+    stz NREC
     stz DEFH+1                      ; deferred list empty (hi 0 = null)
     stz DEFT+1
 
@@ -434,6 +463,7 @@ ENDIF
     bne do_tick
     bra exit
 .do_tick
+    jsr flush_sorted                ; emit this frame's records in (y-r) order
     lda #&81                        ; END FRAME, advance 1
     jsr q_push_a
 IF TUBE = 0
@@ -1001,7 +1031,7 @@ ENDIF
     bcc rec_done
     inc lptr+1
 .rec_done
-    jsr q_push_rec                  ; queue the wire record (drains if full)
+    jsr sort_add                    ; stage the wire record for this frame
     jmp next_op
 
 .build_rec                          ; REC = t,x,y,r,c (int16 LE each)
@@ -1731,6 +1761,7 @@ ENDIF
     rts
 
 .exit_body
+    jsr flush_sorted                ; last frame's records first
     lda #&FF                        ; DONE record: &FF + count16 + chk32.
     jsr q_push_a                    ; the drain sets DONEFLAG when it sees it
     lda LOGCNT
@@ -1785,41 +1816,6 @@ IF TUBE
     stx PTUBE_D1
     rts
 
-.q_push_rec                         ; send REC as a 6-byte wire record
-    lda REC+7                       ; negative radius never renders: drop
-    bmi qpr_rts
-    lda REC+9                       ; tag from c: negative c = square
-    bpl qpr_circ
-    lda REC+8
-    eor #&FF
-    and #15
-    ora #16                         ; square flag
-    bra qpr_tag
-.qpr_circ
-    lda REC+8
-    and #15
-.qpr_tag
-    jsr q_push_a                    ; tag
-    lda REC+2                       ; x lo, x hi, y lo, y hi
-    jsr q_push_a
-    lda REC+3
-    jsr q_push_a
-    lda REC+4
-    jsr q_push_a
-    lda REC+5
-    jsr q_push_a
-    lda REC+7                       ; radius, clamped to MAXRADIUS
-    bne qpr_clamp
-    lda REC+6
-    cmp #MAXRADIUS+1
-    bcc qpr_r
-.qpr_clamp
-    lda #MAXRADIUS
-.qpr_r
-    jmp q_push_a
-.qpr_rts
-    rts
-
 ELSE
 ; ============================================================================
 ; Record queue, producer side (future parasite). RA is free here: the hash
@@ -1846,54 +1842,254 @@ ELSE
 .qpa_done
     rts
 
-.q_push_rec                         ; append REC as a 6-byte wire record
+ENDIF
+
+; ============================================================================
+; Frame stage: sort_add stores REC as an 8-byte entry (next + wire record);
+; flush_sorted emits all staged records through q_push_a in stable (y - r)
+; bucket order. Single-CPU build pages SWRAM bank 6 around stage access.
+; ============================================================================
+.sort_add
     lda REC+7                       ; negative radius never renders: drop
-    bmi qpr_rts
-    jsr q_setra
-    lda REC+7
-    bne qpr_clamp                   ; r > 255: clamp
+    bmi sa_rts
+IF TUBE = 0
+    lda #6                          ; stage lives in bank 6
+    sta &F4
+    sta &FE30
+ENDIF
+    lda NREC                        ; stage full? flush mid-frame (never in
+    cmp #PBMAX                      ; practice: max measured 146/frame)
+    bcc sa_room
+    jsr flush_sorted
+IF TUBE = 0
+    lda #6
+    sta &F4
+    sta &FE30
+ENDIF
+.sa_room
+    lda PBW
+    sta RA
+    lda PBW+1
+    sta RA+1
+    lda REC+7                       ; radius, clamped to MAXRADIUS
+    bne sa_clamp
     lda REC+6
     cmp #MAXRADIUS+1
-    bcc qpr_r
-.qpr_clamp
+    bcc sa_r
+.sa_clamp
     lda #MAXRADIUS
-.qpr_r
-    ldy #5
-    sta (RA),y                      ; radius
-    ldy #4                          ; x lo, x hi, y lo, y hi
-.qpr_xy
-    lda REC+1,y
+.sa_r
+    ldy #7
+    sta (RA),y                      ; r
+    ldy #6                          ; entry+3..6 = x lo, x hi, y lo, y hi
+.sa_xy
+    lda REC-1,y
     sta (RA),y
     dey
-    bne qpr_xy
+    cpy #2
+    bne sa_xy
     lda REC+9                       ; tag from c: negative c = square
-    bpl qpr_circ
+    bpl sa_circ
     lda REC+8
     eor #&FF
     and #15
     ora #16                         ; square flag
-    bra qpr_tag
-.qpr_circ
+    bra sa_tag
+.sa_circ
     lda REC+8
     and #15
-.qpr_tag
-    sta (RA)
-    clc                             ; QW += 6
-    lda QW
-    adc #6
-    sta QW
-    bcc qpr_high
-    inc QW+1
-.qpr_high
-    lda QW                          ; past the high-water mark? drain now
+.sa_tag
+    ldy #2
+    sta (RA),y
+    clc                             ; PBW += 8
+    lda PBW
+    adc #8
+    sta PBW
+    bcc sa_cnt
+    inc PBW+1
+.sa_cnt
+    inc NREC
+IF TUBE = 0
+    lda #7                          ; interpreter bank back
+    sta &F4
+    sta &FE30
+ENDIF
+.sa_rts
+    rts
+
+.flush_sorted                       ; emit staged records in (y-r) order
+    lda NREC
+    bne so_go
+    rts
+.so_go
+    lda ip                          ; ip doubles as the chain pointer here;
+    pha                             ; only live on a mid-frame overflow flush
+    lda ip+1
+    pha
+IF TUBE = 0
+    lda #6
+    sta &F4
+    sta &FE30
+ENDIF
+    stz PPASS
+.so_pass
+    ldx #0                          ; empty all buckets (hi byte 0 = null)
+    lda #0
+.so_clr
+    sta BKHH,x
+    sta BKTH,x
+    inx
+    bne so_clr
+    lda #<PBUF                      ; walk the stage, filing this pass keys
+    sta RB
+    lda #>PBUF
+    sta RB+1
+.so_walk
+    lda RB
+    cmp PBW
+    bne so_ent
+    lda RB+1
+    cmp PBW+1
+    bne so_ent
+    jmp so_render
+.so_ent
+    ldy #7                          ; key = y - r + 140
+    lda (RB),y
+    sta KLO
+    sec
+    lda #140
+    sbc KLO
+    sta KLO
+    clc
+    ldy #5
+    lda (RB),y
+    adc KLO
+    sta KLO
+    iny
+    lda (RB),y
+    adc #0
+    beq so_class                    ; 0..255: bucket KLO, pass 0
+    bmi so_neg                      ; far above the screen: bucket 0, pass 0
+    cmp #1
+    beq so_p1                       ; 256..511: bucket KLO, pass 1
+    lda #&FF                        ; >= 512 (invisible): bucket 255, pass 1
+    sta KLO
+.so_p1
+    lda #1
+    bra so_class
+.so_neg
+    stz KLO
+    lda #0
+.so_class
+    cmp PPASS
+    bne so_next                     ; not this pass
+    ldx KLO
+    ldy #1                          ; entry.next = null
+    lda #0
+    sta (RB),y
+    lda BKTH,x
+    beq so_bnew
+    sta KHI                         ; old tail -> this entry
+    lda BKTL,x
+    sta ip
+    lda KHI
+    sta ip+1
+    lda RB
+    sta (ip)
+    sta BKTL,x
+    ldy #1
+    lda RB+1
+    sta (ip),y
+    sta BKTH,x
+    bra so_next
+.so_bnew
+    lda RB
+    sta BKHL,x
+    sta BKTL,x
+    lda RB+1
+    sta BKHH,x
+    sta BKTH,x
+.so_next
+    clc
+    lda RB
+    adc #8
+    sta RB
+    bcc so_wj
+    inc RB+1
+.so_wj
+    jmp so_walk
+.so_render
+    ldx #0
+.so_bloop
+    lda BKHH,x
+    beq so_bnext
+    sta ip+1
+    lda BKHL,x
+    sta ip
+.so_chain
+    phx
+    ldy #2                          ; push the 6 wire bytes
+.so_pb
+    lda (ip),y
+    phy
+    jsr q_push_a
+    ply
+    iny
+    cpy #8
+    bne so_pb
+IF TUBE = 0
+    lda QW                          ; queue nearly full? drain (in order)
     cmp #<QHIGH
     lda QW+1
     sbc #>QHIGH
-    bcc qpr_rts
-    jmp q_drain
-.qpr_rts
-    rts
+    bcc so_nodrain
+    lda RB                          ; q_drain clobbers RA/RB and the banks
+    pha
+    lda RB+1
+    pha
+    jsr q_drain
+    pla
+    sta RB+1
+    pla
+    sta RB
+    lda #6
+    sta &F4
+    sta &FE30
+.so_nodrain
 ENDIF
+    plx
+    ldy #1                          ; follow the chain
+    lda (ip),y
+    sta KHI
+    lda (ip)
+    sta ip
+    lda KHI
+    sta ip+1
+    bne so_chain
+.so_bnext
+    inx
+    bne so_bloop
+    inc PPASS                       ; two passes: keys 0-255, then 256-511
+    lda PPASS
+    cmp #2
+    beq so_done
+    jmp so_pass
+.so_done
+    lda #<PBUF                      ; stage empty again
+    sta PBW
+    lda #>PBUF
+    sta PBW+1
+    stz NREC
+IF TUBE = 0
+    lda #7                          ; interpreter bank back
+    sta &F4
+    sta &FE30
+ENDIF
+    pla
+    sta ip+1
+    pla
+    sta ip
+    rts
 IF TUBE = 0
 INCLUDE "tick.inc.asm"
 ENDIF
@@ -2114,7 +2310,7 @@ ENDIF
 .rose_data_end                      ; plot prefix log grows from here
 
 IF TUBE
-ASSERT rose_data_end <= STATES      ; code+data must fit below the states
+ASSERT rose_data_end <= SORTBASE    ; code+data must fit below the frame stage
 SAVE "PARA", &E00, rose_data_end, entry
 ELSE
 PUTFILE "spans4.bin", "SPANS4", 0

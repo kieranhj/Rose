@@ -23,6 +23,7 @@
 # big-constant escape (0xFE + extra byte).
 # ============================================================================
 
+import math
 import sys
 import struct
 from pathlib import Path
@@ -170,7 +171,14 @@ def make_span_banks():
 
 def make_circle_bank(maxr=70):
     """Bank 6 image: half-width row pointers lo[128]/hi[128] at +0/+128,
-    row data (floor(sqrt(r^2-dy^2)) per scanline) from +256."""
+    row data from +256.
+
+    Coverage matches the visualizer's plot shader exactly: the blob sits at
+    the pixel centre with radius r+0.5, so pixel (dx,dy) is covered iff
+    dx^2 + dy^2 < (r+0.5)^2. With integer dx that gives half-width
+    isqrt(r^2 + r - dy^2) — never more than r, rows still -r..r.
+    (floor(sqrt(r^2-dy^2)) undersizes: spiky tips, and black eraser blobs
+    miss the fringe the visualizer's discs cover.)"""
     lo = bytearray(128)
     hi = bytearray(128)
     data = bytearray()
@@ -178,7 +186,7 @@ def make_circle_bank(maxr=70):
         addr = 0x8100 + len(data)
         lo[r] = addr & 0xFF
         hi[r] = addr >> 8
-        data += bytes(int((r * r - dy * dy) ** 0.5) for dy in range(-r, r + 1))
+        data += bytes(math.isqrt(r * r + r - dy * dy) for dy in range(-r, r + 1))
     img = bytes(lo) + bytes(hi) + bytes(data)
     assert len(img) <= 0x4000
     return img

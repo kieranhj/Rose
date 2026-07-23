@@ -277,6 +277,39 @@ RAM ring instead of R1, and the host renderer as a consumer of that ring, and
 both halves verify bit-exact on the existing Master MCP. Only ~100 lines of
 actual Tube glue (FIFO pump + boot handshake) need the Tube-enabled harness.
 
+## 7b. Render exactness (post-T4 bug hunt)
+
+All nine demos now verify **pixel-perfect final screens** against the
+visualizer (`tools/pixelverify.mjs`: 0/81920 mismatches on every demo), on
+top of the existing bit-exact plot logs. Three distinct defects were found
+after a report of unerased black-blob fringes and spiky circles:
+
+1. **Disc coverage** — the visualizer's shader covers pixel (dx,dy) iff
+   dx²+dy² < (r+0.5)² (blob centred on the pixel centre, radius r+0.5). The
+   bank-6 tables used dx²+dy² ≤ r², undersizing every circle (spiky tips,
+   eraser blobs missing fringes). Fix: half-width = isqrt(r²+r−dy²) in
+   `make_circle_bank` — never exceeds r, rows still 2r+1, pure table change.
+2. **Intra-frame draw order** — the visualizer stable-sorts each frame's
+   plots by (t, y−r) before rendering (as the Archimedes engine did with its
+   per-line circle buffers); execution order differs by up to a third of the
+   screen (89K px on a Euphoria frame). Fix: records are staged per frame
+   (`sort_add`, 8-byte entries below the parasite states / in spare bank-6
+   RAM on the single build) and flushed at the frame boundary through the
+   normal byte sink in stable per-line bucket order (`flush_sorted`, two
+   256-bucket passes, O(N)) — the Tube host needed no changes and the
+   order-independent checksum still verifies.
+3. **`span_go` odd-offset dispatch** — for left offset 1 the code did
+   `lsr a : bne` after which A is 0 (the bit is in carry), so offset-1 spans
+   ran the offset-0 fillers: every such span painted one pixel left of true
+   since the SWRAM fillers landed. This was the user-visible "black blobs
+   don't erase fully" and masqueraded as an ordering bug during diagnosis.
+   Fix: `bcs`.
+
+The visualizer's own tie-break for equal (t, y−r) is its BFS-over-fork-tree
+emission order, which a frame-based engine cannot cheaply reproduce — but
+with the above fixes no demo shows a visible tie difference (0-pixel deltas
+across the board), so frame-FIFO tie order stands.
+
 ## 8. Risks and unknowns
 
 - **Emulator vs real ULA fidelity** — the mandated inter-byte delays in the App
