@@ -7,9 +7,10 @@ the Tube. The same split the Elite Second Processor edition used: parasite
 computes, host draws.
 
 **Verdict: very feasible, with a clean seam already present in the engine, and
-it unlocks the four demos currently blocked on turtle capacity.** Expected
-speedup ~1.5–2× overall (more where interpreter-bound, less where render-bound),
-plus ball at a locked 50fps looks plausible.
+it unlocks the four demos currently blocked on turtle capacity.** Measured
+(§5): ~2.15× for Everyway (~5.8 → ~12fps average), 2.8× for teaser/jesuisrose
+in their busy stretches; ball is 85% render-bound and needs host-side render
+work instead.
 
 ## 1. References studied
 
@@ -140,28 +141,55 @@ data is the obvious tenant). Main RAM below the render code is largely empty
 too. The host keeps: renderer + span chain at `&0E00`, banks 4/5/6, colorscript,
 boot code.
 
-## 5. Performance model
+## 5. Performance model — MEASURED (T1 complete)
 
-Let `I` = interpreter cycles/frame, `R` = render cycles/frame (both at 2MHz as
-measured today, `I + R ≈` current frame cost). Tube version:
+Tube frame cost model, per frame:
 
 ```
 frame time ≈ max( I/2  +  ~10 cyc/byte send ,  R  +  ~85 cyc/record recv )
 ```
 
-Applying it to measured numbers:
+where I = interp+emit (moves to the parasite, ×2 clock), R = render+tick
+(stays on the host). Transfer terms are noise (Everyway averages 21
+records/frame ≈ 2K host cycles).
 
-| Demo | Today | Estimate | Basis |
-|---|---|---|---|
-| ball | 25fps (46K/frame) | **50fps locked plausible** | render measured ≥13K of the old 59K frame (the SWRAM-filler win); if I≈30K/R≈16K then host ≈17K < 20K slot, parasite 15K-equivalent |
-| teaser | dense ~12-14 slots | roughly halved in dense sections | profiled interpreter+render bound, split near even |
-| Everyway | ~12fps avg (~4 slots) | **~25-30fps avg** if split ≈60/40; heavy blob-storm sections improve least (render-bound) | avg frame 160K → host ~1.6 slots, parasite ~1.2 slots |
+**T1 measurement**: `bbc/tools/profile.mjs` attributes *every* host cycle to
+an engine region (interp / emit / rblob / rspan / rchain / tick / idle) via a
+per-instruction hook in headless jsbeeb, with region boundaries taken from the
+`SYM` lines `interp.asm` now prints into `beebasm.log`. This is exact
+attribution, not sampling. Full runs of four demos:
 
-Honest caveats: the I/R split per demo has not been measured yet — first task
-of implementation is PC-sampling the current engine into interpreter vs
-renderer buckets (we already have the technique). Render-bound peaks gain
-nothing from the parasite; those need further host-side render work, which the
-Tube version makes *easier* (the host has no other job).
+| Demo | parasite side /frame | host side /frame | split | now → Tube /frame | gain |
+|---|---|---|---|---|---|
+| ball | 9.2K | 51.2K | 15/85 | 60.5K → 51.2K | 1.2× (stays 25fps) |
+| teaser (dense f0–311) | 50.6K | 19.3K | 72/28 | 69.9K → 25.3K | **2.8×** |
+| jesuisrose (full) | 24.0K | 13.3K | 64/36 | 37.2K → 13.3K | **2.8×** |
+| Everyway (full, 8837 fr) | 192.3K | 133.3K | 59/41 | 325.6K → ~152K | **~2.15×** |
+
+Everyway's gain computed per-chunk (sum of `max(I/2, R)` over 31 chunks =
+1340M vs 2877M busy today): the demo alternates interpreter-bound stretches
+(f1490–1970: ~355K interp vs 43K render per frame → 2.3× there) with
+render-bound blob storms (f3702–4123: ~315K render per frame → only ~1.35×).
+Overall ≈ 5.8fps today → **~12fps average** under the Tube, before any further
+render work. Idle is only 6% of the Everyway run — the engine almost never
+reaches vsync early today.
+
+Two corrections to the pre-measurement estimates:
+
+- **ball is 85% render-bound** — the Tube alone does *not* get it to 50fps
+  (host still needs 51K > 40K). It needs render optimization, Tube or no Tube.
+- **The render hot spot is per-line setup, not pixel writes.** In both ball
+  and Everyway's storm sections, `rblob` (per-line setup + rec_done glue) is
+  ~56–65% of render time (~165 cyc/line) vs ~35–44% for the actual stores
+  (`rchain` + `rspan`, ~128 cyc/line). Shaving the per-line setup is the
+  biggest host-side lever and compounds with the Tube split, since Tube frame
+  cost is `max(parasite/2, host)`.
+
+Render-bound peaks gain little from the parasite by construction; the Tube
+version makes host render work *easier* to fund (the host has no other job).
+
+Reproduce: `node bbc/tools/profile.mjs bbc/build/<name> [maxMcyc] [chunkMcyc]
+[startFrame]` after a `build.sh` run (which now writes `beebasm.log`).
 
 ## 6. Boot sequence (the Toob recipe, adapted)
 
@@ -226,7 +254,7 @@ actual Tube glue (FIFO pump + boot handshake) need the Tube-enabled harness.
 
 | Phase | Work | Exit criterion |
 |---|---|---|
-| T1 | PC-sample current engine → I/R split per demo; finalize record format | measured split table |
+| T1 | ~~Profile current engine → I/R split per demo; finalize record format~~ **DONE** | split table in §5; record format in §3 |
 | T2 | Split `interp.asm` into parasite core + host render server, joined by a RAM ring on a plain Master | circle/ball/teaser/Everyway bit-exact via ring, on the existing MCP |
 | T3 | Tube glue: R1 pump both sides, boot handshake; `tubebeeb.mjs` harness (or jsbeeb-mcp patch) | same demos bit-exact over the real emulated Tube |
 | T4 | Measure framerates; 16-bit handles + 288-turtle states on the parasite | tree + Chiperia running; Everyway rate report |

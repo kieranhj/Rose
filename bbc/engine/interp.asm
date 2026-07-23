@@ -2180,3 +2180,17 @@ PUTFILE "spans5.bin", "SPANS5", 0
 PUTFILE "circles.bin", "CIRCS", 0
 PUTTEXT "boot.txt", "!BOOT", 0
 SAVE "CODE", &E00, rose_data_end, entry
+
+; Region boundary symbols for bbc/tools/profile.mjs (parsed from beebasm.log).
+PRINT "SYM entry", ~entry
+PRINT "SYM sched", ~sched
+PRINT "SYM emit_rec", ~emit_rec
+PRINT "SYM rec_done", ~rec_done
+PRINT "SYM build_rec", ~build_rec
+PRINT "SYM op_wait", ~op_wait
+PRINT "SYM frame_tick", ~frame_tick
+PRINT "SYM vsync_wait", ~vsync_wait
+PRINT "SYM cs_loop", ~cs_loop
+PRINT "SYM err_unimpl", ~err_unimpl
+PRINT "SYM render_blob", ~render_blob
+PRINT "SYM ctab", ~ctab
