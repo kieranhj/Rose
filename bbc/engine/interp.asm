@@ -81,7 +81,9 @@ ST_HEIGHT   = 2             ; saved stack height byte (inside pc slot)
 ; --- Zero page (&70-&8F user area) ------------------------------------------
 ip          = &70           ; bytecode instruction pointer
 st          = &72           ; current turtle state base
-evx         = &74           ; turtle stack height in bytes (0..60)
+evx         = &74           ; turtle stack top as a state-block index:
+                            ; ST_LOCALS + height (64..124). Stored raw
+                            ; (un-biased) in the state's ST_HEIGHT byte.
 RA          = &75           ; 32-bit accumulator A (top of stack pops here)
 RB          = &79           ; 32-bit accumulator B
 opsave      = &7D           ; current opcode
@@ -95,6 +97,19 @@ APTR        = &89           ; append arg: handle to enqueue (aliases cnt —
 CHV         = &89           ;   free by append time) and the span-chain
                             ;   vector CHV (never rendering while appending)
 scr         = &8D           ; screen write pointer (renderer)
+
+; --- Multiply zero page (&50-&5D) ---------------------------------------------
+; Quarter-square multiply pointers. The four tables are page-aligned and 512
+; bytes long, so a pointer into table T for operand byte a is simply
+; (lo = a, hi = >T): the hi bytes are set once at init and never change.
+MS1L        = &50           ; -> sq1_lo + a   (f(a+y),  f(n) = n^2/4)
+MS1H        = &52           ; -> sq1_hi + a
+MS2L        = &54           ; -> sq2_lo + a   (f(a-255+y), i.e. f(a-b) at y=~b)
+MS2H        = &56           ; -> sq2_hi + a
+MNBL        = &58           ; ~M2 (255 - multiplier lo byte)
+MNBH        = &59           ; ~M2+1
+MT1         = &5A           ; mid partial product al*bh
+MT2         = &5C           ; mid partial product ah*bl
 
 ; --- Renderer fast-path zero page (&60-&6F) ----------------------------------
 ; The machine is OS-free once running (all IRQ sources masked, OS abandoned),
@@ -126,10 +141,8 @@ TSIN        = SCRATCH+2     ; sinlook result (s16)
 SAV         = SCRATCH+4     ; sin(dir) (s16)
 CAV         = SCRATCH+6     ; cos(dir) (s16)
 VAL16       = SCRATCH+8     ; move distance operand (s16)
-MSAVE       = SCRATCH+10    ; saved move distance (s32)
 M1          = SCRATCH+14    ; multiplier (destroyed)
 M2          = SCRATCH+16    ; multiplicand (preserved)
-XM1         = SCRATCH+18    ; original M1 for sign correction
 PR          = SCRATCH+20    ; 32-bit product
 HPFLAG      = SCRATCH+24    ; 1 = high-precision move (>>8)
 REC         = SCRATCH+26    ; 10-byte plot record being built
@@ -140,7 +153,8 @@ QSIGN       = SCRATCH+45    ; division result sign
 RCX         = SCRATCH+48    ; blob centre x (cropped to screen), s16
 RCY         = SCRATCH+50    ; blob centre y, s16
 RRAD        = SCRATCH+52    ; radius (clamped to MAXRADIUS)
-RFILL       = SCRATCH+53    ; 4-pixel fill byte for the tint
+RFILL       = &6E           ; 4-pixel fill byte for the tint (zp: every span
+                            ; filler edge write touches it)
 RY          = SCRATCH+54    ; current scanline, s16
 RX0         = SCRATCH+56    ; span left, s16 (reused as *8 temp)
 RX1         = SCRATCH+58    ; span right, s16
@@ -151,7 +165,7 @@ C0          = SCRATCH+63    ; left byte column (0-79)
 C1          = SCRATCH+64    ; right byte column, then span byte count
 ML          = SCRATCH+65    ; left/combined edge mask
 MR          = SCRATCH+66    ; right edge mask
-TMPB        = SCRATCH+67    ; masked-write temp
+TMPB        = &6F           ; masked-write temp (zp, hot in span edges)
 CSPTR       = SCRATCH+68    ; colorscript event pointer (2 bytes)
 CSVAL       = SCRATCH+70    ; current event value byte
 CCX         = SCRATCH+73    ; fast path: cx >> 2 (byte column of centre)
@@ -162,6 +176,7 @@ NREC        = SCRATCH+90    ; frame stage: records staged this frame
 PPASS       = SCRATCH+91    ; frame stage: flush pass (0/1)
 KLO         = SCRATCH+92    ; frame stage: bucket key lo
 KHI         = SCRATCH+93    ; frame stage: bucket key hi / chain temp
+P1F         = SCRATCH+94    ; frame stage: any record filed for pass 1
 
 ; --- Frame stage: stable (y - r) render order --------------------------------
 ; The visualizer stable-sorts each frame's plots by (t, y-r) before drawing
@@ -322,6 +337,20 @@ ENDIF
     sta BTAILH,x
     inx
     bne initb
+    ; frame-stage bucket heads start clear once; flush_sorted's emit scan
+    ; keeps them clear (tails are allowed to go stale)
+IF TUBE = 0
+    lda #6
+    sta &FE30
+ENDIF
+.initk
+    stz BKHH,x
+    inx
+    bne initk
+IF TUBE = 0
+    lda #7
+    sta &FE30
+ENDIF
     ; free list: chain all states through their link bytes, last -> null
     lda #<STATES
     sta FREEH
@@ -379,6 +408,16 @@ ENDIF
     sta lptr
     lda #>rose_data_end
     sta lptr+1
+    ; quarter-square multiply pointer hi bytes (tables are page-aligned;
+    ; the lo bytes are the operand byte, written per multiply)
+    lda #>sq1_lo
+    sta MS1L+1
+    lda #>sq1_hi
+    sta MS1H+1
+    lda #>sq2_lo
+    sta MS2L+1
+    lda #>sq2_hi
+    sta MS2H+1
 IF TUBE = 0
     stz QW
     stz QW+1
@@ -543,27 +582,30 @@ ENDIF
     ldy #1
     lda (st),y
     sta ip+1
-    ldy #ST_HEIGHT                  ; restore stack height
-    lda (st),y
+    ldy #ST_HEIGHT                  ; restore stack height; evx runs biased
+    lda (st),y                      ; by ST_LOCALS so push/pop index directly
+    clc
+    adc #ST_LOCALS
     sta evx
     ; fall through to dispatcher
 
 ; ============================================================================
 ; Dispatcher
 ; ============================================================================
-.next_op                            ; direct 256-entry dispatch
-    lda (ip)
-    inc ip
-    bne next_go
+.next_op                            ; direct dispatch: constants (bit 7)
+    lda (ip)                        ; short-circuit; the rest go through an
+    inc ip                          ; interleaved word table via the 65C02
+    bne next_go                     ; jmp (abs,x)
     inc ip+1
 .next_go
     sta opsave
+    cmp #&80                        ; (inc ip trashed N — test A, not flags)
+    bcs next_const
+    asl a
     tax
-    lda dtab_lo,x
-    sta CHV
-    lda dtab_hi,x
-    sta CHV+1
-    jmp (CHV)
+    jmp (dtab,x)
+.next_const
+    jmp op_const
 
 .fetch
     lda (ip)
@@ -576,13 +618,10 @@ ENDIF
 ; ============================================================================
 ; Eval stack
 ; ============================================================================
-.push_RA                            ; turtle stack lives in the state block
-    lda evx
-    clc
-    adc #ST_LOCALS
-    tay
-    lda RA
-    sta (st),y
+.push_RA                            ; turtle stack lives in the state block;
+    ldy evx                         ; evx is pre-biased by ST_LOCALS, so it
+    lda RA                          ; indexes (st),y directly and the four
+    sta (st),y                      ; inys advance it for free
     iny
     lda RA+1
     sta (st),y
@@ -592,9 +631,8 @@ ENDIF
     iny
     lda RA+3
     sta (st),y
-    lda evx
-    adc #4                          ; carry clear (64+60+3 < 256)
-    sta evx
+    iny
+    sty evx
     rts
 
 .pop_RA
@@ -602,8 +640,6 @@ ENDIF
     sec
     sbc #4
     sta evx
-    clc
-    adc #ST_LOCALS
     tay
     lda (st),y
     sta RA
@@ -623,8 +659,6 @@ ENDIF
     sec
     sbc #4
     sta evx
-    clc
-    adc #ST_LOCALS
     tay
     lda (st),y
     sta RB
@@ -645,15 +679,48 @@ ENDIF
 .op_const
     lda opsave                      ; &80 + index
     and #&7F
-    stz ptr+1
     cmp #126                        ; big-constant escape
-    bne const_small
+    bcs const_big
+    tax
+    lda cst_lo,x                    ; precomputed rose_constants + i*4
+    sta ptr
+    lda cst_hi,x
+    sta ptr+1
+.const_load
+    lda (ptr)
+    sta RA
+    ldy #1
+    lda (ptr),y
+    sta RA+1
+    iny
+    lda (ptr),y
+    sta RA+2
+    iny
+    lda (ptr),y
+    sta RA+3
+    ldy evx                         ; push_RA inlined
+    lda RA
+    sta (st),y
+    iny
+    lda RA+1
+    sta (st),y
+    iny
+    lda RA+2
+    sta (st),y
+    iny
+    lda RA+3
+    sta (st),y
+    iny
+    sty evx
+    jmp next_op
+.const_big                          ; index = 126 + next byte
+    stz ptr+1
     jsr fetch
     clc
     adc #126
-    bcc const_small
+    bcc const_cb
     inc ptr+1
-.const_small
+.const_cb
     sta ptr
     asl ptr                         ; index * 4
     rol ptr+1
@@ -666,19 +733,7 @@ ENDIF
     lda ptr+1
     adc #>rose_constants
     sta ptr+1
-    lda (ptr)
-    sta RA
-    ldy #1
-    lda (ptr),y
-    sta RA+1
-    iny
-    lda (ptr),y
-    sta RA+2
-    iny
-    lda (ptr),y
-    sta RA+3
-    jsr push_RA
-    jmp next_op
+    bra const_load
 
 .op_rstate                          ; push state[field]
     lda opsave
@@ -758,7 +813,20 @@ ENDIF
     iny
     lda (st),y
     sta RA+3
-    jsr push_RA
+    ldy evx                         ; push_RA inlined
+    lda RA
+    sta (st),y
+    iny
+    lda RA+1
+    sta (st),y
+    iny
+    lda RA+2
+    sta (st),y
+    iny
+    lda RA+3
+    sta (st),y
+    iny
+    sty evx
     jmp next_op
 
 .op_wlocal                          ; pop -> local[i]
@@ -783,9 +851,27 @@ ENDIF
     sta (st),y
     jmp next_op
 
-.op_op                              ; RA = top (left), RB = below (right)
-    jsr pop_RA
-    jsr pop_RB
+.op_op                              ; binary op, fused in place: a (top) OP
+    lda evx                         ; b (below); the result overwrites b's
+    sec                             ; slot, one net pop
+    sbc #4
+    sta evx
+    tay
+    lda (st),y                      ; a (the old top) -> RA
+    sta RA
+    iny
+    lda (st),y
+    sta RA+1
+    iny
+    lda (st),y
+    sta RA+2
+    iny
+    lda (st),y
+    sta RA+3
+    lda evx
+    sec
+    sbc #4
+    tay                             ; Y -> b, which becomes the result
     lda opsave
     and #15
     cmp #13                         ; OP_ADD
@@ -801,65 +887,73 @@ ENDIF
     jmp err_unimpl                  ; shifts/rotates: not yet
 .do_add
     clc
-    lda RA
-    adc RB
-    sta RA
-    lda RA+1
-    adc RB+1
-    sta RA+1
-    lda RA+2
-    adc RB+2
-    sta RA+2
-    lda RA+3
-    adc RB+3
-    sta RA+3
-    jsr push_RA
+    lda (st),y
+    adc RA
+    sta (st),y
+    iny
+    lda (st),y
+    adc RA+1
+    sta (st),y
+    iny
+    lda (st),y
+    adc RA+2
+    sta (st),y
+    iny
+    lda (st),y
+    adc RA+3
+    sta (st),y
     jmp next_op
-.do_sub
+.do_sub                             ; a - b
     sec
     lda RA
-    sbc RB
-    sta RA
+    sbc (st),y
+    sta (st),y
+    iny
     lda RA+1
-    sbc RB+1
-    sta RA+1
+    sbc (st),y
+    sta (st),y
+    iny
     lda RA+2
-    sbc RB+2
-    sta RA+2
+    sbc (st),y
+    sta (st),y
+    iny
     lda RA+3
-    sbc RB+3
-    sta RA+3
-    jsr push_RA
+    sbc (st),y
+    sta (st),y
     jmp next_op
 .do_and
-    lda RA
-    and RB
-    sta RA
-    lda RA+1
-    and RB+1
-    sta RA+1
-    lda RA+2
-    and RB+2
-    sta RA+2
-    lda RA+3
-    and RB+3
-    sta RA+3
-    jsr push_RA
+    lda (st),y
+    and RA
+    sta (st),y
+    iny
+    lda (st),y
+    and RA+1
+    sta (st),y
+    iny
+    lda (st),y
+    and RA+2
+    sta (st),y
+    iny
+    lda (st),y
+    and RA+3
+    sta (st),y
     jmp next_op
 .do_or
-    lda RA
-    ora RB
-    sta RA
-    lda RA+1
-    ora RB+1
-    sta RA+1
-    lda RA+2
-    ora RB+2
-    sta RA+2
-    lda RA+3
-    ora RB+3
-    sta RA+3
-    jsr push_RA
+    lda (st),y
+    ora RA
+    sta (st),y
+    iny
+    lda (st),y
+    ora RA+1
+    sta (st),y
+    iny
+    lda (st),y
+    ora RA+2
+    sta (st),y
+    iny
+    lda (st),y
+    ora RA+3
+    sta (st),y
     jmp next_op
 
 .op_neg
@@ -888,20 +982,26 @@ ENDIF
     jsr pop_RA
     jmp next_op
 
-.op_when                            ; pop value, branch by negated condition
-    jsr pop_RA
-    jsr fetch                       ; target lo
-    sta ptr
-    jsr fetch                       ; target hi
-    sta ptr+1
-    lda RA+3
+.op_when                            ; pop value, branch by negated condition.
+    lda evx                         ; fused pop: only sign + zero are needed,
+    sec                             ; and ip only advances when not taken
+    sbc #4
+    sta evx
+    tay
+    lda (st),y
+    iny
+    ora (st),y
+    iny
+    ora (st),y
+    sta zres
+    iny
+    lda (st),y                      ; byte 3: sign, and completes the OR
+    tax
+    ora zres
+    sta zres                        ; 0 if zero
+    txa
     and #&80
     sta sgn                         ; &80 if negative
-    lda RA
-    ora RA+1
-    ora RA+2
-    ora RA+3
-    sta zres                        ; 0 if zero
     lda opsave
     and #15
     cmp #6                          ; branch if != 0
@@ -920,37 +1020,46 @@ ENDIF
 .w_ne
     lda zres
     bne take_branch
-    jmp next_op
+    bra w_no
 .w_eq
     lda zres
     beq take_branch
-    jmp next_op
+    bra w_no
 .w_ge
     lda sgn
     beq take_branch
-    jmp next_op
+    bra w_no
 .w_lt
     lda sgn
     bne take_branch
-    jmp next_op
+    bra w_no
 .w_gt
     lda sgn
     bne w_no
     lda zres
     bne take_branch
 .w_no
+    clc                             ; not taken: skip the 2 target bytes
+    lda ip
+    adc #2
+    sta ip
+    bcc w_nx
+    inc ip+1
+.w_nx
     jmp next_op
 .w_le
     lda sgn
     bne take_branch
     lda zres
     beq take_branch
-    jmp next_op
+    bra w_no
 .take_branch
-    lda ptr
-    sta ip
-    lda ptr+1
+    lda (ip)                        ; ip still points at the target bytes
+    tax
+    ldy #1
+    lda (ip),y
     sta ip+1
+    stx ip
     jmp next_op
 
 .op_else                            ; unconditional jump
@@ -992,25 +1101,24 @@ ENDIF
 .op_draw                            ; circle: c = tint
     jsr build_rec
 .emit_rec
-    ; per-record hash: h = rol32(h,1) ^ byte over the 10 bytes.
-    ; RB (free during DRAW) holds h in zero page; unrolled via X countdown.
-    stz RB
+    ; per-record hash: h = rol32(h,1) ^ byte over the 10 bytes, fully
+    ; unrolled. h starts at 0, so the first step is just h = REC[0].
+    ; RB (free during DRAW) holds h in zero page.
+    lda REC
+    sta RB
     stz RB+1
     stz RB+2
     stz RB+3
-    ldx #0
-.hash_loop
+FOR k, 1, 9
     asl RB
     rol RB+1
     rol RB+2
     rol RB+3
     lda RB
     adc #0                          ; carry (old bit 31) into bit 0
-    eor REC,x
+    eor REC+k
     sta RB
-    inx
-    cpx #10
-    bne hash_loop
+NEXT
     clc                             ; checksum += hash (order-independent)
     lda LOGCHK
     adc RB
@@ -1120,7 +1228,9 @@ ENDIF
     lda ip+1
     sta (st),y
     ldy #ST_HEIGHT
-    lda evx
+    lda evx                         ; un-bias for the stored height
+    sec
+    sbc #ST_LOCALS
     sta (st),y
     ldy #ST_TIME+2                  ; bucket = frame low byte
     lda (st),y
@@ -1204,15 +1314,7 @@ ENDIF
 ; MOVE — exact replica of interpret.h caseAMoveStatement
 ; ============================================================================
 .op_move
-    jsr pop_RA                      ; m
-    lda RA
-    sta MSAVE
-    lda RA+1
-    sta MSAVE+1
-    lda RA+2
-    sta MSAVE+2
-    lda RA+3
-    sta MSAVE+3
+    jsr pop_RA                      ; m stays in RA (sinlook only uses ptr)
 
     ; idx14 = (dir >> 10) & &3FFF  (= dir bytes 2:1 as u16 >> 2)
     ldy #ST_DIR+1
@@ -1242,37 +1344,37 @@ ENDIF
     sta CAV+1
 
     ; path select: high precision iff -32.0 < m < 32.0
-    clc                             ; s = m + &00200000
-    lda MSAVE+2
+    clc                             ; s = m + &00200000 (M1 is scratch here)
+    lda RA+2
     adc #&20
-    sta RA+2
-    lda MSAVE+3
+    sta M1
+    lda RA+3
     adc #0
     bne move_hd                     ; s byte3 != 0 -> high distance
-    lda RA+2
+    lda M1
     cmp #&40
     bcs move_hd                     ; s >= &400000 -> high distance
-    ora MSAVE+1
-    ora MSAVE                       ; s == 0 (m == -32.0 exactly) -> hd
+    ora RA+1
+    ora RA                          ; s == 0 (m == -32.0 exactly) -> hd
     beq move_hd
     ; high precision: val16 = (m >> 6) & &FFFF, product >> 8
     lda #1
     sta HPFLAG
-    lda MSAVE                       ; (bytes 2:1:0 << 2), take top two
+    lda RA                          ; (bytes 2:1:0 << 2), take top two
     sta PR
-    lda MSAVE+1
+    lda RA+1
     sta PR+1
-    lda MSAVE+2
+    lda RA+2
     sta PR+2
     bra move_val
 .move_hd
     ; high distance: val16 = (m >> 14) & &FFFF, product used as-is
     stz HPFLAG
-    lda MSAVE+1
+    lda RA+1
     sta PR
-    lda MSAVE+2
+    lda RA+2
     sta PR+1
-    lda MSAVE+3
+    lda RA+3
     sta PR+2
 .move_val
     asl PR
@@ -1429,16 +1531,12 @@ ENDIF
     rts
 
 ; ============================================================================
-; smul16: PR = M1 * M2, signed 16x16 -> 32. Destroys M1 (saved in XM1).
+; smul16: PR = M1 * M2, signed 16x16 -> 32. Preserves M1/M2.
 ; ============================================================================
 .smul16
-    lda M1
-    sta XM1
-    lda M1+1
-    sta XM1+1
     jsr umul16
     ; sign corrections
-    lda XM1+1
+    lda M1+1
     bpl mul_m2sign
     sec
     lda PR+2
@@ -1452,37 +1550,99 @@ ENDIF
     bpl mul_sdone
     sec
     lda PR+2
-    sbc XM1
+    sbc M1
     sta PR+2
     lda PR+3
-    sbc XM1+1
+    sbc M1+1
     sta PR+3
 .mul_sdone
     rts
 
-.umul16                             ; PR = M1 * M2 unsigned (destroys M1)
-    lda #0
+; umul16: PR = M1 * M2 unsigned, quarter-square tables (~215 cycles vs ~770
+; for the old shift-add loop). a*b = f(a+b) - f(a-b) with f(n) = n^2/4:
+; sq1[i] = f(i), sq2[i] = f(i-255), so with a pointer at table+a,
+; (sq1+a),b = f(a+b) and (sq2+a),~b = f(a-b). Preserves M1/M2.
+.umul16
+    lda M1                          ; point the four tables at al
+    sta MS1L
+    sta MS1H
+    sta MS2L
+    sta MS2H
+    lda M2
+    eor #&FF
+    sta MNBL
+    lda M2+1
+    eor #&FF
+    sta MNBH
+    ldy M2                          ; P0 = al*bl -> PR 0:1
+    lda (MS1L),y
+    ldy MNBL
+    sec
+    sbc (MS2L),y
+    sta PR
+    ldy M2
+    lda (MS1H),y
+    ldy MNBL
+    sbc (MS2H),y
+    sta PR+1
+    ldy M2+1                        ; P1 = al*bh -> MT1
+    lda (MS1L),y
+    ldy MNBH
+    sec
+    sbc (MS2L),y
+    sta MT1
+    ldy M2+1
+    lda (MS1H),y
+    ldy MNBH
+    sbc (MS2H),y
+    sta MT1+1
+    lda M1+1                        ; repoint at ah
+    sta MS1L
+    sta MS1H
+    sta MS2L
+    sta MS2H
+    ldy M2                          ; P2 = ah*bl -> MT2
+    lda (MS1L),y
+    ldy MNBL
+    sec
+    sbc (MS2L),y
+    sta MT2
+    ldy M2
+    lda (MS1H),y
+    ldy MNBL
+    sbc (MS2H),y
+    sta MT2+1
+    ldy M2+1                        ; P3 = ah*bh -> PR 2:3
+    lda (MS1L),y
+    ldy MNBH
+    sec
+    sbc (MS2L),y
     sta PR+2
+    ldy M2+1
+    lda (MS1H),y
+    ldy MNBH
+    sbc (MS2H),y
     sta PR+3
-    ldx #16
-.mul_loop
-    lsr M1+1
-    ror M1
-    bcc mul_noadd
+    clc                             ; PR += (MT1 + MT2) << 8
+    lda MT1
+    adc MT2
+    sta MT1
+    lda MT1+1
+    adc MT2+1
+    sta MT1+1
+    lda #0
+    adc #0
+    sta MT2                         ; bit 16 of the mid sum
     clc
+    lda PR+1
+    adc MT1
+    sta PR+1
     lda PR+2
-    adc M2
+    adc MT1+1
     sta PR+2
     lda PR+3
-    adc M2+1
+    adc MT2
     sta PR+3
-.mul_noadd
-    ror PR+3
-    ror PR+2
-    ror PR+1
-    ror PR
-    dex
-    bne mul_loop
     rts
 
 ; ============================================================================
@@ -1821,12 +1981,10 @@ IF TUBE
 ; a 24-byte FIFO). Backpressure is the flow control — a full FIFO blocks us
 ; until the host catches up.
 ; ============================================================================
-.q_push_a                           ; append the byte in A
-    tax
-.qpa_wait
+.q_push_a                           ; append the byte in A (preserves X/Y)
     bit PTUBE_S1                    ; V = not-full
-    bvc qpa_wait
-    stx PTUBE_D1
+    bvc q_push_a
+    sta PTUBE_D1
     rts
 
 ELSE
@@ -1941,14 +2099,10 @@ IF TUBE = 0
     sta &FE30
 ENDIF
     stz PPASS
-.so_pass
-    ldx #0                          ; empty all buckets (hi byte 0 = null)
-    lda #0
-.so_clr
-    sta BKHH,x
-    sta BKTH,x
-    inx
-    bne so_clr
+    stz P1F                         ; set if any record needs pass 1
+.so_pass                            ; (bucket heads are already clear: init
+                                    ; clears them once, the emit scan clears
+                                    ; as it consumes)
     lda #<PBUF                      ; walk the stage, filing this pass keys
     sta RB
     lda #>PBUF
@@ -1985,6 +2139,7 @@ ENDIF
     sta KLO
 .so_p1
     lda #1
+    sta P1F
     bra so_class
 .so_neg
     stz KLO
@@ -1996,8 +2151,9 @@ ENDIF
     ldy #1                          ; entry.next = null
     lda #0
     sta (RB),y
+    lda BKHH,x                      ; head decides new-vs-append (tails may
+    beq so_bnew                     ; be stale — heads are the cleared truth)
     lda BKTH,x
-    beq so_bnew
     sta KHI                         ; old tail -> this entry
     lda BKTL,x
     sta ip
@@ -2032,17 +2188,15 @@ ENDIF
 .so_bloop
     lda BKHH,x
     beq so_bnext
+    stz BKHH,x                      ; consume: heads stay clean for next frame
     sta ip+1
     lda BKHL,x
     sta ip
 .so_chain
-    phx
-    ldy #2                          ; push the 6 wire bytes
+    ldy #2                          ; push the 6 wire bytes (q_push_a
 .so_pb
-    lda (ip),y
-    phy
+    lda (ip),y                      ; preserves X and Y)
     jsr q_push_a
-    ply
     iny
     cpy #8
     bne so_pb
@@ -2052,7 +2206,8 @@ IF TUBE = 0
     lda QW+1
     sbc #>QHIGH
     bcc so_nodrain
-    lda RB                          ; q_drain clobbers RA/RB and the banks
+    phx                             ; q_drain clobbers X, RA/RB and the banks
+    lda RB
     pha
     lda RB+1
     pha
@@ -2061,11 +2216,11 @@ IF TUBE = 0
     sta RB+1
     pla
     sta RB
+    plx
     lda #6
     sta &FE30
 .so_nodrain
 ENDIF
-    plx
     ldy #1                          ; follow the chain
     lda (ip),y
     sta KHI
@@ -2080,6 +2235,8 @@ ENDIF
     inc PPASS                       ; two passes: keys 0-255, then 256-511
     lda PPASS
     cmp #2
+    beq so_done
+    lda P1F                         ; nothing filed for pass 1? done
     beq so_done
     jmp so_pass
 .so_done
@@ -2248,67 +2405,68 @@ ALIGN &100
 .sine_quarter
 INCBIN "sine_quarter.bin"
 
+; Quarter-square multiply tables: f(n) = n^2/4. sq1[i] = f(i) for i 0..511;
+; sq2[i] = f(i-255) so that, with a pointer offset by operand byte a,
+; index ~b (= 255-b) yields f(a-b). floor works exactly: (a+b)^2 and
+; (a-b)^2 are congruent mod 4. Interpreter-only, so above &3000 is fine.
+ALIGN &100
+.sq1_lo
+FOR i, 0, 511
+    EQUB <((i*i) DIV 4)
+NEXT
+.sq1_hi
+FOR i, 0, 511
+    EQUB >((i*i) DIV 4)
+NEXT
+.sq2_lo
+FOR i, 0, 511
+    EQUB <(((i-255)*(i-255)) DIV 4)
+NEXT
+.sq2_hi
+FOR i, 0, 511
+    EQUB >(((i-255)*(i-255)) DIV 4)
+NEXT
+
 ; Dispatch tables (interpreter runs with main RAM paged, so above &3000 is fine)
-.dtab_lo
-    EQUB <err_unimpl, <op_else, <op_end, <op_rand
-    EQUB <op_draw, <op_tail, <op_plot, <op_proc
-    EQUB <op_pop, <op_div, <op_wait, <op_sine
-    EQUB <op_seed, <op_neg, <op_move, <op_mul
+.dtab                               ; opcodes 0-127 (consts short-circuit in
+    EQUW err_unimpl, op_else, op_end, op_rand
+    EQUW op_draw, op_tail, op_plot, op_proc
+    EQUW op_pop, op_div, op_wait, op_sine
+    EQUW op_seed, op_neg, op_move, op_mul
 FOR n, 0, 15
-    EQUB <op_when
-NEXT
-FOR n, 0, 15
-    EQUB <op_fork
+    EQUW op_when
 NEXT
 FOR n, 0, 15
-    EQUB <op_op
+    EQUW op_fork
 NEXT
 FOR n, 0, 15
-    EQUB <op_wlocal
+    EQUW op_op
 NEXT
 FOR n, 0, 15
-    EQUB <op_wstate
+    EQUW op_wlocal
 NEXT
 FOR n, 0, 15
-    EQUB <op_rlocal
+    EQUW op_wstate
 NEXT
 FOR n, 0, 15
-    EQUB <op_rstate
-NEXT
-FOR n, 0, 127
-    EQUB <op_const
-NEXT
-.dtab_hi
-    EQUB >err_unimpl, >op_else, >op_end, >op_rand
-    EQUB >op_draw, >op_tail, >op_plot, >op_proc
-    EQUB >op_pop, >op_div, >op_wait, >op_sine
-    EQUB >op_seed, >op_neg, >op_move, >op_mul
-FOR n, 0, 15
-    EQUB >op_when
+    EQUW op_rlocal
 NEXT
 FOR n, 0, 15
-    EQUB >op_fork
-NEXT
-FOR n, 0, 15
-    EQUB >op_op
-NEXT
-FOR n, 0, 15
-    EQUB >op_wlocal
-NEXT
-FOR n, 0, 15
-    EQUB >op_wstate
-NEXT
-FOR n, 0, 15
-    EQUB >op_rlocal
-NEXT
-FOR n, 0, 15
-    EQUB >op_rstate
-NEXT
-FOR n, 0, 127
-    EQUB >op_const
+    EQUW op_rstate
 NEXT
 
 .rose_data_start
+; Small-constant address tables: rose_constants + i*4 for the 126 inline
+; indices (big-constant escapes fall back to the shift path).
+.cst_lo
+FOR i, 0, 125
+    EQUB <(rose_constants + i*4)
+NEXT
+.cst_hi
+FOR i, 0, 125
+    EQUB >(rose_constants + i*4)
+NEXT
+
 INCLUDE "rose_data.asm"
 IF TUBE = 0
 INCLUDE "colorscript.asm"           ; single-CPU: colorscript lives with CODE
@@ -2342,3 +2500,43 @@ PRINT "SYM q_drain", ~q_drain
 PRINT "SYM render_blob", ~render_blob
 PRINT "SYM ctab", ~ctab
 ENDIF
+; Fine-grained boundaries for bbc/tools/opprofile.mjs (per-handler cycles).
+PRINT "SYM do_tick", ~do_tick
+PRINT "SYM run_turtle", ~run_turtle
+PRINT "SYM next_op", ~next_op
+PRINT "SYM fetch", ~fetch
+PRINT "SYM push_RA", ~push_RA
+PRINT "SYM pop_RA", ~pop_RA
+PRINT "SYM pop_RB", ~pop_RB
+PRINT "SYM op_const", ~op_const
+PRINT "SYM op_rstate", ~op_rstate
+PRINT "SYM op_wstate", ~op_wstate
+PRINT "SYM op_rlocal", ~op_rlocal
+PRINT "SYM op_wlocal", ~op_wlocal
+PRINT "SYM op_op", ~op_op
+PRINT "SYM op_neg", ~op_neg
+PRINT "SYM op_pop", ~op_pop
+PRINT "SYM op_when", ~op_when
+PRINT "SYM op_else", ~op_else
+PRINT "SYM op_proc", ~op_proc
+PRINT "SYM op_tail", ~op_tail
+PRINT "SYM op_plot", ~op_plot
+PRINT "SYM op_draw", ~op_draw
+PRINT "SYM op_end", ~op_end
+PRINT "SYM op_fork", ~op_fork
+PRINT "SYM op_move", ~op_move
+PRINT "SYM sinlook", ~sinlook
+PRINT "SYM smul16", ~smul16
+PRINT "SYM umul16", ~umul16
+PRINT "SYM op_mul", ~op_mul
+PRINT "SYM op_div", ~op_div
+PRINT "SYM op_rand", ~op_rand
+PRINT "SYM op_seed", ~op_seed
+PRINT "SYM op_sine", ~op_sine
+PRINT "SYM alloc", ~alloc
+PRINT "SYM append", ~append
+PRINT "SYM free_cur", ~free_cur
+PRINT "SYM wait_sched", ~wait_sched
+PRINT "SYM sort_add", ~sort_add
+PRINT "SYM flush_sorted", ~flush_sorted
+PRINT "SYM q_push_a", ~q_push_a

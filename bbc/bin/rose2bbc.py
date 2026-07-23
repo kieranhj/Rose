@@ -103,8 +103,8 @@ def make_colorscript(data):
 # in main RAM (fixed at CHAIN_RTS - 4k, chain at &0E00) or rts.
 # These addresses must match interp.asm:
 SPAN_SCR = 0x8D             # zp screen pointer
-SPAN_RFILL = 0x0CB5         # SCRATCH+53
-SPAN_TMPB = 0x0CC3          # SCRATCH+67
+SPAN_RFILL = 0x6E           # zp fill byte
+SPAN_TMPB = 0x6F            # zp masked-write temp
 CHAIN_RTS = 0x0E7C          # &0E00 chain: 31 units of 4 bytes, rts at +124
 MASK_L = [0xFF, 0x77, 0x33, 0x11]
 MASK_R = [0x88, 0xCC, 0xEE, 0xFF]
@@ -116,10 +116,10 @@ def _masked_write(mask, indexed):
     lda = 0xB1 if indexed else 0xB2
     sta = 0x91 if indexed else 0x92
     return bytes([lda, SPAN_SCR,
-                  0x8D, SPAN_TMPB & 0xFF, SPAN_TMPB >> 8,
-                  0x4D, SPAN_RFILL & 0xFF, SPAN_RFILL >> 8,
+                  0x85, SPAN_TMPB,      # sta zp
+                  0x45, SPAN_RFILL,     # eor zp
                   0x29, mask,
-                  0x4D, SPAN_TMPB & 0xFF, SPAN_TMPB >> 8,
+                  0x45, SPAN_TMPB,
                   sta, SPAN_SCR])
 
 
@@ -128,7 +128,7 @@ def _span_routine(o, L):
     o1 = (o + L - 1) & 3
     ml = MASK_L[o]
     mr = MASK_R[o1]
-    lda_rfill = bytes([0xAD, SPAN_RFILL & 0xFF, SPAN_RFILL >> 8])
+    lda_rfill = bytes([0xA5, SPAN_RFILL])   # lda zp
     if n == 1:
         m = ml & mr
         if m == 0xFF:

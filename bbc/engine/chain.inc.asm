@@ -12,5 +12,5 @@ NEXT
     rts
 chain30 = chain_rts - 120
 ASSERT chain_rts = &0E7C            ; must match rose2bbc.py CHAIN_RTS
-ASSERT RFILL = &0CB5                ; must match rose2bbc.py SPAN_RFILL
-ASSERT TMPB = &0CC3                 ; must match rose2bbc.py SPAN_TMPB
+ASSERT RFILL = &6E                  ; must match rose2bbc.py SPAN_RFILL
+ASSERT TMPB = &6F                   ; must match rose2bbc.py SPAN_TMPB

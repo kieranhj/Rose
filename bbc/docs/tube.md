@@ -351,6 +351,62 @@ Measured (single-CPU profile, render regions only):
   the store chains (~128 cycles/line) are the next ceiling, then the
   clipped/r>62 slow path which kept the old per-line shape.
 
+## 7d. Interpreter speed pass (profile-guided)
+
+`tools/opprofile.mjs` attributes cycles to every SYM-labelled handler and
+helper (subroutine time lands on the subroutine). The Everyway 600M-cycle
+sample ranked: umul16 12.5%, push/pop 13.5%, flush_sorted 7.8% (mostly its
+unconditional 1KB bucket clear), next_op 7.1%, emit_rec 3.3%. Changes, all
+semantics-preserving and verified bit-exact:
+
+1. **Quarter-square multiply** — `umul16` was a 16-step shift-add (~770
+   cycles). Now four page-aligned 512-entry tables (f(n)=n²/4; `sq1[i]=f(i)`,
+   `sq2[i]=f(i−255)`) give each 8×8 partial product as
+   `f(a+b)−f(a−b)` with two indexed reads: pointer setup is just storing the
+   operand byte to the pointer lo bytes (&50-&5D zp block, hi bytes set once
+   at init). ~215 cycles for 16×16→32, and `smul16` no longer needs the M1
+   save. Floor is exact ((a±b)² are congruent mod 4).
+2. **Stack ops** — `evx` now holds the stack top pre-biased by ST_LOCALS
+   (raw height still stored in the state's ST_HEIGHT byte, ±64 at the
+   per-slice save/restore), so push/pop index `(st),y` directly and push
+   advances `evx` with its four `iny`s. push_RA is also inlined into
+   `op_const`/`op_rlocal`.
+3. **Fused binary ops and WHEN** — `op_op` reads the top operand into RA and
+   applies add/sub/and/or **in place on the below-slot** (one net pop, no
+   push); `op_when` tests sign/zero straight off the stack and only
+   advances `ip` past the target bytes when the branch is not taken.
+4. **Dispatch** — constants (bit 7) short-circuit to `op_const`; everything
+   else goes through one interleaved word table via the 65C02
+   `jmp (dtab,x)` (opcode≤127 so idx*2 fits X). ~38 → ~29 cycles. Trap that
+   bit: `inc ip` between the opcode load and the sign test trashes N — test
+   with `cmp #&80`, not `bmi`.
+5. **flush_sorted** — the per-frame 2×512-byte bucket-table clear is gone:
+   heads are cleared once at init and the emit scan clears each head as it
+   consumes it (filing now keys off the head, so stale tails are harmless);
+   pass 1 is skipped entirely when no record filed for it (P1F flag).
+   `q_push_a` preserves X/Y on both builds (the Tube one never needed its
+   `tax`), so the emit loop dropped its per-record/per-byte save-restores.
+6. **emit_rec / op_move** — the 10-byte rol32-xor record hash is unrolled
+   (the first step is just h=REC[0]); op_move keeps m in RA instead of
+   copying to MSAVE, and span-filler edge writes use zp RFILL/TMPB
+   (SPAN_RFILL/SPAN_TMPB &6E/&6F in rose2bbc.py).
+
+Everyway single-CPU: **3104M → 2552M cycles (−18%)**; the same 600M profile
+window now covers 2622 frames vs 2311 (+13% throughput) and render is the
+top region again. jesuisrose 392M → 368M. Ball's parasite side halved
+(25.2K → 13.6K/frame; host 38.1K with the zp span edges).
+
+Tube totals after both passes (§7c render + this) — all nine still
+bit-exact and pixel-perfect:
+
+| demo | tube cycles before (post-sort) | after | Δ |
+|------|-------------------------------|-------|---|
+| ball | 816M | **528M** | −35% |
+| Everyway | 2064M | **1520M** (~12fps avg) | −26% |
+| jesuisrose | — | **280M** | faster than the pre-sorter 296M |
+| teaser | — | 392M | |
+| tree / chiperia / euphoria / frustration | — | 48M / 120M / 488M / 400M | |
+
 ## 8. Risks and unknowns
 
 - **Emulator vs real ULA fidelity** — the mandated inter-byte delays in the App
