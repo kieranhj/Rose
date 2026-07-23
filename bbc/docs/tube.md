@@ -109,6 +109,19 @@ byte 5    r  (0..MAXRADIUS)
 - On DONE, the host stores the parasite's count16+chk32 at `&0B80` exactly as
   today — `verify_plots.py --count N --chk HEX` keeps working untouched.
 
+**T2 status: implemented.** The engine now runs this protocol end-to-end on a
+single Master: `q_push_rec`/`q_push_a` (parasite side) append wire records to
+a RAM queue at `&0300` (draining at a high-water mark mid-frame and at every
+frame boundary), and `q_drain` (host side) parses them, pages LYNNE once per
+batch, feeds an untouched `render_blob`, and handles END-FRAME and DONE —
+DONE carries count16+chk32 to the log header and sets DONEFLAG from the
+consumer side. All five demos verify bit-exact through it (queue overhead ~3%
+on Everyway). T3 is now: replace `q_push_*` with R1-FIFO writes and `q_drain`
+with the host pump loop. One lesson for the memory map: `&0900` was NOT free —
+the first queue placement collided with the scheduler buckets at `&0A00` and
+corrupted big demos only (small ones never crossed the page); `&0300-&08FF` is
+the safe block.
+
 ### Protocol v2 (only if profiling shows stalls)
 
 Banjo-style command buffers (per tube-demo notes): parasite builds whole-frame
@@ -255,7 +268,7 @@ actual Tube glue (FIFO pump + boot handshake) need the Tube-enabled harness.
 | Phase | Work | Exit criterion |
 |---|---|---|
 | T1 | ~~Profile current engine → I/R split per demo; finalize record format~~ **DONE** | split table in §5; record format in §3 |
-| T2 | Split `interp.asm` into parasite core + host render server, joined by a RAM ring on a plain Master | circle/ball/teaser/Everyway bit-exact via ring, on the existing MCP |
+| T2 | ~~Split the engine at the record seam, joined by a RAM queue on a plain Master~~ **DONE** | circle, ball, teaser, jesuisrose, Everyway all bit-exact through the wire protocol |
 | T3 | Tube glue: R1 pump both sides, boot handshake; `tubebeeb.mjs` harness (or jsbeeb-mcp patch) | same demos bit-exact over the real emulated Tube |
 | T4 | Measure framerates; 16-bit handles + 288-turtle states on the parasite | tree + Chiperia running; Everyway rate report |
 | T5 | If stalls: protocol v2 (R3 block pulls). Music on the freed host | — |

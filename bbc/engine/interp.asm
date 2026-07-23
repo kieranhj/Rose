@@ -131,6 +131,17 @@ CCX         = SCRATCH+73    ; fast path: cx >> 2 (byte column of centre)
 Y8          = SCRATCH+74    ; fast path: current scanline (8-bit)
 OO          = SCRATCH+75    ; fast path: span left offset
 C0F         = SCRATCH+76    ; fast path: span left byte column
+QTAG        = SCRATCH+77    ; record queue: tag byte in flight
+QW          = SCRATCH+78    ; record queue: write index (16-bit)
+
+; --- Record queue: the Tube seam ---------------------------------------------
+; The interpreter (future parasite) pushes wire records here; q_drain (the
+; future host) consumes them and renders. Wire format (docs/tube.md §3):
+;   draw:   tag (bits 0-3 tint, bit 4 square), x lo, x hi, y lo, y hi, r
+;   &80+n:  end of frame, advancing n frames
+;   &FF:    done — followed by count16 + chk32 for the log header
+QBASE       = &0300         ; queue buffer (&0300-&08FF: free once OS-free)
+QHIGH       = &0500         ; drain past this index (ample slack to &0600)
 
 OSWRCH      = &FFEE         ; init only — the runtime is OS-free
 SYSVIA_IFR  = &FE4D         ; bit 1 = CA1 = vsync
@@ -225,6 +236,8 @@ ENDIF
     sta lptr
     lda #>rose_data_end
     sta lptr+1
+    stz QW
+    stz QW+1
     lda #&FF
     sta defh
     sta deft
@@ -305,11 +318,27 @@ ENDIF
     bne do_tick
     bra exit
 .do_tick
+    lda #&81                        ; END FRAME, advance 1
+    jsr q_push_a
+    jsr q_drain
     jsr frame_tick
     jmp sched
 .exit
-    lda #&FF                        ; signal completion, keep screen up
-    sta DONEFLAG
+    lda #&FF                        ; DONE record: &FF + count16 + chk32.
+    jsr q_push_a                    ; the drain sets DONEFLAG when it sees it
+    lda LOGCNT
+    jsr q_push_a
+    lda LOGCNT+1
+    jsr q_push_a
+    lda LOGCHK
+    jsr q_push_a
+    lda LOGCHK+1
+    jsr q_push_a
+    lda LOGCHK+2
+    jsr q_push_a
+    lda LOGCHK+3
+    jsr q_push_a
+    jsr q_drain
 .spin
     jmp spin
 
@@ -866,16 +895,7 @@ ENDIF
     bcc rec_done
     inc lptr+1
 .rec_done
-    lda ACCCON                      ; page in shadow screen and draw
-    ora #4
-    sta ACCCON
-    jsr render_blob
-    lda ACCCON
-    and #&FB
-    sta ACCCON
-    lda #7                          ; back to the state bank
-    sta &F4
-    sta &FE30
+    jsr q_push_rec                  ; queue the wire record (drains if full)
     jmp next_op
 
 .build_rec                          ; REC = t,x,y,r,c (int16 LE each)
@@ -1578,6 +1598,79 @@ ENDIF
     rts
 
 ; ============================================================================
+; Record queue, producer side (future parasite). RA is free here: the hash
+; is finished by push time and the interpreter is paused during a drain.
+; ============================================================================
+.q_setra                            ; RA = QBASE + QW
+    clc
+    lda #<QBASE
+    adc QW
+    sta RA
+    lda #>QBASE
+    adc QW+1
+    sta RA+1
+    rts
+
+.q_push_a                           ; append the byte in A
+    pha
+    jsr q_setra
+    pla
+    sta (RA)
+    inc QW
+    bne qpa_done
+    inc QW+1
+.qpa_done
+    rts
+
+.q_push_rec                         ; append REC as a 6-byte wire record
+    lda REC+7                       ; negative radius never renders: drop
+    bmi qpr_rts
+    jsr q_setra
+    lda REC+7
+    bne qpr_clamp                   ; r > 255: clamp
+    lda REC+6
+    cmp #MAXRADIUS+1
+    bcc qpr_r
+.qpr_clamp
+    lda #MAXRADIUS
+.qpr_r
+    ldy #5
+    sta (RA),y                      ; radius
+    ldy #4                          ; x lo, x hi, y lo, y hi
+.qpr_xy
+    lda REC+1,y
+    sta (RA),y
+    dey
+    bne qpr_xy
+    lda REC+9                       ; tag from c: negative c = square
+    bpl qpr_circ
+    lda REC+8
+    eor #&FF
+    and #15
+    ora #16                         ; square flag
+    bra qpr_tag
+.qpr_circ
+    lda REC+8
+    and #15
+.qpr_tag
+    sta (RA)
+    clc                             ; QW += 6
+    lda QW
+    adc #6
+    sta QW
+    bcc qpr_high
+    inc QW+1
+.qpr_high
+    lda QW                          ; past the high-water mark? drain now
+    cmp #<QHIGH
+    lda QW+1
+    sbc #>QHIGH
+    bcc qpr_rts
+    jmp q_drain
+.qpr_rts
+    rts
+
+; ============================================================================
 ; Per-frame tick: wait for vsync, apply due colorscript events (VDU 19)
 ; ============================================================================
 .frame_tick
@@ -1662,6 +1755,113 @@ NEXT
 FOR n, 0, MAXT-1
     EQUB >(STATES + n*STATE_SIZE)
 NEXT
+
+; ============================================================================
+; Record queue, consumer side — the future HOST render loop. Pages LYNNE in
+; once for the whole batch, parses wire records into REC and calls the
+; renderer, then restores the state bank for the interpreter.
+; RA = read pointer, RB = end pointer (both free during a drain).
+; ============================================================================
+.q_drain
+    lda QW
+    ora QW+1
+    bne qd_go
+    rts                             ; empty
+.qd_go
+    lda ACCCON                      ; page in the shadow screen
+    ora #4
+    sta ACCCON
+    lda #<QBASE
+    sta RA
+    clc
+    adc QW
+    sta RB
+    lda #>QBASE
+    sta RA+1
+    adc QW+1
+    sta RB+1
+.qd_loop
+    lda RA
+    cmp RB
+    bne qd_more
+    lda RA+1
+    cmp RB+1
+    beq qd_done
+.qd_more
+    lda (RA)                        ; tag byte
+    sta QTAG
+    inc RA
+    bne qd_tag
+    inc RA+1
+.qd_tag
+    lda QTAG
+    bmi qd_ctrl
+    ldy #3                          ; draw record: x, y into REC+2..5
+.qd_xy
+    lda (RA),y
+    sta REC+2,y
+    dey
+    bpl qd_xy
+    ldy #4
+    lda (RA),y                      ; radius (pre-clamped)
+    sta REC+6
+    stz REC+7
+    clc                             ; advance past the 5 payload bytes
+    lda RA
+    adc #5
+    sta RA
+    bcc qd_c
+    inc RA+1
+.qd_c
+    lda QTAG                        ; rebuild c for render_blob
+    and #16
+    beq qd_circ
+    lda QTAG
+    and #15
+    eor #&FF
+    sta REC+8
+    lda #&FF
+    sta REC+9
+    bra qd_draw
+.qd_circ
+    lda QTAG
+    and #15
+    sta REC+8
+    stz REC+9
+.qd_draw
+    jsr render_blob
+    bra qd_loop
+.qd_ctrl
+    cmp #&FF
+    beq qd_fin
+    jmp qd_loop                     ; END FRAME: pacing stays in the main loop
+.qd_fin
+    ldy #5                          ; DONE: count16 + chk32 -> log header
+.qd_fcopy
+    lda (RA),y
+    sta LOGCNT,y
+    dey
+    bpl qd_fcopy
+    clc
+    lda RA
+    adc #6
+    sta RA
+    bcc qd_ff
+    inc RA+1
+.qd_ff
+    lda #&FF                        ; run complete
+    sta DONEFLAG
+    jmp qd_loop
+.qd_done
+    stz QW
+    stz QW+1
+    lda ACCCON
+    and #&FB
+    sta ACCCON
+    lda #7                          ; state bank back for the interpreter
+    sta &F4
+    sta &FE30
+    rts
 
 ; ============================================================================
 ; MODE 1 renderer. Runs with the shadow screen paged in (ACCCON X set), so
@@ -2192,5 +2392,6 @@ PRINT "SYM frame_tick", ~frame_tick
 PRINT "SYM vsync_wait", ~vsync_wait
 PRINT "SYM cs_loop", ~cs_loop
 PRINT "SYM err_unimpl", ~err_unimpl
+PRINT "SYM q_drain", ~q_drain
 PRINT "SYM render_blob", ~render_blob
 PRINT "SYM ctab", ~ctab

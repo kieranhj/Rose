@@ -64,7 +64,7 @@ span(sym.op_wait, sym.frame_tick, R.interp);
 span(sym.frame_tick, sym.vsync_wait, R.tick);
 span(sym.vsync_wait, sym.cs_loop, R.idle);
 span(sym.cs_loop, sym.err_unimpl, R.tick);
-span(sym.render_blob, sym.ctab, R.rblob);
+span(sym.q_drain || sym.render_blob, sym.ctab, R.rblob); // drain glue + renderer
 span(0x8000, 0xc000, R.rspan);               // SWRAM span fillers (banks 4/5)
 
 // --- boot ---------------------------------------------------------------------
