@@ -390,11 +390,18 @@ semantics-preserving and verified bit-exact:
    (the first step is just h=REC[0]); op_move keeps m in RA instead of
    copying to MSAVE, and span-filler edge writes use zp RFILL/TMPB
    (SPAN_RFILL/SPAN_TMPB &6E/&6F in rose2bbc.py).
+7. **Whole-blob offscreen cull** — measured against expected_plots.bin,
+   16% of Everyway's plots, 32% of Euphoria's and **47% of Frustration's**
+   are fully offscreen, yet each still cost staging, six wire bytes and a
+   host render_blob that walked every line before rejecting. sort_add now
+   culls them after the hash/count/prefix-log (so verification data is
+   unchanged) using the clamped radius against XOFF/YOFF/SCRW/SCRH —
+   conservative and exact, since half-width never exceeds r.
 
-Everyway single-CPU: **3104M → 2552M cycles (−18%)**; the same 600M profile
-window now covers 2622 frames vs 2311 (+13% throughput) and render is the
-top region again. jesuisrose 392M → 368M. Ball's parasite side halved
-(25.2K → 13.6K/frame; host 38.1K with the zp span edges).
+Everyway single-CPU: **3104M → 2480M cycles (−20%)**; the 600M profile
+window covers 2622 frames vs 2311 (+13% throughput even before the cull)
+and render is the top region again. jesuisrose 392M → 368M. Ball's
+parasite side halved (25.2K → 13.6K/frame; host 38.1K with zp span edges).
 
 Tube totals after both passes (§7c render + this) — all nine still
 bit-exact and pixel-perfect:
@@ -402,10 +409,11 @@ bit-exact and pixel-perfect:
 | demo | tube cycles before (post-sort) | after | Δ |
 |------|-------------------------------|-------|---|
 | ball | 816M | **528M** | −35% |
-| Everyway | 2064M | **1520M** (~12fps avg) | −26% |
+| Everyway | 2064M | **1448M** (~12.5fps avg) | −30% |
 | jesuisrose | — | **280M** | faster than the pre-sorter 296M |
 | teaser | — | 392M | |
-| tree / chiperia / euphoria / frustration | — | 48M / 120M / 488M / 400M | |
+| tree / chiperia | — | 48M / 120M | |
+| euphoria / frustration | — | **456M / 360M** | cull-heavy demos |
 
 ## 8. Risks and unknowns
 

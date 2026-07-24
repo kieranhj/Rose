@@ -20,6 +20,7 @@ IF WIDE
 XOFF = 0                    ; form x - XOFF = screen x
 YOFF = 24
 SCRH = 232
+SCRW = 352
 ROWB = 704                  ; 88 chars * 8 bytes
 XCMP = &60                  ; x >= 352 is off-screen (hi byte 1)
 XCLAMP = &5F                ; x1 clamps to 351
@@ -27,6 +28,7 @@ ELSE
 XOFF = 16
 YOFF = 12
 SCRH = 256
+SCRW = 320
 ROWB = 640
 XCMP = &40                  ; x >= 320 is off-screen (hi byte 1)
 XCLAMP = &3F                ; x1 clamps to 319
@@ -2020,9 +2022,74 @@ ENDIF
 ; flush_sorted emits all staged records through q_push_a in stable (y - r)
 ; bucket order. Single-CPU build pages SWRAM bank 6 around stage access.
 ; ============================================================================
+.sa_drop
+    rts
 .sort_add
     lda REC+7                       ; negative radius never renders: drop
-    bmi sa_rts
+    bmi sa_drop
+    bne sa_clamp                    ; clamp radius to MAXRADIUS in REC
+    lda REC+6                       ; (already hashed/logged, so REC is
+    cmp #MAXRADIUS+1                ; scratch now)
+    bcc sa_cull
+.sa_clamp
+    lda #MAXRADIUS
+    sta REC+6
+    stz REC+7
+.sa_cull
+    ; whole-blob cull: fully offscreen records (16-47% in the Painters
+    ; demos) never reach the stage, the wire, or the host
+    clc                             ; y + r < YOFF -> off the top
+    lda REC+4
+    adc REC+6
+    tax
+    lda REC+5
+    adc #0
+    tay
+    txa
+    sec
+    sbc #YOFF
+    tya
+    sbc #0
+    bmi sa_drop
+    sec                             ; y - r >= YOFF+SCRH -> off the bottom
+    lda REC+4
+    sbc REC+6
+    tax
+    lda REC+5
+    sbc #0
+    tay
+    txa
+    sec
+    sbc #<(YOFF+SCRH)
+    tya
+    sbc #>(YOFF+SCRH)
+    bpl sa_drop
+    clc                             ; x + r < XOFF -> off the left
+    lda REC+2
+    adc REC+6
+    tax
+    lda REC+3
+    adc #0
+    tay
+    txa
+    sec
+    sbc #XOFF
+    tya
+    sbc #0
+    bmi sa_drop
+    sec                             ; x - r >= XOFF+SCRW -> off the right
+    lda REC+2
+    sbc REC+6
+    tax
+    lda REC+3
+    sbc #0
+    tay
+    txa
+    sec
+    sbc #<(XOFF+SCRW)
+    tya
+    sbc #>(XOFF+SCRW)
+    bpl sa_drop
 IF TUBE = 0
     lda #6                          ; stage lives in bank 6
     sta &FE30
@@ -2040,16 +2107,9 @@ ENDIF
     sta RA
     lda PBW+1
     sta RA+1
-    lda REC+7                       ; radius, clamped to MAXRADIUS
-    bne sa_clamp
-    lda REC+6
-    cmp #MAXRADIUS+1
-    bcc sa_r
-.sa_clamp
-    lda #MAXRADIUS
-.sa_r
     ldy #7
-    sta (RA),y                      ; r
+    lda REC+6                       ; r (clamped above)
+    sta (RA),y
     ldy #6                          ; entry+3..6 = x lo, x hi, y lo, y hi
 .sa_xy
     lda REC-1,y
