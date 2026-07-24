@@ -92,7 +92,8 @@ ENDIF
     lda ACCCON                      ; LYNNE stays paged for the whole run:
     ora #4                          ; the host never touches &3000-&7FFF main
     sta ACCCON
-    jsr frame_tick                  ; frame 0: vsync + initial palette
+    jsr timer_init                  ; phase-lock T1 to the raster
+    jsr frame_tick                  ; frame 0: tick + initial palette
     ; fall through to the pump
 
 ; ============================================================================
@@ -142,7 +143,7 @@ ENDIF
     inc frame+1
 .pu_tick
     phx
-    jsr frame_tick                  ; vsync wait + colorscript
+    jsr frame_tick                  ; tick wait + colorscript
     plx
     dex
     bne pu_ef

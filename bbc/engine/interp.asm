@@ -213,7 +213,12 @@ QHIGH       = &03C0         ; drain past this index (queue is 1K to &0900)
 OSWRCH      = &FFEE         ; init only — the runtime is OS-free
 OSWORD      = &FFF1
 OSCLI       = &FFF7
-SYSVIA_IFR  = &FE4D         ; bit 1 = CA1 = vsync
+SYSVIA_IFR  = &FE4D         ; bit 1 = CA1 = vsync, bit 6 = T1 = frame tick
+SYSVIA_T1CL = &FE44         ; T1 counter lo (read: current beam phase)
+SYSVIA_T1CH = &FE45         ; T1 counter hi (write: load + start)
+SYSVIA_T1LL = &FE46         ; T1 latch lo
+SYSVIA_T1LH = &FE47         ; T1 latch hi (write: latch only, no restart)
+SYSVIA_ACR  = &FE4B         ; bit 6 = T1 continuous
 ULACOL      = &FE21         ; Video ULA palette register
 ACCCON      = &FE34         ; Master: bit 2 (X) maps &3000-&7FFF to LYNNE
 SCREEN      = &3000
@@ -477,7 +482,8 @@ IF TUBE = 0
     sta CSPTR
     lda #>rose_colorscript
     sta CSPTR+1
-    jsr frame_tick                  ; frame 0: vsync + initial palette
+    jsr timer_init                  ; phase-lock T1 to the raster
+    jsr frame_tick                  ; frame 0: tick + initial palette
 ENDIF
     ; fall through to scheduler
 
@@ -2556,6 +2562,7 @@ IF TUBE = 0
 PRINT "SYM frame_tick", ~frame_tick
 PRINT "SYM vsync_wait", ~vsync_wait
 PRINT "SYM cs_loop", ~cs_loop
+PRINT "SYM timer_init", ~timer_init
 PRINT "SYM q_drain", ~q_drain
 PRINT "SYM render_blob", ~render_blob
 PRINT "SYM ctab", ~ctab

@@ -415,6 +415,43 @@ bit-exact and pixel-perfect:
 | tree / chiperia | — | 48M / 120M | |
 | euphoria / frustration | — | **456M / 360M** | cull-heavy demos |
 
+## 7e. Raster-locked frame timing (flicker pass, phase 1)
+
+Rose on the Archimedes chases the raster; the BBC port used to release each
+frame at the CA1 vsync edge, giving away most of the vertical blank and
+starting the draw with the beam already heading for the top of the display.
+Two facts made the fix nearly free: the frame stage already emits records in
+`(y - r)` order (top-down = raster order), and the machine is interrupt-dead,
+so a polled timer is as good as an interrupt.
+
+`timer_init` (tick.inc.asm) phase-locks System VIA T1 to the raster: sync to
+one real CA1 vsync, first interval `(312 - R7*8 + R6*8)*64 - 2` µs (the end
+of the last visible scanline), then free-run at `312*64 - 2` = one PAL field
+— same crystal as the CRTC, so the phase set once holds forever. `frame_tick`
+now clears/polls IFR bit 6 (T1) instead of bit 1 (CA1). Effects:
+
+- **Palette lands in the border**: colorscript writes happen right at the
+  tick, while the beam is below the display — no mid-screen palette tears.
+- **Head start**: drawing starts 16 lines before vsync + 40 lines of upper
+  blank = 56 lines ≈ **3.6ms of free draw time** (WIDE: 80 lines ≈ 5.1ms)
+  before the beam re-enters the display.
+- **Beam race for free**: records draw top-down behind/ahead of the beam, so
+  frames that fit in a refresh show zero mid-frame state, and overrunning
+  frames degrade to a single horizontal seam instead of scattered flicker.
+
+Phase verified in jsbeeb (ball single): T1 read at the CA1 edge = 18950 of
+19966, i.e. the tick fires 1016µs before vsync — exactly the 16-line gap
+between end-of-display and vsync for R6=32/R7=34 (minus poll latency). MCP
+trap discovered on the way: `write_memory` to `&FE4D` does NOT reach the
+IFR hardware register — measure phase via the free-running T1 counter, not
+by clearing IFR flags externally.
+
+Pacing semantics are unchanged (fixed 19968µs period, flag latches while
+drawing overruns exactly like CA1 did), so all cycle totals and checksums
+are identical. Next flicker levers (designed, not built): beam-gated early
+start of frame N+1 using the T1 counter as a beam clock (`line =
+(TICKPERIOD - T1)/64`), and a 25Hz cadence latch for sustained overruns.
+
 ## 8. Risks and unknowns
 
 - **Emulator vs real ULA fidelity** — the mandated inter-byte delays in the App
