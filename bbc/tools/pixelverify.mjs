@@ -28,6 +28,28 @@ for (let i = 0; i < n; i++) {
     const v = new Int16Array(data.buffer, data.byteOffset + i * 10, 5);
     plots.push({ t: v[0], x: v[1], y: v[2], r: v[3], c: v[4], i });
 }
+
+// Erase-class plots the engine drops (t4drop.bin, written by rose2bbc):
+// skip the same MULTISET here. Identical records are interchangeable — the
+// final screen is the same whichever instance is skipped.
+const dropped = new Map();
+try {
+    const dd = readFileSync(dir + "/t4drop.bin");
+    for (let i = 0; i + 10 <= dd.length; i += 10) {
+        const v = new Int16Array(dd.buffer, dd.byteOffset + i, 5);
+        const k = `${v[0]},${v[1]},${v[2]},${v[3]},${v[4]}`;
+        dropped.set(k, (dropped.get(k) || 0) + 1);
+    }
+} catch {}
+if (dropped.size) {
+    let skipped = 0;
+    for (const p of plots) {
+        const k = `${p.t},${p.x},${p.y},${p.r},${p.c}`;
+        const c = dropped.get(k);
+        if (c > 0) { dropped.set(k, c - 1); p.r = -1; skipped++; }
+    }
+    console.log(`t4drop: skipping ${skipped} erase-class plots`);
+}
 plots.sort((a, b) => (a.t - b.t) || ((a.y - a.r) - (b.y - b.r)) || (a.i - b.i));
 const ref = new Uint8Array(W * H);
 for (const p of plots) {

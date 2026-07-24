@@ -110,6 +110,7 @@ APTR        = &89           ; append arg: handle to enqueue (aliases cnt —
 CHV         = &89           ;   free by append time) and the span-chain
                             ;   vector CHV (never rendering while appending)
 scr         = &8D           ; screen write pointer (renderer)
+T4PTR       = &8B           ; -> next t4mask RLE entry (erase-class verdicts)
 
 ; --- Multiply zero page (&50-&5D) ---------------------------------------------
 ; Quarter-square multiply pointers. The four tables are page-aligned and 512
@@ -196,6 +197,8 @@ PPASS       = SCRATCH+91    ; frame stage: flush pass (0/1)
 KLO         = SCRATCH+92    ; frame stage: bucket key lo
 KHI         = SCRATCH+93    ; frame stage: bucket key hi / chain temp
 P1F         = SCRATCH+94    ; frame stage: any record filed for pass 1
+T4BYTE      = SCRATCH+97    ; t4mask: verdict shift register (MSB next)
+T4NB        = SCRATCH+98    ; t4mask: bits left in the register
 
 ; --- Frame stage: stable (y - r) render order --------------------------------
 ; The visualizer stable-sorts each frame's plots by (t, y-r) before drawing
@@ -487,6 +490,11 @@ IF TUBE = 0
     stz QW
     stz QW+1
 ENDIF
+    lda #<t4mask                    ; erase-class drop mask bitstream
+    sta T4PTR
+    lda #>t4mask
+    sta T4PTR+1
+    stz T4NB
     lda #<PBUF                      ; frame stage empty
     sta PBW
     lda #>PBUF
@@ -1254,10 +1262,12 @@ ENDIF
     sta ip
     jmp next_op
 
-.op_proc                            ; push 2-byte proc address as 32-bit
-    jsr fetch
+.op_proc                            ; push proc address (1-byte index into
+    jsr fetch                       ; proctab — 3 bytes/op saved over inline
+    tax                             ; addresses; ~1KB on the big demos)
+    lda proctab_lo,x
     sta RA
-    jsr fetch
+    lda proctab_hi,x
     sta RA+1
     stz RA+2
     stz RA+3
@@ -2138,6 +2148,24 @@ ENDIF
 .spin
     jmp spin
 
+.t4_consume                         ; next erase-class verdict bit, MSB
+    ldy T4NB                        ; first: A = 0 drop / 1 keep (Z set)
+    bne t4c_have
+    lda (T4PTR)                     ; refill the shift register
+    sta T4BYTE
+    inc T4PTR
+    bne t4c_p
+    inc T4PTR+1
+.t4c_p
+    ldy #8
+.t4c_have
+    dey
+    sty T4NB
+    asl T4BYTE
+    lda #0
+    adc #0
+    rts
+
 .vdutab
     EQUB 23,1,0,0,0,0,0,0,0,0
 IF WIDE = 1
@@ -2221,6 +2249,23 @@ ENDIF
     lda #MAXRADIUS
     sta REC+6
     stz REC+7
+    ; Erase-class records (tint & 7 == 4: layer-1 transparent, flattened to
+    ; erase-everything) consume one verdict bit from the t4mask stream —
+    ; BEFORE the offscreen cull so ordinals match rose2bbc's enumeration.
+    ; c >= 0: tint & 7 == 4; c < 0 (square, c = ~tint): c & 7 == 3.
+    lda REC+8
+    and #7
+    ldx REC+9
+    bmi sa_t4s
+    cmp #4
+    bne sa_cull
+    bra sa_t4go
+.sa_t4s
+    cmp #3
+    bne sa_cull
+.sa_t4go
+    jsr t4_consume
+    beq sa_drop                     ; drop: erased an empty layer 1 upstream
 .sa_cull
     ; whole-blob cull: fully offscreen records (16-47% in the Painters
     ; demos) never reach the stage, the wire, or the host
@@ -2262,7 +2307,7 @@ ENDIF
     sbc #XOFF
     tya
     sbc #0
-    bmi sa_drop
+    bmi sa_drop2
     sec                             ; x - r >= XOFF+SCRW -> off the right
     lda REC+2
     sbc REC+6
@@ -2275,7 +2320,10 @@ ENDIF
     sbc #<(XOFF+SCRW)
     tya
     sbc #>(XOFF+SCRW)
-    bpl sa_drop
+    bmi sa_keep
+.sa_drop2
+    rts
+.sa_keep
 IF TUBE = 0
     lda #6                          ; stage lives in bank 6
     sta &FE30

@@ -123,21 +123,31 @@ Two solver lessons baked into rose2bbc:
   stable tints; fade transients keep the waiver. Flatten mode only — the
   nine 1-layer demos are byte-identical.
 
-**Remaining artifact class: layer-1 erases.** tint&7==4 plots erase layer
-1 on the Archimedes but erase EVERYTHING on the flattened single
-playfield. logicos has 7,831 of them (plus 49,868 layer-1 draws — 30% of
-all plots). Where layer 1 is genuinely empty they are no-ops upstream but
-destructive here: the LogicOS logo scene (65 no-op erases wipe the
-layer-0 checkers) and the tracker's KICK label row are eaten by this.
-Designed fix (not built): offline two-layer replay marks each tint-4 plot
-no-op (drop) vs effective (keep), shipped as a bitmask consulted by
-sort_add in emit order (pre-sort, so ordinals line up); 7,831 bits = 979B,
-which needs ~100B more parasite headroom than the current 886B spare
-(PROC re-indexing frees 593B if needed). Effective erases still
-erase-to-background rather than revealing layer-0 content — correct
-whenever layer 0 is background beneath, approximate otherwise. Full
-correctness needs Plan B (MODE 2 + software layer compositing at halved X
-resolution).
+**Layer-1 erases: drop-mask BUILT.** tint&7==4 plots erase layer 1 on the
+Archimedes but erase EVERYTHING on the flattened single playfield.
+logicos has 7,831 of them (plus 49,868 layer-1 draws — 30% of all plots).
+rose2bbc now replays both layers offline in the engine's exact render
+order (pyinterp emission order — cached as pyplots.bin, multiset-checked
+against expected_plots.bin — stable-sorted by (t, y−r)) and marks each
+erase-class plot no-op (layer 1 clear beneath → DROP) or effective
+(KEEP). Verdicts ship as a bitstream (one bit per erase-class record in
+emission order, MSB first; logicos: 981 bytes, 1,233 drops) consumed by
+sort_add via t4_consume BEFORE the offscreen cull so ordinals align.
+Space paid for by re-indexing PROC (2-byte op + proctab, net −593B);
+parasite ends at &900E vs the &9100 limit. Drops happen post-hash/log so
+runverify is untouched; pixelverify skips the same multiset via the
+t4drop.bin sidecar. Verified: logicos bit-exact + pixel-perfect, full
+14-build sweep green (PROC encoding changed every demo).
+
+Effective erases still erase-to-background rather than revealing layer-0
+content — correct whenever layer 0 is background beneath, approximate
+otherwise. Full correctness needs Plan B (MODE 2 + software layer
+compositing at halved X resolution).
+
+Tooling trap that cost a debugging round: framedump polling in 4M-cycle
+chunks overshoots the target frame by ~100 — the "eaten" logo screenshots
+were dumps landing after the scene's own self-wipe at ~950. Poll in 250K
+chunks when dumping scene-accurate frames.
 
 ## CPU expectations (Tube)
 

@@ -21,5 +21,6 @@ int main(int argc, char *argv[]) {
 	for (auto &p : r.plots) if (p.r > maxr) maxr = p.r;
 	printf("PLOTS %d\n", (int)r.plots.size());
 	printf("MAXRADIUS %d\n", maxr);
+	printf("FORM %d %d\n", r.width, r.height);
 	return 0;
 }

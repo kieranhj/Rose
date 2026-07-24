@@ -28,6 +28,8 @@ import sys
 import struct
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "tools"))
+
 BC_DONE, BC_ELSE, BC_END, BC_RAND, BC_DRAW, BC_TAIL, BC_PLOT, BC_PROC = range(8)
 BC_POP, BC_DIV, BC_WAIT, BC_SINE, BC_SEED, BC_NEG, BC_MOVE, BC_MUL = range(8, 16)
 BC_WHEN = 0x10
@@ -293,6 +295,98 @@ def make_colorscript(data, plots_bin=None):
     return "\n".join(lines) + "\n"
 
 
+def _emit_plots(build, bc, constants, frames):
+    """Plots in the ENGINE's emission order (pyinterp = bit-exact model),
+    cached as pyplots.bin. Multiset-checked against expected_plots.bin."""
+    import collections
+    cache = build / "pyplots.bin"
+    bcf = build / "bytecodes.bin"
+    if cache.exists() and cache.stat().st_mtime > bcf.stat().st_mtime:
+        d = cache.read_bytes()
+        return [struct.unpack_from("<5h", d, i) for i in range(0, len(d) - 9, 10)]
+    import pyinterp
+    plots = pyinterp.run(bc, constants, frames)
+    exp = (build / "expected_plots.bin").read_bytes()
+    expl = [struct.unpack_from("<5h", exp, i) for i in range(0, len(exp) - 9, 10)]
+    if collections.Counter(plots) != collections.Counter(expl):
+        raise SystemExit("pyinterp emission model does not match "
+                         "expected_plots.bin — fix that before trusting the "
+                         "tint-4 drop mask")
+    cache.write_bytes(b"".join(struct.pack("<5h", *p) for p in plots))
+    return plots
+
+
+def make_t4mask(build, bc, constants, frames, formw, formh):
+    """Verdicts for the erase-class plots (tint & 7 == 4): on the Archimedes
+    they erase layer 1 only, flattened they erase everything. A two-layer
+    replay in the engine's exact render order (stable (t, y-r) over the
+    emission order) marks each one no-op (layer 1 already clear under it ->
+    DROP) or effective (KEEP: erase-to-background approximates revealing
+    layer 0). Returns (bits, dropped_records): one keep-bit per erase-class
+    plot in EMISSION order with r >= 0, consumed by sort_add;
+    dropped_records go to t4drop.bin for pixelverify.
+    """
+    exp = (build / "expected_plots.bin").read_bytes()
+    any_t4 = False
+    for i in range(0, len(exp) - 9, 10):
+        c = struct.unpack_from("<h", exp, i + 8)[0]
+        if ((~c if c < 0 else c) & 7) == 4:
+            any_t4 = True
+            break
+    if not any_t4:
+        return [], []
+
+    plots = _emit_plots(build, bc, constants, frames)
+    order = sorted(range(len(plots)),
+                   key=lambda i: (plots[i][0], plots[i][2] - plots[i][3]))
+    l1 = bytearray(formw * formh)
+    verdict = {}                       # emit index -> keep?
+    for i in order:
+        t, x, y, r, c = plots[i]
+        if r < 0:
+            continue
+        sq = c < 0
+        tint = (~c if sq else c) & 7
+        if tint < 4:
+            continue                   # layer 0: no effect on layer 1
+        idx = tint & 3
+        r = min(r, 70)
+        touched = False
+        for dy in range(-r, r + 1):
+            yy = y + dy
+            if not 0 <= yy < formh:
+                continue
+            if sq:
+                hw = r
+            else:
+                v = r * r + r - dy * dy
+                hw = math.isqrt(v)
+            x0, x1 = max(0, x - hw), min(formw - 1, x + hw)
+            if x1 < x0:
+                continue
+            row = slice(yy * formw + x0, yy * formw + x1 + 1)
+            if idx == 0:
+                if not touched and any(l1[row]):
+                    touched = True
+                l1[row] = bytes(x1 - x0 + 1)
+            else:
+                l1[row] = bytes([idx]) * (x1 - x0 + 1)
+        if idx == 0:
+            verdict[i] = touched       # no-op erases drop
+
+    bits = []                          # keep-bit per plot in emission order
+    dropped = []
+    for i in range(len(plots)):
+        t, x, y, r, c = plots[i]
+        if r < 0 or ((~c if c < 0 else c) & 7) != 4:
+            continue
+        keep = verdict.get(i, True)
+        if not keep:
+            dropped.append(plots[i])
+        bits.append(keep)
+    return bits, dropped
+
+
 # --- SWRAM span filler generation -------------------------------------------
 # One routine per (left pixel offset o 0-3, span pixel length L 1-125), with
 # edge masks baked in. Two 16KB bank images: bank 4 holds o=0,1; bank 5 o=2,3.
@@ -410,11 +504,14 @@ def make_circle_bank(maxr=70):
 
 def main():
     if len(sys.argv) < 3:
-        print("usage: rose2bbc.py <build_dir> <out_dir> [maxradius]")
+        print("usage: rose2bbc.py <build_dir> <out_dir> [maxradius] [frames] [formw formh]")
         sys.exit(1)
     build = Path(sys.argv[1])
     out = Path(sys.argv[2])
     maxr = int(sys.argv[3]) if len(sys.argv) > 3 else 45
+    frames = int(sys.argv[4]) if len(sys.argv) > 4 else 10000
+    formw = int(sys.argv[5]) if len(sys.argv) > 5 else 352
+    formh = int(sys.argv[6]) if len(sys.argv) > 6 else 280
 
     bc = (build / "bytecodes.bin").read_bytes()
     cb = (build / "constants.bin").read_bytes()
@@ -466,11 +563,39 @@ def main():
         elif BC_WHEN <= op <= BC_WHEN + 0xF:
             w(f"    EQUB &{op:02X} : EQUW bc_{target[off]}  ; WHEN cond={op & 15}")
         elif op == BC_PROC:
-            w(f"    EQUB &07 : EQUW rose_p{extra[0]}  ; PROC {extra[0]}")
+            w(f"    EQUB &07, &{extra[0]:02X}  ; PROC {extra[0]} (proctab index)")
         elif extra:
             w(f"    EQUB &{op:02X}, &{extra[0]:02X}")
         else:
             w(f"    EQUB &{op:02X}")
+
+    # Proc address table for the 1-byte PROC index encoding.
+    w("")
+    w(".proctab_lo")
+    for k in range(n):
+        w(f"    EQUB <rose_p{k}")
+    w(".proctab_hi")
+    for k in range(n):
+        w(f"    EQUB >rose_p{k}")
+
+    # Erase-class (tint & 7 == 4) drop mask: one verdict bit per erase-class
+    # record in emission order, MSB first (1 = keep), consumed by sort_add.
+    # Padded with keep bits; empty for single-layer demos.
+    bits, dropped = make_t4mask(build, bc, constants, frames, formw, formh)
+    w("")
+    w(".t4mask")
+    padded = bits + [True] * (-len(bits) % 8) + [True] * 16
+    for i in range(0, len(padded), 8):
+        byte = 0
+        for b in padded[i:i + 8]:
+            byte = (byte << 1) | (1 if b else 0)
+        w(f"    EQUB &{byte:02X}")
+    (build / "t4drop.bin").write_bytes(
+        b"".join(struct.pack("<5h", *p) for p in dropped))
+    if bits:
+        print(f"t4mask: {len(bits)} erase-class plots, {len(dropped)} "
+              f"dropped, {len(padded) // 8} mask bytes")
+
     (out / "rose_data.asm").write_text("\n".join(lines) + "\n")
     # Colorscript in its own file: the single-CPU build includes it with CODE
     # (before .rose_data_end); the Tube build includes it in HOST only.
