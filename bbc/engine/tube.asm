@@ -21,6 +21,18 @@ ORG &0E00
 
 INCLUDE "chain.inc.asm"             ; span middle chain, fixed at &0E00
 
+; Beam gate (gated_tick): a record's bottom screen line L has been displayed
+; this refresh once T1H < GATEBASE - L/4. GATEBASE = (TICKPERIOD -
+; (blank_lines + 1)*64) DIV 256 - 1: blank = 312 - R6*8 lines from the tick
+; (end of display) to the top of the next display, -1 for T1H granularity.
+IF WIDE
+GATEBASE    = 56                    ; (19966 - 81*64) DIV 256 - 1 (R6=29)
+ELSE
+GATEBASE    = 62                    ; (19966 - 57*64) DIV 256 - 1 (R6=32)
+ENDIF
+PENDC       = SCRATCH+95            ; control byte pushed back by gated_tick
+GATET       = SCRATCH+96            ; beam-gate T1H threshold
+
 ; ============================================================================
 ; Host entry — reached from the Tube host code's OSWRCH dispatch after the
 ; parasite pokes WRCHV. The OS is abandoned mid-call: reset the stack, mask
@@ -69,6 +81,7 @@ INCLUDE "chain.inc.asm"             ; span middle chain, fixed at &0E00
     bne hsync
     ; ---- machine init (parasite already set MODE 129 via the Tube) ----
     stz DONEFLAG
+    stz PENDC
     stz LOGCNT
     stz LOGCNT+1
     stz frame
@@ -100,9 +113,18 @@ ENDIF
 ; Record pump: block on R1, parse wire records, render.
 ; ============================================================================
 .pump
+    lda PENDC                       ; control byte pushed back by gated_tick?
+    bne pu_ctl2
     jsr rd1                         ; tag
     sta QTAG
     bmi pu_ctrl
+    jsr pu_read                     ; payload -> REC
+    jsr render_blob
+    bra pump
+.pu_ctl2
+    stz PENDC
+    bra pu_ctrl
+.pu_read                            ; QTAG set: read payload, build REC
     jsr rd1                         ; x lo, x hi, y lo, y hi
     sta REC+2
     jsr rd1
@@ -123,31 +145,103 @@ ENDIF
     sta REC+8
     lda #&FF
     sta REC+9
-    bra pu_go
+    rts
 .pu_circ
     lda QTAG
     and #15
     sta REC+8
     stz REC+9
-.pu_go
-    jsr render_blob
-    bra pump
+    rts
 .pu_ctrl
     cmp #&FF
-    beq pu_done
+    bne pu_ef0
+    jmp pu_done
+.pu_ef0
     and #&7F                        ; END FRAME: advance n frames
     tax
 .pu_ef
     inc frame
-    bne pu_tick
+    bne pu_t2
     inc frame+1
-.pu_tick
+.pu_t2
+    dex                             ; hold frames get plain ticks; only the
+    beq pu_last                     ; batch's last wait may draw early
     phx
     jsr frame_tick                  ; tick wait + colorscript
     plx
-    dex
-    bne pu_ef
+    bra pu_ef
+.pu_last
+    jsr gated_tick                  ; owed one tick — the wait is draw time
     bra pump
+
+; ============================================================================
+; Gated tick: same contract as frame_tick (wait for the next T1 edge, then
+; colorscript), but the wait drains beam-safe records for the next frame.
+; T1 free-runs phase-locked to the raster, so its high byte is a beam clock:
+; a record whose bottom screen line is L has been displayed this refresh
+; once T1H < GATEBASE - L/4 (conservative by up to ~8 lines). Only T1C-H is
+; read — reading T1C-L would clear the very T1 flag we are waiting on.
+; Records arrive in (y - r) order, so the gate line only moves down.
+; A control byte ends early draining: push it back to PENDC for the pump.
+; ============================================================================
+.gated_tick
+    lda #&40                        ; clear T1 flag: wait for the NEXT edge
+    sta SYSVIA_IFR
+.gt_loop
+    lda SYSVIA_IFR
+    and #&40
+    bne gt_tick                     ; tick fired: palette and done
+    bit HTUBE_S1
+    bpl gt_loop                     ; nothing in R1 yet
+    lda HTUBE_D1                    ; next frame's first byte
+    sta QTAG
+    bmi gt_ctrl                     ; frame boundary / DONE: stop draining
+    jsr pu_read
+    lda REC+4                       ; bottom line L = y + r - YOFF
+    clc                             ; (the parasite cull guarantees the blob
+    adc REC+6                       ;  intersects the screen window)
+    tay
+    lda REC+5
+    adc #0
+    bne gt_hold                     ; y + r >= 256: too low, wait for tick
+    tya
+    sec
+    sbc #YOFF
+    bcc gt_now                      ; clipped at the top edge: always safe
+    lsr a
+    lsr a                           ; L/4
+    sta GATET
+    lda #GATEBASE
+    sec
+    sbc GATET
+    bcc gt_hold                     ; near the bottom: gate can't clear
+    beq gt_hold                     ; (t = 0 means T1H < 0 — never true)
+    sta GATET
+.gt_gate
+    lda SYSVIA_IFR
+    and #&40
+    bne gt_hold2                    ; tick beat the gate: draw after palette
+    lda SYSVIA_T1CH                 ; beam clock: high byte ONLY
+    cmp GATET
+    bcs gt_gate
+.gt_now
+    jsr render_blob                 ; region already displayed: draw early
+    bra gt_loop
+.gt_ctrl
+    sta PENDC                       ; push back for the pump
+.gt_hold                            ; REC read but not drawable early:
+    lda SYSVIA_IFR                  ; wait out the tick
+    and #&40
+    beq gt_hold
+.gt_hold2
+    jsr cs_loop                     ; palette first (it's the frame boundary)
+    lda PENDC
+    bne gt_out                      ; control byte: nothing pending to draw
+    jmp render_blob                 ; then the held record, tail-called
+.gt_out
+    rts
+.gt_tick
+    jmp cs_loop                     ; no pending record: palette and return
 .pu_done
     jsr rd1                         ; count16 + chk32 -> log header
     sta LOGCNT

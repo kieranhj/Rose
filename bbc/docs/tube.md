@@ -448,9 +448,30 @@ by clearing IFR flags externally.
 
 Pacing semantics are unchanged (fixed 19968µs period, flag latches while
 drawing overruns exactly like CA1 did), so all cycle totals and checksums
-are identical. Next flicker levers (designed, not built): beam-gated early
-start of frame N+1 using the T1 counter as a beam clock (`line =
-(TICKPERIOD - T1)/64`), and a 25Hz cadence latch for sustained overruns.
+are identical.
+
+**Beam-gated early start (phase 2, tube host).** The END-FRAME wait used to
+be pure idle; now it's draw time. `gated_tick` replaces the batch's *last*
+`frame_tick` (hold frames keep plain ticks so nothing shows early): while
+waiting for the T1 edge it drains R1, and a record whose bottom screen line
+is `L = y + r - YOFF` draws immediately once `T1H < GATEBASE - L/4` — its
+region has already been displayed this refresh, so the viewer can't tell it
+was drawn before the frame boundary. GATEBASE = 62 (WIDE 56), conservative
+by up to ~8 lines from high-byte granularity. Control bytes arriving during
+the wait push back to `PENDC` and end the drain. Because T1 free-runs, the
+beam clock stays valid even across missed (overrun) ticks. 6522 TRAP: read
+only T1C-H (&FE45) in the gate — reading T1C-L clears the T1 IFR flag the
+tick wait depends on.
+
+The gate changes only *when* records draw, never content or order, so all
+checksums and final screens are unchanged (all nine re-verified, 0/81920).
+Cycle totals drop where borderline frames used to round up to two
+refreshes: **ball 528M → 464M (−12%**, 816M two days ago, −43% overall),
+chiperia 120M → 112M, euphoria 456M → 440M, frustration 360M → 352M,
+Everyway 1448M → 1432M (its heavy sections never wait, so little to
+reclaim). Remaining flicker lever (designed, not built): a 25Hz cadence
+latch for sustained overruns. The single-CPU build could gate its queue
+drain the same way if it ever matters.
 
 ## 8. Risks and unknowns
 
