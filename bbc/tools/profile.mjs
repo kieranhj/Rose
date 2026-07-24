@@ -2,7 +2,7 @@
 // ============================================================================
 // profile.mjs — exact cycle attribution profiler for the BBC Rose engine.
 //
-// Boots build/<name>/rose.ssd in headless jsbeeb (Master) and attributes
+// Boots build/<name>'s .ssd in headless jsbeeb (Master) and attributes
 // every host CPU cycle to an engine region via a per-instruction hook and a
 // 64K pc→region lookup table. Region boundaries come from the SYM lines
 // beebasm prints into build/<name>/beebasm.log.
@@ -23,7 +23,7 @@
 // Stops early when DONEFLAG (&0B86) goes non-zero.
 // ============================================================================
 
-import { readFileSync } from "fs";
+import { readFileSync, readdirSync } from "fs";
 import path from "path";
 
 const JSBEEB = "C:/Users/khcon/AppData/Local/npm-cache/_npx/e76f2a7d329553db/node_modules/jsbeeb";
@@ -70,7 +70,7 @@ span(0x8000, 0xc000, R.rspan);               // SWRAM span fillers (banks 4/5)
 // --- boot ---------------------------------------------------------------------
 const session = new MachineSession("Master", {});
 await session.initialise();
-session.loadDisc(path.resolve(buildDir, "rose.ssd"));
+session.loadDisc(path.resolve(buildDir, readdirSync(buildDir).find((f) => f.endsWith(".ssd"))));
 session.keyDown(16); // SHIFT
 session.reset(true);
 await session.runFor(2_000_000);

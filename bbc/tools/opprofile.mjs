@@ -11,7 +11,7 @@
 // Stops early when DONEFLAG (&0B86) goes non-zero. Single-CPU builds only.
 // ============================================================================
 
-import { readFileSync } from "fs";
+import { readFileSync, readdirSync } from "fs";
 import path from "path";
 
 const JSBEEB = "C:/Users/khcon/AppData/Local/npm-cache/_npx/e76f2a7d329553db/node_modules/jsbeeb";
@@ -47,7 +47,7 @@ map.fill(names.length - 1, 0x8000, 0xc000);    // SWRAM fillers
 // --- boot ----------------------------------------------------------------------
 const session = new MachineSession("Master", {});
 await session.initialise();
-session.loadDisc(path.resolve(buildDir, "rose.ssd"));
+session.loadDisc(path.resolve(buildDir, readdirSync(buildDir).find((f) => f.endsWith(".ssd"))));
 session.keyDown(16);
 session.reset(true);
 await session.runFor(2_000_000);

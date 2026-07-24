@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // ============================================================================
-// runverify.mjs — boot build/<name>/rose.ssd headless, run to completion, and
+// runverify.mjs — boot build/<name>'s .ssd headless, run to completion, and
 // verify LOGCNT/LOGCHK against expected_plots.bin (count mod 65536 + the
 // order-independent rol32-xor-sum checksum). Much faster than the MCP loop.
 //
@@ -10,8 +10,15 @@
 //   JSBEEB_PATH    — override the jsbeeb package location.
 // ============================================================================
 
-import { readFileSync } from "fs";
+import { readFileSync, readdirSync } from "fs";
 import path from "path";
+
+// The disc is named beeb-<name>-rose[-tube].ssd — find it by extension.
+const findSsd = (dir) => {
+    const ssd = readdirSync(dir).find((f) => f.endsWith(".ssd"));
+    if (!ssd) throw new Error("no .ssd in " + dir);
+    return path.resolve(dir, ssd);
+};
 
 const TUBE = process.env.JSBEEB_TUBE === "1";
 const PATCHED = "C:/Users/khcon/AppData/Local/Temp/claude/C--Users-khcon-OneDrive-Archie-Repos-Rose/32f2e656-c2a1-404f-925e-471ee4c2fc4c/scratchpad/jsbeeb";
@@ -40,7 +47,7 @@ const expCount = nrec & 0xffff;
 
 const session = new MachineSession("Master", TUBE ? { tube: true } : {});
 await session.initialise();
-session.loadDisc(path.resolve(buildDir, "rose.ssd"));
+session.loadDisc(findSsd(buildDir));
 session.keyDown(16);
 session.reset(true);
 await session.runFor(2_000_000);

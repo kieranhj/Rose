@@ -8,7 +8,7 @@
 //
 // Usage: node tools/pixelverify.mjs build/<name>-tube [maxMcycles]
 // ============================================================================
-import { readFileSync, writeFileSync } from "fs";
+import { readFileSync, writeFileSync, readdirSync } from "fs";
 const J = "C:/Users/khcon/AppData/Local/Temp/claude/C--Users-khcon-OneDrive-Archie-Repos-Rose/32f2e656-c2a1-404f-925e-471ee4c2fc4c/scratchpad/jsbeeb";
 const { MachineSession } = await import("file:///" + J + "/src/machine-session.js");
 
@@ -41,7 +41,7 @@ for (const p of plots) {
 
 const s = new MachineSession("Master", { tube: true });
 await s.initialise();
-s.loadDisc(dir + "/rose.ssd");
+s.loadDisc(dir + "/" + readdirSync(dir).find((f) => f.endsWith(".ssd")));
 s.keyDown(16); s.reset(true);
 await s.runFor(2_000_000); s.keyUp(16);
 const max = (parseFloat(process.argv[3]) || 4000) * 1e6;

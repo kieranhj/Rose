@@ -8,7 +8,7 @@
 ;   WHEN/ELSE carry 2-byte absolute targets, PROC carries a 2-byte address,
 ;   DONE is removed. Everything else matches visualizer/bytecode.h.
 ;
-; Build: beebasm -i interp.asm -do rose.ssd
+; Build: beebasm -i interp.asm -do beeb-<name>-rose.ssd (see bin/build.sh)
 ; Run:   *LOAD CODE : CALL &2000 — returns to BASIC when all turtles die.
 ; ============================================================================
 
