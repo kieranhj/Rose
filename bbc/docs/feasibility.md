@@ -214,6 +214,20 @@ TTL colours** (plus flashing): no intensity levels, no 12-bit RGB. Consequences:
   approximates the RGB ramp. `rose2bbc.py` quantises at conversion time; ports will
   want hand-tuned BBC colorscripts. Dither patterns are a possible extension but
   conflict with the solid-span renderer.
+- **Quantisation is solved jointly, not per colour.** Independent nearest-colour
+  mapping merged distinct dark tints into black (Euphoria's flower scene lost its
+  purple against the background). `make_colorscript` now batches changes per frame
+  and brute-forces the 4-tint → 8-colour assignment with a cost model: luma-weighted
+  fidelity plus a saturation-scaled hue term (so dark violet prefers magenta over
+  red), a flat-plus-distance penalty for two distinct sources sharing a colour
+  (doubled against the background, waived for near-identical sources), a strong
+  hysteresis cost (a remap recolours a tint's whole screen history — Rose never
+  clears), and a lookahead over the next 128 frames so a tint doesn't park on a
+  colour another tint's fade is about to claim (cyclic fades would otherwise
+  ping-pong bystander tints). Records are only emitted when a physical colour
+  actually changes, so colorscripts also shrink. The penalty is soft: sharing
+  survives when the alternative is a wildly wrong hue (two yellows share yellow
+  rather than one turning white).
 - Canvas is 320×256 vs. the 352×280 form: crop (centre window, clip in the
   renderer) for ports; new demos author at 320×256 directly.
 
