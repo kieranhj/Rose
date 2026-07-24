@@ -100,7 +100,7 @@ def _fid(src, p):
     return d
 
 
-def _assign_phys(cur, prev, changed, claims):
+def _assign_phys(cur, prev, changed, claims, stable=None):
     """Map each defined tint to one of the 8 TTL colours, jointly.
 
     Independent nearest-colour merges distinct dark tints into black and
@@ -143,7 +143,16 @@ def _assign_phys(cur, prev, changed, claims):
             for j in range(i + 1, len(tints)):
                 if combo[i] == combo[j]:
                     d = _cdist(cur[tints[i]], cur[tints[j]])
-                    if d >= 1.0:        # near-identical sources may share
+                    fire = d >= 1.0     # near-identical sources may share...
+                    if (not fire and d > 0.0 and stable is not None
+                            and tints[i] == 0 and stable.get(tints[j])):
+                        # ...but a STABLE drawing tint one shade off the
+                        # background must not vanish into it (logicos logo:
+                        # 444 art on 333 bg for thousands of frames). Fade
+                        # transients (source changing again within a few
+                        # frames) keep the waiver so fade starts stay dark.
+                        fire = True
+                    if fire:
                         pen = 15.0 + 2.0 * d
                         if tints[i] == 0:
                             pen *= 2.0  # merging into the background is worst
@@ -153,7 +162,61 @@ def _assign_phys(cur, prev, changed, claims):
     return {tint: best[i] for i, tint in enumerate(tints)}
 
 
-def make_colorscript(data):
+def _flatten_events(events, plots_bin):
+    """Flatten an 8-tint (2 layers x depth 4) event stream to the 4 MODE 1
+    logical colours.
+
+    The render path draws pixel value tint & 3, so tints t and t+4 share a
+    logical slot; this picks which of the pair *owns* the slot's palette
+    entry over time, weighted by upcoming plot counts from
+    expected_plots.bin (the tint about to draw wins). Slot 0 is always
+    owned by tint 0: tint 4 is the layer-1 transparent index, invisible on
+    the Archimedes too, so flattened it becomes erase-to-background.
+    Returns a frame-ordered (frame, slot, rgb) stream for the joint solve.
+    """
+    W = 384                             # lookahead window (frames)
+    lastf = max(f for f, _, _ in events)
+    NF = lastf + 2
+    cnt = [[0] * (NF + W + 1) for _ in range(8)]
+    for i in range(0, len(plots_bin) - 9, 10):
+        t, x, y, r, c = struct.unpack_from("<5h", plots_bin, i)
+        if 0 <= t < NF + W:
+            cnt[(~c if c < 0 else c) & 7][t] += 1
+    pre = []
+    for c in cnt:
+        acc = [0]
+        for v in c:
+            acc.append(acc[-1] + v)
+        pre.append(acc)
+
+    def wsum(tint, f):
+        return pre[tint][min(f + W, NF + W)] - pre[tint][min(f, NF + W)]
+
+    src = {}                            # tint -> latest source RGB
+    owner = [0, 1, 2, 3]                # slot -> owning tint
+    out = []
+    ei = 0
+    for f in range(NF):
+        while ei < len(events) and events[ei][0] <= f:
+            _, tint, rgb = events[ei]
+            ei += 1
+            src[tint] = rgb
+            if owner[tint & 3] == tint:
+                out.append((f, tint & 3, rgb))
+        for L in (1, 2, 3):             # owner challenge (slot 0 fixed)
+            o = owner[L]
+            c = o ^ 4
+            if src.get(c) is None:
+                continue
+            wc = wsum(c, f)
+            if wc >= 8 and wc > 2 * wsum(o, f):
+                owner[L] = c
+                if src[c] != src.get(o):
+                    out.append((f, L, src[c]))
+    return out
+
+
+def make_colorscript(data, plots_bin=None):
     """Decode colorscript.bin and quantise 12-bit RGB to the 8 TTL colours.
 
     Emits 3-byte records: frame lo, frame hi, (logical<<4)|physical,
@@ -161,6 +224,8 @@ def make_colorscript(data):
     palette re-solved jointly (see _assign_phys); a record is emitted for
     every tint whose physical colour moved, so one source change may emit
     extra records to pull a colliding tint onto a free colour.
+    Dual-playfield demos (tints 4-7 present) are first flattened to the
+    4 logical slots via _flatten_events.
     """
     words = struct.unpack(f">{len(data) // 2}H", data)
     t = -1
@@ -172,6 +237,19 @@ def make_colorscript(data):
             t += 0x10000 - w            # negative word = frame delta
         else:
             events.append((t, w >> 12, ((w >> 8) & 15, (w >> 4) & 15, w & 15)))
+
+    flattened = False
+    if events and max(tint for _, tint, _ in events) > 3:
+        if plots_bin is None:
+            raise SystemExit("colorscript uses tints 4-7: expected_plots.bin "
+                             "needed to flatten to 4 colours")
+        events = _flatten_events(events, plots_bin)
+        flattened = True
+
+    from bisect import bisect_right
+    evframes = {}                       # tint -> sorted event frames, for the
+    for f, tint, _ in events:           # stability lookahead (flatten only)
+        evframes.setdefault(tint, []).append(f)
 
     # strong claims for the lookahead: events whose source maps cleanly
     # onto one physical colour (a grey "wants" nothing; pure yellow does)
@@ -195,7 +273,14 @@ def make_colorscript(data):
         for f, tint, p in strong:
             if t < f <= t + 128:
                 claims.setdefault(p, set()).add(tint)
-        phys = _assign_phys(cur, emitted, changed, claims)
+        stable = None
+        if flattened:
+            stable = {}
+            for tint in cur:
+                fl = evframes.get(tint, [])
+                k = bisect_right(fl, t)
+                stable[tint] = k >= len(fl) or fl[k] - t > 24
+        phys = _assign_phys(cur, emitted, changed, claims, stable)
         for tint in sorted(phys, key=lambda k: (k not in changed, k)):
             if emitted.get(tint) != phys[tint]:
                 r, g, b = cur[tint]
@@ -389,8 +474,10 @@ def main():
     (out / "rose_data.asm").write_text("\n".join(lines) + "\n")
     # Colorscript in its own file: the single-CPU build includes it with CODE
     # (before .rose_data_end); the Tube build includes it in HOST only.
+    plots_path = build / "expected_plots.bin"
     (out / "colorscript.asm").write_text(
-        make_colorscript((build / "colorscript.bin").read_bytes()) + "\n")
+        make_colorscript((build / "colorscript.bin").read_bytes(),
+                         plots_path.read_bytes() if plots_path.exists() else None) + "\n")
 
     q = make_sine_quarter()
     (out / "sine_quarter.bin").write_bytes(b"".join(struct.pack("<H", v) for v in q))

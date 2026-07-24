@@ -68,8 +68,10 @@
 ; (312 - R7*8 + R6*8)*64 us, after which the latches free-run one field.
 ; (T1 continuous period = latch + 2, hence the -2s.)
 ; ============================================================================
-IF WIDE
+IF WIDE = 1
 TICKFIRST   = (312 - 33*8 + 29*8) * 64 - 2  ; overscan CRTC: R6=29, R7=33
+ELIF WIDE = 2
+TICKFIRST   = (312 - 30*8 + 23*8) * 64 - 2  ; letterbox: R6=23, R7=30
 ELSE
 TICKFIRST   = (312 - 34*8 + 32*8) * 64 - 2  ; standard MODE 1: R6=32, R7=34
 ENDIF

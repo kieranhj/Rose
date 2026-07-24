@@ -2,11 +2,13 @@
 # Reference model of the BBC engine: interprets original Rose bytecode with
 # the exact semantics interp.asm implements (32-bit wrap, FIFO buckets).
 # Used to validate the engine design against the visualizer's plot list.
+import os
 import struct
 import sys
 import collections
 
 M32 = 0xFFFFFFFF
+TRACE_ROR = os.environ.get("ROSE_TRACE_ROR") == "1"
 
 
 def s32(v):
@@ -36,7 +38,12 @@ def rand_iter(v):
 
 
 class Turtle:
-    __slots__ = "pc time x y size tint rand dir stk".split()
+    __slots__ = ("pc time x y size tint rand dir stk "
+                 "w0 w1 w2 w3 w4 w5 w6 w7").split()
+
+    def __init__(self):
+        self.w0 = self.w1 = self.w2 = self.w3 = 0
+        self.w4 = self.w5 = self.w6 = self.w7 = 0
 
 
 def scan_procs(bc):
@@ -118,7 +125,8 @@ def run(bc, constants, frames=10000, trace_frames=None):
                     stk.append(constants[idx])
                 elif op >= 0x70:
                     f = op & 15
-                    stk.append([t.pc, t.x, t.y, t.size, t.tint, t.rand, t.dir, t.time][f] if f < 8 else 0)
+                    stk.append([t.pc, t.x, t.y, t.size, t.tint, t.rand, t.dir,
+                                t.time][f] if f < 8 else getattr(t, f"w{f - 8}"))
                 elif op >= 0x60:
                     stk.append(stk[op & 15])
                 elif op >= 0x50:
@@ -140,6 +148,8 @@ def run(bc, constants, frames=10000, trace_frames=None):
                         t.dir = v
                     elif f == 7:
                         t.time = v
+                    else:
+                        setattr(t, f"w{f - 8}", v)
                 elif op >= 0x40:
                     stk[op & 15] = stk.pop()
                 elif op >= 0x30:
@@ -154,6 +164,26 @@ def run(bc, constants, frames=10000, trace_frames=None):
                         stk.append(s32((a & M32) & (b & M32)))
                     elif o == 8:
                         stk.append(s32((a & M32) | (b & M32)))
+                    elif o == 0:               # ASR (interpret.h semantics)
+                        sh = (b >> 16) & 63
+                        stk.append(-1 if sh >= 32 else s32(a >> sh))
+                    elif o == 1:               # LSR
+                        sh = (b >> 16) & 63
+                        stk.append(0 if sh >= 32 else s32((a & M32) >> sh))
+                    elif o == 3:               # ROR
+                        sh = (b >> 16) & 31
+                        r = (a if sh == 0
+                             else s32(((a & M32) >> sh) | (a << (32 - sh))))
+                        if TRACE_ROR:
+                            print(f"ROR {a & M32:08x} {b & M32:08x} {r & M32:08x}")
+                        stk.append(r)
+                    elif o in (4, 5):          # ASL / LSL
+                        sh = (b >> 16) & 63
+                        stk.append(0 if sh >= 32 else s32(a << sh))
+                    elif o == 7:               # ROL
+                        sh = (b >> 16) & 31
+                        stk.append(a if sh == 0
+                                   else s32((a << sh) | ((a & M32) >> (32 - sh))))
                     else:
                         raise Exception(f"OP {o} @ {pc-1}")
                 elif op >= 0x20:
@@ -164,6 +194,8 @@ def run(bc, constants, frames=10000, trace_frames=None):
                     c.pc = proc & 0xFFFF
                     c.time, c.x, c.y = t.time, t.x, t.y
                     c.size, c.tint, c.rand, c.dir = t.size, t.tint, t.rand, t.dir
+                    for wi in range(8):        # wires inherit through fork
+                        setattr(c, f"w{wi}", getattr(t, f"w{wi}"))
                     c.stk = args
                     buckets[(c.time >> 16) & 0xFF].append(c)
                     alive += 1
@@ -256,10 +288,11 @@ def run(bc, constants, frames=10000, trace_frames=None):
 def main():
     import pathlib
     d = pathlib.Path(sys.argv[1])
+    frames = int(sys.argv[2]) if len(sys.argv) > 2 else 10000
     bc = (d / "bytecodes.bin").read_bytes()
     cb = (d / "constants.bin").read_bytes()
     constants = [struct.unpack(">i", cb[i:i + 4])[0] for i in range(0, len(cb), 4)]
-    plots = run(bc, constants)
+    plots = run(bc, constants, frames)
     e = (d / "expected_plots.bin").read_bytes()
     exp = [struct.unpack("<5h", e[i:i + 10]) for i in range(0, len(e), 10)]
     print(f"python model: {len(plots)} plots, expected {len(exp)}")

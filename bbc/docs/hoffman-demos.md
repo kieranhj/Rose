@@ -1,0 +1,159 @@
+# Feasibility: the Hoffman demos (logicos, rageos, technova, waytoorude)
+
+2026-07-24. Assessment of the four remaining `arc/examples` demos for the BBC
+port. Verdict up front: **logicos** is the best candidate and the pilot for
+4-colour flattening; **technova** is buildable but the densest demo of the
+whole set; **rageos** needs the bins-only pipeline (no source); **waytoorude**
+is blocked on turtle-state capacity.
+
+## Sources and pipeline
+
+The BBC build consumes `.rose` source (`build.sh` → `roseplots.exe`, which
+emits the `.bin` triple, `expected_plots.bin` ground truth, and capacity
+stats in one run). The four demos ship only compiled bins in
+`arc/examples/<name>/`, but full sources exist locally:
+
+- `C:\Users\khcon\OneDrive\Archie\Repos\Hoffman\{logicos,technova,waytoorude}`
+  — all compile cleanly through roseplots today.
+- **rageos has no source** (bins only, Apr 2023). Its colorscript is
+  byte-identical to logicos's — clearly a LogicOS derivative. Ground truth
+  for it would come from `bbc/tools/pyinterp.py`, which interprets the bin
+  pair directly with the engine's exact semantics (validated bit-exact
+  against the visualizer on the current nine demos). pyinterp needs the
+  shift/rotate ops added first (these demos use them; the current nine
+  don't).
+
+Tool gap: `roseplots.cpp` hardcodes `translate(file, 10000, ...)` — the
+form line in source overrides canvas/layers, but the 10,000-frame cap
+truncates logicos/rageos/waytoorude (~12.3–14.3K frames). Needs a frames
+argument, matched by the engine-side frame cap.
+
+## Measured stats (roseplots on source; rageos pending pyinterp)
+
+| demo | frames | plots | avg/frame | peak/frame | peak turtles | stack | wires | max r |
+|------------|--------|---------|------|----|-----|----|---|----|
+| logicos    | ~13.7K | 120,281 | 8.8  | 97 | 160 | 31 | 8 | 60 |
+| technova   | ~6.4K  | 172,814 | 27   | 85 | 167 | 19 | 5 | 70 |
+| waytoorude | ~12.3K | 176,003 | 14.3 | 86 | 451 | 19 | 3 | 70 |
+| rageos     | ~14.3K | (pyinterp run pending) | | | | | | |
+
+All four are `form 320 180 2 4`: widescreen 320×180, **two layers × depth 4
+= 8 logical tints**, layer-1 index 0 transparent (top playfield erases to
+reveal the bottom one). All are music-synced `.mod` demos (BBC music is
+still unbuilt phase 5). Radii ≤ 70 fit the existing circle tables.
+
+## Upstream bug found on the way (fixed in visualizer/interpret.h)
+
+`jump X Y` with side-effecting expressions (`rand`) diverged between the
+AST reference and compiled bytecode: interpret.h evaluated X then Y, but
+code_generator.h emits Y then X (its keep-same-x/y optimization forces
+that shape). logicos `alien_corrupt` (`jump centre_x+rand*40
+centre_y+rand*40`, frame ~8743) drew its corruption squares with the two
+rand draws swapped — 4,679 plots at transposed offsets. The Archimedes has
+always played the bytecode order; interpret.h now evaluates Y first to
+match. No other demo hits the pattern (the nine verified ports would have
+failed long ago). Found by tracing every ROR on both sides (identical) and
+diffing plot multisets (pyinterp vs roseplots).
+
+Also discovered: the engine's shift/rotate group was never implemented
+(`op_op` fell through to err_unimpl — "full opcode set" only covered the
+ops the first nine demos used). logicos hits ROR/ASR/ASL through the
+`>><`-style operators (glyph bitmaps, `rand>><6` alien text), which is
+what the post-splash hang was. Implemented in interp.asm with interpret.h
+semantics exactly (count = (right>>16)&63, &31 for rotates; >=32
+saturates to 0, ASR to -1); pyinterp gained shifts + wires and now
+multiset-matches the 14,000-frame logicos ground truth (166,987 plots).
+
+## What the engine is missing
+
+1. **Wires** — all three sourced demos use them (logicos uses all 8). The
+   ops are nearly free: `op_rstate`/`op_wstate` already index fields 1–15
+   generically and the state layout reserves bytes 32–63 for wire slots.
+   The real work: the intrusive list links live in wire slot 0's bytes
+   (TL_LO/TL_HI = 32/33), so they must relocate (top-of-state via a build
+   define) and fork must copy the wire block to the child
+   (`wire_values(parent.wire_values)` semantics).
+2. **Stack 31** (logicos) → STATESZ 192 (= 64 + 31×4 + link spare). Already
+   a build parameter.
+3. **Capacity**: roseplots' "Max turtles alive" OVERCOUNTS the engine's
+   real requirement — it counts turtles active per frame
+   (survived+died+1), not concurrent state blocks. The engine-exact model
+   says logicos peaks at 118 concurrent states (roseplots: 160), so it
+   builds as MAXT=128 / STATESZ=190 / PBUFN=128 and the parasite image
+   fits with ~600B spare (sq1 multiply tables now generated at init into
+   free low RAM &0500-&08FF on Tube builds, saving 1KB of image). Re-run
+   the model per demo before trusting roseplots for MAXT. Both logicos and
+   technova exceed the single-CPU bank-7 budget → Tube-only, like
+   tree/chiperia. **waytoorude's 451 (roseplots) turtles need re-measuring
+   with the model**, but even ~350 real states would not fit — likely
+   still blocked on a new state-storage scheme.
+4. **Colour: the big one.** MODE 1 = 4 colours vs 8 tints + transparency.
+   - Plan A (this pilot): flatten `tint & 3` — the render path already does
+     exactly this, so pixels need zero engine change. The colorscript solve
+     extends to 8 sources competing for 4 logical slots (tint t and t+4
+     share slot t&3); weight the contenders by upcoming plot counts from
+     expected_plots.bin. Layer-1 erase (tint 4) becomes erase-to-background.
+   - Plan B (if A looks bad): MODE 2 renderer — 16 colours but 160 pixels
+     wide (halved X), software compositing of two 2bpp layer buffers.
+     Substantially new render path.
+5. **Geometry**: 320×180 form wants XOFF=0/YOFF=0, SCRH~180–184 with CRTC
+   R6/R7 letterboxing (fewer lines = less to clear/draw — helps, not
+   hurts). Verify tools need form-aware dimensions instead of the baked
+   352×280/XOFF 16/YOFF 12.
+
+## logicos pilot: 4-colour flatten results (2026-07-24)
+
+Built and verified: `bin/buildtube.sh logicos <Hoffman>/logicos/main.rose 2
+128 190 14000 1 128` → bit-exact (166,987 plots, chk match) AND
+pixel-perfect (0/81920) in 1280M cycles ≈ 2.3× authored length ≈ 22fps
+average. WIDE=2 = 320×180 letterbox (R6=23/R7=30, TICKFIRST/GATEBASE
+variants). Verify with `pixelverify build/logicos-tube 4000 320 180 0 0`.
+
+Palette flatten quality (8 sample scenes rendered vs a two-layer
+reference): login, tracker grid, messaging, scanner, download, cracker,
+endpart all read correctly and look strikingly good in blue/yellow/white.
+Two solver lessons baked into rose2bbc:
+
+- Slot ownership + joint solve works as designed (records ~330).
+- A STABLE drawing tint one shade off the background must not share the
+  background's colour (the 444-on-333 logo checkers landed on black =
+  invisible; also d(444,333) floats to 0.999... so the d>=1.0 share
+  penalty never fired). _assign_phys now takes a stability map (next
+  source change > 24 frames away) and always penalises bg-sharing for
+  stable tints; fade transients keep the waiver. Flatten mode only — the
+  nine 1-layer demos are byte-identical.
+
+**Remaining artifact class: layer-1 erases.** tint&7==4 plots erase layer
+1 on the Archimedes but erase EVERYTHING on the flattened single
+playfield. logicos has 7,831 of them (plus 49,868 layer-1 draws — 30% of
+all plots). Where layer 1 is genuinely empty they are no-ops upstream but
+destructive here: the LogicOS logo scene (65 no-op erases wipe the
+layer-0 checkers) and the tracker's KICK label row are eaten by this.
+Designed fix (not built): offline two-layer replay marks each tint-4 plot
+no-op (drop) vs effective (keep), shipped as a bitmask consulted by
+sort_add in emit order (pre-sort, so ordinals line up); 7,831 bits = 979B,
+which needs ~100B more parasite headroom than the current 886B spare
+(PROC re-indexing frees 593B if needed). Effective erases still
+erase-to-background rather than revealing layer-0 content — correct
+whenever layer 0 is background beneath, approximate otherwise. Full
+correctness needs Plan B (MODE 2 + software layer compositing at halved X
+resolution).
+
+## CPU expectations (Tube)
+
+- logicos: 8.8 plots/frame avg — lightest demo in the whole set, could
+  pace close to authored speed outside peaks.
+- waytoorude: Everyway-class (14.3 avg vs Everyway's 18.7).
+- technova: 27 avg — heaviest per-frame density of any demo; expect well
+  below Everyway's ~12.5fps average.
+
+## Per-demo verdicts
+
+- **logicos** — feasible now: source ✓, capacity ✓ (STATESZ bump), wires
+  (engine work, contained), lightest CPU load. Pilot for 4-colour flatten.
+- **technova** — feasible after logicos (same engine work, smaller stack),
+  but slowest; expect a slideshow in dense sections.
+- **rageos** — likely logicos-class; blocked only on the bins-only ground
+  truth path (pyinterp + shifts) since there's no source.
+- **waytoorude** — not feasible without solving 451-turtle state storage,
+  on top of everything above.

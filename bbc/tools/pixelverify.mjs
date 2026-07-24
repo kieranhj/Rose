@@ -6,14 +6,19 @@
 // sorted by (t, y-r). Complements runverify.mjs (which checks the plot LOG):
 // this one checks what actually reached the screen.
 //
-// Usage: node tools/pixelverify.mjs build/<name>-tube [maxMcycles]
+// Usage: node tools/pixelverify.mjs build/<name>-tube [maxMcycles] [W H XOFF YOFF]
+//   form geometry defaults to the standard 352x280 crop (XOFF 16, YOFF 12);
+//   pass e.g. "320 180 0 0" for the WIDE=2 letterbox builds.
 // ============================================================================
 import { readFileSync, writeFileSync, readdirSync } from "fs";
 const J = "C:/Users/khcon/AppData/Local/Temp/claude/C--Users-khcon-OneDrive-Archie-Repos-Rose/32f2e656-c2a1-404f-925e-471ee4c2fc4c/scratchpad/jsbeeb";
 const { MachineSession } = await import("file:///" + J + "/src/machine-session.js");
 
 const dir = process.argv[2];
-const XOFF = 16, YOFF = 12, SW = 320, SH = 256, ROWB = 640, W = 352, H = 280;
+const SW = 320, SH = 256, ROWB = 640;
+const W = parseInt(process.argv[4]) || 352, H = parseInt(process.argv[5]) || 280;
+const XOFF = process.argv[6] !== undefined ? parseInt(process.argv[6]) : 16;
+const YOFF = process.argv[7] !== undefined ? parseInt(process.argv[7]) : 12;
 
 // reference: stable (t, y-r) order, exact shader coverage, logical = tint & 3
 const data = readFileSync(dir + "/expected_plots.bin");
@@ -63,7 +68,7 @@ for (let sy = 0; sy < SH; sy++) {
         const sh = 3 - (sx & 3);
         const log = (((b >> (4 + sh)) & 1) << 1) | ((b >> sh) & 1);
         const fx = sx + XOFF, fy = sy + YOFF;
-        const want = ref[fy * W + fx] & 3;
+        const want = fx < W && fy < H ? ref[fy * W + fx] & 3 : 0;
         checked++;
         if (log !== want) { mism++; const k = want + "->" + log; mismap.set(k, (mismap.get(k) || 0) + 1);
             if (mism <= 8) console.log("  at screen", sx, sy, "form", fx, fy, k); }

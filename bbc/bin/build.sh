@@ -15,17 +15,24 @@ cd "$(dirname "$0")/.."
 NAME="$1"
 ROSE="${2:-$NAME}"
 WIDE="${3:-0}"
+FRAMES="${4:-10000}"
+WIRES="${5:-0}"
 BEEBASM="${BEEBASM:-/c/Users/khcon/OneDrive/BEEB/Repos/beebasm/beebasm.exe}"
+case "$ROSE" in
+  *.rose) ROSEFILE="$ROSE" ;;
+  *)      ROSEFILE="../../../examples/$ROSE.rose" ;;
+esac
 mkdir -p "build/$NAME"
 cd "build/$NAME"
 export PATH=/mingw64/bin:$PATH   # libwinpthread for the visualizer objects
-../../tools/roseplots.exe "../../../examples/$ROSE.rose" expected_plots.bin | tee stats.txt
+../../tools/roseplots.exe "$ROSEFILE" expected_plots.bin "$FRAMES" | tee stats.txt
 MAXR=$(grep MAXRADIUS stats.txt | cut -d' ' -f2)
 python ../../bin/rose2bbc.py . . "${MAXR:-45}"
 cp ../../engine/interp.asm ../../engine/*.inc.asm .
 printf '*SRLOAD SPANS4 8000 4 Q\r*SRLOAD SPANS5 8000 5 Q\r*SRLOAD CIRCS 8000 6 Q\r*RUN CODE\r' > boot.txt
 rm -f ./*.ssd
 "$BEEBASM" -i interp.asm -do "beeb-$NAME-rose.ssd" -opt 3 -D WIDE="$WIDE" -D TUBE=0 \
-    -D TMAXT=128 -D STATESZ=128 -D STATEBASE=32768 > beebasm.log 2>&1 || { cat beebasm.log; exit 1; }
+    -D TMAXT=128 -D STATESZ=128 -D STATEBASE=32768 \
+    -D FRAMES="$FRAMES" -D WIRES="$WIRES" -D PBUFN=250 > beebasm.log 2>&1 || { cat beebasm.log; exit 1; }
 cat beebasm.log
 echo "OK: build/$NAME/beeb-$NAME-rose.ssd"

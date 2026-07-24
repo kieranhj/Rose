@@ -25,8 +25,10 @@ INCLUDE "chain.inc.asm"             ; span middle chain, fixed at &0E00
 ; this refresh once T1H < GATEBASE - L/4. GATEBASE = (TICKPERIOD -
 ; (blank_lines + 1)*64) DIV 256 - 1: blank = 312 - R6*8 lines from the tick
 ; (end of display) to the top of the next display, -1 for T1H granularity.
-IF WIDE
+IF WIDE = 1
 GATEBASE    = 56                    ; (19966 - 81*64) DIV 256 - 1 (R6=29)
+ELIF WIDE = 2
+GATEBASE    = 44                    ; (19966 - 129*64) DIV 256 - 1 (R6=23)
 ELSE
 GATEBASE    = 62                    ; (19966 - 57*64) DIV 256 - 1 (R6=32)
 ENDIF
@@ -91,7 +93,7 @@ GATET       = SCRATCH+96            ; beam-gate T1H threshold
     lda #>rose_colorscript
     sta CSPTR+1
 IF WIDE
-    ldx #0                          ; 6845: R1=88 R2=102 R6=29 R7=33
+    ldx #0                          ; 6845 tweaks (see hcrtctab per variant)
 .hcrtcloop
     lda hcrtctab,x
     sta &FE00
@@ -99,7 +101,7 @@ IF WIDE
     sta &FE01
     inx
     inx
-    cpx #8
+    cpx #HCRTCN
     bne hcrtcloop
 ENDIF
     lda ACCCON                      ; LYNNE stays paged for the whole run:
@@ -266,9 +268,14 @@ ENDIF
     lda HTUBE_D1
     rts
 
-IF WIDE
+IF WIDE = 1
 .hcrtctab
     EQUB 1,88, 2,102, 6,29, 7,33
+HCRTCN = 8
+ELIF WIDE = 2
+.hcrtctab                           ; letterbox: 184 lines shown, centred
+    EQUB 6,23, 7,30
+HCRTCN = 4
 ENDIF
 
 INCLUDE "tick.inc.asm"              ; frame_tick / vsync / colorscript

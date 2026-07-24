@@ -684,8 +684,12 @@ private:
 	}
 
 	void caseAJumpStatement(AJumpStatement s) override {
-		Value x = apply(s.getX());
+		// Y first: the code generator emits Y then X (see caseAJumpStatement
+		// in code_generator.h), so side effects in the expressions (rand)
+		// must apply in that order or compiled bytecode diverges from this
+		// reference (logicos alien_corrupt was the first demo to hit it).
 		Value y = apply(s.getY());
+		Value x = apply(s.getX());
 		if (x.kind != ValueKind::NUMBER) {
 			throw CompileException(s.getToken(), "X is not a number");
 		}

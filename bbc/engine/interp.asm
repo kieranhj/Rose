@@ -16,7 +16,9 @@ CPU 1                       ; 65C12
 
 ; WIDE=1 (beebasm -D): 352x232 overscan MODE 1 variant (R1=88, R6=29).
 ; Full form width displayed; vertical crop 280->232. WIDE=0: 320x256 crop.
-IF WIDE
+; WIDE=2: 320x180 letterbox for the widescreen forms (R6=23, R7=30) — the
+; whole form fits the screen, 184 lines displayed, 4 spare rows stay blank.
+IF WIDE = 1
 XOFF = 0                    ; form x - XOFF = screen x
 YOFF = 24
 SCRH = 232
@@ -24,6 +26,14 @@ SCRW = 352
 ROWB = 704                  ; 88 chars * 8 bytes
 XCMP = &60                  ; x >= 352 is off-screen (hi byte 1)
 XCLAMP = &5F                ; x1 clamps to 351
+ELIF WIDE = 2
+XOFF = 0
+YOFF = 0
+SCRH = 180
+SCRW = 320
+ROWB = 640
+XCMP = &40                  ; x >= 320 is off-screen (hi byte 1)
+XCLAMP = &3F                ; x1 clamps to 319
 ELSE
 XOFF = 16
 YOFF = 12
@@ -39,7 +49,8 @@ ENDIF
 ; beebasm command line — per-demo capacity. Handles are state base ADDRESSES
 ; (null = hi byte 0), so neither table sizes nor alignment constrain them.
 MAXT        = TMAXT         ; max live turtles
-FRAMES      = 10000         ; frame cap (matches visualizer)
+                            ; FRAMES (frame cap, matches the roseplots run)
+                            ; and WIRES (demo uses wire slots) also from -D
 STATE_SIZE  = STATESZ       ; bytes per turtle state block (64 + stack bytes)
 MAXRADIUS   = 70            ; circle tables in bank 6 cover 0..70
 
@@ -55,7 +66,7 @@ LOGCHK      = &0B82         ; 32-bit order-independent checksum
 IF TUBE
 ; Stop a full page below the sort stage: the limit check is on the record
 ; START, so a record beginning at LOGLIMIT-1:F8 may run 9 bytes past it.
-LOGLIMIT    = ((STATES - &0C00) DIV 256) - 1
+LOGLIMIT    = ((STATES - &400 - PBUFN * 8) DIV 256) - 1
 ELSE
 LOGLIMIT    = &7C           ; plot prefix (from rose_data_end) stops here
 ENDIF
@@ -131,11 +142,17 @@ DEFH        = SCRATCH+82    ; deferred list head (wait >= 256 frames)
 DEFT        = SCRATCH+84    ; deferred list tail
 TCNT        = SCRATCH+86    ; live turtle count (16-bit: up to 288 turtles)
 
-; Intrusive list link inside each state block: bytes 32/33 = wire slot 0.
-; No example uses wires (measured), so the slot doubles as the next pointer
-; for bucket/free/deferred lists. Revisit if a demo ever writes wire 0.
+; Intrusive list link inside each state block. When the demo uses no wires
+; (WIRES=0) it lives in wire slot 0's bytes (32/33). Wire-using demos keep
+; it in the top two bytes of the state instead — the build must then pass a
+; STATESZ with at least two spare bytes above the deepest stack
+; (64 + 4*max_stack + 2, rounded up).
+IF WIRES
+TL_LO       = STATE_SIZE - 2
+ELSE
 TL_LO       = 32
-TL_HI       = 33
+ENDIF
+TL_HI       = TL_LO + 1
 
 ; --- Scratch block (abs) -----------------------------------------------------
 IDX14       = SCRATCH+0     ; 14-bit sine index
@@ -188,18 +205,18 @@ P1F         = SCRATCH+94    ; frame stage: any record filed for pass 1
 ; 6-byte wire record (tag, x lo/hi, y lo/hi, r). Key = y - r + 140, two
 ; 256-bucket passes cover keys 0..511 (visible blobs land in -140..279).
 IF TUBE
-SORTBASE    = STATES - &0C00 ; parasite: just below the state blocks
+SORTBASE    = STATES - (&400 + PBUFN * 8) ; parasite: below the state blocks
 ELSE
 SORTBASE    = &9900         ; single CPU: SWRAM bank 6, above circle tables
                             ; (hw data ends &97B1 at maxr 70; asserted in
                             ; rose2bbc.py make_circle_bank)
 ENDIF
-PBUF        = SORTBASE      ; 250 entries x 8 bytes
-PBMAX       = 250
-BKHL        = SORTBASE + &800
-BKHH        = SORTBASE + &900
-BKTL        = SORTBASE + &A00
-BKTH        = SORTBASE + &B00
+PBUF        = SORTBASE      ; PBUFN entries x 8 bytes (-D, default 250;
+PBMAX       = PBUFN         ; overflow degrades to a mid-frame flush)
+BKHL        = SORTBASE + PBUFN * 8
+BKHH        = BKHL + &100
+BKTL        = BKHL + &200
+BKTH        = BKHL + &300
 
 ; --- Record queue: the Tube seam ---------------------------------------------
 ; The interpreter (future parasite) pushes wire records here; q_drain (the
@@ -315,7 +332,7 @@ IF TUBE
 ELSE
     stz DONEFLAG
 IF WIDE
-    ldx #0                          ; 6845: R1=88 R2=102 R6=29 R7=33
+    ldx #0                          ; 6845 tweaks (see crtctab per variant)
 .crtcloop
     lda crtctab,x
     sta &FE00
@@ -323,7 +340,7 @@ IF WIDE
     sta &FE01
     inx
     inx
-    cpx #8
+    cpx #CRTCN
     bne crtcloop
 ENDIF
     sei                             ; OS not needed from here on
@@ -425,6 +442,47 @@ ENDIF
     sta MS2L+1
     lda #>sq2_hi
     sta MS2H+1
+IF TUBE
+    ; Generate the sq1 pair into free low parasite RAM instead of shipping
+    ; 1KB in the image: f(n) = n^2/4 for n 0..511, incrementally via
+    ; f(n) = f(n-1) + (n >> 1). (sq2 stays in the image.)
+    stz ptr
+    stz scr
+    lda #>sq1_lo
+    sta ptr+1
+    lda #>sq1_hi
+    sta scr+1
+    stz RA                          ; acc = f(n), 16-bit
+    stz RA+1
+    stz RB                          ; step delta (n+1) >> 1, fits a byte
+.sqgen
+    lda RA
+    sta (ptr)
+    lda RA+1
+    sta (scr)
+    lda ptr                         ; after an odd n the step delta grows
+    lsr a
+    bcc sqgen_add
+    inc RB
+.sqgen_add
+    clc
+    lda RA
+    adc RB
+    sta RA
+    bcc sqgen_next
+    inc RA+1
+.sqgen_next
+    inc scr
+    bne sqgen_i2
+    inc scr+1
+.sqgen_i2
+    inc ptr
+    bne sqgen
+    inc ptr+1
+    lda ptr+1
+    cmp #>sq1_hi                    ; lo table walked past &6FF -> done
+    bne sqgen
+ENDIF
 IF TUBE = 0
     stz QW
     stz QW+1
@@ -892,7 +950,12 @@ ENDIF
     beq do_and
     cmp #8                          ; OP_OR
     beq do_or
-    jmp err_unimpl                  ; shifts/rotates: not yet
+    and #3                          ; nibbles 2/6 (ROXR/ROXL): absent
+    cmp #2                          ; upstream too, still unimplemented
+    beq op_op_bad
+    jmp op_shift
+.op_op_bad
+    jmp err_unimpl
 .do_add
     clc
     lda (st),y
@@ -961,6 +1024,118 @@ ENDIF
     iny
     lda (st),y
     ora RA+3
+    sta (st),y
+    jmp next_op
+
+; Shifts and rotates (OP nibbles 0/1/3/4/5/7), semantics exactly as the
+; visualizer's interpret.h: count = (right >> 16) & 63 (& 31 for rotates);
+; ASL/LSL << count (0 when count >= 32), LSR logical >> (0 when >= 32),
+; ASR arithmetic >> (-1 when >= 32, regardless of sign), ROR/ROL 32-bit
+; circular. Value = RA (the old top = left operand); result overwrites the
+; below slot at Y like every other op_op path. Rare ops: looped, cold.
+.op_shift
+    iny
+    iny
+    lda (st),y                      ; (right >> 16) low byte
+    dey
+    dey
+    and #63
+    sta zres                        ; count
+    lda opsave
+    and #15
+    cmp #3
+    beq sh_ror
+    cmp #7
+    beq sh_rol
+    ldx zres
+    beq sh_store                    ; count 0: value unchanged
+    cpx #32
+    bcs sh_sat
+    cmp #0                          ; OP_ASR
+    beq sh_asr
+    cmp #1                          ; OP_LSR
+    beq sh_lsr
+.sh_asl                             ; OP_ASL / OP_LSL (identical on 32 bits)
+    asl RA
+    rol RA+1
+    rol RA+2
+    rol RA+3
+    dex
+    bne sh_asl
+    bra sh_store
+.sh_lsr
+    lsr RA+3
+    ror RA+2
+    ror RA+1
+    ror RA
+    dex
+    bne sh_lsr
+    bra sh_store
+.sh_asr
+    lda RA+3
+    cmp #&80                        ; carry = sign bit
+    ror RA+3
+    ror RA+2
+    ror RA+1
+    ror RA
+    dex
+    bne sh_asr
+    bra sh_store
+.sh_sat                             ; count >= 32 saturates
+    cmp #0
+    beq sh_neg1                     ; ASR -> -1 (interpret.h hardcodes it)
+    stz RA
+    stz RA+1
+    stz RA+2
+    stz RA+3
+    bra sh_store
+.sh_neg1
+    lda #&FF
+    sta RA
+    sta RA+1
+    sta RA+2
+    sta RA+3
+    bra sh_store
+.sh_ror
+    lda zres
+    and #31
+    beq sh_store
+    tax
+.sh_rorl
+    lda RA
+    lsr a                           ; carry = bit 0
+    ror RA+3
+    ror RA+2
+    ror RA+1
+    ror RA
+    dex
+    bne sh_rorl
+    bra sh_store
+.sh_rol
+    lda zres
+    and #31
+    beq sh_store
+    tax
+.sh_roll
+    lda RA+3
+    asl a                           ; carry = bit 31
+    rol RA
+    rol RA+1
+    rol RA+2
+    rol RA+3
+    dex
+    bne sh_roll
+.sh_store
+    lda RA
+    sta (st),y
+    iny
+    lda RA+1
+    sta (st),y
+    iny
+    lda RA+2
+    sta (st),y
+    iny
+    lda RA+3
     sta (st),y
     jmp next_op
 
@@ -1965,9 +2140,14 @@ ENDIF
 
 .vdutab
     EQUB 23,1,0,0,0,0,0,0,0,0
-IF WIDE
+IF WIDE = 1
 .crtctab
     EQUB 1,88, 2,102, 6,29, 7,33
+CRTCN = 8
+ELIF WIDE = 2
+.crtctab                            ; letterbox: 184 lines shown, centred
+    EQUB 6,23, 7,30
+CRTCN = 4
 ENDIF
 
 
@@ -2475,6 +2655,10 @@ INCBIN "sine_quarter.bin"
 ; sq2[i] = f(i-255) so that, with a pointer offset by operand byte a,
 ; index ~b (= 255-b) yields f(a-b). floor works exactly: (a+b)^2 and
 ; (a-b)^2 are congruent mod 4. Interpreter-only, so above &3000 is fine.
+IF TUBE
+sq1_lo = &0500              ; generated at init (see sqgen) — the parasite
+sq1_hi = &0700              ; image is the scarce resource
+ELSE
 ALIGN &100
 .sq1_lo
 FOR i, 0, 511
@@ -2484,6 +2668,8 @@ NEXT
 FOR i, 0, 511
     EQUB >((i*i) DIV 4)
 NEXT
+ENDIF
+ALIGN &100
 .sq2_lo
 FOR i, 0, 511
     EQUB <(((i-255)*(i-255)) DIV 4)
@@ -2540,6 +2726,7 @@ ENDIF
 .rose_data_end                      ; plot prefix log grows from here
 
 IF TUBE
+PRINT "SYM rose_data_end", ~rose_data_end, "SORTBASE", ~SORTBASE
 ASSERT rose_data_end <= SORTBASE    ; code+data must fit below the frame stage
 SAVE "PARA", &E00, rose_data_end, entry
 ELSE

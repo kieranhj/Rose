@@ -4,10 +4,12 @@
 #include "translate.h"
 #include "rose_result.h"
 #include <cstdio>
+#include <cstdlib>
 
 int main(int argc, char *argv[]) {
-	if (argc < 3) { fprintf(stderr, "usage: roseplots <file.rose> <out.bin>\n"); return 1; }
-	RoseResult r = translate(argv[1], 10000, 352, 280, 1, 4);
+	if (argc < 3) { fprintf(stderr, "usage: roseplots <file.rose> <out.bin> [frames]\n"); return 1; }
+	int frames = argc > 3 ? atoi(argv[3]) : 10000;
+	RoseResult r = translate(argv[1], frames, 352, 280, 1, 4);
 	if (r.error) { fprintf(stderr, "translate error\n"); return 1; }
 	FILE *f = fopen(argv[2], "wb");
 	for (auto &p : r.plots) {
