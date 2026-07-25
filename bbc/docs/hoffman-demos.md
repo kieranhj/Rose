@@ -141,8 +141,47 @@ t4drop.bin sidecar. Verified: logicos bit-exact + pixel-perfect, full
 
 Effective erases still erase-to-background rather than revealing layer-0
 content — correct whenever layer 0 is background beneath, approximate
-otherwise. Full correctness needs Plan B (MODE 2 + software layer
-compositing at halved X resolution).
+otherwise: cycling the desktop selection box still eats the icons under
+it. That is inherent to one playfield — the screen doesn't store what
+layer 0 had beneath — and no masking can fix it.
+
+## Dual-playfield options: MODE 2 mock-up verdict (2026-07-25)
+
+Mock-ups in `mockups/` (rendered offline from the real plot stream +
+colorscript; `*-4way.png` panels top→bottom = MODE 2 mock / 1bpp-per-layer
+MODE 1 / current flatten / Archimedes reference; script:
+scratchpad mode2mock.py):
+
+- **MODE 2 (160×256, 4bpp) — REJECTED for logicos.** The elegant part
+  works: pixel = (l1idx<<2) | l0idx and the 16 palette entries computed as
+  `l1 ? colour(l1) : colour(l0)` make the ULA do the dual-playfield
+  compositing — exact erase-reveals-layer-0 semantics, all 8 tints keep
+  their own colour, zero extra RAM, and spans halve in bytes so it renders
+  no slower. But the halved X resolution destroys exactly what logicos is
+  made of: glyph strokes are one form-pixel wide, so at 2:1 adjacent
+  strokes merge — titles smear to mush, the FROM: list text is borderline
+  illegible (see logicos-4500-messaging-4way.png). Graphics-heavy scenes
+  (scanner) survive fine. A future graphics-led dual-playfield demo could
+  still use this.
+- **1bpp per playfield in MODE 1 — the viable alternative.** bit 0 =
+  layer 0, bit 1 = layer 1; palette 00=bg, 01=layer-0 colour, 1x=layer-1
+  colour. Exact dual-playfield semantics at full 320-wide: crisp text AND
+  the selection box cycles over the icons without eating them; the whole
+  t4 drop-mask apparatus becomes unnecessary. Cost: ONE foreground colour
+  per layer at a time (per-scene recolouring via the colorscript still
+  works — the solve would pick each layer's plot-weighted dominant tint).
+  The messaging mock reads as clean white-on-black — arguably the
+  cleanest BBC rendering of the three, at the price of the blue/yellow
+  accent variety the flatten keeps. Engineering: a second SWRAM filler
+  set doing AND/OR masked writes per layer bit, record layer-class
+  decode, per-layer colour solve — same class of work as MODE 2 would
+  have been, at today's byte widths.
+- **Current 4-colour flatten** — best colour variety, crisp text,
+  permanent erase artifacts.
+
+So the real choice is flatten (3 fg colours + artifacts) vs 1bpp dual
+playfield (2 fg colours, artifact-free). MODE 2 is out for text-heavy
+material.
 
 Tooling trap that cost a debugging round: framedump polling in 4M-cycle
 chunks overshoots the target frame by ~100 — the "eaten" logo screenshots
