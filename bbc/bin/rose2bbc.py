@@ -326,6 +326,21 @@ def make_t4mask(build, bc, constants, frames, formw, formh):
     plot in EMISSION order with r >= 0, consumed by sort_add;
     dropped_records go to t4drop.bin for pixelverify.
     """
+    # Only dual-playfield demos get the layer model. A single-layer demo
+    # could legitimately plot tints with &7 == 4 (a plain erase there) —
+    # gate on the same condition as the palette flatten: the colorscript
+    # defines tints above 3.
+    cs = (build / "colorscript.bin").read_bytes()
+    dual = False
+    for w in struct.unpack(f">{len(cs) // 2}H", cs):
+        if w == 0x8000:
+            break
+        if not (w & 0x8000) and (w >> 12) > 3:
+            dual = True
+            break
+    if not dual:
+        return [], []
+
     exp = (build / "expected_plots.bin").read_bytes()
     any_t4 = False
     for i in range(0, len(exp) - 9, 10):
