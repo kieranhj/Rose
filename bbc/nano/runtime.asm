@@ -37,6 +37,8 @@ MXH     = &86
 MY      = &88
 MYH     = &8A
 DONE    = &8C                   ; finished flag, read by the harness
+SPINCNT = &8D                   ; frames until the next palette rotation
+VIDULA  = &FE21
 
 ORG ORGADDR
 GUARD SCREEN
@@ -66,6 +68,13 @@ ENDIF
     BNE nowrap
     INC FRHI
 .nowrap
+IF SPINRATE > 0
+    DEC SPINCNT
+    BNE nospin
+    LDA #SPINRATE : STA SPINCNT
+    JSR palspin
+.nospin
+ENDIF
 IF MAXFRAMES > 0
     LDA FRHI : CMP #HI(MAXFRAMES) : BCC mainloop
     LDA FRLO : CMP #LO(MAXFRAMES) : BCC mainloop
@@ -237,6 +246,7 @@ ENDIF
 .cur1
     LDA #0 : JSR OSWRCH
     DEX : BNE cur1
+    JSR setpal
     JSR clearbg
     LDX #MAXT-1
     LDA #0
@@ -255,10 +265,47 @@ ENDIF
     LDA #0   : STA tsize
     LDA #LO(@@ENTRY@@) : STA tpcl
     LDA #HI(@@ENTRY@@) : STA tpch
+    LDA #SPINRATE : STA SPINCNT
     LDA #0 : STA DONE
     LDA #1 : STA RND
     LDA #0 : STA FRLO : STA FRHI
     RTS
+
+; ------------------------------------------------------------------- palette
+; The dither patterns hold LOGICAL colour numbers; rotating the logical->
+; physical map recolours everything already on screen, including trails whose
+; turtles are long dead (§4.2).  Eight writes to the video ULA, once a frame.
+.setpal
+    LDY #7
+.sp1
+    LDA palcur,Y
+    EOR #7                      ; the ULA stores the physical colour inverted
+    STA TMP
+    TYA
+    ASL A : ASL A : ASL A : ASL A
+    ORA TMP
+    STA VIDULA
+    DEY
+    BPL sp1
+    RTS
+
+; Rotate palcur[SPINLO..SPINHI] by one and reprogram.
+.palspin
+    LDA palcur+SPINLO
+    STA TMP
+    LDY #SPINLO
+.ps1
+    LDA palcur+1,Y
+    STA palcur,Y
+    INY
+    CPY #SPINHI
+    BNE ps1
+    LDA TMP
+    STA palcur+SPINHI
+    JMP setpal
+
+.palcur
+    EQUB 0,1,2,3,4,5,6,7
 
 ; Fill the screen with the background tint's pattern, so a background-coloured
 ; blob is invisible exactly as it is in the reference renderer (§13.4).

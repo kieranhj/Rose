@@ -39,7 +39,7 @@ and amendment boxes in §1, §2, §3, §4.1, §8, §9, §10, §12.
 | 2 | RAM budget | **Passed with room to spare.** §3 below |
 | 3 | Grid render — does it look like Rose? | **Passed, and refuted §3's fixed size.** §13 |
 | 4 | Dither-pair survey | **27 usable colours, not 36 and not 8.** §4 below |
-| 5 | Palette cycling study | **Not run** — see §7 |
+| 5 | Palette cycling study | **Passed, and it is the best thing here.** §2 below |
 | 6 | Compiled vs interpreted turtle step | **Measured on the real engine.** §5 below |
 
 ### Experiment 2 — RAM
@@ -70,6 +70,43 @@ shadow grid at 40×32 (1,280 B) all fit.
 The reason is §5's arithmetic paying off — an 11-byte turtle against the port's
 144 — plus the decision to compile rather than interpret, which puts the program
 in code rather than in a bytecode array *and* a jump table.
+
+### Experiment 5 — palette cycling
+
+Built into the engine and demonstrated. A `spin lo hi rate` declaration rotates
+a range of logical colours every `rate` frames; the runtime rewrites eight
+entries to the video ULA at &FE21, which costs about **50 cycles a frame**.
+
+`cycle.nano` draws six arms once, over 26 frames, and then every turtle dies.
+`palseq.mjs` then screenshots the machine at six later frames *and dumps screen
+RAM at each one*:
+
+![palette cycling](mockups/nano-v1-palette-cycle.png)
+
+```
+frame 200: screen bytes identical to the first shot
+frame 203: screen bytes identical to the first shot
+frame 206: screen bytes identical to the first shot
+frame 209: screen bytes identical to the first shot
+frame 212: screen bytes identical to the first shot
+frame 215: screen bytes identical to the first shot
+```
+
+**All 20,480 bytes are identical in every frame. Nothing is drawn. The picture
+moves anyway.** The check is the point: it proves the motion is the palette and
+not a redraw.
+
+§4.2 claimed this was the most Nano-specific expressive idea in the design — the
+only mechanism that adds on-screen motion for zero interpreter time, and the one
+that composes with persistent trails so that a trail keeps moving after the
+turtle that drew it is gone. That is exactly what the strip shows, and it works
+because the dither patterns hold *logical* colour numbers, so remapping
+logical→physical recolours everything already on screen.
+
+Worth noting for composition: rotating a range that a dither pair straddles
+gives a shimmer rather than a flat colour change, because the pair's two halves
+move independently. `cycle.nano` uses solid tints to make the effect legible;
+the shimmer is the more interesting case and is untried.
 
 ### Experiment 4 — how many colours are actually there
 
@@ -233,13 +270,9 @@ doc's framing, which currently leads with it.
 
 Not done, in the order I would pick them up:
 
-1. **Experiment 5 — palette cycling.** The one remaining feasibility experiment,
-   and the doc calls it first-class (§4.2). Skipped because it is the hardest
-   thing to judge from stills and everything else was on the critical path.
-   The engine has the hook: nothing writes &FE21 yet, and a `cycl` op plus a
-   per-frame palette rotation is perhaps 30 lines. This is the highest-value
-   next thing — it is the only mechanism that adds motion for zero cycles, and
-   with persistent trails it is the most Nano-specific idea in the document.
+1. **Compose with the cycling shimmer.** §6's palette rotation works on solid
+   tints; rotating a range that a *dither pair* straddles should shimmer rather
+   than switch, and nothing has tried it. Cheapest interesting experiment left.
 2. **Beam-race the draw order.** v1 draws turtles in slot order, not raster
    order, so a heavy frame can tear. §6.3's counting sort into 32 row buckets is
    cheap and would remove it.
@@ -275,6 +308,8 @@ designing *for* the BBC rather than squeezing Rose onto it actually buys
 anything. Tonight it stopped being a document and started being a machine, and
 the answer is yes, with numbers attached:
 
+- palette cycling that moves a finished picture with **byte-identical screen
+  memory**, for ~50 cycles a frame;
 - an engine and a program in **2.6KB**, on a machine the port needed a Master,
   a coprocessor and sideways-RAM paging to satisfy;
 - a compiled turtle step costing about what Micro's `move` costs on its own;

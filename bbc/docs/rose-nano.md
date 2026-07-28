@@ -27,7 +27,7 @@ and far more than 8 colours — than the hardware nominally offers.
 >
 > **v1 is built and running** — compiler, runtime and a byte-exact verification
 > harness, on a stock Model B. See **`rose-nano-v1.md`**, which also closes
-> experiments 2, 4 and 6. One correction it makes to this document: §2's claim
+> experiments 2, 4, 5 and 6 — all six are now run. One correction it makes: §2's claim
 > that bytes are the binding constraint does not survive contact — v1 fits in
 > 2.6KB of the 5.9KB actually available.
 
@@ -571,7 +571,7 @@ Nothing in §1–§9 was measured when it was written. In dependency order:
 | 2 | ~~RAM budget: MODE 2 full / 160×200 / MODE 5~~ **DONE — see `rose-nano-v1.md` §2** | Which configuration is possible (all of them: v1 uses 2.6KB of 5.9KB) | small |
 | 3 | ~~Render the existing demos onto an 80×64 and a 40×32 grid in the visualizer, dithered to the §4.1 tint set~~ **DONE — see §13** | **Does it look good?** | small |
 | 4 | ~~Dither-pair study~~ **DONE — 27 distinct of 36: 8 solids + 19 dithers (`rose-nano-v1.md` §2)** | The apparent palette is the whole colour pitch (§9) | small |
-| 5 | **NEXT — the only feasibility experiment left.** Cycling-tint study: persistent trails drawn in rotating palette entries, incl. static/cycling dither pairs | Is §4.2 the expressive win it looks like | small |
+| 5 | ~~Cycling-tint study~~ **DONE — built into v1 and demonstrated: byte-identical screen memory, moving picture, ~50 cyc/frame (`rose-nano-v1.md` §2)** | Is §4.2 the expressive win it looks like (yes) | small |
 | 6 | ~~Time a compiled turtle step~~ **DONE — measured on the finished engine: a whole step costs ~700 cycles plus the blob (`rose-nano-v1.md` §5)** | Is §6.4 worth the code space (yes) | small |
 | 7 | *(deferred, §7)* shadow-grid fade sweep prototype | Does managed persistence look like Rose or like something else | medium |
 
