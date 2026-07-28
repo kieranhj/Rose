@@ -8,3 +8,9 @@ build
 .claude/settings.local.json
 .vscode/tasks.json
 instructions.asm
+
+# build artefacts
+__pycache__/
+bbc/bench/bench.ssd
+bbc/bench/beebasm.log
+bbc/bench/boot.txt

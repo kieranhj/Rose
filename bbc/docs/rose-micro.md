@@ -64,7 +64,8 @@ a 4-byte loop. Measured, after the §7d speed pass:
 | fork (144-byte state copy) | ~1,500 |
 
 A typical `move` is dispatch + 2 sine lookups + 2 multiplies + 4 adds ≈ **700 cycles**
-— 1.75% of a 50Hz frame for one turtle taking one step. The profile ranked umul16 at
+— 1.75% of a 50Hz frame for one turtle taking one step. *(§9 measured it: the real
+figure is 1,456 cycles, twice this estimate.)* The profile ranked umul16 at
 12.5% and push/pop at 13.5% of interpreter time: **a quarter of the interpreter is
 paying for word width we don't use.** Screen space is 320×256. We are computing
 positions to 1/65536th of a pixel.
@@ -142,6 +143,11 @@ is well under half a pixel.
 | turtle state | 144 B | 32 B | 4.5× |
 | fork | ~1,500 | ~350 | 4× |
 
+*(All of the above are now measured — see §9.3. The directions are right; `move`
+goes 1,456 → 686 and a state copy 2,576 → 560, but the overall interpreter
+speedup is **1.75×**, not the 2–2.5× claimed next, because dispatch does not
+improve.)*
+
 Expected interpreter speedup **2–2.5×** overall, plus §1.3's capacity wall
 disappearing. Cost: bit-exactness with the *current* visualizer is lost — the
 visualizer and pyinterp need a Micro numeric mode (§6). This is the price of
@@ -184,7 +190,12 @@ recursion; 8 slots × 2 bytes = 16 B and the compiler can *prove* the bound offl
 (it already walks the call graph). No example uses wires; logicos does, so keep 4
 slots as an opt-in build flag rather than a per-turtle tax.
 
-### R5 — No runtime division; fused, byte-operand opcodes
+### R5 — No runtime division; fused, byte-operand opcodes  ⭐ promoted by §9.5
+
+*(Measurement promoted this from a nice-to-have to the second pillar: dispatch is
+13% of interpreter time and is the one cost the 16-bit word does nothing for.
+Everyway executes 138,618 dispatches at 28.8 cycles — 4.0M cycles that fusing
+`const`+`op` and `rlocal`+`op` would largely remove.)*
 
 - Division costs ~400 cycles and is rare. Restrict to compile-time-constant divisors
   → reciprocal multiply. A `div` by a runtime value becomes a compile error.
@@ -340,7 +351,7 @@ Cheap experiments that de-risk the expensive decisions, roughly in dependency or
 | # | Experiment | Answers | Effort |
 |---|---|---|---|
 | 1 | ~~Micro numeric mode in the visualizer; replay all 9 demos + logicos~~ **DONE — see §8** | Does 10.6 / byte-direction / brush-radius *look* right? Drift? | small |
-| 2 | Microbenchmark a 10.6 `move` handler in isolation under jsbeeb | Is the 2–2.5× interpreter estimate real? | small |
+| 2 | ~~Microbenchmark a 10.6 `move` handler in isolation under jsbeeb~~ **DONE — see §9** | Is the 2–2.5× interpreter estimate real? | small |
 | 3 | Generate one precompiled brush painter (r=8, offset 0–3), benchmark vs `render_blob` | Is R6's 2–3× real, and what is the true code size per variant? | small |
 | 4 | Budget checker in `rose2bbc.py` against the current cost model | Which existing demos are already inside a 25/50Hz contract? | small |
 | 5 | Lag-queue prototype on the current engine (no dialect change needed) | How much of the p50/p95 gap does it actually absorb? | medium |
@@ -506,7 +517,150 @@ python bbc/tools/plotrender.py ref.bin out.png --frame 1563 --label ref \
   --compare micro.bin --label2 micro
 ```
 
-## 9. Bottom line
+## 9. Experiment 2 results — measured interpreter costs (2026-07-28)
+
+Experiment 1 asked whether the 16-bit model *looks* right. This one asks whether it
+is *fast* enough to be worth the disruption — specifically whether §R1's estimated
+"2–2.5× interpreter speedup" survives contact with a real 6502.
+
+### 9.1 What was built
+
+Two tools, both reusable beyond this experiment:
+
+- **`bbc/tools/opcost.mjs`** — per-execution cost of every opcode handler on a real
+  demo run. `profile.mjs` answers "where do the cycles go"; this answers "what does
+  one `move` cost". A per-instruction hook charges cycles to the last *handler*
+  entered, so helper subroutines (`sinlook`, `smul16`, `push_RA`) land on their
+  caller. `OPCOST_EXTRA=sinlook,smul16` splits helpers out when wanted.
+- **`bbc/bench/`** — a standalone 65C12 benchmark (`micro.asm`, built and run by
+  `build.sh` via `run.mjs`) implementing the Micro primitives with the *same*
+  quarter-square tables and calling conventions as `engine/interp.asm`. Each
+  benchmark is bracketed by `.bs_*` labels; the harness runs to each in turn and
+  diffs the cycle counter, subtracting an empty loop and a call scaffold.
+  `move16q8` is **validated** against a JS replay of the identical integer
+  arithmetic (256 stepped moves must land on the same x,y) — a fast `move` that is
+  wrong proves nothing, and the check caught two real bugs while writing it.
+
+### 9.2 What the current engine actually costs
+
+Measured with `opcost.mjs` (ball, circle and Everyway agree to within a cycle or
+two on the shared handlers):
+
+| handler | executions (Everyway) | mean cycles |
+|---|---|---|
+| `op_move` | 4,704 | **1,456** |
+| `op_div` | 1 (ball) | 2,565 |
+| `op_fork` | 1,157 | 1,518 |
+| `op_mul` | 6,093 | 569 |
+| `op_wait` | 1,379 | 270 |
+| `op_neg` | 4,992 | 173 |
+| `op_op` (add/sub/and/or) | 13,096 | 141 |
+| `op_wlocal` | 5,091 | 122 |
+| `op_const` | 28,634 | 116 |
+| `op_wstate` | 21,511 | 114 |
+| `op_when` | 6,480 | 114 |
+| `op_rlocal` | 25,791 | 106 |
+| dispatch | 138,618 | 28.8 |
+
+First correction to §1.2: a `move` costs **1,456 cycles, not the ~700 estimated** —
+3.6% of a 50Hz frame for one turtle taking one step. Of that, ~433 is the two
+`sinlook` calls (a polynomial evaluation, not a table read — it exists to stay
+bit-exact with the visualizer's `sin()`), and ~570 the two `smul16` calls.
+
+### 9.3 What the Micro primitives cost
+
+Measured in `bbc/bench` on the same emulated Master:
+
+| primitive | 16.16 | Micro 16-bit | ratio |
+|---|---|---|---|
+| add, zero page | 38 | **20** | 1.9× |
+| push + pop one stack slot | 95 | **51** | 1.9× |
+| signed multiply | 283 (16×16→32) | **160** (16×8→24) | 1.8× |
+| `op_const` | 116 | **37** | 3.1× |
+| `op_rlocal` | 106 | **61** | 1.7× |
+| `op_wstate` | 114 | **65** | 1.8× |
+| `op_op` (add) | 141 | **62** | 2.3× |
+| `move` | 1,456 | **686** (Q7 byte sine) | **2.1×** |
+| `move` | 1,456 | 1,193 (Q12 word sine) | 1.2× |
+| state copy | 2,576 (144 B) | **560** (32 B) | 4.6× |
+| dispatch | 28.8 | 28.8 | **1.0×** |
+
+The Micro `move` is a straight-line handler: pop a 10.6 distance, take `dir >> 6`
+as a 1024-step table index, read sine and cosine (the cosine is the *same* X one
+page along — a quarter turn is exactly 256 entries), two signed multiplies with
+rounding, two 16-bit position adds.
+
+### 9.4 Q7 byte sine vs Q12 word sine — the one real design choice
+
+A byte sine table halves the multiply (two partial products instead of four) and
+that alone is worth **507 cycles per move** — the difference between 2.1× and 1.2×.
+It costs accuracy two ways: 1024 entries of 8 bits instead of 16, and a signed byte
+cannot hold +128, so the peak clamps to 127 (a 0.8% shrink at the extremes — a
+uniform scale error, which preserves shape and closure).
+
+Measured drift for the byte table, against the 32-bit reference:
+
+| | teaser | Chiperia | Everyway |
+|---|---|---|---|
+| Q12 word sine | 0.16 px | 0.34 px | 0.14 px |
+| Q7 byte sine | 0.31 px | 0.52 px | 0.15 px |
+
+Both are comfortably sub-pixel. **Take the byte table**: 1KB, half the multiply
+cost, and drift that experiment 1's own criterion calls invisible. Keep Q12 as the
+build option for anything that turns out to need it.
+
+### 9.5 The honest overall number: 1.75×, not 2–2.5×
+
+Weighting the measured per-op costs by Everyway's real opcode mix
+(`bbc/tools/interpmix.py`; ops with no benchmarked Micro equivalent get a
+conservative estimate):
+
+```
+total                     29.76M -> 17.06M cycles    speedup 1.74x
+handlers only (no dispatch)     25.77M -> 13.07M     speedup 1.97x
+```
+
+So **§R1's estimate was optimistic: the interpreter gets ~1.75×, not 2–2.5×.** The
+handlers themselves do hit ~2×, but dispatch is 13% of interpreter time and the
+numeric model does nothing for it — 138,618 dispatches at 28.8 cycles is the second
+largest line item in the table after `move`.
+
+Two consequences for the spec:
+
+1. **R5 (fused superinstructions) is promoted from nice-to-have to the second
+   pillar.** Every fused op removes a 29-cycle dispatch *and* the push/pop pair
+   around it; `const`+`op` and `rlocal`+`op` alone would remove a large share of
+   the 138K dispatches. This is where the rest of the 2.5× lives.
+2. **The capacity win is bigger than the speed win, and it is the one that changes
+   what is possible.** 32-byte states put 280 turtles in main RAM with no paging,
+   no address handles, and no coprocessor — 4.6× cheaper forks as a side effect.
+
+Also worth noting: `sched` (the per-frame turtle list walk plus state save/restore)
+costs 3,402 cycles per execution and 8.9% of Everyway's whole run. It is not in the
+table above because it is not an opcode, but it shrinks with state size too — it
+pages banks and copies `ip`/`evx`/state fields that all halve under Micro.
+
+### 9.6 Verdict
+
+The 16-bit model is worth building, but for a corrected reason. It buys:
+
+- **~1.75× on the interpreter** (~2× on the handlers), measured, not estimated;
+- **4.6× on turtle state**, which retires the entire capacity apparatus;
+- and it makes dispatch the next thing to attack, which R5 already covers.
+
+What it does *not* buy is a 50Hz Everyway: at 1.75× the interpreter, Everyway's
+interpreter+emit half goes from ~5.8fps-equivalent to ~10, and the renderer — 44%
+of that run and untouched by any of this — still needs R6. The two levers are
+independent and both are needed.
+
+Reproduce:
+```
+node bbc/tools/opcost.mjs bbc/build/everyway 150     # 16.16 per-op costs
+bash bbc/bench/build.sh                              # Micro primitives + validation
+python bbc/tools/interpmix.py                        # weighted comparison
+```
+
+## 10. Bottom line
 
 The three things that cost us most on the BBC are all *width* problems, not algorithm
 problems: 32-bit words for a 320×256 screen, 144-byte turtles, and unbounded radii.
