@@ -19,8 +19,10 @@ and far more than 8 colours — than the hardware nominally offers.
 > an estimate derived from the *measured* constants in `rose-micro.md` §9–§13, and §10
 > lists the experiments that would turn them into facts.
 >
-> **Experiment 3 has since run — see §13.** It passes the look test and refutes §3's
-> central reduction. Read §13 before treating §1, §3 or §8 as the design; the
+> **Experiments 3 and 1 have since run — see §13 and §14.** Experiment 3 passes the
+> look test and refutes §3's central reduction; experiment 1 confirms the MODE 2 layout
+> the whole design rests on and corrects the cost constants (they were optimistic by
+> ~46% per byte). Read §13 and §14 before treating §1, §3 or §8 as the design; the
 > amendment boxes in those sections say what survived.
 
 ---
@@ -64,7 +66,8 @@ This is not a smaller Rose. It is a different bargain, and §9 states the price.
 > a **four-row lookup table** whose worst entry is bounded and known at design time,
 > which retires every row of the table above except the radius cap. The engine still
 > has no worst case it cannot name in advance; it simply names four numbers instead of
-> one. Measured: six of nine demos never miss a 50Hz render frame (§13.3).
+> one. Measured: three of nine demos never miss a 50Hz render frame and four more are
+> inside 6% (§14.3).
 
 ---
 
@@ -73,7 +76,7 @@ This is not a smaller Rose. It is a different bargain, and §9 states the price.
 | | value | note |
 |---|---|---|
 | Machine | BBC Model B + sideways RAM | 2MHz 6502 (not 65C12 — no `(zp)`, no `bra`, no `phx`) |
-| RAM timing | full 2MHz | video reads on the opposite phase; **no display contention** ⚠️verify |
+| RAM timing | full 2MHz | video reads on the opposite phase; no display contention (consistent with §14.2) |
 | Frame | 40,000 cycles @ 50Hz | same budget as Micro |
 | MODE 2 | 160×256, 4bpp, 8 colours | 2 px/byte, pixels 2:1 wide; flash unused (§4.3) |
 | Screen RAM | **20,480 bytes** | &3000–&7FFF |
@@ -121,14 +124,18 @@ every clipping special case. It also means blobs **overwrite** rather than blend
 ### 3.2 Grid tiers
 
 MODE 2 pixels are 2:1 (wide), so a square blob needs twice as many rows as pixel
-columns. ⚠️ The byte *ordering* within a character cell needs confirming under jsbeeb
-(experiment 1); the byte *counts* below hold regardless.
+columns. The byte ordering within a character cell was confirmed under jsbeeb — see
+§14.1 — and it decides which tier to use.
 
-| grid | blob (px × rows) | bytes | physical shape | est. cycles | cells |
+| grid | blob (px × rows) | bytes | physical shape | measured cycles | cells |
 |---|---|---|---|---|---|
-| 40×32 | 4 × 8 | 16 | square, chunky | ~160 | 1,280 |
-| **80×64** | **2 × 4** | **4** | **square** | **~70** | 5,120 |
-| 80×128 | 2 × 2 | 2 | wide rectangle | ~45 | 10,240 |
+| **40×32** | **4 × 8** | **16** | **square, chunky** | **183** | **1,280** |
+| 80×64 | 2 × 4 | 4 | square | — | 5,120 |
+| 80×128 | 2 × 2 | 2 | wide rectangle | — | 10,240 |
+
+> **§14.1 chose the top row.** A character row is 8 scanlines, so only the 40×32 tier's
+> cells align with it; the finer tiers straddle bands, splitting every contiguous run in
+> two. The hardware picks the grid.
 
 A 1-pixel-wide blob would be half a byte and require RMW — so **2 pixels is the
 minimum blob width**, and that is the whole reason the grid exists.
@@ -147,6 +154,11 @@ column offset     add col×4 to p (table or shifts)                 ~8
 
 Call it **70 cycles, flat, for every blob the engine will ever draw.** The 40×32 tier
 is the same address arithmetic plus 16 stores ≈ **~160**.
+
+> **Measured in §14.2: 183 cycles for the 40×32 tier** — the estimate above was close
+> for this shape, and the address setup is 29 rather than 24. What the estimate got
+> wrong was the *per-byte* rate at scale: 8.79, not the ~6 implied here, because
+> `sta (P),y` + `iny` is 8 cycles and there is no cheaper general form.
 
 Against Micro's *measured* render costs (§1.1, `bbc/tools/rendercost.mjs`):
 
@@ -168,9 +180,9 @@ plots. Nano needs one stamp routine and a table of patterns.
 > and a 45-pixel disc into a dot. What actually pays here is **byte alignment and grid
 > snapping**, which remove the masks, the per-line setup and the clipping cases; those
 > survive intact when the blob is allowed to span several cells. The law becomes
-> `cycles ≈ 25 + 6 · bytes` over a **four-entry size table**, still 3.3–11.4× cheaper
-> than Micro measured across the corpus, and still a lookup rather than a quadratic.
-> See §13.3.
+> `cycles ≈ 57 + 8.79 · bytes` (measured, §14.2) over a **four-entry size table**,
+> 2.2–7.0× cheaper than Micro measured across the corpus, and still a lookup rather
+> than a quadratic. See §13.3 and §14.3.
 
 ### 3.4 What clipping becomes
 
@@ -549,8 +561,8 @@ Nothing in §1–§9 was measured when it was written. In dependency order:
 
 | # | Experiment | Answers | Effort |
 |---|---|---|---|
-| 1 | Confirm MODE 2 byte-order within a character cell; time a 16-byte and a 144-byte stamp under jsbeeb | Are 25 + 6/byte real? **Everything hangs on this** | small |
-| 2 | RAM budget spreadsheet: MODE 2 full / 160×200 / MODE 5, against turtle arrays + speed tables + shadow grid + code | Which configuration is even possible | small |
+| 1 | ~~Confirm MODE 2 byte-order within a character cell; time a 16-byte and a 144-byte stamp under jsbeeb~~ **DONE — see §14** | Are 25 + 6/byte real? (No: 57 + 8.79) | small |
+| 2 | **NEXT.** RAM budget spreadsheet: MODE 2 full / 160×200 / MODE 5, against turtle arrays + speed tables + shadow grid + code | Which configuration is even possible | small |
 | 3 | ~~Render the existing demos onto an 80×64 and a 40×32 grid in the visualizer, dithered to the §4.1 tint set~~ **DONE — see §13** | **Does it look good?** | small |
 | 4 | ~~Dither-pair study~~ **PARTLY DONE — §13.4 answered it in passing; the exhaustive pair survey is still worth doing** | The apparent palette is the whole colour pitch (§9) | small |
 | 5 | Cycling-tint study in the visualizer: persistent trails drawn in rotating palette entries, incl. static/cycling dither pairs | Is §4.2 the expressive win it looks like | small |
@@ -581,10 +593,11 @@ nothing and costs the corpus. What buys the speed is putting blobs on a byte-ali
 grid, which deletes the masks, the read-modify-write, the per-line setup and the
 clipping cases, and keeps deleting them when a blob spans several cells.
 
-The result is a render law of `25 + 6·bytes` over a four-entry size table: 3.3–11.4×
-cheaper than Micro measured, with six of nine demos never missing a 50Hz render frame
-— including ball, which Micro §1.1 calls render-bound at 25fps and immune to a
-coprocessor.
+The result, measured on a Model B, is a render law of `57 + 8.79·bytes` over a
+four-entry size table: **2.2–7.0× cheaper than Micro measured**, with three of nine
+demos never missing a 50Hz render frame and four more inside 6% — including ball,
+which Micro §1.1 calls render-bound at 25fps and immune to a coprocessor, and which
+Nano draws in 13,897 cycles flat.
 
 v1 buys back the apparent colour depth with the two mechanisms that cost nothing and
 introduce no timing risk — **dither pairs and palette cycling** — and buys back nothing
@@ -597,12 +610,16 @@ The two dialects are not competitors. Micro is how the existing work reaches the
 Nano is what you would write *for* the BBC, and the honest summary is that it is a
 different instrument that happens to share Rose's grammar.
 
-The decision gate was experiment 3, and **it passed**: the grid, the eight colours and
+The decision gates were experiments 3 and 1, and **both passed** — experiment 3 on the
+look, experiment 1 on the one hardware fact everything rests on. Experiment 3: the grid, the eight colours and
 the dither reproduce the corpus recognisably, and Frustration and Chiperia are
 genuinely good (`bbc/docs/mockups/`). What it also did was refute the reduction the
-document is built on, which is what a cheap experiment is for. The gate is now
-experiment 1 — every number in §13.3 rests on one unverified fact about MODE 2's
-memory layout.
+document is built on, which is what a cheap experiment is for. Experiment 1 then confirmed the MODE 2 layout exactly as §3 needed it, and corrected
+the cost constants downward by about half — a smaller claim, still a strong one.
+
+The gate is now **RAM**: 8.5KB of main memory (experiment 2), and an interpreter that
+has not been measured at all (experiment 6), which is what Micro §11.5 says actually
+fails.
 
 ---
 
@@ -679,8 +696,9 @@ engine.
 What actually pays on this machine is **byte alignment and grid snapping**, not fixed
 size. Those remove the masks, the read-modify-write, the four x-offset painter
 variants and the clipping cases, and they keep doing so when a blob spans several
-cells. ⚠️ Assuming consecutive addresses are consecutive scanlines within a character
-row (experiment 1), a blob is a few contiguous byte runs and the law is:
+cells. Assuming consecutive addresses are consecutive scanlines within a character
+row (experiment 1 — since **confirmed**, §14.1), a blob is a few contiguous byte runs
+and the law is:
 
 ```
 Nano   cycles ≈ 25 + 6 · bytes                     (estimated)
@@ -765,7 +783,8 @@ But the specific reduction that §1 and §3 build on — one fixed stamp per plo
 refuted by seven of nine demos, and it was never the thing paying for the speed. Byte
 alignment and grid snapping are. Those give a `25 + 6·bytes` law that is 3.3–11.4×
 cheaper than Micro measured, with a four-entry size table that keeps the frame cost
-bounded and known at design time.
+bounded and known at design time. *(§14 measured that law: `57 + 8.79·bytes`, and the
+ratio is 2.2–7.0×. The shape of the argument holds; the numbers shrink.)*
 
 So the design changes shape rather than dying:
 
@@ -779,5 +798,125 @@ So the design changes shape rather than dying:
 
 The next thing to run is **experiment 1**, because every number in §13.3 rests on the
 MODE 2 byte-order assumption, and the whole argument now rests on §13.3.
+
+*(Run — see §14. The layout assumption is confirmed; the cost constants were
+optimistic by ~46%, and §13.3's table is superseded by §14.3.)*
+
+---
+
+## 14. Experiment 1 results — the stamp, measured on a Model B (2026-07-28)
+
+### 14.1 The MODE 2 layout is confirmed, with one correction
+
+Probed interactively under jsbeeb on a `B-DFS1.2` by drawing a known line and reading
+screen RAM back out-of-band (printing the dump would have overwritten the memory being
+dumped — the screen *is* the buffer).
+
+A 7-pixel vertical line at x=0 sets `&3000`–`&3006`, **consecutive addresses**. A
+horizontal line sets `&3000, &3008, &3010, &3018, &3020, &3028, &3030` — **stride 8**.
+
+```
++1    next scanline          (within a character row only)
++8    next 2-pixel column
+32 B  character cell         8 px x 8 rows
++640  next character row     20 cells x 32 bytes
+```
+
+So §3.1's premise holds: a blob is a set of *contiguous byte runs* and needs no masks.
+The correction is that **contiguity stops at 8 rows**. A blob taller than one character
+row is not one long run; it is one run per (byte-column, character row) pair, and each
+band needs its own base pointer — which is exactly what Micro §R6 found ("2–3
+self-modified base addresses per blob, one per character row band").
+
+**This settles the grid choice.** A 40×32 grid over a 160×256 canvas gives cells of
+4 px × 8 rows — 8 rows is precisely the character row height, so **a grid cell never
+straddles a band** and every run is a full 8 bytes. The 80×64 tier's 4-row cells
+straddle, splitting every run in two and roughly doubling the per-run overhead. §3.2
+offered 80×64 as the recommended tier; the hardware prefers 40×32.
+
+### 14.2 The measured cost law
+
+`bbc/bench/nanostamp.mjs` generates the stamp code, pokes it into a real machine and
+times it against the cycle counter. 256 iterations per shape, empty loop subtracted.
+
+| shape | bytes | flat | cyc/byte | per-row dithered | cyc/byte |
+|---|---|---|---|---|---|
+| address setup alone | — | 29 | — | — | — |
+| rc=0, 4×8 px | 16 | 183 | 11.5 | 215 | 13.5 |
+| rc=1, 12×24 px | 144 | 1,333 | 9.3 | 1,628 | 11.3 |
+| rc=2, 20×40 px | 400 | 3,582 | 9.0 | 4,410 | 11.0 |
+| rc=3, 28×56 px | 784 | 6,939 | 8.9 | 8,566 | 10.9 |
+
+```
+flat        cycles ≈  57 + 8.79 · bytes      (measured)
+dithered    cycles ≈  54 + 10.86 · bytes     (measured)
+§13.3 est.  cycles ≈  25 + 6 · bytes         (wrong by ~46% per byte)
+```
+
+The per-byte floor is `sta (P),y` + `iny` = 8 cycles, and 8.79 is that plus the `ldy`
+per run and the base rebase per band. There is no cheaper general form: `sta ABS,y`
+saves a cycle but needs its operand self-modified per store, which costs more than it
+saves when the blob's position changes every frame. **8.79 is the floor, not a first
+attempt.**
+
+The flat/dithered split is a real design choice. "Flat" means the dither pattern varies
+only *within* a byte — the two pixels of a byte differ, but every byte of the blob is
+the same value, so the `lda` hoists out of the loop. That still buys the 50% pair mixes,
+which §13.4 found are most of the usable set anyway. Per-row variation, needed for the
+25%/75% levels, costs **24% more**. Recommend flat as the default and per-row as an
+opt-in for material that needs the extra levels.
+
+### 14.3 What this does to the budget
+
+Re-running `nanobudget.py` on the corpus with the measured constants (40×32, sizes
+{0,1,2,3}, flat), against the 40,000-cycle 50Hz frame:
+
+| demo | Nano p50 | Nano p95 | frames over budget | vs Micro |
+|---|---|---|---|---|
+| circle | 395 | 395 | 0.0% | 7.0× |
+| tree | 5,511 | 19,344 | 0.0% | 3.7× |
+| ball | 13,897 | 13,897 | 0.0% | 2.7× |
+| Teaser | 2,646 | 47,619 | 0.1% | 3.1× |
+| JeSuisRose | 12,056 | 53,595 | 3.6% | 2.3× |
+| Chiperia | 1,186 | 48,015 | 5.9% | 3.1× |
+| Euphoria | 14,292 | 58,551 | 7.9% | 2.5× |
+| Frustration | 2,767 | 82,027 | 19.4% | 2.2× |
+| Everyway | 33,480 | 125,648 | 40.7% | 2.8× |
+
+**§13.3 over-claimed and this is the correction.** The win is **2.2–7.0×** over Micro's
+measured law, not 3.3–11.4×. **Three** demos never miss a 50Hz render frame, not six —
+though four more are inside 6%, which a 25Hz cadence or modest authoring-down clears
+easily.
+
+What survives intact:
+
+- **ball still never misses.** 13,897 cycles a frame, flat, for the demo Micro §1.1
+  calls render-bound at 25fps and immune to a coprocessor. This was the sharpest result
+  in §13 and the measurement did not touch it.
+- **The cost is still a four-row table**, still bounded, still known at design time.
+  §1's amended premise is unaffected.
+- **Byte alignment is still the thing that pays.** Removing the 666-cycle per-blob term
+  and the 90-cycle per-line term is what produces the 2.2–7.0×; the per-byte rate is
+  only marginally better than Micro's 12 (8.79 flat).
+
+What does not:
+
+- §8's headline of ~33% of a frame, and §13.3's "six of nine". Both were built on the
+  optimistic per-byte figure.
+- The 80×64 grid as the recommended tier (§14.1).
+
+### 14.4 Verdict
+
+**Experiment 1 passes on the assumption and fails the estimate.** The MODE 2 layout is
+exactly what §3 needed it to be, which is the load-bearing fact; the cost constants
+were optimistic by about half, which moves the numbers without moving the argument.
+
+Nano renders the existing corpus 2.2–7.0× cheaper than Micro at the same authoring
+density, with a bounded four-entry cost table, on a machine with half the RAM and no
+coprocessor. That is a smaller claim than §13 made and still a strong one.
+
+The open items are now §9's ordering, not the renderer: **8.5KB of main RAM**
+(experiment 2) is the next thing that can kill this, and the interpreter — which Micro
+§11.5 found is what actually fails — has not been measured at all (experiment 6).
 
 ---

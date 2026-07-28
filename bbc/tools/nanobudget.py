@@ -3,9 +3,10 @@
 
   nanobudget.py <plots.bin> [--grid 40x32] [--stamp 4x8] [--sizes 0,1,2]
 
-Nano's blob is byte-aligned and grid-snapped, so the renderer has no mask, no
-read-modify-write and no per-line setup -- consecutive addresses are consecutive
-scanlines within a character row, so a blob is a few contiguous byte runs:
+Nano's blob is byte-aligned and grid-snapped, so the renderer has no mask and no
+read-modify-write. Consecutive addresses are consecutive scanlines *within a
+character row* (confirmed under jsbeeb), so a blob is a set of contiguous 8-byte
+runs, one per (byte-column, character row) pair:
 
     cycles ~= PER_BLOB + PER_BYTE * bytes
 
@@ -13,15 +14,19 @@ against Micro's *measured* law (rose-micro.md §10):
 
     cycles  = 666 + 90 * lines + 12 * bytes
 
-Both are printed so the comparison is explicit. The Nano constants are estimates
-pending experiment 1; the Micro ones are measured on a real machine.
+Both are printed so the comparison is explicit, and both sets of constants are
+measured on a real machine -- Nano's by bbc/bench/nanostamp.mjs on a Model B,
+Micro's by bbc/tools/rendercost.mjs on a Master.
 """
 import argparse
 import numpy as np
 
 CANVAS_W, CANVAS_H = 160, 256
-PER_BLOB = 25.0   # address setup, estimate
-PER_BYTE = 6.0    # unrolled immediate stores, estimate
+# Measured on a stock Model B under jsbeeb -- bbc/bench/nanostamp.mjs.
+# Flat: one byte value for the whole blob (dither varies within the byte only).
+# Dithered: the value alternates per row, costing an LDA per byte.
+PER_BLOB, PER_BYTE = 57.0, 8.79           # flat
+PER_BLOB_D, PER_BYTE_D = 54.0, 10.86      # per-row dithered
 FRAME = 40000     # 2MHz, 50Hz
 
 
@@ -41,6 +46,8 @@ def main():
     ap.add_argument("--stamp", default="4x8")
     ap.add_argument("--sizes", default="0,1,2")
     ap.add_argument("--name", default="")
+    ap.add_argument("--dithered", action="store_true",
+                    help="cost per-row dithered stamps instead of flat ones")
     a = ap.parse_args()
 
     fw, fh = a.form
@@ -62,7 +69,8 @@ def main():
     wpx = sw + 2 * rcq * pxw
     rows = sh + 2 * rcq * pxh
     byts = np.ceil(wpx / 2.0) * rows
-    nano = PER_BLOB + PER_BYTE * byts
+    pb, pby = (PER_BLOB_D, PER_BYTE_D) if a.dithered else (PER_BLOB, PER_BYTE)
+    nano = pb + pby * byts
     micro = micro_cost(r)
 
     nframes = int(t.max()) + 1
