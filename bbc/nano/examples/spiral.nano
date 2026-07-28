@@ -1,0 +1,25 @@
+; A single turtle spiralling out, forking a second colour behind it.
+; The Rose idiom for a loop is `fork self n-1` and fall off the end (§6.2).
+
+back 001
+plan
+    0:001 1:F80 2:08F 3:FFF
+
+proc main
+    jump 80 128
+    face 0
+    tint 1
+    size 1
+    fork arm 60
+    face 128
+    tint 2
+    fork arm 60
+
+proc arm n
+    draw
+    move 3
+    turn 9
+    wait 1
+    when n > 0
+        fork arm n-1
+    done

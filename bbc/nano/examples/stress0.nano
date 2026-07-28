@@ -1,0 +1,27 @@
+; Saturates the 48-slot turtle pool and keeps it saturated, so a frame can be
+; timed under full load.  Not a picture — a measurement (§14, experiment 6).
+
+back 000
+plan
+    0:000 1:F08 2:08F 3:FF8 4:F80 5:8F0 6:C00 7:888
+
+proc main
+    jump 80 128
+    fork spawn 0
+
+proc spawn d
+    fork orbit 250 d
+    wait 3
+    fork spawn d+11
+
+proc orbit n d
+    face d
+    tint n
+    size 0
+    draw
+    move 3
+    turn 9
+    wait 1
+    when n > 0
+        fork orbit n-1 d
+    done
