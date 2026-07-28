@@ -397,7 +397,11 @@ Cheap experiments that de-risk the expensive decisions, roughly in dependency or
 | 4 | ~~Budget checker against the measured cost model~~ **DONE — see §12** | Which existing demos are already inside a 25/50Hz contract? | small |
 | 5 | ~~Fuse the hot opcode pairs; measure one for real~~ **DONE — see §13** | Is R5's 8–12% real, and does the encoding have room? | small |
 | 6 | Lag-queue prototype on the current engine (no dialect change needed) | How much of the p50/p95 gap does it actually absorb? | medium |
-| 7 | S2 dual-write fillers on the current engine, ball + teaser | True cost of tear-free double buffering | medium |
+| 7 | ~~S2 dual-write fillers on the current engine, ball + teaser~~ **CANCELLED — see §14 D5** | True cost of tear-free double buffering | medium |
+
+**Post-§14:** experiment 6 is deferred (R7 is a smoother that bolts onto a finished
+engine — §11.6) and experiment 7 is cancelled outright (D5 confines drawing to one
+beam-raced field, so nothing tears). No experiment blocks v1.
 
 Experiments 4 and 5 need no new dialect at all and would improve the *existing*
 engine — worth doing regardless of whether Rose Micro gets built.
@@ -1104,7 +1108,16 @@ per frame at 50Hz on a stock Master** — a fork costs ~700 cycles under Micro, 
 of them is an entire frame, and tree's 256-fork frame is 4.5 frames of work on its
 own.
 
-### 12.4 The contract
+### 12.4 The contract *(superseded by §14 D5)*
+
+> **Superseded.** §14's D5 chose an *adaptive* 50/25Hz cadence over a hard build-time
+> gate, on the grounds that an author experimenting with an effect must not have the
+> build fail underneath them. R8 keeps the analysis below but reports it per scene
+> instead of failing; the `--fail` behaviour survives as an opt-in flag. The one part
+> that *did* become a hard structural requirement is narrower and not stated here:
+> **render alone must fit one field**, which D3a's constant-cost painters make
+> checkable.
+
 
 Gate on the **worst frame**, not the mean: peaks are the failure mode and no
 plausible queue absorbs them. With a depth-8 queue the right check is a worst
@@ -1314,17 +1327,309 @@ node bbc/tools/runverify.mjs bbc/build/ball-fz
 node bbc/tools/frametime.mjs bbc/build/ball-fz out.csv 400
 ```
 
-## 14. Bottom line
+## 14. Decisions before v1 — resolved (2026-07-28)
+
+Experiments 1–5 answered every question that could be answered by measurement. What
+was left was not measurable — five choices about what the language *is*. All five are
+now decided; this section keeps the options and the reasoning, with the decision
+recorded under each.
+
+| # | decision | outcome |
+|---|---|---|
+| **D1** | value domain | **split domain** — 10.6 for arithmetic, raw 16-bit for bitwise/shifts |
+| **D1-sub** | how the domain is known | **literal syntax** — `$XXXX` is a raw pattern, reusing Rose's existing `$` convention |
+| **D2** | operand encoding | **stack + a reserved 16-slot fusion range** (one-byte fused opcodes) |
+| **D3a** | radius | **cap 12, no `disc` escape** — every blob is a painter with a constant cost |
+| **D3b** | clearing | **`wipe` byte-aligned rect**, plus a char-row-aligned fast path |
+| **D3c** | clipping | **vertical only** (entry table + poked `RTS`); horizontal clip drops the blob with a compile-time diagnostic |
+| **D4** | overflow | **wrap**, reported by R8, with an opt-in flag escalating it to a build error |
+| **D5** | cadence | **one beam-raced field of drawing**, with an **adaptive** 50/25Hz cadence; R8 becomes advisory tooling, not a gate |
+
+Three of these changed shape during the discussion rather than being picked off the
+menu — D3 (because `ball`'s big disc turned out to be an erase), D3c (a cheaper rule
+than any option offered), and D5 (which supersedes §12.4). Those are flagged below.
+
+Two things that are *not* on this list, and why:
+
+- **Experiment 6 (lag queue).** §11.6 already measured the answer with the model:
+  depth 8 absorbs 35–60% of a peak, and no depth ≤512 rescues five of ten demos.
+  R7 is a smoother, not a mechanism, and it bolts onto a finished engine with no
+  dialect consequences. Build it after v1, against Micro's own record path.
+- **Experiment 7 (S2 dual-write).** **Cancelled by D5.** With all drawing confined to
+  one beam-raced field, nothing tears and there is nothing for a second buffer to
+  fix. The 20KB it would have needed goes to the painter set instead.
+
+---
+
+### D1 — The value domain
+
+**The problem (§8.6).** Rose stores integer *N* as *N*<<16. Under a uniform 10.6
+reading, only the top 6 bits of a bit pattern survive: logicos loses 23% of its plots
+and its font engine visibly disintegrates, and tree overflows 18% of its multiplies.
+Geometry is fine — this is purely about what a *value* means.
+
+| option | what it is | cost | consequence |
+|---|---|---|---|
+| **D1a — split domain** | the 16-bit word is 10.6 for arithmetic and a raw bit pattern for `&`, `\|`, `^`, shifts and rotates. A 16-bit glyph row fits exactly. | none at runtime — the ops already differ. Costs a paragraph of spec and a compiler that knows which domain a literal is in. | integer literals need a syntax or an inference rule; mixing domains is a compile error or a documented reinterpretation |
+| **D1b — low-bits convention** | keep one domain; document that bit-pattern data lives in the low 6 bits and is shifted up when used as a number | zero implementation | 6-bit glyph rows. logicos-class font engines have to be rewritten, and the trap is silent — a pattern that overflows just corrupts |
+| **D1c — geometry-only 16-bit** | positions/direction 16-bit, *values* stay wider (24 or 32) | keeps R1's 4.6× state win only partially — stack slots go back up, and §9.3's push/pop 51 vs 95 is halved back | the safe option; costs the cleanest part of the win |
+| **D1d — no bitwise ops** | drop shifts/rotates/bitwise from the dialect | trivially safe | logicos does not port. Font/glyph work becomes impossible in-language |
+
+**The evidence:** exactly one program in the corpus needs this (logicos, via `>><`),
+but it is the one program authored *for* a small machine rather than ported down to
+one, which makes it the best predictor of what Micro material looks like.
+
+**Decided: D1a, split domain — but not for logicos.** Porting the logicos font engine
+is explicitly *not* a v1 goal, so the justification is generality and the fact that a
+16-bit machine word wanting a 16-bit bit-pattern domain is the natural reading, not
+demo compatibility. That matters for how the rule is spelled: with no legacy program
+to satisfy, take the cheapest possible spelling.
+
+**Decided (D1-sub): literal syntax.** `$XXXX` denotes a raw 16-bit pattern; a bare
+literal is 10.6. Rose already uses `$XXXXXXXX` for raw fixed-point representations, so
+this is an existing convention narrowed to the new word width rather than new syntax.
+No inference, no new keyword, and the author sees the domain at the point of use.
+
+**Not solved by this, and moved to D4:** tree's 18% multiply overflow is an
+*intermediate range* problem — two 10.6 values multiplied exceed ±512 whatever the
+word is interpreted as. The split domain does not touch it.
+
+### D2 — Stack vs direct-operand encoding
+
+**The problem (§13.3).** Fusion pays 109 cycles when it keeps a value off the eval
+stack and 7 when it only removes a dispatch. Every worthwhile fusion measured is an
+op naming its operand directly. Push/pop is 13.5% of interpreter time; dispatch is
+13% and R1 does nothing for either.
+
+| option | what it is | measured basis |
+|---|---|---|
+| **D2a — stack + reserved fusion range** | keep the eval stack; reserve a full 16-slot opcode range so the top ~10 producer→consumer pairs are *one-byte* fused ops | §13.5's curve: 10 opcodes = 9.3% of interpreter, and Micro's from-scratch encoding removes the 22-cycle operand penalty that made the prototype only break even |
+| **D2b — direct-operand (register) model** | ops name their local slot in the opcode byte (`add r3, #k`). The eval stack shrinks to a scratch for expression temporaries | §13.3's conclusion — this is what fusion is *approximating*. Removes the push/pop pairs by construction rather than case by case |
+| **D2c — stack, no fusion** | simplest interpreter | forfeits ~9% of interpreter time; R1×R5's 1.9× drops to 1.75× |
+
+D2b is the larger rewrite (codegen must allocate slots, not just emit a postfix
+walk) and it is the one that makes the §12.3 authoring budget — 6–9 blobs/frame —
+move. D2a is the incremental path and is already prototyped on 16.16.
+
+**Constraint from §13.6:** the binding limit is *code space*, not opcode space.
+Fifteen opcode bytes are free by construction in the current encoding and 32 across
+the corpus; logicos-tube's parasite had 242 spare bytes and one 44-byte fused handler
+broke the build. Whatever D2 chooses, the handler budget is the thing to size first.
+
+**Decided: D2a, stack plus a reserved 16-slot fusion range.** The eval stack stays;
+the encoding reserves a contiguous 16-slot range up front so the top ~10
+producer→consumer fusions are *one-byte* opcodes. This is the whole reason §13's
+prototype under-delivered — on 16.16 the operand byte cost 22 cycles of the 109 a
+fusion saves, and a from-scratch encoding does not pay it.
+
+Consequence to size early: §13.5's curve is 1 opcode → 4.5%, 5 → 6.3%, 10 → 9.3%,
+15 → 9.6%. Ten is the knee. Reserving 16 slots leaves headroom without pretending the
+tail is worth having, and per §13.6 the constraint that will actually bind is the
+*code space* those ten handlers occupy, not the opcode space.
+
+### D3a — Radius model and the `disc` escape
+
+**The problem (§8.5, §10.3, §10.4).** R3 (cap radius) and R6 (precompiled painters)
+are a package: the cap is what makes every plot painter-eligible, and only then is
+the saving ~50% of render. But r≤15 clamps **100% of ball** and **15% of
+JeSuisRose**, and painters converge with the generic path above r≈13, so generating
+past r≈12 is wasted SWRAM.
+
+| option | what it is | consequence |
+|---|---|---|
+| **D3a — cap 15 + `disc` escape** | `plot` takes a 4-bit brush index; `disc r` is a separate, honestly-costed op on the generic path | as specced. Area-fill material still works but pays; the budget checker (§R8) makes the price visible at build time |
+| **D3b — cap 12, no escape** | every blob is a painter, full stop | a hard build-time guarantee per blob — the strongest version of §12.2's "predictability as much as speed". Ball-class demos are simply not expressible |
+| **D3c — cap 8** | §5 Config B's number | painters for r≤8 with all four offsets ≈ 8.2KB (§10.3), one SWRAM bank. Covers 95.6% of logicos' plots at 2.1KB |
+| **D3d — no cap, demand-driven painters** | toolchain fills SWRAM hottest-first, generic fallback | Everyway's profile says this is the weak version: 13.3KB of painters buys it only 10.8%, because its bill is r=20–70 discs |
+
+**The framing changed mid-decision, and it is the most useful thing in this section.**
+`ball.rose` is the one program that fails a radius cap on 100% of its plots:
+
+```
+tint 0 size 35 + (vel<0?~vel:vel) draw     <- r up to 65
+tint 1 size 30 draw                         <- the ball
+```
+
+The big blob is `tint 0` — it is the **erase** that clears last frame's trail before
+the ball is drawn on top. The demo that most needs an uncapped radius does not need
+big *artwork*; it needs a fast way to clear an area. On a black background a
+byte-aligned rectangle covering the same region is visually indistinguishable.
+JeSuisRose's 15% over r=15 is the same story: a flood-fill, not a drawn circle.
+
+So the escape hatch R3 proposed is the wrong shape. Clearing is a separate op (D3b),
+and once it exists, nothing in the corpus needs a large *coloured* disc.
+
+**Decided: cap 12, no `disc` escape.** Every blob is a painter, so every blob
+costs a compile-time constant — the strongest available form of §12.2's
+"predictability as much as speed", and it means there is no generic render path to
+maintain, verify or budget for at all. 12 rather than 15 because painters converge
+with the generic path above r≈13 (§10.3), so r=13–15 variants would burn sideways RAM
+for no gain.
+
+### D3b — The clear op
+
+**Decided: `wipe x y w h`, byte-aligned, with a char-row-aligned fast path.** `x` and
+`w` snap to 4-pixel byte boundaries; generated unrolled fillers run at ~5.4 cycles per
+byte. When the rectangle also spans whole character rows (`y` and `h` multiples of 8)
+it takes a second path over contiguous 640-byte runs with no per-line address
+arithmetic, closer to 4 cycles/byte.
+
+| region | bytes | cycles | fits a 50Hz field? |
+|---|---|---|---|
+| 80×40 (ball's erase) | 800 | ~4,300 | yes |
+| 320×64 band, char-aligned | 5,120 | ~20,500 | yes |
+| full screen | 20,480 | ~110,000 | no — 2.75 fields |
+
+Two paths is a real cost in generation and verification, but scene transitions are
+exactly the case where the wipe is largest and the fast path matters most. Full-screen
+clears do not fit a field and must be authored as banded wipes across several frames —
+which R8 can see and report on.
+
+### D3c — Clipping
+
+Painters bake line offsets and carry no clip test, and with `disc` gone there is no
+generic path to fall back to. The rule chosen is cheaper than any of the four options
+considered:
+
+**Decided: vertical clipping only; horizontal clipping drops the whole blob, with a
+compile-time diagnostic.**
+
+- **Vertical** is nearly free: top-clip enters the painter at line *k* via a per-line
+  entry table, bottom-clip pokes an `RTS` at line *m* and restores it afterwards.
+  Cost is 2 bytes/line of table per variant and constant time.
+- **Horizontal** is the expensive one — painters bake byte offsets from `BASE`, and a
+  MODE 1 row that overhangs wraps into the *next row*, so a blob crossing a side edge
+  would corrupt the opposite side of the screen. Rather than pay for per-line masking
+  or a margin buffer, such a blob is simply not drawn, and the toolchain reports it
+  from the offline replay (opt-in escalation to a build error, as in D4).
+
+This keeps every drawn blob at constant cost, keeps the painters pure straight-line
+code, and confines the compromise to material that walks off the left or right edge —
+which the author is told about at build time rather than discovering on screen.
+
+**Sizing consequence — squares need painters too.** §10.3's figures are circles only,
+but 85% of Everyway's and 79% of JeSuisRose's records are *squares*, which need their
+own variants (~27% more bytes each, though cheaper to run: §11.3's 261+86.9·lines
+against 379+143.7·lines). Circles r0–12 across all four offsets is ≈20KB and squares
+≈25KB, so the full set is ≈45KB — nearly three sideways RAM banks.
+
+That is affordable only because R1 retires everything currently occupying them:
+32-byte turtle states fit in main RAM (bank 7 freed), and painters replace both the
+span fillers (banks 4/5) and the circle tables (bank 6). All four banks come free at
+once, which is the same 20KB windfall §15 describes — it is spent here rather than on
+double buffering.
+
+### D4 — Out-of-range behaviour
+
+**The problem (§8.5).** 10.6 gives ±512 against a 0–319 screen. Position updates
+overflow on **3.6% of Euphoria's** — turtles genuinely fly off-canvas as part of the
+composition, they do not merely clip.
+
+| option | consequence |
+|---|---|
+| **D4a — saturate** | cheap-ish per op, and wrong: a saturated turtle walks along the boundary instead of leaving, so it comes *back* in the wrong place |
+| **D4b — wrap** | free (it is what the hardware does), and defensible as a language rule — the canvas is a torus at ±512 |
+| **D4c — compile-time error via R8** | `budget.py` already replays the program offline and could flag it. Zero runtime cost, but the check is only as good as the replay's coverage of a rand-driven program |
+| **D4d — wrap + R8 warning** | hardware behaviour, with the toolchain telling the author it happened and where |
+
+The runtime cost matters more than it looks: this is a check on the hot path of
+`move`, whose whole Micro budget is 686 cycles.
+
+**Decided: D4d, wrap plus an R8 report — with an opt-in flag escalating the report to
+a build error.** Wrapping is what the hardware does, costs nothing on `move`'s hot
+path, and is defensible as a language rule (the canvas is a torus at ±512). The
+toolchain's offline replay already sees every overflow, so it reports them with frame
+numbers and counts; `budget.py` already has the `--fail` precedent, so escalation is
+a flag rather than new machinery.
+
+The flag is opt-in rather than default for the same reason D5 rejects a hard gate:
+an author experimenting with an effect should not have the build taken away from them.
+The honest caveat stays on the record — a clean replay of a `rand`-driven program does
+not prove the next run is clean, so this is a strong warning, not a proof.
+
+This is also where D3c's horizontal-clip diagnostic and D1's dropped multiply
+overflows land, so the three share one reporting mechanism and one escalation flag.
+
+### D5 — Cadence and buffering
+
+The question started as "which of §5's three configurations does v1 target" and
+turned into something better, via one observation: **racing the beam is hard at
+25Hz.** With a single buffer and 40ms of work, the beam completes two full passes
+while you are drawing — it overtakes you and shows unfinished work.
+
+What makes this tractable under Micro is that the render share collapses. An r=4
+painter is 649 cycles against ~5,000 cycles per plot in total (§12.3), so seventeen
+blobs is ~11,000 cycles of *drawing* — 27% of a single 40,000-cycle field. The 40ms
+of a 25Hz frame is needed for **interpretation**, not for stores.
+
+**Decided: one beam-raced field of drawing, with an adaptive 50/25Hz cadence.**
+
+All drawing happens inside a single field, top-down in raster order, racing the beam
+exactly as `tube.md` §7e already does. The only variable is whether the next frame
+begins on the next field or the one after:
+
+```
+50Hz:  [ interp + render, racing the beam ]  [ interp + render ]  ...
+25Hz:  [ render, racing the beam ]  [ interp only ]  [ render ]  [ interp ]  ...
+```
+
+This is one mechanism, not two — §7e's designed-not-built "cadence latch", made real.
+No double buffer, no doubled stores, and the beam never laps the renderer because the
+renderer never runs longer than a field.
+
+Two things follow:
+
+- **R8 now gates two separate quantities.** Render must fit *one field, always* —
+  this is a hard structural requirement, and D3a's constant-cost painters are what
+  make it checkable. Interp+render must fit one field for 50Hz or two for 25Hz, and
+  that is the soft one.
+- **The buffering question is closed for v1.** S2 dual-write is not needed (nothing
+  tears), the palette-flip bitplane buffer is not needed, and experiment 7 comes off
+  the list entirely. The 20KB that §15 says double buffering would have used is spent
+  on D3c's painter set instead.
+
+**Decided: the cadence is adaptive at runtime, and this supersedes §12.4.** §12.4
+argued for a hard build-time gate on the worst frame. That is wrong for the way this
+language is actually used: an author experimenting with an effect must not have the
+build fail underneath them. The engine slips a field when it overruns and recovers
+when it can.
+
+R8 therefore changes role — from a build gate to **the author's optimisation
+instrument**, and that makes its reporting quality the feature rather than its
+pass/fail verdict. What it has to do:
+
+- attribute cost **per scene**, not per program, so "this scene runs at 25Hz" is
+  answerable and actionable;
+- name what is expensive in the frames that overran — §11's checker already prints
+  the worst frame's plot mix and fork count, which is the right shape;
+- report against the rate the author is *targeting*, so the question is "what do I cut
+  to hold 50Hz here", not "did the build pass";
+- keep the escalate-to-error flag from D4 available for anyone who wants the hard
+  contract on a finished piece.
+
+The trade accepted knowingly: the frame rate is no longer a guarantee, and a demo that
+hunts between cadences will judder. The counter-argument that won is that a hard gate
+does not remove that material, it only removes the ability to *see* it — and the
+authoring loop matters more at this stage than the contract does.
+
+---
+
+## 15. Bottom line
 
 The three things that cost us most on the BBC are all *width* problems, not algorithm
 problems: 32-bit words for a 320×256 screen, 144-byte turtles, and unbounded radii.
 Fixing all three is a ~2–2.5× interpreter win, a 2–3× small-blob render win, a 4×
-capacity win, and it frees the 20KB that makes double buffering possible — without
-touching the parts of Rose that make it Rose (persistent trails, forking turtles,
-time buckets, colorscripts).
+capacity win, and it frees 20KB of sideways RAM — without touching the parts of Rose
+that make it Rose (persistent trails, forking turtles, time buckets, colorscripts).
+
+*(§14 D5 spends that 20KB on the painter set rather than on double buffering, which it
+makes unnecessary: with all drawing inside one beam-raced field, nothing tears.)*
 
 The remaining gap to *guaranteed* 50Hz is not an engine property. It is a contract
 between the composer and the machine, and §R8 is how the toolchain enforces it —
 built and validated in §11, where it reports that two of our ten demos are inside a
 contract today, that the rest fail on peaks rather than averages, and that for nine
 of ten the *interpreter*, not the renderer, is what has to get cheaper.
+
+*(§14 D5 softened that too: R8 reports per scene and the cadence adapts, rather than
+the build failing. The one hard requirement left is that render alone fits one field.)*
