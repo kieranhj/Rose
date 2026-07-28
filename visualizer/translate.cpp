@@ -112,9 +112,13 @@ std::vector<int> assignWires(std::vector<wire_mask_t> wire_conflicts, int* slots
 	return assignment;
 }
 
+MicroConfig micro;
+int MicroConfig::rnd_on = 0;
+
 RoseResult translate(const char *filename, int max_time,
                      int width, int height,
                      int layer_count, int layer_depth) {
+	micro.init();
 	RoseResult result;
 	result.width = width;
 	result.height = height;

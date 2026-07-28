@@ -3,6 +3,7 @@
 #include "ast.h"
 #include "symbol_linking.h"
 #include "translate.h"
+#include "micro.h"
 
 #include <functional>
 #include <cstring>
@@ -346,6 +347,7 @@ private:
 				if (b >= (128 << 16) || b < -(128 << 16)) {
 					rep.reportWarning(token, "Right operand overflows");
 				}
+				if (micro.on && micro.valq) return micro.mulval(a, b);
 				return (a << 8 >> 16) * (b << 8 >> 16);
 			};
 			cpu(126 - 20);
@@ -359,6 +361,7 @@ private:
 				if (divisor == 0) {
 					throw CompileException(token, "Division by zero");
 				}
+				if (micro.on && micro.valq) return micro.divval(a, b);
 				int div_result = a / divisor;
 				if (b >= (128 << 16) || b < -(128 << 16)) {
 					rep.reportWarning(token, "Result overflows");
@@ -439,7 +442,7 @@ private:
 			throw CompileException(token, "Right side of operation is not a number");
 		}
 
-		result = Value(eval(left.number, right.number));
+		result = Value(micro.qval(eval(left.number, right.number)));
 	}
 
 	void caseANegExpression(ANegExpression exp) override {
@@ -456,13 +459,19 @@ private:
 		if (inner.kind != ValueKind::NUMBER) {
 			throw CompileException(exp.getToken(), "Operand of sine is not a number");
 		}
-		result = Value(sin((inner.number & 0xffff) >> 2) << 2);
+		if (micro.on) {
+			// SINB-entry table, Q(SINA) amplitude, re-expressed as 16.16.
+			int idx = (inner.number & 0xffff) >> (16 - micro.sinb);
+			result = Value(micro.qval((micro.sinlut(idx) << 16) >> micro.sina));
+		} else {
+			result = Value(sin((inner.number & 0xffff) >> 2) << 2);
+		}
 		cpu(42);
 	}
 
 	void caseARandExpression(ARandExpression exp) override {
 		state.seed = random_iteration(state.seed);
-		result = Value((state.seed >> 16) & 0xFFFF);
+		result = Value(micro.qval((state.seed >> 16) & 0xFFFF));
 		cpu(12 + 144);
 	}
 
@@ -512,7 +521,7 @@ private:
 	}
 
 	void caseANumberExpression(ANumberExpression exp) override {
-		result = Value(sym.literal_number[exp]);
+		result = Value(micro.qval(sym.literal_number[exp]));
 		if (procedure_phase) {
 			sym.registerConstant(exp, result.number);
 		}
@@ -616,7 +625,8 @@ private:
 		if (turn.kind != ValueKind::NUMBER) {
 			throw CompileException(s.getToken(), "Turn value is not a number");
 		}
-		state.direction += turn.number;
+		state.direction += micro.on ? MicroConfig::q(turn.number, micro.dirq) : turn.number;
+		if (micro.on) state.direction = micro.qdir(state.direction);
 		cpu(12 + 16 + 20 + 16);
 	}
 
@@ -625,7 +635,7 @@ private:
 		if (face.kind != ValueKind::NUMBER) {
 			throw CompileException(s.getToken(), "Face value is not a number");
 		}
-		state.direction = face.number;
+		state.direction = micro.on ? micro.qdir(face.number) : face.number;
 		cpu(16);
 	}
 
@@ -668,6 +678,20 @@ private:
 			throw CompileException(s.getToken(), "Move distance is not a number");
 		}
 		number_t m = move.number;
+		if (micro.on) {
+			// 16-bit model: distance is a 10.6 value, sine a Q(SINA) table entry
+			// indexed by the whole part of the direction register.
+			// A full circle is 256 direction units = 2^24 in 16.16, so a
+			// SINB-entry table is indexed by direction >> (24 - SINB).
+			int idx = state.direction >> (24 - micro.sinb);
+			long long mq = MicroConfig::q(m, micro.posq);
+			long long sa = micro.sinlut(idx), ca = micro.coslut(idx);
+			long long half = micro.rnd ? (1LL << (micro.sina - 1)) : 0;
+			state.x = micro.qpos(state.x + (number_t)((mq * ca + half) >> micro.sina));
+			state.y = micro.qpos(state.y + (number_t)((mq * sa + half) >> micro.sina));
+			cpu(424);
+			return;
+		}
 		int sa = sin(state.direction >> 10);
 		int ca = sin((state.direction >> 10) + 4096);
 		if (m < MAKE_NUMBER(32) && m > -MAKE_NUMBER(32)) {
@@ -696,8 +720,8 @@ private:
 		if (y.kind != ValueKind::NUMBER) {
 			throw CompileException(s.getToken(), "Y is not a number");
 		}
-		state.x = x.number;
-		state.y = y.number;
+		state.x = micro.on ? micro.qpos(x.number) : x.number;
+		state.y = micro.on ? micro.qpos(y.number) : y.number;
 		cpu(32);
 	}
 
@@ -707,6 +731,7 @@ private:
 			short x = NUMBER_TO_INT(state.x);
 			short y = NUMBER_TO_INT(state.y);
 			short size = NUMBER_TO_INT(state.size);
+			if (micro.on) size = micro.qradius(size);
 			output.push_back({f, x, y, size, tint});
 			stats->draw(f, x, y, size);
 		}
