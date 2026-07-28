@@ -3,10 +3,10 @@
 2026-07-28, overnight session. Branch `rose-nano`.
 
 **Rose Nano runs on a stock BBC Model B.** A compiler, a runtime and a
-verification harness exist; three example programs build, boot in jsbeeb, draw,
+verification harness exist; four example programs build, boot in jsbeeb, draw,
 and match a Python reference model **byte-for-byte across all 20,480 bytes of
-screen RAM**. The remaining feasibility experiments are done and two of them
-changed the design.
+screen RAM**. All six feasibility experiments are now run; two of them changed
+the design.
 
 ![bloom on the machine](mockups/nano-v1-bloom-beeb.png)
 
@@ -35,12 +35,12 @@ and amendment boxes in §1, §2, §3, §4.1, §8, §9, §10, §12.
 
 | # | Experiment | Verdict |
 |---|---|---|
-| 1 | MODE 2 layout + stamp cost | **Passed the assumption, failed the estimate.** §14 |
-| 2 | RAM budget | **Passed with room to spare.** §3 below |
-| 3 | Grid render — does it look like Rose? | **Passed, and refuted §3's fixed size.** §13 |
-| 4 | Dither-pair survey | **27 usable colours, not 36 and not 8.** §4 below |
-| 5 | Palette cycling study | **Passed, and it is the best thing here.** §2 below |
-| 6 | Compiled vs interpreted turtle step | **Measured on the real engine.** §5 below |
+| 1 | MODE 2 layout + stamp cost | **Passed the assumption, failed the estimate** — `rose-nano.md` §14 |
+| 2 | RAM budget | **Passed with room to spare** — below |
+| 3 | Grid render — does it look like Rose? | **Passed, and refuted §3's fixed size** — `rose-nano.md` §13 |
+| 4 | Dither-pair survey | **27 usable colours, not 36 and not 8** — below |
+| 5 | Palette cycling | **Passed, and it is the best thing here** — below |
+| 6 | Compiled vs interpreted turtle step | **Measured on the real engine** — §5 |
 
 ### Experiment 2 — RAM
 
@@ -71,6 +71,23 @@ The reason is §5's arithmetic paying off — an 11-byte turtle against the port
 144 — plus the decision to compile rather than interpret, which puts the program
 in code rather than in a bytecode array *and* a jump table.
 
+### Experiment 4 — how many colours are actually there
+
+All 36 fifty-fifty combinations of the eight physicals, mixed in linear light
+and de-duplicated by weighted perceptual distance:
+
+**27 distinct colours: 8 solids + 19 dithers.** The count is stable for any
+threshold between 40 and 100, which is a strong signal — the set does not
+degrade gracefully, it just is 27.
+
+The nine that collapse are exactly the *opposite* pairs — red+green, red+blue,
+yellow+blue, magenta+cyan and so on. That is a pleasing convergence: the pairs
+that are numerically redundant are the same ones §13.4 found do not fuse at a
+MODE 2 pixel. **There is no tension between "looks right" and "adds a colour".**
+
+So §4.1's "roughly 90 apparent tints" was optimistic and §9's worry that Nano
+might be "an 8-colour system" was pessimistic. It is a 27-colour system, for
+zero cycles.
 ### Experiment 5 — palette cycling
 
 Built into the engine and demonstrated. A `spin lo hi rate` declaration rotates
@@ -108,23 +125,6 @@ gives a shimmer rather than a flat colour change, because the pair's two halves
 move independently. `cycle.nano` uses solid tints to make the effect legible;
 the shimmer is the more interesting case and is untried.
 
-### Experiment 4 — how many colours are actually there
-
-All 36 fifty-fifty combinations of the eight physicals, mixed in linear light
-and de-duplicated by weighted perceptual distance:
-
-**27 distinct colours: 8 solids + 19 dithers.** The count is stable for any
-threshold between 40 and 100, which is a strong signal — the set does not
-degrade gracefully, it just is 27.
-
-The nine that collapse are exactly the *opposite* pairs — red+green, red+blue,
-yellow+blue, magenta+cyan and so on. That is a pleasing convergence: the pairs
-that are numerically redundant are the same ones §13.4 found do not fuse at a
-MODE 2 pixel. **There is no tension between "looks right" and "adds a colour".**
-
-So §4.1's "roughly 90 apparent tints" was optimistic and §9's worry that Nano
-might be "an 8-colour system" was pessimistic. It is a 27-colour system, for
-zero cycles.
 
 ---
 
@@ -138,7 +138,8 @@ bbc/nano/
   build.sh       nanoc -> beebasm -> .ssd
   run.mjs        boot in jsbeeb, dump screen RAM, screenshot
   profile.mjs    frame cost under load (experiment 6)
-  examples/      bloom, rain, spiral, stress, stress0
+  palseq.mjs     palette-cycle frame strip + screen-RAM check (experiment 5)
+  examples/      bloom, rain, spiral, cycle, stress, stress0
 ```
 
 ### The language
@@ -160,7 +161,8 @@ proc walk n
     done
 ```
 
-Statements: `jump face tint size move turn draw wait fork when/else/done`.
+Statements: `jump face tint size move turn draw wait fork when/else/done`,
+plus the `back` and `spin` declarations.
 Expressions are deliberately the smallest grammar that expresses that idiom:
 constant, local, `local±constant`, and `rand N`. No division, **no multiply
 either** — `move` is two table lookups and two 16-bit adds (§5.2).
@@ -199,6 +201,7 @@ slot 0 — because the point is to catch divergence, not to be elegant.
 bloom:  screen matches the model exactly (20480 bytes)
 rain:   screen matches the model exactly (20480 bytes)
 spiral: screen matches the model exactly (20480 bytes)
+cycle:  screen matches the model exactly (20480 bytes)
 ```
 
 **It found a real bug within an hour of existing.** The runtime indexed the
@@ -291,6 +294,7 @@ Not done, in the order I would pick them up:
 ### Honest limitations of v1
 
 - Blob sizes 0–3 are compiled but only 0–2 are exercised by the examples.
+- `spin` rotates one contiguous range at one rate; there is no per-tint control.
 - A full turtle pool drops forks silently; there is no eviction policy.
 - No sound, no `plan` animation, no `part`/include, no `temp` locals beyond proc
   parameters (4 per turtle).
