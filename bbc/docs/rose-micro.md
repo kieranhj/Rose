@@ -188,6 +188,13 @@ checker (R8) accounting for them honestly.
 The brush table is per-demo: the compiler collects the radii actually used and assigns
 indices. Most demos use fewer than 8 distinct radii.
 
+> **Retired by §14 D3a/D3d.** The brush *table* buys nothing once the cap is 12: that
+> is thirteen radii against sixteen index values, so the indirection maps 13 things
+> onto 16 slots. **The index simply is the radius** — `size n` stays in pixels,
+> clamped to 12, and computed sizes (`size s*0.88`, `size s*s`) keep working
+> unchanged, which matters because eight of ten demos compute their sizes. What the
+> compiler collects is not an index assignment but a *generation set* — see D3d.
+
 ### R4 — Stack ≤ 8 slots, locals ≤ 8, no wires by default (4 optional)
 
 Measured max stack across the nine examples is 18, but that is Archimedes-authored
@@ -1342,6 +1349,7 @@ recorded under each.
 | **D3a** | radius | **cap 12, no `disc` escape** — every blob is a painter with a constant cost |
 | **D3b** | clearing | **`wipe` byte-aligned rect**, plus a char-row-aligned fast path |
 | **D3c** | clipping | **vertical only** (entry table + poked `RTS`); horizontal clip drops the blob with a compile-time diagnostic |
+| **D3d** | which painters exist | **index = radius** (R3's brush table retired); exact set when all sizes are constant, **declared ceiling required** when any is computed |
 | **D4** | overflow | **wrap**, reported by R8, with an opt-in flag escalating it to a build error |
 | **D5** | cadence | **one beam-raced field of drawing**, with an **adaptive** 50/25Hz cadence; R8 becomes advisory tooling, not a gate |
 
@@ -1518,6 +1526,75 @@ That is affordable only because R1 retires everything currently occupying them:
 span fillers (banks 4/5) and the circle tables (bank 6). All four banks come free at
 once, which is the same 20KB windfall §15 describes — it is spent here rather than on
 double buffering.
+
+*(The ~20KB/~25KB split is extrapolated from §10.3's measured circle sizes — r=8 →
+2,040 B, r=12 → 3,648 B — times the 4/π pixel-count ratio for squares. `genpaint.py`
+and `paintbudget.py` can measure it exactly, and should before v1 commits, since this
+is the one place the budget could get squeezed.)*
+
+### D3d — Which painters get generated
+
+`size` is not a small palette. Across the corpus only `ball` and `circle` use literal
+sizes exclusively:
+
+| demo | `size` ops | literal | computed |
+|---|---|---|---|
+| Everyway | 161 | 73 | **88** |
+| PaintersFrustration | 46 | 33 | 13 |
+| JeSuisRose | 34 | 30 | 4 |
+| PaintersEuphoria | 11 | 2 | **9** |
+| Chiperia5intro | 10 | 9 | 1 |
+| PaintersTeaser | 9 | 5 | 4 |
+| tree | 3 | 1 | 2 |
+| ball, circle | 2, 1 | 2, 1 | 0, 0 |
+
+and the computed forms are `size s*0.88`, `size s*s`, `size ksize*0.75`, `size count`
+— continuously shrinking or growing radii. So a script-declared *mapping* from index
+to radius is not viable: `size s*0.88` is arithmetic on a radius, and would be
+meaningless as arithmetic on a table slot.
+
+**The hard constraint:** D3a removed the generic path, so **every runtime-reachable
+(shape, radius, offset) triple must have a painter**. There is nothing to fall back
+to. Of the three dimensions:
+
+- **offset** — never prunable. x-offset is a runtime property; all four always exist.
+- **shape** — statically decidable. A program containing no `plot` needs no square
+  painters, which alone is the difference between ~20KB and ~45KB.
+- **radius** — the open one, and the reason D3d exists.
+
+**Decided: replay-derived where that is sound, declared ceiling where it is not.** The
+two mechanisms cover *disjoint* cases, which is what stops the replay being trusted
+beyond its evidence:
+
+1. **Every `size` expression in the program is compile-time constant** → static
+   analysis gives the exact reachable set, and it is provably complete. Generate
+   precisely those radii. No declaration needed, and no replay needed either. (`ball`,
+   `circle`.)
+2. **Any `size` expression is computed** → a **declared ceiling is required**, and its
+   absence is a build error. Generate r0..ceiling for each shape used, and clamp at
+   runtime. The replay does **not** gate generation here — a `rand`-driven expression
+   that yields r=7 on the eleventh run must already have a painter.
+
+The replay's role in case 2 is purely advisory, and that is the distinction worth
+holding onto: it reports the observed maximum so the author can *tighten* the ceiling,
+and the observed frequencies so generation can be *ordered* hottest-first if sideways
+RAM runs short. It never narrows the set.
+
+```
+brush disc 8            <- ceiling; required, sizes are computed
+...
+size s*0.88 draw        <- clamped to 8, clamp reported by R8
+```
+
+A ceiling above 12 is an error (that is the cap). Clamping shares D4's reporting
+mechanism and its opt-in escalation flag, alongside D3c's dropped blobs — three
+diagnostics, one channel.
+
+**Possible later refinement, explicitly not v1:** interval analysis could bound a
+computed size soundly (`size s*0.88` with `s` provably ≤10 needs no painters above
+r=10) and remove the declaration in many programs. Forks and `rand` make this
+substantially harder than it looks, and the declared ceiling is a two-word annotation
+that gets the same result today.
 
 ### D4 — Out-of-range behaviour
 
