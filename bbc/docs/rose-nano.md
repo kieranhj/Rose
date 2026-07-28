@@ -15,10 +15,13 @@ Target: **stock BBC Model B with sideways RAM** (not a Master, no coprocessor),
 **MODE 2**, **locked 50Hz**, with the appearance of far more happening on screen —
 and far more than 8 colours — than the hardware nominally offers.
 
-> **Status: nothing in this document is measured.** Every cycle count below is an
-> estimate derived from the *measured* constants in `rose-micro.md` §9–§13. §10 lists
-> the experiments that would turn them into facts. This is deliberately the opposite
-> of the Micro doc's evidentiary standard, and the reader should treat it that way.
+> **Status.** §1–§11 were written before any measurement; every cycle count in them is
+> an estimate derived from the *measured* constants in `rose-micro.md` §9–§13, and §10
+> lists the experiments that would turn them into facts.
+>
+> **Experiment 3 has since run — see §13.** It passes the look test and refutes §3's
+> central reduction. Read §13 before treating §1, §3 or §8 as the design; the
+> amendment boxes in those sections say what survived.
 
 ---
 
@@ -55,6 +58,13 @@ generation set. Not because they were optimised away — because the problem the
 does not exist.
 
 This is not a smaller Rose. It is a different bargain, and §9 states the price.
+
+> **Amended by §13.** The premise half-survives. Blob cost does not become a single
+> constant — a fixed one-cell blob cannot draw the corpus at all — but it does become
+> a **four-row lookup table** whose worst entry is bounded and known at design time,
+> which retires every row of the table above except the radius cap. The engine still
+> has no worst case it cannot name in advance; it simply names four numbers instead of
+> one. Measured: six of nine demos never miss a 50Hz render frame (§13.3).
 
 ---
 
@@ -153,6 +163,15 @@ number**. Micro's R6 painter generation buys 2.0–3.2× (§10.2) at ~510–900 
 generated code *per variant*, demand-driven, filling two 16KB banks to cover ~70% of
 plots. Nano needs one stamp routine and a table of patterns.
 
+> **Amended by §13.** The single-number column is what experiment 3 refuted. A blob
+> fixed at one cell cannot render the corpus — it turns filled material into speckle
+> and a 45-pixel disc into a dot. What actually pays here is **byte alignment and grid
+> snapping**, which remove the masks, the per-line setup and the clipping cases; those
+> survive intact when the blob is allowed to span several cells. The law becomes
+> `cycles ≈ 25 + 6 · bytes` over a **four-entry size table**, still 3.3–11.4× cheaper
+> than Micro measured across the corpus, and still a lookup rather than a quadratic.
+> See §13.3.
+
 ### 3.4 What clipping becomes
 
 Grid coordinates are a 7-bit column and a 6-bit row. Clipping is a range check on two
@@ -181,6 +200,16 @@ the pattern reads as a colour rather than as texture. This is the single stronge
 argument for the 80×64 tier.
 
 Cost: **zero cycles, ~4 bytes of pattern table per tint.**
+
+> **Amended by §13.4.** The mechanism works and the cost really is zero, but 36 pairs
+> is the *nominal* count, not the usable one. A MODE 2 pixel is 4 units wide on a
+> 320-unit screen; complementary pairs (red/green for gold, black/cyan for navy) do
+> not fuse at that size, they read as speckle. Constraining the search to pairs that
+> fuse costs a little accuracy and transforms the result — see §13.4 for the measured
+> penalty term. Two further rules came out of the same experiment: the dither phase
+> must be **locked to screen position**, not to the stamp, and **backgrounds must be a
+> solid physical colour**, because a full-screen 50% dither reads as a checkerboard,
+> not as a mid-tone.
 
 ### 4.2 Palette cycling — first-class ⭐
 
@@ -445,6 +474,12 @@ recorded here so the decision is explicit rather than forgotten.
 
 ## 8. Budget — back of envelope
 
+> **Superseded by §13.3**, which measures render cost over the corpus under the
+> corrected law. The turtle-step and overhead lines below stand; the stamp line is now
+> a size-table lookup averaging rather more than one cell per blob, so the render share
+> is larger than the 11% assumed here. The budget should be rebuilt after experiment 1
+> confirms the cost constants.
+
 50Hz = 40,000 cycles. 80×64 grid, compiled (§6.4), 64 turtles, one blob each — **v1
 only**, i.e. §3–§6 plus §4.1–§4.2, with nothing from §7:
 
@@ -475,12 +510,18 @@ budget known at design time**, not a distribution with a p95.
 
 ## 9. What this costs — stated honestly
 
-- **No variable blob size.** No `ball`, no title-screen discs, no `size s*0.88`. Micro
-  §14 D3d notes that eight of ten existing demos *compute* their sizes. **None of the
-  existing corpus ports.** Nano is a new body of work or it is nothing.
-- **Coarse space.** 80×64 or 40×32 is a chunky, blocky aesthetic. Fine linework is
-  gone; text is impossible (`hoffman-demos.md` already found MODE 2's 2:1 pixels
-  destroy legibility, and the grid makes it moot). `logicos` cannot exist here.
+- ~~**No variable blob size.**~~ **Retired by §13.2.** Size is a four-entry table, not
+  an absence: `size` still works, computed sizes still work, they quantise to four
+  values. This was the harshest line in the document and the experiment removed it —
+  and with it the claim that none of the corpus ports. Most of it does, recognisably
+  (§13.2), which changes what Nano is for: not only new work, but a genuinely cheaper
+  way to render the old work.
+- **Coarse space, and a real tension inside it.** 80×64 or 40×32 is a chunky, blocky
+  aesthetic. §13.2 found that mass and line want *opposite* size models: filled
+  material needs blobs that span cells, typographic material needs single-cell blobs
+  or the strokes merge. JeSuisRose is legible at one size model and illegible at the
+  other. Text is not impossible after all — but it and painterly material cannot be
+  authored the same way.
 - **No bit-exact verification against the visualizer.** Micro §6 calls the bit-exact +
   pixel-perfect harness "the port's superpower" and makes inheriting it
   non-negotiable. Nano *cannot* inherit it directly — different geometry, different
@@ -504,14 +545,14 @@ the offline toolchain. **What dies is precision.**
 
 ## 10. Experiments, cheapest first
 
-None of §1–§9 is measured. In dependency order:
+Nothing in §1–§9 was measured when it was written. In dependency order:
 
 | # | Experiment | Answers | Effort |
 |---|---|---|---|
-| 1 | Confirm MODE 2 byte-order within a character cell; time a 4-byte and a 16-byte stamp under jsbeeb | Is 70/160 cycles real? **Everything hangs on this** | small |
+| 1 | Confirm MODE 2 byte-order within a character cell; time a 16-byte and a 144-byte stamp under jsbeeb | Are 25 + 6/byte real? **Everything hangs on this** | small |
 | 2 | RAM budget spreadsheet: MODE 2 full / 160×200 / MODE 5, against turtle arrays + speed tables + shadow grid + code | Which configuration is even possible | small |
-| 3 | **Render the existing demos onto an 80×64 and a 40×32 grid in the visualizer, dithered to the §4.1 tint set** | **Does it look good?** | small |
-| 4 | **Dither-pair study: which of the 36 pairs read as distinct colours rather than as texture, at 2×4 and 4×8** | The apparent palette is now the *whole* colour pitch (§9) | small |
+| 3 | ~~Render the existing demos onto an 80×64 and a 40×32 grid in the visualizer, dithered to the §4.1 tint set~~ **DONE — see §13** | **Does it look good?** | small |
+| 4 | ~~Dither-pair study~~ **PARTLY DONE — §13.4 answered it in passing; the exhaustive pair survey is still worth doing** | The apparent palette is the whole colour pitch (§9) | small |
 | 5 | Cycling-tint study in the visualizer: persistent trails drawn in rotating palette entries, incl. static/cycling dither pairs | Is §4.2 the expressive win it looks like | small |
 | 6 | Time a compiled turtle step vs a call-threaded one vs Micro's jump table | Is §6.4 worth the code space | small |
 | 7 | *(deferred, §7)* shadow-grid fade sweep prototype | Does managed persistence look like Rose or like something else | medium |
@@ -520,22 +561,30 @@ None of §1–§9 is measured. In dependency order:
 but visualizer work — exactly the shape of Micro's §8, which is where the Micro
 proposal earned its credibility. Do it before writing a line of 6502.
 
-Experiments 3, 4 and 5 are all visualizer work and all colour/geometry questions;
-they should be done together and looked at side by side. Experiment 1 is a jsbeeb
-microbenchmark in the mould of Micro §9–§10 and can run in parallel.
+Experiment 1 is now the critical path: §13.3's cost law rests on the assumption that
+consecutive addresses are consecutive scanlines within a character row, which makes a
+blob a few contiguous byte runs. If that is wrong the law is wrong.
 
 ---
 
-## 11. Bottom line
+## 12. Bottom line
 
 Rose Micro is a **width** argument: 32-bit words, 144-byte turtles and unbounded radii
 are the three things that cost the port most, and narrowing all three buys ~2× on the
 interpreter, 2–3× on small blobs, 4× on capacity. It is measured, it is real, and it
 keeps the existing corpus in play.
 
-Rose Nano is a **variance** argument: fix the blob size to a byte-aligned grid cell,
-fix the turtle count, fix one blob per turtle per frame, and the frame cost becomes a
-constant known at design time.
+Rose Nano is an **alignment** argument. It was written as a variance argument — fix the
+blob size, fix the turtle count, one blob per turtle per frame — and §13 measured that
+and found the variance framing was aiming at the wrong target. Fixing the *size* buys
+nothing and costs the corpus. What buys the speed is putting blobs on a byte-aligned
+grid, which deletes the masks, the read-modify-write, the per-line setup and the
+clipping cases, and keeps deleting them when a blob spans several cells.
+
+The result is a render law of `25 + 6·bytes` over a four-entry size table: 3.3–11.4×
+cheaper than Micro measured, with six of nine demos never missing a 50Hz render frame
+— including ball, which Micro §1.1 calls render-bound at 25fps and immune to a
+coprocessor.
 
 v1 buys back the apparent colour depth with the two mechanisms that cost nothing and
 introduce no timing risk — **dither pairs and palette cycling** — and buys back nothing
@@ -548,5 +597,187 @@ The two dialects are not competitors. Micro is how the existing work reaches the
 Nano is what you would write *for* the BBC, and the honest summary is that it is a
 different instrument that happens to share Rose's grammar.
 
-The decision gate is experiments 3–5, all of them visualizer work and none of them
-6502. If a 2×4-pixel dithered grid does not look like Rose, nothing in §3–§8 matters.
+The decision gate was experiment 3, and **it passed**: the grid, the eight colours and
+the dither reproduce the corpus recognisably, and Frustration and Chiperia are
+genuinely good (`bbc/docs/mockups/`). What it also did was refute the reduction the
+document is built on, which is what a cheap experiment is for. The gate is now
+experiment 1 — every number in §13.3 rests on one unverified fact about MODE 2's
+memory layout.
+
+---
+
+## 13. Experiment 3 results — the grid render, measured (2026-07-28)
+
+### 12.1 What was built
+
+- `bbc/tools/nanorender.py` — renders a plot stream under Nano rules: radius
+  discarded or snapped to a size table, position snapped to a grid, colour reduced to
+  the eight BBC physicals via a dithered pair inside the stamp, no layers, overwrite
+  only, trails persistent. Output is a 160×256 MODE 2 canvas written at 320×256 so
+  the 2:1 pixels have their real aspect.
+- `bbc/tools/nanobudget.py` — per-frame render cost of the same stream under the Nano
+  cost law and under Micro's *measured* law, side by side.
+- Contact sheets for all nine examples, three frames each, four columns: the
+  352×280 reference, and three Nano variants. Five are in `bbc/docs/mockups/`:
+  `nano-frustration-3way.png` (the best result), `nano-jesuisrose-3way.png` (the
+  typographic counter-case), `nano-chiperia-3way.png`, `nano-everyway-3way.png`,
+  `nano-ball-3way.png` (the fixed-size failure at its starkest).
+
+Reproduce with:
+
+```sh
+bbc/tools/roseplots.exe examples/tree.rose /tmp/tree.bin 10000
+python bbc/tools/nanorender.py /tmp/tree.bin out.png --frame 200 \
+    --grid 40x32 --stamp 4x8 --radius --sizes 0,1,2,3 --fuse 0.25 --steps 8 --stats
+python bbc/tools/nanobudget.py /tmp/tree.bin --grid 40x32 --sizes 0,1,2,3
+```
+
+Grid pitch and stamp size are independent parameters, which turned out to matter:
+the byte-alignment law (§3.1) only constrains the stamp's *width* and *x position* to
+whole bytes, so a 4×8 stamp can sit on an 80×64 position grid. The variants were:
+
+| | pitch | stamp | size model |
+|---|---|---|---|
+| **A** | 80×64 | 4×8 | fixed, one cell — §3 as written |
+| **B** | 80×64 | 4×8 | 0–3 cells |
+| **C** | 40×32 | 4×8 | 0–2 cells |
+
+### 12.2 Headline: the grid is fine, the fixed size is not
+
+**Rose survives the grid and the eight colours.** Frustration, Euphoria, Chiperia and
+Everyway all read as themselves in variants B and C — Frustration in particular is
+close to the reference and, in eight colours, arguably better. The coarse grid, the
+2:1 pixels and the loss of 4,096 palette entries are all survivable.
+
+**The fixed-size blob is not.** Variant A — §3 exactly as proposed — fails on seven of
+the nine demos, and it fails in two distinct ways:
+
+- *Filled material becomes speckle.* Frustration paints large areas with overlapping
+  blobs. One cell per plot cannot fill an area, so the screen becomes noise
+  (`mockups/nano-frustration-3way.png`, second column, is the clearest picture of
+  this in the set).
+- *Large single objects vanish.* ball is one r=45 disc. Fixed size renders 20,000
+  plots as **18 cells** — the demo becomes a thin vertical line.
+
+The collapse is measurable. Plots per occupied cell, final frame, variant A:
+
+| demo | plots | cells touched | collapse |
+|---|---|---|---|
+| ball | 19,982 | 18 | 1,110 : 1 |
+| Chiperia | 14,096 | 2,980 | 4.7 : 1 |
+| tree | 4,138 | 1,197 | 3.5 : 1 |
+
+**The one counter-case is typographic material, and it is instructive.** JeSuisRose
+draws letterforms; at f3700 the word "GOTH" is *legible under variant A and illegible
+under B and C*, because a size-aware blob thickens strokes until they merge. So the
+two size models have opposite failure modes — mass needs size, line needs restraint —
+which is an argument for the author choosing, not for either being a law of the
+engine.
+
+### 12.3 The corrected render law
+
+What actually pays on this machine is **byte alignment and grid snapping**, not fixed
+size. Those remove the masks, the read-modify-write, the four x-offset painter
+variants and the clipping cases, and they keep doing so when a blob spans several
+cells. ⚠️ Assuming consecutive addresses are consecutive scanlines within a character
+row (experiment 1), a blob is a few contiguous byte runs and the law is:
+
+```
+Nano   cycles ≈ 25 + 6 · bytes                     (estimated)
+Micro  cycles = 666 + 90 · lines + 12 · bytes      (measured, §10)
+```
+
+No per-blob 666, no per-line 90 — that is the whole difference, and it is structural
+rather than an optimisation. Run over the corpus at 40×32 with a **four-entry size
+table {0,1,2,3 cells}**, against the 40,000-cycle 50Hz budget:
+
+| demo | Nano p50 | Nano p95 | over budget | Micro p50 | Micro p95 | over budget | ratio |
+|---|---|---|---|---|---|---|---|
+| circle | 242 | 242 | 0.0% | 2,762 | 2,762 | 0.0% | 11.4× |
+| tree | 3,677 | 12,777 | 0.0% | 18,230 | 78,336 | 21.7% | 5.8× |
+| Chiperia | 726 | 32,246 | 0.1% | 4,968 | 127,011 | 7.5% | 4.7× |
+| Teaser | 1,778 | 32,004 | 0.0% | 6,279 | 153,834 | 0.3% | 4.7× |
+| ball | 9,458 | 9,458 | 0.0% | 37,674 | 42,579 | 27.2% | 4.0× |
+| JeSuisRose | 7,381 | 36,375 | 0.0% | 50,189 | 119,339 | 12.5% | 3.4× |
+| Euphoria | 9,438 | 39,647 | 3.6% | 31,830 | 148,441 | 34.4% | 3.7× |
+| Frustration | 1,778 | 55,365 | 8.0% | 21,148 | 176,626 | 20.2% | 3.3× |
+| Everyway | 22,714 | 85,238 | 17.7% | 96,401 | 253,280 | 78.9% | 4.2× |
+
+Three things follow.
+
+1. **Six of nine demos never miss a 50Hz render frame** at Archimedes authoring
+   density, and a seventh (Euphoria) misses 3.6%. Micro §11.4 reports that two of ten
+   are inside a *25Hz* contract. This is a much stronger position than §8 claimed, and
+   it is claimed for variable-size blobs.
+2. **ball is the sharpest single result.** Micro §1.1 calls it render-bound at 25fps
+   and immune to a 4MHz coprocessor. Under Nano it costs 9,458 cycles a frame, flat,
+   and never misses 50Hz — the demo that best resists Micro is trivial here.
+3. **Four sizes are enough.** The measured histogram over the whole corpus uses
+   rc=0 and rc=1 for the bulk, rc=2 for Frustration and JeSuisRose, and rc=3 only for
+   ball (all 20,000 plots) and Everyway (29,546). Nothing wants a fifth entry. So the
+   cost of a blob remains a **four-row lookup table**, which preserves §1's variance
+   argument nearly intact — the frame cost is bounded and known, it is simply not a
+   single constant.
+
+### 12.4 Three colour findings, one of them large
+
+**Dither pairs must be constrained to pairs that fuse.** Matching a target colour by
+minimising error in linear light is numerically correct and visually wrong: it renders
+gold as a 3:1 red/green checkerboard and navy as sparse cyan on black. At a MODE 2
+pixel — 4 units wide on a 320-unit screen — complementary pairs do not blend, they
+speckle. Adding a penalty proportional to the pair's own separation, scaled by how
+much of the minority colour there is:
+
+```
+cost = colour_error² + fuse · separation² · (minority_fraction / 0.5)
+```
+
+`fuse = 0` gives red/green gold. `fuse = 0.25` gives red/yellow gold on a dark blue
+ground and is the setting used for every sheet in `mockups/`. `fuse = 1.0` collapses
+everything to solids. **The usable pair set is much smaller than 36**, and the useful
+mixes are between neighbours (red/yellow, blue/cyan, white/yellow), not across the
+wheel. Experiment 4 should now enumerate exactly which survive.
+
+**Dither phase must be locked to screen position, not to the stamp.** Otherwise
+overlapping stamps of the same tint interfere and a filled area shimmers. Locking is
+free on the 6502: with grid-aligned stamps there are only two or four phases, selected
+by the low bits of (col, row).
+
+**Backgrounds must be solid.** A mid-grey background rendered as a 50% white/black
+dither is a full-screen checkerboard — the single ugliest thing produced in this
+experiment. Chiperia's grey-blue ground only became acceptable when it resolved to
+sparse blue on black. This is an authoring rule, not an engine change: dither is for
+blobs, not for fields.
+
+A fourth, smaller finding: the canvas must be *cleared to the background tint's
+pattern* at startup, so that a background-tint stamp is invisible exactly as it is in
+the reference. Several demos paint background-coloured blobs to erase; without this
+they show up as white noise.
+
+### 12.5 Verdict
+
+**Experiment 3 passes, and it invalidates §3.**
+
+Nano's look is real: the coarse grid, the byte-aligned stamps and eight dithered
+colours reproduce the corpus recognisably and in places beautifully. The decision gate in §12 is cleared.
+
+But the specific reduction that §1 and §3 build on — one fixed stamp per plot — is
+refuted by seven of nine demos, and it was never the thing paying for the speed. Byte
+alignment and grid snapping are. Those give a `25 + 6·bytes` law that is 3.3–11.4×
+cheaper than Micro measured, with a four-entry size table that keeps the frame cost
+bounded and known at design time.
+
+So the design changes shape rather than dying:
+
+- §3's "one blob = one stamp" becomes **"one blob = one entry in a four-size table"**.
+- §6.3's "one blob per turtle per frame" survives as a *budget* rule but no longer
+  implies a constant frame cost; the constant becomes a four-row table.
+- §1's table of retired Micro apparatus survives except for one row: the radius cap
+  becomes a size *table* rather than an absence, which is D3a's conclusion arrived at
+  from the other direction.
+- §8's budget needs redoing on the corrected law before it means anything.
+
+The next thing to run is **experiment 1**, because every number in §13.3 rests on the
+MODE 2 byte-order assumption, and the whole argument now rests on §13.3.
+
+---
