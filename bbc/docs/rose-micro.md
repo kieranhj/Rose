@@ -1527,10 +1527,56 @@ span fillers (banks 4/5) and the circle tables (bank 6). All four banks come fre
 once, which is the same 20KB windfall §15 describes — it is spent here rather than on
 double buffering.
 
-*(The ~20KB/~25KB split is extrapolated from §10.3's measured circle sizes — r=8 →
-2,040 B, r=12 → 3,648 B — times the 4/π pixel-count ratio for squares. `genpaint.py`
-and `paintbudget.py` can measure it exactly, and should before v1 commits, since this
-is the one place the budget could get squeezed.)*
+**Measured, not extrapolated (2026-07-28).** `genpaint.py` generates circles only; a
+square blob is the same generator with a constant half-width, so swapping the span
+function and reusing `emit_painter` gives exact sizes for both. Circles reproduce
+§10.3 exactly (r0–11 = 16,904 B = 16.5KB), which validates the method:
+
+| ceiling | circles | squares | both | KB | banks |
+|---|---|---|---|---|---|
+| 4 | 2,104 | 2,256 | 4,360 | 4.3 | 0.27 |
+| 6 | 4,640 | 5,032 | 9,672 | 9.4 | 0.59 |
+| 8 | 8,392 | 9,248 | 17,640 | 17.2 | **1.08** |
+| 10 | 13,664 | 15,160 | 28,824 | 28.1 | 1.76 |
+| 12 | 20,552 | 23,024 | 43,576 | **42.6** | **2.66** |
+
+**The full set fits in three banks with 5.4KB to spare.** Squares are 1.12× circles,
+not the 4/π = 1.27 estimated from pixel counts — a square's interior is full 4-pixel
+bytes that share one `lda FILL` and cost 4 bytes of code each, against 10 for a masked
+edge byte, and circles carry proportionally more edge.
+
+**But the composition is wrong, and this is the finding that matters.** Costing the
+generated instructions directly — validated against §10.2's four measured circle
+points to within 0.9%, once `nextline`'s *body* is included (§10.4's "12 cycles/line"
+is the `jsr` alone; the residual is a near-constant 16 cycles):
+
+| r | circle generic | circle painter | × | square generic | square painter | × |
+|---|---|---|---|---|---|---|
+| 0 | 514 | 134 | **3.84** | 350 | 134 | 2.61 |
+| 2 | 1,117 | 408 | **2.74** | 743 | 408 | 1.82 |
+| 4 | 1,773 | 655 | **2.71** | 1,197 | 673 | 1.78 |
+| 8 | 3,183 | 1,375 | **2.31** | 2,289 | 1,465 | 1.56 |
+| 12 | 4,857 | 2,305 | **2.11** | 3,624 | 2,513 | 1.44 |
+
+**Squares gain 1.3–2.0× where circles gain 2.1–3.8×, and take 53% of the budget to do
+it.** Two independent reasons, both structural:
+
+- The square's *generic* path is already cheap (§11.3: 261+86.9·lines against the
+  disc's 379+143.7·lines) precisely because its half-width is constant — there is no
+  per-line lookup to eliminate, which is the whole thing a painter removes.
+- The square's *painter* is slightly **more** expensive than a circle's at the same
+  radius (r=8: 1,465 vs 1,375) because it stores more pixels.
+
+So §10's headline "2.0–3.2×" was measured on circles and does not transfer to the
+shape that is 85% of Everyway's and 79% of JeSuisRose's records. **The declared
+ceiling of D3d should be per-shape**, and when sideways RAM is tight the square
+ceiling is the one to cut first: dropping squares from 12 to 4 frees 20.8KB — most of
+a bank and a half — while giving up 1.4–1.6× on the blobs that are cheapest anyway.
+
+Reproduce: `python bbc/tools/paintersize.py` (exact code size, both shapes) and
+`python bbc/tools/paintcost.py` (instruction-level cycle model, with its validation
+against the measured circles printed first). Both import `bench/genpaint.py` and swap
+in a constant-half-width span function for squares.
 
 ### D3d — Which painters get generated
 
