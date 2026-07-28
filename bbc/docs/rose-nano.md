@@ -24,6 +24,12 @@ and far more than 8 colours — than the hardware nominally offers.
 > the whole design rests on and corrects the cost constants (they were optimistic by
 > ~46% per byte). Read §13 and §14 before treating §1, §3 or §8 as the design; the
 > amendment boxes in those sections say what survived.
+>
+> **v1 is built and running** — compiler, runtime and a byte-exact verification
+> harness, on a stock Model B. See **`rose-nano-v1.md`**, which also closes
+> experiments 2, 4 and 6. One correction it makes to this document: §2's claim
+> that bytes are the binding constraint does not survive contact — v1 fits in
+> 2.6KB of the 5.9KB actually available.
 
 ---
 
@@ -562,11 +568,11 @@ Nothing in §1–§9 was measured when it was written. In dependency order:
 | # | Experiment | Answers | Effort |
 |---|---|---|---|
 | 1 | ~~Confirm MODE 2 byte-order within a character cell; time a 16-byte and a 144-byte stamp under jsbeeb~~ **DONE — see §14** | Are 25 + 6/byte real? (No: 57 + 8.79) | small |
-| 2 | **NEXT.** RAM budget spreadsheet: MODE 2 full / 160×200 / MODE 5, against turtle arrays + speed tables + shadow grid + code | Which configuration is even possible | small |
+| 2 | ~~RAM budget: MODE 2 full / 160×200 / MODE 5~~ **DONE — see `rose-nano-v1.md` §2** | Which configuration is possible (all of them: v1 uses 2.6KB of 5.9KB) | small |
 | 3 | ~~Render the existing demos onto an 80×64 and a 40×32 grid in the visualizer, dithered to the §4.1 tint set~~ **DONE — see §13** | **Does it look good?** | small |
-| 4 | ~~Dither-pair study~~ **PARTLY DONE — §13.4 answered it in passing; the exhaustive pair survey is still worth doing** | The apparent palette is the whole colour pitch (§9) | small |
-| 5 | Cycling-tint study in the visualizer: persistent trails drawn in rotating palette entries, incl. static/cycling dither pairs | Is §4.2 the expressive win it looks like | small |
-| 6 | Time a compiled turtle step vs a call-threaded one vs Micro's jump table | Is §6.4 worth the code space | small |
+| 4 | ~~Dither-pair study~~ **DONE — 27 distinct of 36: 8 solids + 19 dithers (`rose-nano-v1.md` §2)** | The apparent palette is the whole colour pitch (§9) | small |
+| 5 | **NEXT — the only feasibility experiment left.** Cycling-tint study: persistent trails drawn in rotating palette entries, incl. static/cycling dither pairs | Is §4.2 the expressive win it looks like | small |
+| 6 | ~~Time a compiled turtle step~~ **DONE — measured on the finished engine: a whole step costs ~700 cycles plus the blob (`rose-nano-v1.md` §5)** | Is §6.4 worth the code space (yes) | small |
 | 7 | *(deferred, §7)* shadow-grid fade sweep prototype | Does managed persistence look like Rose or like something else | medium |
 
 **Experiment 3 decides whether Nano is worth building at all**, and it costs nothing
@@ -617,9 +623,9 @@ genuinely good (`bbc/docs/mockups/`). What it also did was refute the reduction 
 document is built on, which is what a cheap experiment is for. Experiment 1 then confirmed the MODE 2 layout exactly as §3 needed it, and corrected
 the cost constants downward by about half — a smaller claim, still a strong one.
 
-The gate is now **RAM**: 8.5KB of main memory (experiment 2), and an interpreter that
-has not been measured at all (experiment 6), which is what Micro §11.5 says actually
-fails.
+Both of those gates are now cleared too: v1 fits in 2.6KB and a compiled turtle step
+costs ~700 cycles plus its blob (`rose-nano-v1.md` §2, §5). What is left is not a
+feasibility question at all — it is whether anyone composes for the instrument.
 
 ---
 
