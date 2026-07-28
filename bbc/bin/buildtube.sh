@@ -40,6 +40,6 @@ printf '*SRLOAD SPANS4 8000 4 Q\r*SRLOAD SPANS5 8000 5 Q\r*SRLOAD CIRCS 8000 6 Q
 rm -f ./*.ssd
 "$BEEBASM" -i tube.asm -do "beeb-$NAME-rose-tube.ssd" -opt 3 -D WIDE="$WIDE" -D TUBE=1 \
     -D TMAXT="$MAXT" -D STATESZ="$STATESZ" -D STATEBASE="$STATEBASE" \
-    -D FRAMES="$FRAMES" -D WIRES="$WIRES" -D PBUFN="$PBUFN" > beebasm.log 2>&1 || { cat beebasm.log; exit 1; }
+    -D VERIFY="${VERIFY:-1}" -D FRAMES="$FRAMES" -D WIRES="$WIRES" -D PBUFN="$PBUFN" > beebasm.log 2>&1 || { cat beebasm.log; exit 1; }
 cat beebasm.log
 echo "OK: build/$NAME-tube/beeb-$NAME-rose-tube.ssd"

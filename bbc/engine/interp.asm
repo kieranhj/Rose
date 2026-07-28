@@ -109,6 +109,8 @@ cnt         = &89           ; loop counter (fork args)
 APTR        = &89           ; append arg: handle to enqueue (aliases cnt —
 CHV         = &89           ;   free by append time) and the span-chain
                             ;   vector CHV (never rendering while appending)
+SMIN        = &81           ; frame stage: lowest bucket filed this pass
+SMAX        = &82           ; frame stage: highest bucket filed this pass
 scr         = &8D           ; screen write pointer (renderer)
 T4PTR       = &8B           ; -> next t4mask RLE entry (erase-class verdicts)
 
@@ -1294,6 +1296,13 @@ ENDIF
 .op_draw                            ; circle: c = tint
     jsr build_rec
 .emit_rec
+IF VERIFY
+    ; Everything from here to rec_done exists only to prove a build bit-exact
+    ; (runverify.mjs): the record hash and the prefix log. Measured at 370-470
+    ; cycles per record — a third of the 1,585 cycles a record costs before a
+    ; pixel is drawn, and more than the 514 it takes to paint an r=0 blob.
+    ; -D VERIFY=0 builds the same engine without it; verify with VERIFY=1 and
+    ; ship with VERIFY=0.
     ; per-record hash: h = rol32(h,1) ^ byte over the 10 bytes, fully
     ; unrolled. h starts at 0, so the first step is just h = REC[0].
     ; RB (free during DRAW) holds h in zero page.
@@ -1344,6 +1353,7 @@ NEXT
     sta lptr
     bcc rec_done
     inc lptr+1
+ENDIF
 .rec_done
     jsr sort_add                    ; stage the wire record for this frame
     jmp next_op
@@ -2397,6 +2407,11 @@ ENDIF
 .so_pass                            ; (bucket heads are already clear: init
                                     ; clears them once, the emit scan clears
                                     ; as it consumes)
+    lda #&FF                        ; narrow the emit scan to the buckets this
+    sta SMIN                        ; pass actually files: measured over every
+    stz SMAX                        ; demo, a drawing frame touches a key span
+                                    ; of 2-84 out of 256, so scanning all of
+                                    ; them wastes 67-99% of the scan.
     lda #<PBUF                      ; walk the stage, filing this pass keys
     sta RB
     lda #>PBUF
@@ -2442,6 +2457,14 @@ ENDIF
     cmp PPASS
     bne so_next                     ; not this pass
     ldx KLO
+    cpx SMIN
+    bcs so_nmin
+    stx SMIN
+.so_nmin
+    cpx SMAX
+    bcc so_nmax
+    stx SMAX
+.so_nmax
     ldy #1                          ; entry.next = null
     lda #0
     sta (RB),y
@@ -2478,7 +2501,10 @@ ENDIF
 .so_wj
     jmp so_walk
 .so_render
-    ldx #0
+    ldx SMIN                        ; only the buckets this pass filed. If it
+                                    ; filed none, SMIN/SMAX are 255/0 and the
+                                    ; walk covers 255 then 0 — both empty — and
+                                    ; stops.
 .so_bloop
     lda BKHH,x
     beq so_bnext
@@ -2524,8 +2550,11 @@ ENDIF
     sta ip+1
     bne so_chain
 .so_bnext
+    cpx SMAX
+    beq so_pdone
     inx
-    bne so_bloop
+    bra so_bloop
+.so_pdone
     inc PPASS                       ; two passes: keys 0-255, then 256-511
     lda PPASS
     cmp #2

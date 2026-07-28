@@ -986,7 +986,182 @@ python bbc/tools/budget.py bbc/build/ball --hz 25 --fail
 
 ---
 
-## 12. Bottom line
+## 12. Recommendations after experiments 1–4 (2026-07-28)
+
+Four experiments in, the evidence supports a different plan from the one §3 proposed.
+This section says what to do about the demos we have, and what to build for the
+material we would author next.
+
+### 12.0 The record is more expensive than the drawing
+
+Two things found by reading the engine while writing §11, both of which reorder
+everything below:
+
+**`emit_rec` is 100% verification.** All 370–470 cycles of it are the rol32 record
+hash and the prefix log — the apparatus that lets `runverify.mjs` prove a build
+bit-exact. Only `build_rec` (~125 cycles) actually constructs the record. It is
+unconditional, in every build, including ones nobody will ever verify.
+
+**`flush_sorted` scans all 256 buckets** whether or not anything was filed in them
+(`ldx #0 … inx / bne so_bloop`, ~12 cycles per empty bucket, once or twice per
+frame). Measured over every demo, the span of bucket keys actually used in a drawing
+frame is far narrower than the array:
+
+| demo | records/frame | mean key span | scan wasted |
+|---|---|---|---|
+| circle | 2.0 | 2 | 99% |
+| ball | 2.0 | 6 | 98% |
+| logicos | 18.1 | 21 | 92% |
+| teaser | 7.5 | 21 | 92% |
+| JeSuisRose | 15.9 | 26 | 90% |
+| chiperia | 10.1 | 48 | 81% |
+| tree | 20.5 | 60 | 77% |
+| euphoria | 15.8 | 82 | 68% |
+| Everyway | 22.7 | 84 | 67% |
+
+Put together with §11.3, one record costs **1,585 cycles of bookkeeping before a
+pixel is drawn** — 125 to build, 400 to hash and log, 320 of bank glue, 740 in the
+sort — against **514 cycles to paint an r=0 blob**. For the small-blob material that
+is 60–85% of every demo, *the engine spends three times more on bookkeeping than on
+drawing*. That is the leak, and neither the numeric model (R1) nor the painters (R6)
+touch it.
+
+### 12.1 The existing demo set
+
+Framing first: **this set is the benchmark corpus, not the port target.** It was
+authored for a machine roughly 20× faster, and §11.4 shows its overruns are
+structural — Everyway is over budget on 86% of its frames, tree's worst frame is
+3.13M cycles of interpreter for 10,648 opcodes. No engine work puts this material
+inside a contract. What engine work can do is raise the average frame rate:
+
+| lever | removes | worth (of a 50Hz frame) | risk |
+|---|---|---|---|
+| `IF VERIFY` around the hash and prefix log ✅ | 237–400 cyc/record, always paid | **measured 3–15%** (§12.5) | none — verification builds keep it |
+| Scan only the filed bucket range ✅ | 67–99% of a 256-entry scan, ×1–2 per frame | **measured 10–14%** (§12.5) | none — ordering unchanged |
+| R5 fusion (`const`+`op`, `rlocal`+`op`) on the 16.16 engine | ~⅓ of 138K dispatches plus their push/pop pairs | 8–12% (estimated) | low — arithmetic identical |
+| R6 painters | 46–53% of *render* | 4% (logicos) to 14% (chiperia) | 2–20KB of sideways RAM |
+
+**Without a coprocessor** the first three are worth ~20–30% together. That moves
+nothing across a contract boundary: ball stays locked at 25Hz, circle at 50Hz, and
+everything else stays variable-rate. R6 is the weakest lever here and should be
+skipped — painters do not reach ball's r=30/45 blobs, and ball is the only
+render-bound demo in the set (§11.5).
+
+**With the coprocessor** the measured 1.93× already puts teaser, JeSuisRose,
+chiperia and frustration *means* inside a 25Hz tick; the first three levers take
+chiperia's mean to roughly 30% of it. What remains is entirely peaks, so the
+coprocessor configuration's outstanding work is peak-shaving — a depth-8 queue and
+the sort fix — not throughput. Everyway is out of reach in every configuration.
+
+### 12.2 Rose Micro: revised priority order
+
+§3 leads with R1 and R6. The measurement says lead with R1 and with everything that
+attacks the fixed per-record and per-frame costs, because interp+emit is 60–91% of
+the bill for nine of ten programs (§11.5).
+
+1. **R1 (16-bit)** — 1.75× on the interpreter, 4.6× on state. Unchanged; it is the
+   foundation and it retires the entire capacity apparatus.
+2. **R5 (fused opcodes)** — dispatch is 13% of interpreter time and R1 does nothing
+   for it.
+3. **R9 plus a narrow record path** — design the sort out rather than optimise it:
+   emit in y order by construction, or keep the offline-verdict-bit mechanism
+   (already built twice — the t4 drop mask) to mark frames whose records provably
+   cannot overlap and skip ordering entirely. Make the record 4 bytes and the emit
+   path straight-line, and ship the hash behind `VERIFY`.
+4. **R3 + R6 as a package** — and as much for *predictability* as for speed: a capped
+   radius with a precompiled painter makes each blob's cost a known constant, which
+   is what makes a build-time guarantee possible at all.
+5. **R7 at depth 8** — a smoother, explicitly not a guarantee (§11.6).
+
+### 12.3 What the author is buying
+
+Per-plot cost under the Micro projection, from §11.4:
+
+| configuration | cycles/plot | blobs per 50Hz frame | per 25Hz frame |
+|---|---|---|---|
+| Micro, stock Master | 4,700–6,500 | **6–9** | 12–17 |
+| Micro + Tube | 2,000–3,100 | **13–20** | 26–40 |
+
+Everyway's authored density is 21.1 plots/frame. So **Micro + Tube reaches roughly
+Archimedes-authored density at 50Hz, and Micro on a stock Master reaches it at
+25Hz** — which is exactly the target this document opened with, and it holds.
+
+The corollary matters more than the numbers: cost is dominated by interpreter work
+*per blob*, not by blob *size*. The authoring discipline is "fewer, cheaper turtle
+steps", not "smaller blobs". Concretely, budget about **8 blobs and at most 8 forks
+per frame at 50Hz on a stock Master** — a fork costs ~700 cycles under Micro, so 57
+of them is an entire frame, and tree's 256-fork frame is 4.5 frames of work on its
+own.
+
+### 12.4 The contract
+
+Gate on the **worst frame**, not the mean: peaks are the failure mode and no
+plausible queue absorbs them. With a depth-8 queue the right check is a worst
+8-frame window inside budget *plus* a single-frame ceiling of about 4× budget.
+`budget.py --hz 50 --lag 8 --fail` implements both today. Wire it into the Micro
+build as a hard gate; leave it advisory for the legacy 16.16 builds, where eight of
+ten demos would fail it.
+
+### 12.5 The two zero-risk changes, built and measured (2026-07-28)
+
+Both changes from §12.1's top two rows are in. Neither alters what the engine draws
+or the order it draws it in, so the whole verification contract still applies
+unchanged — and does: **all 15 builds bit-exact, all 10 pixel-perfect.**
+
+**`-D VERIFY=0`.** `emit_rec`'s entire body is now inside `IF VERIFY`. Verification
+builds are the default (`build.sh` and `buildtube.sh` pass `VERIFY=1` unless the
+environment overrides it), so `runverify.mjs` is unaffected; a release build drops
+the per-record rol32 hash and the prefix log and keeps everything else.
+
+**Narrow the emit scan.** `flush_sorted` now tracks the lowest and highest bucket
+each pass actually files (`SMIN`/`SMAX`, in two free zero-page slots) and walks only
+that range. Two details made it fit: the range trackers had to be zero page rather
+than `SCRATCH` — logicos-tube's parasite had 14 bytes of headroom and the first
+version overran it — and the "nothing filed this pass" case needs no test, because
+`SMIN`/`SMAX` of 255/0 walks bucket 255 then bucket 0, both necessarily empty, and
+stops. Net cost is 23 bytes.
+
+Measured with `frametime.mjs`, mean busy cycles per frame over the same frames:
+
+| demo | baseline | + scan range | + `VERIFY=0` | saved |
+|---|---|---|---|---|
+| ball | 52,586 | 47,777 (−9.1%) | 46,946 (**−10.7%**) | 5,640 |
+| Everyway | 140,368 | 135,809 (−3.2%) | 130,422 (**−7.1%**) | 9,946 |
+| JeSuisRose | 29,131 | 28,192 (−3.2%) | 26,987 (**−7.4%**) | 2,145 |
+| teaser | 2,813 | 2,719 (−3.3%) | 2,616 (**−7.0%**) | 197 |
+
+The percentages understate it, because both savings land only on frames that draw
+and are otherwise flat. Normalised to a drawing frame:
+
+| demo | drawing frames | saved per drawing frame | as % of a 50Hz budget |
+|---|---|---|---|
+| Everyway | 84% | 11,855 | **29.6%** |
+| JeSuisRose | 22% | 9,930 | **24.8%** |
+| teaser | 2.4% | 8,208 | **20.5%** |
+| ball | 100% | 5,640 | **14.1%** |
+
+So a drawing frame is **5,600–11,900 cycles cheaper — 14–30% of a 50Hz tick** — for
+23 bytes of code and a build flag. ball, the only demo that was already inside a
+contract on a stock machine, goes from 66% of its 25Hz tick to 59%.
+
+Two things worth recording:
+
+- **The fixed sort tax is gone.** Refitting the model against the new engine gives
+  `830 per drawing frame + 910 per record`, where it was `6,070 + 740`. The remaining
+  per-frame constant is small enough to stop being a design concern; what is left
+  scales with records, which is what R9 wanted.
+- **The hash is the expensive half of the verification cost, not the log.** Everyway
+  saves 5,387 cycles/frame over 22.7 records = 237 per record, below `emit_rec`'s
+  measured 368, because its prefix log fills early and most records only pay the
+  hash after that.
+
+`budget.py` has been refitted to the new engine (biases +0.3% to +8.6% across the
+four demos, and ball's median per-frame error improves from 2.5% to 0.6% of a 25Hz
+frame) and gained `--release` to cost a `VERIFY=0` build.
+
+---
+
+## 13. Bottom line
 
 The three things that cost us most on the BBC are all *width* problems, not algorithm
 problems: 32-bit words for a 320×256 screen, 144-byte turtles, and unbounded radii.

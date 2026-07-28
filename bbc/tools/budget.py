@@ -59,16 +59,18 @@ CLASS = [(0x80, 116, "const"), (0x70, 116, "rstate"), (0x60, 106, "rlocal"),
          (0x50, 114, "wstate"), (0x40, 122, "wlocal"), (0x30, 141, "op"),
          (0x20, 1700, "fork"), (0x10, 105, "when")]
 DISPATCH = 28.8
-EMIT = 500          # emit_rec + build_rec, per record
+EMIT = 500          # emit_rec + build_rec, per record (VERIFY=1 build)
+EMIT_REL = 125      # build_rec alone — VERIFY=0 strips the hash and prefix log
 REC = 320           # rec_done (bank/ACCCON glue), per record, charged to render
 FRAME_FIX = 570     # q_drain + frame_tick + cs_loop + sched proper, per frame
-# flush_sorted: every frame that draws anything pays a fixed radix-sort scan
-# before it draws, then a per-record cost. Non-negative least squares against
-# per-frame ground truth from frametime.mjs on ball / teaser / jesuisrose /
-# Everyway (§11.2) — the per-*activation* term fits to zero, which matches
-# opcost.mjs measuring the scheduler proper at 30 cycles per entry.
-SORT_BASE = 6070    # per frame that emits at least one record
-SORT_REC = 740      # per record
+# flush_sorted, refitted after §12.5 narrowed the emit scan to the buckets a
+# frame actually files. The fixed per-drawing-frame tax that was 6,070 cycles
+# is now 830; the rest is per record. (Pre-§12.5 engines: 6,070 + 740.)
+# Non-negative least squares against per-frame ground truth from frametime.mjs
+# on ball / teaser / jesuisrose / Everyway — the per-*activation* term fits to
+# zero, matching opcost.mjs measuring the scheduler proper at 30 cyc/entry.
+SORT_BASE = 830     # per frame that emits at least one record
+SORT_REC = 910      # per record
 
 # Measured render_blob cost per radius (rendercost.mjs on Everyway, which spans
 # r=0..26 with enough samples to be stable). Beyond the table, the fit below.
@@ -121,7 +123,8 @@ def painter_cost(r, square):
     return 29 + 73.5 * lines + 4.1 * b
 
 
-def frame_costs(stats, plots, nframes, micro=False, rmax=15, painter_max=11):
+def frame_costs(stats, plots, nframes, micro=False, rmax=15, painter_max=11,
+                release=False):
     """Per-frame (interp, emit, render) cycle cost."""
     by_frame = collections.defaultdict(list)
     for (f, x, y, r, tint) in plots:
@@ -143,7 +146,8 @@ def frame_costs(stats, plots, nframes, micro=False, rmax=15, painter_max=11):
             ic += n * cost
         ic += nops * DISPATCH
         interp.append(ic)
-        emit.append(len(recs) * EMIT * (MICRO_STATE if micro else 1.0))
+        e = EMIT_REL if release else EMIT
+        emit.append(len(recs) * e * (MICRO_STATE if micro else 1.0))
         rc = len(recs) * REC * (MICRO_STATE if micro else 1.0)
         for (r, sq) in recs:
             if micro:
@@ -194,6 +198,8 @@ def main():
     ap.add_argument("--fail", action="store_true", help="exit 1 if the contract is missed")
     ap.add_argument("--validate", help="frametime.mjs CSV to check the model against")
     ap.add_argument("--csv", help="write per-frame predicted costs here")
+    ap.add_argument("--release", action="store_true",
+                    help="cost a VERIFY=0 build (no record hash or prefix log)")
     ap.add_argument("--quiet", action="store_true", help="one summary line only")
     ap.add_argument("--report", action="store_true",
                     help="one row per configuration (stock/Tube x 16.16/Micro)")
@@ -206,7 +212,8 @@ def main():
     if args.report:
         report(args, stats, plots, nframes)
         return
-    interp, emit, render = frame_costs(stats, plots, nframes, args.micro, args.rmax)
+    interp, emit, render = frame_costs(stats, plots, nframes, args.micro, args.rmax,
+                                       release=args.release)
 
     if args.validate:
         validate(args.validate, interp, emit, render, stats)
@@ -275,7 +282,8 @@ def report(args, stats, plots, nframes):
         for tube in (False, True):
             for lag in (1, args.lag) if args.lag > 1 else (1,):
                 if micro not in cache:
-                    cache[micro] = frame_costs(stats, plots, nframes, micro, args.rmax)
+                    cache[micro] = frame_costs(stats, plots, nframes, micro, args.rmax,
+                                               release=args.release)
                 i, e, r = cache[micro]
                 t = ([max((a + b) / 2.0, c) for a, b, c in zip(i, e, r)] if tube
                      else [a + b + c for a, b, c in zip(i, e, r)])
