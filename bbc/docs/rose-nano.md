@@ -65,7 +65,7 @@ This is not a smaller Rose. It is a different bargain, and §9 states the price.
 | Machine | BBC Model B + sideways RAM | 2MHz 6502 (not 65C12 — no `(zp)`, no `bra`, no `phx`) |
 | RAM timing | full 2MHz | video reads on the opposite phase; **no display contention** ⚠️verify |
 | Frame | 40,000 cycles @ 50Hz | same budget as Micro |
-| MODE 2 | 160×256, 4bpp, 8 colours + 8 flashing | 2 px/byte, pixels 2:1 wide |
+| MODE 2 | 160×256, 4bpp, 8 colours | 2 px/byte, pixels 2:1 wide; flash unused (§4.3) |
 | Screen RAM | **20,480 bytes** | &3000–&7FFF |
 | Main RAM free | **~8.5KB** (&0E00–&2FFF) | with DFS workspace |
 | Sideways RAM | 16–64KB at &8000–&BFFF | one bank paged at a time |
@@ -163,8 +163,9 @@ no masks. D3c's entire discussion is retired.
 
 ## 4. Colour: getting well past 8
 
-MODE 2's 4bpp gives 16 logical entries over 8 physical colours (plus flash). Four
-independent mechanisms stack, and three of them are free.
+MODE 2's 4bpp gives 16 logical entries over 8 physical colours. Two mechanisms carry
+the whole colour argument, and both are free. Two more were considered and rejected
+(§4.3).
 
 ### 4.1 Spatial dither — free by construction ⭐
 
@@ -181,40 +182,51 @@ argument for the 80×64 tier.
 
 Cost: **zero cycles, ~4 bytes of pattern table per tint.**
 
-### 4.2 Raster palette splits ⭐
+### 4.2 Palette cycling — first-class ⭐
 
-The engine already draws in raster order to beam-race (§6.3). Palette writes to the
-video ULA at &FE21 are one byte per logical colour, so a full 8-entry reload is a few
-dozen cycles — and it can be an entry in the *same* per-row display list as the blobs.
-One mechanism, no special case, no separate interrupt apparatus.
+**This is a language primitive, not an effect.** The palette is a first-class piece of
+turtle-visible state, alongside position and tint.
 
-8 vertical bands × 8 physical colours = **up to 64 colours on screen at once**, for a
-few hundred cycles a frame. Combined with §4.1 the apparent palette runs into the
-hundreds.
+The whole 16-entry logical palette is available; the natural split is a static set for
+structural colour and an animated set the composition rotates. A `cycl` op rotates a
+named range of logical entries; the colorscript gains the ability to *animate* rather
+than merely to change. Fire, water, plasma, pulsing trails, flow along a path already
+drawn — **motion with zero CPU and zero blobs drawn.**
 
-The catch: bands are horizontal and the split is a *scene* property, not a per-blob
-one. Compositions have to be authored with vertical colour structure in mind — sky
-over ground, depth bands, heat gradients. That is a real authoring constraint and also
-a strong aesthetic prompt.
+Cost: 16 writes to &FE21, once a frame, at VSync. Call it ~100 cycles, and note that
+it happens outside the raster walk entirely, so it introduces no timing jitter.
 
-### 4.3 Palette cycling as a language primitive
+Two things make this more important in Nano than it would be in any other Rose:
 
-Reserve logical colours 8–15 as an animated set and give the language a `cycl` op that
-rotates them. Fire, water, plasma, pulsing, flowing trails — **motion with zero CPU and
-zero blobs drawn.**
+- The *interpreter* is the scarce resource (Micro §11.5), and this consumes none of it.
+  Palette animation is the only way to add on-screen motion that costs literally
+  nothing per frame.
+- Trails are persistent (§1.5 of the Micro doc — the reason the port works at all).
+  A persistent trail drawn in a cycling tint keeps moving after the turtle that drew
+  it is gone. That composes with §4.1's dither pairs: a trail dithered between one
+  static and one cycling colour shimmers rather than strobes.
 
-This is the first thing in any Rose dialect that makes the screen change without
-drawing to it, and it directly serves the "lots happening" goal: the *interpreter* is
-the scarce resource (Micro §11.5), and this consumes none of it.
+That last combination is worth an experiment on its own, and it is the most
+Nano-specific expressive idea in this document: **the canvas stays alive after the
+turtles stop.**
 
-### 4.4 Temporal dither via the flash bit
+### 4.3 Rejected: raster splits and temporal dither
 
-The ULA flashes logical colours 8–15 between a colour and its complement; `*FX9,1` /
-`*FX10,1` sets 1-frame alternation. Red/yellow reads as orange at 50Hz. Free extra
-tints, genuine flicker risk on a CRT and worse on an LCD.
+Recorded so the decisions are explicit rather than forgotten.
 
-Worth exactly one experiment (§10) to decide whether it is a tool or a curiosity. Do
-not design around it until then.
+**Raster palette splits** (palette reloads at band boundaries during the raster walk)
+would give up to 64 colours on screen for a few hundred cycles. Rejected on **cycle
+jitter**: the writes have to land in specific scanlines, which means the render walk
+becomes timing-critical rather than merely raster-ordered. That reintroduces exactly
+the class of variance §1 exists to eliminate, and it does so in the one loop that must
+stay a flat, predictable, constant-cost sweep. Not worth 64 colours.
+
+**Temporal dither via the ULA flash bit** (`*FX9,1` / `*FX10,1`, colours alternating
+with their complements at 1-frame rate) is free but looks poor — flicker on a CRT and
+worse on an LCD. Rejected on appearance.
+
+Neither is a close call, and neither should be revisited without a specific
+composition asking for it.
 
 ---
 
@@ -322,9 +334,12 @@ R8 and it is enforced by a counter, not by an offline analysis.
 
 Drawing order falls out for free: bucket the live turtles by grid row (a 6-bit key,
 32 or 64 buckets — a counting sort with no comparisons) and walk top to bottom in step
-with the beam. Palette splits (§4.2) are entries in the same walk. Nothing tears,
-nothing needs double buffering, and Micro's `(t, y−r)` ordering contract is preserved
-in a much cheaper form.
+with the beam. Nothing tears, nothing needs double buffering, and Micro's `(t, y−r)`
+ordering contract is preserved in a much cheaper form.
+
+Because §4.3 rejects raster splits, this walk stays what it should be: a flat sweep
+with no timing-critical work in it. The only cycle-accurate obligation in the whole
+engine is *staying ahead of the beam*, and that has slack by construction.
 
 ### 6.4 Compile, don't interpret ⭐
 
@@ -353,11 +368,23 @@ housekeeping (~30) ≈ **~160 cycles**, versus Micro's measured 686 for `move` a
 
 ---
 
-## 7. Free-lunch multipliers
+## 7. Free-lunch multipliers — deferred past v1
 
 These are the ideas that make a 64-turtle machine *look* like a 500-turtle one. Every
 one is cheap specifically on this hardware, and most would be expensive on an
 Archimedes — which is the point of the exercise.
+
+> **None of them are v1.** They are recorded here because they are the reason the
+> headroom in §8 is worth having, and because each one constrains the core design in a
+> small way that is cheap to honour now and expensive to retrofit. v1 is §3–§6 plus
+> §4.1–§4.2: fixed stamps, fixed pool, dither, palette cycling. Nothing below blocks
+> it, and nothing below should be built until it runs.
+
+What v1 owes them is only this: keep grid coordinates as separate column and row bytes
+(so §7.1's scroll and §7.2's mirroring are index arithmetic), and keep the stamp
+routine callable with an explicit cell address rather than reading the turtle's own
+position (so §7.2 and §7.3 are loops around it rather than rewrites of it). Both are
+free.
 
 ### 7.1 Hardware scroll
 
@@ -403,32 +430,37 @@ needs a shrunk screen, §2). It buys three things at once:
 Point 2 is the most artistically interesting idea in this document. It turns the canvas
 from an output into a medium the turtles inhabit.
 
-### 7.5 Dual playfield — available, probably not worth it
+### 7.5 Rejected: dual playfield
 
 MODE 2 supports the Micro §S4 trick (pixel = `(l1<<2)|l0`, palette computed so layer 1
 occludes layer 0) with exact erase-reveals-layer-0 semantics. But writing one plane
-requires read-modify-write, breaking §3.1's law at ~2.5× stamp cost.
+requires read-modify-write, breaking §3.1's law at ~2.5× stamp cost — and §3.1 is the
+law the whole design rests on.
 
-The shadow grid does the same job more cheaply. **Recommend skipping it**, and noting
-it here so the decision is explicit rather than forgotten.
+The shadow grid (§7.4) does the same job more cheaply, and it costs bytes rather than
+cycles, which is the wrong resource but the recoverable one (§2). **Rejected**, and
+recorded here so the decision is explicit rather than forgotten.
 
 ---
 
 ## 8. Budget — back of envelope
 
-50Hz = 40,000 cycles. 80×64 grid, compiled (§6.4), 64 turtles, one blob each:
+50Hz = 40,000 cycles. 80×64 grid, compiled (§6.4), 64 turtles, one blob each — **v1
+only**, i.e. §3–§6 plus §4.1–§4.2, with nothing from §7:
 
 | item | est. cycles | % |
 |---|---|---|
 | 64 × turtle step (move + stamp + housekeeping ≈ 160) | 10,240 | 26% |
-| raster palette splits, 8 bands | ~400 | 1% |
+| palette cycling, at VSync | ~100 | <1% |
 | music (SN76489 player) | ~1,500 | 4% |
-| scheduler, row bucketing, scroll, VSync | ~1,200 | 3% |
-| **total** | **~13,300** | **33%** |
+| scheduler, row bucketing, VSync | ~1,200 | 3% |
+| **total** | **~13,000** | **33%** |
 
-**~26,700 cycles of headroom.** Spent on herds and symmetry (§7.2–7.3) at ~70 cycles
-per extra stamp, that is **another ~380 blobs**, landing at **300–450 blobs per frame
-at a locked 50Hz** — or spent on the shadow-grid fade sweep, or on more turtles.
+**~27,000 cycles of headroom, unspent in v1.** That is the point of the deferral in
+§7: v1 should ship at a third of the frame and leave the rest visibly on the table,
+because every §7 multiplier converts it into on-screen density at ~70 cycles per extra
+stamp. Herds and symmetry alone would add ~380 blobs, landing at **300–450 blobs per
+frame at a locked 50Hz**; the shadow-grid fade sweep would take ~5,000 of it instead.
 
 The chunky 40×32 tier at ~160/stamp lands around 120–180 blobs per frame with the same
 headroom split.
@@ -457,7 +489,10 @@ budget known at design time**, not a distribution with a p95.
   pixel-perfect jsbeeb compares, and per §6's logic that must be built **first**.
 - **8.5KB of main RAM will hurt before cycles do.** Expect to shrink the screen. The
   80×64 shadow grid and the 80×64 grid tier may not be simultaneously affordable.
-- **Vertical colour structure is mandatory** if raster splits are used (§4.2).
+- **8 physical colours, and that is the end of it.** With raster splits and temporal
+  dither both rejected (§4.3), the entire colour argument rests on dither pairs and
+  palette cycling. Experiment 6 is therefore load-bearing, not a nicety: if the 36
+  pairs read as texture rather than as colour, Nano is an 8-colour system.
 - **Speed is quantised to 8 values** and direction to 256 — smooth acceleration curves
   and slow drifts need care.
 
@@ -476,17 +511,18 @@ None of §1–§9 is measured. In dependency order:
 | 1 | Confirm MODE 2 byte-order within a character cell; time a 4-byte and a 16-byte stamp under jsbeeb | Is 70/160 cycles real? **Everything hangs on this** | small |
 | 2 | RAM budget spreadsheet: MODE 2 full / 160×200 / MODE 5, against turtle arrays + speed tables + shadow grid + code | Which configuration is even possible | small |
 | 3 | **Render the existing demos onto an 80×64 and a 40×32 grid in the visualizer, dithered to the §4.1 tint set** | **Does it look good?** | small |
-| 4 | Time a compiled turtle step vs a call-threaded one vs Micro's jump table | Is §6.4 worth the code space | small |
-| 5 | 8-band raster palette split under jsbeeb | True cost of 64-colours-on-screen | small |
-| 6 | Dither-pair study: which of the 36 pairs read as distinct colours rather than as texture | The apparent palette is the whole colour pitch | small |
-| 7 | Shadow-grid fade sweep prototype | Does managed persistence look like Rose or like something else | medium |
+| 4 | **Dither-pair study: which of the 36 pairs read as distinct colours rather than as texture, at 2×4 and 4×8** | The apparent palette is now the *whole* colour pitch (§9) | small |
+| 5 | Cycling-tint study in the visualizer: persistent trails drawn in rotating palette entries, incl. static/cycling dither pairs | Is §4.2 the expressive win it looks like | small |
+| 6 | Time a compiled turtle step vs a call-threaded one vs Micro's jump table | Is §6.4 worth the code space | small |
+| 7 | *(deferred, §7)* shadow-grid fade sweep prototype | Does managed persistence look like Rose or like something else | medium |
 
 **Experiment 3 decides whether Nano is worth building at all**, and it costs nothing
 but visualizer work — exactly the shape of Micro's §8, which is where the Micro
 proposal earned its credibility. Do it before writing a line of 6502.
 
-Experiments 1 and 5 are jsbeeb microbenchmarks in the mould of §9 and §10 and can run
-in parallel with 3.
+Experiments 3, 4 and 5 are all visualizer work and all colour/geometry questions;
+they should be done together and looked at side by side. Experiment 1 is a jsbeeb
+microbenchmark in the mould of Micro §9–§10 and can run in parallel.
 
 ---
 
@@ -499,14 +535,18 @@ keeps the existing corpus in play.
 
 Rose Nano is a **variance** argument: fix the blob size to a byte-aligned grid cell,
 fix the turtle count, fix one blob per turtle per frame, and the frame cost becomes a
-constant known at design time. Then spend the resulting headroom on the things this
-specific machine gives away free — dither patterns, palette splits, palette cycling,
-hardware scroll, symmetry, herds — to buy back the apparent colour depth and apparent
-density that the reductions took away.
+constant known at design time.
 
-The two are not competitors. Micro is how the existing work reaches the BBC. Nano is
-what you would write *for* the BBC, and the honest summary is that it is a different
-instrument that happens to share Rose's grammar.
+v1 buys back the apparent colour depth with the two mechanisms that cost nothing and
+introduce no timing risk — **dither pairs and palette cycling** — and buys back nothing
+of the density, deliberately, leaving two-thirds of the frame unspent. The density
+multipliers in §7 are real and they are cheap, but they are a second phase; a v1 that
+runs at 33% of a frame is a machine you can then *compose* for, and that is the harder
+half of the problem.
 
-The decision gate is experiment 3. If a 2×4-pixel dithered grid does not look like
-Rose in the visualizer, nothing in §3–§8 matters.
+The two dialects are not competitors. Micro is how the existing work reaches the BBC.
+Nano is what you would write *for* the BBC, and the honest summary is that it is a
+different instrument that happens to share Rose's grammar.
+
+The decision gate is experiments 3–5, all of them visualizer work and none of them
+6502. If a 2×4-pixel dithered grid does not look like Rose, nothing in §3–§8 matters.
