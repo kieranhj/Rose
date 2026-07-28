@@ -905,6 +905,44 @@ ENDIF
     sty evx
     jmp next_op
 
+IF FUSE
+.op_rlop                            ; FUSED rlocal[i] + op(o)  (rose-micro R5)
+                                    ; operand byte = i<<4 | o. The local goes
+                                    ; straight into RA, so neither the push
+                                    ; nor op_op's pop happens: the value never
+                                    ; touches the eval stack. Net stack effect
+                                    ; is zero, exactly as the pair it replaces.
+    lda (ip)
+    inc ip
+    bne rlop_f
+    inc ip+1
+.rlop_f
+    pha
+    and #&F0                        ; i*4, i.e. (i<<4) >> 2
+    lsr a
+    lsr a
+    clc
+    adc #ST_LOCALS
+    tay
+    lda (st),y
+    sta RA
+    iny
+    lda (st),y
+    sta RA+1
+    iny
+    lda (st),y
+    sta RA+2
+    iny
+    lda (st),y
+    sta RA+3
+    pla
+    and #15                         ; op_op_go and op_shift read the low
+    sta opsave                      ; nibble only
+    jmp op_op_go
+ENDIF                               ; 44 bytes — logicos-tube's parasite has
+                                    ; 242 spare, so the full set costs space
+                                    ; that build does not have. See §13.
+
 .op_wlocal                          ; pop -> local[i]
     jsr pop_RA
     lda opsave
@@ -944,8 +982,9 @@ ENDIF
     iny
     lda (st),y
     sta RA+3
-    lda evx
-    sec
+.op_op_go                           ; entered with a in RA, the op nibble in
+    lda evx                         ; opsave, and the stack already popped to
+    sec                             ; leave b on top
     sbc #4
     tay                             ; Y -> b, which becomes the result
     lda opsave
@@ -2768,9 +2807,16 @@ NEXT
 FOR n, 0, 15
     EQUW op_fork
 NEXT
-FOR n, 0, 15
+    EQUW op_op, op_op                   ; nibble 2 (ROXR) is absent from the
+IF FUSE                                 ; language, so &32 is free by
+    EQUW op_rlop                        ; construction — see rose-micro.md R5
+ELSE
     EQUW op_op
-NEXT
+ENDIF
+    EQUW op_op
+    EQUW op_op, op_op, op_op, op_op
+    EQUW op_op, op_op, op_op, op_op
+    EQUW op_op, op_op, op_op, op_op
 FOR n, 0, 15
     EQUW op_wlocal
 NEXT

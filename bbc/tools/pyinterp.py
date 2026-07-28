@@ -85,9 +85,27 @@ def resolve_when(bc):
     return target
 
 
-def run(bc, constants, frames=10000, trace_frames=None, stats=None):
+def oplen(bc, i):
+    """Encoded length of the opcode at offset i (PROC and the big-constant
+    escape carry a byte operand; everything else is one byte)."""
+    op = bc[i]
+    return 2 if (op == 0x07 or (op >= 0x80 and (op & 0x7F) == 126)) else 1
+
+
+def run(bc, constants, frames=10000, trace_frames=None, stats=None, pairs=None):
     """If `stats` is a list, append (Counter of executed opcode bytes, turtle
-    activations, live turtles) per frame — the input to bbc/tools/budget.py."""
+    activations, live turtles) per frame — the input to bbc/tools/budget.py.
+
+    If `pairs` is a dict, fill it with the input to bbc/tools/pairs.py (R5
+    fusion): `pairs["fall"]` counts, per bytecode offset, how often the op
+    there was followed by its statically adjacent successor, and
+    `pairs["entry"]` is the set of offsets ever reached any other way (branch
+    target, tail, proc entry, wait resume). Only a pair whose second op is
+    absent from `entry` can be fused into one opcode."""
+    if pairs is not None:
+        pairs.setdefault("fall", collections.Counter())
+        pairs.setdefault("entry", set())
+        PFALL, PENTRY = pairs["fall"], pairs["entry"]
     procs = scan_procs(bc)
     target = resolve_when(bc)
     plots = []
@@ -119,7 +137,14 @@ def run(bc, constants, frames=10000, trace_frames=None, stats=None):
             # run turtle until wait/end (stack persists on the turtle)
             stk = t.stk
             pc = t.pc
+            pend = None
             while True:
+                if pairs is not None:
+                    if pend == pc:
+                        PFALL[pstart] += 1
+                    else:
+                        PENTRY.add(pc)
+                    pstart, pend = pc, pc + oplen(bc, pc)
                 op = bc[pc]
                 pc += 1
                 if C is not None:

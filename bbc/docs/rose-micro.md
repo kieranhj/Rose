@@ -212,6 +212,16 @@ Everyway executes 138,618 dispatches at 28.8 cycles — 4.0M cycles that fusing
   their local slot directly. Push/pop is 13.5% of interpreter time and most of it is
   moving values between adjacent slots.
 
+**Measured in §13, and it changes the shape of the advice.** Fusion is worth
+109 cycles when it keeps a value out of the eval stack and 7 when it only
+removes a dispatch — so the superinstructions to build are producer→consumer
+pairs (`rlocal+op`, `const+move`, `rlocal+wait`), not the frequent-but-idle
+push/push pairs. The last bullet is the right one: every worthwhile fusion in
+the measured top fifteen is an op naming its operand directly, which is what a
+direct-operand encoding gives you for free and in one byte. On the 16.16 engine
+the whole set is worth 9.3% of interpreter time, at the bottom of the estimate
+above; the value for Micro comes from the one-byte encoding, not from the pairs.
+
 ### R6 — Precompiled brush painters (replaces per-line setup)  ⭐ biggest render win
 
 Generate, offline, straight-line 6502 for each (brush radius, x-offset 0–3) pair the
@@ -385,8 +395,9 @@ Cheap experiments that de-risk the expensive decisions, roughly in dependency or
 | 2 | ~~Microbenchmark a 10.6 `move` handler in isolation under jsbeeb~~ **DONE — see §9** | Is the 2–2.5× interpreter estimate real? | small |
 | 3 | ~~Generate one precompiled brush painter (r=8, offset 0–3), benchmark vs `render_blob`~~ **DONE — see §10** | Is R6's 2–3× real, and what is the true code size per variant? | small |
 | 4 | ~~Budget checker against the measured cost model~~ **DONE — see §12** | Which existing demos are already inside a 25/50Hz contract? | small |
-| 5 | Lag-queue prototype on the current engine (no dialect change needed) | How much of the p50/p95 gap does it actually absorb? | medium |
-| 6 | S2 dual-write fillers on the current engine, ball + teaser | True cost of tear-free double buffering | medium |
+| 5 | ~~Fuse the hot opcode pairs; measure one for real~~ **DONE — see §13** | Is R5's 8–12% real, and does the encoding have room? | small |
+| 6 | Lag-queue prototype on the current engine (no dialect change needed) | How much of the p50/p95 gap does it actually absorb? | medium |
+| 7 | S2 dual-write fillers on the current engine, ball + teaser | True cost of tear-free double buffering | medium |
 
 Experiments 4 and 5 need no new dialect at all and would improve the *existing*
 engine — worth doing regardless of whether Rose Micro gets built.
@@ -1038,7 +1049,7 @@ inside a contract. What engine work can do is raise the average frame rate:
 |---|---|---|---|
 | `IF VERIFY` around the hash and prefix log ✅ | 237–400 cyc/record, always paid | **measured 3–15%** (§12.5) | none — verification builds keep it |
 | Scan only the filed bucket range ✅ | 67–99% of a 256-entry scan, ×1–2 per frame | **measured 10–14%** (§12.5) | none — ordering unchanged |
-| R5 fusion (`const`+`op`, `rlocal`+`op`) on the 16.16 engine | ~⅓ of 138K dispatches plus their push/pop pairs | 8–12% (estimated) | low — arithmetic identical |
+| R5 fusion (`const`+`op`, `rlocal`+`op`) on the 16.16 engine | ~⅓ of 138K dispatches plus their push/pop pairs | ~~8–12% (estimated)~~ **9.3% of interpreter, measured — §13** | low — arithmetic identical |
 | R6 painters | 46–53% of *render* | 4% (logicos) to 14% (chiperia) | 2–20KB of sideways RAM |
 
 **Without a coprocessor** the first three are worth ~20–30% together. That moves
@@ -1161,7 +1172,149 @@ frame) and gained `--release` to cost a `VERIFY=0` build.
 
 ---
 
-## 13. Bottom line
+## 13. Experiment 5 results — R5 fusion, explored and measured (2026-07-28)
+
+§12.1 listed R5 fusion as the last unmeasured lever for the existing demo set,
+at an estimated 8–12%. This section replaces the estimate with a measurement:
+one fused opcode built for real and run on the machine, and a calibrated model
+that says what the rest of the set would buy.
+
+### 13.1 What was built
+
+**`bbc/tools/pairs.py`** — the fusion analyser. It replays a build through the
+reference model and counts every *statically adjacent* executed opcode pair.
+Three things had to be got right before the numbers meant anything:
+
+- **Only fall-through pairs count.** A branch target, tail, proc entry or wait
+  resume landing on the second op of a pair makes that pair unencodable. A new
+  `pairs=` hook in `pyinterp` records both the fall-through counts and the set
+  of offsets ever reached any other way, so the fusible/blocked split is
+  *observed* rather than assumed. It is also nearly free: **99.3% of all
+  fall-throughs across the ten demos are fusible**, and the DONE marker (which
+  `rose2bbc.py` resolves away, and which is always a control-flow join)
+  accounts for most of the rest.
+- **Pairs overlap.** In `const rlocal op` a compiler may take `const+rlocal` or
+  `rlocal+op`, never both. `--tile` runs a DP over each fall-through chain,
+  weighted by execution count, so the answer is what a compiler could actually
+  claim rather than a sum of competing counts.
+- **Most pairs are worth almost nothing** (§13.3).
+
+**`interp.asm`: opcode `&32` = `op_rlop`**, the fused `rlocal[i] + op(o)`, with
+`ROSE_FUSE=1` making `rose2bbc.py` emit it. 44 bytes, behind `-D FUSE` and off
+by default. It loads the local straight into `RA` and joins `op_op` at the new
+`op_op_go` label, so the value never touches the eval stack; net stack effect
+is zero, exactly as the pair it replaces.
+
+### 13.2 The encoding has 15 free bytes, and they are free by construction
+
+The 16.16 opcode space is fully allocated — 16 low ops, seven 16-wide class
+ranges, and 128 constants with an escape at 126 that logicos reaches. Union
+across all ten demos leaves 32 unused bytes, but most are unused by accident
+and a new demo would claim them.
+
+Fifteen are different. `when` defines six condition codes out of sixteen and
+`op` defines eleven out of sixteen, so **ten `when` slots and five `op` slots
+can never be emitted by any program**. `&32` (the absent ROXR) is one of them.
+That is the real fusion budget on the current engine, and it needs no
+re-encoding, no toolchain version flag and no change to any existing build.
+
+### 13.3 Fusion is only worth it when it keeps a value off the eval stack
+
+Ranking pairs by frequency is misleading. `const + rlocal` executes 998,030
+times — second most of any pair — and fusing it saves almost nothing, because
+both halves still push. What a fusion can remove is:
+
+| what the fusion removes | cycles | example |
+|---|---|---|
+| producer → consumer: the whole push/pop round-trip | 50 + 52 | `rlocal + op` |
+| in-place producer → consumer: the result write and its read-back | 40 + 52 | `op + wlocal` |
+| the dispatch | 28.8 | every fusion |
+| *less* the fused operand byte it must carry | −22 | every fusion |
+
+With no free 16-slot *range* left, every fused opcode is two bytes, so the
+operand fetch is unavoidable. That makes a dispatch-only fusion worth **7
+cycles** and a round-trip fusion worth **109** — a factor of fifteen. The
+fifteen highest-value fusions are, without exception, producer→consumer.
+
+### 13.4 Measured: 108 cycles per fusion, on the machine
+
+`rlocal+op` built, verified and measured with `frametime.mjs` over identical
+frame ranges. **All four A/B builds are bit-exact** (ball, teaser, JeSuisRose,
+Everyway).
+
+| demo | fusions | interp base | interp fused | saved/frame | of interp | of busy frame |
+|---|---|---|---|---|---|---|
+| ball | 24,575 | 8,601 | 8,070 | 530 | **6.2%** | 1.1% |
+| JeSuisRose | 17,735 | 20,064 | 19,680 | 383 | **1.9%** | 1.2% |
+| teaser | 1,606 | 1,460 | 1,441 | 19 | **1.3%** | 0.9% |
+
+All three give **108 cycles per fusion** — the same number to within a cycle,
+against a model that predicted 109. The model's stack terms are therefore
+sound, and `pairs.py` is calibrated (`FETCH = 22`, the one term that had to be
+fitted: the operand fetch and nibble split, net of the `opsave` decode it
+replaces).
+
+### 13.5 What the whole set would buy
+
+With the calibrated model, greedy selection by *marginal* gain (ranking by
+standalone value picks wrong — `op + wlocal` is second by value and adds 0.02
+Mcyc, because `rlocal+op` has already claimed its partner):
+
+| opcodes | share of interpreter |
+|---|---|
+| 1 (`rlocal+op`) | 4.5% |
+| 5 | 6.3% |
+| 10 | **9.3%** |
+| 15 (the whole free budget) | 9.6% |
+| unlimited | 11.0% |
+
+Ten opcodes get 85% of the ceiling; the set is `rlocal+op`, `rlocal+wstate`,
+`const+wait`, `rlocal+wait`, `rstate+op`, `rlocal+mul`, `const+move`,
+`const+wstate`, `rlocal+move`, `rlocal+when`. Per demo, 7.4% (teaser) to 18.1%
+(ball) of interpreter time.
+
+### 13.6 The constraint is code space, not opcode space
+
+`op_rlop` costs **44 bytes**, so ten cost ~440. logicos-tube's parasite has
+**242 bytes spare** — adding the single prototype unconditionally broke its
+`ASSERT rose_data_end <= SORTBASE` immediately, which is why `-D FUSE` exists.
+So on the tightest build the affordable set is about five opcodes (6.3%), not
+ten, unless space is reclaimed first.
+
+### 13.7 Verdict
+
+**R5 on the 16.16 engine lands at the bottom of §12.1's estimated range: 9.3%
+of interpreter time, not 8–12% of the frame.** Interpretation is 60–91% of the
+bill for nine of ten demos, so that is ~6–8% of a busy frame for the
+interpreter-bound ones and ~2% for render-bound ball. Like every other lever in
+§12, it moves no demo across a contract boundary, with or without the Tube.
+
+It is a different proposition for Rose Micro, and the reason is arithmetic, not
+enthusiasm:
+
+- A from-scratch encoding can reserve a **full 16-slot range**, so fused
+  opcodes are one byte and the 22-cycle operand penalty disappears.
+- Micro's push+pop is 51 cycles against 16.16's 95 (§9.3), but its *handlers*
+  are ~2× cheaper too, so fusion's share of the remaining interpreter is
+  roughly unchanged — while the absolute cost of *not* fusing is now a larger
+  fraction of a much smaller total.
+- Stacking the measured numbers: R1's 1.75× times R5's ~1.10× ≈ **1.9× on the
+  interpreter**, which is where §9.5's missing "2–2.5×" actually lives.
+
+The prototype stays in the tree behind `-D FUSE` / `ROSE_FUSE=1` — bit-exact,
+measured, and costing nothing when off. Turning it on for real means building
+the ten-opcode set and re-running the full fifteen-build sweep, which is only
+worth doing as part of Rose Micro's encoding, where the operand byte goes away.
+
+Reproduce:
+```
+python bbc/tools/pairs.py --all --tile 10 --greedy     # the analysis
+ROSE_FUSE=1 bash bbc/bin/build.sh ball-fz ball         # the prototype
+node bbc/tools/runverify.mjs bbc/build/ball-fz
+node bbc/tools/frametime.mjs bbc/build/ball-fz out.csv 400
+```
+
+## 14. Bottom line
 
 The three things that cost us most on the BBC are all *width* problems, not algorithm
 problems: 32-bit words for a 320×256 screen, 144-byte turtles, and unbounded radii.

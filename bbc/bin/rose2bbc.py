@@ -24,6 +24,7 @@
 # ============================================================================
 
 import math
+import os
 import sys
 import struct
 from pathlib import Path
@@ -33,6 +34,9 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "tools"))
 BC_DONE, BC_ELSE, BC_END, BC_RAND, BC_DRAW, BC_TAIL, BC_PLOT, BC_PROC = range(8)
 BC_POP, BC_DIV, BC_WAIT, BC_SINE, BC_SEED, BC_NEG, BC_MOVE, BC_MUL = range(8, 16)
 BC_WHEN = 0x10
+# R5 fusion of rlocal+op into opcode &32. Off by default while it is being
+# measured; ROSE_FUSE=1 turns it on for an A/B against the same demo.
+FUSE = os.environ.get("ROSE_FUSE") == "1"
 BC_FORK = 0x20
 BC_CONST = 0x80
 BIG_CONSTANT_BASE = 126
@@ -566,13 +570,35 @@ def main():
     w(".rose_bytecode")
 
     label_needed = set(target.values()) | set(proc_start.keys())
-    for off, op, extra in ins:
+
+    # R5 fusion: rlocal[i] followed by op(o) becomes the single opcode &32
+    # (an `op` nibble the language never defines) plus an i<<4|o operand byte.
+    # Only safe where the op is not itself reachable — a branch target, proc
+    # entry or tail landing between the two would be unencodable.
+    fuse = {}                           # offset of the rlocal -> operand byte
+    if FUSE:
+        for k in range(len(ins) - 1):
+            off, op, _ = ins[k]
+            noff, nop, _ = ins[k + 1]
+            if (0x60 <= op <= 0x6F and 0x30 <= nop <= 0x3F
+                    and noff not in label_needed):
+                fuse[off] = ((op & 15) << 4) | (nop & 15)
+
+    skip = -1
+    for k, (off, op, extra) in enumerate(ins):
+        if off == skip:
+            continue
         if off in proc_start:
             w(f".rose_p{proc_start[off]}")
         if off in label_needed:
             w(f".bc_{off}")
         if op == BC_DONE:
             continue  # label only
+        if off in fuse:
+            w(f"    EQUB &32, &{fuse[off]:02X}  ; rlocal {op & 15}"
+              f" + op {fuse[off] & 15}")
+            skip = ins[k + 1][0]
+            continue
         if op == BC_ELSE:
             w(f"    EQUB &01 : EQUW bc_{target[off]}  ; ELSE")
         elif BC_WHEN <= op <= BC_WHEN + 0xF:
