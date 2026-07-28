@@ -254,6 +254,13 @@ the difference between "25fps with dips to 8" and "locked 25fps".
 
 Ordering is preserved (the ring is FIFO), so erase-class records still behave.
 
+**Amended by §11.6: N ≈ 4–8 is far too small.** Measured against every demo, the
+smallest queue depth that holds a 25Hz contract is 32–512 frames where it is
+attainable at all, and for five of ten demos no depth up to 512 works. The overruns
+are not jitter, they are whole scenes arriving at once — seconds wide, not frames.
+A queue still helps (depth 8 absorbs 35–60% of the peak) but it cannot be the
+mechanism that makes 50Hz a guarantee. R8 is.
+
 ### R8 — Compile-time budget enforcement
 
 The toolchain already replays the whole program offline (`roseplots`, `pyinterp`,
@@ -268,6 +275,24 @@ with `--budget 50 | 25` as a build flag that *fails the build*. Consistency at 5
 is not an engine property, it is an authoring property; this is the tool that makes
 it one. Combined with R7 the check is on the *windowed mean*, which is far less
 brittle than a per-frame ceiling.
+
+**Built and validated — see §11.** `bbc/tools/budget.py` predicts the mean frame
+within ±2% and picks out the same worst frames the machine does.
+
+### R9 — Cheaper record ordering (new, from §11.3)
+
+Every frame that draws anything pays ~6,000 cycles to `flush_sorted` before a single
+pixel is written — a radix scan that puts records in (y−r) order so overlapping
+blobs composite correctly. That is **15% of a 50Hz frame as a fixed tax**, paid by a
+frame with one blob in it just as much as by a frame with forty.
+
+It was invisible to every earlier measurement because it is not an opcode and not
+part of the renderer; it only appeared when frames were costed individually. Options,
+in increasing order of disruption: keep the buckets live across the frame instead of
+rebuilding them (the emit path already knows each record's key); drop to a single
+pass by clamping the key to a byte (R1 makes the screen 8-bit-addressable in y
+anyway); or drop ordering entirely for material that does not overlap within a frame,
+which the toolchain can prove offline.
 
 ---
 
@@ -359,7 +384,7 @@ Cheap experiments that de-risk the expensive decisions, roughly in dependency or
 | 1 | ~~Micro numeric mode in the visualizer; replay all 9 demos + logicos~~ **DONE — see §8** | Does 10.6 / byte-direction / brush-radius *look* right? Drift? | small |
 | 2 | ~~Microbenchmark a 10.6 `move` handler in isolation under jsbeeb~~ **DONE — see §9** | Is the 2–2.5× interpreter estimate real? | small |
 | 3 | ~~Generate one precompiled brush painter (r=8, offset 0–3), benchmark vs `render_blob`~~ **DONE — see §10** | Is R6's 2–3× real, and what is the true code size per variant? | small |
-| 4 | Budget checker in `rose2bbc.py` against the current cost model | Which existing demos are already inside a 25/50Hz contract? | small |
+| 4 | ~~Budget checker against the measured cost model~~ **DONE — see §12** | Which existing demos are already inside a 25/50Hz contract? | small |
 | 5 | Lag-queue prototype on the current engine (no dialect change needed) | How much of the p50/p95 gap does it actually absorb? | medium |
 | 6 | S2 dual-write fillers on the current engine, ball + teaser | True cost of tear-free double buffering | medium |
 
@@ -774,7 +799,194 @@ bash bbc/bench/paintbuild.sh 2 4 8 12
 python bbc/tools/paintbudget.py <plots.bin>
 ```
 
-## 11. Bottom line
+## 11. Experiment 4 results — the budget checker, and what it says about the demos (2026-07-28)
+
+Experiments 1–3 measured *pieces*. This one assembles them into a model of a whole
+frame, checks that model against the machine, and then asks the question the spec
+exists to answer: **which of our own demos are already inside a 25Hz or 50Hz
+contract, and what stops the rest?**
+
+### 11.1 What was built
+
+- **`bbc/tools/budget.py`** — replays a build's bytecode through `pyinterp` and costs
+  every frame: per-opcode handler costs (§9.2) + dispatch, the record emit path, the
+  measured render law per radius (§10), and the per-frame scheduler and sort terms.
+  Reports mean / p50 / p95 / worst against a 25Hz or 50Hz tick, names the worst frame
+  and what was in it, and with `--fail` exits non-zero — R8 as an actual build gate.
+  `--micro` re-costs the same program under the Rose Micro projection, `--tube` under
+  the coprocessor split, `--lag N` under an R7 draw queue.
+- **`bbc/tools/frametime.mjs`** — the ground truth. `profile.mjs` aggregates regions
+  over chunks of frames; this one flushes a row at every `frame_tick`, so each frame's
+  interp / emit / render / idle cost is recorded separately. Without it the model
+  would be a plausible-looking spreadsheet.
+- **`pyinterp.py`** gained a `stats=` hook: per frame, a counter of executed opcode
+  bytes plus turtle activations and live turtles. Three inserted lines, no change to
+  the semantics it exists to verify.
+
+### 11.2 Validating the model — this is the part that matters
+
+A budget checker nobody has checked is worse than no budget checker. Predicted
+against measured, per frame, on four single-CPU builds spanning the range (ball is
+render-bound, teaser is nearly idle with rare spikes, JeSuisRose is fill-heavy,
+Everyway is the monster):
+
+| demo | predicted mean/frame | measured | bias | per-frame error (median) | (p95) |
+|---|---|---|---|---|---|
+| ball | 52,797 | 52,585 | **+0.4%** | 2.5% of a 25Hz frame | 3.0% |
+| teaser | 3,044 | 2,813 | **+8.2%** | 0.3% | 0.3% |
+| JeSuisRose | 29,529 | 29,134 | **+1.4%** | 0.3% | 29.9% |
+| Everyway | 163,284 | 161,492 | **+1.1%** | 4.3% | 36.5% |
+
+More important than the mean: **the model picks out the same worst frames the machine
+does**, and costs them to within 1–9% (teaser frame 70: predicted 608,660, measured
+616,716; Everyway frame 1474: 536,825 vs 520,845). Its one known weakness is ball,
+whose measured frames alternate between ~52K and ~74K on a period the model does not
+capture — there it under-predicts the peak by 24%.
+
+Two things fell out of doing this properly:
+
+- **Frame alignment.** Predicted frame *f* corresponds to the measured row *f+1* —
+  the engine reaches `frame_tick` after the frame's work, not before. Scanning
+  offsets −2..+2 lifted Everyway's correlation from 0.939 to **0.995** and cut its
+  median per-frame error from 19,175 cycles to 3,400. An off-by-one in the time base
+  is indistinguishable from "the model is roughly right", which is exactly why it has
+  to be looked for.
+- The per-*activation* scheduler term fits to **zero**. That matched `opcost.mjs`
+  measuring the scheduler proper at 30 cycles per entry — the 3,400 cycles previously
+  attributed to `sched` were something else entirely (§11.3).
+
+### 11.3 Two corrections to the cost model
+
+**(a) Squares and discs are different laws.** `PLOT` records are squares, and they
+were being costed with the disc law. Fitted over 43 measured square radii:
+
+```
+square:  261 + 86.9 · lines + 7.62 · bytes        bytes = lines² / 4
+disc:    379 + 143.7 · lines + 8.07 · bytes       bytes = π r² / 4
+```
+
+This matters more than it sounds: 85% of Everyway's records and 79% of JeSuisRose's
+are squares. The §1.1 law also over-charges small discs badly (768 predicted vs 514
+measured at r=0), so `budget.py` uses the measured per-radius table for r ≤ 26 and
+the fit only beyond it.
+
+**(b) `flush_sorted` is a ~6,000-cycle fixed tax on every frame that draws.** Split
+out with `OPCOST_EXTRA=flush_sorted`, it costs 6,694 cycles/frame on ball (two
+records), 9,815 on Everyway (seventeen) and 806 on teaser (which mostly draws
+nothing) — i.e. almost all of it is a fixed radix scan, not per-record work. The
+fitted model is `6,070 per drawing frame + 740 per record`.
+
+Nothing before this experiment could see it. It is not an opcode, so `opcost.mjs`
+folded it into `sched`; it is not in the renderer, so `rendercost.mjs` never saw it;
+and averaged over a whole run it hides inside "interp". **It is 15% of a 50Hz frame,
+paid before a single pixel is written** — and it is now R9.
+
+### 11.4 Which demos are inside a contract today
+
+Stock Master, current 16.16 engine, as a share of the tick:
+
+| demo | 25Hz mean | p95 | worst frame | frames over 25Hz budget | verdict |
+|---|---|---|---|---|---|
+| circle | 26% | 26% | 33% | 0% | **50Hz** |
+| ball | 66% | 71% | 71% | 0% | **25Hz** |
+| teaser | 3% | 1% | 761% | 0.6% | — |
+| JeSuisRose | 41% | 295% | 503% | 13.0% | — |
+| chiperia | 82% | 414% | 680% | 19.0% | — |
+| frustration | 95% | 595% | 1,490% | 28.4% | — |
+| euphoria | 150% | 606% | 788% | 57.2% | — |
+| logicos | 172% | 572% | 895% | 49.7% | — |
+| tree | 287% | 1,095% | 3,993% | 54.7% | — |
+| Everyway | 341% | 621% | 1,807% | 86.1% | — |
+
+Two of ten. And the two that pass are the two simplest programs in the set.
+
+The interesting column is the gap between **mean** and **worst**. teaser spends 97%
+of its run at 1% of budget and then hits one frame at 761%; frustration's median
+frame is 18% of budget and its p95 is 595%. This is not a machine that is uniformly
+too slow — it is material whose *density is wildly uneven*, which is precisely the
+authoring property R8 exists to expose. Everyway is the exception: it is over budget
+on 86% of its frames and no amount of scheduling saves it.
+
+Under the projections, same programs, worst-frame basis:
+
+| demo | 16.16 stock | Micro stock | 16.16 Tube | Micro Tube |
+|---|---|---|---|---|
+| ball | 25Hz | **50Hz** | 25Hz | **50Hz** |
+| circle | 50Hz | 50Hz | 50Hz | 50Hz |
+| chiperia | — | — | — | — |
+| Everyway | — | — | — | — |
+
+(Micro + Tube brings chiperia's *mean* to 19% of a 25Hz tick and 38% of a 50Hz one —
+comfortably inside — but its worst frame is still 234%. Every demo except ball and
+circle fails on peaks, not on averages, in every configuration.)
+
+### 11.5 The interpreter is what fails, not the renderer
+
+Per-demo split of the predicted bill, interp+emit vs render:
+
+```
+logicos 91/9   tree 85/15   circle 83/17   teaser 79/21   chiperia 74/26
+JeSuisRose 69/31   euphoria 67/33   frustration 60/40   Everyway 59/41   ball 29/71
+```
+
+**Ball is the only render-bound program in the set**, and it is the one demo whose
+entire content is two large discs. For everything else the interpreter is 60–91% of
+the cost — which reorders the spec's priorities: R1 (16-bit) and R5 (fused opcodes)
+are the levers that matter for real material, and R6, whose 2–3× is the most
+spectacular number in this document, only helps the minority of the bill for nine of
+ten demos.
+
+The worst frames say the same thing more bluntly. tree's worst frame is 3.13M cycles
+of interpreter for **10,648 opcodes and 256 forks** against 46K of rendering;
+frustration's is 945K of interpreter for 3,757 opcodes against 197K of rendering.
+Nothing done to the renderer touches those frames.
+
+### 11.6 R7 needs 32–512 frames of lag, not 4–8
+
+`budget.py` reports the smallest draw-queue depth that would hold each contract:
+
+| demo | 16.16 stock @25Hz | 16.16 Tube @25Hz | Micro Tube @25Hz | Micro Tube @50Hz |
+|---|---|---|---|---|
+| teaser | 256 | 64 | **32** | 128 |
+| JeSuisRose | none ≤512 | 256 | **64** | none ≤512 |
+| chiperia | none ≤512 | 256 | **32** | 256 |
+| frustration | none ≤512 | none ≤512 | none ≤512 | none ≤512 |
+
+At 25Hz, 32 frames is 1.3 seconds of visual lag and 256 frames is ten seconds. The
+spec's N ≈ 4–8 was calibrated against the p50/p95 gap; the actual overruns are not
+statistical jitter but **whole scenes arriving in one tick** — teaser's frame 70 forks
+18 turtles and emits 40 records at once. A depth-8 queue does help (it absorbs 35–60%
+of the peak: teaser 761%→496%, frustration 1,490%→596%) and it is cheap, so keep it.
+But it is a smoother, not a guarantee. The guarantee has to come from R8 refusing the
+build.
+
+### 11.7 Verdict
+
+R8 is no longer a proposal; it exists, it is validated to ±2% on the mean and it
+finds the same bad frames the hardware does. What it reports is uncomfortable and
+useful:
+
+1. **Two of ten demos meet a contract today**, and only on a stock machine at 25Hz.
+2. **The failures are peaks, not averages** — for six demos the median frame is
+   comfortably inside budget. That is an authoring problem with a tool-shaped
+   solution, which is the entire thesis of §2.
+3. **The interpreter dominates for 9 of 10 demos**, so R1/R5 outrank R6 for real
+   material even though R6 has the better headline number.
+4. **R7 as specced does not work** at any plausible lag depth, and
+5. **R9 exists**: a 6,000-cycle-per-frame record sort that no previous measurement
+   could see.
+
+Reproduce:
+```
+node bbc/tools/frametime.mjs bbc/build/everyway ft-everyway.csv 400
+python bbc/tools/budget.py bbc/build/everyway --validate ft-everyway.csv
+python bbc/tools/budget.py bbc/build/teaser --report --lag 8
+python bbc/tools/budget.py bbc/build/ball --hz 25 --fail
+```
+
+---
+
+## 12. Bottom line
 
 The three things that cost us most on the BBC are all *width* problems, not algorithm
 problems: 32-bit words for a 320×256 screen, 144-byte turtles, and unbounded radii.
@@ -784,4 +996,7 @@ touching the parts of Rose that make it Rose (persistent trails, forking turtles
 time buckets, colorscripts).
 
 The remaining gap to *guaranteed* 50Hz is not an engine property. It is a contract
-between the composer and the machine, and §R8 is how the toolchain enforces it.
+between the composer and the machine, and §R8 is how the toolchain enforces it —
+built and validated in §11, where it reports that two of our ten demos are inside a
+contract today, that the rest fail on peaks rather than averages, and that for nine
+of ten the *interpreter*, not the renderer, is what has to get cheaper.

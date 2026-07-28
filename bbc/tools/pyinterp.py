@@ -85,7 +85,9 @@ def resolve_when(bc):
     return target
 
 
-def run(bc, constants, frames=10000, trace_frames=None):
+def run(bc, constants, frames=10000, trace_frames=None, stats=None):
+    """If `stats` is a list, append (Counter of executed opcode bytes, turtle
+    activations, live turtles) per frame — the input to bbc/tools/budget.py."""
     procs = scan_procs(bc)
     target = resolve_when(bc)
     plots = []
@@ -106,17 +108,22 @@ def run(bc, constants, frames=10000, trace_frames=None):
     while frame < frames and alive > 0:
         q = buckets[frame & 0xFF]
         deferred = collections.deque()
+        C = collections.Counter() if stats is not None else None
+        acts = 0
         while q:
             t = q.popleft()
             if (t.time >> 16) & 0xFFFF != frame & 0xFFFF or t.time >> 16 != frame:
                 deferred.append(t)
                 continue
+            acts += 1
             # run turtle until wait/end (stack persists on the turtle)
             stk = t.stk
             pc = t.pc
             while True:
                 op = bc[pc]
                 pc += 1
+                if C is not None:
+                    C[op] += 1
                 if op >= 0x80:
                     idx = op & 0x7F
                     if idx == 126:
@@ -277,6 +284,8 @@ def run(bc, constants, frames=10000, trace_frames=None):
                         stk.append(s32(s16(s32(a << 8) >> 16) * s16(s32(b << 8) >> 16)))
                     else:
                         raise Exception(f"op {op:02x} @ {pc-1}")
+        if stats is not None:
+            stats.append((C, acts, alive))
         if deferred:
             buckets[frame & 0xFF] = deferred
         else:
