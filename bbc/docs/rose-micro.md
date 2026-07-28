@@ -20,23 +20,28 @@ Everything below is measured on our own engine, not estimated.
 After the §7c speed pass the renderer costs, per blob:
 
 ```
-cycles ≈ 90 · (2r + 1)   +   5.4 · bytes        bytes ≈ π r² / 4
-         └ per-line ┘         └ per-byte ┘
+cycles ≈ 666  +  90 · (2r + 1)  +  12 · bytes        bytes ≈ π r² / 4
+         └ per-blob ┘  └ per-line ┘   └ per-byte ┘
 ```
 
-Validation: ball's two r=45 blobs → 33.6K predicted, **38.9K measured** (host
-render+tick per frame). Good enough to design against.
+*(Corrected in §10 from direct measurement — `bbc/tools/rendercost.mjs` times
+render_blob per radius on real demos. The original model here had no per-blob
+term and used 5.4 cycles/byte, which understated small blobs by 2×.)*
 
-What one 50Hz frame (40,000 cycles) buys:
+What one 50Hz frame (40,000 cycles) actually buys, measured:
 
-| radius | lines | bytes | cycles/blob | blobs per 50Hz frame |
+| radius | lines | bytes | cycles/blob (measured) | blobs per 50Hz frame |
 |---|---|---|---|---|
-| 2 | 5 | 3 | 470 | 85 |
-| 4 | 9 | 13 | 880 | 45 |
-| 8 | 17 | 50 | 1,800 | 22 |
-| 10 | 21 | 79 | 2,300 | 17 |
-| 20 | 41 | 314 | 5,400 | 7 |
-| 45 | 91 | 1,590 | 16,800 | **2** |
+| 0 | 1 | 1 | 514 | 77 |
+| 2 | 5 | 3 | 1,117 | 35 |
+| 4 | 9 | 13 | 1,773 | 22 |
+| 8 | 17 | 50 | 3,183 | 12 |
+| 10 | 21 | 79 | 4,085 | 9 |
+| 20 | 41 | 314 | 8,772 | 4 |
+| 30 | 61 | 707 | 15,034 | 2 |
+| 45 | 91 | 1,590 | ~26,000 | **1** |
+
+A one-pixel blob costs 514 cycles to paint.
 
 **Cost is quadratic in radius and the machine has no headroom for the tail.** ball —
 two blobs, one turtle, the simplest demo in the set — is *render-bound at 25fps* and
@@ -223,7 +228,8 @@ bytes). Per-line setup goes to zero.
 | 8 | 1,800 | ~800 | 2.3× |
 | 10 | 2,300 | ~1,200 | 1.9× |
 
-Code cost is the constraint: ~900 B per variant at r=10, ×4 offsets. So this is
+**Measured (§10): 2.0–3.2×, best at small radii, ~510 B per variant at r=8.**
+Code cost is the constraint: ~900 B per variant at r=12, ×4 offsets. So this is
 demand-driven — the toolchain knows the frequency of every (r, offset) pair from the
 plot stream and fills the available SWRAM greedily, hottest first, with the generic
 path as fallback. Two 16KB banks ≈ all offsets of r ≤ 8 plus the hot offsets of
@@ -352,7 +358,7 @@ Cheap experiments that de-risk the expensive decisions, roughly in dependency or
 |---|---|---|---|
 | 1 | ~~Micro numeric mode in the visualizer; replay all 9 demos + logicos~~ **DONE — see §8** | Does 10.6 / byte-direction / brush-radius *look* right? Drift? | small |
 | 2 | ~~Microbenchmark a 10.6 `move` handler in isolation under jsbeeb~~ **DONE — see §9** | Is the 2–2.5× interpreter estimate real? | small |
-| 3 | Generate one precompiled brush painter (r=8, offset 0–3), benchmark vs `render_blob` | Is R6's 2–3× real, and what is the true code size per variant? | small |
+| 3 | ~~Generate one precompiled brush painter (r=8, offset 0–3), benchmark vs `render_blob`~~ **DONE — see §10** | Is R6's 2–3× real, and what is the true code size per variant? | small |
 | 4 | Budget checker in `rose2bbc.py` against the current cost model | Which existing demos are already inside a 25/50Hz contract? | small |
 | 5 | Lag-queue prototype on the current engine (no dialect change needed) | How much of the p50/p95 gap does it actually absorb? | medium |
 | 6 | S2 dual-write fillers on the current engine, ball + teaser | True cost of tear-free double buffering | medium |
@@ -660,7 +666,115 @@ bash bbc/bench/build.sh                              # Micro primitives + valida
 python bbc/tools/interpmix.py                        # weighted comparison
 ```
 
-## 10. Bottom line
+## 10. Experiment 3 results — precompiled brush painters (2026-07-28)
+
+R6 claims that generating straight-line 6502 per (radius, x-offset) removes the
+per-line setup that dominates small blobs. This measures both halves of the
+claim: how much faster, and how many bytes.
+
+### 10.1 What was built
+
+- **`bbc/tools/rendercost.mjs`** — charges every cycle spent in the render code
+  (render_blob, the SWRAM span fillers, the shared store chain) to the *radius*
+  of the record being drawn, read from `REC` at each `render_blob` entry. This
+  is what produced the corrected cost law in §1.1.
+- **`bbc/bench/genpaint.py`** — the painter generator. For a radius and offset
+  it resolves every span's byte count, edge masks and column offsets at
+  generation time and emits straight-line code. Output is validated
+  **byte-exact against a Python model of the same blob** (a 4KB framebuffer
+  compared in full), so the speed numbers are for a painter that draws the
+  right pixels.
+- **`bbc/tools/paintbudget.py`** — combines painter sizes, measured costs and a
+  demo's real radius histogram into a SWRAM-budget table.
+
+The one thing a painter cannot bake is the *vertical* walk: MODE 1 puts
+consecutive scanlines +1 apart inside a character row and +633 at the row
+boundary, and a blob's phase within the row is only known at draw time. So each
+line ends with `jsr nextline` (a countdown plus a 16-bit increment) and
+everything else — which byte, which mask, which column — is compiled in.
+
+### 10.2 Measured
+
+Painter figures include a realistic per-blob setup (screen address from x,y via
+row/column tables, character-row phase — ~110 cycles), because the generic
+figures include theirs:
+
+| radius | painter, off 0 | painter, off 1 | generic (measured) | speedup | code, 4 offsets |
+|---|---|---|---|---|---|
+| 2 | 408 | 348 | 1,117 | **2.7–3.2×** | 388 B |
+| 4 | 649 | 722 | 1,773 | **2.5–2.7×** | 872 B |
+| 8 | 1,387 | 1,474 | 3,183 | **2.2–2.3×** | 2,040 B |
+| 12 | 2,324 | 2,453 | 4,857 | **2.0–2.1×** | 3,648 B |
+
+So R6's "2–3×" is real, and — importantly — **the win grows as the blob shrinks**,
+which is the right shape: 60–85% of plots in every demo are r ≤ 10. Fitted, a
+painter costs `29 + 73.5·lines + 4.1·bytes` against the generic
+`666 + 90·lines + 12·bytes`: the per-blob term nearly vanishes and the per-byte
+term drops 3×, but the per-line term only drops from 90 to 73.5.
+
+That residual is where the next lever is: **12 of those 73.5 cycles are the
+`jsr nextline` call overhead itself.** Inlining the walk costs ~7 bytes per line
+and would take r=8 from 1,387 to ~1,190 (another 15%). Above r≈13 the painter
+and the generic path converge, so painters are worth generating only up to
+r≈12 — which is exactly where R3's brush cap sits anyway.
+
+### 10.3 Code size and what it covers
+
+Per-radius cost of all four x-offsets, cumulative from r=0:
+
+| radii | SWRAM | | radii | SWRAM |
+|---|---|---|---|---|
+| 0–4 | 2.1 KB | | 0–11 | 16.5 KB |
+| 0–6 | 4.5 KB | | 0–12 | 20.1 KB |
+| 0–8 | 8.2 KB | | 0–15 | 33.6 KB |
+
+Under R1 the turtle states leave sideways RAM for main RAM, which frees a whole
+16KB bank — enough for **radii 0–11**. Against real demos:
+
+| demo | painters | plots covered | render time saved |
+|---|---|---|---|
+| logicos | 2.1 KB (r≤4) | 95.6% | **46.5%** |
+| logicos | 8.2 KB (r≤8) | 98.2% | 49.8% |
+| Chiperia | 13.3 KB (r≤10) | 98.5% | **52.9%** |
+| teaser | 20.1 KB (r≤12) | 100% | **52.2%** |
+| Everyway | 13.3 KB (r≤10) | 64.8% | 10.8% |
+| Everyway | 33.6 KB (r≤15) | 74.0% | 15.8% |
+
+### 10.4 The honest limit: R6 only fixes the small-blob half
+
+Everyway is the outlier and it is the important one. Three quarters of its plots
+are r ≤ 16, but they are a small fraction of its *render bill* — the cost is
+quadratic in radius, so its r=20–70 blobs dominate, and no amount of generated
+code touches them. **Painters cannot fix a demo made of big discs.**
+
+This is §1.1's two-problems split, now with numbers on both:
+
+- **small blobs** — R6 removes 2–3× of the cost, and for demos authored to small
+  brushes that is ~50% of the entire render bill for 2–20KB of sideways RAM;
+- **big blobs** — only R3 (cap the radius) fixes them, by not having them.
+
+R3 and R6 are therefore a package, not alternatives: capping the radius is what
+makes *all* plots painter-eligible, and once they are, the saving is ~50% of
+render time. Applied to a demo authored for the dialect, that plus §9's 1.75×
+interpreter is what a 50Hz budget is built from.
+
+Two limitations of the generated painters to design around:
+
+1. **No clipping.** A painter draws its whole blob unconditionally, so it can
+   only be used when the blob is fully on-screen — a bounding-box test at setup,
+   with the generic path as the fallback. The engine already culls fully
+   off-screen blobs, so this only affects blobs straddling an edge.
+2. **Circles only.** `plot` (square) blobs need their own generated variants;
+   they are cheaper per line (constant width) so the case is at least as good.
+
+Reproduce:
+```
+REC_ADDR=c9a node bbc/tools/rendercost.mjs bbc/build/everyway 120
+bash bbc/bench/paintbuild.sh 2 4 8 12
+python bbc/tools/paintbudget.py <plots.bin>
+```
+
+## 11. Bottom line
 
 The three things that cost us most on the BBC are all *width* problems, not algorithm
 problems: 32-bit words for a 320×256 screen, 144-byte turtles, and unbounded radii.

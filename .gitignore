@@ -14,3 +14,8 @@ __pycache__/
 bbc/bench/bench.ssd
 bbc/bench/beebasm.log
 bbc/bench/boot.txt
+bbc/bench/paint.ssd
+bbc/bench/paintasm.log
+bbc/bench/paint.inc.asm
+bbc/bench/bench.json
+bbc/bench/expect.bin
