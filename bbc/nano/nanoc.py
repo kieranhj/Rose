@@ -113,18 +113,31 @@ KEYWORDS = {"jump", "face", "tint", "size", "move", "turn", "draw", "wait",
 CMP = {">": "gt", "<": "lt", ">=": "ge", "<=": "le", "=": "eq", "<>": "ne"}
 
 
+class Stmt(list):
+    """A statement's tokens, carrying the source line it came from.
+
+    A plain list so every `body[i][0]` in the code generator still works; the
+    line rides along so the generated asm can be read against the .nano.
+    """
+
+    def __init__(self, toks, num, text):
+        super().__init__(toks)
+        self.num, self.text = num, text
+
+
 class Proc:
-    def __init__(self, name, params):
+    def __init__(self, name, params, num=None, text=""):
         self.name, self.params, self.body = name, params, []
+        self.num, self.text = num, text
 
 
 class Parser:
     def __init__(self, text):
-        self.lines = []
-        for raw in text.splitlines():
+        self.lines = []                   # (source line number, text)
+        for n, raw in enumerate(text.splitlines(), 1):
             line = raw.split(";")[0].rstrip()
             if line.strip():
-                self.lines.append(line)
+                self.lines.append((n, line))
         self.plan = {}
         self.back = 0
         self.spin = None          # (lo, hi, rate) — rotating palette range
@@ -134,13 +147,13 @@ class Parser:
         i = 0
         cur = None
         while i < len(self.lines):
-            line = self.lines[i]
+            num, line = self.lines[i]
             tok = line.split()
             head = tok[0]
             if head == "plan":
                 i += 1
-                while i < len(self.lines) and self.lines[i][0] in " \t":
-                    for ent in self.lines[i].split():
+                while i < len(self.lines) and self.lines[i][1][0] in " \t":
+                    for ent in self.lines[i][1].split():
                         k, v = ent.split(":")
                         self.plan[int(k)] = int(v, 16)
                     i += 1
@@ -150,12 +163,12 @@ class Parser:
             elif head == "spin":
                 self.spin = tuple(int(v) for v in tok[1:4])
             elif head == "proc":
-                cur = Proc(tok[1], tok[2:])
+                cur = Proc(tok[1], tok[2:], num, line)
                 self.procs.append(cur)
             else:
                 if cur is None:
                     raise SyntaxError(f"statement outside proc: {line}")
-                cur.body.append(tok)
+                cur.body.append(Stmt(tok, num, line))
             i += 1
         return self
 
@@ -172,6 +185,44 @@ class Compiler:
 
     def e(self, s=""):
         self.out.append(s)
+
+    def src(self, t):
+        """Echo the source line a block came from, ahead of its assembly.
+
+        The original indentation is kept, so `when`/`done` nesting reads in the
+        listing the way it reads in the .nano.
+        """
+        if getattr(t, "num", None) is None:
+            return
+        self.e()
+        self.e(f"    ; {t.num:>4} |{t.text}")
+
+    # Instructions that write Y, and the subroutines known to leave it alone.
+    Y_WRITES = ("LDY", "TAY", "INY", "DEY", "PLY")
+    Y_SAFE_SUBS = ("nrand",)
+
+    @classmethod
+    def clobbers_y(cls, lines):
+        """Does this run of generated code disturb Y?
+
+        `fork` evaluates its arguments with the child slot live in Y.  Rather
+        than spilling to `tsave` unconditionally, ask the code that was just
+        emitted — every v1 expression form (constant, local, local+/-const,
+        `rand n`) leaves Y alone, so in practice the spill never appears, and
+        it comes back automatically if an expression form ever needs Y.
+        """
+        for ln in lines:
+            for part in ln.split(":"):
+                part = part.strip()
+                if not part or part[0] in ";.":
+                    continue
+                f = part.split()
+                mn = f[0].upper()
+                if mn in cls.Y_WRITES:
+                    return True
+                if mn == "JSR" and (len(f) < 2 or f[1] not in cls.Y_SAFE_SUBS):
+                    return True
+        return False
 
     def label(self, tag):
         self.lbl += 1
@@ -232,6 +283,7 @@ class Compiler:
     def compile(self):
         for pr in self.p.procs:
             self.e()
+            self.src(pr)
             self.e(f".proc_{pr.name}")
             self.block(pr, pr.body, 0, len(pr.body))
             self.e("    JMP tdie")
@@ -243,6 +295,7 @@ class Compiler:
     def stmt(self, proc, body, i, end):
         t = body[i]
         op = t[0]
+        self.src(t)
         if op == "jump":
             self.e("    LDA #0 : STA txl,X : STA tyl,X")
             self.value(proc, t[1]); self.e("    STA txh,X")
@@ -295,9 +348,11 @@ class Compiler:
         for n, a in enumerate(args):
             if n >= NLOCAL:
                 raise SyntaxError("too many fork arguments")
-            self.e("    STY tsave")
+            mark = len(self.out)
             self.expr(proc, tokenise(a))
-            self.e("    LDY tsave")
+            if self.clobbers_y(self.out[mark:]):
+                self.out.insert(mark, "    STY tsave")
+                self.e("    LDY tsave")
             self.e(f"    STA tl{n},Y")
         self.e(f"    LDA #LO(proc_{target}) : STA tpcl,Y")
         self.e(f"    LDA #HI(proc_{target}) : STA tpch,Y")
@@ -352,7 +407,10 @@ class Compiler:
         self.e(f"    JMP {fin[1:]}")
         self.e(els)
         if elsat is not None:
+            self.src(body[elsat])
             self.block(proc, body, elsat + 1, doneat)
+        if doneat < end:
+            self.src(body[doneat])
         self.e(fin)
         return doneat + 1
 

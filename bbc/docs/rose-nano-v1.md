@@ -135,7 +135,7 @@ bbc/nano/
   nanoc.py       compiler: .nano -> 6502 (beebasm source)
   runtime.asm    scheduler, allocator, mover, stamper
   nanoref.py     reference model + verifier + preview renderer
-  build.sh       nanoc -> beebasm -> .ssd
+  build.sh       nanoc -> beebasm -> bootable .ssd (SHIFT+BREAK runs it)
   run.mjs        boot in jsbeeb, dump screen RAM, screenshot
   profile.mjs    frame cost under load (experiment 6)
   palseq.mjs     palette-cycle frame strip + screen-RAM check (experiment 5)
