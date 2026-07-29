@@ -40,6 +40,19 @@ DONE    = &8C                   ; finished flag, read by the harness
 SPINCNT = &8D                   ; frames until the next palette rotation
 VIDULA  = &FE21
 
+; A video ULA palette write: logical colour L takes physical colour P.
+; The ULA stores the physical colour inverted (§4.2).
+MACRO PALW L, P
+    LDA #(L * 16) OR (P EOR 7) : STA VIDULA
+ENDMACRO
+
+; RASTER=1 recolours logical 0 for the duration of the turtle pass, so the
+; blue band on screen is a direct picture of how far down the frame the
+; scheduler got.  It costs 8 cycles a frame and moves no screen bytes, so a
+; raster build still verifies against the reference model.
+BLUE    = 4
+BLACK   = 0
+
 ORG ORGADDR
 GUARD SCREEN
 
@@ -48,6 +61,9 @@ GUARD SCREEN
 .mainloop
 IF NOVSYNC = 0
     LDA #19 : JSR OSBYTE        ; wait for vertical sync
+ENDIF
+IF RASTER
+    PALW 0, BLUE                ; raster debug: turtle pass starts here
 ENDIF
     LDX #0
 .tloop
@@ -64,6 +80,9 @@ ENDIF
     INX
     CPX #MAXT
     BNE tloop
+IF RASTER
+    PALW 0, BLACK               ; raster debug: turtle pass ends here
+ENDIF
     INC FRLO
     BNE nowrap
     INC FRHI

@@ -142,6 +142,22 @@ bbc/nano/
   examples/      bloom, rain, spiral, cycle, stress, stress0
 ```
 
+### The raster debug build
+
+`RASTER=1 sh bbc/nano/build.sh <name>` recolours logical 0 to blue for the
+duration of the turtle pass and back to black at the end of it. Two writes to
+the video ULA, 8 cycles a frame, no screen bytes touched — so a raster build
+still verifies against the reference model. The blue band is then a direct
+picture of how far down the frame the scheduler got, with the ragged right
+edge giving the cycle position within the line.
+
+![raster debug](mockups/nano-raster-debug.png)
+
+That is `stress0` — 48 live turtles, 1-cell blobs — using about a fifth of the
+frame. The band is also the quickest way to see that the picture examples are
+nowhere near the limit: `bloom`, `rain` and `spiral` all complete inside
+vertical blanking, so they show no band at all.
+
 ### The language
 
 Rose's shape, kept deliberately: `plan` for the palette, `proc` with parameters,

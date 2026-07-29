@@ -12,7 +12,8 @@ python nanoc.py "examples/$NAME.nano" "build/$NAME.asm"
 rm -f "build/$NAME.ssd"
 # -boot NANO + *OPT 4,3 makes the image boot on SHIFT-BREAK.
 "$BEEBASM" -i "build/$NAME.asm" -do "build/$NAME.ssd" -boot NANO -opt 3 \
-    -D MAXFRAMES="$FRAMES" -D NOVSYNC="${NOVSYNC:-0}" -title "NANO" > "build/$NAME.log" 2>&1 || {
+    -D MAXFRAMES="$FRAMES" -D NOVSYNC="${NOVSYNC:-0}" -D RASTER="${RASTER:-0}" \
+    -title "NANO" > "build/$NAME.log" 2>&1 || {
         cat "build/$NAME.log"; exit 1; }
 grep -E "SYM|SIZE|FREE" "build/$NAME.log" || true
 echo "OK: build/$NAME.ssd"
