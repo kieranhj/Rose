@@ -17,7 +17,7 @@ proc spawn d
 proc orbit n d
     face d
     tint n
-    size 0
+    size 1
     draw
     move 3
     turn 9

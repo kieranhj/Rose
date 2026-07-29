@@ -9,7 +9,7 @@ proc main
     jump 80 128
     face 0
     tint 1
-    size 1
+    size 3
     fork arm 60
     face 128
     tint 2

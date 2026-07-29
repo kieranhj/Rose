@@ -3,10 +3,11 @@
 2026-07-28, overnight session. Branch `rose-nano`.
 
 **Rose Nano runs on a stock BBC Model B.** A compiler, a runtime and a
-verification harness exist; four example programs build, boot in jsbeeb, draw,
+verification harness exist; six example programs build, boot in jsbeeb, draw,
 and match a Python reference model **byte-for-byte across all 20,480 bytes of
 screen RAM**. All six feasibility experiments are now run; two of them changed
-the design.
+the design. The engine since moved to an **80×64 grid** (§6), which the
+addressing turned out to support for free.
 
 ![bloom on the machine](mockups/nano-v1-bloom-beeb.png)
 
@@ -25,6 +26,7 @@ pinks, creams and greys are 50/50 dither pairs.*
 | Build and run | `sh bbc/nano/build.sh bloom 600 && node bbc/nano/run.mjs bloom 600` |
 | Verify | `python bbc/nano/nanoref.py examples/bloom.nano 600 --check build/bloom.screen.bin` |
 | Preview without a build | `python bbc/nano/nanoref.py examples/bloom.nano --sheet 20,60,120,300 out.png` |
+| The old grid | prefix any of the above with `NANOGRID=40x32` (§6) |
 
 Docs updated in place: `rose-nano.md` §13 (experiment 3), §14 (experiment 1),
 and amendment boxes in §1, §2, §3, §4.1, §8, §9, §10, §12.
@@ -52,8 +54,8 @@ What v1 actually occupies, from the build:
 
 | program | engine + code + tables + turtle pool | free |
 |---|---|---|
-| `bloom` (3 procs, 8 tints) | 2,654 B | 3,234 B |
-| `stress` (3 procs) | 2,335 B | 3,553 B |
+| `bloom` (3 procs, 8 tints) | 2,814 B | 3,074 B |
+| `stress` (3 procs) | 2,566 B | 3,322 B |
 
 That includes the 48-turtle pool (15 arrays × 48 = 720 B), a 128-entry move
 table per distinct distance (512 B each), the row-base and span tables, and the
@@ -153,10 +155,11 @@ edge giving the cycle position within the line.
 
 ![raster debug](mockups/nano-raster-debug.png)
 
-That is `stress0` — 48 live turtles, 1-cell blobs — using about a fifth of the
-frame. The band is also the quickest way to see that the picture examples are
-nowhere near the limit: `bloom`, `rain` and `spiral` all complete inside
-vertical blanking, so they show no band at all.
+That is `stress0` at 40×32 — 48 live turtles, 1-cell blobs — using about a fifth
+of the frame. When it was taken, the band was also the quickest way to see that
+the picture examples were nowhere near the limit: `bloom`, `rain` and `spiral`
+all completed inside vertical blanking and showed no band at all. §6 spends that
+slack, and the same instrument is what showed it going.
 
 ### The language
 
@@ -193,15 +196,17 @@ either** — `move` is two table lookups and two 16-bit adds (§5.2).
   dying at the end of a proc.
 - **The renderer is the point.** Experiment 1 established that a 40×32 grid cell
   is 4px × 8 rows = **16 contiguous bytes**. So painting a cell is one unrolled
-  run of 16 stores — no mask, no read-modify-write, no per-line setup — and
-  stepping to the next cell is `+16`. Blob size is a four-entry table of cell
-  radii; clipping is two comparisons on 6-bit integers.
+  run of stores — no mask, no read-modify-write, no per-line setup — and
+  stepping to the next cell is a constant add. Blob size is a table of cell
+  radii; clipping is two comparisons on small integers. (§6 generalises this to
+  80×64, where a cell is 4 bytes; the engine is now written against the grid
+  rather than against one grid.)
 - **Dither locked to screen position for free**: within a cell, byte index
-  parity *is* scanline parity in both byte-columns, so alternating two pattern
-  bytes gives a checkerboard that tiles seamlessly between overlapping blobs
-  (§13.4's requirement, at no cost).
-- **The canvas is a torus.** 32 rows × 8 = 256 exactly, so y wraps for free; x
-  wraps with three instructions. `rain.nano` exists to demonstrate it.
+  parity *is* scanline parity, so alternating two pattern bytes gives a
+  checkerboard that tiles seamlessly between overlapping blobs (§13.4's
+  requirement, at no cost).
+- **The canvas is a torus.** The grid rows divide 256 exactly, so y wraps for
+  free; x wraps with three instructions. `rain.nano` exists to demonstrate it.
 
 ---
 
@@ -214,11 +219,28 @@ obviously right — 128-direction tables, toroidal wrap, allocation scanning fro
 slot 0 — because the point is to catch divergence, not to be elegant.
 
 ```
-bloom:  screen matches the model exactly (20480 bytes)
-rain:   screen matches the model exactly (20480 bytes)
-spiral: screen matches the model exactly (20480 bytes)
-cycle:  screen matches the model exactly (20480 bytes)
+bloom:   screen matches the model exactly (20480 bytes)
+rain:    screen matches the model exactly (20480 bytes)
+spiral:  screen matches the model exactly (20480 bytes)
+cycle:   screen matches the model exactly (20480 bytes)
+stress:  screen matches the model exactly (20480 bytes)
+stress0: screen matches the model exactly (20480 bytes)
 ```
+
+All six pass at **both** grids — twelve checks, 20,480 bytes each — so
+`NANOGRID` is verified rather than merely retained.
+
+The last two were added while doing §6, and getting them in took a harness fix
+worth recording. `run.mjs` ran `frames × 40,000` cycles and then *assumed* the
+engine had completed that many frames. For the four picture examples it has,
+because they finish and the screen goes static. The two stress benchmarks never
+finish, so the dump landed mid-scheduler-pass and the comparison failed — by 36
+bytes at 80×64 and 64 bytes at 40×32, which is exactly one blob in each case.
+Not a divergence: a photograph taken while the subject was moving. Building with
+`MAXFRAMES` so the engine halts on a frame boundary makes both verify exactly.
+`run.mjs` now reads the real frame counter out of the machine and says so when
+it differs from what was asked for, so the next instance of this announces
+itself instead of looking like a bug in the engine.
 
 **It found a real bug within an hour of existing.** The runtime indexed the
 palette and span tables with unmasked `tint` and `size`; the model masked them.
@@ -268,7 +290,112 @@ rather than a disappointing one — it is deliberately the worst case.
 
 ---
 
-## 6. What changed in the design tonight
+## 6. The 80×64 grid
+
+The 40×32 grid was chosen in experiment 1 because its cell is 16 contiguous
+bytes. That is a real property worth having, but it turned out not to be scarce:
+**80×64 keeps it.**
+
+### Why it works
+
+A cell is `(1<<XSH)` pixels wide — that is `(1<<XSH)/2` byte-columns, which sit
+8 bytes apart — by `(1<<YSH)` scanlines. Its bytes are contiguous only if the
+cell is *one byte-column wide*, or spans a *whole* 8-scanline character row.
+80×64 satisfies the first clause: 2px × 4 scanlines is one byte-column, half a
+character row, 4 contiguous bytes at
+
+```
+&3000 + (row>>1)*640 + col*8 + (row&1)*4
+```
+
+40×64 would satisfy neither and is not expressible. And since 80×64's cell is
+also square — 2px is 4 units at MODE 2's 2:1 pixel aspect, against 4 scanlines —
+it is the *finest square-cell grid whose cells stay contiguous*. Not a point on
+a road, the end of it.
+
+Two things then fall out for free. The addressing code does not change at all:
+the runtime already went `RBASE = rowlo[row]` then `P = RBASE + colo[col]`, so
+the `(row&1)*4` folds into the row table and `col*8` into the column table.
+And the dither is untouched, because byte-index parity is still scanline parity
+in both halves of a character row (offsets 0–3 → scanlines 0–3, 4–7 → 4–7).
+Existing `plan` palettes carry over unchanged.
+
+So the engine is now written against `GW, GH, XSH, YSH, CELLB, COLSTEP, NSIZE`,
+which `nanoc.py` hands down, rather than against one geometry. `NANOGRID=40x32`
+still builds the old grid — and does so *byte-identically to the pre-change
+code* on all four picture examples, which is how I know the parameterisation
+cost nothing.
+
+### Rescaling the examples
+
+Blob radii are in cells, so halving the cell halves the picture. The mapping is
+`S = 2s+1`: the exact match would need diameter `4s+2` cells, which is even and
+the span tables are odd-diameter only, so `2s` and `2s+1` bracket it.
+
+`2s+1` is the right side to land on, and not because of size. At `2s` the
+finest trail (`size 0` → 0) is 2px wide while `move 3` steps 3px, so
+consecutive draws stop touching and the trail breaks into dots. Connectedness
+is a property of the picture, not of its scale.
+
+### What it looks like
+
+`spiral` is the honest test, because at 40×32 you cannot actually tell it is a
+spiral — it is two rectangles. (40×32 above, 80×64 below.)
+
+![spiral at both grids](mockups/nano-grid-spiral.png)
+
+`bloom` gains curvature in the petals rather than staircases:
+
+![bloom at both grids](mockups/nano-grid-bloom.png)
+
+### What it costs
+
+Whole-program, vsync disabled, run to each example's own completion frame:
+
+| | 40×32 | 80×64 | ratio | % of a 50Hz frame |
+|---|---|---|---|---|
+| `bloom` (117 frames) | 24,103 | **29,573** | 1.23× | 73.9% |
+| `rain` (144 frames) | 15,694 | **18,611** | 1.19× | 46.5% |
+| `spiral` (162 frames) | 12,840 | **13,827** | 1.08× | 34.6% |
+
+And at steady state with the 48-slot pool saturated, where `stress` is the
+matched-area pair (9 cells × 16 B = 288 px·scanlines against 37 × 4 = 296):
+
+| | 40×32 | 80×64 | ratio |
+|---|---|---|---|
+| `stress` (size 1 → 3) | 50,000 | **71,429** | 1.43× |
+| `stress0` (size 0 → 1) | 20,513 | **31,250** | 1.52× |
+
+The `stress` row is the number to quote: **1.43× for the same physical blob**,
+against 1.45× predicted from cycle-counting the loop beforehand. Stores are a
+wash — 144 bytes against 148 — and the whole difference is per-cell overhead
+paid 37 times instead of 9.
+
+The picture examples come in far under that, at 1.08–1.23×, because their cost
+is not all blob. Everything §5 measured as the ~700 cycles of `move`, `turn`,
+`when`, fork and reschedule is per *turtle*, not per cell, and does not move
+when the grid does.
+
+Cost in memory is +171 bytes (`bloom` 2,643 → 2,814), against 3,074 free.
+
+### What it costs in headroom
+
+This is the part that changed my mind about the trade. Before, `bloom`, `rain`
+and `spiral` all completed inside vertical blanking and showed no raster band at
+all. They no longer do — `bloom` at its peak (24 live turtles, frame 12) now
+uses about half the visible frame:
+
+![raster band at both grids](mockups/nano-grid-raster.png)
+
+`stress0` at 40×32 above, 80×64 below. So 80×64 spends the slack that v1 had
+lying around. Everything still fits — the worst picture example is at 74% — but
+"finishes before the beam reaches the display" was a real property and it is
+gone. Beam-racing the draw order (§7) stops being a curiosity and becomes the
+thing that would buy it back.
+
+---
+
+## 7. What changed in the design tonight
 
 Two things, both from measurement:
 
@@ -285,7 +412,7 @@ doc's framing, which currently leads with it.
 
 ---
 
-## 7. Where I stopped, and what I would do next
+## 8. Where I stopped, and what I would do next
 
 Not done, in the order I would pick them up:
 
@@ -293,8 +420,10 @@ Not done, in the order I would pick them up:
    tints; rotating a range that a *dither pair* straddles should shimmer rather
    than switch, and nothing has tried it. Cheapest interesting experiment left.
 2. **Beam-race the draw order.** v1 draws turtles in slot order, not raster
-   order, so a heavy frame can tear. §6.3's counting sort into 32 row buckets is
-   cheap and would remove it.
+   order, so a heavy frame can tear. §6.3's counting sort into row buckets (64
+   of them now) is cheap and would remove it. This moved up the list with the
+   80×64 grid: §6 spent the vertical-blanking slack the pictures used to have,
+   so drawing ahead of the beam is now worth real frames rather than tidiness.
 3. **Better examples.** `bloom` is a genuine picture; `rain` and `spiral` are
    mechanism demos. The language is now expressive enough to compose properly,
    and I would rather you did that than me.
@@ -309,19 +438,21 @@ Not done, in the order I would pick them up:
 
 ### Honest limitations of v1
 
-- Blob sizes 0–3 are compiled but only 0–2 are exercised by the examples.
+- Blob sizes 0–7 are compiled at 80×64 but only 1, 3 and 5 are exercised by the
+  examples, which reached those by the `S = 2s+1` rescale rather than by design.
 - `spin` rotates one contiguous range at one rate; there is no per-tint control.
 - A full turtle pool drops forks silently; there is no eviction policy.
 - No sound, no `plan` animation, no `part`/include, no `temp` locals beyond proc
   parameters (4 per turtle).
-- The 25Hz `stress` case is a real ceiling, not a tuning artefact: 9-cell blobs
-  at 23 per frame is simply more than 40,000 cycles buys.
+- The over-budget `stress` case is a real ceiling, not a tuning artefact: a
+  full pool of mid-sized blobs is simply more than 40,000 cycles buys. It was
+  127% of a frame at 40×32 and is 179% at 80×64.
 - `spiral.nano` draws a small tight circle — correct, but it is the least
   interesting of the three.
 
 ---
 
-## 8. Bottom line
+## 9. Bottom line
 
 The question the doc has been circling since it was written is whether
 designing *for* the BBC rather than squeezing Rose onto it actually buys

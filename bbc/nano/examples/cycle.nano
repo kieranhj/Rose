@@ -22,7 +22,7 @@ proc main
 proc arm d c
     face d
     tint c
-    size 1
+    size 3
     fork ray 26
 
 proc ray n

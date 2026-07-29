@@ -20,6 +20,7 @@ import math
 
 sys.path.insert(0, __file__.rsplit("/", 1)[0].rsplit("\\", 1)[0])
 from nanoc import (Parser, Compiler, MAXT, NLOCAL, DIRS, GW, GH, SCREEN,
+                   XSH, YSH, NSIZE, CELLB, COLSTEP, rowbase, GRID,
                    blob_spans, pick_pair, encode, tokenise, CMP)
 
 CANVAS = 20480
@@ -110,7 +111,7 @@ class Machine:
         bg = pick_pair(self.p.back)
         self.backa, self.backb = encode(*bg), encode(bg[1], bg[0])
 
-        self.spans = [blob_spans(s) for s in range(4)]
+        self.spans = [blob_spans(s) for s in range(NSIZE)]
         self.rnd = 1
 
         self.scr = bytearray(CANVAS)
@@ -157,15 +158,15 @@ class Machine:
 
     def draw(self, t):
         pa, pb = self.pata[t.tint & 7], self.patb[t.tint & 7]
-        col, row = t.xh >> 2, t.yh >> 3
-        for dy, dxe in self.spans[t.size & 3]:
-            r = (row + dy) & 31
-            base = r * 640
+        col, row = t.xh >> XSH, t.yh >> YSH
+        for dy, dxe in self.spans[t.size & (NSIZE - 1)]:
+            r = (row + dy) & (GH - 1)
+            base = rowbase(r) - SCREEN
             c0 = max(0, col - dxe)
             c1 = min(GW - 1, col + dxe)
             for c in range(c0, c1 + 1):
-                p = base + c * 16
-                for i in range(16):
+                p = base + c * COLSTEP
+                for i in range(CELLB):
                     self.scr[p + i] = pa if (i & 1) == 0 else pb
 
     def alloc(self):
@@ -252,11 +253,13 @@ def to_png(scr, path):
     img = np.zeros((256, 160, 3), dtype=np.uint8)
     for a in range(CANVAS):
         b = scr[a]
-        cell = a // 16
-        row_c, col = divmod(cell, GW)
-        i = a & 15
-        y = row_c * 8 + (i & 7)
-        x = col * 4 + (i >> 3) * 2
+        # Straight from the MODE 2 layout, so this holds for any grid: 640
+        # bytes to a character row, 8 bytes to a 2-pixel column, 1 to a
+        # scanline within the row.
+        charrow, rem = divmod(a, 640)
+        bytecol, scan = divmod(rem, 8)
+        y = charrow * 8 + scan
+        x = bytecol * 2
         left = ((b >> 1) & 1) | ((b >> 2) & 2) | ((b >> 3) & 4) | ((b >> 4) & 8)
         right = (b & 1) | ((b >> 1) & 2) | ((b >> 2) & 4) | ((b >> 3) & 8)
         img[y, x] = BBC[left & 7]
@@ -284,7 +287,7 @@ def sheet(src, marks, path, scale=2):
         os.remove(tmp)
         bar = Image.new("RGB", (im.width, im.height + 16), (16, 16, 16))
         bar.paste(im, (0, 16))
-        ImageDraw.Draw(bar).text((4, 3), f"frame {f}", fill=(200, 200, 200))
+        ImageDraw.Draw(bar).text((4, 3), f"{GRID}   frame {f}", fill=(200, 200, 200))
         imgs.append(bar)
     gap = 6
     W = sum(i.width for i in imgs) + gap * (len(imgs) - 1)

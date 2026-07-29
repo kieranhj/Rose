@@ -1,19 +1,18 @@
 ; ===========================================================================
-; Rose Nano runtime — BBC Model B, MODE 2, 40x32 grid
+; Rose Nano runtime — BBC Model B, MODE 2
 ; Generated code is spliced in at @@PROCS@@; see bbc/nano/nanoc.py.
 ;
 ; Geometry, confirmed on the machine (rose-nano.md §14.1):
-;   +1 = next scanline within a character row, +8 = next 2-pixel column,
-;   so a 4px x 8row grid cell is 16 CONTIGUOUS bytes at &3000 + row*640 + col*16.
+;   +1 = next scanline within a character row, +8 = next 2-pixel column.
+; The grid itself is chosen in nanoc.py, which hands down GW, GH, XSH, YSH,
+; CELLB, COLSTEP and NSIZE; this file is written against those rather than
+; against one grid, so 40x32 and 80x64 share every instruction below.
 ; ===========================================================================
 
 CPU 0                           ; plain 6502 — this is a Model B
 
 OSWRCH  = &FFEE
 OSBYTE  = &FFF4
-
-GW      = 40
-GH      = 32
 
 ; --- zero page (the Model B's free user block, &70-&8F) ---------------------
 P       = &70                   ; working screen pointer
@@ -191,16 +190,24 @@ ENDIF
     LDA ttint,X : AND #7 : TAY      ; the palette is 8 entries; mask like the model
     LDA pata,Y : STA PAT_A
     LDA patb,Y : STA PAT_B
-    LDA txh,X : LSR A : LSR A : STA COL              ; 160px -> 40 cells
-    LDA tyh,X : LSR A : LSR A : LSR A : STA ROW      ; 256 rows -> 32 cells
-    LDA tsize,X : AND #3 : TAY      ; four sizes (§13.3)
+    LDA txh,X                       ; 160px -> GW columns
+    FOR n, 1, XSH
+    LSR A
+    NEXT
+    STA COL
+    LDA tyh,X                       ; 256 scanlines -> GH rows
+    FOR n, 1, YSH
+    LSR A
+    NEXT
+    STA ROW
+    LDA tsize,X : AND #NSIZE-1 : TAY    ; §13.3
     LDA spancnt,Y : STA SPCNT
     LDA spanofs,Y : STA SPIDX
 .dsrow
     LDY SPIDX
     LDA spandy,Y
     CLC : ADC ROW
-    AND #31                     ; the canvas is a torus in y
+    AND #GH-1                   ; the canvas is a torus in y
     TAY
     LDA rowlo,Y : STA RBASE
     LDA rowhi,Y : STA RBASE+1
@@ -221,27 +228,24 @@ ENDIF
     LDA RBASE   : CLC : ADC colo,Y : STA P
     LDA RBASE+1 :       ADC cohi,Y : STA P+1
 .dscell
-    ; One grid cell: 16 contiguous bytes, the dither alternating by scanline.
-    ; Byte index parity IS row parity in both byte-columns, so the pattern is
-    ; locked to screen position for free (§13.4).
+    ; One grid cell: CELLB contiguous bytes, the dither alternating by
+    ; scanline.  Byte index parity IS scanline parity whatever the cell height
+    ; -- a half-height cell starts at scanline 0 or 4, both even -- so the
+    ; pattern stays locked to screen position for free (§13.4).
     LDY #0
-    LDA PAT_A : STA (P),Y : INY
-    LDA PAT_B : STA (P),Y : INY
-    LDA PAT_A : STA (P),Y : INY
-    LDA PAT_B : STA (P),Y : INY
-    LDA PAT_A : STA (P),Y : INY
-    LDA PAT_B : STA (P),Y : INY
-    LDA PAT_A : STA (P),Y : INY
-    LDA PAT_B : STA (P),Y : INY
-    LDA PAT_A : STA (P),Y : INY
-    LDA PAT_B : STA (P),Y : INY
-    LDA PAT_A : STA (P),Y : INY
-    LDA PAT_B : STA (P),Y : INY
-    LDA PAT_A : STA (P),Y : INY
-    LDA PAT_B : STA (P),Y : INY
-    LDA PAT_A : STA (P),Y : INY
-    LDA PAT_B : STA (P),Y
-    LDA P : CLC : ADC #16 : STA P
+    FOR n, 0, CELLB-1
+    IF (n AND 1) = 0
+    LDA PAT_A
+    ELSE
+    LDA PAT_B
+    ENDIF
+    STA (P),Y
+    IF n < CELLB-1
+    INY
+    ENDIF
+    NEXT
+    ; Cells step by COLSTEP, which is NOT CELLB once a cell is half-height.
+    LDA P : CLC : ADC #COLSTEP : STA P
     BCC dsnc
     INC P+1
 .dsnc
@@ -349,14 +353,14 @@ ENDIF
 ; ------------------------------------------------------------------- tables
 ; @@TABLES@@
 
-; ---- grid column -> byte offset.  A cell is 16 bytes, so offset = col*16.
+; ---- grid column -> byte offset, col*COLSTEP.
 .colo
     FOR n, 0, GW-1
-    EQUB LO(n*16)
+    EQUB LO(n*COLSTEP)
     NEXT
 .cohi
     FOR n, 0, GW-1
-    EQUB HI(n*16)
+    EQUB HI(n*COLSTEP)
     NEXT
 
 ; ------------------------------------------------------------------- arrays

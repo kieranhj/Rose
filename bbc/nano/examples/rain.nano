@@ -19,7 +19,7 @@ proc sow x c
 proc drop n c
     face 64
     tint c
-    size 0
+    size 1
     draw
     move 4
     wait 1

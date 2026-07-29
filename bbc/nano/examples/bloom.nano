@@ -1,3 +1,7 @@
+; Eight rays from the centre, each shedding three trails of decreasing size.
+; Each trail is a chain of turtles: draw, step, fork the next, die (§6.2).
+
+back 001
 plan
     0:001 1:F08 2:08F 3:FF8 4:F80 5:8F0 6:C00 7:888
 
@@ -15,13 +19,13 @@ proc main
 proc ray d c
     face d
     tint c
-    size 2
+    size 5
     fork walk 8
     wait 10
-    size 1
+    size 3
     fork walk 16
     wait 18
-    size 0
+    size 1
     fork walk 30
 
 proc walk n

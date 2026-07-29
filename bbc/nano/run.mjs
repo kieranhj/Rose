@@ -37,6 +37,13 @@ const spent = cyc() - t0;
 // The engine writes &FF to &8C when it hits MAXFRAMES.
 const done = session.readMemory(0x8c, 1)[0];
 
+// How many frames the engine ACTUALLY completed.  A program whose scheduler
+// pass overruns 40,000 cycles slips behind the wall clock, so this is not
+// necessarily `frames` -- and if it is not, checking the dump against the
+// model at `frames` compares two different points in time.  Report the real
+// figure so the mismatch is visible rather than showing up as a divergence.
+const ran = session.readMemory(0x80, 1)[0] + 256 * session.readMemory(0x81, 1)[0];
+
 const screen = Buffer.from(readRange(session, 0x3000, 20480));
 writeFileSync(path.join(here, "build", `${name}.screen.bin`), screen);
 
@@ -51,8 +58,9 @@ function readRange(s, addr, len) {
 const png = await session.screenshotActive({ scale: 2 });
 writeFileSync(path.join(here, "build", `${name}.png`), png);
 
-console.log(`${name}: ran ${frames} frames (${spent.toLocaleString()} cycles), ` +
-    `done=${done === 0xff}`);
+console.log(`${name}: ran ${ran} frames (${spent.toLocaleString()} cycles), ` +
+    `done=${done === 0xff}` +
+    (ran < frames ? `  [over budget: ${frames} frames' time bought only ${ran}]` : ""));
 
 if (profile) {
     // Time a single scheduler pass by breaking on the vsync OSBYTE twice.
