@@ -58,9 +58,14 @@ function readRange(s, addr, len) {
 const png = await session.screenshotActive({ scale: 2 });
 writeFileSync(path.join(here, "build", `${name}.png`), png);
 
+// Falling short of `frames` only means something when the engine did NOT halt:
+// a MAXFRAMES build stops early on purpose, and flagging that as over budget
+// cries wolf on every verification run.
+const halted = done === 0xff;
 console.log(`${name}: ran ${ran} frames (${spent.toLocaleString()} cycles), ` +
-    `done=${done === 0xff}` +
-    (ran < frames ? `  [over budget: ${frames} frames' time bought only ${ran}]` : ""));
+    `done=${halted}` +
+    (ran < frames && !halted
+        ? `  [over budget: ${frames} frames' time bought only ${ran}]` : ""));
 
 if (profile) {
     // Time a single scheduler pass by breaking on the vsync OSBYTE twice.

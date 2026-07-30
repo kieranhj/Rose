@@ -22,9 +22,10 @@ pinks, creams and greys are 50/50 dither pairs.*
 |---|---|
 | The picture | `bbc/docs/mockups/nano-v1-bloom-beeb.png` — real emulator output |
 | Growth over time | `bbc/docs/mockups/nano-v1-bloom-sheet.png` — frames 20/60/120/300 |
-| The language | `bbc/nano/examples/bloom.nano` (39 lines, does all of the above) |
+| The language | `bbc/nano/examples/bloom.nano` (38 lines, does all of the above) |
 | Build and run | `sh bbc/nano/build.sh bloom 600 && node bbc/nano/run.mjs bloom 600` |
 | Verify | `python bbc/nano/nanoref.py examples/bloom.nano 600 --check build/bloom.screen.bin` |
+| Verify everything | `sh bbc/nano/verify.sh` — all six examples × both grids (§7) |
 | Preview without a build | `python bbc/nano/nanoref.py examples/bloom.nano --sheet 20,60,120,300 out.png` |
 | The old grid | prefix any of the above with `NANOGRID=40x32` (§6) |
 
@@ -138,6 +139,7 @@ bbc/nano/
   runtime.asm    scheduler, allocator, mover, stamper
   nanoref.py     reference model + verifier + preview renderer
   build.sh       nanoc -> beebasm -> bootable .ssd (SHIFT+BREAK runs it)
+  verify.sh      every example x every grid, byte-checked against nanoref
   run.mjs        boot in jsbeeb, dump screen RAM, screenshot
   profile.mjs    frame cost under load (experiment 6)
   palseq.mjs     palette-cycle frame strip + screen-RAM check (experiment 5)
@@ -180,8 +182,10 @@ proc walk n
     done
 ```
 
-Statements: `jump face tint size move turn draw wait fork when/else/done`,
-plus the `back` and `spin` declarations.
+Statements: `jump face tint size move turn draw wait fork when/else/done`, plus
+the `plan` and `spin` declarations. Comments are `#` and comparisons are
+`==`/`!=`, spelled as Rose spells them — §7 closed that gap, and closed it far
+enough that four of the six examples now parse in the Rose visualizer verbatim.
 Expressions are deliberately the smallest grammar that expresses that idiom:
 constant, local, `local±constant`, and `rand N`. No division, **no multiply
 either** — `move` is two table lookups and two 16-bit adds (§5.2).
@@ -395,7 +399,84 @@ thing that would buy it back.
 
 ---
 
-## 7. What changed in the design tonight
+## 7. Reading `.nano` in the Rose visualizer
+
+Nano and Rose had drifted apart in spelling more than in substance. The
+question was what it would take to open a `.nano` in `visualizer/rose.exe` and
+watch it, so that authoring does not require a build-and-boot cycle. The answer
+turned out to be: very little, and most of the gap was gratuitous.
+
+Running the six examples through `rose.exe` found exactly five blockers, and
+three of them were Nano spelling Rose's own ideas differently for no reason:
+
+| Blocker | Resolution |
+|---|---|
+| `;` comments | **Fixed** — Nano now uses `#`, as Rose does |
+| `=` / `<>` | **Fixed** — now `==` / `!=`, as Rose does |
+| `back RGB` | **Removed** — see below |
+| `rand N` | Kept. Rose's `rand` is nullary and returns 16.16 in 0..1 |
+| no `form` | Kept. Nano's canvas is fixed at 160×256; Rose needs it declared |
+
+`back` is the interesting one. Every example set it to the same value as plan
+entry 0 — and *had* to, because `clearbg` fills the screen with it while §13.4
+requires a background-tinted blob to be invisible. It was a second way to say
+one thing, which is only ever a way to disagree with yourself. The background is
+now plan entry 0 by definition, and `back` raises an error pointing at the plan.
+
+What needed no translation at all is the more encouraging half: Rose's `color`
+token is `digit+ ':' hexdigit hexdigit hexdigit`, so a whole Nano `plan` block
+lexes as Rose unchanged. So do `proc` and its parameters, `fork p args`,
+`when`/`else`/`done`, `~` negation, `n-1`, the four-letter keyword rule, and
+directions at 256 units to the circle.
+
+With those changes, **four of the six examples parse in the Rose visualizer
+verbatim** — `rain`, `spiral`, `stress`, `stress0` — needing only a `form`
+line prepended. `bloom` still needs `rand 8` → `rand * 8`; `cycle` still uses
+`spin`, deliberately (below).
+
+### What is deliberately not aligned
+
+`spin` stays a Nano declaration. Rose has no concept to map it onto: Rose's
+colour model is layers, Nano's is an eight-entry video ULA palette, and the
+whole point of §2's experiment 5 is rotating that palette in place. Spelling it
+in Rose syntax would buy a parse and no picture.
+
+More importantly, four divergences **survive parsing** and would make a naive
+preview lie:
+
+- **Tint wraps.** Nano masks `AND #7` in `tdraw`. Rose treats tint as a layer
+  index and warns. `rain` and `stress` both walk tint past 7 — they are relying
+  on the wrap.
+- **The pool is finite.** Nano has 48 slots and silently drops a `fork` when
+  full. The visualizer ran `stress` to **87 turtles alive**, i.e. it rendered a
+  program the BBC cannot run.
+- **`size` means different things.** Nano's is a blob index 0–7 selecting a cell
+  radius; Rose's is a circle radius in pixels.
+- **Pixels are not square.** Nano halves dx in its move tables because MODE 2
+  pixels are 2:1. The visualizer's `x<scale>` is uniform, so a Nano circle
+  previews as an ellipse.
+
+This is why the next step is a *render mode* in the visualizer — 160×256 at 2:1
+pixel aspect, tint masked to 3 bits, a 48-turtle cap, blobs snapped to the grid
+— rather than a `.nano`→`.rose` converter. A converter that hid those four
+things would produce a preview that disagrees with the machine, and not
+disagreeing with the machine is the whole thesis of §4.
+
+### `verify.sh`
+
+The twelve-check sweep that §6 ran by hand is now `bbc/nano/verify.sh`, which
+builds, runs and compares every example at every grid. It exists because this
+section changed the parser, and a language change that cannot be cheaply
+re-verified is a language change nobody will make. All twelve still match.
+
+It also fixed a false alarm: `run.mjs` reported "over budget" whenever the
+engine finished fewer frames than the cycle budget bought — which is *always*
+true for a `MAXFRAMES` build, since halting early is the point. It now only
+warns when the engine did not halt.
+
+---
+
+## 8. What changed in the design tonight
 
 Two things, both from measurement:
 
@@ -412,7 +493,7 @@ doc's framing, which currently leads with it.
 
 ---
 
-## 8. Where I stopped, and what I would do next
+## 9. Where I stopped, and what I would do next
 
 Not done, in the order I would pick them up:
 
@@ -452,7 +533,7 @@ Not done, in the order I would pick them up:
 
 ---
 
-## 9. Bottom line
+## 10. Bottom line
 
 The question the doc has been circling since it was written is whether
 designing *for* the BBC rather than squeezing Rose onto it actually buys

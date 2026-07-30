@@ -1,7 +1,6 @@
-; A single turtle spiralling out, forking a second colour behind it.
-; The Rose idiom for a loop is `fork self n-1` and fall off the end (§6.2).
+# A single turtle spiralling out, forking a second colour behind it.
+# The Rose idiom for a loop is `fork self n-1` and fall off the end (§6.2).
 
-back 001
 plan
     0:001 1:F80 2:08F 3:FFF
 

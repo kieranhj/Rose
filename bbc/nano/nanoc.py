@@ -141,8 +141,9 @@ def tokenise(s):
 
 
 KEYWORDS = {"jump", "face", "tint", "size", "move", "turn", "draw", "wait",
-            "fork", "when", "else", "done", "proc", "plan", "back"}
-CMP = {">": "gt", "<": "lt", ">=": "ge", "<=": "le", "=": "eq", "<>": "ne"}
+            "fork", "when", "else", "done", "proc", "plan", "spin"}
+# Spelled as Rose spells them, so a .nano source lexes as Rose (see §7).
+CMP = {">": "gt", "<": "lt", ">=": "ge", "<=": "le", "==": "eq", "!=": "ne"}
 
 
 class Stmt(list):
@@ -167,13 +168,24 @@ class Parser:
     def __init__(self, text):
         self.lines = []                   # (source line number, text)
         for n, raw in enumerate(text.splitlines(), 1):
-            line = raw.split(";")[0].rstrip()
+            line = raw.split("#")[0].rstrip()   # Rose's comment marker (§7)
             if line.strip():
                 self.lines.append((n, line))
         self.plan = {}
-        self.back = 0
         self.spin = None          # (lo, hi, rate) — rotating palette range
         self.procs = []
+
+    @property
+    def back(self):
+        """The background colour: tint 0, by definition rather than by habit.
+
+        `back` used to be its own declaration, and every example set it to the
+        same value as plan entry 0 — necessarily, because clearbg fills the
+        screen with it and §13.4 requires a background-tinted blob to be
+        invisible.  Two ways to say one thing is one way to disagree with
+        yourself, so the declaration is gone and this reads the plan.
+        """
+        return self.plan.get(0, 0)
 
     def parse(self):
         i = 0
@@ -191,8 +203,10 @@ class Parser:
                     i += 1
                 continue
             if head == "back":
-                self.back = int(tok[1], 16)
-            elif head == "spin":
+                raise SyntaxError(
+                    f"line {num}: `back` is gone - the background is plan "
+                    f"entry 0.  Write `0:{tok[1]}` in the plan block instead.")
+            if head == "spin":
                 self.spin = tuple(int(v) for v in tok[1:4])
             elif head == "proc":
                 cur = Proc(tok[1], tok[2:], num, line)

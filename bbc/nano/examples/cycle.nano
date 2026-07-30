@@ -1,11 +1,10 @@
-; Experiment 5: palette cycling as a first-class primitive (§4.2).
-;
-; Six arms drawn once, in tints 1-6, then left alone.  `spin` rotates logical
-; colours 1..6 every 6 frames, so the whole picture keeps moving after every
-; turtle that drew it is dead — for eight writes to the video ULA per frame
-; and no blobs at all.
+# Experiment 5: palette cycling as a first-class primitive (§4.2).
+#
+# Six arms drawn once, in tints 1-6, then left alone.  `spin` rotates logical
+# colours 1..6 every 6 frames, so the whole picture keeps moving after every
+# turtle that drew it is dead — for eight writes to the video ULA per frame
+# and no blobs at all.
 
-back 000
 spin 1 6 6
 plan
     0:000 1:F00 2:F80 3:FF0 4:0F0 5:0FF 6:00F 7:FFF

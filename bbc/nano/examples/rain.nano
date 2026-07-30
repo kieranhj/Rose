@@ -1,7 +1,6 @@
-; Falling turtles on a canvas that is a torus in y (32 rows x 8 = 256 exactly),
-; so the rain never ends and nothing is ever cleared.
+# Falling turtles on a canvas that is a torus in y (32 rows x 8 = 256 exactly),
+# so the rain never ends and nothing is ever cleared.
 
-back 000
 plan
     0:000 1:00F 2:08F 3:8FF 4:FFF 5:0F8 6:880 7:F08
 

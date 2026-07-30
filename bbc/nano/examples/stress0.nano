@@ -1,7 +1,6 @@
-; Saturates the 48-slot turtle pool and keeps it saturated, so a frame can be
-; timed under full load.  Not a picture — a measurement (§14, experiment 6).
+# Saturates the 48-slot turtle pool and keeps it saturated, so a frame can be
+# timed under full load.  Not a picture — a measurement (§14, experiment 6).
 
-back 000
 plan
     0:000 1:F08 2:08F 3:FF8 4:F80 5:8F0 6:C00 7:888
 
