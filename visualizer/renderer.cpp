@@ -11,6 +11,7 @@
 struct CircleVertex {
 	float x,y,u,v;
 	float tint;
+	float blob;      // Nano cell radius; unused (0) in normal Rose mode
 };
 
 struct QuadVertex {
@@ -53,6 +54,7 @@ GLuint makeProgram(const char *vsource, const char *psource) {
 GLuint RoseRenderer::plot_program = 0;
 GLuint RoseRenderer::xyuv_loc = 0;
 GLuint RoseRenderer::tint_loc = 0;
+GLuint RoseRenderer::blob_loc = 0;
 GLuint RoseRenderer::combine_program = 0;
 GLuint RoseRenderer::combine_xy_loc = 0;
 GLuint RoseRenderer::overlay_program = 0;
@@ -77,15 +79,23 @@ RoseRenderer::RoseRenderer(RoseResult rose_result, int width, int height)
 
 	// Data for plot vertex buffer
 	std::vector<CircleVertex> plot_vertex_data;
+	bool nano = rose_data.nano_cw > 0;
 	for (auto p : rose_data.plots) {
-		float x = p.x + 0.5f;
-		float y = p.y + 0.5f;
-		float r = p.r + 0.5f;
+		// In Nano mode p.x,p.y is a CELL CENTRE and p.r a CELL radius, so the
+		// quad spans (r+0.5) cells each way -- which is not square, because a
+		// MODE 2 cell is not.  uv is then in cell units and the fragment shader
+		// rounds it to pick out whole cells.
+		float x = nano ? (float) p.x : p.x + 0.5f;
+		float y = nano ? (float) p.y : p.y + 0.5f;
+		float ex = nano ? (p.r + 0.5f) * rose_data.nano_cw : p.r + 0.5f;
+		float ey = nano ? (p.r + 0.5f) * rose_data.nano_ch : p.r + 0.5f;
+		float uvr = nano ? p.r + 0.5f : 1.0f;
 		for (int c = 0 ; c < 6 ; c++) {
 			float u = corners[c][0];
 			float v = corners[c][1];
 			CircleVertex vert = {
-				(x + u*r) / width * 2 - 1, (y + v*r) / height * -2 + 1, u, v, (float) (p.c & 511)
+				(x + u*ex) / width * 2 - 1, (y + v*ey) / height * -2 + 1,
+				u*uvr, v*uvr, (float) (p.c & 511), (float) p.r
 			};
 			plot_vertex_data.push_back(vert);
 		}
@@ -139,6 +149,7 @@ RoseRenderer::RoseRenderer(RoseResult rose_result, int width, int height)
 		plot_program = makeProgram(plot_vshader, plot_pshader);
 		xyuv_loc = glGetAttribLocation(plot_program, "xyuv");
 		tint_loc = glGetAttribLocation(plot_program, "tint");
+		blob_loc = glGetAttribLocation(plot_program, "blob");
 	}
 	if (!combine_program) {
 		combine_program = makeProgram(quad_vshader, combine_pshader);
@@ -210,9 +221,13 @@ bool RoseRenderer::draw(int frame, bool overlay_enabled) {
 	glEnableVertexAttribArray(xyuv_loc);
 	glVertexAttribPointer(tint_loc, 1, GL_FLOAT, GL_FALSE, sizeof(CircleVertex), &((CircleVertex *)0)->tint);
 	glEnableVertexAttribArray(tint_loc);
+	glVertexAttribPointer(blob_loc, 1, GL_FLOAT, GL_FALSE, sizeof(CircleVertex), &((CircleVertex *)0)->blob);
+	glEnableVertexAttribArray(blob_loc);
 
 	// Set program
 	glUseProgram(plot_program);
+	glUniform1f(glGetUniformLocation(plot_program, "nano_on"),
+		rose_data.nano_cw > 0 ? 1.0f : 0.0f);
 
 	int layers = rose_data.layer_count;
 	for (int l = 0; l < layers; l++) {
@@ -241,6 +256,7 @@ bool RoseRenderer::draw(int frame, bool overlay_enabled) {
 	glDisable(GL_ALPHA_TEST);
 	glDisableVertexAttribArray(xyuv_loc);
 	glDisableVertexAttribArray(tint_loc);
+	glDisableVertexAttribArray(blob_loc);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 
 

@@ -5,13 +5,16 @@ uniform float max_tint;
 
 attribute vec4 xyuv;
 attribute float tint;
+attribute float blob;
 
 varying vec2 uv;
 varying vec4 color;
+varying float cells;
 
 void main() {
 	gl_Position = vec4(xyuv.xy, 0.0, 1.0);
 	uv = xyuv.zw;
+	cells = blob;
 	float real_tint, alpha;
 	if (tint >= 256.0) {
 		real_tint = 511.0 - tint;
@@ -30,11 +33,27 @@ void main() {
 
 const char *plot_pshader = R"--(
 
+uniform float nano_on;
+
 varying vec2 uv;
 varying vec4 color;
+varying float cells;
 
 void main() {
-	gl_FragColor = vec4(color.rgb, max(color.a, float(length(uv) < 1.0)));
+	float inside;
+	if (nano_on > 0.5) {
+		// Nano stamps whole grid cells.  uv arrives in CELL units spanning
+		// +-(s+0.5), so rounding it gives the cell offset (dx,dy) in -s..s, and
+		// the blob test is nanoc.py's blob_spans predicate exactly:
+		//     dx*dx + dy*dy <= s*s + s
+		// Rounding is what makes this a stepped blob rather than a smooth
+		// ellipse -- it is the whole point of the mode.
+		vec2 d = floor(uv + 0.5);
+		inside = float(dot(d, d) <= cells * cells + cells);
+	} else {
+		inside = float(length(uv) < 1.0);
+	}
+	gl_FragColor = vec4(color.rgb, max(color.a, inside));
 }
 
 )--";

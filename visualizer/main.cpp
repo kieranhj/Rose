@@ -225,6 +225,11 @@ int main(int argc, char *argv[]) {
 	std::unique_ptr<FileWatches> watches(new FileWatches(rose_result));
 	int width = rose_result.width;
 	int height = rose_result.height;
+	// Nano mode renders a 160x256 MODE 2 canvas whose pixels are 2:1, so the
+	// texture stays at canvas resolution and the DISPLAY stretches x.  Doing it
+	// here rather than in the plot geometry keeps the grid square in memory and
+	// crisp on screen (the combine pass magnifies with GL_NEAREST).
+	int aspect = rose_result.pixel_aspect;
 
 	// Initialize GLFW
 	glfwSetErrorCallback(error_callback);
@@ -235,7 +240,7 @@ int main(int argc, char *argv[]) {
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 0);
 	glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
 	if (output_file) glfwWindowHint(GLFW_VISIBLE, GL_FALSE);
-	GLFWwindow *window = glfwCreateWindow(width * window_scale, height * window_scale, "Rose", nullptr, nullptr);
+	GLFWwindow *window = glfwCreateWindow(width * window_scale * aspect, height * window_scale, "Rose", nullptr, nullptr);
 	glfwMakeContextCurrent(window);
 	glewExperimental = GL_TRUE;
 	glewInit();
@@ -247,20 +252,21 @@ int main(int argc, char *argv[]) {
 	// Headless mode: render frame(s), save BMP(s), exit
 	if (output_file) {
 		if (project) {
-			glViewport(0, 0, width, height);
-			std::vector<uint8_t> pixels(width * height * 4);
+			int ow = width * aspect;
+			glViewport(0, 0, ow, height);
+			std::vector<uint8_t> pixels(ow * height * 4);
 			bool is_sequence = (frame_start != frame_end);
 			char path_buf[1024];
 			for (int f = frame_start; f <= frame_end; f++) {
 				glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
 				project->draw(f, false);
 				glBindFramebuffer(GL_READ_FRAMEBUFFER, 0);
-				glReadPixels(0, 0, width, height, GL_RGBA, GL_UNSIGNED_BYTE, pixels.data());
+				glReadPixels(0, 0, ow, height, GL_RGBA, GL_UNSIGNED_BYTE, pixels.data());
 				if (is_sequence) {
 					snprintf(path_buf, sizeof(path_buf), output_file, f);
-					save_png(path_buf, width, height, pixels);
+					save_png(path_buf, ow, height, pixels);
 				} else {
-					save_png(output_file, width, height, pixels);
+					save_png(output_file, ow, height, pixels);
 				}
 			}
 		} else {
@@ -307,8 +313,8 @@ int main(int argc, char *argv[]) {
 				if (project->width != width || project->height != height) {
 					width = project->width;
 					height = project->height;
-					glfwSetWindowSize(window, width * window_scale, height * window_scale);
-					glViewport(0, 0, width * window_scale, height * window_scale);
+					glfwSetWindowSize(window, width * window_scale * aspect, height * window_scale);
+					glViewport(0, 0, width * window_scale * aspect, height * window_scale);
 				}
 			}
 		}
@@ -316,7 +322,7 @@ int main(int argc, char *argv[]) {
 		if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_1) == GLFW_PRESS) {
 			double xpos,ypos;
 			glfwGetCursorPos(window, &xpos, &ypos);
-			frame = (int)(xpos / (width * window_scale) * frames);
+			frame = (int)(xpos / (width * window_scale * aspect) * frames);
 			frame_set = true;
 			startframe = frame;
 		}

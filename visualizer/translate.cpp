@@ -114,11 +114,23 @@ std::vector<int> assignWires(std::vector<wire_mask_t> wire_conflicts, int* slots
 
 MicroConfig micro;
 int MicroConfig::rnd_on = 0;
+NanoConfig nano;
 
 RoseResult translate(const char *filename, int max_time,
                      int width, int height,
                      int layer_count, int layer_depth) {
 	micro.init();
+	nano.init();
+	if (nano.on) {
+		// Nano's canvas is not declared, it is the machine: MODE 2 is 160x256
+		// and the palette is eight logical colours.  Defaulting it here means a
+		// .nano source needs no `form` line to open, which is the difference
+		// between four of the six examples running unedited and none of them.
+		width = NanoConfig::W;
+		height = NanoConfig::H;
+		layer_count = 1;
+		layer_depth = 8;
+	}
 	RoseResult result;
 	result.width = width;
 	result.height = height;
@@ -150,17 +162,47 @@ RoseResult translate(const char *filename, int max_time,
 				throw CompileException(mainproc.getName(), "Entry procedure must not have any parameters");
 			}
 
-			in.get_form(program, &width, &height, &layer_count, &layer_depth);
+			// In Nano mode the canvas is the machine's, not the program's, so a
+			// stray `form` line does not get to renegotiate MODE 2.
+			if (!nano.on) {
+				in.get_form(program, &width, &height, &layer_count, &layer_depth);
+			}
 			result.width = width;
 			result.height = height;
 			result.layer_count = layer_count;
 			result.layer_depth = layer_depth;
+			if (nano.on) {
+				result.nano_cw = nano.cellw();
+				result.nano_ch = nano.cellh();
+				result.pixel_aspect = 2;      // MODE 2 pixels are 2:1
+			}
 
 			result.stats.reset(new RoseStatistics(max_time, width, height, layer_count, layer_depth));
 			RoseStatistics& stats = *result.stats;
 
 			result.plots = in.interpret(mainproc, &stats);
 			result.colors = in.get_colors(program);
+
+			if (nano.on) {
+				// Resolve every tint to the dither pair MODE 2 can actually
+				// make, so the preview shows the 27 available colours rather
+				// than the 4096 the notation can express.
+				for (TintColor& c : result.colors) {
+					c.rgb = (short) NanoConfig::dither_rgb(c.rgb);
+				}
+
+				// The turtle pool is REPORTED, not emulated.  Nano allocates by
+				// scanning slots 0..47 each frame and drops a fork when the scan
+				// finds nothing; this interpreter runs turtles from a queue that
+				// does not preserve that order, so dropping forks here would
+				// drop *different* ones and produce a confidently wrong picture.
+				// Counting the peak says the true thing instead.
+				for (int i = 0; i < stats.frames; i++) {
+					nano.note_pool(stats.frame[i].turtles_survived
+					             + stats.frame[i].turtles_died + 1);
+				}
+				nano.report(stdout);
+			}
 
 			// Output
 			std::vector<int> wire_assignment = assignWires(in.wire_conflicts, &stats.wire_capacity);

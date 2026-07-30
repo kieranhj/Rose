@@ -26,6 +26,7 @@ pinks, creams and greys are 50/50 dither pairs.*
 | Build and run | `sh bbc/nano/build.sh bloom 600 && node bbc/nano/run.mjs bloom 600` |
 | Verify | `python bbc/nano/nanoref.py examples/bloom.nano 600 --check build/bloom.screen.bin` |
 | Verify everything | `sh bbc/nano/verify.sh` — all six examples × both grids (§7) |
+| Preview interactively | `ROSE_NANO=1 visualizer/build/rose bbc/nano/examples/bloom.nano` (§7) |
 | Preview without a build | `python bbc/nano/nanoref.py examples/bloom.nano --sheet 20,60,120,300 out.png` |
 | The old grid | prefix any of the above with `NANOGRID=40x32` (§6) |
 
@@ -144,6 +145,9 @@ bbc/nano/
   profile.mjs    frame cost under load (experiment 6)
   palseq.mjs     palette-cycle frame strip + screen-RAM check (experiment 5)
   examples/      bloom, rain, spiral, cycle, stress, stress0
+
+visualizer/
+  nano.h         BBC render mode for the Rose visualizer (§7)
 ```
 
 ### The raster debug build
@@ -456,11 +460,78 @@ preview lie:
   pixels are 2:1. The visualizer's `x<scale>` is uniform, so a Nano circle
   previews as an ellipse.
 
-This is why the next step is a *render mode* in the visualizer — 160×256 at 2:1
-pixel aspect, tint masked to 3 bits, a 48-turtle cap, blobs snapped to the grid
-— rather than a `.nano`→`.rose` converter. A converter that hid those four
-things would produce a preview that disagrees with the machine, and not
-disagreeing with the machine is the whole thesis of §4.
+This is why the answer was a *render mode* in the visualizer — 160×256 at 2:1
+pixel aspect, tint masked to 3 bits, blobs snapped to the grid — rather than a
+`.nano`→`.rose` converter. A converter that hid those four things would produce
+a preview that disagrees with the machine, and not disagreeing with the machine
+is the whole thesis of §4. That mode is built; see below.
+
+### The render mode
+
+Built, and it is what the section above argued for: `ROSE_NANO=1` makes the Rose
+visualizer draw the way the BBC draws.
+
+```
+ROSE_NANO=1 visualizer/build/rose bbc/nano/examples/spiral.nano
+ROSE_NANO=1 NANOGRID=40x32 visualizer/build/rose bbc/nano/examples/spiral.nano
+```
+
+![nano render mode](mockups/nano-visualizer-mode.png)
+
+*Left: the visualizer in Nano mode. Right: `nanoref.py`, which is byte-exact
+against the machine. No `form` line, no conversion — these are the example
+files.*
+
+What it emulates, all of it verified against the reference model rather than
+asserted:
+
+| | |
+|---|---|
+| **Grid** | Blobs are whole cells, shaped by nanoc's own `dx²+dy² ≤ s²+s` predicate, at either grid |
+| **Aspect** | The canvas is 160×256 displayed at 2:1, and `move` halves dx exactly as the move tables do |
+| **Colour** | Every tint resolves through `pick_pair`, so the preview shows the 27 colours MODE 2 has, not the 4096 the notation can write |
+| **Wrap** | Tint masks to 3 bits, size masks to the grid's range, x and y wrap toroidally |
+| **`wait`** | Nano's `wait n` costs n+1 frames — the scheduler decrements `twait` on a frame it also skips |
+
+Bounding boxes agree with the reference **exactly** at both grids (80×64:
+x 66–94, y 88–168; 40×32: x 60–100, y 72–184). Normal Rose rendering is
+untouched — five programs render pixel-identical to the pre-change binary.
+
+The mode also reports what it cannot fix. `stress` prints:
+
+```
+NANO_TINT_WRAPPED 592859 / 611875 draws
+NANO_POOL_EXCEEDED peak 129 live turtles, Nano has 48 slots
+```
+
+### What the render mode still cannot tell you
+
+Three things, and they are stated here because a preview whose limits are
+undocumented is a preview that lies by omission:
+
+- **Turtle timing.** Nano allocates by scanning slots 0..47, so whether a
+  forked child runs in the frame that forked it or the next one depends on
+  whether its slot index is above or below its parent's. `spiral`'s chain
+  advances every 2 or 3 frames alternately, averaging 2.5; the preview advances
+  every 2. The *shape* converges to the same thing — only the rate differs.
+  Emulating this means porting Nano's scheduler, which is `nanoref.py`'s job.
+- **Pool saturation is reported, not enforced.** Same root cause: dropping forks
+  without the slot-scan order would drop *different* forks than the machine
+  does, and a confidently wrong picture is worse than a flagged right one.
+- **`rand` is a different generator.** Nano's is an 8-bit LFSR, Rose's is
+  32-bit. Any program whose shape depends on `rand` — `bloom` — matches in
+  structure and colour but not in the individual wiggle.
+
+So: use the mode for geometry, colour and composition; use `nanoref.py --sheet`
+when the exact frame matters, and the machine when it really matters.
+
+The one bug worth recording: an unqualified `sin(a)` in the new move code bound
+to the Interpreter's own fixed-point `sin(int)` member rather than `std::sin`,
+so the angle was truncated to an integer and used as a table index. `cos` has no
+such twin and resolved correctly, so *only the y axis was wrong* — the picture
+came out as a plausible-looking vertical band rather than an obvious crash. It
+was caught by comparing against `nanoref.py`, which is the whole argument for
+§4 in miniature.
 
 ### `verify.sh`
 

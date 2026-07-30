@@ -6,6 +6,7 @@ class RoseRenderer {
 	static GLuint plot_program;
 	static GLuint xyuv_loc;
 	static GLuint tint_loc;
+	static GLuint blob_loc;
 	GLuint plot_vertex_buffer;
 
 	static GLuint combine_program;

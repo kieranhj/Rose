@@ -18,6 +18,12 @@ struct RoseResult {
 	std::vector<std::string> paths;
 	int width, height;
 	int layer_count, layer_depth;
+	// Nano render mode (see nano.h).  Zero cell size means normal Rose: plots
+	// are circles at pixel precision and pixels are square.  Non-zero means a
+	// plot's `r` is a cell radius, not a pixel radius, and the display must
+	// stretch x by `pixel_aspect` because MODE 2 pixels are 2:1.
+	int nano_cw = 0, nano_ch = 0;
+	int pixel_aspect = 1;
 	std::vector<Plot> plots;
 	std::vector<TintColor> colors;
 	std::unique_ptr<struct RoseStatistics> stats;

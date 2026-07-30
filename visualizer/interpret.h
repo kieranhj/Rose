@@ -4,8 +4,10 @@
 #include "symbol_linking.h"
 #include "translate.h"
 #include "micro.h"
+#include "nano.h"
 
 #include <functional>
+#include <cmath>
 #include <cstring>
 #include <cstdint>
 #include <queue>
@@ -214,6 +216,15 @@ public:
 		initial.direction = MAKE_NUMBER(0);
 		initial.tint = MAKE_NUMBER(1);
 		initial.seed = 0xBABEFEED;
+		if (nano.on) {
+			// runtime.asm .init starts turtle 0 at the centre with size 0, not
+			// at Rose's origin with size 2.  Every example jumps first, so this
+			// shows up only in a program that draws before it jumps — which is
+			// exactly the kind of thing a preview should get right.
+			initial.x = MAKE_NUMBER(NanoConfig::START_X);
+			initial.y = MAKE_NUMBER(NanoConfig::START_Y);
+			initial.size = MAKE_NUMBER(0);
+		}
 		initial.wire_values.resize(sym.wire_count);
 		initial.wires_set = 0;
 		initial.wires_written_since.resize(sym.wire_count);
@@ -610,6 +621,16 @@ private:
 			rep.reportWarning(s.getToken(), "Negative wait");
 			return;
 		}
+		if (nano.on) {
+			// Nano's `wait n` costs n+1 frames, not n.  runtime.asm sets
+			// twait=n and the scheduler DECREMENTS on a frame it also skips
+			// (`LDA twait,X : BEQ trun / DEC twait,X / JMP tnext`), so the
+			// turtle resumes n+1 frames later.  Rose's wait resumes after n.
+			// This is an exact correspondence for the primitive; what it does
+			// NOT capture is when a freshly forked child first runs, which
+			// depends on the slot-scan order the pool comment above explains.
+			wait.number += MAKE_NUMBER(1);
+		}
 		int frame = NUMBER_TO_INT(state.time);
 		int new_frame = NUMBER_TO_INT(state.time + wait.number);
 		while (frame < stats->frames && frame < new_frame) {
@@ -678,6 +699,29 @@ private:
 			throw CompileException(s.getToken(), "Move distance is not a number");
 		}
 		number_t m = move.number;
+		if (nano.on) {
+			// nanoc.py emits, per distinct distance, a 128-entry table indexed
+			// by direction>>1:
+			//     dx = round(cos(a) * d * 256 / 2)     dy = round(sin(a) * d * 256)
+			// in units of 1/256 px.  dx is HALVED because MODE 2 pixels are 2:1
+			// — that is what keeps motion isotropic on the real display, and
+			// leaving it out is what would make a Nano circle preview as an
+			// ellipse.  x then wraps mod 160 and y is a byte, so mod 256.
+			int idx = ((state.direction >> 16) & 0xFF) >> 1;
+			double a = 2.0 * 3.14159265358979323846 * idx / 128.0;
+			int d = NUMBER_TO_INT(m);
+			// std:: qualified deliberately: this class has its own fixed-point
+			// sin(int) member for the normal path, and an unqualified sin(a)
+			// binds to THAT, silently truncating the angle and returning a
+			// table entry.  It cost an afternoon; cos has no such twin, so only
+			// the y axis was wrong and the picture looked merely odd.
+			int dx = (int) lround(std::cos(a) * d * 256.0 / 2.0);
+			int dy = (int) lround(std::sin(a) * d * 256.0);
+			state.x = nano_wrap(state.x + (dx << 8), NanoConfig::W);
+			state.y = nano_wrap(state.y + (dy << 8), NanoConfig::H);
+			cpu(424);
+			return;
+		}
 		if (micro.on) {
 			// 16-bit model: distance is a 10.6 value, sine a Q(SINA) table entry
 			// indexed by the whole part of the direction register.
@@ -732,8 +776,44 @@ private:
 			short y = NUMBER_TO_INT(state.y);
 			short size = NUMBER_TO_INT(state.size);
 			if (micro.on) size = micro.qradius(size);
+			if (nano.on) {
+				nano_draw(f, x, y, size, tint);
+				return;
+			}
 			output.push_back({f, x, y, size, tint});
 			stats->draw(f, x, y, size);
+		}
+	}
+
+	// Wrap a 16.16 position into [0, limit) pixels, keeping the fraction —
+	// Nano's x is a 16-bit register wrapped to 0..159 and its y is a byte.
+	static number_t nano_wrap(number_t v, int limit) {
+		number_t lim = MAKE_NUMBER(limit);
+		v %= lim;
+		if (v < 0) v += lim;
+		return v;
+	}
+
+	// A Nano draw stamps whole grid cells, so the plot records a cell centre
+	// and a cell radius; the renderer expands it (renderer.cpp, `nano_on`).
+	void nano_draw(short f, short x, short y, short size, short tint) {
+		short s = (short) nano.qsize(size);
+		short c = tint >= 0 ? (short) nano.qtint(tint) : tint;
+		short cx = (short) nano.snapx(x);
+		short cy = (short) nano.snapy(y);
+		output.push_back({f, cx, cy, s, c});
+		stats->draw(f, cx, cy, s);
+		// The canvas is a torus in y and Nano's row index wraps mod GH, so a
+		// blob straddling an edge reappears at the other one.  The renderer has
+		// no notion of wrapping, so emit the second copy here; x needs no such
+		// thing because Nano CLIPS the blob's columns (runtime.asm .dsc0/.dsc1)
+		// even though it wraps the turtle, and clipping is what a quad already
+		// does at the canvas edge.
+		int reach = ((2 * s + 1) * nano.cellh()) / 2;   // half-height in pixels
+		if (cy - reach < 0) {
+			output.push_back({f, cx, (short)(cy + NanoConfig::H), s, c});
+		} else if (cy + reach >= NanoConfig::H) {
+			output.push_back({f, cx, (short)(cy - NanoConfig::H), s, c});
 		}
 	}
 
