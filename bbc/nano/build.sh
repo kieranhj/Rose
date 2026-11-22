@@ -6,7 +6,7 @@ set -e
 cd "$(dirname "$0")"
 NAME="$1"
 FRAMES="${2:-0}"
-BEEBASM="${BEEBASM:-/c/Users/khcon/OneDrive/BEEB/Repos/beebasm/beebasm.exe}"
+BEEBASM="${BEEBASM:-/d/beeb/third-party/beebasm/beebasm.exe}"
 mkdir -p build
 python nanoc.py "examples/$NAME.nano" "build/$NAME.asm"
 rm -f "build/$NAME.ssd"

@@ -22,7 +22,7 @@ FRAMES="${6:-10000}"
 WIRES="${7:-0}"
 PBUFN="${8:-250}"
 STATEBASE=$(( 0xF800 - MAXT * STATESZ ))
-BEEBASM="${BEEBASM:-/c/Users/khcon/OneDrive/BEEB/Repos/beebasm/beebasm.exe}"
+BEEBASM="${BEEBASM:-/d/beeb/third-party/beebasm/beebasm.exe}"
 case "$ROSE" in
   *.rose) ROSEFILE="$ROSE" ;;
   *)      ROSEFILE="../../../examples/$ROSE.rose" ;;

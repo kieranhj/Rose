@@ -2,7 +2,7 @@
 # Build and run the Rose Micro primitive benchmarks (experiment 2).
 set -e
 cd "$(dirname "$0")"
-BEEBASM="${BEEBASM:-/c/Users/khcon/OneDrive/BEEB/Repos/beebasm/beebasm.exe}"
+BEEBASM="${BEEBASM:-/d/beeb/third-party/beebasm/beebasm.exe}"
 python - <<'PY'
 import math, struct
 n = 1024
