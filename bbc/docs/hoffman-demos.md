@@ -13,7 +13,7 @@ emits the `.bin` triple, `expected_plots.bin` ground truth, and capacity
 stats in one run). The four demos ship only compiled bins in
 `arc/examples/<name>/`, but full sources exist locally:
 
-- `C:\Users\khcon\OneDrive\Archie\Repos\Hoffman\{logicos,technova,waytoorude}`
+- `C:\Users\khcon\OneDrive\Retro\Archie\Repos\Hoffman\{logicos,technova,waytoorude}`
   — all compile cleanly through roseplots today.
 - **rageos has no source** (bins only, Apr 2023). Its colorscript is
   byte-identical to logicos's — clearly a LogicOS derivative. Ground truth
