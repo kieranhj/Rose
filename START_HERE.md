@@ -29,7 +29,7 @@ user's project now (upstream last changed 2020).
   `../../../Libs` = D:\archie\Libs, which **does not exist** (Libs moved to D:\tools\archie\Libs;
   pass `EXTERNAL=D:/tools/archie/Libs` or add a junction). Not run.
 - `bbc/nano/build.sh <name>` (Git Bash): compiles `examples/<name>.nano` to `build/<name>.ssd` with
-  beebasm (default path updated to D:\beeb\third-party\beebasm\beebasm.exe on 2026-11-22). Not run.
+  beebasm (default path is D:\tools\beeb\Bin\beebasm.exe, the canonical build, since 2026-11-26). Not run.
 
 ## Local changes
 - 2026-11-22: beebasm default path changed from OneDrive to D: in `bbc/bench/build.sh`,
