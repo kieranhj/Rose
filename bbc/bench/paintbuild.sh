@@ -2,7 +2,7 @@
 # Build and run the precompiled brush painter benchmark (experiment 3).
 set -e
 cd "$(dirname "$0")"
-BEEBASM="${BEEBASM:-/d/beeb/third-party/beebasm/beebasm.exe}"
+BEEBASM="${BEEBASM:-/d/tools/beeb/Bin/beebasm.exe}"
 python genpaint.py "$@"
 printf '*RUN BENCH\r' > boot.txt
 rm -f paint.ssd

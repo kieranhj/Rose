@@ -17,7 +17,7 @@ ROSE="${2:-$NAME}"
 WIDE="${3:-0}"
 FRAMES="${4:-10000}"
 WIRES="${5:-0}"
-BEEBASM="${BEEBASM:-/d/beeb/third-party/beebasm/beebasm.exe}"
+BEEBASM="${BEEBASM:-/d/tools/beeb/Bin/beebasm.exe}"
 case "$ROSE" in
   *.rose) ROSEFILE="$ROSE" ;;
   *)      ROSEFILE="../../../examples/$ROSE.rose" ;;
