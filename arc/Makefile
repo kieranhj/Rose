@@ -16,7 +16,7 @@ ENGINE_DEPS:=engine/rose.asm engine/circles.asm engine/circledat.asm engine/engi
 COMMON_DEPS:=common/MemAlloc,ffa common/MMode98,ffa common/MMode97,ffa
 MUSIC_DEPS:=common/QTM147,ffa
 
-ARCULATOR_HOSTFS=../../arculator/hostfs
+ARCULATOR_HOSTFS=../../arculator/hostfs/Builds
 
 ##########################################################################
 ##########################################################################

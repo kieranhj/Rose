@@ -6,6 +6,6 @@ all: help
 help:
 	@echo Nothing to build at the top level of Rose. Builds live in the subfolders:
 	@echo   visualizer\Makefile  - Windows C++ visualizer (needs GLFW/GLEW/PortAudio in ..\..\..\Libs, and sh)
-	@echo   arc\Makefile         - Archimedes demos (uses rm/cp: run from Git Bash), copies to ..\..\arculator\hostfs
+	@echo   arc\Makefile         - Archimedes demos (uses rm/cp: run from Git Bash), copies to ..\..\arculator\hostfs\Builds
 	@echo   bbc\nano\build.sh    - Rose Nano for the BBC Micro (Git Bash): bbc/nano/build.sh name
 	@echo See START_HERE.md and CLAUDE.md

@@ -24,7 +24,7 @@ user's project now (upstream last changed 2020).
 ## Build and run
 - `make` (top level): info only, lists the per-target builds (added 2026-11-22).
 - `arc/Makefile`: `make all` / `make ball` ... uses `rm`, `cp`, `mkdir -p`, so needs a POSIX shell
-  (Git Bash); outputs go to `../../arculator/hostfs` (D:\archie\mine\arculator\hostfs). Not run.
+  (Git Bash); outputs go to `../../arculator/hostfs/Builds` (D:\archie\mine\arculator\hostfs\Builds). Not run.
 - `visualizer/Makefile`: needs `x86_64-w64-mingw32-g++` (not on PATH) and GLFW/GLEW/PortAudio at
   `../../../Libs` = D:\archie\Libs, which **does not exist** (Libs moved to D:\tools\archie\Libs;
   pass `EXTERNAL=D:/tools/archie/Libs` or add a junction). Not run.

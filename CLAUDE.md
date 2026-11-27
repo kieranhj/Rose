@@ -44,7 +44,7 @@ make circle everyway         # build specific demos
 make clean
 ```
 
-Each demo build: assembles with `vasm`, links with `vlink`, optionally compresses with `lz4`, then copies to `../../arculator/hostfs/`. Requires Python 3 (`python` on PATH), `dos2unix`, and the tools in `arc/bin/`.
+Each demo build: assembles with `vasm`, links with `vlink`, optionally compresses with `lz4`, then copies to `../../arculator/hostfs/Builds/`. Requires Python 3 (`python` on PATH), `dos2unix`, and the tools in `arc/bin/`.
 
 The `rose2arc.py` script converts pre-compiled bytecode/constants/colorscript `.bin` files into ARM assembly (`instructions.asm`) that is then included in the engine build.
 
